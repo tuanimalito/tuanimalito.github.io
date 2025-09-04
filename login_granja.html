@@ -8,7 +8,7 @@
     <link href="img/favicon.webp" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
+         /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -94,44 +94,6 @@
             z-index: 100;
         }
         
-        /* Mejoras de accesibilidad en el menú desplegable */
-        .game-selector {
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .game-selector label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 18px;
-        }
-        
-        .game-selector select {
-            padding: 12px 20px;
-            font-size: 16px;
-            border: 2px solid var(--primary-color);
-            border-radius: 8px;
-            background-color: var(--block-bg);
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-        }
-        
-        .game-selector select:focus {
-            outline: none;
-            border-color: #6a11cb;
-            box-shadow: var(--focus-shadow);
-        }
-        
         /* Mejoras de accesibilidad en navegación */
         .nav-menu {
             margin-bottom: 25px;
@@ -178,6 +140,7 @@
         .header {
             text-align: center;
             margin-bottom: 25px;
+            position: relative;
         }
         
         .header::after {
@@ -263,6 +226,7 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            flex-shrink: 0;
         }
         
         .hours-container {
@@ -362,6 +326,7 @@
         
         .btn-validate {
             background: var(--success-gradient);
+            display: none; /* Botón oculto */
         }
         
         .btn-hot {
@@ -375,10 +340,6 @@
         .btn-super-fixed {
             background: var(--super-fixed-gradient);
             animation: superFixedButtonPulse 2s infinite;
-        }
-        
-        .btn-random {
-            background: var(--warning-gradient);
         }
         
         .btn-clear {
@@ -468,14 +429,16 @@
             gap: 10px;
         }
         
+        /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             justify-content: center;
-            flex-wrap: wrap;
             gap: 15px;
             margin: 15px 0;
             position: relative;
             z-index: 100;
+            width: 100%;
         }
         
         .number-circle {
@@ -492,6 +455,7 @@
             position: relative;
             z-index: 100;
             animation: pulse 1.5s infinite alternate;
+            margin: 0 auto;
         }
         
         @keyframes pulse {
@@ -534,7 +498,7 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .copyright {
             font-weight: 600;
             color: var(--text-dark);
@@ -543,7 +507,7 @@
         .copyright span {
             color: var(--primary-color);
         }
-        
+
         .credits a {
             color: var(--primary-color);
             text-decoration: none;
@@ -627,6 +591,62 @@
             100% { transform: scale(1); }
         }
         
+        .explanation-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .explanation-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .explanation-box p {
+            color: #455a64;
+            line-height: 1.6;
+        }
+        
+        /* Nuevos estilos para el mensaje VIP */
+        .vip-message-container {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .vip-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .vip-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .vip-contact {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #ffd700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: contactPulse 2s infinite;
+        }
+        
+        @keyframes contactPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
         /* Mejoras de accesibilidad para modo alto contraste */
         @media (prefers-contrast: high) {
             :root {
@@ -684,6 +704,10 @@
             .super-fixed-circle {
                 animation: none;
             }
+            
+            .vip-contact {
+                animation: none;
+            }
         }
         
         /* Optimizaciones para dispositivos móviles */
@@ -699,7 +723,6 @@
             .input-row {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
             }
             
             .hours-container {
@@ -708,12 +731,13 @@
             
             .input-wrapper {
                 width: 60px;
+                margin: 5px;
             }
             
+            /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 10px;
             }
             
             .button-container {
@@ -755,6 +779,18 @@
                 height: 60px;
                 font-size: 20px;
             }
+            
+            .vip-title {
+                font-size: 20px;
+            }
+            
+            .vip-text {
+                font-size: 16px;
+            }
+            
+            .vip-contact {
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -782,15 +818,28 @@
                 height: 8px;
             }
             
+            /* NUEVO: Ajuste para números en móviles muy pequeños */
+            .numbers-container {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                gap: 8px;
+            }
+            
             .number-circle {
                 width: 50px;
                 height: 50px;
                 font-size: 18px;
             }
             
-            .footer {
-                flex-direction: column;
-                gap: 8px;
+            .vip-title {
+                font-size: 18px;
+            }
+            
+            .vip-text {
+                font-size: 14px;
+            }
+            
+            .vip-contact {
+                font-size: 16px;
             }
         }
         
@@ -823,9 +872,41 @@
                 filter: brightness(0.9);
             }
             
-            .copyright {
-                color: #f0f0f0;
+            .explanation-box {
+                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+                border-left: 5px solid #4299e1;
             }
+            
+            .explanation-box h3 {
+                color: #90cdf4;
+            }
+            
+            .explanation-box p {
+                color: #e2e8f0;
+            }
+        }
+
+        /* Nuevos estilos para la explicación de horas */
+        .hours-explanation {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+        }
+        
+        .hours-explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hours-explanation p {
+            margin-bottom: 5px;
+            color: var(--text-dark);
         }
     </style>
 </head>
@@ -1439,119 +1520,44 @@
             domElements.messageDiv.style.display = 'none';
         }
         
-        // ===== FUNCIÓN SUPER FIJOS ACTUALIZADA =====
+         // ===== FUNCIÓN SUPER FIJOS ACTUALIZADA =====
         function findSuperFixedNumbers() {
             // Ocultar mensajes anteriores
             hideMessage();
             
-            // Validar que todos los campos estén completos
-            if (!validateAllInputs()) {
-                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
-                return;
-            }
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
             
-            // Obtener todos los valores numéricos con sus posiciones
-            const numbersWithPositions = [];
-            for (let i = 1; i <= 30; i++) {
-                const input = document.getElementById(`num${i}`);
-                if (input && input.value) {
-                    numbersWithPositions.push({
-                        number: parseInt(input.value),
-                        position: i,
-                        input: input
-                    });
-                }
-            }
+            // Ocultar otras secciones
+            document.querySelector('.hot-numbers').style.display = 'none';
+            document.querySelector('.surprise-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'block';
             
-            // Crear un mapa para contar frecuencia de números
-            const frequencyMap = {};
-            numbersWithPositions.forEach(item => {
-                if (!frequencyMap[item.number]) {
-                    frequencyMap[item.number] = [];
-                }
-                frequencyMap[item.number].push(item.position);
-            });
+            // Limpiar el contenedor de números
+            domElements.superFixedNumbersContainer.innerHTML = '';
             
-            // Encontrar números que se repiten exactamente 2 veces
-            const superFixedNumbers = [];
+            // Crear un elemento para el mensaje VIP
+            const messageElement = document.createElement('div');
+            messageElement.className = 'vip-message-container';
+            messageElement.innerHTML = `
+                <div class="vip-title">¡INFORMACIÓN EXCLUSIVA!</div>
+                <div class="vip-text">Esta información es exclusiva solo para clientes VIP.</div>
+                <div class="vip-text">Póngase en contacto con el administrador al:</div>
+                <div class="vip-contact">Telf: 0424 867 1967</div>
+            `;
             
-            for (const number in frequencyMap) {
-                const positions = frequencyMap[number];
-                
-                // Solo considerar números que aparecen exactamente 2 veces
-                if (positions.length === 2) {
-                    const num = parseInt(number);
-                    const pos1 = positions[0];
-                    const pos2 = positions[1];
-                    const interval = Math.abs(pos2 - pos1);
-                    
-                    // Verificar si el intervalo es de 13 o más
-                    if (interval >= 13) {
-                        superFixedNumbers.push({
-                            number: num,
-                            positions: positions,
-                            interval: interval
-                        });
-                    }
-                }
-            }
+            domElements.superFixedNumbersContainer.appendChild(messageElement);
+            domElements.superFixedMessage.textContent = '';
             
-            // Mostrar resultados
-            if (superFixedNumbers.length > 0) {
-                // Limpiar contenedor de números SUPER FIJOS
-                domElements.superFixedNumbersContainer.innerHTML = '';
-                
-                // Crear elementos para todos los números SUPER FIJOS
-                superFixedNumbers.forEach(item => {
-                    const numberCircle = document.createElement('div');
-                    numberCircle.className = 'number-circle super-fixed-circle';
-                    numberCircle.textContent = item.number;
-                    numberCircle.setAttribute('aria-live', 'polite');
-                    
-                    // Añadir tooltip con información adicional
-                    numberCircle.title = `Posiciones: ${item.positions[0]} y ${item.positions[1]} (Intervalo: ${item.interval})`;
-                    
-                    domElements.superFixedNumbersContainer.appendChild(numberCircle);
-                });
-                
-                // Mostrar el contenedor de resultados
-                domElements.resultsContainer.style.display = 'block';
-                
-                // Mostrar solo la sección de SUPER FIJOS
-                document.querySelector('.hot-numbers').style.display = 'none';
-                document.querySelector('.surprise-numbers').style.display = 'none';
-                document.querySelector('.super-fixed-numbers').style.display = 'block';
-                
-                // Destacar los números en los inputs
-                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
-                
-                // Crear efectos de confeti desde los números
-                setTimeout(() => {
-                    // Crear confeti para cada número SUPER FIJO
-                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
-                        createConfettiFromElement(circle, 30);
-                    });
-                    
-                    // Añadir confeti general después de la explosión inicial
-                    setTimeout(() => {
-                        createGeneralConfetti();
-                    }, 300);
-                }, 100);
-                
-                showCelebrationText('¡SUPER FIJOS!');
-                
-                // Desplazarse suavemente hacia los resultados
-                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                
-                // Mostrar mensaje con información detallada
-                const numbersList = superFixedNumbers.map(item => 
-                    `${item.number} (posiciones ${item.positions[0]} y ${item.positions[1]})`
-                ).join(', ');
-                
-                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
-            } else {
-                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
-            }
+            // Efectos de confeti
+            setTimeout(() => {
+                createGeneralConfetti();
+            }, 100);
+            
+            showCelebrationText('¡Información VIP!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
         function highlightSuperFixedNumbers(numbers) {
@@ -1560,7 +1566,7 @@
             previousHighlights.forEach(el => el.classList.remove('super-fixed-highlight'));
             
             // Destacar los números SUPER FIJOS en los inputs
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 36; i++) {
                 const input = document.getElementById(`num${i}`);
                 if (input && numbers.includes(parseInt(input.value))) {
                     input.classList.add('super-fixed-highlight');

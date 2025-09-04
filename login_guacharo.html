@@ -140,6 +140,7 @@
         .header {
             text-align: center;
             margin-bottom: 25px;
+            position: relative;
         }
         
         .header::after {
@@ -428,14 +429,16 @@
             gap: 10px;
         }
         
+        /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             justify-content: center;
-            flex-wrap: wrap;
             gap: 15px;
             margin: 15px 0;
             position: relative;
             z-index: 100;
+            width: 100%;
         }
         
         .number-circle {
@@ -452,6 +455,7 @@
             position: relative;
             z-index: 100;
             animation: pulse 1.5s infinite alternate;
+            margin: 0 auto;
         }
         
         @keyframes pulse {
@@ -483,7 +487,7 @@
             font-style: italic;
         }
         
-.footer {
+        .footer {
             text-align: center;
             margin-top: 25px;
             color: var(--text-light);
@@ -495,7 +499,7 @@
             gap: 10px;
         }
 
- .copyright {
+        .copyright {
             font-weight: 600;
             color: var(--text-dark);
         }
@@ -504,7 +508,7 @@
             color: var(--primary-color);
         }
 
-.credits a {
+        .credits a {
             color: var(--primary-color);
             text-decoration: none;
             transition: color 0.3s ease;
@@ -608,6 +612,41 @@
             line-height: 1.6;
         }
         
+        /* Nuevos estilos para el mensaje VIP */
+        .vip-message-container {
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .vip-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .vip-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .vip-contact {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #ffd700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: contactPulse 2s infinite;
+        }
+        
+        @keyframes contactPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
         /* Mejoras de accesibilidad para modo alto contraste */
         @media (prefers-contrast: high) {
             :root {
@@ -665,6 +704,10 @@
             .super-fixed-circle {
                 animation: none;
             }
+            
+            .vip-contact {
+                animation: none;
+            }
         }
         
         /* Optimizaciones para dispositivos móviles */
@@ -691,10 +734,10 @@
                 margin: 5px;
             }
             
+            /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 10px;
             }
             
             .button-container {
@@ -736,6 +779,18 @@
                 height: 60px;
                 font-size: 20px;
             }
+            
+            .vip-title {
+                font-size: 20px;
+            }
+            
+            .vip-text {
+                font-size: 16px;
+            }
+            
+            .vip-contact {
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -763,10 +818,28 @@
                 height: 8px;
             }
             
+            /* NUEVO: Ajuste para números en móviles muy pequeños */
+            .numbers-container {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                gap: 8px;
+            }
+            
             .number-circle {
                 width: 50px;
                 height: 50px;
                 font-size: 18px;
+            }
+            
+            .vip-title {
+                font-size: 18px;
+            }
+            
+            .vip-text {
+                font-size: 14px;
+            }
+            
+            .vip-contact {
+                font-size: 16px;
             }
         }
         
@@ -1432,114 +1505,39 @@
             // Ocultar mensajes anteriores
             hideMessage();
             
-            // Validar que todos los campos estén completos
-            if (!validateAllInputs()) {
-                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
-                return;
-            }
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
             
-            // Obtener todos los valores numéricos con sus posiciones
-            const numbersWithPositions = [];
-            for (let i = 1; i <= 36; i++) {
-                const input = document.getElementById(`num${i}`);
-                if (input && input.value) {
-                    numbersWithPositions.push({
-                        number: parseInt(input.value),
-                        position: i,
-                        input: input
-                    });
-                }
-            }
+            // Ocultar otras secciones
+            document.querySelector('.hot-numbers').style.display = 'none';
+            document.querySelector('.surprise-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'block';
             
-            // Crear un mapa para contar frecuencia de números
-            const frequencyMap = {};
-            numbersWithPositions.forEach(item => {
-                if (!frequencyMap[item.number]) {
-                    frequencyMap[item.number] = [];
-                }
-                frequencyMap[item.number].push(item.position);
-            });
+            // Limpiar el contenedor de números
+            domElements.superFixedNumbersContainer.innerHTML = '';
             
-            // Encontrar números que se repiten exactamente 2 veces
-            const superFixedNumbers = [];
+            // Crear un elemento para el mensaje VIP
+            const messageElement = document.createElement('div');
+            messageElement.className = 'vip-message-container';
+            messageElement.innerHTML = `
+                <div class="vip-title">¡INFORMACIÓN EXCLUSIVA!</div>
+                <div class="vip-text">Esta información es exclusiva solo para clientes VIP.</div>
+                <div class="vip-text">Póngase en contacto con el administrador al:</div>
+                <div class="vip-contact">Telf: 0424 867 1967</div>
+            `;
             
-            for (const number in frequencyMap) {
-                const positions = frequencyMap[number];
-                
-                // Solo considerar números que aparecen exactamente 2 veces
-                if (positions.length === 2) {
-                    const num = parseInt(number);
-                    const pos1 = positions[0];
-                    const pos2 = positions[1];
-                    const interval = Math.abs(pos2 - pos1);
-                    
-                    // Verificar si el intervalo es de 13 o más
-                    if (interval >= 13) {
-                        superFixedNumbers.push({
-                            number: num,
-                            positions: positions,
-                            interval: interval
-                        });
-                    }
-                }
-            }
+            domElements.superFixedNumbersContainer.appendChild(messageElement);
+            domElements.superFixedMessage.textContent = '';
             
-            // Mostrar resultados
-            if (superFixedNumbers.length > 0) {
-                // Limpiar contenedor de números SUPER FIJOS
-                domElements.superFixedNumbersContainer.innerHTML = '';
-                
-                // Crear elementos para todos los números SUPER FIJOS
-                superFixedNumbers.forEach(item => {
-                    const numberCircle = document.createElement('div');
-                    numberCircle.className = 'number-circle super-fixed-circle';
-                    numberCircle.textContent = item.number;
-                    numberCircle.setAttribute('aria-live', 'polite');
-                    
-                    // Añadir tooltip con información adicional
-                    numberCircle.title = `Posiciones: ${item.positions[0]} y ${item.positions[1]} (Intervalo: ${item.interval})`;
-                    
-                    domElements.superFixedNumbersContainer.appendChild(numberCircle);
-                });
-                
-                // Mostrar el contenedor de resultados
-                domElements.resultsContainer.style.display = 'block';
-                
-                // Mostrar solo la sección de SUPER FIJOS
-                document.querySelector('.hot-numbers').style.display = 'none';
-                document.querySelector('.surprise-numbers').style.display = 'none';
-                document.querySelector('.super-fixed-numbers').style.display = 'block';
-                
-                // Destacar los números en los inputs
-                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
-                
-                // Crear efectos de confeti desde los números
-                setTimeout(() => {
-                    // Crear confeti para cada número SUPER FIJO
-                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
-                        createConfettiFromElement(circle, 30);
-                    });
-                    
-                    // Añadir confeti general después de la explosión inicial
-                    setTimeout(() => {
-                        createGeneralConfetti();
-                    }, 300);
-                }, 100);
-                
-                showCelebrationText('¡SUPER FIJOS!');
-                
-                // Desplazarse suavemente hacia los resultados
-                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                
-                // Mostrar mensaje con información detallada
-                const numbersList = superFixedNumbers.map(item => 
-                    `${item.number} (posiciones ${item.positions[0]} y ${item.positions[1]})`
-                ).join(', ');
-                
-                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
-            } else {
-                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
-            }
+            // Efectos de confeti
+            setTimeout(() => {
+                createGeneralConfetti();
+            }, 100);
+            
+            showCelebrationText('¡Información VIP!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
         function highlightSuperFixedNumbers(numbers) {
@@ -1555,6 +1553,56 @@
                     
                     // Añadir tooltip para indicar que es SUPER FIJO
                     input.title = 'Número SUPER FIJO';
+                }
+            }
+        }
+        
+        // ===== GENERACIÓN DE CAMPOS DE ENTRADA =====
+        function generateHourLabels() {
+            for (let i = 1; i <= 12; i++) {
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label-top';
+                hourLabel.textContent = getHourForBox(i);
+                
+                domElements.hours1.appendChild(hourLabel);
+                domElements.hours2.appendChild(hourLabel.cloneNode(true));
+                domElements.hours3.appendChild(hourLabel.cloneNode(true));
+            }
+        }
+        
+        function generateInputs() {
+            for (let i = 1; i <= 36; i++) {
+                const inputWrapper = document.createElement('div');
+                inputWrapper.className = 'input-wrapper';
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'casilla';
+                input.id = `num${i}`;
+                input.min = 0;
+                input.max = 36;
+                input.placeholder = getHourForBox(i);
+                input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
+                
+                // Agregar evento para validación en tiempo real
+                input.addEventListener('input', function() {
+                    validateSingleInput(this);
+                });
+                
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label';
+                hourLabel.textContent = getHourForBox(i);
+                
+                inputWrapper.appendChild(input);
+                inputWrapper.appendChild(hourLabel);
+                
+                // Agregar a bloque correspondiente
+                if (i <= 12) {
+                    domElements.block1.appendChild(inputWrapper);
+                } else if (i <= 24) {
+                    domElements.block2.appendChild(inputWrapper);
+                } else {
+                    domElements.block3.appendChild(inputWrapper);
                 }
             }
         }
