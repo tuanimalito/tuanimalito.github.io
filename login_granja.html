@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆TuAnimalito💲</title>
+    <!-- Favicons -->
+    <link href="img/favicon.webp" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+            --success-gradient: linear-gradient(to right, #2ecc71, #27ae60);
+            --danger-gradient: linear-gradient(to right, #e74c3c, #c0392b);
+            --warning-gradient: linear-gradient(to right, #f39c12, #e67e22);
+            --info-gradient: linear-gradient(to right, #9b59b6, #8e44ad);
+            --neutral-gradient: linear-gradient(to right, #95a5a6, #7f8c8d);
+            --super-fixed-gradient: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            --super-fixed-secondary: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --primary-color: #3498db;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --error-color: #e74c3c;
+            --success-color: #2e7d32;
+            --container-bg: #fff;
+            --block-bg: #f8f9fa;
+            --focus-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+        }
+        
+        body {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        
+        /* Efecto de confeti optimizado para rendimiento */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            opacity: 0.9;
+            animation: fall linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+        
+        .confetti::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(var(--end-x), var(--end-y), 0) rotate(var(--r)) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1200px;
+            padding: 30px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        /* Mejoras de accesibilidad en el menú desplegable */
+        .game-selector {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .game-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 18px;
+        }
+        
+        .game-selector select {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            background-color: var(--block-bg);
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .game-selector select:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: var(--focus-shadow);
+        }
+        
+        /* Mejoras de accesibilidad en navegación */
+        .nav-menu {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .nav-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-menu li {
+            margin: 5px 0;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 12px 25px;
+            background: var(--secondary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        
+        .nav-menu a i {
+            margin-right: 8px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        h1 {
+            color: var(--text-dark);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .info-box {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .input-section {
+            margin-bottom: 25px;
+        }
+        
+        .block {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--block-bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .block-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .block-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .hours-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 0 5px;
+        }
+        
+        .hour-label-top {
+            width: 60px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 5px 0;
+        }
+        
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .casilla {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .casilla:focus {
+            border-color: var(--primary-color);
+            box-shadow: var(--focus-shadow);
+            outline: none;
+        }
+        
+        .casilla.error {
+            border-color: var(--error-color);
+            background-color: #ffeaea;
+        }
+        
+        .hour-label {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-validate {
+            background: var(--success-gradient);
+        }
+        
+        .btn-hot {
+            background: var(--danger-gradient);
+        }
+        
+        .btn-surprise {
+            background: var(--info-gradient);
+        }
+        
+        .btn-super-fixed {
+            background: var(--super-fixed-gradient);
+            animation: superFixedButtonPulse 2s infinite;
+        }
+        
+        .btn-random {
+            background: var(--warning-gradient);
+        }
+        
+        .btn-clear {
+            background: var(--neutral-gradient);
+        }
+        
+        @keyframes superFixedButtonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #ffeaea;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .success-message {
+            background-color: #e8f5e8;
+            color: var(--success-color);
+            border: 1px solid #4CAF50;
+        }
+        
+        .info-message {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .results-container {
+            display: none;
+            margin-top: 25px;
+        }
+        
+        .result-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hot-numbers {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #d35400;
+            border: 2px dashed #e74c3c;
+        }
+        
+        .surprise-numbers {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: #8e44ad;
+            border: 2px dashed #9b59b6;
+        }
+        
+        .super-fixed-numbers {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: #fff;
+            border: 2px dashed #ffd700;
+            animation: superFixedPulse 3s infinite;
+        }
+        
+        @keyframes superFixedPulse {
+            0% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 107, 107, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.5); }
+        }
+        
+        .results-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .numbers-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .number-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 100;
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .hot-circle {
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+        
+        .surprise-circle {
+            background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
+        }
+        
+        .super-fixed-circle {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            animation: superFixedCirclePulse 1s infinite alternate;
+        }
+        
+        @keyframes superFixedCirclePulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 107, 107, 0.6); }
+            100% { transform: scale(1.15); box-shadow: 0 0 25px rgba(255, 107, 107, 1); }
+        }
+        
+        .results-message {
+            font-size: 16px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .copyright span {
+            color: var(--primary-color);
+        }
+        
+        .credits a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .credits a:hover {
+            color: #6a11cb;
+            text-decoration: underline;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .help-text {
+            background: var(--block-bg);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .celebration-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: zoomInOut 2s ease-in-out;
+        }
+        
+        @keyframes zoomInOut {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+        
+        .super-fixed-highlight {
+            background-color: #fffacd !important;
+            border: 2px solid #ffd700 !important;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+            animation: superFixedInputPulse 2s infinite;
+        }
+        
+        @keyframes superFixedInputPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Mejoras de accesibilidad para modo alto contraste */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0047AB;
+                --text-dark: #000;
+                --text-light: #333;
+                --container-bg: #fff;
+                --block-bg: #f0f0f0;
+            }
+            
+            .confetti {
+                border: 1px solid #000;
+            }
+            
+            .casilla {
+                border-width: 3px;
+            }
+        }
+        
+        /* Mejoras de accesibilidad para reducir movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .confetti {
+                display: none;
+            }
+            
+            .number-circle {
+                animation: none;
+            }
+            
+            .celebration-text {
+                animation: none;
+            }
+            
+            .super-fixed-highlight {
+                animation: none;
+            }
+            
+            .btn-super-fixed {
+                animation: none;
+            }
+            
+            .super-fixed-numbers {
+                animation: none;
+            }
+            
+            .super-fixed-circle {
+                animation: none;
+            }
+        }
+        
+        /* Optimizaciones para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .input-row {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .hours-container {
+                display: none;
+            }
+            
+            .input-wrapper {
+                width: 60px;
+            }
+            
+            .numbers-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .block-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .confetti {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .celebration-text {
+                font-size: 2rem;
+            }
+            
+            .number-circle {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            .info-box {
+                font-size: 14px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .input-wrapper {
+                width: 50px;
+            }
+            
+            .casilla {
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .confetti {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .number-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+        
+        /* Mejoras de foco para navegación con teclado */
+        .btn:focus-visible,
+        .casilla:focus-visible,
+        .nav-menu a:focus-visible {
+            outline: 3px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        /* Estilos para usuarios que prefieren modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #f0f0f0;
+                --text-light: #b0b0b0;
+                --container-bg: #2d3748;
+                --block-bg: #4a5568;
+            }
+            
+            .casilla {
+                background-color: #2d3748;
+                color: #f0f0f0;
+                border-color: #4a5568;
+            }
+            
+            .hot-numbers,
+            .surprise-numbers,
+            .super-fixed-numbers {
+                filter: brightness(0.9);
+            }
+            
+            .copyright {
+                color: #f0f0f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="celebration-overlay" id="celebrationOverlay" aria-live="polite" aria-atomic="true">
+        <div class="celebration-text" id="celebrationText">¡Felicidades!</div>
+    </div>
+
+    <div class="container">
+       <div class="logo">
+            <div class="" aria-hidden="true">
+                <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
+            </div>
+        </div>
+        
+        <header class="header">
+            <h1>Bienvenidos a Dr.Animalitos</h1>
+            <p class="subtitle">La mejor Orientación para los Animalitos</p>
+        </header>
+        
+        <nav class="nav-menu" aria-label="Menú de juegos de lotería">
+            <ul>
+                <li><a href="login_loto.html"><i class="fas fa-dice" aria-hidden="true"></i> Loto</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
+                <li><a href="login_guacharo.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
+            </ul>
+        </nav>
+        
+        <div class="info-box">
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            <span id="currentDate">Cargando fecha...</span>
+        </div>
+        
+        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 1 y 38.</p>
+        
+        <main class="input-section">
+            <section class="block" aria-labelledby="date1">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date1">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">1</div>
+                </div>
+                
+                <div class="hours-container" id="hours1" aria-hidden="true"></div>
+                <div class="input-row" id="block1"></div>
+                <div class="help-text">Complete todos los números del primer sorteo</div>
+            </section>
+            
+            <section class="block" aria-labelledby="date2">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date2">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">2</div>
+                </div>
+                
+                <div class="hours-container" id="hours2" aria-hidden="true"></div>
+                <div class="input-row" id="block2"></div>
+                <div class="help-text">Complete todos los números del segundo sorteo</div>
+            </section>
+            
+            <section class="block" aria-labelledby="date3">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date3">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">3</div>
+                </div>
+                
+                <div class="hours-container" id="hours3" aria-hidden="true"></div>
+                <div class="input-row" id="block3"></div>
+                <div class="help-text">Complete todos los números del tercer sorteo</div>
+            </section>
+        </main>
+        
+        <div class="button-container">
+            <button class="btn btn-validate" id="validateBtn">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Validar Números
+            </button>
+            <button class="btn btn-hot" id="hotNumbersBtn">
+                <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
+            </button>
+            <button class="btn btn-surprise" id="surpriseBtn">
+                <i class="fas fa-gift" aria-hidden="true"></i> Números Sorpresa
+            </button>
+            <button class="btn btn-super-fixed" id="superFixedBtn">
+                <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
+            </button>
+            <button class="btn btn-random" id="randomBtn">
+                <i class="fas fa-dice" aria-hidden="true"></i> Generar Aleatorios
+            </button>
+            <button class="btn btn-clear" id="clearBtn">
+                <i class="fas fa-broom" aria-hidden="true"></i> Limpiar Todo
+            </button>
+        </div>
+        
+        <div id="message" class="message" role="alert" aria-live="polite"></div>
+        
+        <div id="resultsContainer" class="results-container">
+            <section class="result-box hot-numbers" aria-labelledby="hotNumbersTitle">
+                <div class="results-title">
+                    <i class="fas fa-fire" aria-hidden="true"></i>
+                    <span id="hotNumbersTitle">¡Números Calientes para Hoy!</span>
+                </div>
+                <div class="numbers-container">
+                    <div class="number-circle hot-circle" id="hotNumber1" aria-live="polite">--</div>
+                    <div class="number-circle hot-circle" id="hotNumber2" aria-live="polite">--</div>
+                </div>
+                <div class="results-message" id="hotNumbersMessage">
+                    Estos números han sido seleccionados del sorteo más antiguo
+                </div>
+            </section>
+            
+            <section class="result-box surprise-numbers" aria-labelledby="surpriseTitle">
+                <div class="results-title">
+                    <i class="fas fa-gift" aria-hidden="true"></i>
+                    <span id="surpriseTitle">¡Sorpresa para Hoy!</span>
+                </div>
+                <div class="numbers-container">
+                    <div class="number-circle surprise-circle" id="surpriseNumber1" aria-live="polite">--</div>
+                    <div class="number-circle surprise-circle" id="surpriseNumber2" aria-live="polite">--</div>
+                </div>
+                <div class="results-message" id="surpriseMessage">
+                    Estos números especiales te traerán alegría
+                </div>
+            </section>
+
+            <section class="result-box super-fixed-numbers" aria-labelledby="superFixedTitle" style="display: none;">
+                <div class="results-title">
+                    <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    <span id="superFixedTitle">¡Números SUPER FIJOS!</span>
+                </div>
+                <div class="numbers-container" id="superFixedNumbersContainer">
+                    <!-- Los números SUPER FIJOS se generarán aquí dinámicamente -->
+                </div>
+                <!-- Mensaje eliminado según solicitud -->
+            </section>
+        </div>
+        
+        <footer class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript optimizado y separado -->
+    <script>
+        // ===== CONFIGURACIÓN Y CONSTANTES =====
+        const CONFETTI_COLORS = [
+            '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
+            '#1E90FF', '#9370DB', '#FF00FF', '#00FFFF', '#32CD32',
+            '#FF6347', '#FF8C00', '#FFFF00', '#40E0D0', '#8A2BE2'
+        ];
+        
+        // ===== ELEMENTOS DEL DOM =====
+        const domElements = {
+            block1: document.getElementById('block1'),
+            block2: document.getElementById('block2'),
+            block3: document.getElementById('block3'),
+            hours1: document.getElementById('hours1'),
+            hours2: document.getElementById('hours2'),
+            hours3: document.getElementById('hours3'),
+            validateBtn: document.getElementById('validateBtn'),
+            hotNumbersBtn: document.getElementById('hotNumbersBtn'),
+            surpriseBtn: document.getElementById('surpriseBtn'),
+            superFixedBtn: document.getElementById('superFixedBtn'),
+            randomBtn: document.getElementById('randomBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            messageDiv: document.getElementById('message'),
+            currentDateElement: document.getElementById('currentDate'),
+            date1Element: document.getElementById('date1'),
+            date2Element: document.getElementById('date2'),
+            date3Element: document.getElementById('date3'),
+            resultsContainer: document.getElementById('resultsContainer'),
+            hotNumber1: document.getElementById('hotNumber1'),
+            hotNumber2: document.getElementById('hotNumber2'),
+            surpriseNumber1: document.getElementById('surpriseNumber1'),
+            surpriseNumber2: document.getElementById('surpriseNumber2'),
+            superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
+            hotNumbersMessage: document.getElementById('hotNumbersMessage'),
+            surpriseMessage: document.getElementById('surpriseMessage'),
+            celebrationOverlay: document.getElementById('celebrationOverlay'),
+            celebrationText: document.getElementById('celebrationText')
+        };
+
+        // ===== FUNCIONES DE CONFETI (OPTIMIZADAS) =====
+        function createConfettiFromElement(element, count = 50) {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            
+            // Obtener posición del elemento
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Fragmento para mejor rendimiento
+            const fragment = document.createDocumentFragment();
+            
+            // Crear confeti desde el centro del elemento
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Colores vibrantes y aleatorios
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                // Posición inicial en el centro del elemento
+                confetti.style.left = centerX + 'px';
+                confetti.style.top = centerY + 'px';
+                
+                // Movimiento de explosión desde el centro del elemento
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 500 + 200;
+                const endX = (Math.cos(angle) * distance) + 'px';
+                const endY = (Math.sin(angle) * distance) + 'px';
+                
+                confetti.style.setProperty('--end-x', endX);
+                confetti.style.setProperty('--end-y', endY);
+                
+                // Animación con parámetros aleatorios
+                const duration = (Math.random() * 3 + 2) + 's';
+                const delay = (Math.random() * 0.3) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                confetti.style.setProperty('--r', rotation);
+                
+                // Tamaño variado
+                const size = Math.random() * 12 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                // Eliminar el confeti después de la animación
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        function createGeneralConfetti() {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            
+            // Fragmento para mejor rendimiento
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                // Posición aleatoria en la parte superior
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                
+                // Movimiento hacia abajo con desplazamiento horizontal
+                const tx = (Math.random() * 200 - 100) + 'px';
+                confetti.style.setProperty('--end-x', tx);
+                confetti.style.setProperty('--end-y', '100vh');
+                
+                const duration = (Math.random() * 4 + 3) + 's';
+                const delay = (Math.random() * 0.5) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                confetti.style.setProperty('--r', rotation);
+                
+                const size = Math.random() * 10 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 7000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        // ===== FUNCIONES DE UTILIDAD =====
+        function showCelebrationText(text) {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                domElements.celebrationText.textContent = text;
+                domElements.celebrationOverlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }, 2000);
+                return;
+            }
+            
+            domElements.celebrationText.textContent = text;
+            domElements.celebrationOverlay.style.opacity = '1';
+            
+            setTimeout(() => {
+                domElements.celebrationOverlay.style.opacity = '0';
+            }, 2000);
+        }
+        
+        function updateDates() {
+            const now = new Date();
+            
+            // Formatear fecha actual
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
+            
+            // Calcular fechas para los sorteos (3 días anteriores)
+            const today = new Date(now);
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+            const dayBeforeYesterday = new Date(now);
+            dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+            const threeDaysAgo = new Date(now);
+            threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+            
+            // Formatear fechas de sorteos
+            domElements.date1Element.textContent = `Sorteo ${formatDate(threeDaysAgo)}`;
+            domElements.date2Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;
+            domElements.date3Element.textContent = `Sorteo ${formatDate(yesterday)}`;
+        }
+        
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+        
+        // FUNCIÓN CORREGIDA: Obtener la hora en el orden correcto (9am a 8pm)
+        function getHourForBox(boxNumber) {
+            // Las horas van de 9am a 1pm y 4pm a 8pm (10 horas total)
+            const hours = [9, 10, 11, 12, 13, 16, 17, 18, 19, 20];
+            
+            // Usar módulo para repetir las horas después de las 10 primeras
+            const hourIndex = (boxNumber - 1) % hours.length;
+            const hour = hours[hourIndex];
+            
+            // Determinar si es am o pm
+            const period = hour >= 12 ? 'pm' : 'am';
+            
+            // Convertir hora militar a formato 12 horas
+            let displayHour = hour;
+            if (hour > 12) {
+                displayHour = hour - 12;
+            } else if (hour === 0) {
+                displayHour = 12;
+            }
+            
+            return `${displayHour}${period}`;
+        }
+        
+        // ===== FUNCIONES DE VALIDACIÓN =====
+        function validateSingleInput(input) {
+            const value = input.value;
+            
+            if (value === '') {
+                input.classList.remove('error');
+                return true;
+            }
+            
+            const num = parseInt(value);
+            
+            // CORRECCIÓN: Validar que esté entre 1 y 38 (no 75)
+            if (isNaN(num) || num < 1 || num > 38) {
+                input.classList.add('error');
+                showMessage('Por favor, ingrese solo números entre 1 y 38', 'error');
+                return false;
+            } else {
+                input.classList.remove('error');
+                hideMessage();
+                return true;
+            }
+        }
+
+        function validateAllInputs() {
+            let allValid = true;
+            let emptyFields = false;
+            
+            // Limpiar mensajes
+            hideMessage();
+            
+            // Validar cada casilla
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                const value = input.value;
+                
+                if (value === '') {
+                    input.classList.add('error');
+                    emptyFields = true;
+                    allValid = false;
+                    continue;
+                }
+                
+                const num = parseInt(value);
+                
+                // CORRECCIÓN: Validar que esté entre 1 and 38 (no 75)
+                if (isNaN(num) || num < 1 || num > 38) {
+                    input.classList.add('error');
+                    allValid = false;
+                } else {
+                    input.classList.remove('error');
+                }
+            }
+            
+            // Mostrar mensaje apropiado
+            if (emptyFields) {
+                showMessage('Por favor, complete todas las casillas', 'error');
+            } else if (!allValid) {
+                showMessage('Algunos números no son válidos. Revise que todos estén entre 1 y 38', 'error');
+            } else {
+                showMessage('¡Todos los números son válidos! Registro completado correctamente.', 'success');
+            }
+            
+            return allValid;
+        }
+        
+        // ===== FUNCIONES PRINCIPALES =====
+        function showHotNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                return;
+            }
+            
+            // Validar específicamente las casillas 1 y 3
+            const input1 = document.getElementById('num1');
+            const input3 = document.getElementById('num3');
+            
+            if (!validateSingleInput(input1) || !validateSingleInput(input3)) {
+                showMessage('Por favor, ingrese números válidos entre 1 y 38 en las casillas 1 y 3', 'error');
+                return;
+            }
+            
+            // Obtener los números de las casillas 1 y 3 del primer bloque (sorteo más antiguo)
+            const num1 = input1.value;
+            const num3 = input3.value;
+            
+            // Mostrar los números calientes
+            domElements.hotNumber1.textContent = num1;
+            domElements.hotNumber2.textContent = num3;
+            
+            // Actualizar el mensaje con la fecha del sorteo más antiguo
+            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}`;
+            
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
+            
+            // Ocultar la sección de sorpresa
+            document.querySelector('.surprise-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'none';
+            
+            // Crear efectos de confeti desde los números
+            setTimeout(() => {
+                createConfettiFromElement(domElements.hotNumber1, 60);
+                createConfettiFromElement(domElements.hotNumber2, 60);
+                
+                // Añadir confeti general después de la explosión inicial
+                setTimeout(() => {
+                    createGeneralConfetti();
+                }, 300);
+            }, 100);
+            
+            showCelebrationText('¡Números Calientes!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function showSurpriseNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                return;
+            }
+            
+            // Validar específicamente las casillas 2 y 4
+            const input2 = document.getElementById('num2');
+            const input4 = document.getElementById('num4');
+            
+            if (!validateSingleInput(input2) || !validateSingleInput(input4)) {
+                showMessage('Por favor, ingrese números válidos entre 1 y 38 en las casillas 2 y 4', 'error');
+                return;
+            }
+            
+            // Obtener los números de las casillas 2 y 4 del segundo bloque
+            const num2 = input2.value;
+            const num4 = input4.value;
+            
+            // Mostrar los números sorpresa
+            domElements.surpriseNumber1.textContent = num2;
+            domElements.surpriseNumber2.textContent = num4;
+            
+            // Actualizar el mensaje
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!`;
+            
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
+            
+            // Mostrar la sección de sorpresa
+            document.querySelector('.surprise-numbers').style.display = 'block';
+            
+            // Ocultar otras secciones
+            document.querySelector('.hot-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'none';
+            
+            // Crear efectos de confeti desde los números
+            setTimeout(() => {
+                createConfettiFromElement(domElements.surpriseNumber1, 60);
+                createConfettiFromElement(domElements.surpriseNumber2, 60);
+                
+                // Añadir confeti general después de la explosión inicial
+                setTimeout(() => {
+                    createGeneralConfetti();
+                }, 300);
+            }, 100);
+            
+            showCelebrationText('¡Sorpresa!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateRandomNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Limpiar cualquier error previo
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                input.classList.remove('error');
+            }
+            
+            // Generar números aleatorios entre 1 y 38 para cada campo
+            for (let i = 1; i <= 30; i++) {
+                const randomNum = Math.floor(Math.random() * 38) + 1;
+                document.getElementById(`num${i}`).value = randomNum;
+            }
+            
+            // Mostrar mensaje de confirmación
+            showMessage('¡Números aleatorios generados correctamente!', 'success');
+            
+            // Ocultar resultados si estaban visibles
+            domElements.resultsContainer.style.display = 'none';
+            
+            // Crear efecto de confeti general
+            createGeneralConfetti();
+            
+            // Mostrar mensaje de celebración
+            showCelebrationText('¡Números Aleatorios!');
+        }
+
+        function clearAllInputs() {
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                input.value = '';
+                input.classList.remove('error');
+                input.classList.remove('super-fixed-highlight');
+            }
+            hideMessage();
+            domElements.resultsContainer.style.display = 'none';
+            
+            // Mostrar mensaje de confirmación
+            showMessage('Todos los campos han sido limpiados', 'success');
+            setTimeout(hideMessage, 3000);
+        }
+        
+        function showMessage(text, type) {
+            domElements.messageDiv.textContent = text;
+            domElements.messageDiv.className = `message ${type}-message`;
+            domElements.messageDiv.style.display = 'block';
+            
+            // Mejorar accesibilidad para lectores de pantalla
+            if (type === 'error') {
+                domElements.messageDiv.setAttribute('role', 'alert');
+            }
+        }
+        
+        function hideMessage() {
+            domElements.messageDiv.style.display = 'none';
+        }
+        
+        // ===== FUNCIÓN SUPER FIJOS ACTUALIZADA =====
+        function findSuperFixedNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
+                return;
+            }
+            
+            // Obtener todos los valores numéricos con sus posiciones
+            const numbersWithPositions = [];
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && input.value) {
+                    numbersWithPositions.push({
+                        number: parseInt(input.value),
+                        position: i,
+                        input: input
+                    });
+                }
+            }
+            
+            // Crear un mapa para contar frecuencia de números
+            const frequencyMap = {};
+            numbersWithPositions.forEach(item => {
+                if (!frequencyMap[item.number]) {
+                    frequencyMap[item.number] = [];
+                }
+                frequencyMap[item.number].push(item.position);
+            });
+            
+            // Encontrar números que se repiten exactamente 2 veces
+            const superFixedNumbers = [];
+            
+            for (const number in frequencyMap) {
+                const positions = frequencyMap[number];
+                
+                // Solo considerar números que aparecen exactamente 2 veces
+                if (positions.length === 2) {
+                    const num = parseInt(number);
+                    const pos1 = positions[0];
+                    const pos2 = positions[1];
+                    const interval = Math.abs(pos2 - pos1);
+                    
+                    // Verificar si el intervalo es de 13 o más
+                    if (interval >= 13) {
+                        superFixedNumbers.push({
+                            number: num,
+                            positions: positions,
+                            interval: interval
+                        });
+                    }
+                }
+            }
+            
+            // Mostrar resultados
+            if (superFixedNumbers.length > 0) {
+                // Limpiar contenedor de números SUPER FIJOS
+                domElements.superFixedNumbersContainer.innerHTML = '';
+                
+                // Crear elementos para todos los números SUPER FIJOS
+                superFixedNumbers.forEach(item => {
+                    const numberCircle = document.createElement('div');
+                    numberCircle.className = 'number-circle super-fixed-circle';
+                    numberCircle.textContent = item.number;
+                    numberCircle.setAttribute('aria-live', 'polite');
+                    
+                    // Añadir tooltip con información adicional
+                    numberCircle.title = `Posiciones: ${item.positions[0]} y ${item.positions[1]} (Intervalo: ${item.interval})`;
+                    
+                    domElements.superFixedNumbersContainer.appendChild(numberCircle);
+                });
+                
+                // Mostrar el contenedor de resultados
+                domElements.resultsContainer.style.display = 'block';
+                
+                // Mostrar solo la sección de SUPER FIJOS
+                document.querySelector('.hot-numbers').style.display = 'none';
+                document.querySelector('.surprise-numbers').style.display = 'none';
+                document.querySelector('.super-fixed-numbers').style.display = 'block';
+                
+                // Destacar los números en los inputs
+                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
+                
+                // Crear efectos de confeti desde los números
+                setTimeout(() => {
+                    // Crear confeti para cada número SUPER FIJO
+                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
+                        createConfettiFromElement(circle, 30);
+                    });
+                    
+                    // Añadir confeti general después de la explosión inicial
+                    setTimeout(() => {
+                        createGeneralConfetti();
+                    }, 300);
+                }, 100);
+                
+                showCelebrationText('¡SUPER FIJOS!');
+                
+                // Desplazarse suavemente hacia los resultados
+                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Mostrar mensaje con información detallada
+                const numbersList = superFixedNumbers.map(item => 
+                    `${item.number} (posiciones ${item.positions[0]} y ${item.positions[1]})`
+                ).join(', ');
+                
+                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
+            } else {
+                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
+            }
+        }
+
+        function highlightSuperFixedNumbers(numbers) {
+            // Remover highlights anteriores
+            const previousHighlights = document.querySelectorAll('.super-fixed-highlight');
+            previousHighlights.forEach(el => el.classList.remove('super-fixed-highlight'));
+            
+            // Destacar los números SUPER FIJOS en los inputs
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && numbers.includes(parseInt(input.value))) {
+                    input.classList.add('super-fixed-highlight');
+                    
+                    // Añadir tooltip para indicar que es SUPER FIJO
+                    input.title = 'Número SUPER FIJO';
+                }
+            }
+        }
+        
+        // ===== INICIALIZACIÓN =====
+        function generateHourLabels() {
+            for (let i = 1; i <= 10; i++) {
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label-top';
+                hourLabel.textContent = getHourForBox(i);
+                
+                domElements.hours1.appendChild(hourLabel);
+                domElements.hours2.appendChild(hourLabel.cloneNode(true));
+                domElements.hours3.appendChild(hourLabel.cloneNode(true));
+            }
+        }
+        
+        function generateInputs() {
+            for (let i = 1; i <= 30; i++) {
+                const inputWrapper = document.createElement('div');
+                inputWrapper.className = 'input-wrapper';
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'casilla';
+                input.id = `num${i}`;
+                input.min = 1;
+                input.max = 38;
+                input.placeholder = getHourForBox(i);
+                input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
+                
+                // Agregar evento para validación en tiempo real
+                input.addEventListener('input', function() {
+                    validateSingleInput(this);
+                });
+                
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label';
+                hourLabel.textContent = getHourForBox(i);
+                
+                inputWrapper.appendChild(input);
+                inputWrapper.appendChild(hourLabel);
+                
+                // Agregar a bloque correspondiente
+                if (i <= 10) {
+                    domElements.block1.appendChild(inputWrapper);
+                } else if (i <= 20) {
+                    domElements.block2.appendChild(inputWrapper);
+                } else {
+                    domElements.block3.appendChild(inputWrapper);
+                }
+            }
+        }
+
+          // ===== FUNCIONES DE SEGURIDAD =====
+        // Prevenir clic derecho e inspección en entornos de producción
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMessage('Acción no permitida por seguridad', 'error');
+            });
+            
+            // Deshabilitar la tecla F12
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showMessage('Acción no permitida por seguridad', 'error');
+                }
+            });
+        }
+        
+        function initApp() {
+            updateDates();
+            generateHourLabels();
+            generateInputs();
+            
+            // Agregar event listeners a los botones
+            domElements.validateBtn.addEventListener('click', validateAllInputs);
+            domElements.hotNumbersBtn.addEventListener('click', showHotNumbers);
+            domElements.surpriseBtn.addEventListener('click', showSurpriseNumbers);
+            domElements.superFixedBtn.addEventListener('click', findSuperFixedNumbers);
+            domElements.randomBtn.addEventListener('click', generateRandomNumbers);
+            domElements.clearBtn.addEventListener('click', clearAllInputs);
+            
+            // Mejorar accesibilidad del teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideMessage();
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }
+            });
+        }
+
+        // Iniciar la aplicación cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

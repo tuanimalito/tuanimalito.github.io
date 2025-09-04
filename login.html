@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆Acceso TuAnimalito💲</title>
+    <!-- Favicons -->
+    <link href="img/favicon.webp" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+            --success-gradient: linear-gradient(to right, #2ecc71, #27ae60);
+            --danger-gradient: linear-gradient(to right, #e74c3c, #c0392b);
+            --warning-gradient: linear-gradient(to right, #f39c12, #e67e22);
+            --info-gradient: linear-gradient(to right, #9b59b6, #8e44ad);
+            --neutral-gradient: linear-gradient(to right, #95a5a6, #7f8c8d);
+            --super-fixed-gradient: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            --super-fixed-secondary: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --primary-color: #3498db;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --error-color: #e74c3c;
+            --success-color: #2e7d32;
+            --container-bg: #fff;
+            --block-bg: #f8f9fa;
+            --focus-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+            --admin-color: #9b59b6;
+        }
+        
+        body {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        
+        /* Efecto de confeti optimizado para rendimiento */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            opacity: 0.9;
+            animation: fall linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+        
+        .confetti::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(var(--end-x), var(--end-y), 0) rotate(var(--r)) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .admin-container {
+            max-width: 800px;
+            display: none;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        h1 {
+            color: var(--text-dark);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--text-dark);
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .info-box {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-box {
+            background: var(--info-gradient);
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .login-form {
+            margin: 25px 0;
+        }
+        
+        .admin-form {
+            background: var(--block-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: var(--focus-shadow);
+            outline: none;
+        }
+        
+        .form-input.error {
+            border-color: var(--error-color);
+            background-color: #ffeaea;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-login {
+            background: var(--success-gradient);
+        }
+        
+        .btn-admin {
+            background: var(--info-gradient);
+        }
+        
+        .btn-register {
+            background: var(--info-gradient);
+        }
+        
+        .btn-help {
+            background: var(--neutral-gradient);
+        }
+        
+        .btn-back {
+            background: var(--neutral-gradient);
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #ffeaea;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .success-message {
+            background-color: #e8f5e8;
+            color: var(--success-color);
+            border: 1px solid #4CAF50;
+        }
+        
+        .info-message {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copyright {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .copyright span {
+            color: var(--primary-color);
+        }
+
+        .credits a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .credits a:hover {
+            color: #6a11cb;
+            text-decoration: underline;
+        }
+        
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .celebration-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: zoomInOut 2s ease-in-out;
+        }
+        
+        @keyframes zoomInOut {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+        
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .users-table th, 
+        .users-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .users-table th {
+            background: var(--info-gradient);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .users-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .delete-btn {
+            color: var(--error-color);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .delete-btn:hover {
+            background: #ffeaea;
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .admin-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--block-bg);
+            border-radius: 10px;
+        }
+        
+        .admin-section h3 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-section h3 i {
+            color: var(--admin-color);
+        }
+        
+        .attempts-info {
+            padding: 10px;
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .attempts-info.error {
+            background: #ffebee;
+            border-left-color: var(--error-color);
+        }
+        
+        /* Mejoras de accesibilidad para modo alto contraste */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0047AB;
+                --text-dark: #000;
+                --text-light: #333;
+                --container-bg: #fff;
+                --block-bg: #f0f0f0;
+            }
+            
+            .confetti {
+                border: 1px solid #000;
+            }
+            
+            .form-input {
+                border-width: 3px;
+            }
+        }
+        
+        /* Mejoras de accesibilidad para reducir movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .confetti {
+                display: none;
+            }
+            
+            .celebration-text {
+                animation: none;
+            }
+        }
+        
+        /* Optimizaciones para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .celebration-text {
+                font-size: 2rem;
+            }
+            
+            .users-table {
+                font-size: 14px;
+            }
+            
+            .users-table th, 
+            .users-table td {
+                padding: 8px 10px;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .info-box {
+                font-size: 14px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .users-table {
+                font-size: 12px;
+            }
+        }
+        
+        /* Mejoras de foco para navegación con teclado */
+        .btn:focus-visible,
+        .form-input:focus-visible {
+            outline: 3px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        /* Estilos para usuarios que prefieren modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #f0f0f0;
+                --text-light: #b0b0b0;
+                --container-bg: #2d3748;
+                --block-bg: #4a5568;
+            }
+            
+            .form-input {
+                background-color: #2d3748;
+                color: #f0f0f0;
+                border-color: #4a5568;
+            }
+            
+            .users-table {
+                background-color: #2d3748;
+                color: #f0f0f0;
+            }
+            
+            .users-table th {
+                background: linear-gradient(to right, #6a11cb, #2575fc);
+            }
+            
+            .users-table tr:hover {
+                background-color: #4a5568;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="celebration-overlay" id="celebrationOverlay" aria-live="polite" aria-atomic="true">
+        <div class="celebration-text" id="celebrationText">¡Bienvenido!</div>
+    </div>
+
+    <!-- Contenedor de Login -->
+    <div class="container" id="loginContainer">
+         <div class="logo">
+            <div class="" aria-hidden="true">
+                <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
+            </div>
+        </div>
+        
+        <header class="header">
+            <h1>Acceso Exclusivo</h1>
+            <p class="subtitle">Sistema de orientación para Animalitos</p>
+        </header>
+        
+        <div class="info-box">
+            <i class="fas fa-users-cog" aria-hidden="true"></i>
+            <span>Acceso restringido para miembros registrados</span>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Usuario</label>
+                <input type="text" id="username" class="form-input" placeholder="Ingrese su usuario" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="membership"><i class="fas fa-key"></i> Número de Membresía</label>
+                <input type="password" id="membership" class="form-input" placeholder="Ingrese su número de membresía" required>
+            </div>
+            
+            <div class="button-container">
+                <button type="submit" class="btn btn-login">
+                    <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Acceder
+                </button>
+                <button type="button" class="btn btn-admin" id="adminAccessBtn">
+                    <i class="fas fa-lock" aria-hidden="true"></i> Acceso Admin
+                </button>
+                <button type="button" class="btn btn-help" id="helpBtn">
+                    <i class="fas fa-question-circle" aria-hidden="true"></i> Ayuda
+                </button>
+            </div>
+        </form>
+        
+        <div id="message" class="message" role="alert" aria-live="polite"></div>
+        
+        <footer class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Dr.animalitos</span></strong>. Todos los derechos reservados
+            </div>
+            <div class="credits">
+                <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Contenedor de Administración -->
+    <div class="container admin-container" id="adminContainer">
+        <div class="logo">
+            <div class="logo-circle" aria-hidden="true">
+                <i class="fas fa-user-shield"></i>
+            </div>
+        </div>
+        
+        <header class="header">
+            <h1>Panel de Administración</h1>
+            <p class="subtitle">Gestión de usuarios y membresías</p>
+        </header>
+        
+        <div class="info-box admin-box">
+            <i class="fas fa-lock" aria-hidden="true"></i>
+            <span>Acceso restringido solo para administradores</span>
+        </div>
+        
+        <form class="admin-form" id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminUsername"><i class="fas fa-user-shield"></i> Usuario Administrador</label>
+                <input type="text" id="adminUsername" class="form-input" placeholder="Ingrese usuario admin" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="adminPassword"><i class="fas fa-key"></i> Contraseña de Administrador</label>
+                <input type="password" id="adminPassword" class="form-input" placeholder="Ingrese contraseña admin" required>
+            </div>
+            
+            <div class="button-container">
+                <button type="submit" class="btn btn-admin">
+                    <i class="fas fa-unlock" aria-hidden="true"></i> Acceder como Admin
+                </button>
+                <button type="button" class="btn btn-back" id="backToLoginBtn">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Volver al Login
+                </button>
+            </div>
+        </form>
+        
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-actions">
+                <h2>Gestión de Usuarios</h2>
+                <button type="button" class="btn btn-admin" id="addUserBtn">
+                    <i class="fas fa-user-plus" aria-hidden="true"></i> Agregar Usuario
+                </button>
+                <button type="button" class="btn btn-admin" id="adminSettingsBtn">
+                    <i class="fas fa-cog" aria-hidden="true"></i> Configuración Admin
+                </button>
+            </div>
+            
+            <form class="admin-form" id="addUserForm">
+                <div class="form-group">
+                    <label for="newUsername"><i class="fas fa-user"></i> Nuevo Usuario</label>
+                    <input type="text" id="newUsername" class="form-input" placeholder="Nombre de usuario" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newMembership"><i class="fas fa-id-card"></i> Número de Membresía</label>
+                    <input type="text" id="newMembership" class="form-input" placeholder="Número de membresía" required>
+                </div>
+                
+                <div class="button-container">
+                    <button type="submit" class="btn btn-login">
+                        <i class="fas fa-save" aria-hidden="true"></i> Guardar Usuario
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Sección de Configuración de Administradores -->
+            <div class="admin-section" id="adminSettingsSection" style="display: none;">
+                <h3><i class="fas fa-user-cog"></i> Gestión de Administradores</h3>
+                
+                <form id="changeAdminPasswordForm">
+                    <div class="form-group">
+                        <label for="currentAdminPassword"><i class="fas fa-key"></i> Contraseña Actual</label>
+                        <input type="password" id="currentAdminPassword" class="form-input" placeholder="Contraseña actual" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newAdminPassword"><i class="fas fa-key"></i> Nueva Contraseña</label>
+                        <input type="password" id="newAdminPassword" class="form-input" placeholder="Nueva contraseña" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmAdminPassword"><i class="fas fa-key"></i> Confirmar Contraseña</label>
+                        <input type="password" id="confirmAdminPassword" class="form-input" placeholder="Confirmar nueva contraseña" required>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button type="submit" class="btn btn-login">
+                            <i class="fas fa-save" aria-hidden="true"></i> Cambiar Contraseña
+                        </button>
+                    </div>
+                </form>
+                
+                <h3 style="margin-top: 30px;"><i class="fas fa-user-plus"></i> Agregar Nuevo Administrador</h3>
+                
+                <form id="addAdminForm">
+                    <div class="form-group">
+                        <label for="newAdminUsername"><i class="fas fa-user"></i> Nombre de Usuario</label>
+                        <input type="text" id="newAdminUsername" class="form-input" placeholder="Nombre de usuario para el administrador" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newAdminPass"><i class="fas fa-key"></i> Contraseña</label>
+                        <input type="password" id="newAdminPass" class="form-input" placeholder="Contraseña para el administrador" required>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button type="submit" class="btn btn-admin">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i> Agregar Administrador
+                        </button>
+                    </div>
+                </form>
+                
+                <h3 style="margin-top: 30px;"><i class="fas fa-users-cog"></i> Administradores Existentes</h3>
+                <div class="table-responsive">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <!-- Los administradores se cargarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <h2>Usuarios Registrados</h2>
+            <div class="table-responsive">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Membresía</th>
+                            <th>Intentos Fallidos</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Los usuarios se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" class="btn btn-back" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Cerrar Sesión Admin
+                </button>
+            </div>
+        </div>
+        
+        <div id="adminMessage" class="message" role="alert" aria-live="polite"></div>
+    </div>
+
+    <script>
+        // ===== CONFIGURACIÓN Y CONSTANTES =====
+        const CONFETTI_COLORS = [
+            '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
+            '#1E90FF', '#9370DB', '#FF00FF', '#00FFFF', '#32CD32',
+            '#FF6347', '#FF8C00', '#FFFF00', '#40E0D0', '#8A2BE2'
+        ];
+        
+        // Configuración de intentos de login
+        const MAX_LOGIN_ATTEMPTS = 3;
+        const LOGIN_BLOCK_TIME = 45 * 60 * 1000; // 45 minutos en milisegundos
+        
+        // ===== BASE DE DATOS DE USUARIOS =====
+        let usersDB = JSON.parse(localStorage.getItem('drAnimalitosUsers')) || [];
+        const MAX_USERS = 50;
+        
+        // ===== BASE DE DATOS DE ADMINISTRADORES =====
+        let adminsDB = JSON.parse(localStorage.getItem('drAnimalitosAdmins')) || [
+            { username: "admin", password: "admin123" }
+        ];
+        
+        // ===== ELEMENTOS DEL DOM =====
+        const domElements = {
+            loginContainer: document.getElementById('loginContainer'),
+            adminContainer: document.getElementById('adminContainer'),
+            loginForm: document.getElementById('loginForm'),
+            adminLoginForm: document.getElementById('adminLoginForm'),
+            addUserForm: document.getElementById('addUserForm'),
+            changeAdminPasswordForm: document.getElementById('changeAdminPasswordForm'),
+            addAdminForm: document.getElementById('addAdminForm'),
+            username: document.getElementById('username'),
+            membership: document.getElementById('membership'),
+            adminUsername: document.getElementById('adminUsername'),
+            adminPassword: document.getElementById('adminPassword'),
+            newUsername: document.getElementById('newUsername'),
+            newMembership: document.getElementById('newMembership'),
+            currentAdminPassword: document.getElementById('currentAdminPassword'),
+            newAdminPassword: document.getElementById('newAdminPassword'),
+            confirmAdminPassword: document.getElementById('confirmAdminPassword'),
+            newAdminUsername: document.getElementById('newAdminUsername'),
+            newAdminPass: document.getElementById('newAdminPass'),
+            adminAccessBtn: document.getElementById('adminAccessBtn'),
+            helpBtn: document.getElementById('helpBtn'),
+            backToLoginBtn: document.getElementById('backToLoginBtn'),
+            addUserBtn: document.getElementById('addUserBtn'),
+            adminSettingsBtn: document.getElementById('adminSettingsBtn'),
+            adminLogoutBtn: document.getElementById('adminLogoutBtn'),
+            messageDiv: document.getElementById('message'),
+            adminMessage: document.getElementById('adminMessage'),
+            celebrationOverlay: document.getElementById('celebrationOverlay'),
+            celebrationText: document.getElementById('celebrationText'),
+            adminPanel: document.getElementById('adminPanel'),
+            adminSettingsSection: document.getElementById('adminSettingsSection'),
+            usersTableBody: document.getElementById('usersTableBody'),
+            adminTableBody: document.getElementById('adminTableBody')
+        };
+
+        // ===== FUNCIONES DE CONFETI (OPTIMIZADAS) =====
+        function createConfettiFromElement(element, count = 50) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                confetti.style.left = centerX + 'px';
+                confetti.style.top = centerY + 'px';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 500 + 200;
+                const endX = (Math.cos(angle) * distance) + 'px';
+                const endY = (Math.sin(angle) * distance) + 'px';
+                
+                confetti.style.setProperty('--end-x', endX);
+                confetti.style.setProperty('--end-y', endY);
+                
+                const duration = (Math.random() * 3 + 2) + 's';
+                const delay = (Math.random() * 0.3) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                confetti.style.setProperty('--r', rotation);
+                
+                const size = Math.random() * 12 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) confetti.parentNode.removeChild(confetti);
+                }, 5000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        function createGeneralConfetti() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                
+                const tx = (Math.random() * 200 - 100) + 'px';
+                confetti.style.setProperty('--end-x', tx);
+                confetti.style.setProperty('--end-y', '100vh');
+                
+                const duration = (Math.random() * 4 + 3) + 's';
+                const delay = (Math.random() * 0.5) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                confetti.style.setProperty('--r', rotation);
+                
+                const size = Math.random() * 10 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) confetti.parentNode.removeChild(confetti);
+                }, 7000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        // ===== FUNCIONES DE UTILIDAD =====
+        function showCelebrationText(text) {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                domElements.celebrationText.textContent = text;
+                domElements.celebrationOverlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }, 2000);
+                return;
+            }
+            
+            domElements.celebrationText.textContent = text;
+            domElements.celebrationOverlay.style.opacity = '1';
+            
+            setTimeout(() => {
+                domElements.celebrationOverlay.style.opacity = '0';
+            }, 2000);
+        }
+        
+        function showMessage(element, text, type) {
+            element.textContent = text;
+            element.className = `message ${type}-message`;
+            element.style.display = 'block';
+            
+            if (type === 'error') element.setAttribute('role', 'alert');
+            
+            setTimeout(() => hideMessage(element), 5000);
+        }
+        
+        function hideMessage(element) {
+            element.style.display = 'none';
+        }
+        
+        function validateLoginForm() {
+            const username = domElements.username.value.trim();
+            const membership = domElements.membership.value.trim();
+            
+            hideMessage(domElements.messageDiv);
+            
+            if (!username) {
+                domElements.username.classList.add('error');
+                showMessage(domElements.messageDiv, 'Por favor, ingrese su usuario', 'error');
+                return false;
+            } else domElements.username.classList.remove('error');
+            
+            if (!membership) {
+                domElements.membership.classList.add('error');
+                showMessage(domElements.messageDiv, 'Por favor, ingrese su número de membresía', 'error');
+                return false;
+            } else if (membership.length < 6) {
+                domElements.membership.classList.add('error');
+                showMessage(domElements.messageDiv, 'La membresía debe tener al menos 6 caracteres', 'error');
+                return false;
+            } else domElements.membership.classList.remove('error');
+            
+            return true;
+        }
+        
+        function validateAdminForm() {
+            const username = domElements.adminUsername.value.trim();
+            const password = domElements.adminPassword.value.trim();
+            
+            hideMessage(domElements.adminMessage);
+            
+            if (!username) {
+                domElements.adminUsername.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese usuario de administrador', 'error');
+                return false;
+            } else domElements.adminUsername.classList.remove('error');
+            
+            if (!password) {
+                domElements.adminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese contraseña de administrador', 'error');
+                return false;
+            } else domElements.adminPassword.classList.remove('error');
+            
+            return true;
+        }
+        
+        function validateAddUserForm() {
+            const username = domElements.newUsername.value.trim();
+            const membership = domElements.newMembership.value.trim();
+            
+            hideMessage(domElements.adminMessage);
+            
+            if (!username) {
+                domElements.newUsername.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese un nombre de usuario', 'error');
+                return false;
+            } else domElements.newUsername.classList.remove('error');
+            
+            if (!membership) {
+                domElements.newMembership.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese un número de membresía', 'error');
+                return false;
+            } else if (membership.length < 6) {
+                domElements.newMembership.classList.add('error');
+                showMessage(domElements.adminMessage, 'La membresía debe tener al menos 6 caracteres', 'error');
+                return false;
+            } else domElements.newMembership.classList.remove('error');
+            
+            // Verificar si el usuario ya existe
+            if (usersDB.find(user => user.username === username)) {
+                domElements.newUsername.classList.add('error');
+                showMessage(domElements.adminMessage, 'Este nombre de usuario ya existe', 'error');
+                return false;
+            }
+            
+            // Verificar si la membresía ya existe
+            if (usersDB.find(user => user.membership === membership)) {
+                domElements.newMembership.classList.add('error');
+                showMessage(domElements.adminMessage, 'Este número de membresía ya existe', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function validateChangeAdminPasswordForm() {
+            const currentPassword = domElements.currentAdminPassword.value;
+            const newPassword = domElements.newAdminPassword.value;
+            const confirmPassword = domElements.confirmAdminPassword.value;
+            
+            hideMessage(domElements.adminMessage);
+            
+            // Obtener el admin actual
+            const currentAdmin = adminsDB.find(admin => admin.username === domElements.adminUsername.value.trim());
+            
+            if (!currentPassword) {
+                domElements.currentAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese la contraseña actual', 'error');
+                return false;
+            } else if (currentAdmin && currentAdmin.password !== currentPassword) {
+                domElements.currentAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'La contraseña actual es incorrecta', 'error');
+                return false;
+            } else {
+                domElements.currentAdminPassword.classList.remove('error');
+            }
+            
+            if (!newPassword) {
+                domElements.newAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese la nueva contraseña', 'error');
+                return false;
+            } else if (newPassword.length < 6) {
+                domElements.newAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'La nueva contraseña debe tener al menos 6 caracteres', 'error');
+                return false;
+            } else {
+                domElements.newAdminPassword.classList.remove('error');
+            }
+            
+            if (!confirmPassword) {
+                domElements.confirmAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, confirme la nueva contraseña', 'error');
+                return false;
+            } else if (newPassword !== confirmPassword) {
+                domElements.confirmAdminPassword.classList.add('error');
+                showMessage(domElements.adminMessage, 'Las contraseñas no coinciden', 'error');
+                return false;
+            } else {
+                domElements.confirmAdminPassword.classList.remove('error');
+            }
+            
+            return true;
+        }
+        
+        function validateAddAdminForm() {
+            const username = domElements.newAdminUsername.value.trim();
+            const password = domElements.newAdminPass.value;
+            
+            hideMessage(domElements.adminMessage);
+            
+            if (!username) {
+                domElements.newAdminUsername.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese un nombre de usuario', 'error');
+                return false;
+            } else if (adminsDB.find(admin => admin.username === username)) {
+                domElements.newAdminUsername.classList.add('error');
+                showMessage(domElements.adminMessage, 'Este nombre de administrador ya existe', 'error');
+                return false;
+            } else {
+                domElements.newAdminUsername.classList.remove('error');
+            }
+            
+            if (!password) {
+                domElements.newAdminPass.classList.add('error');
+                showMessage(domElements.adminMessage, 'Por favor, ingrese una contraseña', 'error');
+                return false;
+            } else if (password.length < 6) {
+                domElements.newAdminPass.classList.add('error');
+                showMessage(domElements.adminMessage, 'La contraseña debe tener al menos 6 caracteres', 'error');
+                return false;
+            } else {
+                domElements.newAdminPass.classList.remove('error');
+            }
+            
+            return true;
+        }
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            if (!validateLoginForm()) return;
+            
+            const username = domElements.username.value.trim();
+            const membership = domElements.membership.value.trim();
+            
+            showMessage(domElements.messageDiv, 'Verificando credenciales...', 'info');
+            
+            setTimeout(() => {
+                const user = usersDB.find(u => u.username === username && u.membership === membership);
+                
+                // Verificar si el usuario está bloqueado
+                if (user && user.blockedUntil && user.blockedUntil > Date.now()) {
+                    const minutesLeft = Math.ceil((user.blockedUntil - Date.now()) / 60000);
+                    showMessage(domElements.messageDiv, `Cuenta bloqueada. Intente nuevamente en ${minutesLeft} minutos.`, 'error');
+                    return;
+                }
+                
+                if (user) {
+                    // Reiniciar intentos si el login es exitoso
+                    user.loginAttempts = 0;
+                    user.blockedUntil = null;
+                    localStorage.setItem('drAnimalitosUsers', JSON.stringify(usersDB));
+                    
+                    showMessage(domElements.messageDiv, '¡Acceso concedido! Redirigiendo...', 'success');
+                    showCelebrationText('¡Bienvenido!');
+                    createGeneralConfetti();
+                    
+                    setTimeout(() => {
+                        window.location.href = 'login_loto.html';
+                    }, 2000);
+                } else {
+                    // Incrementar contador de intentos fallidos
+                    const userIndex = usersDB.findIndex(u => u.username === username);
+                    if (userIndex !== -1) {
+                        usersDB[userIndex].loginAttempts = (usersDB[userIndex].loginAttempts || 0) + 1;
+                        
+                        if (usersDB[userIndex].loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                            usersDB[userIndex].blockedUntil = Date.now() + LOGIN_BLOCK_TIME;
+                            const minutesLeft = Math.ceil(LOGIN_BLOCK_TIME / 60000);
+                            showMessage(domElements.messageDiv, `Demasiados intentos fallidos. Cuenta bloqueada por ${minutesLeft} minutos.`, 'error');
+                        } else {
+                            const attemptsLeft = MAX_LOGIN_ATTEMPTS - usersDB[userIndex].loginAttempts;
+                            showMessage(domElements.messageDiv, `Usuario o membresía incorrectos. Le quedan ${attemptsLeft} intentos.`, 'error');
+                        }
+                        
+                        localStorage.setItem('drAnimalitosUsers', JSON.stringify(usersDB));
+                    } else {
+                        showMessage(domElements.messageDiv, 'Usuario o membresía incorrectos', 'error');
+                    }
+                }
+            }, 1500);
+        }
+        
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            
+            if (!validateAdminForm()) return;
+            
+            const username = domElements.adminUsername.value.trim();
+            const password = domElements.adminPassword.value.trim();
+            
+            showMessage(domElements.adminMessage, 'Verificando credenciales...', 'info');
+            
+            setTimeout(() => {
+                const admin = adminsDB.find(a => a.username === username && a.password === password);
+                
+                if (admin) {
+                    showMessage(domElements.adminMessage, '¡Acceso de administrador concedido!', 'success');
+                    domElements.adminPanel.style.display = 'block';
+                    loadUsersTable();
+                    loadAdminsTable();
+                } else {
+                    showMessage(domElements.adminMessage, 'Credenciales de administrador incorrectas', 'error');
+                }
+            }, 1500);
+        }
+        
+        function handleAddUser(e) {
+            e.preventDefault();
+            
+            if (!validateAddUserForm()) return;
+            
+            if (usersDB.length >= MAX_USERS) {
+                showMessage(domElements.adminMessage, `Límite alcanzado. Máximo ${MAX_USERS} usuarios permitidos.`, 'error');
+                return;
+            }
+            
+            const newUser = {
+                username: domElements.newUsername.value.trim(),
+                membership: domElements.newMembership.value.trim(),
+                date: new Date().toLocaleDateString(),
+                loginAttempts: 0,
+                blockedUntil: null
+            };
+            
+            usersDB.push(newUser);
+            localStorage.setItem('drAnimalitosUsers', JSON.stringify(usersDB));
+            
+            showMessage(domElements.adminMessage, `Usuario "${newUser.username}" agregado correctamente`, 'success');
+            domElements.addUserForm.reset();
+            
+            loadUsersTable();
+            createConfettiFromElement(domElements.addUserBtn, 30);
+        }
+        
+        function handleChangeAdminPassword(e) {
+            e.preventDefault();
+            
+            if (!validateChangeAdminPasswordForm()) return;
+            
+            const newPassword = domElements.newAdminPassword.value;
+            const currentAdminUsername = domElements.adminUsername.value.trim();
+            
+            // Actualizar la contraseña del administrador
+            const adminIndex = adminsDB.findIndex(admin => admin.username === currentAdminUsername);
+            if (adminIndex !== -1) {
+                adminsDB[adminIndex].password = newPassword;
+                localStorage.setItem('drAnimalitosAdmins', JSON.stringify(adminsDB));
+                
+                showMessage(domElements.adminMessage, 'Contraseña de administrador actualizada correctamente', 'success');
+                domElements.changeAdminPasswordForm.reset();
+            }
+        }
+        
+        function handleAddAdmin(e) {
+            e.preventDefault();
+            
+            if (!validateAddAdminForm()) return;
+            
+            const newAdmin = {
+                username: domElements.newAdminUsername.value.trim(),
+                password: domElements.newAdminPass.value
+            };
+            
+            adminsDB.push(newAdmin);
+            localStorage.setItem('drAnimalitosAdmins', JSON.stringify(adminsDB));
+            
+            showMessage(domElements.adminMessage, `Administrador "${newAdmin.username}" agregado correctamente`, 'success');
+            domElements.addAdminForm.reset();
+            
+            loadAdminsTable();
+            createConfettiFromElement(domElements.addAdminForm, 30);
+        }
+        
+        function deleteUser(username) {
+            if (confirm(`¿Está seguro de que desea eliminar al usuario "${username}"?`)) {
+                usersDB = usersDB.filter(user => user.username !== username);
+                localStorage.setItem('drAnimalitosUsers', JSON.stringify(usersDB));
+                showMessage(domElements.adminMessage, `Usuario "${username}" eliminado correctamente`, 'success');
+                loadUsersTable();
+            }
+        }
+        
+        function deleteAdmin(username) {
+            // Prevenir la eliminación del último administrador
+            if (adminsDB.length <= 1) {
+                showMessage(domElements.adminMessage, 'No se puede eliminar el único administrador', 'error');
+                return;
+            }
+            
+            // Prevenir que un administrador se elimine a sí mismo
+            const currentAdmin = domElements.adminUsername.value.trim();
+            if (username === currentAdmin) {
+                showMessage(domElements.adminMessage, 'No puede eliminarse a sí mismo', 'error');
+                return;
+            }
+            
+            if (confirm(`¿Está seguro de que desea eliminar al administrador "${username}"?`)) {
+                adminsDB = adminsDB.filter(admin => admin.username !== username);
+                localStorage.setItem('drAnimalitosAdmins', JSON.stringify(adminsDB));
+                showMessage(domElements.adminMessage, `Administrador "${username}" eliminado correctamente`, 'success');
+                loadAdminsTable();
+            }
+        }
+        
+        function resetUserAttempts(username) {
+            const userIndex = usersDB.findIndex(user => user.username === username);
+            if (userIndex !== -1) {
+                usersDB[userIndex].loginAttempts = 0;
+                usersDB[userIndex].blockedUntil = null;
+                localStorage.setItem('drAnimalitosUsers', JSON.stringify(usersDB));
+                showMessage(domElements.adminMessage, `Intentos de usuario "${username}" reiniciados`, 'success');
+                loadUsersTable();
+            }
+        }
+        
+        function loadUsersTable() {
+            domElements.usersTableBody.innerHTML = '';
+            
+            if (usersDB.length === 0) {
+                domElements.usersTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center;">No hay usuarios registrados</td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            usersDB.forEach(user => {
+                const row = document.createElement('tr');
+                
+                let status = 'Activo';
+                let statusClass = '';
+                if (user.blockedUntil && user.blockedUntil > Date.now()) {
+                    const minutesLeft = Math.ceil((user.blockedUntil - Date.now()) / 60000);
+                    status = `Bloqueado (${minutesLeft} min)`;
+                    statusClass = 'error';
+                } else if (user.loginAttempts > 0) {
+                    status = `${user.loginAttempts} intentos fallidos`;
+                }
+                
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.membership}</td>
+                    <td>${user.loginAttempts || 0}</td>
+                    <td class="${statusClass}">${status}</td>
+                    <td>
+                        <span class="delete-btn" onclick="deleteUser('${user.username}')">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </span>
+                        ${user.loginAttempts > 0 ? `
+                        <span class="delete-btn" style="color: var(--primary-color); margin-left: 10px;" onclick="resetUserAttempts('${user.username}')">
+                            <i class="fas fa-undo-alt"></i> Reiniciar intentos
+                        </span>
+                        ` : ''}
+                    </td>
+                `;
+                domElements.usersTableBody.appendChild(row);
+            });
+        }
+        
+        function loadAdminsTable() {
+            domElements.adminTableBody.innerHTML = '';
+            
+            adminsDB.forEach(admin => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${admin.username}</td>
+                    <td>
+                        <span class="delete-btn" onclick="deleteAdmin('${admin.username}')">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </span>
+                    </td>
+                `;
+                domElements.adminTableBody.appendChild(row);
+            });
+        }
+        
+        function showHelpInfo() {
+            showMessage(domElements.messageDiv, 'Si tiene problemas para acceder, contacte: alexandermata834@gmail.com', 'info');
+        }
+        
+        function showAdminAccess() {
+            domElements.loginContainer.style.display = 'none';
+            domElements.adminContainer.style.display = 'block';
+        }
+        
+        function backToLogin() {
+            domElements.adminContainer.style.display = 'none';
+            domElements.loginContainer.style.display = 'block';
+            domElements.adminLoginForm.reset();
+            domElements.adminPanel.style.display = 'none';
+            domElements.adminSettingsSection.style.display = 'none';
+            hideMessage(domElements.adminMessage);
+        }
+        
+        function adminLogout() {
+            domElements.adminPanel.style.display = 'none';
+            domElements.adminLoginForm.reset();
+            domElements.adminSettingsSection.style.display = 'none';
+            hideMessage(domElements.adminMessage);
+        }
+        
+        function toggleAdminSettings() {
+            if (domElements.adminSettingsSection.style.display === 'none') {
+                domElements.adminSettingsSection.style.display = 'block';
+                domElements.addUserForm.style.display = 'none';
+            } else {
+                domElements.adminSettingsSection.style.display = 'none';
+                domElements.addUserForm.style.display = 'block';
+            }
+        }
+        
+        // ===== INICIALIZACIÓN =====
+        function initApp() {
+            // Agregar event listeners
+            domElements.loginForm.addEventListener('submit', handleLogin);
+            domElements.adminLoginForm.addEventListener('submit', handleAdminLogin);
+            domElements.addUserForm.addEventListener('submit', handleAddUser);
+            domElements.changeAdminPasswordForm.addEventListener('submit', handleChangeAdminPassword);
+            domElements.addAdminForm.addEventListener('submit', handleAddAdmin);
+            domElements.helpBtn.addEventListener('click', showHelpInfo);
+            domElements.adminAccessBtn.addEventListener('click', showAdminAccess);
+            domElements.backToLoginBtn.addEventListener('click', backToLogin);
+            domElements.adminSettingsBtn.addEventListener('click', toggleAdminSettings);
+            domElements.adminLogoutBtn.addEventListener('click', adminLogout);
+            
+            // Mejorar accesibilidad del teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideMessage(domElements.messageDiv);
+                    hideMessage(domElements.adminMessage);
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }
+            });
+
+            // Prevenir clic derecho e inspección en entornos de producción
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                document.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    showMessage(domElements.messageDiv, 'Acción no permitida por seguridad', 'error');
+                });
+                
+                // Deshabilitar la tecla F12
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'F12') {
+                        e.preventDefault();
+                        showMessage(domElements.messageDiv, 'Acción no permitida por seguridad', 'error');
+                    }
+                });
+            }
+            
+            // Cargar usuarios si es necesario
+            if (usersDB.length > 0) {
+                console.log(`${usersDB.length} usuarios cargados de localStorage`);
+            }
+            
+            // Inicializar la base de datos de administradores si no existe
+            if (adminsDB.length === 0) {
+                adminsDB = [{ username: "admin", password: "admin123" }];
+                localStorage.setItem('drAnimalitosAdmins', JSON.stringify(adminsDB));
+            }
+        }
+        
+        // Iniciar la aplicación cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
