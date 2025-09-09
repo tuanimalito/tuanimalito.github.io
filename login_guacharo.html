@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏆TuAnimalito💲</title>
     <!-- Favicons -->
-        <link href="img/favicon.webp" rel="icon">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
@@ -140,7 +140,6 @@
         .header {
             text-align: center;
             margin-bottom: 25px;
-            position: relative;
         }
         
         .header::after {
@@ -420,9 +419,9 @@
         }
         
         .results-title {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -432,35 +431,41 @@
         /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             justify-content: center;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 25px;
+            margin: 20px 0;
             position: relative;
             z-index: 100;
             width: 100%;
         }
         
         .number-circle {
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 36px;
+            font-weight: 800;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 100;
             animation: pulse 1.5s infinite alternate;
             margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .number-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            100% { transform: scale(1.08); }
         }
         
         .hot-circle {
@@ -477,13 +482,13 @@
         }
         
         @keyframes superFixedCirclePulse {
-            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 107, 107, 0.6); }
-            100% { transform: scale(1.15); box-shadow: 0 0 25px rgba(255, 107, 107, 1); }
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
+            100% { transform: scale(1.15); box-shadow: 0 0 30px rgba(255, 107, 107, 1); }
         }
         
         .results-message {
-            font-size: 16px;
-            margin-top: 10px;
+            font-size: 18px;
+            margin-top: 15px;
             font-style: italic;
         }
         
@@ -565,7 +570,7 @@
         }
         
         .celebration-text {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
             color: #fff;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -612,39 +617,61 @@
             line-height: 1.6;
         }
         
-        /* Nuevos estilos para el mensaje VIP */
-        .vip-message-container {
-            padding: 20px;
-            text-align: center;
-            color: white;
-        }
-        
-        .vip-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .vip-text {
+        /* Nuevos estilos para mostrar animales - MEJORADOS */
+        .animal-label {
             font-size: 18px;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        .vip-contact {
-            font-size: 20px;
+            margin-top: 10px;
+            text-align: center;
             font-weight: bold;
-            margin-top: 15px;
-            color: #ffd700;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            animation: contactPulse 2s infinite;
+            color: var(--text-dark);
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            line-height: 1.3;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            min-height: 40px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
         
-        @keyframes contactPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .number-with-animal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .number-with-animal:hover .animal-label {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Efecto de destello para números importantes */
+        @keyframes flash {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.7; }
+        }
+        
+        .flash-animation {
+            animation: flash 2s infinite;
+        }
+        
+        /* Efecto de rotación suave */
+        @keyframes gentleRotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .rotate-animation {
+            animation: gentleRotate 5s infinite ease-in-out;
         }
         
         /* Mejoras de accesibilidad para modo alto contraste */
@@ -663,6 +690,11 @@
             
             .casilla {
                 border-width: 3px;
+            }
+            
+            .animal-label {
+                background: #fff;
+                border: 2px solid #000;
             }
         }
         
@@ -705,8 +737,8 @@
                 animation: none;
             }
             
-            .vip-contact {
-                animation: none;
+            .number-with-animal:hover .animal-label {
+                transform: none;
             }
         }
         
@@ -736,8 +768,19 @@
             
             /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 15px;
+            }
+            
+            .number-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+            
+            .animal-label {
+                font-size: 14px;
+                min-height: 35px;
             }
             
             .button-container {
@@ -773,24 +816,6 @@
             .celebration-text {
                 font-size: 2rem;
             }
-            
-            .number-circle {
-                width: 60px;
-                height: 60px;
-                font-size: 20px;
-            }
-            
-            .vip-title {
-                font-size: 20px;
-            }
-            
-            .vip-text {
-                font-size: 16px;
-            }
-            
-            .vip-contact {
-                font-size: 18px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -820,26 +845,24 @@
             
             /* NUEVO: Ajuste para números en móviles muy pequeños */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-                gap: 8px;
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 10px;
             }
             
             .number-circle {
-                width: 50px;
-                height: 50px;
-                font-size: 18px;
+                width: 70px;
+                height: 70px;
+                font-size: 24px;
             }
             
-            .vip-title {
-                font-size: 18px;
+            .animal-label {
+                font-size: 12px;
+                min-height: 30px;
+                padding: 3px 6px;
             }
             
-            .vip-text {
-                font-size: 14px;
-            }
-            
-            .vip-contact {
-                font-size: 16px;
+            .results-title {
+                font-size: 22px;
             }
         }
         
@@ -884,6 +907,11 @@
             .explanation-box p {
                 color: #e2e8f0;
             }
+            
+            .animal-label {
+                color: #2d3748;
+                background: rgba(255, 255, 255, 0.9);
+            }
         }
 
         /* Nuevos estilos para la explicación de horas */
@@ -908,7 +936,25 @@
             margin-bottom: 5px;
             color: var(--text-dark);
         }
+        
+        /* Efectos de neón para números importantes */
+        .neon-effect {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px currentColor, 0 0 20px currentColor;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        
+        /* Efecto de brillo para números super fijos */
+        .super-fixed-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
+        }
     </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="celebration-overlay" id="celebrationOverlay" aria-live="polite" aria-atomic="true">
@@ -916,13 +962,11 @@
     </div>
 
     <div class="container">
-       <div class="logo">
+          <div class="logo">
             <div class="" aria-hidden="true">
                 <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
-
             </div>
         </div>
-        
         <header class="header">
             <h1>Bienvenidos a Dr.Animalitos</h1>
             <p class="subtitle">La mejor Orientación para los Animalitos</p>
@@ -942,8 +986,6 @@
         </div>
         
         <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 75.</p>
-        
-        
         
         <main class="input-section">
             <section class="block" aria-labelledby="date1">
@@ -1010,7 +1052,8 @@
                 <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
             </button>
             <button class="btn btn-clear" id="clearBtn">
-                <i class="fas fa-broom" aria-hidden="true"></i> Limpiar Todo
+                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
+
             </button>
         </div>
         
@@ -1022,9 +1065,8 @@
                     <i class="fas fa-fire" aria-hidden="true"></i>
                     <span id="hotNumbersTitle">¡Números Calientes para Hoy!</span>
                 </div>
-                <div class="numbers-container">
-                    <div class="number-circle hot-circle" id="hotNumber1" aria-live="polite">--</div>
-                    <div class="number-circle hot-circle" id="hotNumber2" aria-live="polite">--</div>
+                <div class="numbers-container" id="hotNumbersContainer">
+                    <!-- Los números calientes se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="hotNumbersMessage">
                     Estos números han sido seleccionados del sorteo más antiguo
@@ -1036,9 +1078,8 @@
                     <i class="fas fa-gift" aria-hidden="true"></i>
                     <span id="surpriseTitle">¡Sorpresa para Hoy!</span>
                 </div>
-                <div class="numbers-container">
-                    <div class="number-circle surprise-circle" id="surpriseNumber1" aria-live="polite">--</div>
-                    <div class="number-circle surprise-circle" id="surpriseNumber2" aria-live="polite">--</div>
+                <div class="numbers-container" id="surpriseNumbersContainer">
+                    <!-- Los números sorpresa se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="surpriseMessage">
                     Estos números especiales te traerán alegría
@@ -1069,6 +1110,102 @@
 
     <!-- JavaScript optimizado y separado -->
     <script>
+        // ===== DICCIONARIO DE ANIMALES (0-75) =====
+        const animalesDict = {
+            "0": "delfin",
+            "00": "ballena",
+            "01": "carnero",
+            "02": "toro",
+            "03": "ciempies",
+            "04": "alacran",
+            "05": "leon",
+            "06": "rana",
+            "07": "perico",
+            "08": "raton",
+            "09": "aguila",
+            "10": "tigre",
+            "11": "gato",
+            "12": "caballo",
+            "13": "mono",
+            "14": "paloma",
+            "15": "zorro",
+            "16": "oso",
+            "17": "pavo",
+            "18": "burro",
+            "19": "chivo",
+            "20": "cochino",
+            "21": "gallo",
+            "22": "camello",
+            "23": "cebra",
+            "24": "iguana",
+            "25": "gallina",
+            "26": "vaca",
+            "27": "perro",
+            "28": "zamuro",
+            "29": "elefante",
+            "30": "caiman",
+            "31": "lapa",
+            "32": "ardilla",
+            "33": "pescado",
+            "34": "venado",
+            "35": "jirafa",
+            "36": "culebra",
+            "37": "tortuga",
+            "38": "bufalo",
+            "39": "lechuza",
+            "40": "avispa",
+            "41": "canguro",
+            "42": "tucan",
+            "43": "mariposa",
+            "44": "chiguire",
+            "45": "garza",
+            "46": "puma",
+            "47": "pavo real",
+            "48": "puercoespin",
+            "49": "pereza",
+            "50": "canario",
+            "51": "pelicano",
+            "52": "pulpo",
+            "53": "caracol",
+            "54": "grillo",
+            "55": "oso hormiguero",
+            "56": "tiburon",
+            "57": "pato",
+            "58": "hormiga",
+            "59": "pantera",
+            "60": "camalion",
+            "61": "panda",
+            "62": "cachicamo",
+            "63": "cangrejo",
+            "64": "gavilan",
+            "65": "araña",
+            "66": "lobo",
+            "67": "avestruz",
+            "68": "jaguar",
+            "69": "conejo",
+            "70": "bisonte",
+            "71": "guacamalla",
+            "72": "gorila",
+            "73": "hipopotamo",
+            "74": "turpial",
+            "75": "guacharo"
+        };
+        
+        // Función para formatear números a dos dígitos y obtener el animal
+        function formatearNumeroConAnimal(num) {
+            let clave;
+            if (num === 0) {
+                clave = "0";
+            } else if (num >= 1 && num <= 9) {
+                clave = "0" + num;
+            } else {
+                clave = num.toString();
+            }
+            
+            const animal = animalesDict[clave] || "desconocido";
+            return { clave, animal };
+        }
+        
         // ===== CONFIGURACIÓN Y CONSTANTES =====
         const CONFETTI_COLORS = [
             '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
@@ -1095,10 +1232,8 @@
             date2Element: document.getElementById('date2'),
             date3Element: document.getElementById('date3'),
             resultsContainer: document.getElementById('resultsContainer'),
-            hotNumber1: document.getElementById('hotNumber1'),
-            hotNumber2: document.getElementById('hotNumber2'),
-            surpriseNumber1: document.getElementById('surpriseNumber1'),
-            surpriseNumber2: document.getElementById('surpriseNumber2'),
+            hotNumbersContainer: document.getElementById('hotNumbersContainer'),
+            surpriseNumbersContainer: document.getElementById('surpriseNumbersContainer'),
             superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
             hotNumbersMessage: document.getElementById('hotNumbersMessage'),
             surpriseMessage: document.getElementById('surpriseMessage'),
@@ -1240,27 +1375,28 @@
             }, 2000);
         }
         
-        function updateDates() {
-            const now = new Date();
-            
-            // Formatear fecha actual
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
-            
-            // Calcular fechas para los sorteos (3 días anteriores)
-            const today = new Date(now);
-            const yesterday = new Date(now);
-            yesterday.setDate(yesterday.getDate() - 1);
-            const dayBeforeYesterday = new Date(now);
-            dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
-            const threeDaysAgo = new Date(now);
-            threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-            
-            // Formatear fechas de sorteos
-            domElements.date1Element.textContent = `Sorteo ${formatDate(threeDaysAgo)}`;
-            domElements.date2Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;
-            domElements.date3Element.textContent = `Sorteo ${formatDate(yesterday)}`;
-        }
+       function updateDates() {
+    const now = new Date();
+    
+    // Formatear fecha actual
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
+    
+    // Calcular fechas para los sorteos en el orden correcto:
+    // Bloque 1: antier (hoy - 2 días)
+    // Bloque 2: ayer (hoy - 1 día)
+    // Bloque 3: hoy (fecha actual)
+    const today = new Date(now);
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const dayBeforeYesterday = new Date(now);
+    dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+    
+    // Formatear fechas de sorteos en el orden correcto
+    domElements.date1Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
+    domElements.date2Element.textContent = `Sorteo ${formatDate(yesterday)}`;           // ayer
+    domElements.date3Element.textContent = `Sorteo ${formatDate(today)}`;               // hoy
+}
         
         function formatDate(date) {
             const day = String(date.getDate()).padStart(2, '0');
@@ -1372,15 +1508,22 @@
             }
             
             // Obtener los números de las casillas 26 y 24 del primer bloque (sorteo más antiguo)
-            const num26 = input26.value;
-            const num24 = input24.value;
+            const num26 = parseInt(input26.value);
+            const num24 = parseInt(input24.value);
             
-            // Mostrar los números calientes
-            domElements.hotNumber1.textContent = num26;
-            domElements.hotNumber2.textContent = num24;
+            // Formatear números con sus animales
+            const num26Formatted = formatearNumeroConAnimal(num26);
+            const num24Formatted = formatearNumeroConAnimal(num24);
+            
+            // Limpiar contenedor de números calientes
+            domElements.hotNumbersContainer.innerHTML = '';
+            
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num26Formatted, 'hot-circle', domElements.hotNumbersContainer);
+            createNumberWithAnimalElement(num24Formatted, 'hot-circle', domElements.hotNumbersContainer);
             
             // Actualizar el mensaje con la fecha del sorteo más antiguo
-            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}`;
+            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num26Formatted.clave} ${num26Formatted.animal}], [${num24Formatted.clave} ${num24Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -1391,8 +1534,9 @@
             
             // Crear efectos de confeti desde los números
             setTimeout(() => {
-                createConfettiFromElement(domElements.hotNumber1, 60);
-                createConfettiFromElement(domElements.hotNumber2, 60);
+                const hotNumbers = domElements.hotNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(hotNumbers[0], 60);
+                createConfettiFromElement(hotNumbers[1], 60);
                 
                 // Añadir confeti general después de la explosión inicial
                 setTimeout(() => {
@@ -1425,15 +1569,22 @@
             }
             
             // Obtener los números de las casillas 25 y 23 del segundo bloque
-            const num25 = input25.value;
-            const num23 = input23.value;
+            const num25 = parseInt(input25.value);
+            const num23 = parseInt(input23.value);
             
-            // Mostrar los números sorpresa
-            domElements.surpriseNumber1.textContent = num25;
-            domElements.surpriseNumber2.textContent = num23;
+            // Formatear números con sus animales
+            const num25Formatted = formatearNumeroConAnimal(num25);
+            const num23Formatted = formatearNumeroConAnimal(num23);
+            
+            // Limpiar contenedor de números sorpresa
+            domElements.surpriseNumbersContainer.innerHTML = '';
+            
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num25Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            createNumberWithAnimalElement(num23Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
             
             // Actualizar el mensaje
-            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!`;
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num25Formatted.clave} ${num25Formatted.animal}], [${num23Formatted.clave} ${num23Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -1447,8 +1598,9 @@
             
             // Crear efectos de confeti desde los números
             setTimeout(() => {
-                createConfettiFromElement(domElements.surpriseNumber1, 60);
-                createConfettiFromElement(domElements.surpriseNumber2, 60);
+                const surpriseNumbers = domElements.surpriseNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(surpriseNumbers[0], 60);
+                createConfettiFromElement(surpriseNumbers[1], 60);
                 
                 // Añadir confeti general después de la explosión inicial
                 setTimeout(() => {
@@ -1505,39 +1657,138 @@
             // Ocultar mensajes anteriores
             hideMessage();
             
-            // Mostrar el contenedor de resultados
-            domElements.resultsContainer.style.display = 'block';
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
+                return;
+            }
             
-            // Ocultar otras secciones
-            document.querySelector('.hot-numbers').style.display = 'none';
-            document.querySelector('.surprise-numbers').style.display = 'none';
-            document.querySelector('.super-fixed-numbers').style.display = 'block';
+            // Obtener todos los valores numéricos con sus posiciones
+            const numbersWithPositions = [];
+            for (let i = 1; i <= 36; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && input.value) {
+                    numbersWithPositions.push({
+                        number: parseInt(input.value),
+                        position: i,
+                        input: input
+                    });
+                }
+            }
             
-            // Limpiar el contenedor de números
-            domElements.superFixedNumbersContainer.innerHTML = '';
+            // Crear un mapa para contar frecuencia de números
+            const frequencyMap = {};
+            numbersWithPositions.forEach(item => {
+                if (!frequencyMap[item.number]) {
+                    frequencyMap[item.number] = [];
+                }
+                frequencyMap[item.number].push(item.position);
+            });
             
-            // Crear un elemento para el mensaje VIP
-            const messageElement = document.createElement('div');
-            messageElement.className = 'vip-message-container';
-            messageElement.innerHTML = `
-                <div class="vip-title">¡INFORMACIÓN EXCLUSIVA!</div>
-                <div class="vip-text">Esta información es exclusiva solo para clientes VIP.</div>
-                <div class="vip-text">Póngase en contacto con el administrador al:</div>
-                <div class="vip-contact">Telf: 0424 867 1967</div>
-            `;
+            // Encontrar números que se repiten exactamente 2 veces
+            const superFixedNumbers = [];
             
-            domElements.superFixedNumbersContainer.appendChild(messageElement);
-            domElements.superFixedMessage.textContent = '';
+            for (const number in frequencyMap) {
+                const positions = frequencyMap[number];
+                
+                // Solo considerar números que aparecen exactamente 2 veces
+                if (positions.length === 2) {
+                    const num = parseInt(number);
+                    const pos1 = positions[0];
+                    const pos2 = positions[1];
+                    const interval = Math.abs(pos2 - pos1);
+                    
+                    // Verificar si el intervalo es de 13 o más
+                    if (interval >= 13) {
+                        superFixedNumbers.push({
+                            number: num,
+                            positions: positions,
+                            interval: interval
+                        });
+                    }
+                }
+            }
             
-            // Efectos de confeti
+            // Mostrar resultados
+            if (superFixedNumbers.length > 0) {
+                // Limpiar contenedor de números SUPER FIJOS
+                domElements.superFixedNumbersContainer.innerHTML = '';
+                
+                // Crear elementos para todos los números SUPER FIJOS
+                superFixedNumbers.forEach(item => {
+                    const numFormatted = formatearNumeroConAnimal(item.number);
+                    createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
+                });
+                
+                // Mostrar el contenedor de resultados
+                domElements.resultsContainer.style.display = 'block';
+                
+                // Mostrar solo la sección de SUPER FIJOS
+                document.querySelector('.hot-numbers').style.display = 'none';
+                document.querySelector('.surprise-numbers').style.display = 'none';
+                document.querySelector('.super-fixed-numbers').style.display = 'block';
+                
+                // Destacar los números en los inputs
+                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
+                
+                // Crear efectos de confeti desde los números
+                setTimeout(() => {
+                    // Crear confeti para cada número SUPER FIJO
+                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
+                        createConfettiFromElement(circle, 30);
+                    });
+                    
+                    // Añadir confeti general después de la explosión inicial
+                    setTimeout(() => {
+                        createGeneralConfetti();
+                    }, 300);
+                }, 100);
+                
+                showCelebrationText('¡SUPER FIJOS!');
+                
+                // Desplazarse suavemente hacia los resultados
+                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Mostrar mensaje con información detallada
+                const numbersList = superFixedNumbers.map(item => {
+                    const numFormatted = formatearNumeroConAnimal(item.number);
+                    return `${numFormatted.clave} ${numFormatted.animal} (posiciones ${item.positions[0]} y ${item.positions[1]})`;
+                }).join(', ');
+                
+                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
+            } else {
+                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
+            }
+        }
+
+        // Función para crear elementos de número con animal
+        function createNumberWithAnimalElement(numFormatted, circleClass, container) {
+            const numberWithAnimal = document.createElement('div');
+            numberWithAnimal.className = 'number-with-animal';
+            
+            const numberCircle = document.createElement('div');
+            numberCircle.className = `number-circle ${circleClass}`;
+            numberCircle.textContent = numFormatted.clave;
+            numberCircle.setAttribute('aria-live', 'polite');
+            numberCircle.title = `${numFormatted.clave} ${numFormatted.animal}`;
+            
+            // Añadir efecto neón para números importantes
+            if (circleClass.includes('super-fixed')) {
+                numberCircle.classList.add('neon-effect');
+            }
+            
+            const animalLabel = document.createElement('div');
+            animalLabel.className = 'animal-label flash-animation';
+            animalLabel.textContent = numFormatted.animal;
+            
+            numberWithAnimal.appendChild(numberCircle);
+            numberWithAnimal.appendChild(animalLabel);
+            container.appendChild(numberWithAnimal);
+            
+            // Añadir animación de rotación suave
             setTimeout(() => {
-                createGeneralConfetti();
+                numberWithAnimal.classList.add('rotate-animation');
             }, 100);
-            
-            showCelebrationText('¡Información VIP!');
-            
-            // Desplazarse suavemente hacia los resultados
-            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
         function highlightSuperFixedNumbers(numbers) {
@@ -1552,57 +1803,8 @@
                     input.classList.add('super-fixed-highlight');
                     
                     // Añadir tooltip para indicar que es SUPER FIJO
-                    input.title = 'Número SUPER FIJO';
-                }
-            }
-        }
-        
-        // ===== GENERACIÓN DE CAMPOS DE ENTRADA =====
-        function generateHourLabels() {
-            for (let i = 1; i <= 12; i++) {
-                const hourLabel = document.createElement('div');
-                hourLabel.className = 'hour-label-top';
-                hourLabel.textContent = getHourForBox(i);
-                
-                domElements.hours1.appendChild(hourLabel);
-                domElements.hours2.appendChild(hourLabel.cloneNode(true));
-                domElements.hours3.appendChild(hourLabel.cloneNode(true));
-            }
-        }
-        
-        function generateInputs() {
-            for (let i = 1; i <= 36; i++) {
-                const inputWrapper = document.createElement('div');
-                inputWrapper.className = 'input-wrapper';
-                
-                const input = document.createElement('input');
-                input.type = 'number';
-                input.className = 'casilla';
-                input.id = `num${i}`;
-                input.min = 0;
-                input.max = 36;
-                input.placeholder = getHourForBox(i);
-                input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
-                
-                // Agregar evento para validación en tiempo real
-                input.addEventListener('input', function() {
-                    validateSingleInput(this);
-                });
-                
-                const hourLabel = document.createElement('div');
-                hourLabel.className = 'hour-label';
-                hourLabel.textContent = getHourForBox(i);
-                
-                inputWrapper.appendChild(input);
-                inputWrapper.appendChild(hourLabel);
-                
-                // Agregar a bloque correspondiente
-                if (i <= 12) {
-                    domElements.block1.appendChild(inputWrapper);
-                } else if (i <= 24) {
-                    domElements.block2.appendChild(inputWrapper);
-                } else {
-                    domElements.block3.appendChild(inputWrapper);
+                    const numFormatted = formatearNumeroConAnimal(parseInt(input.value));
+                    input.title = `Número SUPER FIJO: ${numFormatted.clave} ${numFormatted.animal}`;
                 }
             }
         }
@@ -1656,23 +1858,6 @@
                 }
             }
         }
-
-          // ===== FUNCIONES DE SEGURIDAD =====
-        // Prevenir clic derecho e inspección en entornos de producción
-        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                showMessage('Acción no permitida por seguridad', 'error');
-            });
-            
-            // Deshabilitar la tecla F12
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'F12') {
-                    e.preventDefault();
-                    showMessage('Acción no permitida por seguridad', 'error');
-                }
-            });
-        }
         
         // ===== INICIALIZACIÓN =====
         function initApp() {
@@ -1694,7 +1879,7 @@
                 }
             });
         }
-
+        
         // Iniciar la aplicación cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
