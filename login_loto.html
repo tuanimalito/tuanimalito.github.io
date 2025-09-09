@@ -952,6 +952,38 @@
         .super-fixed-glow {
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
         }
+        
+        /* Estilos para los anuncios de Google AdSense */
+        .ad-container {
+            margin: 25px 0;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .ad-container.horizontal {
+            max-width: 728px;
+            min-height: 90px;
+        }
+        
+        .ad-container.vertical {
+            max-width: 300px;
+            min-height: 250px;
+        }
+        
+        .ad-container.responsive {
+            width: 100%;
+            min-height: 90px;
+        }
+        
+        .ad-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
@@ -962,7 +994,7 @@
     </div>
 
     <div class="container">
-          <div class="logo">
+        <div class="logo">
             <div class="" aria-hidden="true">
                 <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
             </div>
@@ -980,6 +1012,20 @@
                 <li><a href="login_granja.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
             </ul>
         </nav>
+        
+        <!-- Anuncio horizontal debajo del menú -->
+        <div class="ad-container horizontal">
+            <div class="ad-label">Publicidad</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7995132393364853"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         
         <div class="info-box">
             <i class="fas fa-calendar-alt" aria-hidden=true></i>
@@ -1054,11 +1100,24 @@
             </button>
             <button class="btn btn-clear" id="clearBtn">
                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
-
             </button>
         </div>
         
         <div id="message" class="message" role="alert" aria-live="polite"></div>
+        
+        <!-- Anuncio responsive encima de los resultados -->
+        <div class="ad-container responsive">
+            <div class="ad-label">Publicidad</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7995132393364853"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         
         <div id="resultsContainer" class="results-container">
             <section class="result-box hot-numbers" aria-labelledby="hotNumbersTitle">
@@ -1099,6 +1158,20 @@
                     Números que se repiten con un intervalo de 13 o más posiciones
                 </div>
             </section>
+        </div>
+        
+        <!-- Anuncio vertical en el pie de página -->
+        <div class="ad-container vertical">
+            <div class="ad-label">Publicidad</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7995132393364853"
+                 data-ad-slot="1122334455"
+                 data-ad-format="auto"
+                 data-full-width-responsive="false"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
         
         <footer class="footer">
@@ -1357,7 +1430,7 @@
             }, 2000);
         }
         
-         function updateDates() {
+          function updateDates() {
     const now = new Date();
     
     // Formatear fecha actual
@@ -1386,7 +1459,6 @@
             const year = date.getFullYear();
             return `${day}/${month}/${year}`;
         }
-
         // CORRECCIÓN: Función para obtener la hora en el orden correcto (8am a 7pm)
         function getHourForBox(boxNumber) {
             // Las horas van de 8am to 7pm (12 horas en total)
