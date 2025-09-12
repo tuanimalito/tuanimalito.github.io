@@ -2029,6 +2029,23 @@
                 }
             }
         }
+		          // ===== FUNCIONES DE SEGURIDAD =====
+        // Prevenir clic derecho e inspección en entornos de producción
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMessage('Acción no permitida por seguridad', 'error');
+            });
+            
+            // Deshabilitar la tecla F12
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showMessage('Acción no permitida por seguridad', 'error');
+                }
+            });
+        }
+        
         
         // ===== INICIALIZACIÓN =====
         function initApp() {
@@ -2058,3 +2075,4 @@
 
 
 </html>
+
