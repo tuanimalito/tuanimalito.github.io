@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏆TuAnimalito💲</title>
     <!-- Favicons -->
-    <link href="img/favicon.webp" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
@@ -479,8 +478,8 @@
         }
         
         .number-circle {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
@@ -495,6 +494,8 @@
             animation: pulse 1.5s infinite alternate;
             padding: 5px;
             text-align: center;
+            overflow: hidden;
+            border: 4px solid white;
         }
         
         @keyframes pulse {
@@ -645,6 +646,24 @@
             100% { transform: scale(1); }
         }
         
+        /* Estilos para imágenes de animalitos */
+        .animal-image {
+            width: 140%;
+            height: 140%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .image-fallback {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
         /* Mejoras de accesibilidad para modo alto contraste */
         @media (prefers-contrast: high) {
             :root {
@@ -734,6 +753,11 @@
                 gap: 15px;
             }
             
+            .number-circle {
+                width: 120px;
+                height: 120px;
+            }
+            
             .button-container {
                 flex-direction: column;
             }
@@ -766,11 +790,6 @@
             
             .celebration-text {
                 font-size: 2rem;
-            }
-            
-            .number-circle {
-                width: 90px;
-                height: 90px;
             }
             
             .number-value {
@@ -808,8 +827,8 @@
             }
             
             .number-circle {
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 100px;
             }
             
             .number-value {
@@ -871,7 +890,7 @@
     <div class="container">
        <div class="logo">
             <div class="" aria-hidden="true">
-                <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_granjazo/granja.png" height="100px" width="100px"/></i>
             </div>
         </div>
         
@@ -883,7 +902,7 @@
         <nav class="nav-menu" aria-label="Menú de juegos de lotería">
             <ul>
                 <li><a href="login_loto.html"><i class="fas fa-dice" aria-hidden="true"></i> Loto</a></li>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granjazo Millonario</a></li>
                 <li><a href="login_guacharo.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
             </ul>
         </nav>
@@ -905,7 +924,7 @@
             <span id="currentDate">Cargando fecha...</span>
         </div>
         
-        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 1 y 38.</p>
+        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 1 y 75.</p>
         
         <main class="input-section">
             <section class="block" aria-labelledby="date1">
@@ -953,8 +972,7 @@
         
         <div class="button-container">
             <button class="btn btn-validate" id="validateBtn">
-              <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
- 
+               <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Inicio </a>
             </button>
             <button class="btn btn-hot" id="hotNumbersBtn">
                 <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
@@ -969,7 +987,7 @@
                 <i class="fas fa-dice" aria-hidden="true"></i> Generar Aleatorios
             </button>
             <button class="btn btn-clear" id="clearBtn">
-                <i class="fas fa-broom" aria-hidden="true"></i> Limpiar Todo
+               <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
             </button>
         </div>
         
@@ -994,11 +1012,11 @@
                 </div>
                 <div class="numbers-container">
                     <div class="number-circle hot-circle" id="hotNumber1" aria-live="polite">
-                        <div class="number-value">--</div>
+                        <div class="image-fallback">--</div>
                         <div class="animal-name">Animal</div>
                     </div>
                     <div class="number-circle hot-circle" id="hotNumber2" aria-live="polite">
-                        <div class="number-value">--</div>
+                        <div class="image-fallback">--</div>
                         <div class="animal-name">Animal</div>
                     </div>
                 </div>
@@ -1014,11 +1032,11 @@
                 </div>
                 <div class="numbers-container">
                     <div class="number-circle surprise-circle" id="surpriseNumber1" aria-live="polite">
-                        <div class="number-value">--</div>
+                        <div class="image-fallback">--</div>
                         <div class="animal-name">Animal</div>
                     </div>
                     <div class="number-circle surprise-circle" id="surpriseNumber2" aria-live="polite">
-                        <div class="number-value">--</div>
+                        <div class="image-fallback">--</div>
                         <div class="animal-name">Animal</div>
                     </div>
                 </div>
@@ -1040,12 +1058,13 @@
         </div>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
+<!-- anuncio display horizontal -->
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
+     style="display:block"
      data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="7316306987"></ins>
+     data-ad-slot="4903538669"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -1071,15 +1090,94 @@
         
         // Mapeo de números a animalitos
         const ANIMALITOS = {
-            1: "carnero", 2: "toro", 3: "ciempies", 4: "alacran", 5: "leon",
-            6: "rana", 7: "perico", 8: "raton", 9: "aguila", 10: "tigre",
-            11: "gato", 12: "caballo", 13: "mono", 14: "paloma", 15: "zorro",
-            16: "oso", 17: "pavo", 18: "burro", 19: "chivo", 20: "cochino",
-            21: "gallo", 22: "camello", 23: "cebra", 24: "iguana", 25: "gallina",
-            26: "vaca", 27: "perro", 28: "zamuro", 29: "elefante", 30: "caiman",
-            31: "lapa", 32: "ardilla", 33: "pescado", 34: "venado", 35: "jirafa",
-            36: "culebra", 37: "mariposa", 38: "conejo"
+            "1": "carnero",
+            "2": "toro",
+            "3": "ciempies",
+            "4": "alacran",
+            "5": "leon",
+            "6": "rana",
+            "7": "perico",
+            "8": "raton",
+            "9": "aguila",
+            "10": "tigre",
+            "11": "gato",
+            "12": "caballo",
+            "13": "mono",
+            "14": "paloma",
+            "15": "zorro",
+            "16": "oso",
+            "17": "pavo",
+            "18": "burro",
+            "19": "chivo",
+            "20": "cochino",
+            "21": "gallo",
+            "22": "camello",
+            "23": "cebra",
+            "24": "iguana",
+            "25": "gallina",
+            "26": "vaca",
+            "27": "perro",
+            "28": "zamuro",
+            "29": "elefante",
+            "30": "caiman",
+            "31": "lapa",
+            "32": "ardilla",
+            "33": "pescado",
+            "34": "venado",
+            "35": "jirafa",
+            "36": "culebra",
+            "37": "mariposa",
+            "38": "conejo",
+            "39": "rinoceronte",
+            "40": "hipopotamo",
+            "41": "bufalo",
+            "42": "murcielago",
+            "43": "koala",
+            "44": "puma",
+            "45": "canguro",
+            "46": "lobo",
+            "47": "tortuga",
+            "48": "morsa",
+            "49": "hiena",
+            "50": "comadreja",
+            "51": "dragon",
+            "52": "chacal",
+            "53": "jaguar",
+            "54": "camalion",
+            "55": "foca",
+            "56": "arminio",
+            "57": "jabali",
+            "58": "castor",
+            "59": "guacamaya",
+            "60": "tiburon",
+            "61": "turpial",
+            "62": "tucan",
+            "63": "cachicamo",
+            "64": "hormiga",
+            "65": "gorila",
+            "66": "bisonte",
+            "67": "flamengo",
+            "68": "araña",
+            "69": "pavoreal",
+            "70": "cangrejo",
+            "71": "rabipelao",
+            "72": "pelicano",
+            "73": "colibri",
+            "74": "escarabajo",
+            "75": "codorniz"
         };
+
+        // Función para obtener la ruta de la imagen del animal
+        function getAnimalImage(num) {
+            // Formatear el número a dos dígitos
+            const formattedNum = num < 10 ? `0${num}` : `${num}`;
+            return `animalitos/animalitos_granjazo/${formattedNum}.png`;
+        }
+        
+        // Función para formatear números a dos dígitos
+        function formatNumberToTwoDigits(num) {
+            return num < 10 ? `0${num}` : `${num}`;
+        }
         
         // ===== ELEMENTOS DEL DOM =====
         const domElements = {
@@ -1246,7 +1344,7 @@
             }, 2000);
         }
         
-        function updateDates() {
+         function updateDates() {
     const now = new Date();
     
     // Formatear fecha actual
@@ -1315,10 +1413,10 @@
             
             const num = parseInt(value);
             
-            // CORRECCIÓN: Validar que esté entre 1 y 38 (no 75)
+            // CORRECCIÓN: Validar que esté entre 1 y 38
             if (isNaN(num) || num < 1 || num > 38) {
                 input.classList.add('error');
-                showMessage('Por favor, ingrese solo números entre 1 y 38', 'error');
+                showMessage('Por favor, ingrese solo números entre 1 y 75', 'error');
                 return false;
             } else {
                 input.classList.remove('error');
@@ -1348,7 +1446,7 @@
                 
                 const num = parseInt(value);
                 
-                // CORRECCIÓN: Validar que esté entre 1 and 38 (no 75)
+                // CORRECCIÓN: Validar que esté entre 1 and 75
                 if (isNaN(num) || num < 1 || num > 38) {
                     input.classList.add('error');
                     allValid = false;
@@ -1384,20 +1482,59 @@
             const input25 = document.getElementById('num25');
             
             if (!validateSingleInput(input23) || !validateSingleInput(input25)) {
-                showMessage('Por favor, ingrese números válidos entre 1 y 38', 'error');
+                showMessage('Por favor, ingrese números válidos entre 1 y 38 ', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 1 y 3 del primer bloque (sorteo más antiguo)
+            // Obtener los números de las casillas 23 y 25 del primer bloque (sorteo más antiguo)
             const num23 = parseInt(input23.value);
             const num25 = parseInt(input25.value);
             
-            // Mostrar los números calientes con sus animalitos
-            domElements.hotNumber1.querySelector('.number-value').textContent = num23;
-            domElements.hotNumber1.querySelector('.animal-name').textContent = getAnimalName(num23);
+            // Obtener nombres de animales
+            const animal23 = getAnimalName(num23);
+            const animal25 = getAnimalName(num25);
             
-            domElements.hotNumber2.querySelector('.number-value').textContent = num25;
-            domElements.hotNumber2.querySelector('.animal-name').textContent = getAnimalName(num25);
+            // Crear elementos de imagen para números calientes
+            domElements.hotNumber1.innerHTML = '';
+            domElements.hotNumber2.innerHTML = '';
+            
+            const img1 = document.createElement('img');
+            img1.src = getAnimalImage(num23);
+            img1.alt = animal23;
+            img1.className = 'animal-image';
+            img1.onerror = function() {
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = num23;
+                domElements.hotNumber1.appendChild(fallback);
+            };
+            
+            const animalName1 = document.createElement('div');
+            animalName1.className = 'animal-name';
+            animalName1.textContent = animal23;
+            
+            domElements.hotNumber1.appendChild(img1);
+            domElements.hotNumber1.appendChild(animalName1);
+            
+            const img2 = document.createElement('img');
+            img2.src = getAnimalImage(num25);
+            img2.alt = animal25;
+            img2.className = 'animal-image';
+            img2.onerror = function() {
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = num25;
+                domElements.hotNumber2.appendChild(fallback);
+            };
+            
+            const animalName2 = document.createElement('div');
+            animalName2.className = 'animal-name';
+            animalName2.textContent = animal25;
+            
+            domElements.hotNumber2.appendChild(img2);
+            domElements.hotNumber2.appendChild(animalName2);
             
             // Actualizar el mensaje con la fecha del sorteo más antiguo
             domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}`;
@@ -1440,20 +1577,59 @@
             const input26 = document.getElementById('num26');
             
             if (!validateSingleInput(input24) || !validateSingleInput(input26)) {
-                showMessage('Por favor, ingrese números válidos entre 1 y 38', 'error');
+                showMessage('Por favor, ingrese números válidos entre 1 y 75', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 22 y 26 del segundo bloque
+            // Obtener los números de las casillas 24 y 26 del segundo bloque
             const num24 = parseInt(input24.value);
             const num26 = parseInt(input26.value);
             
-            // Mostrar los números sorpresa con sus animalitos
-            domElements.surpriseNumber1.querySelector('.number-value').textContent = num24;
-            domElements.surpriseNumber1.querySelector('.animal-name').textContent = getAnimalName(num24);
+            // Obtener nombres de animales
+            const animal24 = getAnimalName(num24);
+            const animal26 = getAnimalName(num26);
             
-            domElements.surpriseNumber2.querySelector('.number-value').textContent = num26;
-            domElements.surpriseNumber2.querySelector('.animal-name').textContent = getAnimalName(num26);
+            // Crear elementos de imagen para números sorpresa
+            domElements.surpriseNumber1.innerHTML = '';
+            domElements.surpriseNumber2.innerHTML = '';
+            
+            const img1 = document.createElement('img');
+            img1.src = getAnimalImage(num24);
+            img1.alt = animal24;
+            img1.className = 'animal-image';
+            img1.onerror = function() {
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = num24;
+                domElements.surpriseNumber1.appendChild(fallback);
+            };
+            
+            const animalName1 = document.createElement('div');
+            animalName1.className = 'animal-name';
+            animalName1.textContent = animal24;
+            
+            domElements.surpriseNumber1.appendChild(img1);
+            domElements.surpriseNumber1.appendChild(animalName1);
+            
+            const img2 = document.createElement('img');
+            img2.src = getAnimalImage(num26);
+            img2.alt = animal26;
+            img2.className = 'animal-image';
+            img2.onerror = function() {
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = num26;
+                domElements.surpriseNumber2.appendChild(fallback);
+            };
+            
+            const animalName2 = document.createElement('div');
+            animalName2.className = 'animal-name';
+            animalName2.textContent = animal26;
+            
+            domElements.surpriseNumber2.appendChild(img2);
+            domElements.surpriseNumber2.appendChild(animalName2);
             
             // Actualizar el mensaje
             domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!`;
@@ -1495,7 +1671,7 @@
                 input.classList.remove('error');
             }
             
-            // Generar números aleatorios entre 1 y 38 para cada campo
+            // Generar números aleatorios entre 1 и 75 para cada campo
             for (let i = 1; i <= 30; i++) {
                 const randomNum = Math.floor(Math.random() * 38) + 1;
                 document.getElementById(`num${i}`).value = randomNum;
@@ -1590,8 +1766,8 @@
                     const pos2 = positions[1];
                     const interval = Math.abs(pos2 - pos1);
                     
-                    // Verificar si el intervalo es de 13 o más
-                    if (interval >= 13) {
+                    // Verificar si el intervalo es de 10 o más
+                    if (interval >= 10) {
                         superFixedNumbers.push({
                             number: num,
                             positions: positions,
@@ -1610,11 +1786,25 @@
                 superFixedNumbers.forEach(item => {
                     const numberCircle = document.createElement('div');
                     numberCircle.className = 'number-circle super-fixed-circle';
-                    numberCircle.innerHTML = `
-                        <div class="number-value">${item.number}</div>
-                        <div class="animal-name">${getAnimalName(item.number)}</div>
-                    `;
-                    numberCircle.setAttribute('aria-live', 'polite');
+                    
+                    const img = document.createElement('img');
+                    img.src = getAnimalImage(item.number);
+                    img.alt = getAnimalName(item.number);
+                    img.className = 'animal-image';
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'image-fallback';
+                        fallback.textContent = item.number;
+                        numberCircle.appendChild(fallback);
+                    };
+                    
+                    const animalName = document.createElement('div');
+                    animalName.className = 'animal-name';
+                    animalName.textContent = getAnimalName(item.number);
+                    
+                    numberCircle.appendChild(img);
+                    numberCircle.appendChild(animalName);
                     
                     // Añadir tooltip con información adicional
                     numberCircle.title = `Posiciones: ${item.positions[0]} y ${item.positions[1]} (Intervalo: ${item.interval})`;

@@ -402,7 +402,7 @@
         .surprise-numbers {
             background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
             color: #8e44ad;
-            border: 2px dashed #9b59b6;
+            border: 2px dashed #9b59b6);
         }
         
         .super-fixed-numbers {
@@ -431,7 +431,7 @@
         /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             justify-content: center;
             gap: 25px;
             margin: 20px 0;
@@ -441,8 +441,8 @@
         }
         
         .number-circle {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -456,6 +456,8 @@
             animation: pulse 1.5s infinite alternate;
             margin: 0 auto;
             transition: all 0.3s ease;
+            overflow: hidden;
+            border: 4px solid white;
         }
         
         .number-circle:hover {
@@ -768,13 +770,13 @@
             
             /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 15px;
             }
             
             .number-circle {
-                width: 80px;
-                height: 80px;
+                width: 120px;
+                height: 120px;
                 font-size: 28px;
             }
             
@@ -845,13 +847,13 @@
             
             /* NUEVO: Ajuste para números en móviles muy pequeños */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 gap: 10px;
             }
             
             .number-circle {
-                width: 70px;
-                height: 70px;
+                width: 100px;
+                height: 100px;
                 font-size: 24px;
             }
             
@@ -952,8 +954,32 @@
         .super-fixed-glow {
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
         }
+
+        /* Estilos para imágenes de animalitos - MEJORADOS */
+        .animal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .image-fallback {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        /* Mejora para que las imágenes se vean completas */
+        .number-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 </head>
 <body>
@@ -964,7 +990,7 @@
     <div class="container">
           <div class="logo">
             <div class="" aria-hidden="true">
-                <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_guacharo/logo.png" height="100px" width="100px"/></i>
             </div>
         </div>
         <header class="header">
@@ -979,18 +1005,20 @@
                 <li><a href="login_granja.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
             </ul>
         </nav>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-     crossorigin="anonymous"></script>
-<!-- display vertical -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="8773024812"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+        <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                crossorigin="anonymous"></script>
+                <!-- anuncio display 1 -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7995132393364853"
+                data-ad-slot="8481248642"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
         
         <div class="info-box">
             <i class="fas fa-calendar-alt" aria-hidden=true></i>
@@ -1069,7 +1097,7 @@
         </div>
         
         <div id="message" class="message" role="alert" aria-live="polite"></div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
@@ -1119,13 +1147,14 @@
                 <!-- Mensaje eliminado según solicitud -->
             </section>
         </div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+          <!-- Anuncio vertical en el pie de página -->
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
-<!-- anuncio display horizontal -->
+<!-- display vertical -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="4903538669"
+     data-ad-slot="8773024812"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
@@ -1224,6 +1253,11 @@
             "74": "turpial",
             "75": "guacharo"
         };
+
+        // Función para obtener la ruta de la imagen del animal
+        function getAnimalImage(clave) {
+            return `animalitos/animalitos_guacharo/${clave}.png`;
+        }
         
         // Función para formatear números a dos dígitos y obtener el animal
         function formatearNumeroConAnimal(num) {
@@ -1795,16 +1829,33 @@
             }
         }
 
-        // Función para crear elementos de número con animal
+        // Función para crear elementos de número con animal (MODIFICADA PARA MOSTRAR IMÁGENES)
         function createNumberWithAnimalElement(numFormatted, circleClass, container) {
             const numberWithAnimal = document.createElement('div');
             numberWithAnimal.className = 'number-with-animal';
             
             const numberCircle = document.createElement('div');
             numberCircle.className = `number-circle ${circleClass}`;
-            numberCircle.textContent = numFormatted.clave;
             numberCircle.setAttribute('aria-live', 'polite');
             numberCircle.title = `${numFormatted.clave} ${numFormatted.animal}`;
+            
+            // Crear elemento de imagen
+            const img = document.createElement('img');
+            img.src = getAnimalImage(numFormatted.clave);
+            img.alt = numFormatted.animal;
+            img.className = 'animal-image';
+            
+            // Manejar error de carga de imagen
+            img.onerror = function() {
+                // Si la imagen no se carga, mostrar el número como fallback
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = numFormatted.clave;
+                numberCircle.appendChild(fallback);
+            };
+            
+            numberCircle.appendChild(img);
             
             // Añadir efecto neón para números importantes
             if (circleClass.includes('super-fixed')) {
@@ -1918,5 +1969,4 @@
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
-
 </html>

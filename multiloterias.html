@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏆TuAnimalito💲</title>
     <!-- Favicons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
@@ -91,44 +92,6 @@
             padding: 30px;
             position: relative;
             z-index: 100;
-        }
-        
-        /* Mejoras de accesibilidad en el menú desplegable */
-        .game-selector {
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .game-selector label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 18px;
-        }
-        
-        .game-selector select {
-            padding: 12px 20px;
-            font-size: 16px;
-            border: 2px solid var(--primary-color);
-            border-radius: 8px;
-            background-color: var(--block-bg);
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-        }
-        
-        .game-selector select:focus {
-            outline: none;
-            border-color: #6a11cb;
-            box-shadow: var(--focus-shadow);
         }
         
         /* Mejoras de accesibilidad en navegación */
@@ -262,6 +225,7 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            flex-shrink: 0;
         }
         
         .hours-container {
@@ -361,6 +325,7 @@
         
         .btn-validate {
             background: var(--success-gradient);
+            display: none; /* Botón oculto */
         }
         
         .btn-hot {
@@ -374,10 +339,6 @@
         .btn-super-fixed {
             background: var(--super-fixed-gradient);
             animation: superFixedButtonPulse 2s infinite;
-        }
-        
-        .btn-random {
-            background: var(--warning-gradient);
         }
         
         .btn-clear {
@@ -458,64 +419,76 @@
         }
         
         .results-title {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
         
+        /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 25px;
+            margin: 20px 0;
             position: relative;
             z-index: 100;
+            width: 100%;
         }
         
         .number-circle {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 36px;
+            font-weight: 800;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 100;
             animation: pulse 1.5s infinite alternate;
-            padding: 5px;
-            text-align: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
             overflow: hidden;
-            border: 4px solid white;
+        }
+        
+        /* Estilo para imágenes dentro del círculo */
+        .number-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* Estilo de fallback para cuando no hay imagen */
+        .number-circle .number-fallback {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 50%;
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .number-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-        
-        .number-value {
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1.1;
-        }
-        
-        .animal-name {
-            font-size: 12px;
-            text-transform: uppercase;
-            margin-top: 5px;
-            font-weight: 600;
-            line-height: 1.1;
-            max-width: 90%;
+            100% { transform: scale(1.08); }
         }
         
         .hot-circle {
@@ -532,13 +505,13 @@
         }
         
         @keyframes superFixedCirclePulse {
-            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 107, 107, 0.6); }
-            100% { transform: scale(1.15); box-shadow: 0 0 25px rgba(255, 107, 107, 1); }
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
+            100% { transform: scale(1.15); box-shadow: 0 0 30px rgba(255, 107, 107, 1); }
         }
         
         .results-message {
-            font-size: 16px;
-            margin-top: 10px;
+            font-size: 18px;
+            margin-top: 15px;
             font-style: italic;
         }
         
@@ -553,7 +526,7 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .copyright {
             font-weight: 600;
             color: var(--text-dark);
@@ -562,7 +535,7 @@
         .copyright span {
             color: var(--primary-color);
         }
-        
+
         .credits a {
             color: var(--primary-color);
             text-decoration: none;
@@ -620,7 +593,7 @@
         }
         
         .celebration-text {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
             color: #fff;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -646,22 +619,82 @@
             100% { transform: scale(1); }
         }
         
-        /* Estilos para imágenes de animalitos */
-        .animal-image {
-            width: 140%;
-            height: 140%;
-            object-fit: cover;
-            border-radius: 50%;
+        .explanation-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
         }
         
-        .image-fallback {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
+        .explanation-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100%;
+            gap: 10px;
+        }
+        
+        .explanation-box p {
+            color: #455a64;
+            line-height: 1.6;
+        }
+        
+        /* Nuevos estilos para mostrar animales - MEJORADOS */
+        .animal-label {
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--text-dark);
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            line-height: 1.3;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            min-height: 40px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .number-with-animal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .number-with-animal:hover .animal-label {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Efecto de destello para números importantes */
+        @keyframes flash {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.7; }
+        }
+        
+        .flash-animation {
+            animation: flash 2s infinite;
+        }
+        
+        /* Efecto de rotación suave */
+        @keyframes gentleRotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .rotate-animation {
+            animation: gentleRotate 5s infinite ease-in-out;
         }
         
         /* Mejoras de accesibilidad para modo alto contraste */
@@ -680,6 +713,11 @@
             
             .casilla {
                 border-width: 3px;
+            }
+            
+            .animal-label {
+                background: #fff;
+                border: 2px solid #000;
             }
         }
         
@@ -721,6 +759,10 @@
             .super-fixed-circle {
                 animation: none;
             }
+            
+            .number-with-animal:hover .animal-label {
+                transform: none;
+            }
         }
         
         /* Optimizaciones para dispositivos móviles */
@@ -736,7 +778,6 @@
             .input-row {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
             }
             
             .hours-container {
@@ -745,17 +786,24 @@
             
             .input-wrapper {
                 width: 60px;
+                margin: 5px;
             }
             
+            /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 gap: 15px;
             }
             
             .number-circle {
-                width: 120px;
-                height: 120px;
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+            }
+            
+            .animal-label {
+                font-size: 14px;
+                min-height: 35px;
             }
             
             .button-container {
@@ -791,14 +839,6 @@
             .celebration-text {
                 font-size: 2rem;
             }
-            
-            .number-value {
-                font-size: 24px;
-            }
-            
-            .animal-name {
-                font-size: 11px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -826,22 +866,26 @@
                 height: 8px;
             }
             
+            /* NUEVO: Ajuste para números en móviles muy pequeños */
+            .numbers-container {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 10px;
+            }
+            
             .number-circle {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
+                font-size: 24px;
             }
             
-            .number-value {
-                font-size: 20px;
+            .animal-label {
+                font-size: 12px;
+                min-height: 30px;
+                padding: 3px 6px;
             }
             
-            .animal-name {
-                font-size: 10px;
-            }
-            
-            .footer {
-                flex-direction: column;
-                gap: 8px;
+            .results-title {
+                font-size: 22px;
             }
         }
         
@@ -874,9 +918,94 @@
                 filter: brightness(0.9);
             }
             
-            .copyright {
-                color: #f0f0f0;
+            .explanation-box {
+                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+                border-left: 5px solid #4299e1;
             }
+            
+            .explanation-box h3 {
+                color: #90cdf4;
+            }
+            
+            .explanation-box p {
+                color: #e2e8f0;
+            }
+            
+            .animal-label {
+                color: #2d3748;
+                background: rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        /* Nuevos estilos para la explicación de horas */
+        .hours-explanation {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+        }
+        
+        .hours-explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hours-explanation p {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+        
+        /* Efectos de neón para números importantes */
+        .neon-effect {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px currentColor, 0 0 20px currentColor;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        
+        /* Efecto de brillo para números super fijos */
+        .super-fixed-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
+        }
+        
+        /* Estilos para los anuncios de Google AdSense */
+        .ad-container {
+            margin: 25px 0;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .ad-container.horizontal {
+            max-width: 728px;
+            min-height: 90px;
+        }
+        
+        .ad-container.vertical {
+            max-width: 300px;
+            min-height: 250px;
+        }
+        
+        .ad-container.responsive {
+            width: 100%;
+            min-height: 90px;
+        }
+        
+        .ad-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
@@ -888,9 +1017,9 @@
     </div>
 
     <div class="container">
-       <div class="logo">
+        <div class="logo">
             <div class="" aria-hidden="true">
-                <i class=""><img src="animalitos/animalitos_granjazo/granjazo.png" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_loto/multiloterias.jpeg" height="100px" width="100px"/></i>
             </div>
         </div>
         
@@ -901,30 +1030,33 @@
         
         <nav class="nav-menu" aria-label="Menú de juegos de lotería">
             <ul>
-                <li><a href="login_loto.html"><i class="fas fa-dice" aria-hidden="true"></i> Loto</a></li>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granjazo Millonario</a></li>
                 <li><a href="login_guacharo.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Multiloterias</a></li>
+                <li><a href="login_granja.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
             </ul>
         </nav>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-     crossorigin="anonymous"></script>
-<!-- anuncio display 1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="8481248642"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+        
+        <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+				crossorigin="anonymous"></script>
+				<!-- anuncio display 1 -->
+				<ins class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-7995132393364853"
+				data-ad-slot="8481248642"
+				data-ad-format="auto"
+				data-full-width-responsive="true"></ins>
+				<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- - - - - - - - -  anuncios display- - - - - - - -  -->
         
         <div class="info-box">
-            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            <i class="fas fa-calendar-alt" aria-hidden=true></i>
             <span id="currentDate">Cargando fecha...</span>
         </div>
         
-        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 1 y 75.</p>
+        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 36.</p>
         
         <main class="input-section">
             <section class="block" aria-labelledby="date1">
@@ -937,7 +1069,9 @@
                 </div>
                 
                 <div class="hours-container" id="hours1" aria-hidden="true"></div>
-                <div class="input-row" id="block1"></div>
+                <div class="input-row" id="block1">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
                 <div class="help-text">Complete todos los números del primer sorteo</div>
             </section>
             
@@ -951,7 +1085,9 @@
                 </div>
                 
                 <div class="hours-container" id="hours2" aria-hidden="true"></div>
-                <div class="input-row" id="block2"></div>
+                <div class="input-row" id="block2">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
                 <div class="help-text">Complete todos los números del segundo sorteo</div>
             </section>
             
@@ -965,14 +1101,17 @@
                 </div>
                 
                 <div class="hours-container" id="hours3" aria-hidden="true"></div>
-                <div class="input-row" id="block3"></div>
+                <div class="input-row" id="block3">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
                 <div class="help-text">Complete todos los números del tercer sorteo</div>
             </section>
         </main>
         
         <div class="button-container">
-            <button class="btn btn-validate" id="validateBtn">
-                <a href="index.html"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>   
+            <!-- Botón de validación oculto -->
+            <button class="btn btn-validate" id="validateBtn" style="display: none;">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Validar Números
             </button>
             <button class="btn btn-hot" id="hotNumbersBtn">
                 <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
@@ -983,16 +1122,14 @@
             <button class="btn btn-super-fixed" id="superFixedBtn">
                 <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
             </button>
-            <button class="btn btn-random" id="randomBtn">
-                <i class="fas fa-dice" aria-hidden="true"></i> Generar Aleatorios
-            </button>
             <button class="btn btn-clear" id="clearBtn">
                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
             </button>
         </div>
         
         <div id="message" class="message" role="alert" aria-live="polite"></div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+        
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
@@ -1010,15 +1147,8 @@
                     <i class="fas fa-fire" aria-hidden="true"></i>
                     <span id="hotNumbersTitle">¡Números Calientes para Hoy!</span>
                 </div>
-                <div class="numbers-container">
-                    <div class="number-circle hot-circle" id="hotNumber1" aria-live="polite">
-                        <div class="image-fallback">--</div>
-                        <div class="animal-name">Animal</div>
-                    </div>
-                    <div class="number-circle hot-circle" id="hotNumber2" aria-live="polite">
-                        <div class="image-fallback">--</div>
-                        <div class="animal-name">Animal</div>
-                    </div>
+                <div class="numbers-container" id="hotNumbersContainer">
+                    <!-- Los números calientes se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="hotNumbersMessage">
                     Estos números han sido seleccionados del sorteo más antiguo
@@ -1030,15 +1160,8 @@
                     <i class="fas fa-gift" aria-hidden="true"></i>
                     <span id="surpriseTitle">¡Sorpresa para Hoy!</span>
                 </div>
-                <div class="numbers-container">
-                    <div class="number-circle surprise-circle" id="surpriseNumber1" aria-live="polite">
-                        <div class="image-fallback">--</div>
-                        <div class="animal-name">Animal</div>
-                    </div>
-                    <div class="number-circle surprise-circle" id="surpriseNumber2" aria-live="polite">
-                        <div class="image-fallback">--</div>
-                        <div class="animal-name">Animal</div>
-                    </div>
+                <div class="numbers-container" id="surpriseNumbersContainer">
+                    <!-- Los números sorpresa se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="surpriseMessage">
                     Estos números especiales te traerán alegría
@@ -1053,16 +1176,20 @@
                 <div class="numbers-container" id="superFixedNumbersContainer">
                     <!-- Los números SUPER FIJOS se generarán aquí dinámicamente -->
                 </div>
-                <!-- Mensaje eliminado según solicitud -->
+                <div class="results-message" id="superFixedMessage">
+                    Números que se repiten con un intervalo de 13 o más posiciones
+                </div>
             </section>
         </div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+        
+        <!-- Anuncio vertical en el pie de página -->
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
-<!-- anuncio display horizontal -->
+<!-- display vertical -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="4903538669"
+     data-ad-slot="8773024812"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
@@ -1081,24 +1208,19 @@
 
     <!-- JavaScript optimizado y separado -->
     <script>
-        // ===== CONFIGURACIÓN Y CONSTANTES =====
-        const CONFETTI_COLORS = [
-            '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
-            '#1E90FF', '#9370DB', '#FF00FF', '#00FFFF', '#32CD32',
-            '#FF6347', '#FF8C00', '#FFFF00', '#40E0D0', '#8A2BE2'
-        ];
-        
-        // Mapeo de números a animalitos
-        const ANIMALITOS = {
-            "1": "carnero",
-            "2": "toro",
-            "3": "ciempies",
-            "4": "alacran",
-            "5": "leon",
-            "6": "rana",
-            "7": "perico",
-            "8": "raton",
-            "9": "aguila",
+        // ===== DICCIONARIO DE ANIMALES =====
+        const animalesDict = {
+            "0": "delfin",
+            "00": "ballena",
+            "01": "carnero",
+            "02": "toro",
+            "03": "ciempies",
+            "04": "alacran",
+            "05": "leon",
+            "06": "rana",
+            "07": "perico",
+            "08": "raton",
+            "09": "aguila",
             "10": "tigre",
             "11": "gato",
             "12": "caballo",
@@ -1125,59 +1247,30 @@
             "33": "pescado",
             "34": "venado",
             "35": "jirafa",
-            "36": "culebra",
-            "37": "mariposa",
-            "38": "conejo",
-            "39": "rinoceronte",
-            "40": "hipopotamo",
-            "41": "bufalo",
-            "42": "murcielago",
-            "43": "koala",
-            "44": "puma",
-            "45": "canguro",
-            "46": "lobo",
-            "47": "tortuga",
-            "48": "morsa",
-            "49": "hiena",
-            "50": "comadreja",
-            "51": "dragon",
-            "52": "chacal",
-            "53": "jaguar",
-            "54": "camalion",
-            "55": "foca",
-            "56": "arminio",
-            "57": "jabali",
-            "58": "castor",
-            "59": "guacamaya",
-            "60": "tiburon",
-            "61": "turpial",
-            "62": "tucan",
-            "63": "cachicamo",
-            "64": "hormiga",
-            "65": "gorila",
-            "66": "bisonte",
-            "67": "flamengo",
-            "68": "araña",
-            "69": "pavoreal",
-            "70": "cangrejo",
-            "71": "rabipelao",
-            "72": "pelicano",
-            "73": "colibri",
-            "74": "escarabajo",
-            "75": "codorniz"
+            "36": "culebra"
         };
-
-        // Función para obtener la ruta de la imagen del animal
-        function getAnimalImage(num) {
-            // Formatear el número a dos dígitos
-            const formattedNum = num < 10 ? `0${num}` : `${num}`;
-            return `animalitos/animalitos_granjazo/${formattedNum}.png`;
+        
+        // Función para formatear números a dos dígitos y obtener el animal
+        function formatearNumeroConAnimal(num) {
+            let clave;
+            if (num === 0) {
+                clave = "0";
+            } else if (num >= 1 && num <= 9) {
+                clave = "0" + num;
+            } else {
+                clave = num.toString();
+            }
+            
+            const animal = animalesDict[clave] || "desconocido";
+            return { clave, animal };
         }
         
-        // Función para formatear números a dos dígitos
-        function formatNumberToTwoDigits(num) {
-            return num < 10 ? `0${num}` : `${num}`;
-        }
+        // ===== CONFIGURACIÓN Y CONSTANTES =====
+        const CONFETTI_COLORS = [
+            '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
+            '#1E90FF', '#9370DB', '#FF00FF', '#00FFFF', '#32CD32',
+            '#FF6347', '#FF8C00', '#FFFF00', '#40E0D0', '#8A2BE2'
+        ];
         
         // ===== ELEMENTOS DEL DOM =====
         const domElements = {
@@ -1191,7 +1284,6 @@
             hotNumbersBtn: document.getElementById('hotNumbersBtn'),
             surpriseBtn: document.getElementById('surpriseBtn'),
             superFixedBtn: document.getElementById('superFixedBtn'),
-            randomBtn: document.getElementById('randomBtn'),
             clearBtn: document.getElementById('clearBtn'),
             messageDiv: document.getElementById('message'),
             currentDateElement: document.getElementById('currentDate'),
@@ -1199,17 +1291,33 @@
             date2Element: document.getElementById('date2'),
             date3Element: document.getElementById('date3'),
             resultsContainer: document.getElementById('resultsContainer'),
-            hotNumber1: document.getElementById('hotNumber1'),
-            hotNumber2: document.getElementById('hotNumber2'),
-            surpriseNumber1: document.getElementById('surpriseNumber1'),
-            surpriseNumber2: document.getElementById('surpriseNumber2'),
+            hotNumbersContainer: document.getElementById('hotNumbersContainer'),
+            surpriseNumbersContainer: document.getElementById('surpriseNumbersContainer'),
             superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
             hotNumbersMessage: document.getElementById('hotNumbersMessage'),
             surpriseMessage: document.getElementById('surpriseMessage'),
+            superFixedMessage: document.getElementById('superFixedMessage'),
             celebrationOverlay: document.getElementById('celebrationOverlay'),
             celebrationText: document.getElementById('celebrationText')
         };
 
+        // ===== FUNCIONES DE SEGURIDAD =====
+        // Prevenir clic derecho e inspección en entornos de producción
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMessage('Acción no permitida por seguridad', 'error');
+            });
+            
+            // Deshabilitar la tecla F12
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showMessage('Acción no permitida por seguridad', 'error');
+                }
+            });
+        }
+        
         // ===== FUNCIONES DE CONFETI (OPTIMIZADAS) =====
         function createConfettiFromElement(element, count = 50) {
             // Verificar si el usuario prefiere reducir el movimiento
@@ -1344,7 +1452,7 @@
             }, 2000);
         }
         
-         function updateDates() {
+          function updateDates() {
     const now = new Date();
     
     // Formatear fecha actual
@@ -1373,15 +1481,11 @@
             const year = date.getFullYear();
             return `${day}/${month}/${year}`;
         }
-        
-        // FUNCIÓN CORREGIDA: Obtener la hora en el orden correcto (9am a 8pm)
+        // CORRECCIÓN: Función para obtener la hora en el orden correcto (8am a 7pm)
         function getHourForBox(boxNumber) {
-            // Las horas van de 9am a 1pm y 4pm a 8pm (10 horas total)
-            const hours = [9, 10, 11, 12, 13, 16, 17, 18, 19, 20];
-            
-            // Usar módulo para repetir las horas después de las 10 primeras
-            const hourIndex = (boxNumber - 1) % hours.length;
-            const hour = hours[hourIndex];
+            // Las horas van de 8am to 7pm (12 horas en total)
+            const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+            const hour = hours[(boxNumber - 1) % hours.length];
             
             // Determinar si es am o pm
             const period = hour >= 12 ? 'pm' : 'am';
@@ -1390,16 +1494,11 @@
             let displayHour = hour;
             if (hour > 12) {
                 displayHour = hour - 12;
-            } else if (hour === 0) {
+            } else if (hour === 0 || hour === 12) {
                 displayHour = 12;
             }
             
             return `${displayHour}${period}`;
-        }
-        
-        // Función para obtener el nombre del animalito basado en el número
-        function getAnimalName(number) {
-            return ANIMALITOS[number] || 'desconocido';
         }
         
         // ===== FUNCIONES DE VALIDACIÓN =====
@@ -1413,10 +1512,9 @@
             
             const num = parseInt(value);
             
-            // CORRECCIÓN: Validar que esté entre 1 y 75
-            if (isNaN(num) || num < 1 || num > 75) {
+            if (isNaN(num) || num < 0 || num > 36) {
                 input.classList.add('error');
-                showMessage('Por favor, ingrese solo números entre 1 y 75', 'error');
+                showMessage('Por favor, ingrese solo números entre 0 y 36', 'error');
                 return false;
             } else {
                 input.classList.remove('error');
@@ -1431,9 +1529,9 @@
             
             // Limpiar mensajes
             hideMessage();
-            
+
             // Validar cada casilla
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 36; i++) {
                 const input = document.getElementById(`num${i}`);
                 const value = input.value;
                 
@@ -1446,8 +1544,7 @@
                 
                 const num = parseInt(value);
                 
-                // CORRECCIÓN: Validar que esté entre 1 and 75
-                if (isNaN(num) || num < 1 || num > 75) {
+                if (isNaN(num) || num < 0 || num > 36) {
                     input.classList.add('error');
                     allValid = false;
                 } else {
@@ -1459,14 +1556,14 @@
             if (emptyFields) {
                 showMessage('Por favor, complete todas las casillas', 'error');
             } else if (!allValid) {
-                showMessage('Algunos números no son válidos. Revise que todos estén entre 1 y 75', 'error');
+                showMessage('Algunos números no son válidos. Revise que todos estén entre 0 and 36', 'error');
             } else {
-                showMessage('¡Todos los números son válidos! Registro completado correctamente.', 'success');
+                showMessage('¡Todos los números son válidos!', 'success');
             }
             
             return allValid;
         }
-        
+
         // ===== FUNCIONES PRINCIPALES =====
         function showHotNumbers() {
             // Ocultar mensajes anteriores
@@ -1477,79 +1574,45 @@
                 return;
             }
             
-            // Validar específicamente las casillas 23 y 25
-            const input23 = document.getElementById('num23');
-            const input25 = document.getElementById('num25');
+            // Validar específicamente las casillas 22 y 36
+            const input22 = document.getElementById('num22');
+            const input36 = document.getElementById('num36');
             
-            if (!validateSingleInput(input23) || !validateSingleInput(input25)) {
-                showMessage('Por favor, ingrese números válidos entre 1 y 75 ', 'error');
+            if (!validateSingleInput(input22) || !validateSingleInput(input36)) {
+                showMessage('Por favor, ingrese números válidos entre 0 y 36 en las casillas 22 y 36', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 23 y 25 del primer bloque (sorteo más antiguo)
-            const num23 = parseInt(input23.value);
-            const num25 = parseInt(input25.value);
+            // Obtener los números de las casillas 22 y 36 del primer bloque (sorteo más antiguo)
+            const num22 = parseInt(input22.value);
+            const num36 = parseInt(input36.value);
             
-            // Obtener nombres de animales
-            const animal23 = getAnimalName(num23);
-            const animal25 = getAnimalName(num25);
+            // Formatear números con sus animales
+            const num22Formatted = formatearNumeroConAnimal(num22);
+            const num36Formatted = formatearNumeroConAnimal(num36);
             
-            // Crear elementos de imagen para números calientes
-            domElements.hotNumber1.innerHTML = '';
-            domElements.hotNumber2.innerHTML = '';
+            // Limpiar contenedor de números calientes
+            domElements.hotNumbersContainer.innerHTML = '';
             
-            const img1 = document.createElement('img');
-            img1.src = getAnimalImage(num23);
-            img1.alt = animal23;
-            img1.className = 'animal-image';
-            img1.onerror = function() {
-                this.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'image-fallback';
-                fallback.textContent = num23;
-                domElements.hotNumber1.appendChild(fallback);
-            };
-            
-            const animalName1 = document.createElement('div');
-            animalName1.className = 'animal-name';
-            animalName1.textContent = animal23;
-            
-            domElements.hotNumber1.appendChild(img1);
-            domElements.hotNumber1.appendChild(animalName1);
-            
-            const img2 = document.createElement('img');
-            img2.src = getAnimalImage(num25);
-            img2.alt = animal25;
-            img2.className = 'animal-image';
-            img2.onerror = function() {
-                this.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'image-fallback';
-                fallback.textContent = num25;
-                domElements.hotNumber2.appendChild(fallback);
-            };
-            
-            const animalName2 = document.createElement('div');
-            animalName2.className = 'animal-name';
-            animalName2.textContent = animal25;
-            
-            domElements.hotNumber2.appendChild(img2);
-            domElements.hotNumber2.appendChild(animalName2);
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num22Formatted, 'hot-circle', domElements.hotNumbersContainer);
+            createNumberWithAnimalElement(num36Formatted, 'hot-circle', domElements.hotNumbersContainer);
             
             // Actualizar el mensaje con la fecha del sorteo más antiguo
-            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}`;
+            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num22Formatted.clave} ${num22Formatted.animal}], [${num36Formatted.clave} ${num36Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
             
-            // Ocultar la sección de sorpresa
+            // Ocultar otras secciones
             document.querySelector('.surprise-numbers').style.display = 'none';
             document.querySelector('.super-fixed-numbers').style.display = 'none';
             
             // Crear efectos de confeti desde los números
             setTimeout(() => {
-                createConfettiFromElement(domElements.hotNumber1, 60);
-                createConfettiFromElement(domElements.hotNumber2, 60);
+                const hotNumbers = domElements.hotNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(hotNumbers[0], 60);
+                createConfettiFromElement(hotNumbers[1], 60);
                 
                 // Añadir confeti general después de la explosión inicial
                 setTimeout(() => {
@@ -1572,67 +1635,32 @@
                 return;
             }
             
-            // Validar específicamente las casillas 24 y 26
-            const input24 = document.getElementById('num24');
-            const input26 = document.getElementById('num26');
+            // Validar específicamente las casillas 21 and 35
+            const input21 = document.getElementById('num21');
+            const input35 = document.getElementById('num35');
             
-            if (!validateSingleInput(input24) || !validateSingleInput(input26)) {
-                showMessage('Por favor, ingrese números válidos entre 1 y 75', 'error');
+            if (!validateSingleInput(input21) || !validateSingleInput(input35)) {
+                showMessage('Por favor, ingrese números válidos entre 0 y 36 en las casillas 21 y 35', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 24 y 26 del segundo bloque
-            const num24 = parseInt(input24.value);
-            const num26 = parseInt(input26.value);
+            // Obtener los números de las casillas 21 y 35 del segundo bloque
+            const num21 = parseInt(input21.value);
+            const num35 = parseInt(input35.value);
             
-            // Obtener nombres de animales
-            const animal24 = getAnimalName(num24);
-            const animal26 = getAnimalName(num26);
+            // Formatear números con sus animales
+            const num21Formatted = formatearNumeroConAnimal(num21);
+            const num35Formatted = formatearNumeroConAnimal(num35);
             
-            // Crear elementos de imagen para números sorpresa
-            domElements.surpriseNumber1.innerHTML = '';
-            domElements.surpriseNumber2.innerHTML = '';
+            // Limpiar contenedor de números sorpresa
+            domElements.surpriseNumbersContainer.innerHTML = '';
             
-            const img1 = document.createElement('img');
-            img1.src = getAnimalImage(num24);
-            img1.alt = animal24;
-            img1.className = 'animal-image';
-            img1.onerror = function() {
-                this.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'image-fallback';
-                fallback.textContent = num24;
-                domElements.surpriseNumber1.appendChild(fallback);
-            };
-            
-            const animalName1 = document.createElement('div');
-            animalName1.className = 'animal-name';
-            animalName1.textContent = animal24;
-            
-            domElements.surpriseNumber1.appendChild(img1);
-            domElements.surpriseNumber1.appendChild(animalName1);
-            
-            const img2 = document.createElement('img');
-            img2.src = getAnimalImage(num26);
-            img2.alt = animal26;
-            img2.className = 'animal-image';
-            img2.onerror = function() {
-                this.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'image-fallback';
-                fallback.textContent = num26;
-                domElements.surpriseNumber2.appendChild(fallback);
-            };
-            
-            const animalName2 = document.createElement('div');
-            animalName2.className = 'animal-name';
-            animalName2.textContent = animal26;
-            
-            domElements.surpriseNumber2.appendChild(img2);
-            domElements.surpriseNumber2.appendChild(animalName2);
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num21Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            createNumberWithAnimalElement(num35Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
             
             // Actualizar el mensaje
-            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!`;
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num21Formatted.clave} ${num21Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -1646,8 +1674,9 @@
             
             // Crear efectos de confeti desde los números
             setTimeout(() => {
-                createConfettiFromElement(domElements.surpriseNumber1, 60);
-                createConfettiFromElement(domElements.surpriseNumber2, 60);
+                const surpriseNumbers = domElements.surpriseNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(surpriseNumbers[0], 60);
+                createConfettiFromElement(surpriseNumbers[1], 60);
                 
                 // Añadir confeti general después de la explosión inicial
                 setTimeout(() => {
@@ -1660,45 +1689,24 @@
             // Desplazarse suavemente hacia los resultados
             domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
-        
-        function generateRandomNumbers() {
-            // Ocultar mensajes anteriores
-            hideMessage();
-            
-            // Limpiar cualquier error previo
-            for (let i = 1; i <= 30; i++) {
-                const input = document.getElementById(`num${i}`);
-                input.classList.remove('error');
-            }
-            
-            // Generar números aleatorios entre 1 и 75 para cada campo
-            for (let i = 1; i <= 30; i++) {
-                const randomNum = Math.floor(Math.random() * 75) + 1;
-                document.getElementById(`num${i}`).value = randomNum;
-            }
-            
-            // Mostrar mensaje de confirmación
-            showMessage('¡Números aleatorios generados correctamente!', 'success');
-            
-            // Ocultar resultados si estaban visibles
-            domElements.resultsContainer.style.display = 'none';
-            
-            // Crear efecto de confeti general
-            createGeneralConfetti();
-            
-            // Mostrar mensaje de celebración
-            showCelebrationText('¡Números Aleatorios!');
-        }
 
         function clearAllInputs() {
-            for (let i = 1; i <= 30; i++) {
+            // Limpiar solo los 36 campos existentes
+            for (let i = 1; i <= 36; i++) {
                 const input = document.getElementById(`num${i}`);
-                input.value = '';
-                input.classList.remove('error');
-                input.classList.remove('super-fixed-highlight');
+                if (input) {
+                    input.value = '';
+                    input.classList.remove('error');
+                    input.classList.remove('super-fixed-highlight');
+                }
             }
+            
             hideMessage();
-            domElements.resultsContainer.style.display = 'none';
+            
+            // Verificar que resultsContainer existe antes de manipularlo
+            if (domElements && domElements.resultsContainer) {
+                domElements.resultsContainer.style.display = 'none';
+            }
             
             // Mostrar mensaje de confirmación
             showMessage('Todos los campos han sido limpiados', 'success');
@@ -1733,7 +1741,7 @@
             
             // Obtener todos los valores numéricos con sus posiciones
             const numbersWithPositions = [];
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 36; i++) {
                 const input = document.getElementById(`num${i}`);
                 if (input && input.value) {
                     numbersWithPositions.push({
@@ -1767,7 +1775,7 @@
                     const interval = Math.abs(pos2 - pos1);
                     
                     // Verificar si el intervalo es de 13 o más
-                    if (interval >= 13) {
+                    if (interval >= 10) {
                         superFixedNumbers.push({
                             number: num,
                             positions: positions,
@@ -1777,40 +1785,102 @@
                 }
             }
             
-            // Mostrar resultados
-            if (superFixedNumbers.length > 0) {
+            // Mostrar resultados según la nueva lógica
+            if (superFixedNumbers.length <= 4) {
+                // Si hay 4 o menos números super fijos, mostrarlos normalmente
+                if (superFixedNumbers.length > 0) {
+                    // Limpiar contenedor de números SUPER FIJOS
+                    domElements.superFixedNumbersContainer.innerHTML = '';
+                    
+                    // Crear elementos para todos los números SUPER FIJOS
+                    superFixedNumbers.forEach(item => {
+                        const numFormatted = formatearNumeroConAnimal(item.number);
+                        createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
+                    });
+                    
+                    // Actualizar mensaje
+                    const numbersList = superFixedNumbers.map(item => {
+                        const numFormatted = formatearNumeroConAnimal(item.number);
+                        return `[${numFormatted.clave} ${numFormatted.animal}]`;
+                    }).join(', ');
+                    
+                    domElements.superFixedMessage.textContent = `Encontrados ${superFixedNumbers.length} números SUPER FIJOS con intervalo >= 13: ${numbersList}`;
+                    
+                    // Mostrar el contenedor de resultados
+                    domElements.resultsContainer.style.display = 'block';
+                    
+                    // Mostrar solo la sección de SUPER FIJOS
+                    document.querySelector('.hot-numbers').style.display = 'none';
+                    document.querySelector('.surprise-numbers').style.display = 'none';
+                    document.querySelector('.super-fixed-numbers').style.display = 'block';
+                    
+                    // Destacar los números en los inputs
+                    highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
+                    
+                    // Crear efectos de confeti desde los números
+                    setTimeout(() => {
+                        // Crear confeti para cada número SUPER FIJO
+                        document.querySelectorAll('.super-fixed-circle').forEach(circle => {
+                            createConfettiFromElement(circle, 30);
+                        });
+                        
+                        // Añadir confeti general después de la explosión inicial
+                        setTimeout(() => {
+                            createGeneralConfetti();
+                        }, 300);
+                    }, 100);
+                    
+                    showCelebrationText('¡SUPER FIJOS!');
+                    
+                    // Desplazarse suavemente hacia los resultados
+                    domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Mostrar mensaje con información detallada
+                    const numbersListMsg = superFixedNumbers.map(item => {
+                        const numFormatted = formatearNumeroConAnimal(item.number);
+                        return `${numFormatted.clave} ${numFormatted.animal} (posiciones ${item.positions[0]} y ${item.positions[1]})`;
+                    }).join(', ');
+                    
+                    showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersListMsg}`, 'success');
+                } else {
+                    showMessage('No se encontraron números SUPER FIJOS con intervalo >= 13', 'info');
+                }
+            } else {
+                // Si hay 5 o más números super fijos, usar casillas específicas
+                const input22 = document.getElementById('num22');
+                const input36 = document.getElementById('num36');
+                const input21 = document.getElementById('num21');
+                const input35 = document.getElementById('num35');
+                
+                // Validar que las casillas específicas tengan valores
+                if (!input22.value || !input36.value || !input21.value || !input35.value) {
+                    showMessage('Para 5+ SUPER FIJOS, complete las casillas 22, 36, 21 y 35', 'error');
+                    return;
+                }
+                
+                const specialNumbers = [
+                    parseInt(input22.value),
+                    parseInt(input36.value),
+                    parseInt(input21.value),
+                    parseInt(input35.value)
+                ];
+                
                 // Limpiar contenedor de números SUPER FIJOS
                 domElements.superFixedNumbersContainer.innerHTML = '';
                 
-                // Crear elementos para todos los números SUPER FIJOS
-                superFixedNumbers.forEach(item => {
-                    const numberCircle = document.createElement('div');
-                    numberCircle.className = 'number-circle super-fixed-circle';
-                    
-                    const img = document.createElement('img');
-                    img.src = getAnimalImage(item.number);
-                    img.alt = getAnimalName(item.number);
-                    img.className = 'animal-image';
-                    img.onerror = function() {
-                        this.style.display = 'none';
-                        const fallback = document.createElement('div');
-                        fallback.className = 'image-fallback';
-                        fallback.textContent = item.number;
-                        numberCircle.appendChild(fallback);
-                    };
-                    
-                    const animalName = document.createElement('div');
-                    animalName.className = 'animal-name';
-                    animalName.textContent = getAnimalName(item.number);
-                    
-                    numberCircle.appendChild(img);
-                    numberCircle.appendChild(animalName);
-                    
-                    // Añadir tooltip con información adicional
-                    numberCircle.title = `Posiciones: ${item.positions[0]} y ${item.positions[1]} (Intervalo: ${item.interval})`;
-                    
-                    domElements.superFixedNumbersContainer.appendChild(numberCircle);
+                // Crear elementos para los números especiales
+                specialNumbers.forEach(num => {
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
                 });
+                
+                // Actualizar mensaje
+                const numbersList = specialNumbers.map(num => {
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    return `[${numFormatted.clave} ${numFormatted.animal}]`;
+                }).join(', ');
+                
+                domElements.superFixedMessage.textContent = `Números SUPER FIJOS especiales (de casillas 22, 36, 21, 35): ${numbersList}`;
                 
                 // Mostrar el contenedor de resultados
                 domElements.resultsContainer.style.display = 'block';
@@ -1821,7 +1891,7 @@
                 document.querySelector('.super-fixed-numbers').style.display = 'block';
                 
                 // Destacar los números en los inputs
-                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
+                highlightSuperFixedNumbers(specialNumbers);
                 
                 // Crear efectos de confeti desde los números
                 setTimeout(() => {
@@ -1836,20 +1906,60 @@
                     }, 300);
                 }, 100);
                 
-                showCelebrationText('¡SUPER FIJOS!');
+                showCelebrationText('¡SUPER FIJOS ESPECIALES!');
                 
                 // Desplazarse suavemente hacia los resultados
                 domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
                 
-                // Mostrar mensaje con información detallada
-                const numbersList = superFixedNumbers.map(item => 
-                    `${item.number} (${getAnimalName(item.number)})`
-                ).join(', ');
+                const numbersListMsg = specialNumbers.map((num, index) => {
+                    const positions = index < 2 ? [22, 36] : [21, 35];
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    return `${numFormatted.clave} ${numFormatted.animal} (casilla ${positions[index % 2]})`;
+                }).join(', ');
                 
-                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
-            } else {
-                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
+                showMessage(`¡Números SUPER FIJOS especiales encontrados: ${numbersListMsg}`, 'success');
             }
+        }
+
+        // Función para crear elementos de número con animal (ACTUALIZADA para mostrar imágenes)
+        function createNumberWithAnimalElement(numFormatted, circleClass, container) {
+            const numberWithAnimal = document.createElement('div');
+            numberWithAnimal.className = 'number-with-animal';
+            
+            const numberCircle = document.createElement('div');
+            numberCircle.className = `number-circle ${circleClass}`;
+            numberCircle.setAttribute('aria-live', 'polite');
+            numberCircle.title = `${numFormatted.clave} ${numFormatted.animal}`;
+            
+            // Crear elemento de imagen
+            const img = document.createElement('img');
+            img.src = `animalitos/animalitos_/${numFormatted.clave}.png`;
+            img.alt = numFormatted.animal;
+            
+            // Manejar error de carga de imagen
+            img.onerror = function() {
+                // Si la imagen no se carga, mostrar el número como fallback
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'number-fallback';
+                fallback.textContent = numFormatted.clave;
+                numberCircle.appendChild(fallback);
+            };
+            
+            numberCircle.appendChild(img);
+            
+            const animalLabel = document.createElement('div');
+            animalLabel.className = 'animal-label flash-animation';
+            animalLabel.textContent = numFormatted.animal;
+            
+            numberWithAnimal.appendChild(numberCircle);
+            numberWithAnimal.appendChild(animalLabel);
+            container.appendChild(numberWithAnimal);
+            
+            // Añadir animación de rotación suave
+            setTimeout(() => {
+                numberWithAnimal.classList.add('rotate-animation');
+            }, 100);
         }
 
         function highlightSuperFixedNumbers(numbers) {
@@ -1858,20 +1968,21 @@
             previousHighlights.forEach(el => el.classList.remove('super-fixed-highlight'));
             
             // Destacar los números SUPER FIJOS en los inputs
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 36; i++) {
                 const input = document.getElementById(`num${i}`);
                 if (input && numbers.includes(parseInt(input.value))) {
                     input.classList.add('super-fixed-highlight');
                     
                     // Añadir tooltip para indicar que es SUPER FIJO
-                    input.title = 'Número SUPER FIJO';
+                    const numFormatted = formatearNumeroConAnimal(parseInt(input.value));
+                    input.title = `Número SUPER FIJO: ${numFormatted.clave} ${numFormatted.animal}`;
                 }
             }
         }
         
-        // ===== INICIALIZACIÓN =====
+        // ===== GENERACIÓN DE CAMPOS DE ENTRADA =====
         function generateHourLabels() {
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 12; i++) {
                 const hourLabel = document.createElement('div');
                 hourLabel.className = 'hour-label-top';
                 hourLabel.textContent = getHourForBox(i);
@@ -1883,7 +1994,7 @@
         }
         
         function generateInputs() {
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 36; i++) {
                 const inputWrapper = document.createElement('div');
                 inputWrapper.className = 'input-wrapper';
                 
@@ -1891,8 +2002,8 @@
                 input.type = 'number';
                 input.className = 'casilla';
                 input.id = `num${i}`;
-                input.min = 1;
-                input.max = 75;
+                input.min = 0;
+                input.max = 36;
                 input.placeholder = getHourForBox(i);
                 input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
                 
@@ -1909,44 +2020,26 @@
                 inputWrapper.appendChild(hourLabel);
                 
                 // Agregar a bloque correspondiente
-                if (i <= 10) {
+                if (i <= 12) {
                     domElements.block1.appendChild(inputWrapper);
-                } else if (i <= 20) {
+                } else if (i <= 24) {
                     domElements.block2.appendChild(inputWrapper);
                 } else {
                     domElements.block3.appendChild(inputWrapper);
                 }
             }
         }
-
-          // ===== FUNCIONES DE SEGURIDAD =====
-        // Prevenir clic derecho e inspección en entornos de producción
-        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                showMessage('Acción no permitida por seguridad', 'error');
-            });
-            
-            // Deshabilitar la tecla F12
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'F12') {
-                    e.preventDefault();
-                    showMessage('Acción no permitida por seguridad', 'error');
-                }
-            });
-        }
         
+        // ===== INICIALIZACIÓN =====
         function initApp() {
             updateDates();
             generateHourLabels();
             generateInputs();
             
             // Agregar event listeners a los botones
-            domElements.validateBtn.addEventListener('click', validateAllInputs);
             domElements.hotNumbersBtn.addEventListener('click', showHotNumbers);
             domElements.surpriseBtn.addEventListener('click', showSurpriseNumbers);
             domElements.superFixedBtn.addEventListener('click', findSuperFixedNumbers);
-            domElements.randomBtn.addEventListener('click', generateRandomNumbers);
             domElements.clearBtn.addEventListener('click', clearAllInputs);
             
             // Mejorar accesibilidad del teclado
@@ -1957,7 +2050,7 @@
                 }
             });
         }
-
+        
         // Iniciar la aplicación cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', initApp);
     </script>

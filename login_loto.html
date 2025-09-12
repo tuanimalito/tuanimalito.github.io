@@ -456,6 +456,29 @@
             animation: pulse 1.5s infinite alternate;
             margin: 0 auto;
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        /* Estilo para imágenes dentro del círculo */
+        .number-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* Estilo de fallback para cuando no hay imagen */
+        .number-circle .number-fallback {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 50%;
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
         }
         
         .number-circle:hover {
@@ -996,7 +1019,7 @@
     <div class="container">
         <div class="logo">
             <div class="" aria-hidden="true">
-                <i class=""><img src="img/favicon.webp" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_loto/loto.webp" height="100px" width="100px"/></i>
             </div>
         </div>
         
@@ -1008,7 +1031,7 @@
         <nav class="nav-menu" aria-label="Menú de juegos de lotería">
             <ul>
                 <li><a href="login_guacharo.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Tu Animalito</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Loto Activo</a></li>
                 <li><a href="login_granja.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
             </ul>
         </nav>
@@ -1898,21 +1921,32 @@
             }
         }
 
-        // Función para crear elementos de número con animal
+        // Función para crear elementos de número con animal (ACTUALIZADA para mostrar imágenes)
         function createNumberWithAnimalElement(numFormatted, circleClass, container) {
             const numberWithAnimal = document.createElement('div');
             numberWithAnimal.className = 'number-with-animal';
             
             const numberCircle = document.createElement('div');
             numberCircle.className = `number-circle ${circleClass}`;
-            numberCircle.textContent = numFormatted.clave;
             numberCircle.setAttribute('aria-live', 'polite');
             numberCircle.title = `${numFormatted.clave} ${numFormatted.animal}`;
             
-            // Añadir efecto neón para números importantes
-            if (circleClass.includes('super-fixed')) {
-                numberCircle.classList.add('neon-effect');
-            }
+            // Crear elemento de imagen
+            const img = document.createElement('img');
+            img.src = `animalitos/animalitos_loto/${numFormatted.clave}.png`;
+            img.alt = numFormatted.animal;
+            
+            // Manejar error de carga de imagen
+            img.onerror = function() {
+                // Si la imagen no se carga, mostrar el número como fallback
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'number-fallback';
+                fallback.textContent = numFormatted.clave;
+                numberCircle.appendChild(fallback);
+            };
+            
+            numberCircle.appendChild(img);
             
             const animalLabel = document.createElement('div');
             animalLabel.className = 'animal-label flash-animation';
@@ -2023,4 +2057,3 @@
 </body>
 
 </html>
-
