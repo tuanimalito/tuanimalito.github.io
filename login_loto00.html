@@ -1301,7 +1301,7 @@
             <span id="currentDate">Cargando fecha...</span>
         </div>
         
-        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 75.</p>
+        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 36.</p>
         
         <main class="input-section">
             <section class="block" aria-labelledby="date1">
@@ -1395,7 +1395,7 @@
                     <!-- Los números calientes se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="hotNumbersMessage">
-                    Estos números han sido seleccionados del sorteo más antiguo
+                    Estos animalitos han sido seleccionados del sorteo más antiguo
                 </div>
             </section>
             
@@ -1408,7 +1408,7 @@
                     <!-- Los números sorpresa se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="surpriseMessage">
-                    Estos números especiales te traerán alegría
+                    Animalitos especiales te traerán alegría
                 </div>
             </section>
 
@@ -1938,11 +1938,11 @@
             
             const num = parseInt(value);
             
-            if (isNaN(num) || num < 0 || num > 75) {
+            if (isNaN(num) || num < 0 || num > 36) {
                 input.classList.add('error');
                 input.classList.remove('has-image');
                 input.style.backgroundImage = '';
-                showMessage('Por favor, ingrese solo números entre 0 y 75', 'error');
+                showMessage('Por favor, ingrese solo números entre 0 y 36', 'error');
                 return false;
             } else {
                 input.classList.remove('error');
@@ -2467,5 +2467,6 @@
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
+
 
 </html>
