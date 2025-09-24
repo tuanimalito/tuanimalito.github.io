@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏆TuAnimalito💲</title>
     <!-- Favicons -->
-  <link href="assets/images/favicon.webp" rel="icon">
+    <link href="assets/images/favicon.webp" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
@@ -25,6 +25,7 @@
             --neutral-gradient: linear-gradient(to right, #95a5a6, #7f8c8d);
             --super-fixed-gradient: linear-gradient(45deg, #ff6b6b, #ee5a24);
             --super-fixed-secondary: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --disabled-gradient: linear-gradient(to right, #bdc3c7, #95a5a6);
             --primary-color: #3498db;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
@@ -92,6 +93,161 @@
             padding: 30px;
             position: relative;
             z-index: 100;
+        }
+        
+        /* Carrusel de animalitos MEJORADO - 5 imágenes visibles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-item {
+            flex: 0 0 20%; /* 5 elementos visibles (100% / 5 = 20%) */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            transition: all 0.5s ease;
+            transform-origin: center;
+        }
+        
+        .carousel-item:hover {
+            transform: scale(1.05);
+            z-index: 5;
+        }
+        
+        .carousel-image-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        
+        .carousel-item:hover .carousel-image-container {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: #ffd700;
+        }
+        
+        .carousel-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+        
+        .carousel-item:hover .carousel-image {
+            transform: scale(1.1);
+        }
+        
+        .carousel-caption {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-item:hover .carousel-caption {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-control:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-control.prev {
+            left: 15px;
+        }
+        
+        .carousel-control.next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+            border-color: #ffd700;
+        }
+        
+        /* Efecto de brillo en elementos activos */
+        .carousel-item.active {
+            animation: glowEffect 2s infinite alternate;
+        }
+        
+        @keyframes glowEffect {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
         }
         
         /* Mejoras de accesibilidad en navegación */
@@ -258,16 +414,20 @@
             flex-direction: column;
             align-items: center;
         }
-        
+    
         .casilla {
-            width: 100%;
-            height: 40px;
+            width: 130%;
+            height: 80px;
             text-align: center;
             font-size: 16px;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 50px;
             padding: 5px;
             transition: all 0.3s ease;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
         }
         
         .casilla:focus {
@@ -337,18 +497,35 @@
         }
         
         .btn-super-fixed {
-            background: var(--super-fixed-gradient);
-            animation: superFixedButtonPulse 2s infinite;
+            background: var(--disabled-gradient);
+            cursor: not-allowed;
+            opacity: 0.7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-super-fixed:hover {
+            transform: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-super-fixed::after {
+            content: "PREMIUM";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: rgba(255, 215, 0, 0.8);
+            color: #000;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 3px;
+            opacity: 0.9;
         }
         
         .btn-clear {
             background: var(--neutral-gradient);
-        }
-        
-        @keyframes superFixedButtonPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
         
         .message {
@@ -376,6 +553,18 @@
             background-color: #e3f2fd;
             color: #1976d2;
             border: 1px solid #bbdefb;
+        }
+        
+        .premium-message {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #8B4513;
+            border: 2px solid #ffd700;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
         
         .results-container {
@@ -431,7 +620,7 @@
         /* NUEVO: Estilo mejorado para contenedores de números en filas */
         .numbers-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             justify-content: center;
             gap: 25px;
             margin: 20px 0;
@@ -441,8 +630,8 @@
         }
         
         .number-circle {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -457,28 +646,7 @@
             margin: 0 auto;
             transition: all 0.3s ease;
             overflow: hidden;
-        }
-        
-        /* Estilo para imágenes dentro del círculo */
-        .number-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        /* Estilo de fallback para cuando no hay imagen */
-        .number-circle .number-fallback {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            border-radius: 50%;
-            font-size: 36px;
-            font-weight: 800;
-            color: white;
+            border: 4px solid white;
         }
         
         .number-circle:hover {
@@ -763,9 +931,59 @@
             .number-with-animal:hover .animal-label {
                 transform: none;
             }
+            
+            .carousel {
+                transition: none;
+            }
+            
+            .carousel-item {
+                transition: none;
+            }
+            
+            .carousel-item:hover {
+                transform: none;
+            }
+            
+            .carousel-image-container {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-image-container {
+                transform: none;
+            }
+            
+            .carousel-image {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-image {
+                transform: none;
+            }
+            
+            .carousel-caption {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-caption {
+                transform: none;
+            }
+            
+            .carousel-control:hover {
+                transform: translateY(-50%);
+            }
+            
+            .carousel-indicator:hover {
+                transform: scale(1);
+            }
         }
         
         /* Optimizaciones para dispositivos móviles */
+        @media (max-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 25%; /* 4 elementos visibles en tablets */
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -773,6 +991,23 @@
             
             h1 {
                 font-size: 26px;
+            }
+            
+            .carousel-container {
+                height: 200px;
+            }
+            
+            .carousel-item {
+                flex: 0 0 33.333%; /* 3 elementos visibles en móviles grandes */
+            }
+            
+            .carousel-image-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .carousel-caption {
+                font-size: 12px;
             }
             
             .input-row {
@@ -791,13 +1026,13 @@
             
             /* NUEVO: Ajuste para números en móviles */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 15px;
             }
             
             .number-circle {
-                width: 80px;
-                height: 80px;
+                width: 120px;
+                height: 120px;
                 font-size: 28px;
             }
             
@@ -846,6 +1081,23 @@
                 font-size: 24px;
             }
             
+            .carousel-container {
+                height: 180px;
+            }
+            
+            .carousel-item {
+                flex: 0 0 50%; /* 2 elementos visibles en móviles pequeños */
+            }
+            
+            .carousel-image-container {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .carousel-caption {
+                font-size: 11px;
+            }
+            
             .info-box {
                 font-size: 14px;
                 flex-direction: column;
@@ -868,13 +1120,13 @@
             
             /* NUEVO: Ajuste para números en móviles muy pequeños */
             .numbers-container {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 gap: 10px;
             }
             
             .number-circle {
-                width: 70px;
-                height: 70px;
+                width: 100px;
+                height: 100px;
                 font-size: 24px;
             }
             
@@ -975,40 +1227,50 @@
         .super-fixed-glow {
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
         }
-        
-        /* Estilos para los anuncios de Google AdSense */
-        .ad-container {
-            margin: 25px 0;
-            text-align: center;
+
+        /* Estilos para imágenes de animalitos - MEJORADOS */
+        .animal-image {
             width: 100%;
-            display: flex;
-            justify-content: center;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
-        .ad-container.horizontal {
-            max-width: 728px;
-            min-height: 90px;
+        .image-fallback {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
         }
         
-        .ad-container.vertical {
-            max-width: 300px;
-            min-height: 250px;
-        }
-        
-        .ad-container.responsive {
+        /* Mejora para que las imágenes se vean completas */
+        .number-circle img {
             width: 100%;
-            min-height: 90px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
-        .ad-label {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Nuevos estilos para mostrar imágenes en inputs */
+        .casilla.has-image {
+            color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+        
+        .casilla.has-image::placeholder {
+            color: transparent;
+        }
+        
+        .casilla.has-image:focus {
+            color: transparent;
+            background-color: white;
         }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 </head>
 <body>
@@ -1017,39 +1279,53 @@
     </div>
 
     <div class="container">
+        <!-- Carrusel de Animalitos MEJORADO - 5 imágenes visibles -->
+        <div class="carousel-container">
+            <div class="carousel" id="animalCarousel">
+                <!-- Los elementos del carrusel se generarán con JavaScript -->
+            </div>
+            <button class="carousel-control prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Los indicadores se generarán con JavaScript -->
+            </div>
+        </div>
+
         <div class="logo">
             <div class="" aria-hidden="true">
                 <i class=""><img src="animalitos/animalitos_loto/Loto.webp" height="100px" width="100px"/></i>
             </div>
         </div>
-        
         <header class="header">
             <h1>Bienvenidos a Dr.Animalitos</h1>
             <p class="subtitle">La mejor Orientación para los Animalitos</p>
+            <h1>🏆Version Gratuita</h1>
         </header>
         
         <nav class="nav-menu" aria-label="Menú de juegos de lotería">
             <ul>
-                <li><a href="login_guacharo.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Loto Activo</a></li>
-                <li><a href="login_granja.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja Millonaria</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granja y Granjazo</a></li>
+                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li> 
             </ul>
         </nav>
-        
         <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
-				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-				crossorigin="anonymous"></script>
-				<!-- anuncio display 1 -->
-				<ins class="adsbygoogle"
-				style="display:block"
-				data-ad-client="ca-pub-7995132393364853"
-				data-ad-slot="8481248642"
-				data-ad-format="auto"
-				data-full-width-responsive="true"></ins>
-				<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
-				<!-- - - - - - - - -  anuncios display- - - - - - - -  -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                crossorigin="anonymous"></script>
+                <!-- anuncio display 1 -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7995132393364853"
+                data-ad-slot="8481248642"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
         
         <div class="info-box">
             <i class="fas fa-calendar-alt" aria-hidden=true></i>
@@ -1123,13 +1399,12 @@
                 <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
             </button>
             <button class="btn btn-clear" id="clearBtn">
-               <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
+                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
             </button>
         </div>
         
         <div id="message" class="message" role="alert" aria-live="polite"></div>
-        
-       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
@@ -1151,7 +1426,7 @@
                     <!-- Los números calientes se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="hotNumbersMessage">
-                    Estos números han sido seleccionados del sorteo más antiguo
+                    Estos animalitos han sido seleccionados del sorteo más antiguo
                 </div>
             </section>
             
@@ -1164,7 +1439,7 @@
                     <!-- Los números sorpresa se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="surpriseMessage">
-                    Estos números especiales te traerán alegría
+                    Animalitos especiales te traerán alegría
                 </div>
             </section>
 
@@ -1176,13 +1451,10 @@
                 <div class="numbers-container" id="superFixedNumbersContainer">
                     <!-- Los números SUPER FIJOS se generarán aquí dinámicamente -->
                 </div>
-                <div class="results-message" id="superFixedMessage">
-                    Números que se repiten con un intervalo de 13 o más posiciones
-                </div>
+                <!-- Mensaje eliminado según solicitud -->
             </section>
         </div>
-        
-        <!-- Anuncio vertical en el pie de página -->
+          <!-- Anuncio vertical en el pie de página -->
        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
      crossorigin="anonymous"></script>
 <!-- display vertical -->
@@ -1208,7 +1480,7 @@
 
     <!-- JavaScript optimizado y separado -->
     <script>
-        // ===== DICCIONARIO DE ANIMALES =====
+        // ===== DICCIONARIO DE ANIMALES (0-75) =====
         const animalesDict = {
             "0": "delfin",
             "00": "ballena",
@@ -1247,14 +1519,60 @@
             "33": "pescado",
             "34": "venado",
             "35": "jirafa",
-            "36": "culebra"
+            "36": "culebra",
+            "37": "tortuga",
+            "38": "bufalo",
+            "39": "lechuza",
+            "40": "avispa",
+            "41": "canguro",
+            "42": "tucan",
+            "43": "mariposa",
+            "44": "chiguire",
+            "45": "garza",
+            "46": "puma",
+            "47": "pavo real",
+            "48": "puercoespin",
+            "49": "pereza",
+            "50": "canario",
+            "51": "pelicano",
+            "52": "pulpo",
+            "53": "caracol",
+            "54": "grillo",
+            "55": "oso hormiguero",
+            "56": "tiburon",
+            "57": "pato",
+            "58": "hormiga",
+            "59": "pantera",
+            "60": "camalion",
+            "61": "panda",
+            "62": "cachicamo",
+            "63": "cangrejo",
+            "64": "gavilan",
+            "65": "araña",
+            "66": "lobo",
+            "67": "avestruz",
+            "68": "jaguar",
+            "69": "conejo",
+            "70": "bisonte",
+            "71": "guacamalla",
+            "72": "gorila",
+            "73": "hipopotamo",
+            "74": "turpial",
+            "75": "guacharo"
         };
+
+        // Función para obtener la ruta de la imagen del animal
+        function getAnimalImage(clave) {
+            return `animalitos/animalitos_loto/${clave}.png`;
+        }
         
-        // Función para formatear números a dos dígitos y obtener el animal
+         // Función para formatear números a dos dígitos y obtener el animal
         function formatearNumeroConAnimal(num) {
             let clave;
             if (num === 0) {
                 clave = "0";
+            } else if (num === "00") {
+                clave = "00";
             } else if (num >= 1 && num <= 9) {
                 clave = "0" + num;
             } else {
@@ -1296,26 +1614,123 @@
             superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
             hotNumbersMessage: document.getElementById('hotNumbersMessage'),
             surpriseMessage: document.getElementById('surpriseMessage'),
-            superFixedMessage: document.getElementById('superFixedMessage'),
             celebrationOverlay: document.getElementById('celebrationOverlay'),
-            celebrationText: document.getElementById('celebrationText')
+            celebrationText: document.getElementById('celebrationText'),
+            animalCarousel: document.getElementById('animalCarousel'),
+            prevBtn: document.getElementById('prevBtn'),
+            nextBtn: document.getElementById('nextBtn'),
+            carouselIndicators: document.getElementById('carouselIndicators')
         };
 
-        // ===== FUNCIONES DE SEGURIDAD =====
-        // Prevenir clic derecho e inspección en entornos de producción
-        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                showMessage('Acción no permitida por seguridad', 'error');
-            });
+        // ===== CARRUSEL DE ANIMALITOS MEJORADO =====
+        let currentSlide = 0;
+        let carouselInterval;
+        const carouselItems = [];
+        const itemsPerView = 5; // 5 imágenes visibles a la vez
+
+        function initCarousel() {
+            // Crear elementos del carrusel para todos los animalitos
+            for (let i = 0; i <= 36; i++) {
+                const numFormatted = formatearNumeroConAnimal(i);
+                const imageUrl = getAnimalImage(numFormatted.clave);
+                
+                // Verificar si la imagen existe
+                const testImage = new Image();
+                testImage.onload = function() {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'carousel-image-container';
+                    
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = numFormatted.animal;
+                    img.className = 'carousel-image';
+                    
+                    const caption = document.createElement('div');
+                    caption.className = 'carousel-caption';
+                    caption.textContent = `${numFormatted.clave} - ${numFormatted.animal}`;
+                    
+                    imageContainer.appendChild(img);
+                    carouselItem.appendChild(imageContainer);
+                    carouselItem.appendChild(caption);
+                    
+                    domElements.animalCarousel.appendChild(carouselItem);
+                    carouselItems.push(carouselItem);
+                    
+                    // Crear indicadores cuando todas las imágenes estén cargadas
+                    if (carouselItems.length === 36) {
+                        createIndicators();
+                        startCarousel();
+                    }
+                };
+                testImage.onerror = function() {
+                    // Si la imagen no existe, no la agregamos al carrusel
+                    console.warn(`Imagen no encontrada: ${imageUrl}`);
+                };
+                testImage.src = imageUrl;
+            }
+        }
+        
+        function createIndicators() {
+            domElements.carouselIndicators.innerHTML = '';
             
-            // Deshabilitar la tecla F12
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'F12') {
-                    e.preventDefault();
-                    showMessage('Acción no permitida por seguridad', 'error');
+            // Calcular cuántos grupos de 5 elementos tenemos
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            
+            for (let i = 0; i < totalGroups; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (i === 0) indicator.classList.add('active');
+                
+                indicator.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                
+                domElements.carouselIndicators.appendChild(indicator);
+            }
+        }
+        
+        function startCarousel() {
+            carouselInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // Cambia cada 5 segundos
+        }
+        
+        function nextSlide() {
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            goToSlide((currentSlide + 1) % totalGroups);
+        }
+        
+        function prevSlide() {
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            goToSlide((currentSlide - 1 + totalGroups) % totalGroups);
+        }
+        
+        function goToSlide(slideIndex) {
+            // Detener el intervalo temporalmente
+            clearInterval(carouselInterval);
+            
+            // Actualizar slide actual
+            currentSlide = slideIndex;
+            
+            // Calcular el desplazamiento
+            const translateValue = -(currentSlide * 100);
+            domElements.animalCarousel.style.transform = `translateX(${translateValue}%)`;
+            
+            // Actualizar indicadores
+            const indicators = domElements.carouselIndicators.querySelectorAll('.carousel-indicator');
+            indicators.forEach((indicator, i) => {
+                if (i === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
                 }
             });
+            
+            // Reiniciar intervalo
+            startCarousel();
         }
         
         // ===== FUNCIONES DE CONFETI (OPTIMIZADAS) =====
@@ -1452,28 +1867,43 @@
             }, 2000);
         }
         
-          function updateDates() {
-    const now = new Date();
-    
-    // Formatear fecha actual
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
-    
-    // Calcular fechas para los sorteos en el orden correcto:
-    // Bloque 1: antier (hoy - 2 días)
-    // Bloque 2: ayer (hoy - 1 día)
-    // Bloque 3: hoy (fecha actual)
-    const today = new Date(now);
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const dayBeforeYesterday = new Date(now);
-    dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
-    
-    // Formatear fechas de sorteos en el orden correcto
-    domElements.date1Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
-    domElements.date2Element.textContent = `Sorteo ${formatDate(yesterday)}`;           // ayer
-    domElements.date3Element.textContent = `Sorteo ${formatDate(today)}`;               // hoy
-}
+           // ===== FUNCIÓN ACTUALIZADA PARA FECHAS SEGÚN HORA =====
+        function updateDates() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinutes = now.getMinutes();
+            
+            // Formatear fecha actual
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
+            
+            // Determinar el rango horario
+            const isDayTime = (currentHour > 6 || (currentHour === 6 && currentMinutes >= 0)) && 
+                              (currentHour < 19 || (currentHour === 19 && currentMinutes === 0));
+            
+            // Calcular fechas según la hora actual
+            const today = new Date(now);
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+            const dayBeforeYesterday = new Date(now);
+            dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+            const threeDaysAgo = new Date(now);
+            threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+            
+            // Asignar fechas según la lógica especificada
+            if (isDayTime) {
+                // De 6:00 am (06:00) a 7:00 pm (19:00)
+                domElements.date1Element.textContent = `Sorteo ${formatDate(threeDaysAgo)}`;  // ante antier
+                domElements.date2Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
+                domElements.date3Element.textContent = `Sorteo ${formatDate(yesterday)}`;  // ayer
+            } else {
+                // De 7:00 pm (19:00) a 6:00 am (06:00) del día siguiente
+                domElements.date1Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
+                domElements.date2Element.textContent = `Sorteo ${formatDate(yesterday)}`;  // ayer
+                domElements.date3Element.textContent = `Sorteo ${formatDate(today)}`;  // hoy
+            }
+        }
+        
         
         function formatDate(date) {
             const day = String(date.getDate()).padStart(2, '0');
@@ -1481,7 +1911,8 @@
             const year = date.getFullYear();
             return `${day}/${month}/${year}`;
         }
-        // CORRECCIÓN: Función para obtener la hora en el orden correcto (8am a 7pm)
+
+        // CORRECCIÓN: Función para obtener la hora en el orden correcto (8am to 7pm)
         function getHourForBox(boxNumber) {
             // Las horas van de 8am to 7pm (12 horas en total)
             const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
@@ -1501,12 +1932,38 @@
             return `${displayHour}${period}`;
         }
         
-        // ===== FUNCIONES DE VALIDACIÓN =====
+ // ===== FUNCIONES DE VALIDACIÓN ACTUALIZADAS PARA ACEPTAR "00" =====
         function validateSingleInput(input) {
             const value = input.value;
             
             if (value === '') {
                 input.classList.remove('error');
+                input.classList.remove('has-image');
+                input.style.backgroundImage = '';
+                return true;
+            }
+            
+            // Permitir el valor "00"
+            if (value === '00') {
+                input.classList.remove('error');
+                hideMessage();
+                
+                // Mostrar la imagen del animalito correspondiente
+                const numFormatted = formatearNumeroConAnimal(value);
+                const imageUrl = getAnimalImage(numFormatted.clave);
+                
+                // Crear una imagen para verificar si existe
+                const testImage = new Image();
+                testImage.onload = function() {
+                    input.classList.add('has-image');
+                    input.style.backgroundImage = `url('${imageUrl}')`;
+                };
+                testImage.onerror = function() {
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                };
+                testImage.src = imageUrl;
+                
                 return true;
             }
             
@@ -1514,14 +1971,34 @@
             
             if (isNaN(num) || num < 0 || num > 36) {
                 input.classList.add('error');
+                input.classList.remove('has-image');
+                input.style.backgroundImage = '';
                 showMessage('Por favor, ingrese solo números entre 0 y 36', 'error');
                 return false;
             } else {
                 input.classList.remove('error');
                 hideMessage();
+                
+                // Mostrar la imagen del animalito correspondiente
+                const numFormatted = formatearNumeroConAnimal(num);
+                const imageUrl = getAnimalImage(numFormatted.clave);
+                
+                // Crear una imagen para verificar si existe
+                const testImage = new Image();
+                testImage.onload = function() {
+                    input.classList.add('has-image');
+                    input.style.backgroundImage = `url('${imageUrl}')`;
+                };
+                testImage.onerror = function() {
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                };
+                testImage.src = imageUrl;
+                
                 return true;
             }
         }
+
 
         function validateAllInputs() {
             let allValid = true;
@@ -1537,6 +2014,8 @@
                 
                 if (value === '') {
                     input.classList.add('error');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
                     emptyFields = true;
                     allValid = false;
                     continue;
@@ -1546,9 +2025,27 @@
                 
                 if (isNaN(num) || num < 0 || num > 36) {
                     input.classList.add('error');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
                     allValid = false;
                 } else {
                     input.classList.remove('error');
+                    
+                    // Mostrar la imagen del animalito correspondiente
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    const imageUrl = getAnimalImage(numFormatted.clave);
+                    
+                    // Crear una imagen para verificar si existe
+                    const testImage = new Image();
+                    testImage.onload = function() {
+                        input.classList.add('has-image');
+                        input.style.backgroundImage = `url('${imageUrl}')`;
+                    };
+                    testImage.onerror = function() {
+                        input.classList.remove('has-image');
+                        input.style.backgroundImage = '';
+                    };
+                    testImage.src = imageUrl;
                 }
             }
             
@@ -1574,32 +2071,32 @@
                 return;
             }
             
-            // Validar específicamente las casillas 22 y 36
+            // Validar específicamente las casillas 26 y 24
             const input22 = document.getElementById('num22');
-            const input36 = document.getElementById('num36');
+            const input35 = document.getElementById('num35');
             
-            if (!validateSingleInput(input22) || !validateSingleInput(input36)) {
-                showMessage('Por favor, ingrese números válidos entre 0 y 36 en las casillas 22 y 36', 'error');
+            if (!validateSingleInput(input22) || !validateSingleInput(input35)) {
+                showMessage('Por favor, ingrese números válidos entre 0 y 36', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 22 y 36 del primer bloque (sorteo más antiguo)
+            // Obtener los números de las casillas 26 y 24 del primer bloque (sorteo más antiguo)
             const num22 = parseInt(input22.value);
-            const num36 = parseInt(input36.value);
+            const num35 = parseInt(input35.value);
             
             // Formatear números con sus animales
             const num22Formatted = formatearNumeroConAnimal(num22);
-            const num36Formatted = formatearNumeroConAnimal(num36);
+            const num35Formatted = formatearNumeroConAnimal(num35);
             
             // Limpiar contenedor de números calientes
             domElements.hotNumbersContainer.innerHTML = '';
             
             // Crear elementos para mostrar los números con animales
             createNumberWithAnimalElement(num22Formatted, 'hot-circle', domElements.hotNumbersContainer);
-            createNumberWithAnimalElement(num36Formatted, 'hot-circle', domElements.hotNumbersContainer);
+            createNumberWithAnimalElement(num35Formatted, 'hot-circle', domElements.hotNumbersContainer);
             
             // Actualizar el mensaje con la fecha del sorteo más antiguo
-            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num22Formatted.clave} ${num22Formatted.animal}], [${num36Formatted.clave} ${num36Formatted.animal}]`;
+            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num22Formatted.clave} ${num22Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -1635,32 +2132,32 @@
                 return;
             }
             
-            // Validar específicamente las casillas 21 and 35
+            // Validar específicamente las casillas 25 and 23
             const input21 = document.getElementById('num21');
-            const input35 = document.getElementById('num35');
+            const input36 = document.getElementById('num36');
             
-            if (!validateSingleInput(input21) || !validateSingleInput(input35)) {
-                showMessage('Por favor, ingrese números válidos entre 0 y 36 en las casillas 21 y 35', 'error');
+            if (!validateSingleInput(input21) || !validateSingleInput(input36)) {
+                showMessage('Por favor, ingrese números válidos entre 0 y 36', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 21 y 35 del segundo bloque
+            // Obtener los números de las casillas 25 y 23 del segundo bloque
             const num21 = parseInt(input21.value);
-            const num35 = parseInt(input35.value);
+            const num36 = parseInt(input36.value);
             
             // Formatear números con sus animales
             const num21Formatted = formatearNumeroConAnimal(num21);
-            const num35Formatted = formatearNumeroConAnimal(num35);
+            const num36Formatted = formatearNumeroConAnimal(num36);
             
             // Limpiar contenedor de números sorpresa
             domElements.surpriseNumbersContainer.innerHTML = '';
             
             // Crear elementos para mostrar los números con animales
             createNumberWithAnimalElement(num21Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
-            createNumberWithAnimalElement(num35Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            createNumberWithAnimalElement(num36Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
             
             // Actualizar el mensaje
-            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num21Formatted.clave} ${num21Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num21Formatted.clave} ${num21Formatted.animal}], [${num36Formatted.clave} ${num36Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -1698,6 +2195,8 @@
                     input.value = '';
                     input.classList.remove('error');
                     input.classList.remove('super-fixed-highlight');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
                 }
             }
             
@@ -1729,199 +2228,35 @@
         }
         
         // ===== FUNCIÓN SUPER FIJOS ACTUALIZADA =====
-        function findSuperFixedNumbers() {
+        function showPremiumMessage() {
             // Ocultar mensajes anteriores
             hideMessage();
             
-            // Validar que todos los campos estén completos
-            if (!validateAllInputs()) {
-                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
-                return;
-            }
+            // Crear y mostrar mensaje premium
+            const premiumMessage = document.createElement('div');
+            premiumMessage.className = 'premium-message';
+            premiumMessage.innerHTML = `
+                <h3><i class="fas fa-crown"></i> ¡Esta opción es PREMIUM!</h3>
+                <p>Para acceder a los "Super Fijos", comunícate con el administrador al:</p>
+                <p style="font-size: 1.2em; margin: 10px 0;"><strong>+58 424 8671967</strong></p>
+                <p><i class="fab fa-whatsapp"></i> Solo WhatsApp</p>
+            `;
             
-            // Obtener todos los valores numéricos con sus posiciones
-            const numbersWithPositions = [];
-            for (let i = 1; i <= 36; i++) {
-                const input = document.getElementById(`num${i}`);
-                if (input && input.value) {
-                    numbersWithPositions.push({
-                        number: parseInt(input.value),
-                        position: i,
-                        input: input
-                    });
-                }
-            }
+            // Insertar después del botón de super fijos
+            domElements.superFixedBtn.parentNode.insertBefore(premiumMessage, domElements.superFixedBtn.nextSibling);
             
-            // Crear un mapa para contar frecuencia de números
-            const frequencyMap = {};
-            numbersWithPositions.forEach(item => {
-                if (!frequencyMap[item.number]) {
-                    frequencyMap[item.number] = [];
-                }
-                frequencyMap[item.number].push(item.position);
-            });
+            // Desplazar la vista hacia el mensaje
+            premiumMessage.scrollIntoView({ behavior: 'smooth' });
             
-            // Encontrar números que se repiten exactamente 2 veces
-            const superFixedNumbers = [];
-            
-            for (const number in frequencyMap) {
-                const positions = frequencyMap[number];
-                
-                // Solo considerar números que aparecen exactamente 2 veces
-                if (positions.length === 2) {
-                    const num = parseInt(number);
-                    const pos1 = positions[0];
-                    const pos2 = positions[1];
-                    const interval = Math.abs(pos2 - pos1);
-                    
-                    // Verificar si el intervalo es de 13 o más
-                    if (interval >= 13) {
-                        superFixedNumbers.push({
-                            number: num,
-                            positions: positions,
-                            interval: interval
-                        });
-                    }
+            // Eliminar el mensaje después de 10 segundos
+            setTimeout(() => {
+                if (premiumMessage.parentNode) {
+                    premiumMessage.parentNode.removeChild(premiumMessage);
                 }
-            }
-            
-            // Mostrar resultados según la nueva lógica
-            if (superFixedNumbers.length <= 4) {
-                // Si hay 4 o menos números super fijos, mostrarlos normalmente
-                if (superFixedNumbers.length > 0) {
-                    // Limpiar contenedor de números SUPER FIJOS
-                    domElements.superFixedNumbersContainer.innerHTML = '';
-                    
-                    // Crear elementos para todos los números SUPER FIJOS
-                    superFixedNumbers.forEach(item => {
-                        const numFormatted = formatearNumeroConAnimal(item.number);
-                        createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
-                    });
-                    
-                    // Actualizar mensaje
-                    const numbersList = superFixedNumbers.map(item => {
-                        const numFormatted = formatearNumeroConAnimal(item.number);
-                        return `[${numFormatted.clave} ${numFormatted.animal}]`;
-                    }).join(', ');
-                    
-                    domElements.superFixedMessage.textContent = `Encontrados ${superFixedNumbers.length} números SUPER FIJOS con intervalo >= 13: ${numbersList}`;
-                    
-                    // Mostrar el contenedor de resultados
-                    domElements.resultsContainer.style.display = 'block';
-                    
-                    // Mostrar solo la sección de SUPER FIJOS
-                    document.querySelector('.hot-numbers').style.display = 'none';
-                    document.querySelector('.surprise-numbers').style.display = 'none';
-                    document.querySelector('.super-fixed-numbers').style.display = 'block';
-                    
-                    // Destacar los números en los inputs
-                    highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
-                    
-                    // Crear efectos de confeti desde los números
-                    setTimeout(() => {
-                        // Crear confeti para cada número SUPER FIJO
-                        document.querySelectorAll('.super-fixed-circle').forEach(circle => {
-                            createConfettiFromElement(circle, 30);
-                        });
-                        
-                        // Añadir confeti general después de la explosión inicial
-                        setTimeout(() => {
-                            createGeneralConfetti();
-                        }, 300);
-                    }, 100);
-                    
-                    showCelebrationText('¡SUPER FIJOS!');
-                    
-                    // Desplazarse suavemente hacia los resultados
-                    domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Mostrar mensaje con información detallada
-                    const numbersListMsg = superFixedNumbers.map(item => {
-                        const numFormatted = formatearNumeroConAnimal(item.number);
-                        return `${numFormatted.clave} ${numFormatted.animal} (posiciones ${item.positions[0]} y ${item.positions[1]})`;
-                    }).join(', ');
-                    
-                    showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersListMsg}`, 'success');
-                } else {
-                    showMessage('No se encontraron números SUPER FIJOS con intervalo >= 13', 'info');
-                }
-            } else {
-                // Si hay 5 o más números super fijos, usar casillas específicas
-                const input22 = document.getElementById('num22');
-                const input36 = document.getElementById('num36');
-                const input21 = document.getElementById('num21');
-                const input35 = document.getElementById('num35');
-                
-                // Validar que las casillas específicas tengan valores
-                if (!input22.value || !input36.value || !input21.value || !input35.value) {
-                    showMessage('Para 5+ SUPER FIJOS, complete las casillas 22, 36, 21 y 35', 'error');
-                    return;
-                }
-                
-                const specialNumbers = [
-                    parseInt(input22.value),
-                    parseInt(input36.value),
-                    parseInt(input21.value),
-                    parseInt(input35.value)
-                ];
-                
-                // Limpiar contenedor de números SUPER FIJOS
-                domElements.superFixedNumbersContainer.innerHTML = '';
-                
-                // Crear elementos para los números especiales
-                specialNumbers.forEach(num => {
-                    const numFormatted = formatearNumeroConAnimal(num);
-                    createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
-                });
-                
-                // Actualizar mensaje
-                const numbersList = specialNumbers.map(num => {
-                    const numFormatted = formatearNumeroConAnimal(num);
-                    return `[${numFormatted.clave} ${numFormatted.animal}]`;
-                }).join(', ');
-                
-                domElements.superFixedMessage.textContent = `Números SUPER FIJOS especiales (de casillas 22, 36, 21, 35): ${numbersList}`;
-                
-                // Mostrar el contenedor de resultados
-                domElements.resultsContainer.style.display = 'block';
-                
-                // Mostrar solo la sección de SUPER FIJOS
-                document.querySelector('.hot-numbers').style.display = 'none';
-                document.querySelector('.surprise-numbers').style.display = 'none';
-                document.querySelector('.super-fixed-numbers').style.display = 'block';
-                
-                // Destacar los números en los inputs
-                highlightSuperFixedNumbers(specialNumbers);
-                
-                // Crear efectos de confeti desde los números
-                setTimeout(() => {
-                    // Crear confeti para cada número SUPER FIJO
-                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
-                        createConfettiFromElement(circle, 30);
-                    });
-                    
-                    // Añadir confeti general después de la explosión inicial
-                    setTimeout(() => {
-                        createGeneralConfetti();
-                    }, 300);
-                }, 100);
-                
-                showCelebrationText('¡SUPER FIJOS ESPECIALES!');
-                
-                // Desplazarse suavemente hacia los resultados
-                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                
-                const numbersListMsg = specialNumbers.map((num, index) => {
-                    const positions = index < 2 ? [22, 36] : [21, 35];
-                    const numFormatted = formatearNumeroConAnimal(num);
-                    return `${numFormatted.clave} ${numFormatted.animal} (casilla ${positions[index % 2]})`;
-                }).join(', ');
-                
-                showMessage(`¡Números SUPER FIJOS especiales encontrados: ${numbersListMsg}`, 'success');
-            }
+            }, 10000);
         }
-
-        // Función para crear elementos de número con animal (ACTUALIZADA para mostrar imágenes)
+        
+        // Función para crear elementos de número con animal (MODIFICADA PARA MOSTRAR IMÁGENES)
         function createNumberWithAnimalElement(numFormatted, circleClass, container) {
             const numberWithAnimal = document.createElement('div');
             numberWithAnimal.className = 'number-with-animal';
@@ -1933,20 +2268,26 @@
             
             // Crear elemento de imagen
             const img = document.createElement('img');
-            img.src = `animalitos/animalitos_loto/${numFormatted.clave}.png`;
+            img.src = getAnimalImage(numFormatted.clave);
             img.alt = numFormatted.animal;
+            img.className = 'animal-image';
             
             // Manejar error de carga de imagen
             img.onerror = function() {
                 // Si la imagen no se carga, mostrar el número como fallback
                 this.style.display = 'none';
                 const fallback = document.createElement('div');
-                fallback.className = 'number-fallback';
+                fallback.className = 'image-fallback';
                 fallback.textContent = numFormatted.clave;
                 numberCircle.appendChild(fallback);
             };
             
             numberCircle.appendChild(img);
+            
+            // Añadir efecto neón para números importantes
+            if (circleClass.includes('super-fixed')) {
+                numberCircle.classList.add('neon-effect');
+            }
             
             const animalLabel = document.createElement('div');
             animalLabel.className = 'animal-label flash-animation';
@@ -1962,24 +2303,6 @@
             }, 100);
         }
 
-        function highlightSuperFixedNumbers(numbers) {
-            // Remover highlights anteriores
-            const previousHighlights = document.querySelectorAll('.super-fixed-highlight');
-            previousHighlights.forEach(el => el.classList.remove('super-fixed-highlight'));
-            
-            // Destacar los números SUPER FIJOS en los inputs
-            for (let i = 1; i <= 36; i++) {
-                const input = document.getElementById(`num${i}`);
-                if (input && numbers.includes(parseInt(input.value))) {
-                    input.classList.add('super-fixed-highlight');
-                    
-                    // Añadir tooltip para indicar que es SUPER FIJO
-                    const numFormatted = formatearNumeroConAnimal(parseInt(input.value));
-                    input.title = `Número SUPER FIJO: ${numFormatted.clave} ${numFormatted.animal}`;
-                }
-            }
-        }
-        
         // ===== GENERACIÓN DE CAMPOS DE ENTRADA =====
         function generateHourLabels() {
             for (let i = 1; i <= 12; i++) {
@@ -2007,7 +2330,7 @@
                 input.placeholder = getHourForBox(i);
                 input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
                 
-                // Agregar evento para validación en tiempo real
+                // Agregar evento para validación en tiempo real y mostrar imagen
                 input.addEventListener('input', function() {
                     validateSingleInput(this);
                 });
@@ -2029,7 +2352,8 @@
                 }
             }
         }
-		          // ===== FUNCIONES DE SEGURIDAD =====
+        
+        // ===== FUNCIONES DE SEGURIDAD =====
         // Prevenir clic derecho e inspección en entornos de producción
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             document.addEventListener('contextmenu', function(e) {
@@ -2046,18 +2370,22 @@
             });
         }
         
-        
         // ===== INICIALIZACIÓN =====
         function initApp() {
             updateDates();
             generateHourLabels();
             generateInputs();
+            initCarousel();
             
             // Agregar event listeners a los botones
             domElements.hotNumbersBtn.addEventListener('click', showHotNumbers);
             domElements.surpriseBtn.addEventListener('click', showSurpriseNumbers);
-            domElements.superFixedBtn.addEventListener('click', findSuperFixedNumbers);
+            domElements.superFixedBtn.addEventListener('click', showPremiumMessage);
             domElements.clearBtn.addEventListener('click', clearAllInputs);
+            
+            // Agregar event listeners al carrusel
+            domElements.prevBtn.addEventListener('click', prevSlide);
+            domElements.nextBtn.addEventListener('click', nextSlide);
             
             // Mejorar accesibilidad del teclado
             document.addEventListener('keydown', function(e) {
@@ -2072,8 +2400,4 @@
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
-
-
 </html>
-
-
