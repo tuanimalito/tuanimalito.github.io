@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆TuAnimalito💲</title>
+    <!-- Favicons -->
+    <link href="assets/images/favicon.webp" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos optimizados con mejoras de accesibilidad y rendimiento */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+            --success-gradient: linear-gradient(to right, #2ecc71, #27ae60);
+            --danger-gradient: linear-gradient(to right, #e74c3c, #c0392b);
+            --warning-gradient: linear-gradient(to right, #f39c12, #e67e22);
+            --info-gradient: linear-gradient(to right, #9b59b6, #8e44ad);
+            --neutral-gradient: linear-gradient(to right, #95a5a6, #7f8c8d);
+            --super-fixed-gradient: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            --super-fixed-secondary: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --primary-color: #3498db;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --error-color: #e74c3c;
+            --success-color: #2e7d32;
+            --container-bg: #fff;
+            --block-bg: #f8f9fa;
+            --focus-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+        }
+        
+        body {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        
+        /* Efecto de confeti optimizado para rendimiento */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            opacity: 0.9;
+            animation: fall linear forwards;
+            z-index: 1000;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+        
+        .confetti::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(var(--end-x), var(--end-y), 0) rotate(var(--r)) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1200px;
+            padding: 30px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        /* Carrusel de animalitos MEJORADO - 5 imágenes visibles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+            width: 100%;
+        }
+        
+        .carousel-item {
+            flex: 0 0 20%; /* 5 elementos visibles (100% / 5 = 20%) */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            transition: all 0.5s ease;
+            transform-origin: center;
+        }
+        
+        .carousel-item:hover {
+            transform: scale(1.05);
+            z-index: 5;
+        }
+        
+        .carousel-image-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        
+        .carousel-item:hover .carousel-image-container {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: #ffd700;
+        }
+        
+        .carousel-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+        
+        .carousel-item:hover .carousel-image {
+            transform: scale(1.1);
+        }
+        
+        .carousel-caption {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-item:hover .carousel-caption {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-control:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-control.prev {
+            left: 15px;
+        }
+        
+        .carousel-control.next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+            border-color: #ffd700;
+        }
+        
+        /* Efecto de brillo en elementos activos */
+        .carousel-item.active {
+            animation: glowEffect 2s infinite alternate;
+        }
+        
+        @keyframes glowEffect {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+        
+        /* Mejoras de accesibilidad en navegación */
+        .nav-menu {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .nav-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-menu li {
+            margin: 5px 0;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 12px 25px;
+            background: var(--secondary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            text-align: center;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        
+        .nav-menu a i {
+            margin-right: 8px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        h1 {
+            color: var(--text-dark);
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .info-box {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .input-section {
+            margin-bottom: 25px;
+        }
+        
+        .block {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--block-bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .block-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .block-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .hours-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 0 5px;
+        }
+        
+        .hour-label-top {
+            width: 60px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 5px 0;
+        }
+        
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .casilla {
+            width: 130%;
+            height: 80px;
+            text-align: center;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            padding: 5px;
+            transition: all 0.3s ease;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+        
+        .casilla:focus {
+            border-color: var(--primary-color);
+            box-shadow: var(--focus-shadow);
+            outline: none;
+        }
+        
+        .casilla.error {
+            border-color: var(--error-color);
+            background-color: #ffeaea;
+        }
+        
+        .hour-label {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-validate {
+            background: var(--success-gradient);
+            display: none; /* Botón oculto */
+        }
+        
+        .btn-hot {
+            background: var(--danger-gradient);
+        }
+        
+        .btn-surprise {
+            background: var(--info-gradient);
+        }
+        
+        .btn-super-fixed {
+            background: var(--super-fixed-gradient);
+            animation: superFixedButtonPulse 2s infinite;
+        }
+        
+        .btn-clear {
+            background: var(--neutral-gradient);
+        }
+        
+        @keyframes superFixedButtonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #ffeaea;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .success-message {
+            background-color: #e8f5e8;
+            color: var(--success-color);
+            border: 1px solid #4CAF50;
+        }
+        
+        .info-message {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .results-container {
+            display: none;
+            margin-top: 25px;
+        }
+        
+        .result-box {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hot-numbers {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #d35400;
+            border: 2px dashed #e74c3c;
+        }
+        
+        .surprise-numbers {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: #8e44ad;
+            border: 2px dashed #9b59b6;
+        }
+        
+        .super-fixed-numbers {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: #fff;
+            border: 2px dashed #ffd700;
+            animation: superFixedPulse 3s infinite;
+        }
+        
+        @keyframes superFixedPulse {
+            0% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 107, 107, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.5); }
+        }
+        
+        .results-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* NUEVO: Estilo mejorado para contenedores de números en filas */
+        .numbers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 100;
+            width: 100%;
+        }
+        
+        .number-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 800;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100;
+            animation: pulse 1.5s infinite alternate;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 4px solid white;
+        }
+        
+        .number-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        
+        .hot-circle {
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+        
+        .surprise-circle {
+            background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
+        }
+        
+        .super-fixed-circle {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            animation: superFixedCirclePulse 1s infinite alternate;
+        }
+        
+        @keyframes superFixedCirclePulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
+            100% { transform: scale(1.15); box-shadow: 0 0 30px rgba(255, 107, 107, 1); }
+        }
+        
+        .results-message {
+            font-size: 18px;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copyright {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .copyright span {
+            color: var(--primary-color);
+        }
+
+        .credits a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .credits a:hover {
+            color: #6a11cb;
+            text-decoration: underline;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .help-text {
+            background: var(--block-bg);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .celebration-text {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: zoomInOut 2s ease-in-out;
+        }
+        
+        @keyframes zoomInOut {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+        
+        .super-fixed-highlight {
+            background-color: #fffacd !important;
+            border: 2px solid #ffd700 !important;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+            animation: superFixedInputPulse 2s infinite;
+        }
+        
+        @keyframes superFixedInputPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+            100% { transform: scale(1); }
+        }
+        
+        .explanation-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .explanation-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .explanation-box p {
+            color: #455a64;
+            line-height: 1.6;
+        }
+        
+        /* Nuevos estilos para mostrar animales - MEJORADOS */
+        .animal-label {
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--text-dark);
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            line-height: 1.3;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            min-height: 40px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .number-with-animal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .number-with-animal:hover .animal-label {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Efecto de destello para números importantes */
+        @keyframes flash {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.7; }
+        }
+        
+        .flash-animation {
+            animation: flash 2s infinite;
+        }
+        
+        /* Efecto de rotación suave */
+        @keyframes gentleRotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .rotate-animation {
+            animation: gentleRotate 5s infinite ease-in-out;
+        }
+        
+        /* Mejoras de accesibilidad para modo alto contraste */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0047AB;
+                --text-dark: #000;
+                --text-light: #333;
+                --container-bg: #fff;
+                --block-bg: #f0f0f0;
+            }
+            
+            .confetti {
+                border: 1px solid #000;
+            }
+            
+            .casilla {
+                border-width: 3px;
+            }
+            
+            .animal-label {
+                background: #fff;
+                border: 2px solid #000;
+            }
+        }
+        
+        /* Mejoras de accesibilidad para reducir movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .confetti {
+                display: none;
+            }
+            
+            .number-circle {
+                animation: none;
+            }
+            
+            .celebration-text {
+                animation: none;
+            }
+            
+            .super-fixed-highlight {
+                animation: none;
+            }
+            
+            .btn-super-fixed {
+                animation: none;
+            }
+            
+            .super-fixed-numbers {
+                animation: none;
+            }
+            
+            .super-fixed-circle {
+                animation: none;
+            }
+            
+            .number-with-animal:hover .animal-label {
+                transform: none;
+            }
+            
+            .carousel {
+                transition: none;
+            }
+            
+            .carousel-item {
+                transition: none;
+            }
+            
+            .carousel-item:hover {
+                transform: none;
+            }
+            
+            .carousel-image-container {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-image-container {
+                transform: none;
+            }
+            
+            .carousel-image {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-image {
+                transform: none;
+            }
+            
+            .carousel-caption {
+                transition: none;
+            }
+            
+            .carousel-item:hover .carousel-caption {
+                transform: none;
+            }
+            
+            .carousel-control:hover {
+                transform: translateY(-50%);
+            }
+            
+            .carousel-indicator:hover {
+                transform: scale(1);
+            }
+        }
+        
+        /* Optimizaciones para dispositivos móviles */
+        @media (max-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 25%; /* 4 elementos visibles en tablets */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .carousel-container {
+                height: 200px;
+            }
+            
+            .carousel-item {
+                flex: 0 0 33.333%; /* 3 elementos visibles en móviles grandes */
+            }
+            
+            .carousel-image-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .carousel-caption {
+                font-size: 12px;
+            }
+            
+            .input-row {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hours-container {
+                display: none;
+            }
+            
+            .input-wrapper {
+                width: 60px;
+                margin: 5px;
+            }
+            
+            /* NUEVO: Ajuste para números en móviles */
+            .numbers-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            
+            .number-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 28px;
+            }
+            
+            .animal-label {
+                font-size: 14px;
+                min-height: 35px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .block-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-menu a {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .confetti {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .celebration-text {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            .carousel-container {
+                height: 180px;
+            }
+            
+            .carousel-item {
+                flex: 0 0 50%; /* 2 elementos visibles en móviles pequeños */
+            }
+            
+            .carousel-image-container {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .carousel-caption {
+                font-size: 11px;
+            }
+            
+            .info-box {
+                font-size: 14px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .input-wrapper {
+                width: 50px;
+            }
+            
+            .casilla {
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .confetti {
+                width: 8px;
+                height: 8px;
+            }
+            
+            /* NUEVO: Ajuste para números en móviles muy pequeños */
+            .numbers-container {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+            
+            .number-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 24px;
+            }
+            
+            .animal-label {
+                font-size: 12px;
+                min-height: 30px;
+                padding: 3px 6px;
+            }
+            
+            .results-title {
+                font-size: 22px;
+            }
+        }
+        
+        /* Mejoras de foco para navegación con teclado */
+        .btn:focus-visible,
+        .casilla:focus-visible,
+        .nav-menu a:focus-visible {
+            outline: 3px solid #0066cc;
+            outline-offset: 2px;
+        }
+        
+        /* Estilos para usuarios que prefieren modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #f0f0f0;
+                --text-light: #b0b0b0;
+                --container-bg: #2d3748;
+                --block-bg: #4a5568;
+            }
+            
+            .casilla {
+                background-color: #2d3748;
+                color: #f0f0f0;
+                border-color: #4a5568;
+            }
+            
+            .hot-numbers,
+            .surprise-numbers,
+            .super-fixed-numbers {
+                filter: brightness(0.9);
+            }
+            
+            .explanation-box {
+                background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+                border-left: 5px solid #4299e1;
+            }
+            
+            .explanation-box h3 {
+                color: #90cdf4;
+            }
+            
+            .explanation-box p {
+                color: #e2e8f0;
+            }
+            
+            .animal-label {
+                color: #2d3748;
+                background: rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        /* Nuevos estilos para la explicación de horas */
+        .hours-explanation {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+        }
+        
+        .hours-explanation h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hours-explanation p {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+        
+        /* Efectos de neón para números importantes */
+        .neon-effect {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px currentColor, 0 0 20px currentColor;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        
+        /* Efecto de brillo para números super fijos */
+        .super-fixed-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.5) !important;
+        }
+
+        /* Estilos para imágenes de animalitos - MEJORADOS */
+        .animal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .image-fallback {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        /* Mejora para que las imágenes se vean completas */
+        .number-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* Nuevos estilos para mostrar imágenes en inputs */
+        .casilla.has-image {
+            color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+        
+        .casilla.has-image::placeholder {
+            color: transparent;
+        }
+        
+        .casilla.has-image:focus {
+            color: transparent;
+            background-color: white;
+        }
+    </style>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="celebration-overlay" id="celebrationOverlay" aria-live="polite" aria-atomic="true">
+        <div class="celebration-text" id="celebrationText">¡Felicidades!</div>
+    </div>
+
+    <div class="container">
+        <!-- Carrusel de Animalitos MEJORADO - 5 imágenes visibles -->
+        <div class="carousel-container">
+            <div class="carousel" id="animalCarousel">
+                <!-- Los elementos del carrusel se generarán con JavaScript -->
+            </div>
+            <button class="carousel-control prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-control next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Los indicadores se generarán con JavaScript -->
+            </div>
+        </div>
+
+        <div class="logo">
+            <div class="" aria-hidden="true">
+                <i class=""><img src="animalitos/animalitos_granjazo/granja.png" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_granjazo/granjazo.png" height="100px" width="100px"/></i>
+            </div>
+        </div>
+        <header class="header">
+            <h1>Bienvenidos a Dr.Animalitos</h1>
+            <p class="subtitle">La mejor Orientación para los Animalitos</p>
+        </header>
+        
+        <nav class="nav-menu" aria-label="Menú de juegos de lotería">
+            <ul>
+                <li><a href="login_loto03.html"><i class="fas fa-dice" aria-hidden="true"></i> Loto Activo</a></li>
+                <li><a href="login_guacharo03.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li>
+            </ul>
+        </nav>
+        <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                crossorigin="anonymous"></script>
+                <!-- anuncio display 1 -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7995132393364853"
+                data-ad-slot="8481248642"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
+        
+        <div class="info-box">
+            <i class="fas fa-calendar-alt" aria-hidden=true></i>
+            <span id="currentDate">Cargando fecha...</span>
+        </div>
+        
+        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 75.</p>
+        
+        <main class="input-section">
+            <section class="block" aria-labelledby="date1">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date1">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">1</div>
+                </div>
+                
+                <div class="hours-container" id="hours1" aria-hidden="true"></div>
+                <div class="input-row" id="block1">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
+                <div class="help-text">Complete todos los números del primer sorteo</div>
+            </section>
+            
+            <section class="block" aria-labelledby="date2">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date2">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">2</div>
+                </div>
+                
+                <div class="hours-container" id="hours2" aria-hidden="true"></div>
+                <div class="input-row" id="block2">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
+                <div class="help-text">Complete todos los números del segundo sorteo</div>
+            </section>
+            
+            <section class="block" aria-labelledby="date3">
+                <div class="block-header">
+                    <div class="block-title">
+                        <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                        <span id="date3">Cargando fecha...</span>
+                    </div>
+                    <div class="block-number" aria-hidden="true">3</div>
+                </div>
+                
+                <div class="hours-container" id="hours3" aria-hidden="true"></div>
+                <div class="input-row" id="block3">
+                    <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
+                </div>
+                <div class="help-text">Complete todos los números del tercer sorteo</div>
+            </section>
+        </main>
+        
+        <div class="button-container">
+            <!-- Botón de validación oculto -->
+            <button class="btn btn-validate" id="validateBtn" style="display: none;">
+                <i class="fas fa-check-circle" aria-hidden="true"></i> Validar Números
+            </button>
+            <button class="btn btn-hot" id="hotNumbersBtn">
+                <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
+            </button>
+            <button class="btn btn-surprise" id="surpriseBtn">
+                <i class="fas fa-gift" aria-hidden="true"></i> Números Sorpresa
+            </button>
+            <button class="btn btn-super-fixed" id="superFixedBtn">
+                <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
+            </button>
+            <button class="btn btn-clear" id="clearBtn">
+                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
+            </button>
+        </div>
+        
+        <div id="message" class="message" role="alert" aria-live="polite"></div>
+           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7995132393364853"
+     data-ad-slot="7316306987"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        
+        <div id="resultsContainer" class="results-container">
+            <section class="result-box hot-numbers" aria-labelledby="hotNumbersTitle">
+                <div class="results-title">
+                    <i class="fas fa-fire" aria-hidden="true"></i>
+                    <span id="hotNumbersTitle">¡Números Calientes para Hoy!</span>
+                </div>
+                <div class="numbers-container" id="hotNumbersContainer">
+                    <!-- Los números calientes se generarán aquí dinámicamente -->
+                </div>
+                <div class="results-message" id="hotNumbersMessage">
+                    Estos números han sido seleccionados del sorteo más antiguo
+                </div>
+            </section>
+            
+            <section class="result-box surprise-numbers" aria-labelledby="surpriseTitle">
+                <div class="results-title">
+                    <i class="fas fa-gift" aria-hidden="true"></i>
+                    <span id="surpriseTitle">¡Sorpresa para Hoy!</span>
+                </div>
+                <div class="numbers-container" id="surpriseNumbersContainer">
+                    <!-- Los números sorpresa se generarán aquí dinámicamente -->
+                </div>
+                <div class="results-message" id="surpriseMessage">
+                    Estos números especiales te traerán alegría
+                </div>
+            </section>
+
+            <section class="result-box super-fixed-numbers" aria-labelledby="superFixedTitle" style="display: none;">
+                <div class="results-title">
+                    <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    <span id="superFixedTitle">¡Números SUPER FIJOS!</span>
+                </div>
+                <div class="numbers-container" id="superFixedNumbersContainer">
+                    <!-- Los números SUPER FIJOS se generarán aquí dinámicamente -->
+                </div>
+                <!-- Mensaje eliminado según solicitud -->
+            </section>
+        </div>
+          <!-- Anuncio vertical en el pie de página -->
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+     crossorigin="anonymous"></script>
+<!-- display vertical -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7995132393364853"
+     data-ad-slot="8773024812"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        
+        <footer class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript optimizado y separado -->
+    <script>
+        // ===== DICCIONARIO DE ANIMALES (0-75) =====
+        const animalesDict = {
+            "0": "delfin",
+            "00": "ballena",
+            "01": "carnero",
+            "02": "toro",
+            "03": "ciempies",
+            "04": "alacran",
+            "05": "leon",
+            "06": "rana",
+            "07": "perico",
+            "08": "raton",
+            "09": "aguila",
+            "10": "tigre",
+            "11": "gato",
+            "12": "caballo",
+            "13": "mono",
+            "14": "paloma",
+            "15": "zorro",
+            "16": "oso",
+            "17": "pavo",
+            "18": "burro",
+            "19": "chivo",
+            "20": "cochino",
+            "21": "gallo",
+            "22": "camello",
+            "23": "cebra",
+            "24": "iguana",
+            "25": "gallina",
+            "26": "vaca",
+            "27": "perro",
+            "28": "zamuro",
+            "29": "elefante",
+            "30": "caiman",
+            "31": "lapa",
+            "32": "ardilla",
+            "33": "pescado",
+            "34": "venado",
+            "35": "jirafa",
+            "36": "culebra",
+            "37": "maripoza",
+            "38": "conejo",
+            "39": "rinoceronte",
+            "40": "hipopotamo",
+            "41": "bufalo",
+            "42": "murcielago",
+            "43": "koala",
+            "44": "puma",
+            "45": "canguro",
+            "46": "lobo",
+            "47": "tortuga",
+            "48": "morsa",
+            "49": "hiena",
+            "50": "comadreja",
+            "51": "dragon",
+            "52": "chacal",
+            "53": "jaguar",
+            "54": "camalion",
+            "55": "foca",
+            "56": "armino",
+            "57": "jabali",
+            "58": "castor",
+            "59": "guacamaya",
+            "60": "tiburon",
+            "61": "turpial",
+            "62": "tucan",
+            "63": "cachicamo",
+            "64": "hormiga",
+            "65": "gorila",
+            "66": "bisonte",
+            "67": "flamingo",
+            "68": "araña",
+            "69": "pavoreal",
+            "70": "cangrejo",
+            "71": "rabipelao",
+            "72": "pelicano",
+            "73": "colibri",
+            "74": "escarabajo",
+            "75": "codorniz",
+            "75": "mantiz"
+        };
+
+        // Función para obtener la ruta de la imagen del animal
+        function getAnimalImage(clave) {
+            return `animalitos/animalitos_granjazo/${clave}.png`;
+        }
+        
+        // Función para formatear números a dos dígitos y obtener el animal
+        function formatearNumeroConAnimal(num) {
+            let clave;
+            if (num === 0) {
+                clave = "0";
+            } else if (num >= 1 && num <= 9) {
+                clave = "0" + num;
+            } else {
+                clave = num.toString();
+            }
+            
+            const animal = animalesDict[clave] || "desconocido";
+            return { clave, animal };
+        }
+        
+        // ===== CONFIGURACIÓN Y CONSTANTES =====
+        const CONFETTI_COLORS = [
+            '#FF0000', '#FF4500', '#FFD700', '#FF69B4', '#00FF00', 
+            '#1E90FF', '#9370DB', '#FF00FF', '#00FFFF', '#32CD32',
+            '#FF6347', '#FF8C00', '#FFFF00', '#40E0D0', '#8A2BE2'
+        ];
+        
+        // ===== ELEMENTOS DEL DOM =====
+        const domElements = {
+            block1: document.getElementById('block1'),
+            block2: document.getElementById('block2'),
+            block3: document.getElementById('block3'),
+            hours1: document.getElementById('hours1'),
+            hours2: document.getElementById('hours2'),
+            hours3: document.getElementById('hours3'),
+            validateBtn: document.getElementById('validateBtn'),
+            hotNumbersBtn: document.getElementById('hotNumbersBtn'),
+            surpriseBtn: document.getElementById('surpriseBtn'),
+            superFixedBtn: document.getElementById('superFixedBtn'),
+            clearBtn: document.getElementById('clearBtn'),
+            messageDiv: document.getElementById('message'),
+            currentDateElement: document.getElementById('currentDate'),
+            date1Element: document.getElementById('date1'),
+            date2Element: document.getElementById('date2'),
+            date3Element: document.getElementById('date3'),
+            resultsContainer: document.getElementById('resultsContainer'),
+            hotNumbersContainer: document.getElementById('hotNumbersContainer'),
+            surpriseNumbersContainer: document.getElementById('surpriseNumbersContainer'),
+            superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
+            hotNumbersMessage: document.getElementById('hotNumbersMessage'),
+            surpriseMessage: document.getElementById('surpriseMessage'),
+            celebrationOverlay: document.getElementById('celebrationOverlay'),
+            celebrationText: document.getElementById('celebrationText'),
+            animalCarousel: document.getElementById('animalCarousel'),
+            prevBtn: document.getElementById('prevBtn'),
+            nextBtn: document.getElementById('nextBtn'),
+            carouselIndicators: document.getElementById('carouselIndicators')
+        };
+
+        // ===== CARRUSEL DE ANIMALITOS MEJORADO =====
+        let currentSlide = 0;
+        let carouselInterval;
+        const carouselItems = [];
+        const itemsPerView = 5; // 5 imágenes visibles a la vez
+
+        function initCarousel() {
+            // Crear elementos del carrusel para todos los animalitos
+            for (let i = 0; i <= 76; i++) {
+                const numFormatted = formatearNumeroConAnimal(i);
+                const imageUrl = getAnimalImage(numFormatted.clave);
+                
+                // Verificar si la imagen existe
+                const testImage = new Image();
+                testImage.onload = function() {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'carousel-image-container';
+                    
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = numFormatted.animal;
+                    img.className = 'carousel-image';
+                    
+                    const caption = document.createElement('div');
+                    caption.className = 'carousel-caption';
+                    caption.textContent = `${numFormatted.clave} - ${numFormatted.animal}`;
+                    
+                    imageContainer.appendChild(img);
+                    carouselItem.appendChild(imageContainer);
+                    carouselItem.appendChild(caption);
+                    
+                    domElements.animalCarousel.appendChild(carouselItem);
+                    carouselItems.push(carouselItem);
+                    
+                    // Crear indicadores cuando todas las imágenes estén cargadas
+                    if (carouselItems.length === 76) {
+                        createIndicators();
+                        startCarousel();
+                    }
+                };
+                testImage.onerror = function() {
+                    // Si la imagen no existe, no la agregamos al carrusel
+                    console.warn(`Imagen no encontrada: ${imageUrl}`);
+                };
+                testImage.src = imageUrl;
+            }
+        }
+        
+        function createIndicators() {
+            domElements.carouselIndicators.innerHTML = '';
+            
+            // Calcular cuántos grupos de 5 elementos tenemos
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            
+            for (let i = 0; i < totalGroups; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (i === 0) indicator.classList.add('active');
+                
+                indicator.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                
+                domElements.carouselIndicators.appendChild(indicator);
+            }
+        }
+        
+        function startCarousel() {
+            carouselInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // Cambia cada 5 segundos
+        }
+        
+        function nextSlide() {
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            goToSlide((currentSlide + 1) % totalGroups);
+        }
+        
+        function prevSlide() {
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            goToSlide((currentSlide - 1 + totalGroups) % totalGroups);
+        }
+        
+        function goToSlide(slideIndex) {
+            // Detener el intervalo temporalmente
+            clearInterval(carouselInterval);
+            
+            // Actualizar slide actual
+            currentSlide = slideIndex;
+            
+            // Calcular el desplazamiento
+            const translateValue = -(currentSlide * 100);
+            domElements.animalCarousel.style.transform = `translateX(${translateValue}%)`;
+            
+            // Actualizar indicadores
+            const indicators = domElements.carouselIndicators.querySelectorAll('.carousel-indicator');
+            indicators.forEach((indicator, i) => {
+                if (i === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+            
+            // Reiniciar intervalo
+            startCarousel();
+        }
+        
+        // ===== FUNCIONES DE CONFETI (OPTIMIZADAS) =====
+        function createConfettiFromElement(element, count = 50) {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            
+            // Obtener posición del elemento
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Fragmento para mejor rendimiento
+            const fragment = document.createDocumentFragment();
+            
+            // Crear confeti desde el centro del elemento
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Colores vibrantes y aleatorios
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                // Posición inicial en el centro del elemento
+                confetti.style.left = centerX + 'px';
+                confetti.style.top = centerY + 'px';
+                
+                // Movimiento de explosión desde el centro del elemento
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 500 + 200;
+                const endX = (Math.cos(angle) * distance) + 'px';
+                const endY = (Math.sin(angle) * distance) + 'px';
+                
+                confetti.style.setProperty('--end-x', endX);
+                confetti.style.setProperty('--end-y', endY);
+                
+                // Animación con parámetros aleatorios
+                const duration = (Math.random() * 3 + 2) + 's';
+                const delay = (Math.random() * 0.3) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                confetti.style.setProperty('--r', rotation);
+                
+                // Tamaño variado
+                const size = Math.random() * 12 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                // Eliminar el confeti después de la animación
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        function createGeneralConfetti() {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            
+            // Fragmento para mejor rendimiento
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                const colorIndex = Math.floor(Math.random() * CONFETTI_COLORS.length);
+                confetti.style.backgroundColor = CONFETTI_COLORS[colorIndex];
+                
+                // Posición aleatoria en la parte superior
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                
+                // Movimiento hacia abajo con desplazamiento horizontal
+                const tx = (Math.random() * 200 - 100) + 'px';
+                confetti.style.setProperty('--end-x', tx);
+                confetti.style.setProperty('--end-y', '100vh');
+                
+                const duration = (Math.random() * 4 + 3) + 's';
+                const delay = (Math.random() * 0.5) + 's';
+                const rotation = (Math.random() * 720 - 360) + 'deg';
+                
+                confetti.style.animationDuration = duration;
+                confetti.style.animationDelay = delay;
+                contetti.style.setProperty('--r', rotation);
+                
+                const size = Math.random() * 10 + 8;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                fragment.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 7000);
+            }
+            
+            document.body.appendChild(fragment);
+        }
+        
+        // ===== FUNCIONES DE UTILIDAD =====
+        function showCelebrationText(text) {
+            // Verificar si el usuario prefiere reducir el movimiento
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                domElements.celebrationText.textContent = text;
+                domElements.celebrationOverlay.style.opacity = '1';
+                
+                setTimeout(() => {
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }, 2000);
+                return;
+            }
+            
+            domElements.celebrationText.textContent = text;
+            domElements.celebrationOverlay.style.opacity = '1';
+            
+            setTimeout(() => {
+                domElements.celebrationOverlay.style.opacity = '0';
+            }, 2000);
+        }
+        
+            // ===== FUNCIÓN ACTUALIZADA PARA FECHAS SEGÚN HORA =====
+        function updateDates() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinutes = now.getMinutes();
+            
+            // Formatear fecha actual
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            domElements.currentDateElement.textContent = now.toLocaleDateString('es-ES', options);
+            
+            // Determinar el rango horario
+            const isDayTime = (currentHour > 6 || (currentHour === 6 && currentMinutes >= 0)) && 
+                              (currentHour < 19 || (currentHour === 19 && currentMinutes === 0));
+            
+            // Calcular fechas según la hora actual
+            const today = new Date(now);
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+            const dayBeforeYesterday = new Date(now);
+            dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+            const threeDaysAgo = new Date(now);
+            threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+            
+            // Asignar fechas según la lógica especificada
+            if (isDayTime) {
+                // De 6:00 am (06:00) a 7:00 pm (19:00)
+                domElements.date1Element.textContent = `Sorteo ${formatDate(threeDaysAgo)}`;  // ante antier
+                domElements.date2Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
+                domElements.date3Element.textContent = `Sorteo ${formatDate(yesterday)}`;  // ayer
+            } else {
+                // De 7:00 pm (19:00) a 6:00 am (06:00) del día siguiente
+                domElements.date1Element.textContent = `Sorteo ${formatDate(dayBeforeYesterday)}`;  // antier
+                domElements.date2Element.textContent = `Sorteo ${formatDate(yesterday)}`;  // ayer
+                domElements.date3Element.textContent = `Sorteo ${formatDate(today)}`;  // hoy
+            }
+        }
+        
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        // CORRECCIÓN: Función para obtener la hora en el orden correcto (9am to 8pm)
+        function getHourForBox(boxNumber) {
+            // Las horas van de 9am to 8pm (12 horas en total)
+            const hours = [9, 10, 11, 12, 13, 16, 17, 18, 19, 20];
+            const hour = hours[(boxNumber - 1) % hours.length];
+            
+            // Determinar si es am o pm
+            const period = hour >= 12 ? 'pm' : 'am';
+            
+            // Convertir hora militar a formato 12 horas
+            let displayHour = hour;
+            if (hour > 12) {
+                displayHour = hour - 12;
+            } else if (hour === 0 || hour === 12) {
+                displayHour = 12;
+            }
+            
+            return `${displayHour}${period}`;
+        }
+        
+        // ===== FUNCIONES DE VALIDACIÓN =====
+        function validateSingleInput(input) {
+            const value = input.value;
+            
+            if (value === '') {
+                input.classList.remove('error');
+                input.classList.remove('has-image');
+                input.style.backgroundImage = '';
+                return true;
+            }
+            
+            const num = parseInt(value);
+            
+            if (isNaN(num) || num < 1 || num > 76) {
+                input.classList.add('error');
+                input.classList.remove('has-image');
+                input.style.backgroundImage = '';
+                showMessage('Por favor, ingrese solo números entre 0 y 76', 'error');
+                return false;
+            } else {
+                input.classList.remove('error');
+                hideMessage();
+                
+                // Mostrar la imagen del animalito correspondiente
+                const numFormatted = formatearNumeroConAnimal(num);
+                const imageUrl = getAnimalImage(numFormatted.clave);
+                
+                // Crear una imagen para verificar si existe
+                const testImage = new Image();
+                testImage.onload = function() {
+                    input.classList.add('has-image');
+                    input.style.backgroundImage = `url('${imageUrl}')`;
+                };
+                testImage.onerror = function() {
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                };
+                testImage.src = imageUrl;
+                
+                return true;
+            }
+        }
+
+        function validateAllInputs() {
+            let allValid = true;
+            let emptyFields = false;
+            
+            // Limpiar mensajes
+            hideMessage();
+
+            // Validar cada casilla
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                const value = input.value;
+                
+                if (value === '') {
+                    input.classList.add('error');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                    emptyFields = true;
+                    allValid = false;
+                    continue;
+                }
+                
+                const num = parseInt(value);
+                
+                if (isNaN(num) || num < 1 || num > 76) {
+                    input.classList.add('error');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                    allValid = false;
+                } else {
+                    input.classList.remove('error');
+                    
+                    // Mostrar la imagen del animalito correspondiente
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    const imageUrl = getAnimalImage(numFormatted.clave);
+                    
+                    // Crear una imagen para verificar si existe
+                    const testImage = new Image();
+                    testImage.onload = function() {
+                        input.classList.add('has-image');
+                        input.style.backgroundImage = `url('${imageUrl}')`;
+                    };
+                    testImage.onerror = function() {
+                        input.classList.remove('has-image');
+                        input.style.backgroundImage = '';
+                    };
+                    testImage.src = imageUrl;
+                }
+            }
+            
+            // Mostrar mensaje apropiado
+            if (emptyFields) {
+                showMessage('Por favor, complete todas las casillas', 'error');
+            } else if (!allValid) {
+                showMessage('Algunos números no son válidos. Revise que todos estén entre 1 and 76', 'error');
+            } else {
+                showMessage('¡Todos los números son válidos!', 'success');
+            }
+            
+            return allValid;
+        }
+
+        // ===== FUNCIONES PRINCIPALES =====
+        function showHotNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                return;
+            }
+            
+            // Validar específicamente las casillas 26 y 24
+            const input26 = document.getElementById('num26');
+            const input24 = document.getElementById('num24');
+            
+            if (!validateSingleInput(input26) || !validateSingleInput(input24)) {
+                showMessage('Por favor, ingrese números válidos entre 1 y 76', 'error');
+                return;
+            }
+            
+            // Obtener los números de las casillas 26 y 24 del primer bloque (sorteo más antiguo)
+            const num26 = parseInt(input26.value);
+            const num24 = parseInt(input24.value);
+            
+            // Formatear números con sus animales
+            const num26Formatted = formatearNumeroConAnimal(num26);
+            const num24Formatted = formatearNumeroConAnimal(num24);
+            
+            // Limpiar contenedor de números calientes
+            domElements.hotNumbersContainer.innerHTML = '';
+            
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num26Formatted, 'hot-circle', domElements.hotNumbersContainer);
+            createNumberWithAnimalElement(num24Formatted, 'hot-circle', domElements.hotNumbersContainer);
+            
+            // Actualizar el mensaje con la fecha del sorteo más antiguo
+            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num26Formatted.clave} ${num26Formatted.animal}], [${num24Formatted.clave} ${num24Formatted.animal}]`;
+            
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
+            
+            // Ocultar otras secciones
+            document.querySelector('.surprise-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'none';
+            
+            // Crear efectos de confeti desde los números
+            setTimeout(() => {
+                const hotNumbers = domElements.hotNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(hotNumbers[0], 60);
+                createConfettiFromElement(hotNumbers[1], 60);
+                
+                // Añadir confeti general después de la explosión inicial
+                setTimeout(() => {
+                    createGeneralConfetti();
+                }, 300);
+            }, 100);
+            
+            showCelebrationText('¡Números Calientes!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function showSurpriseNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                return;
+            }
+            
+            // Validar específicamente las casillas 25 and 23
+            const input25 = document.getElementById('num25');
+            const input23 = document.getElementById('num23');
+            
+            if (!validateSingleInput(input25) || !validateSingleInput(input23)) {
+                showMessage('Por favor, ingrese números válidos entre 1 y 76', 'error');
+                return;
+            }
+            
+            // Obtener los números de las casillas 25 y 23 del segundo bloque
+            const num25 = parseInt(input25.value);
+            const num23 = parseInt(input23.value);
+            
+            // Formatear números con sus animales
+            const num25Formatted = formatearNumeroConAnimal(num25);
+            const num23Formatted = formatearNumeroConAnimal(num23);
+            
+            // Limpiar contenedor de números sorpresa
+            domElements.surpriseNumbersContainer.innerHTML = '';
+            
+            // Crear elementos para mostrar los números con animales
+            createNumberWithAnimalElement(num25Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            createNumberWithAnimalElement(num23Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            
+            // Actualizar el mensaje
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num25Formatted.clave} ${num25Formatted.animal}], [${num23Formatted.clave} ${num23Formatted.animal}]`;
+            
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
+            
+            // Mostrar la sección de sorpresa
+            document.querySelector('.surprise-numbers').style.display = 'block';
+            
+            // Ocultar otras secciones
+            document.querySelector('.hot-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'none';
+            
+            // Crear efectos de confeti desde los números
+            setTimeout(() => {
+                const surpriseNumbers = domElements.surpriseNumbersContainer.querySelectorAll('.number-circle');
+                createConfettiFromElement(surpriseNumbers[0], 60);
+                createConfettiFromElement(surpriseNumbers[1], 60);
+                
+                // Añadir confeti general después de la explosión inicial
+                setTimeout(() => {
+                    createGeneralConfetti();
+                }, 300);
+            }, 100);
+            
+            showCelebrationText('¡Sorpresa!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function clearAllInputs() {
+            // Limpiar solo los 36 campos existentes
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input) {
+                    input.value = '';
+                    input.classList.remove('error');
+                    input.classList.remove('super-fixed-highlight');
+                    input.classList.remove('has-image');
+                    input.style.backgroundImage = '';
+                }
+            }
+            
+            hideMessage();
+            
+            // Verificar que resultsContainer existe antes de manipularlo
+            if (domElements && domElements.resultsContainer) {
+                domElements.resultsContainer.style.display = 'none';
+            }
+            
+            // Mostrar mensaje de confirmación
+            showMessage('Todos los campos han sido limpiados', 'success');
+            setTimeout(hideMessage, 3000);
+        }
+        
+        function showMessage(text, type) {
+            domElements.messageDiv.textContent = text;
+            domElements.messageDiv.className = `message ${type}-message`;
+            domElements.messageDiv.style.display = 'block';
+            
+            // Mejorar accesibilidad para lectores de pantalla
+            if (type === 'error') {
+                domElements.messageDiv.setAttribute('role', 'alert');
+            }
+        }
+        
+        function hideMessage() {
+            domElements.messageDiv.style.display = 'none';
+        }
+        
+        // ===== FUNCIÓN SUPER FIJOS ACTUALIZADA =====
+        function findSuperFixedNumbers() {
+            // Ocultar mensajes anteriores
+            hideMessage();
+            
+            // Validar que todos los campos estén completos
+            if (!validateAllInputs()) {
+                showMessage('Por favor, complete todos los campos antes de continuar', 'error');
+                return;
+            }
+            
+            // Obtener todos los valores numéricos con sus posiciones
+            const numbersWithPositions = [];
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && input.value) {
+                    numbersWithPositions.push({
+                        number: parseInt(input.value),
+                        position: i,
+                        input: input
+                    });
+                }
+            }
+            
+            // Crear un mapa para contar frecuencia de números
+            const frequencyMap = {};
+            numbersWithPositions.forEach(item => {
+                if (!frequencyMap[item.number]) {
+                    frequencyMap[item.number] = [];
+                }
+                frequencyMap[item.number].push(item.position);
+            });
+            
+            // Encontrar números que se repiten exactamente 2 veces
+            const superFixedNumbers = [];
+            
+            for (const number in frequencyMap) {
+                const positions = frequencyMap[number];
+                
+                // Solo considerar números que aparecen exactamente 2 veces
+                if (positions.length === 2) {
+                    const num = parseInt(number);
+                    const pos1 = positions[0];
+                    const pos2 = positions[1];
+                    const interval = Math.abs(pos2 - pos1);
+                    
+                    // Verificar si el intervalo es de 13 o más
+                    if (interval >= 5) {
+                        superFixedNumbers.push({
+                            number: num,
+                            positions: positions,
+                            interval: interval
+                        });
+                    }
+                }
+            }
+            
+            // Mostrar resultados
+            if (superFixedNumbers.length > 0) {
+                // Limpiar contenedor de números SUPER FIJOS
+                domElements.superFixedNumbersContainer.innerHTML = '';
+                
+                // Crear elementos para todos los números SUPER FIJOS
+                superFixedNumbers.forEach(item => {
+                    const numFormatted = formatearNumeroConAnimal(item.number);
+                    createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
+                });
+                
+                // Mostrar el contenedor de resultados
+                domElements.resultsContainer.style.display = 'block';
+                
+                // Mostrar solo la sección de SUPER FIJOS
+                document.querySelector('.hot-numbers').style.display = 'none';
+                document.querySelector('.surprise-numbers').style.display = 'none';
+                document.querySelector('.super-fixed-numbers').style.display = 'block';
+                
+                // Destacar los números en los inputs
+                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
+                
+                // Crear efectos de confeti desde los números
+                setTimeout(() => {
+                    // Crear confeti para cada número SUPER FIJO
+                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
+                        createConfettiFromElement(circle, 30);
+                    });
+                    
+                    // Añadir confeti general después de la explosión inicial
+                    setTimeout(() => {
+                        createGeneralConfetti();
+                    }, 300);
+                }, 100);
+                
+                showCelebrationText('¡SUPER FIJOS!');
+                
+                // Desplazarse suavemente hacia los resultados
+                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Mostrar mensaje con información detallada
+                const numbersList = superFixedNumbers.map(item => {
+                    const numFormatted = formatearNumeroConAnimal(item.number);
+                    return `${numFormatted.clave} ${numFormatted.animal} (posiciones ${item.positions[0]} y ${item.positions[1]})`;
+                }).join(', ');
+                
+                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
+            } else {
+                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
+            }
+        }
+
+        // Función para crear elementos de número con animal (MODIFICADA PARA MOSTRAR IMÁGENES)
+        function createNumberWithAnimalElement(numFormatted, circleClass, container) {
+            const numberWithAnimal = document.createElement('div');
+            numberWithAnimal.className = 'number-with-animal';
+            
+            const numberCircle = document.createElement('div');
+            numberCircle.className = `number-circle ${circleClass}`;
+            numberCircle.setAttribute('aria-live', 'polite');
+            numberCircle.title = `${numFormatted.clave} ${numFormatted.animal}`;
+            
+            // Crear elemento de imagen
+            const img = document.createElement('img');
+            img.src = getAnimalImage(numFormatted.clave);
+            img.alt = numFormatted.animal;
+            img.className = 'animal-image';
+            
+            // Manejar error de carga de imagen
+            img.onerror = function() {
+                // Si la imagen no se carga, mostrar el número como fallback
+                this.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'image-fallback';
+                fallback.textContent = numFormatted.clave;
+                numberCircle.appendChild(fallback);
+            };
+            
+            numberCircle.appendChild(img);
+            
+            // Añadir efecto neón para números importantes
+            if (circleClass.includes('super-fixed')) {
+                numberCircle.classList.add('neon-effect');
+            }
+            
+            const animalLabel = document.createElement('div');
+            animalLabel.className = 'animal-label flash-animation';
+            animalLabel.textContent = numFormatted.animal;
+            
+            numberWithAnimal.appendChild(numberCircle);
+            numberWithAnimal.appendChild(animalLabel);
+            container.appendChild(numberWithAnimal);
+            
+            // Añadir animación de rotación suave
+            setTimeout(() => {
+                numberWithAnimal.classList.add('rotate-animation');
+            }, 100);
+        }
+
+        function highlightSuperFixedNumbers(numbers) {
+            // Remover highlights anteriores
+            const previousHighlights = document.querySelectorAll('.super-fixed-highlight');
+            previousHighlights.forEach(el => el.classList.remove('super-fixed-highlight'));
+            
+            // Destacar los números SUPER FIJOS en los inputs
+            for (let i = 1; i <= 30; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && numbers.includes(parseInt(input.value))) {
+                    input.classList.add('super-fixed-highlight');
+                    
+                    // Añadir tooltip para indicar que es SUPER FIJO
+                    const numFormatted = formatearNumeroConAnimal(parseInt(input.value));
+                    input.title = `Número SUPER FIJO: ${numFormatted.clave} ${numFormatted.animal}`;
+                }
+            }
+        }
+        
+        // ===== GENERACIÓN DE CAMPOS DE ENTRADA =====
+        function generateHourLabels() {
+            for (let i = 1; i <= 10; i++) {
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label-top';
+                hourLabel.textContent = getHourForBox(i);
+                
+                domElements.hours1.appendChild(hourLabel);
+                domElements.hours2.appendChild(hourLabel.cloneNode(true));
+                domElements.hours3.appendChild(hourLabel.cloneNode(true));
+            }
+        }
+        
+        function generateInputs() {
+            for (let i = 1; i <= 30; i++) {
+                const inputWrapper = document.createElement('div');
+                inputWrapper.className = 'input-wrapper';
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'casilla';
+                input.id = `num${i}`;
+                input.min = 1;
+                input.max = 30;
+                input.placeholder = getHourForBox(i);
+                input.setAttribute('aria-label', `Número para ${getHourForBox(i)}`);
+                
+                // Agregar evento para validación en tiempo real y mostrar imagen
+                input.addEventListener('input', function() {
+                    validateSingleInput(this);
+                });
+                
+                const hourLabel = document.createElement('div');
+                hourLabel.className = 'hour-label';
+                hourLabel.textContent = getHourForBox(i);
+                
+                inputWrapper.appendChild(input);
+                inputWrapper.appendChild(hourLabel);
+                
+                // Agregar a bloque correspondiente
+                if (i <= 10) {
+                    domElements.block1.appendChild(inputWrapper);
+                } else if (i <= 20) {
+                    domElements.block2.appendChild(inputWrapper);
+                } else {
+                    domElements.block3.appendChild(inputWrapper);
+                }
+            }
+        }
+        
+        // ===== FUNCIONES DE SEGURIDAD =====
+        // Prevenir clic derecho e inspección en entornos de producción
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMessage('Acción no permitida por seguridad', 'error');
+            });
+            
+            // Deshabilitar la tecla F12
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showMessage('Acción no permitida por seguridad', 'error');
+                }
+            });
+        }
+        
+        // ===== INICIALIZACIÓN =====
+        function initApp() {
+            updateDates();
+            generateHourLabels();
+            generateInputs();
+            initCarousel();
+            
+            // Agregar event listeners a los botones
+            domElements.hotNumbersBtn.addEventListener('click', showHotNumbers);
+            domElements.surpriseBtn.addEventListener('click', showSurpriseNumbers);
+            domElements.superFixedBtn.addEventListener('click', findSuperFixedNumbers);
+            domElements.clearBtn.addEventListener('click', clearAllInputs);
+            
+            // Agregar event listeners al carrusel
+            domElements.prevBtn.addEventListener('click', prevSlide);
+            domElements.nextBtn.addEventListener('click', nextSlide);
+            
+            // Mejorar accesibilidad del teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideMessage();
+                    domElements.celebrationOverlay.style.opacity = '0';
+                }
+            });
+        }
+        
+        // Iniciar la aplicación cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+
+
+</html>
