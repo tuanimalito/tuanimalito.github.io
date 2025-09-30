@@ -1317,12 +1317,6 @@
             <h1>🏆Version Gratuita</h1>
         </header>
         
-        <nav class="nav-menu" aria-label="Menú de juegos de lotería">
-            <ul>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Granja y Granjazo</a></li>
-                <li><a href="#"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li> 
-            </ul>
-        </nav>
         <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
                 crossorigin="anonymous"></script>
@@ -1401,16 +1395,16 @@
                 <i class="fas fa-check-circle" aria-hidden="true"></i> Validar Números
             </button>
             <button class="btn btn-hot" id="hotNumbersBtn">
-                <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
+                <i class="fas fa-fire" aria-hidden="true"></i> Animalitos Calientes
             </button>
             <button class="btn btn-surprise" id="surpriseBtn">
-                <i class="fas fa-gift" aria-hidden="true"></i> Números Sorpresa
+                <i class="fas fa-gift" aria-hidden="true"></i> Animalitos Sorpresa
             </button>
             <button class="btn btn-super-fixed" id="superFixedBtn">
-                <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
+                <i class="fas fa-bullseye" aria-hidden="true"></i> Super Fijos&Tripletas
             </button>
             <button class="btn btn-clear" id="clearBtn">
-                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
+                <a href="#" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
             </button>
         </div>
         
@@ -1437,7 +1431,7 @@
                     <!-- Los números calientes se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="hotNumbersMessage">
-                    Estos animalitos han sido seleccionados del sorteo más antiguo
+                    Estos animalitos han sido seleccionados para hoy
                 </div>
             </section>
             
@@ -2106,8 +2100,8 @@
             createNumberWithAnimalElement(num22Formatted, 'hot-circle', domElements.hotNumbersContainer);
             createNumberWithAnimalElement(num35Formatted, 'hot-circle', domElements.hotNumbersContainer);
             
-            // Actualizar el mensaje con la fecha del sorteo más antiguo
-            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num22Formatted.clave} ${num22Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
+            // Actualizar el mensaje
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num22Formatted.clave} ${num22Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
