@@ -25,6 +25,7 @@
             --neutral-gradient: linear-gradient(to right, #95a5a6, #7f8c8d);
             --super-fixed-gradient: linear-gradient(45deg, #ff6b6b, #ee5a24);
             --super-fixed-secondary: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --premium-gradient: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
             --primary-color: #3498db;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
@@ -487,10 +488,6 @@
             display: none; /* Botón oculto */
         }
         
-        .btn-hot {
-            background: var(--danger-gradient);
-        }
-        
         .btn-surprise {
             background: var(--info-gradient);
         }
@@ -550,12 +547,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
-        }
-        
-        .hot-numbers {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            color: #d35400;
-            border: 2px dashed #e74c3c;
         }
         
         .surprise-numbers {
@@ -627,10 +618,6 @@
         @keyframes pulse {
             0% { transform: scale(1); }
             100% { transform: scale(1.08); }
-        }
-        
-        .hot-circle {
-            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
         }
         
         .surprise-circle {
@@ -1134,7 +1121,6 @@
                 border-color: #4a5568;
             }
             
-            .hot-numbers,
             .surprise-numbers,
             .super-fixed-numbers {
                 filter: brightness(0.9);
@@ -1238,10 +1224,63 @@
             color: transparent;
             background-color: white;
         }
+        
+        /* Nuevos estilos para mensajes de tripletas */
+        .tripleta-message {
+            background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            animation: tripletaPulse 3s infinite;
+        }
+        
+        @keyframes tripletaPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .base-label {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #ffd700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            animation: baseLabelGlow 2s infinite alternate;
+        }
+        
+        @keyframes baseLabelGlow {
+            0% { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
+            100% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+        }
+        
+        /* Estilos para mensaje de bienvenida premium */
+        .premium-welcome {
+            background: var(--premium-gradient);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: premiumWelcomePulse 3s infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes premiumWelcomePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
     </style>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-     crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="celebration-overlay" id="celebrationOverlay" aria-live="polite" aria-atomic="true">
@@ -1267,41 +1306,25 @@
 
         <div class="logo">
             <div class="" aria-hidden="true">
-                <i class=""><img src="animalitos/animalitos_loto/Loto.webp" height="100px" width="100px"/></i>
+                <i class=""><img src="animalitos/animalitos_loto/loto.webp" height="100px" width="100px"/></i>
             </div>
         </div>
+        
+        <!-- Mensaje de bienvenida premium -->
+        <div class="premium-welcome" id="premiumWelcome">
+            <i class="fas fa-crown" style="margin-right: 15px;"></i>
+            ¡Bienvenidos a la función "PREMIUM"!
+            <i class="fas fa-crown" style="margin-left: 15px;"></i>
+        </div>
+        
         <header class="header">
-            <h1>Bienvenidos a Dr.Animalitos</h1>
-            <p class="subtitle">La mejor Orientación para los Animalitos</p>
+            <h1>Dr.Animalitos</h1>
         </header>
-        
-        <nav class="nav-menu" aria-label="Menú de juegos de lotería">
-            <ul>
-                <li><a href="login_granja03.html"><i class="fas fa-dice" aria-hidden="true"></i> Granja y Granjazo</a></li>
-                <li><a href="login_guacharo03.html"><i class="fas fa-dice" aria-hidden="true"></i> Guacharo Activo</a></li> 
-            </ul>
-        </nav>
-        <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-                crossorigin="anonymous"></script>
-                <!-- anuncio display 1 -->
-                <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7995132393364853"
-                data-ad-slot="8481248642"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-                <!-- - - - - - - - -  anuncios display- - - - - - - -  -->
-        
+             
         <div class="info-box">
             <i class="fas fa-calendar-alt" aria-hidden=true></i>
             <span id="currentDate">Cargando fecha...</span>
         </div>
-        
-        <p class="instructions">Ingrese los números del sorteo de lotería correspondiente a cada fecha. Cada número debe estar entre 0 y 36.</p>
         
         <main class="input-section">
             <section class="block" aria-labelledby="date1">
@@ -1317,7 +1340,6 @@
                 <div class="input-row" id="block1">
                     <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
                 </div>
-                <div class="help-text">Complete todos los números del primer sorteo</div>
             </section>
             
             <section class="block" aria-labelledby="date2">
@@ -1333,7 +1355,6 @@
                 <div class="input-row" id="block2">
                     <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
                 </div>
-                <div class="help-text">Complete todos los números del segundo sorteo</div>
             </section>
             
             <section class="block" aria-labelledby="date3">
@@ -1349,7 +1370,6 @@
                 <div class="input-row" id="block3">
                     <!-- Los campos de entrada se generarán aquí mediante JavaScript -->
                 </div>
-                <div class="help-text">Complete todos los números del tercer sorteo</div>
             </section>
         </main>
         
@@ -1358,47 +1378,20 @@
             <button class="btn btn-validate" id="validateBtn" style="display: none;">
                 <i class="fas fa-check-circle" aria-hidden="true"></i> Validar Números
             </button>
-            <button class="btn btn-hot" id="hotNumbersBtn">
-                <i class="fas fa-fire" aria-hidden="true"></i> Números Calientes
-            </button>
             <button class="btn btn-surprise" id="surpriseBtn">
-                <i class="fas fa-gift" aria-hidden="true"></i> Números Sorpresa
+                <i class="fas fa-gift" aria-hidden="true"></i> Animalitos Calientes
             </button>
             <button class="btn btn-super-fixed" id="superFixedBtn">
-                <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS
+                <i class="fas fa-bullseye" aria-hidden="true"></i> SUPER FIJOS & TRIPLETA
             </button>
             <button class="btn btn-clear" id="clearBtn">
-                <a href="index.html" style="color: white; text-decoration: none;"><i class="fas fa-broom" aria-hidden="true"></i>Menu inicio </a>
+                <i class="fas fa-broom" aria-hidden="true"></i> Limpiar Campos
             </button>
         </div>
         
         <div id="message" class="message" role="alert" aria-live="polite"></div>
-           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="7316306987"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
         
         <div id="resultsContainer" class="results-container">
-            <section class="result-box hot-numbers" aria-labelledby="hotNumbersTitle">
-                <div class="results-title">
-                    <i class="fas fa-fire" aria-hidden="true"></i>
-                    <span id="hotNumbersTitle">¡Números Calientes para Hoy!</span>
-                </div>
-                <div class="numbers-container" id="hotNumbersContainer">
-                    <!-- Los números calientes se generarán aquí dinámicamente -->
-                </div>
-                <div class="results-message" id="hotNumbersMessage">
-                    Estos animalitos han sido seleccionados del sorteo más antiguo
-                </div>
-            </section>
-            
             <section class="result-box surprise-numbers" aria-labelledby="surpriseTitle">
                 <div class="results-title">
                     <i class="fas fa-gift" aria-hidden="true"></i>
@@ -1408,7 +1401,7 @@
                     <!-- Los números sorpresa se generarán aquí dinámicamente -->
                 </div>
                 <div class="results-message" id="surpriseMessage">
-                    Animalitos especiales te traerán alegría
+                    Estos números especiales te traerán alegría
                 </div>
             </section>
 
@@ -1420,23 +1413,12 @@
                 <div class="numbers-container" id="superFixedNumbersContainer">
                     <!-- Los números SUPER FIJOS se generarán aquí dinámicamente -->
                 </div>
-                <!-- Mensaje eliminado según solicitud -->
+                <!-- Mensaje para tripletas -->
+                <div id="tripletaMessage" class="tripleta-message" style="display: none;"></div>
+                <!-- Etiqueta para animalitos base -->
+                <div id="baseLabel" class="base-label" style="display: none;"></div>
             </section>
         </div>
-          <!-- Anuncio vertical en el pie de página -->
-       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-     crossorigin="anonymous"></script>
-<!-- display vertical -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7995132393364853"
-     data-ad-slot="8773024812"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-        
         <footer class="footer">
             <div class="copyright">
                 &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
@@ -1535,13 +1517,11 @@
             return `animalitos/animalitos_loto/${clave}.png`;
         }
         
-         // Función para formatear números a dos dígitos y obtener el animal
+        // Función para formatear números a dos dígitos y obtener el animal
         function formatearNumeroConAnimal(num) {
             let clave;
             if (num === 0) {
                 clave = "0";
-            } else if (num === "00") {
-                clave = "00";
             } else if (num >= 1 && num <= 9) {
                 clave = "0" + num;
             } else {
@@ -1568,7 +1548,6 @@
             hours2: document.getElementById('hours2'),
             hours3: document.getElementById('hours3'),
             validateBtn: document.getElementById('validateBtn'),
-            hotNumbersBtn: document.getElementById('hotNumbersBtn'),
             surpriseBtn: document.getElementById('surpriseBtn'),
             superFixedBtn: document.getElementById('superFixedBtn'),
             clearBtn: document.getElementById('clearBtn'),
@@ -1578,17 +1557,18 @@
             date2Element: document.getElementById('date2'),
             date3Element: document.getElementById('date3'),
             resultsContainer: document.getElementById('resultsContainer'),
-            hotNumbersContainer: document.getElementById('hotNumbersContainer'),
             surpriseNumbersContainer: document.getElementById('surpriseNumbersContainer'),
             superFixedNumbersContainer: document.getElementById('superFixedNumbersContainer'),
-            hotNumbersMessage: document.getElementById('hotNumbersMessage'),
             surpriseMessage: document.getElementById('surpriseMessage'),
             celebrationOverlay: document.getElementById('celebrationOverlay'),
             celebrationText: document.getElementById('celebrationText'),
             animalCarousel: document.getElementById('animalCarousel'),
             prevBtn: document.getElementById('prevBtn'),
             nextBtn: document.getElementById('nextBtn'),
-            carouselIndicators: document.getElementById('carouselIndicators')
+            carouselIndicators: document.getElementById('carouselIndicators'),
+            tripletaMessage: document.getElementById('tripletaMessage'),
+            baseLabel: document.getElementById('baseLabel'),
+            premiumWelcome: document.getElementById('premiumWelcome')
         };
 
         // ===== CARRUSEL DE ANIMALITOS MEJORADO =====
@@ -1797,7 +1777,7 @@
                 
                 confetti.style.animationDuration = duration;
                 confetti.style.animationDelay = delay;
-                contetti.style.setProperty('--r', rotation);
+                confetti.style.setProperty('--r', rotation);
                 
                 const size = Math.random() * 10 + 8;
                 confetti.style.width = size + 'px';
@@ -1834,6 +1814,17 @@
             setTimeout(() => {
                 domElements.celebrationOverlay.style.opacity = '0';
             }, 2000);
+        }
+        
+        // Función para mostrar bienvenida premium
+        function showPremiumWelcome() {
+            // Crear confeti desde el mensaje de bienvenida
+            createConfettiFromElement(domElements.premiumWelcome, 100);
+            
+            // Añadir confeti general después de la explosión inicial
+            setTimeout(() => {
+                createGeneralConfetti();
+            }, 500);
         }
         
            // ===== FUNCIÓN ACTUALIZADA PARA FECHAS SEGÚN HORA =====
@@ -1938,11 +1929,11 @@
             
             const num = parseInt(value);
             
-            if (isNaN(num) || num < 0 || num > 36) {
+            if (isNaN(num) || num < 0 || num > 75) {
                 input.classList.add('error');
                 input.classList.remove('has-image');
                 input.style.backgroundImage = '';
-                showMessage('Por favor, ingrese solo números entre 0 y 36', 'error');
+                showMessage('Por favor, ingrese solo números entre 0 y 75', 'error');
                 return false;
             } else {
                 input.classList.remove('error');
@@ -2031,67 +2022,6 @@
         }
 
         // ===== FUNCIONES PRINCIPALES =====
-        function showHotNumbers() {
-            // Ocultar mensajes anteriores
-            hideMessage();
-            
-            // Validar que todos los campos estén completos
-            if (!validateAllInputs()) {
-                return;
-            }
-            
-            // Validar específicamente las casillas 26 y 24
-            const input22 = document.getElementById('num22');
-            const input35 = document.getElementById('num35');
-            
-            if (!validateSingleInput(input22) || !validateSingleInput(input35)) {
-                showMessage('Por favor, ingrese números válidos entre 0 y 36', 'error');
-                return;
-            }
-            
-            // Obtener los números de las casillas 26 y 24 del primer bloque (sorteo más antiguo)
-            const num22 = parseInt(input22.value);
-            const num35 = parseInt(input35.value);
-            
-            // Formatear números con sus animales
-            const num22Formatted = formatearNumeroConAnimal(num22);
-            const num35Formatted = formatearNumeroConAnimal(num35);
-            
-            // Limpiar contenedor de números calientes
-            domElements.hotNumbersContainer.innerHTML = '';
-            
-            // Crear elementos para mostrar los números con animales
-            createNumberWithAnimalElement(num22Formatted, 'hot-circle', domElements.hotNumbersContainer);
-            createNumberWithAnimalElement(num35Formatted, 'hot-circle', domElements.hotNumbersContainer);
-            
-            // Actualizar el mensaje con la fecha del sorteo más antiguo
-            domElements.hotNumbersMessage.textContent = `Estos son los números calientes para hoy del ${domElements.date1Element.textContent}: [${num22Formatted.clave} ${num22Formatted.animal}], [${num35Formatted.clave} ${num35Formatted.animal}]`;
-            
-            // Mostrar el contenedor de resultados
-            domElements.resultsContainer.style.display = 'block';
-            
-            // Ocultar otras secciones
-            document.querySelector('.surprise-numbers').style.display = 'none';
-            document.querySelector('.super-fixed-numbers').style.display = 'none';
-            
-            // Crear efectos de confeti desde los números
-            setTimeout(() => {
-                const hotNumbers = domElements.hotNumbersContainer.querySelectorAll('.number-circle');
-                createConfettiFromElement(hotNumbers[0], 60);
-                createConfettiFromElement(hotNumbers[1], 60);
-                
-                // Añadir confeti general después de la explosión inicial
-                setTimeout(() => {
-                    createGeneralConfetti();
-                }, 300);
-            }, 100);
-            
-            showCelebrationText('¡Números Calientes!');
-            
-            // Desplazarse suavemente hacia los resultados
-            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-        }
-        
         function showSurpriseNumbers() {
             // Ocultar mensajes anteriores
             hideMessage();
@@ -2101,32 +2031,32 @@
                 return;
             }
             
-            // Validar específicamente las casillas 25 and 23
+            // Validar específicamente las casillas 21 and 22
             const input21 = document.getElementById('num21');
-            const input36 = document.getElementById('num36');
+            const input22 = document.getElementById('num22');
             
-            if (!validateSingleInput(input21) || !validateSingleInput(input36)) {
+            if (!validateSingleInput(input21) || !validateSingleInput(input22)) {
                 showMessage('Por favor, ingrese números válidos entre 0 y 36', 'error');
                 return;
             }
             
-            // Obtener los números de las casillas 25 y 23 del segundo bloque
+            // Obtener los números de las casillas 21 y 22 del segundo bloque
             const num21 = parseInt(input21.value);
-            const num36 = parseInt(input36.value);
+            const num22 = parseInt(input22.value);
             
             // Formatear números con sus animales
             const num21Formatted = formatearNumeroConAnimal(num21);
-            const num36Formatted = formatearNumeroConAnimal(num36);
+            const num22Formatted = formatearNumeroConAnimal(num22);
             
             // Limpiar contenedor de números sorpresa
             domElements.surpriseNumbersContainer.innerHTML = '';
             
             // Crear elementos para mostrar los números con animales
             createNumberWithAnimalElement(num21Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
-            createNumberWithAnimalElement(num36Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
+            createNumberWithAnimalElement(num22Formatted, 'surprise-circle', domElements.surpriseNumbersContainer);
             
             // Actualizar el mensaje
-            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num21Formatted.clave} ${num21Formatted.animal}], [${num36Formatted.clave} ${num36Formatted.animal}]`;
+            domElements.surpriseMessage.textContent = `¡Estos números especiales te traerán alegría hoy!: [${num21Formatted.clave} ${num21Formatted.animal}], [${num22Formatted.clave} ${num22Formatted.animal}]`;
             
             // Mostrar el contenedor de resultados
             domElements.resultsContainer.style.display = 'block';
@@ -2135,7 +2065,6 @@
             document.querySelector('.surprise-numbers').style.display = 'block';
             
             // Ocultar otras secciones
-            document.querySelector('.hot-numbers').style.display = 'none';
             document.querySelector('.super-fixed-numbers').style.display = 'none';
             
             // Crear efectos de confeti desde los números
@@ -2207,102 +2136,133 @@
                 return;
             }
             
-            // Obtener todos los valores numéricos con sus posiciones
-            const numbersWithPositions = [];
-            for (let i = 1; i <= 36; i++) {
-                const input = document.getElementById(`num${i}`);
-                if (input && input.value) {
-                    numbersWithPositions.push({
-                        number: parseInt(input.value),
-                        position: i,
-                        input: input
-                    });
-                }
+            // 1. Obtener números base (inputs 35 y 36)
+            const input35 = document.getElementById('num35');
+            const input36 = document.getElementById('num36');
+            
+            if (!input35.value || !input36.value) {
+                showMessage('Los números base (35 y 36) deben estar completos', 'error');
+                return;
             }
             
-            // Crear un mapa para contar frecuencia de números
-            const frequencyMap = {};
-            numbersWithPositions.forEach(item => {
-                if (!frequencyMap[item.number]) {
-                    frequencyMap[item.number] = [];
+            const num35 = parseInt(input35.value);
+            const num36 = parseInt(input36.value);
+            
+            // Formatear números base con sus animales
+            const num35Formatted = formatearNumeroConAnimal(num35);
+            const num36Formatted = formatearNumeroConAnimal(num36);
+            
+            // 2. Comparar bloque 3 con bloque 2 para encontrar números intermedios
+            const block2Numbers = getNumbersFromBlock(2);
+            const block3Numbers = getNumbersFromBlock(3);
+            
+            // Encontrar números que se repiten en ambos bloques
+            const intermediateNumbers = [];
+            block3Numbers.forEach(num => {
+                if (block2Numbers.includes(num)) {
+                    intermediateNumbers.push(num);
                 }
-                frequencyMap[item.number].push(item.position);
             });
             
-            // Encontrar números que se repiten exactamente 2 veces
-            const superFixedNumbers = [];
+            // Eliminar duplicados
+            const uniqueIntermediateNumbers = [...new Set(intermediateNumbers)];
             
-            for (const number in frequencyMap) {
-                const positions = frequencyMap[number];
+            // Mostrar resultados
+            // Limpiar contenedor de números SUPER FIJOS
+            domElements.superFixedNumbersContainer.innerHTML = '';
+            
+            // Crear elementos para los números base (35 y 36)
+            createNumberWithAnimalElement(num35Formatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
+            createNumberWithAnimalElement(num36Formatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
+            
+            // Mostrar el contenedor de resultados
+            domElements.resultsContainer.style.display = 'block';
+            
+            // Mostrar solo la sección de SUPER FIJOS
+            document.querySelector('.surprise-numbers').style.display = 'none';
+            document.querySelector('.super-fixed-numbers').style.display = 'block';
+            
+            // Destacar los números en los inputs
+            highlightSuperFixedNumbers([num35, num36, ...uniqueIntermediateNumbers]);
+            
+            // Crear mensaje de tripletas
+            let tripletaMessage = '';
+            
+            // Agregar números base al mensaje
+            tripletaMessage += `BASE -> ${num35Formatted.clave} ${num35Formatted.animal}, ${num36Formatted.clave} ${num36Formatted.animal}`;
+            
+            // Agregar números intermedios al mensaje si existen
+            if (uniqueIntermediateNumbers.length > 0) {
+                const intermediateList = uniqueIntermediateNumbers.map(num => {
+                    const numFormatted = formatearNumeroConAnimal(num);
+                    return `${numFormatted.clave} ${numFormatted.animal}`;
+                }).join(', ');
                 
-                // Solo considerar números que aparecen exactamente 2 veces
-                if (positions.length === 2) {
-                    const num = parseInt(number);
-                    const pos1 = positions[0];
-                    const pos2 = positions[1];
-                    const interval = Math.abs(pos2 - pos1);
-                    
-                    // Verificar si el intervalo es de 13 o más
-                    if (interval >= 10) {
-                        superFixedNumbers.push({
-                            number: num,
-                            positions: positions,
-                            interval: interval
-                        });
-                    }
+                tripletaMessage += `, INTERMEDIOS -> ${intermediateList}`;
+            }
+            
+            // Mostrar mensaje de tripletas
+            domElements.tripletaMessage.textContent = `Tripletas, ${tripletaMessage}`;
+            domElements.tripletaMessage.style.display = 'block';
+            
+            // Mostrar etiqueta para animalitos base
+            domElements.baseLabel.textContent = 'Animalitos "BASE", para la tripleta';
+            domElements.baseLabel.style.display = 'block';
+            
+            // Crear efectos de confeti desde los números
+            setTimeout(() => {
+                // Crear confeti para cada número SUPER FIJO
+                document.querySelectorAll('.super-fixed-circle').forEach(circle => {
+                    createConfettiFromElement(circle, 30);
+                });
+                
+                // Añadir confeti general después de la explosión inicial
+                setTimeout(() => {
+                    createGeneralConfetti();
+                }, 300);
+            }, 100);
+            
+            showCelebrationText('¡SUPER FIJOS!');
+            
+            // Desplazarse suavemente hacia los resultados
+            domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            
+            // Mostrar mensaje de éxito
+            showMessage(`¡Números SUPER FIJOS encontrados! Base: ${num35Formatted.clave} ${num35Formatted.animal}, ${num36Formatted.clave} ${num36Formatted.animal}`, 'success');
+        }
+
+        // Función auxiliar para obtener números de un bloque específico
+        function getNumbersFromBlock(blockNumber) {
+            const numbers = [];
+            let startIndex, endIndex;
+            
+            // Determinar el rango de índices según el bloque
+            switch(blockNumber) {
+                case 1:
+                    startIndex = 1;
+                    endIndex = 12;
+                    break;
+                case 2:
+                    startIndex = 13;
+                    endIndex = 24;
+                    break;
+                case 3:
+                    startIndex = 25;
+                    endIndex = 36;
+                    break;
+                default:
+                    return numbers;
+            }
+            
+            // Recopilar números del bloque
+            for (let i = startIndex; i <= endIndex; i++) {
+                const input = document.getElementById(`num${i}`);
+                if (input && input.value) {
+                    numbers.push(parseInt(input.value));
                 }
             }
             
-            // Mostrar resultados
-            if (superFixedNumbers.length > 0) {
-                // Limpiar contenedor de números SUPER FIJOS
-                domElements.superFixedNumbersContainer.innerHTML = '';
-                
-                // Crear elementos para todos los números SUPER FIJOS
-                superFixedNumbers.forEach(item => {
-                    const numFormatted = formatearNumeroConAnimal(item.number);
-                    createNumberWithAnimalElement(numFormatted, 'super-fixed-circle super-fixed-glow', domElements.superFixedNumbersContainer);
-                });
-                
-                // Mostrar el contenedor de resultados
-                domElements.resultsContainer.style.display = 'block';
-                
-                // Mostrar solo la sección de SUPER FIJOS
-                document.querySelector('.hot-numbers').style.display = 'none';
-                document.querySelector('.surprise-numbers').style.display = 'none';
-                document.querySelector('.super-fixed-numbers').style.display = 'block';
-                
-                // Destacar los números en los inputs
-                highlightSuperFixedNumbers(superFixedNumbers.map(item => item.number));
-                
-                // Crear efectos de confeti desde los números
-                setTimeout(() => {
-                    // Crear confeti para cada número SUPER FIJO
-                    document.querySelectorAll('.super-fixed-circle').forEach(circle => {
-                        createConfettiFromElement(circle, 30);
-                    });
-                    
-                    // Añadir confeti general después de la explosión inicial
-                    setTimeout(() => {
-                        createGeneralConfetti();
-                    }, 300);
-                }, 100);
-                
-                showCelebrationText('¡SUPER FIJOS!');
-                
-                // Desplazarse suavemente hacia los resultados
-                domElements.resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                
-                // Mostrar mensaje con información detallada
-                const numbersList = superFixedNumbers.map(item => {
-                    const numFormatted = formatearNumeroConAnimal(item.number);
-                    return `${numFormatted.clave} ${numFormatted.animal} (posiciones ${item.positions[0]} y ${item.positions[1]})`;
-                }).join(', ');
-                
-                showMessage(`¡${superFixedNumbers.length} números SUPER FIJOS encontrados: ${numbersList}`, 'success');
-            } else {
-                showMessage('Para los "super fijos" de hoy info: +58 424 8671967 solo "WhatsApp".', 'info');
-            }
+            return numbers;
         }
 
         // Función para crear elementos de número con animal (MODIFICADA PARA MOSTRAR IMÁGENES)
@@ -2444,8 +2404,12 @@
             generateInputs();
             initCarousel();
             
+            // Mostrar bienvenida premium con efectos
+            setTimeout(() => {
+                showPremiumWelcome();
+            }, 1000);
+            
             // Agregar event listeners a los botones
-            domElements.hotNumbersBtn.addEventListener('click', showHotNumbers);
             domElements.surpriseBtn.addEventListener('click', showSurpriseNumbers);
             domElements.superFixedBtn.addEventListener('click', findSuperFixedNumbers);
             domElements.clearBtn.addEventListener('click', clearAllInputs);
@@ -2468,6 +2432,4 @@
     </script>
 </body>
 
-
 </html>
-
