@@ -278,6 +278,11 @@
             box-shadow: 0 0 15px rgba(255, 159, 67, 0.4);
         }
         
+        .image-step.limit .image-container {
+            border: 4px solid #3498db;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
+        }
+        
         .loading {
             display: inline-block;
             width: 120px;
@@ -376,24 +381,24 @@
 </head>
 <body>
     <div class="container">
-        <h1><i class=""></i> Generador de Secuencias "GUACHARO ACTIVO"</h1>
-        <p class="description">Introduce un número entre 0 y 75 para generar secuencias de Guacharo Activo.</p>
+        <h1><i class=""></i> GENERADOR "PRONOSTICOS"</h1>
+        <p class="description">.</p>
         
         <div class="input-section">
             <div class="input-group">
-                <label for="seed"><i class="fas fa-seedling"></i> Número (entre 0 y 75):</label>
+                <label for="seed"><i class="fas fa-seedling"></i> Ingrese su Animalito:</label>
                 <input type="number" id="seed" min="0" max="75" value="1">
-                <div class="range-info">Valor mínimo: 0, Valor máximo: 75</div>
-                <div class="error-message" id="error-message"><i class="fas fa-exclamation-circle"></i> El numero debe estar entre 0 y 75</div>
+                <div class="range-info">Dr.Animalitos</div>
+                <div class="error-message" id="error-message"><i class="fas fa-exclamation-circle"></i> Solo animalitos de guacharo activo</div>
             </div>
             
             <button id="generate">
-                <i class="fas fa-play"></i> Generar Secuencias
+                <i class="fas fa-play"></i> Generar Pronosticos
             </button>
         </div>
         
         <div class="result-container">
-            <h2><i class=""><img src="animalitos/animalitos_guacharo/logo.png" height="100px" width="100px"/></i> Secuencias Generadas:</h2>
+            <h2><i class=""><img src="animalitos/animalitos_guacharo/logo.png" height="100px" width="100px"/></i> Pronosticos del dia:</h2>
             <div id="sequence" class="sequence">
                 <div class="placeholder-text">
                     <i class="fas fa-image"></i> Las secuencias e imágenes aparecerán aquí...
@@ -403,7 +408,7 @@
     </div>
     
     <div class="footer">
-        <p>Paro los "3 SUPER FIJOS" AL (0424 8671967) SOLO Guacharo Activo</p>
+        <p>Paro los "3 SUPER FIJOS" AL (0424 8671967) SOLO LOTO ACTIVO</p>
     </div>
 
     <script>
@@ -518,65 +523,98 @@
                 return container;
             }
             
-            // Función para generar la secuencia
+            // Función para generar la secuencia con exactamente 6 números
             function generateSequence(seed) {
-                // Primer incremento: +1, +2, +3 (solo resultados positivos)
-                let increment1Results = [];
+                let results = [];
+                
+                // Primer incremento: +1, +2, +3
                 let current = seed;
+                let increment1Results = [];
                 
                 for (let i = 1; i <= 3; i++) {
                     current += i;
-                    if (current >= 0) {
+                    if (current >= 0 && current <= 75) {
                         increment1Results.push(current);
                     }
                 }
                 
-                // Segundo incremento: +2, +3, +4 (solo resultados positivos)
+                // Segundo incremento: +2, +3, +4
+                current = seed;
                 let increment2Results = [];
-                current = seed; // Reiniciar al valor inicial
                 
                 for (let i = 2; i <= 4; i++) {
                     current += i;
-                    if (current >= 0) {
+                    if (current >= 0 && current <= 75) {
                         increment2Results.push(current);
                     }
                 }
                 
-                // Primer decremento: -1, -2, -3 (solo el 0)
-                let decrement1Results = [];
-                current = seed; // Reiniciar al valor inicial
-                
-                for (let i = 1; i <= 3; i++) {
-                    current -= i;
-                    if (current === 0) {
-                        decrement1Results.push(current);
-                    }
+                // Si el segundo incremento produce resultados mayores a 6, eliminar el último
+                if (increment2Results.length > 0 && increment2Results[increment2Results.length - 1] > 6) {
+                    increment2Results.pop();
                 }
                 
-                // Segundo decremento: -2, -3, -4 (solo el 0)
-                let decrement2Results = [];
-                current = seed; // Reiniciar al valor inicial
+                // Combinar incrementos
+                results = [...increment1Results, ...increment2Results];
                 
-                for (let i = 2; i <= 4; i++) {
-                    current -= i;
-                    if (current === 0) {
-                        decrement2Results.push(current);
+                // Si tenemos menos de 6 resultados, agregar decrementos
+                if (results.length < 6) {
+                    // Primer decremento: -1, -2, -3
+                    current = seed;
+                    let decrement1Results = [];
+                    
+                    for (let i = 1; i <= 3; i++) {
+                        current -= i;
+                        if (current >= 0 && current <= 75) {
+                            decrement1Results.push(current);
+                        }
                     }
+                    
+                    // Segundo decremento: -2, -3, -4
+                    current = seed;
+                    let decrement2Results = [];
+                    
+                    for (let i = 2; i <= 4; i++) {
+                        current -= i;
+                        if (current >= 0 && current <= 75) {
+                            decrement2Results.push(current);
+                        }
+                    }
+                    
+                    // Combinar decrementos
+                    results = [...results, ...decrement1Results, ...decrement2Results];
                 }
                 
-                // Combinar solo los resultados válidos (positivos y el 0)
-                const validResults = [
-                    ...increment1Results,
-                    ...increment2Results,
-                    ...decrement1Results,
-                    ...decrement2Results
-                ];
+                // Si aún no tenemos 6 resultados, agregar incrementos o decrementos adicionales
+                let additionalStep = 1;
+                while (results.length < 6) {
+                    // Alternar entre incrementos y decrementos
+                    if (additionalStep % 2 === 1) {
+                        // Agregar incremento adicional
+                        let additionalIncrement = seed + (3 + additionalStep);
+                        if (additionalIncrement >= 0 && additionalIncrement <= 75 && !results.includes(additionalIncrement)) {
+                            results.push(additionalIncrement);
+                        }
+                    } else {
+                        // Agregar decremento adicional
+                        let additionalDecrement = seed - (3 + additionalStep);
+                        if (additionalDecrement >= 0 && additionalDecrement <= 75 && !results.includes(additionalDecrement)) {
+                            results.push(additionalDecrement);
+                        }
+                    }
+                    
+                    additionalStep++;
+                    
+                    // Prevenir bucle infinito
+                    if (additionalStep > 20) break;
+                }
                 
-                // Eliminar duplicados
-                const uniqueResults = [...new Set(validResults)];
+                // Eliminar duplicados y limitar a 6 resultados
+                const uniqueResults = [...new Set(results)];
+                let finalResults = uniqueResults.slice(0, 6);
                 
                 // Mezclar los resultados para mostrar en orden aleatorio
-                const shuffledResults = shuffleArray([...uniqueResults]);
+                const shuffledResults = shuffleArray([...finalResults]);
                 
                 // Mostrar la secuencia en la página
                 sequenceOutput.innerHTML = '';
@@ -586,13 +624,13 @@
                 
                 const sequenceTitle = document.createElement('div');
                 sequenceTitle.classList.add('sequence-title');
-                sequenceTitle.innerHTML = `<i class="fas fa-random"></i> Resultados del número ${seed} (orden aleatorio)`;
+                sequenceTitle.innerHTML = `<i class="fas fa-random"></i> Pronosticos para hoy ${seed} ()`;
                 sequenceContainer.appendChild(sequenceTitle);
                 
                 const sequenceDisplay = document.createElement('div');
                 sequenceDisplay.classList.add('image-sequence');
                 
-                // Mostrar solo los resultados válidos en orden aleatorio
+                // Mostrar los 6 resultados en orden aleatorio
                 shuffledResults.forEach((num, index) => {
                     let className = '';
                     let title = '';
@@ -600,13 +638,22 @@
                     // Determinar de qué secuencia proviene
                     if (num === 0) {
                         className = 'zero';
-                        title = `Cero`;
+                        title = `Premio`;
                     } else if (increment1Results.includes(num) || increment2Results.includes(num)) {
                         className = 'increment';
-                        title = `Incremento`;
-                    } else {
+                        title = `Premio`;
+                    } else if (num < seed) {
                         className = 'decrement';
-                        title = `Decremento`;
+                        title = `Premio`;
+                    } else {
+                        className = 'increment';
+                        title = `Premio`;
+                    }
+                    
+                    // Marcar si es el último valor antes de superar el límite
+                    if (num === 75) {
+                        className = 'limit';
+                        title = `Premio`;
                     }
                     
                     const imageStep = createImageStep(num, className, title);
@@ -628,7 +675,7 @@
                 shuffleBtn.classList.add('shuffle-button');
                 shuffleBtn.innerHTML = '<i class="fas fa-random"></i> Reordenar';
                 shuffleBtn.onclick = function() {
-                    const newShuffled = shuffleArray([...uniqueResults]);
+                    const newShuffled = shuffleArray([...finalResults]);
                     sequenceDisplay.innerHTML = '';
                     
                     newShuffled.forEach((num, index) => {
@@ -640,10 +687,19 @@
                             title = `Cero`;
                         } else if (increment1Results.includes(num) || increment2Results.includes(num)) {
                             className = 'increment';
-                            title = `Incremento`;
-                        } else {
+                            title = `Premio`;
+                        } else if (num < seed) {
                             className = 'decrement';
                             title = `Decremento`;
+                        } else {
+                            className = 'increment';
+                            title = `Premio`;
+                        }
+                        
+                        // Marcar si es el último valor antes de superar el límite
+                        if (num === 36) {
+                            className = 'limit';
+                            title = `Límite máximo (75)`;
                         }
                         
                         const imageStep = createImageStep(num, className, title);
@@ -663,7 +719,7 @@
                 
                 const sequenceInfo = document.createElement('div');
                 sequenceInfo.classList.add('sequence-info');
-                sequenceInfo.innerHTML = `<i class="fas fa-list-ol"></i> Se muestran ${uniqueResults.length} resultados válidos (incrementos positivos y el cero).`;
+                sequenceInfo.innerHTML = `<i class="fas fa-list-ol"></i> Se muestran 6 animalitos (para 12 sorteos).`;
                 sequenceContainer.appendChild(sequenceInfo);
                 
                 sequenceOutput.appendChild(sequenceContainer);
@@ -678,6 +734,23 @@
                 const seed = parseInt(seedInput.value);
                 generateSequence(seed);
             });
+
+            // ===== FUNCIONES DE SEGURIDAD =====
+            // Prevenir clic derecho e inspección en entornos de producción
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                document.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    showNotification('Acción no permitida por seguridad', true);
+                });
+                
+                // Deshabilitar la tecla F12
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'F12') {
+                        e.preventDefault();
+                        showNotification('Acción no permitida por seguridad', true);
+                    }
+                });
+            }
             
             // Generar secuencia inicial al cargar la página
             generateSequence(parseInt(seedInput.value));
