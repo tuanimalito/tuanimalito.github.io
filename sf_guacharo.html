@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-61YTHM256Z');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>tu animalito - Loto Venezuela - resultados de los animalitos, resultados de loteria, sorteos de lotería actual, lotoven, loto Venezuela, lotovenezuela, resultados de loterias, lotto activo, la granjita, jungla millonaria, guacgarao activo, cazaloton, mega animal, selva plus, ruleta activa, lotto rey, jungla millonaria, garnja millionaria, la ricachona, pega5, pegamax, kingo, triple gordo, kino, el terminalito, la ruca, terminal trio, trio activo, triple zulia, triple caracas, triple chance, triple tachira, triple leon, triple zamorano, triple uniloton, triple pelota, triple bomba, triple pelotica</title>
+    <meta name="description" content="Obten aquí los ultimos y mas actuales resultados de los juegos de loto más populares en Venezuela como Animalitos de Venezuela, Loterías de Venezuela, Temrinales de Venzuela y Triples de Venezuela entre otros juegos de lotería y terminales de juego disponibles en el pais sudamericano de Venezuela en nuestro sitio web de resultados de juegos de loto en vivo y en vivo para tu comodidad y disfrute.">
+    <meta name="keywords" content="juegos de animalitos venezuela, anialitos venezuela, loterías venezuela, triples venezuela, terminales venezuela, lotos venezuela, juegos al azar, resultados, sortoes, datos, loteria,resultados,animalitos,triple,lottoleon,ruleta,lotto,lotofortuna,activo,activa,sorteo,truco,grantruco,suerte,loteriadehoy,caracas,tachira,zulia,leon,chance,azar">
+    <meta name="google-adsense-account" content="ca-pub-7995132393364853">
+    <!-- Bootstrap Icons para el footer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tarjeta {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .cabecera {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .cabecera h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cabecera .sub {
+            font-size: 1.4rem;
+            font-weight: 600;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .fecha {
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .fecha span {
+            background: #667eea;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 30px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .seccion-datos {
+            padding: 30px;
+            background: #f8fafc;
+        }
+
+        .tarjeta-dato {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .tarjeta-dato h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Info item */
+        .info-item {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: #1976d2;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Grid de números siguientes */
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .numero-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .numero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .numero-card .numero {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .numero-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 10px auto;
+        }
+
+        .numero-card .animal {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 10px;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        /* Footer estilos */
+        .footer {
+            max-width: 800px;
+            width: 100%;
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer .social-links a {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer .social-links a:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .footer .copyright {
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer .copyright span {
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer .credits a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer .credits a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 700px) {
+            .numeros-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .numeros-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tarjeta">
+        <div class="cabecera">
+            <h1>Guacharo Activo</h1>
+            <div class="sub">Dr.animalitos</div>
+        </div>
+
+          <!-- anuncio display horizontal -->
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+     crossorigin="anonymous"></script>
+     <!-- anuncio display horizontal -->
+     <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7995132393364853"
+     data-ad-slot="4903538669"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+     <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+     </script>
+
+        <div class="fecha">
+           <span id="fechaActual"></span>
+        </div>
+
+        <div class="status-bar" id="statusBar">
+            ⏳ Buscando repeticiones...
+        </div>
+
+        <div class="seccion-datos">
+            <div class="tarjeta-dato">
+                <h3>Animalitos recomendados</h3>
+                <div id="resultado-contenido">
+                    <div class="no-data">Cargando...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer sin la información de búsqueda -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved 
+            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== DICCIONARIO DE ANIMALES COMPLETO (0-75) =====
+        const animales = {
+            0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
+            5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
+            10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
+            15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
+            20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
+            25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
+            30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
+            35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo', 39: 'lechuza',
+            40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa', 44: 'chigüire',
+            45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín', 49: 'pereza',
+            50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol', 54: 'grillo',
+            55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga', 59: 'pantera',
+            60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo', 64: 'gavilán',
+            65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar', 69: 'conejo',
+            70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo', 74: 'turpial',
+            75: 'guácharo'
+        };
+
+        // ===== RUTA DE IMÁGENES =====
+        function obtenerRutaImagen(numero) {
+            return `animalitos/animalitos_guacharo/${numero}.png`;
+        }
+
+        // ===== FECHA ACTUAL =====
+        function mostrarFecha() {
+            const hoy = new Date();
+            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', opciones);
+        }
+
+        // ===== BARRA DE ESTADO =====
+        function actualizarStatus(mensaje, esError = false) {
+            const statusBar = document.getElementById('statusBar');
+            statusBar.innerHTML = mensaje;
+            statusBar.style.background = esError ? '#ffebee' : '#f8f9fa';
+            statusBar.style.color = esError ? '#c62828' : '#666';
+        }
+
+        // ===== OBTENER RESULTADOS DE UNA FECHA =====
+        async function obtenerResultadosFecha(fechaStr) {
+            try {
+                const url = `https://api.allorigins.win/get?url=${encodeURIComponent('https://loteriadehoy.com/animalito/guacharoactivo/resultados/' + fechaStr + '/')}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const resultados = [];
+                const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>\s*<h5[^>]*>Guacharo Activo\s*(\d{2}:\d{2}\s*(?:AM|PM))<\/h5>/gi;
+                
+                let match;
+                while ((match = regex.exec(data.contents)) !== null) {
+                    const numero = parseInt(match[1], 10);
+                    const animal = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    const hora = match[3];
+                    
+                    resultados.push({ numero, animal, hora });
+                }
+                
+                return resultados.sort((a, b) => a.hora.localeCompare(b.hora));
+                
+            } catch (error) {
+                console.error(`Error obteniendo ${fechaStr}:`, error);
+                return [];
+            }
+        }
+
+        // ===== GENERAR NÚMEROS SIGUIENTES =====
+        function generarSiguientes(numeroEncontrado, resultadosDia) {
+            const siguientes = [];
+            const index = resultadosDia.findIndex(r => r.numero === numeroEncontrado);
+            
+            if (index !== -1) {
+                for (let i = 1; i <= 4; i++) {
+                    const nextIndex = (index + i) % resultadosDia.length;
+                    siguientes.push(resultadosDia[nextIndex]);
+                }
+            }
+            
+            return siguientes;
+        }
+
+        // ===== MOSTRAR SOLO LOS 4 NÚMEROS RESULTADO =====
+        function mostrarResultadoBusqueda(mensaje, numerosSiguientes) {
+            const contenedor = document.getElementById('resultado-contenido');
+            
+            if (!numerosSiguientes || numerosSiguientes.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="info-item">
+                        ${mensaje}
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div class="info-item">
+                    ${mensaje}
+                </div>
+                <div class="numeros-grid">
+            `;
+            
+            numerosSiguientes.forEach(r => {
+                html += `
+                    <div class="numero-card">
+                        <div class="numero">${String(r.numero).padStart(2, '0')}</div>
+                        <img src="${obtenerRutaImagen(r.numero)}" alt="${r.animal}">
+                        <div class="animal">${animales[r.numero] || r.animal}</div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            contenedor.innerHTML = html;
+        }
+
+        // ===== FUNCIÓN PRINCIPAL DE BÚSQUEDA =====
+        async function iniciarBusqueda() {
+            actualizarStatus('🔄 Buscando repeticiones...');
+            
+            const fechaBase = '2026-02-12';
+            const fechaBusqueda1 = '2026-02-11';
+            const fechaBusqueda2 = '2026-02-10';
+            
+            const resultadosBase = await obtenerResultadosFecha(fechaBase);
+            const resultadosBusqueda1 = await obtenerResultadosFecha(fechaBusqueda1);
+            const resultadosBusqueda2 = await obtenerResultadosFecha(fechaBusqueda2);
+            
+            let encontrado = false;
+            let numerosSiguientes = [];
+            let mensajeBusqueda = '';
+            
+            for (const resultadoBase of resultadosBase) {
+                actualizarStatus(`🔍 Buscando: ${resultadoBase.numero} (${resultadoBase.hora})...`);
+                
+                const encontradoEn1 = resultadosBusqueda1.find(r => r.numero === resultadoBase.numero);
+                
+                if (encontradoEn1) {
+                    numerosSiguientes = generarSiguientes(resultadoBase.numero, resultadosBusqueda1);
+                    encontrado = true;
+                    mensajeBusqueda = `Se encontraron ${resultadoBase.numero} Animalitos ${fechaBusqueda1}`;
+                    break;
+                }
+                
+                const encontradoEn2 = resultadosBusqueda2.find(r => r.numero === resultadoBase.numero);
+                
+                if (encontradoEn2) {
+                    numerosSiguientes = generarSiguientes(resultadoBase.numero, resultadosBusqueda2);
+                    encontrado = true;
+                    mensajeBusqueda = `Se encontraron ${resultadoBase.numero} Animalitos ${fechaBusqueda2}`;
+                    break;
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+            
+            if (!encontrado) {
+                mostrarResultadoBusqueda('❌ No se encontraron repeticiones', []);
+                actualizarStatus('⚠️ No se encontraron repeticiones', true);
+                return;
+            }
+            
+            mostrarResultadoBusqueda(mensajeBusqueda, numerosSiguientes);
+            actualizarStatus(`Análisis completado`);
+        }
+
+        // ===== INICIALIZACIÓN =====
+        window.onload = () => {
+            mostrarFecha();
+            iniciarBusqueda();
+        };
+    </script>
+</body>
+</html>
