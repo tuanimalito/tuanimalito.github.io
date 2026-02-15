@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -40,35 +40,818 @@
 </script>
 <!-- - - - - - - - -  anunsios automaticos adsense - - - - - - - -  -->
 <style>
-    /* Estilos para el reloj */
-    .clock-container {
-        background: linear-gradient(135deg, #2c3e50, #4a69bd);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        text-align: center;
-        margin: 20px auto;
-        max-width: 300px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* ===== ESTILOS GENERALES MEJORADOS ===== */
+    :root {
+        --primary-color: #4a69bd;
+        --primary-dark: #2c3e50;
+        --secondary-color: #e67e22;
+        --success-color: #27ae60;
+        --danger-color: #fe2c55;
+        --text-dark: #2c3e50;
+        --text-light: #666;
+        --white: #ffffff;
+        --gray-light: #f8f9fa;
+        --gray-lighter: #f0f2f5;
+        --shadow-sm: 0 5px 20px rgba(0,0,0,0.08);
+        --shadow-md: 0 10px 30px rgba(0,0,0,0.12);
+        --shadow-lg: 0 15px 40px rgba(0,0,0,0.15);
+        --border-radius-sm: 10px;
+        --border-radius-md: 15px;
+        --border-radius-lg: 20px;
+        --border-radius-xl: 50px;
+        --transition: all 0.3s ease;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
         font-family: 'Poppins', sans-serif;
+        color: var(--text-dark);
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        line-height: 1.6;
     }
     
-    .clock-title {
-        font-size: 18px;
-        margin-bottom: 8px;
-        font-weight: 500;
+    /* Header mejorado */
+    #header {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        padding: 15px 0;
+        box-shadow: var(--shadow-lg);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: var(--transition);
     }
     
-    .clock-time {
-        font-size: 32px;
+    #header .logo h1 {
+        font-size: 28px;
         font-weight: 700;
+        margin: 0;
+        color: var(--white);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         letter-spacing: 1px;
     }
     
+    #header .logo h1 span {
+        color: #ffd700;
+    }
+    
+    #navbar ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+    }
+    
+    #navbar ul li {
+        margin: 0 15px;
+    }
+    
+    #navbar ul li a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 8px 15px;
+        border-radius: var(--border-radius-xl);
+        transition: var(--transition);
+        position: relative;
+    }
+    
+    #navbar ul li a:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-2px);
+    }
+    
+    #navbar ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: #ffd700;
+        transition: var(--transition);
+        transform: translateX(-50%);
+    }
+    
+    #navbar ul li a:hover::after {
+        width: 80%;
+    }
+    
+    /* Reloj mejorado */
+    .clock-container {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        color: var(--white);
+        padding: 20px 25px;
+        border-radius: var(--border-radius-lg);
+        text-align: center;
+        margin: 20px auto;
+        max-width: 350px;
+        box-shadow: var(--shadow-md);
+        font-family: 'Poppins', sans-serif;
+        border: 2px solid rgba(255,255,255,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .clock-container::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .clock-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .clock-time {
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
+    }
+    
     .clock-date {
-        font-size: 14px;
-        margin-top: 5px;
+        font-size: 16px;
+        margin-top: 8px;
         opacity: 0.9;
+        position: relative;
+        z-index: 1;
+        text-transform: capitalize;
+    }
+    
+    /* Secciones mejoradas */
+    .sections-bg {
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius-lg);
+        margin: 30px 0;
+        padding: 40px 0;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .section-header {
+        text-align: center;
+        padding: 0 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .section-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 3px;
+    }
+    
+    .section-header h1 {
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--primary-dark);
+        margin: 20px 0;
+    }
+    
+    .section-header h6 {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-light);
+        line-height: 1.6;
+    }
+    
+    .section-header p {
+        font-size: 16px;
+        color: var(--text-light);
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    /* Tarjetas de lotería mejoradas */
+    .post-img {
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        margin-bottom: 15px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .post-img img {
+        transition: var(--transition);
+        width: 100%;
+        height: auto;
+    }
+    
+    .post-img:hover img {
+        transform: scale(1.1);
+    }
+    
+    article {
+        background: var(--white);
+        border-radius: var(--border-radius-lg);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    article:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    article h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--primary-dark);
+        margin: 15px 0 10px;
+    }
+    
+    .cta-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: var(--white);
+        text-decoration: none;
+        border-radius: var(--border-radius-xl);
+        font-weight: 500;
+        transition: var(--transition);
+        margin: 15px 0;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(74, 105, 189, 0.3);
+    }
+    
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(74, 105, 189, 0.4);
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    }
+    
+    .post-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .post-author {
+        color: var(--text-light);
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    /* Tarjetas de noticias mejoradas */
+    .title a {
+        color: var(--primary-dark);
+        text-decoration: none;
+        transition: var(--transition);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+    
+    .title a:hover {
+        color: var(--primary-color);
+    }
+    
+    .post-category {
+        color: var(--secondary-color);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    /* ===== ESTILOS DE VIDEOS MEJORADOS ===== */
+    .videos-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .videos-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="50" cy="50" r="40" fill="white"/></svg>') repeat;
+        animation: moveBackground 20s linear infinite;
+    }
+    
+    @keyframes moveBackground {
+        from { background-position: 0 0; }
+        to { background-position: 100px 100px; }
+    }
+    
+    .video-card {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius-lg);
+        padding: 20px;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(255,255,255,0.2);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: var(--transition);
+    }
+    
+    .video-card:hover::before {
+        opacity: 1;
+    }
+    
+    .video-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .thumbnail-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9/16;
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        cursor: pointer;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        max-width: 325px;
+        margin: 0 auto 15px;
+        box-shadow: var(--shadow-sm);
+        border: 3px solid rgba(255,255,255,0.1);
+    }
+    
+    .thumbnail-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    
+    .thumbnail-container:hover .thumbnail-img {
+        transform: scale(1.1);
+    }
+    
+    .play-button-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(3px);
+    }
+    
+    .thumbnail-container:hover .play-button-overlay {
+        opacity: 1;
+    }
+    
+    .play-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--danger-color), #ff6b81);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 28px;
+        box-shadow: 0 10px 25px rgba(254, 44, 85, 0.4);
+        transform: scale(0.9);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+    
+    .thumbnail-container:hover .play-icon {
+        transform: scale(1.1);
+        box-shadow: 0 15px 35px rgba(254, 44, 85, 0.6);
+    }
+    
+    .tiktok-badge-mini {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, var(--danger-color), #ff6b81);
+        color: var(--white);
+        padding: 6px 12px;
+        border-radius: 25px;
+        font-size: 13px;
+        font-weight: 600;
+        z-index: 2;
+        pointer-events: none;
+        box-shadow: 0 5px 15px rgba(254, 44, 85, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(5px);
+    }
+    
+    .tiktok-badge-mini i {
+        font-size: 16px;
+    }
+    
+    .tiktok-embed-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9/16;
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        max-width: 325px;
+        margin: 0 auto 15px;
+        box-shadow: var(--shadow-lg);
+        border: 3px solid rgba(255,255,255,0.1);
+    }
+    
+    .tiktok-embed-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    /* Etiquetas de categoría mejoradas */
+    .video-card span {
+        padding: 6px 15px;
+        border-radius: 25px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .video-card span:first-of-type {
+        background: linear-gradient(135deg, var(--primary-color), #6c8cff);
+        color: var(--white);
+    }
+    
+    .video-card span:last-of-type {
+        color: var(--text-light);
+        font-size: 13px;
+    }
+    
+    /* Botón ver más mejorado */
+    #verMasVideosBtn {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        color: var(--white);
+        padding: 15px 40px;
+        border-radius: var(--border-radius-xl);
+        font-weight: 600;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 10px 25px rgba(74, 105, 189, 0.4);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 1px;
+    }
+    
+    #verMasVideosBtn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    #verMasVideosBtn:hover::before {
+        left: 100%;
+    }
+    
+    #verMasVideosBtn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(74, 105, 189, 0.6);
+    }
+    
+    /* Modal mejorado */
+    #videoModal {
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    #videoModal > div {
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(20px);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        animation: slideUp 0.4s ease;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    #cerrarModal {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.05);
+        color: var(--text-dark);
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+    
+    #cerrarModal:hover {
+        background: var(--danger-color);
+        color: var(--white);
+        transform: rotate(90deg);
+    }
+    
+    /* Footer mejorado */
+    #footer {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        color: var(--white);
+        padding: 40px 0;
+        margin-top: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>') repeat;
+        animation: moveBackground 30s linear infinite;
+    }
+    
+    .social-links {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: rgba(255,255,255,0.1);
+        color: var(--white);
+        border-radius: 50%;
+        margin: 0 10px;
+        transition: var(--transition);
+        font-size: 20px;
+        border: 2px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(5px);
+    }
+    
+    .social-links a:hover {
+        background: var(--white);
+        color: var(--primary-color);
+        transform: translateY(-5px) scale(1.1);
+        border-color: var(--primary-color);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .copyright {
+        position: relative;
+        z-index: 1;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    
+    .credits a {
+        color: var(--white);
+        text-decoration: none;
+        opacity: 0.8;
+        transition: var(--transition);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .credits a:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+    
+    /* Scroll to top mejorado */
+    .scroll-top {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        z-index: 999;
+        border: 2px solid rgba(255,255,255,0.2);
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+    
+    .scroll-top:hover {
+        transform: scale(1.1);
+        box-shadow: var(--shadow-lg);
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    }
+    
+    /* Responsive mejorado */
+    @media (max-width: 768px) {
+        .section-header h2 {
+            font-size: 28px;
+        }
+        
+        .section-header h1 {
+            font-size: 24px;
+        }
+        
+        .clock-time {
+            font-size: 32px;
+        }
+        
+        #navbar ul {
+            flex-direction: column;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-100%);
+            transition: var(--transition);
+        }
+        
+        #navbar ul.show {
+            transform: translateY(0);
+        }
+        
+        #navbar ul li {
+            margin: 10px 0;
+        }
+        
+        #navbar ul li a {
+            color: var(--text-dark);
+            display: block;
+            text-align: center;
+        }
+        
+        .mobile-nav-toggle {
+            display: block;
+        }
+    }
+    
+    /* Animaciones adicionales */
+    .fade-in {
+        animation: fadeInUp 1s ease;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Efecto de brillo en tarjetas */
+    .video-card {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+    
+    .video-card:hover::after {
+        opacity: 1;
+    }
+    
+    /* Preloader mejorado */
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    }
+    
+    #preloader.hide {
+        opacity: 0;
+        pointer-events: none;
     }
 </style>
 </head>
@@ -81,7 +864,7 @@
 <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <h1>🚨Tu</h1><h1><span>.</span></h1><h1>Animalito💲</h1>
+            <h1>🚨Tu<span>.</span>Animalito💲</h1>
         </a>
         <nav id="navbar" class="navbar">
             <ul>
@@ -162,7 +945,7 @@
                             <img src="assets/images/blog12.webp" alt="" class="img-fluid">
                         </div>
                         <h3>¡Selva Plus".!</h3>
-                        <a class="cta-btn" href="selva.html">"VER Informacion"</a>   
+                        <a class="cta-btn" href="sf_selva.html">"VER Informacion"</a>   
                         <p class="post-category"></p>
                         <!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
 
@@ -183,7 +966,7 @@
                             <img src="assets/images/blog13.webp" alt="" class="img-fluid">
                         </div>
                         <h3>¡Loto Rey".!</h3>
-                        <a class="cta-btn" href="rey.html">"VER Informacion"</a>   
+                        <a class="cta-btn" href="sf_rey.html">"VER Informacion"</a>   
                         <p class="post-category"></p>
                         <!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
                         <div class="d-flex align-items-center">
@@ -218,7 +1001,7 @@
                             <img src="assets/images/blog4.webp" alt="" class="img-fluid">
                         </div>
                         <h3>¡La Granjita".!</h3>
-                        <a class="cta-btn" href="granjita.html">"VER Informacion"</a>   
+                        <a class="cta-btn" href="sf_granjita.html">"VER Informacion"</a>   
                         <!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
                         <div class="d-flex align-items-center">
                             <div class="post-meta">
@@ -237,7 +1020,7 @@
                             <img src="assets/images/blog5.webp" alt="" class="img-fluid">
                         </div>
                         <h3>!Ruleta Royal".!</h3>
-                        <a class="cta-btn" href="royal.html">"VER Informacion"</a>   
+                        <a class="cta-btn" href="sf_royal.html">"VER Informacion"</a>   
                         <p class="post-category"></p>
                         <!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
                         <div class="d-flex align-items-center">
@@ -257,7 +1040,7 @@
                             <img src="assets/images/blog6.webp" alt="" class="img-fluid">
                         </div>
                         <h3>¡Granjazo Millonario".!</h3>
-                        <a class="cta-btn" href="granjazo.html">"VER Informacion"</a>   
+                        <a class="cta-btn" href="sf_granjazo.html">"VER Informacion"</a>   
                         <p class="post-category"></p>
                         <!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
                         <div class="d-flex align-items-center">
@@ -382,7 +1165,7 @@
                                         <div class="post-meta">
                                             <p class="post-author">Dr.animalitos</p>
                                             <p class="post-date">
-                                                <time datetime="2023-01-10">01/01/2025</time>
+                                                <time datetime="2023-01-10">01/01/2026</time>
                                             </p>
                                         </div>
                                     </div>
@@ -400,7 +1183,7 @@
                                             <div class="post-meta">
                                                 <p class="post-author">Dr.animalitos</p>
                                                 <p class="post-date">
-                                                    <time datetime="2022-01-01">01/01/2025</time>
+                                                    <time datetime="2022-01-01">01/01/2026</time>
                                                 </p>
                                             </div>
                                         </div>
@@ -419,7 +1202,7 @@
                                             <div class="post-meta">
                                                 <p class="post-author">Dr.animalitos</p>
                                                 <p class="post-date">
-                                                    <time datetime="2022-01-01">01/01/2025</time>
+                                                    <time datetime="2022-01-01">01/01/2026</time>
                                                 </p>
                                             </div>
                                         </div>
@@ -428,6 +1211,141 @@
                             </div><!-- End recent posts list -->
                         </div>
                     </section><!-- End Recent Blog Posts Section -->
+
+                    <!-- - - - - - - - -  SECCIÓN DE VIDEOS DE TIKTOK CON MINIATURAS MEJORADAS - - - - - - - -  -->
+                    <section id="videos-destacados" class="recent-posts sections-bg videos-section">
+                        <div class="container" data-aos="fade-up">
+                            <div class="section-header">
+                                <h2>🎥 TikTok de Animalitos</h2>
+                                <p>Los mejores videos de TikTok sobre Animalitos (haz clic en la miniatura para reproducir)</p>
+                            </div>
+                            
+                            <div class="row gy-4">
+                                <!-- Video 1: Tutorial -->
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="video-card fade-in" id="video-card-1">
+                                        <div class="thumbnail-container" onclick="loadTikTokVideo('7580144321668648203', 'video-card-1')">
+                                            <img src="assets/images/mini1.png" alt="Video Tutorial" class="thumbnail-img">
+                                            <div class="play-button-overlay">
+                                                <div class="play-icon">▶</div>
+                                            </div>
+                                            <div class="tiktok-badge-mini"><i class="bi bi-tiktok"></i> TikTok</div>
+                                        </div>
+                                        <h3 style="font-size: 18px; margin: 15px 0 8px 0; color: #2c3e50;">📊 Aprende los Tercios</h3>
+                                        <p style="color: #666; font-size: 14px; margin-bottom: 10px; line-height: 1.5;">Aprende a interpretar los datos de los animalitos como un profesional.</p>
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="background: linear-gradient(135deg, #4a69bd, #6c8cff); color: white; padding: 6px 15px; border-radius: 25px; font-size: 12px; font-weight: 600;">Tutorial</span>
+                                            <span style="color: #666; font-size: 13px;">🔵 Dr.animalitos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Video 2: Resultados del día -->
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="video-card fade-in" id="video-card-2">
+                                        <div class="thumbnail-container" onclick="loadTikTokVideo('7580888148553633080', 'video-card-2')">
+                                            <img src="assets/images/mini2.png" alt="Video Resultados" class="thumbnail-img">
+                                            <div class="play-button-overlay">
+                                                <div class="play-icon">▶</div>
+                                            </div>
+                                            <div class="tiktok-badge-mini"><i class="bi bi-tiktok"></i> TikTok</div>
+                                        </div>
+                                        <h3 style="font-size: 18px; margin: 15px 0 8px 0; color: #2c3e50;">🎯 Aprende hacer Tripletas</h3>
+                                        <p style="color: #666; font-size: 14px; margin-bottom: 10px; line-height: 1.5;">Descubre las mejores estrategias para aumentar tus probabilidades.</p>
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="background: linear-gradient(135deg, #e67e22, #f39c12); color: white; padding: 6px 15px; border-radius: 25px; font-size: 12px; font-weight: 600;">Tutorial</span>
+                                            <span style="color: #666; font-size: 13px;">🟢 Dr.animalitos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Video 3: Estrategias -->
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="video-card fade-in" id="video-card-3">
+                                        <div class="thumbnail-container" onclick="loadTikTokVideo('7583141969199697164', 'video-card-3')">
+                                            <img src="assets/images/mini3.png" alt="Video Estrategias" class="thumbnail-img">
+                                            <div class="play-button-overlay">
+                                                <div class="play-icon">▶</div>
+                                            </div>
+                                            <div class="tiktok-badge-mini"><i class="bi bi-tiktok"></i> TikTok</div>
+                                        </div>
+                                        <h3 style="font-size: 18px; margin: 15px 0 8px 0; color: #2c3e50;">💡 Aprende las Secuencias</h3>
+                                        <p style="color: #666; font-size: 14px; margin-bottom: 10px; line-height: 1.5;">Descubre las mejores estrategias para aumentar tus probabilidades.</p>
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 6px 15px; border-radius: 25px; font-size: 12px; font-weight: 600;">Tutorial</span>
+                                            <span style="color: #666; font-size: 13px;">🔴 Dr.animalitos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                    </section>
+
+                   
+                    <!-- Script para cargar videos al hacer clic -->
+                    <script>
+                        function loadTikTokVideo(videoId, containerId) {
+                            const container = document.getElementById(containerId);
+                            const thumbnailContainer = container.querySelector('.thumbnail-container');
+                            
+                            // Crear el contenedor del video
+                            const videoContainer = document.createElement('div');
+                            videoContainer.className = 'tiktok-embed-container';
+                            
+                            // Crear el iframe
+                            const iframe = document.createElement('iframe');
+                            iframe.src = `https://www.tiktok.com/player/v1/${videoId}?autoplay=1&controls=1&music_info=0&description=0`;
+                            iframe.allow = "fullscreen; autoplay; encrypted-media";
+                            iframe.loading = "lazy";
+                            
+                            // Agregar iframe al contenedor
+                            videoContainer.appendChild(iframe);
+                            
+                            // Reemplazar la miniatura con el video
+                            thumbnailContainer.replaceWith(videoContainer);
+                        }
+                        
+                        // Script para controlar el modal
+                        const modal = document.getElementById('videoModal');
+                        const btnAbrir = document.getElementById('verMasVideosBtn');
+                        const btnCerrar = document.getElementById('cerrarModal');
+                        
+                        btnAbrir.onclick = function() {
+                            modal.style.display = 'block';
+                            document.body.style.overflow = 'hidden';
+                        }
+                        
+                        btnCerrar.onclick = function() {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }
+                        
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+                        
+                        document.onkeydown = function(event) {
+                            if (event.key === 'Escape' && modal.style.display === 'block') {
+                                modal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+
+                        // Script para el menú móvil
+                        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+                        const navbar = document.getElementById('navbar').querySelector('ul');
+                        
+                        mobileNavToggle.addEventListener('click', function() {
+                            navbar.classList.toggle('show');
+                        });
+                    </script>
+                    <!-- - - - - - - - -  FIN SECCIÓN DE VIDEOS - - - - - - - -  -->
+
                     <section id="recent-posts" class="recent-posts sections-bg">
                         <div class="container" data-aos="fade-up">
                             <div class="section-header">
@@ -462,7 +1380,7 @@
                             <div class="col-lg-12 col-md-12 footer-info text-center">
                                 <div class="social-links d-flex mt-4 justify-content-center">
                                     <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
-                                    <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.tiktok.com/@animalitotiktok" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
                                     <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
                                 </div>
                             </div>
@@ -494,35 +1412,41 @@
                     function updateClock() {
                         const now = new Date();
                         
-                                        // Obtener hora, minutos y segundos
+                        // Obtener hora, minutos y segundos
                         let hours = now.getHours();
                         let minutes = now.getMinutes();
                         let seconds = now.getSeconds();
                         
-                                        // Formatear a dos dígitos
+                        // Formatear a dos dígitos
                         hours = hours < 10 ? '0' + hours : hours;
                         minutes = minutes < 10 ? '0' + minutes : minutes;
                         seconds = seconds < 10 ? '0' + seconds : seconds;
                         
-                                        // Actualizar el tiempo
+                        // Actualizar el tiempo
                         document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds}`;
                         
-                                        // Obtener y formatear la fecha
+                        // Obtener y formatear la fecha
                         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                         const dateString = now.toLocaleDateString('es-ES', options);
                         document.getElementById('current-date').textContent = dateString;
                     }
                     
-                                    // Actualizar el reloj inmediatamente y luego cada segundo
+                    // Actualizar el reloj inmediatamente y luego cada segundo
                     updateClock();
                     setInterval(updateClock, 1000);
+
+                    // Inicializar AOS
+                    AOS.init({
+                        duration: 1000,
+                        once: true,
+                        offset: 100
+                    });
+
+                    // Ocultar preloader
+                    window.addEventListener('load', function() {
+                        document.getElementById('preloader').classList.add('hide');
+                    });
                 </script>
             </body>
 
             </html>
-
-
-
-
-
-
