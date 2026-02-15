@@ -12,10 +12,11 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Activo - Resultados</title>
-    <!-- Bootstrap Icons para el footer -->
+    <title>Lotto Activo - Resultados Dr. Animalitos</title>
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        /* (Mantén todos tus estilos originales aquí) */
         * {
             margin: 0;
             padding: 0;
@@ -327,272 +328,245 @@
     </footer>
 
     <script>
-        // ===== DICCIONARIO DE ANIMALES (LOTTO ACTIVO - 0-36) =====
+        // ===== CONFIGURACIÓN =====
+        const PROXY_URL = 'https://api.allorigins.win/get?url=';
+        const SOURCE_URL = 'https://loteriadehoy.com/animalito/lottoactivo/resultados/';
+        const CACHE_KEY = 'lotto_activo_resultados';
+        const CACHE_TIMESTAMP_KEY = 'lotto_activo_timestamp';
+        const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 horas
+
+        // ===== DICCIONARIO DE ANIMALES =====
         const animales = {
-            '00': 'ballena',
-            0: 'delfín',
-            1: 'carnero',
-            2: 'toro',
-            3: 'ciempiés',
-            4: 'alacrán',
-            5: 'león',
-            6: 'rana',
-            7: 'perico',
-            8: 'ratón',
-            9: 'águila',
-            10: 'tigre',
-            11: 'gato',
-            12: 'caballo',
-            13: 'mono',
-            14: 'paloma',
-            15: 'zorro',
-            16: 'oso',
-            17: 'pavo',
-            18: 'burro',
-            19: 'chivo',
-            20: 'cochino',
-            21: 'gallo',
-            22: 'camello',
-            23: 'cebra',
-            24: 'iguana',
-            25: 'gallina',
-            26: 'vaca',
-            27: 'perro',
-            28: 'zamuro',
-            29: 'elefante',
-            30: 'caimán',
-            31: 'lapa',
-            32: 'ardilla',
-            33: 'pescado',
-            34: 'venado',
-            35: 'jirafa',
-            36: 'culebra'
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra'
         };
 
-        // ===== NUEVA RUTA DE IMÁGENES (LOTTO ACTIVO) =====
         function obtenerRutaImagen(numero) {
-            if (numero === '00') {
-                return 'animalitos/animalitos_loto/00.png';
-            }
+            if (numero === '00' || numero === 0) return 'animalitos/animalitos_loto/00.png';
             return `animalitos/animalitos_loto/${numero}.png`;
         }
 
         function mostrarFecha() {
             const hoy = new Date();
-            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', opciones);
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
         }
 
         function actualizarStatus(mensaje) {
-            const statusBar = document.getElementById('statusBar');
-            statusBar.innerHTML = mensaje;
+            document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        // ===== FUNCIÓN PARA OBTENER FECHAS DINÁMICAS =====
-        function obtenerFechasDinamicas() {
+        // ===== FUNCIONES DE CACHE =====
+        function guardarEnCache(datos) {
+            try {
+                localStorage.setItem(CACHE_KEY, JSON.stringify(datos));
+                localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
+                console.log('💾 Datos guardados en cache');
+                return true;
+            } catch (e) {
+                console.error('Error guardando cache:', e);
+                return false;
+            }
+        }
+
+        function obtenerDeCache() {
+            try {
+                const datos = localStorage.getItem(CACHE_KEY);
+                const timestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+                
+                if (!datos || !timestamp) return null;
+                
+                const edad = Date.now() - parseInt(timestamp);
+                if (edad > CACHE_DURATION) {
+                    console.log('⌛ Cache expirado');
+                    return null;
+                }
+                
+                console.log(`📦 Usando cache (${Math.round(edad/1000/60)} minutos)`);
+                return JSON.parse(datos);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // ===== OBTENER FECHAS =====
+        function obtenerFechasAnalisis() {
+            const fechas = [];
             const hoy = new Date();
             
-            // Crear array con las 3 fechas: ayer, anteayer, ante-anteayer
-            const fechas = [];
-            
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 3; i >= 1; i--) {
                 const fecha = new Date(hoy);
                 fecha.setDate(hoy.getDate() - i);
-                
-                const año = fecha.getFullYear();
-                const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-                const dia = String(fecha.getDate()).padStart(2, '0');
-                
-                fechas.push(`${año}-${mes}-${dia}`);
+                fechas.push(fecha.toISOString().split('T')[0]);
             }
             
-            // Invertir para que la más antigua sea primero (casillas 1-12)
-            return fechas.reverse();
+            return fechas;
         }
 
-        // ===== FUNCIÓN PARA OBTENER RESULTADOS DE UNA FECHA (ACTUALIZADA) =====
-        async function obtenerResultadosFecha(fechaStr) {
+        // ===== SCRAPEAR RESULTADOS =====
+        async function scrapearFecha(fecha) {
             try {
-                const url = `https://api.allorigins.win/get?url=${encodeURIComponent('https://loteriadehoy.com/animalito/lottoactivo/resultados/' + fechaStr + '/')}`;
+                const url = `${PROXY_URL}${encodeURIComponent(SOURCE_URL + fecha + '/')}`;
                 const response = await fetch(url);
                 const data = await response.json();
-
+                
+                if (!data.contents) return [];
+                
                 const resultados = [];
-                // Expresión regular actualizada para Lotto Activo
                 const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>\s*<h5[^>]*>Lotto Activo\s*(\d{2}:\d{2}\s*(?:AM|PM))<\/h5>/gi;
-
+                
                 let match;
                 while ((match = regex.exec(data.contents)) !== null) {
-                    const numero = parseInt(match[1], 10);
+                    const numero = parseInt(match[1]);
                     const animal = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     const hora = match[3];
-
-                    // Validar que el número esté en nuestro rango (0-36)
+                    
                     if (numero >= 0 && numero <= 36) {
-                        resultados.push({ numero, animal, hora });
+                        resultados.push({ numero, animal, hora, fecha });
                     }
                 }
-
-                // Ordenar por hora
-                return resultados.sort((a, b) => {
-                    const ordenHoras = {
-                        '08:00 AM': 1, '09:00 AM': 2, '10:00 AM': 3, '11:00 AM': 4,
-                        '12:00 PM': 5, '01:00 PM': 6, '02:00 PM': 7, '03:00 PM': 8,
-                        '04:00 PM': 9, '05:00 PM': 10, '06:00 PM': 11, '07:00 PM': 12
-                    };
-                    return ordenHoras[a.hora] - ordenHoras[b.hora];
-                });
-
+                
+                return resultados;
             } catch (error) {
-                console.error(`Error obteniendo ${fechaStr}:`, error);
+                console.error(`Error con fecha ${fecha}:`, error);
                 return [];
             }
         }
 
-        // ===== COMBINA LOS 3 DÍAS EN UN SOLO ARRAY CON CASILLAS =====
+        // ===== OBTENER TODOS LOS RESULTADOS =====
         async function obtenerTodosLosResultados() {
-            const fechas = obtenerFechasDinamicas();
+            const fechas = obtenerFechasAnalisis();
+            console.log('📅 Fechas:', fechas);
             
-            console.log('📅 Fechas analizadas (Lotto Activo):', fechas);
-            
-            const todosLosResultados = [];
-            
+            const todos = [];
             for (const fecha of fechas) {
-                const resultados = await obtenerResultadosFecha(fecha);
-                todosLosResultados.push(...resultados);
+                const resultados = await scrapearFecha(fecha);
+                todos.push(...resultados);
+                await new Promise(r => setTimeout(r, 1000)); // Pausa de 1 segundo
             }
             
-            // Asignar número de casilla (1-36)
-            return todosLosResultados.map((resultado, index) => ({
-                ...resultado,
-                casilla: index + 1
-            }));
+            // Ordenar por hora
+            const ordenHoras = {
+                '08:00 AM':1,'09:00 AM':2,'10:00 AM':3,'11:00 AM':4,
+                '12:00 PM':5,'01:00 PM':6,'02:00 PM':7,'03:00 PM':8,
+                '04:00 PM':9,'05:00 PM':10,'06:00 PM':11,'07:00 PM':12
+            };
+            
+            todos.sort((a,b) => (ordenHoras[a.hora]||99) - (ordenHoras[b.hora]||99));
+            
+            // Asignar casillas
+            return todos.map((r, i) => ({ ...r, casilla: i + 1 }));
         }
 
-        // ===== BUSCAR REPETICIÓN POR CASILLAS =====
-        function buscarRepeticionPorCasillas(resultados) {
-            // Crear un mapa para búsqueda rápida
-            const mapaNumeros = new Map();
+        // ===== BUSCAR REPETICIONES =====
+        function buscarRepeticiones(resultados) {
+            if (resultados.length < 12) return { encontrado: false, siguientes: [] };
             
-            // Registrar cada resultado con su casilla
+            const mapa = new Map();
             resultados.forEach(r => {
-                if (!mapaNumeros.has(r.numero)) {
-                    mapaNumeros.set(r.numero, []);
-                }
-                mapaNumeros.get(r.numero).push(r);
+                if (!mapa.has(r.numero)) mapa.set(r.numero, []);
+                mapa.get(r.numero).push(r);
             });
             
-            // Buscar el primer número del último día (casillas 25-36) que se repite
-            for (let i = 24; i < 36; i++) {
-                if (i >= resultados.length) break; // Protección si no hay 36 resultados
-                
-                const resultadoActual = resultados[i];
-                
-                // Buscar si este número aparece en días anteriores (casillas 1-24)
-                const repeticiones = mapaNumeros.get(resultadoActual.numero)?.filter(r => r.casilla <= 24) || [];
+            const inicio = Math.floor(resultados.length * 0.66);
+            
+            for (let i = inicio; i < resultados.length; i++) {
+                const actual = resultados[i];
+                const repeticiones = (mapa.get(actual.numero) || [])
+                    .filter(r => r.casilla < i);
                 
                 if (repeticiones.length > 0) {
-                    // Encontrar la repetición con la casilla más cercana
-                    const repeticion = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                    
-                    // Determinar las siguientes 4 casillas después de la repetición
-                    const casillaRepeticion = repeticion.casilla;
-                    const siguientesCasillas = [];
+                    const repeticion = repeticiones.sort((a,b) => b.casilla - a.casilla)[0];
+                    const siguientes = [];
                     
                     for (let j = 1; j <= 4; j++) {
-                        const casillaSiguiente = casillaRepeticion + j;
-                        if (casillaSiguiente <= 36) {
-                            const resultado = resultados.find(r => r.casilla === casillaSiguiente);
-                            if (resultado) {
-                                siguientesCasillas.push(resultado);
-                            }
-                        }
+                        const sig = resultados.find(r => r.casilla === repeticion.casilla + j);
+                        if (sig) siguientes.push(sig);
                     }
                     
-                    return {
-                        encontrado: true,
-                        siguientes: siguientesCasillas
-                    };
+                    if (siguientes.length > 0) {
+                        return { encontrado: true, siguientes };
+                    }
                 }
             }
             
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== FUNCIÓN PARA MOSTRAR SOLO LOS 4 NÚMEROS =====
-        function mostrarResultadoBusqueda(siguientes) {
+        // ===== MOSTRAR RESULTADOS =====
+        function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
-
+            
             if (!siguientes || siguientes.length === 0) {
-                contenedor.innerHTML = `<div class="no-data">No hay resultados disponibles</div>`;
+                contenedor.innerHTML = '<div class="no-data">⏳ No hay resultados disponibles</div>';
                 return;
             }
-
-            let html = `<div class="numeros-grid">`;
-
+            
+            let html = '<div class="numeros-grid">';
             siguientes.forEach(r => {
-                const numeroDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
-                const nombreAnimal = r.numero === 0 ? (r.animal === 'ballena' ? 'ballena' : 'delfín') : animales[r.numero];
-
+                const numDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
+                const nombreAnimal = r.numero === 0 ? 'delfín/ballena' : animales[r.numero];
+                
                 html += `
                     <div class="numero-card">
-                        <div class="numero">${numeroDisplay}</div>
-                        <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_loto/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
             });
-
-            html += `</div>`;
+            html += '</div>';
             contenedor.innerHTML = html;
         }
 
         // ===== FUNCIÓN PRINCIPAL =====
-        async function iniciarBusqueda() {
-            actualizarStatus('🔄 Cargando...');
+        async function iniciar() {
+            actualizarStatus('🔄 Verificando cache...');
             
-            const todosLosResultados = await obtenerTodosLosResultados();
-            const resultado = buscarRepeticionPorCasillas(todosLosResultados);
+            // Intentar usar cache
+            const cache = obtenerDeCache();
+            if (cache) {
+                const resultado = buscarRepeticiones(cache);
+                mostrarResultados(resultado.siguientes);
+                actualizarStatus('✅ Datos actualizados (cache)');
+                return;
+            }
             
-            if (resultado.encontrado && resultado.siguientes.length > 0) {
-                mostrarResultadoBusqueda(resultado.siguientes);
-                actualizarStatus(''); // Vacío después de cargar
+            // Obtener datos nuevos
+            actualizarStatus('🔄 Obteniendo datos nuevos...');
+            const resultados = await obtenerTodosLosResultados();
+            
+            if (resultados.length > 0) {
+                guardarEnCache(resultados);
+                const resultado = buscarRepeticiones(resultados);
+                mostrarResultados(resultado.siguientes);
+                actualizarStatus('✅ Datos actualizados');
             } else {
-                mostrarResultadoBusqueda([]);
-                actualizarStatus(''); // Vacío si no hay resultados
+                mostrarResultados([]);
+                actualizarStatus('❌ No se pudieron cargar los datos');
             }
         }
 
-        // ===== ACTUALIZACIÓN AUTOMÁTICA CADA 24 HORAS =====
-        function programarActualizacionDiaria() {
-            // Calcular tiempo hasta la próxima medianoche
-            const ahora = new Date();
-            const manana = new Date(ahora);
-            manana.setDate(ahora.getDate() + 1);
-            manana.setHours(0, 0, 0, 0); // Medianoche
-            
-            const tiempoHastaManana = manana - ahora;
-            
-            console.log(`⏰ Próxima actualización en ${Math.round(tiempoHastaManana / 1000 / 60)} minutos`);
-            
-            // Programar actualización a medianoche
-            setTimeout(() => {
-                console.log('🔄 Actualización diaria ejecutada');
-                iniciarBusqueda();
-                
-                // Repetir cada 24 horas después de la primera actualización
-                setInterval(() => {
-                    console.log('🔄 Actualización diaria ejecutada');
-                    iniciarBusqueda();
-                }, 24 * 60 * 60 * 1000); // 24 horas en milisegundos
-                
-            }, tiempoHastaManana);
-        }
-
+        // ===== INICIALIZAR =====
         window.onload = () => {
             mostrarFecha();
-            iniciarBusqueda();
-            programarActualizacionDiaria();
+            iniciar();
+            
+            // Actualizar cada 6 horas
+            setInterval(() => {
+                console.log('🔄 Actualizando automáticamente...');
+                localStorage.removeItem(CACHE_KEY);
+                localStorage.removeItem(CACHE_TIMESTAMP_KEY);
+                iniciar();
+            }, 6 * 60 * 60 * 1000);
         };
     </script>
 </body>
