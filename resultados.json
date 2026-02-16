@@ -1,6 +1,19 @@
 {
-  "resultados": [],
-  "fecha_actualizacion": "2026-02-16T18:41:41.989Z",
-  "total_resultados": 0,
-  "fuente": "lottoactivo.com (oficial vía ScrapingBee)"
+  "resultados": [
+    2,
+    5,
+    7,
+    8,
+    12,
+    15,
+    19,
+    21,
+    23,
+    27,
+    30,
+    32
+  ],
+  "fecha_actualizacion": "2026-02-16T19:03:07.924Z",
+  "total_resultados": 12,
+  "fuente": "lottoactivo.com (múltiples métodos)"
 }
