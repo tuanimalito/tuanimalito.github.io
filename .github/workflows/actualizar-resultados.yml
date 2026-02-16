@@ -17,24 +17,47 @@ jobs:
         
       - name: Obtener página de resultados
         run: |
+          echo "🔍 Obteniendo resultados de Lotto Activo..."
           curl -s -L "https://resultados365.com/resultados/Lotto+Activo+" > resultados.html
+          
+      - name: MOSTRAR las primeras líneas del HTML (DEPURACIÓN)
+        run: |
+          echo "📄 Primeras 20 líneas del HTML:"
+          head -20 resultados.html
+          echo ""
+          echo "🔍 Buscando patrones de números y animales..."
+          grep -E '<[^>]*>[0-9]{1,2}<[^>]*>' resultados.html | head -10
           
       - name: Extraer números con Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Crear script de extracción
+      - name: Crear script de extracción mejorado
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
+          
+          // Leer el HTML
           const html = fs.readFileSync('resultados.html', 'utf8');
           
-          const numeros = [];
-          const regex = />(\d{1,2})<\s*[^>]*>\s*([A-Za-zÁ-ú]+)</g;
-          let match;
+          console.log("🔍 Analizando HTML...");
           
-          const animalesValidos = [
+          // MÉTODO 1: Buscar números en etiquetas
+          const numeros = [];
+          const regex1 = />(\d{1,2})</g;
+          let match1;
+          while ((match1 = regex1.exec(html)) !== null) {
+            const numero = parseInt(match1[1]);
+            if (numero >= 0 && numero <= 36 && !numeros.includes(numero)) {
+              numeros.push(numero);
+            }
+          }
+          
+          console.log(`📊 Método 1 - Encontró ${numeros.length} números únicos:`, numeros);
+          
+          // MÉTODO 2: Buscar números cerca de animales conocidos
+          const animalesConocidos = [
             'zamuro','raton','caiman','perro','carnero','ardilla','perico','ballena',
             'pavo','iguana','toro','mono','caballo','gato','tigre','aguila','leon',
             'rana','alacran','ciempies','zorro','oso','burro','chivo','cochino',
@@ -42,31 +65,48 @@ jobs:
             'venado','jirafa','culebra'
           ];
           
-          while ((match = regex.exec(html)) !== null) {
-            const numero = parseInt(match[1]);
-            const animal = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          const numeros2 = [];
+          const regex2 = />(\d{1,2})<[^>]*>([A-Za-zÁ-ú]+)</gi;
+          let match2;
+          while ((match2 = regex2.exec(html)) !== null) {
+            const numero = parseInt(match2[1]);
+            const animal = match2[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            if (numero >= 0 && numero <= 36 && animalesValidos.includes(animal)) {
-              numeros.push(numero);
+            if (numero >= 0 && numero <= 36 && animalesConocidos.includes(animal)) {
+              numeros2.push(numero);
             }
           }
           
+          console.log(`📊 Método 2 - Encontró ${numeros2.length} números con animales:`, numeros2);
+          
+          // Usar el método que más números encontró
+          const numerosFinales = numeros2.length >= numeros.length ? numeros2 : numeros;
+          
+          // Guardar resultados
           const datos = {
-            resultados: numeros.slice(0, 36),
+            resultados: numerosFinales.slice(0, 36),
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: Math.min(numeros.length, 36)
+            total_resultados: Math.min(numerosFinales.length, 36),
+            metodos: {
+              metodo1: numeros.length,
+              metodo2: numeros2.length
+            }
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
+          console.log('✅ RESULTADO FINAL:', datos);
           EOF
           
       - name: Ejecutar script
         run: node extraer.js
         
+      - name: Mostrar resultados finales
+        run: cat resultados.json
+        
       - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add resultados.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Actualización automática"
+          git add resultados.html resultados.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Actualización automática [$(date +'%Y-%m-%d %H:%M')]"
           git push
