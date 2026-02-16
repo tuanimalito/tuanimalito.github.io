@@ -45,7 +45,7 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Extraer números REALES del HTML
+      - name: Extraer números REALES del HTML (CON EXPRESIÓN CORRECTA)
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
@@ -74,8 +74,8 @@ jobs:
             try {
               const html = fs.readFileSync(archivo, 'utf8');
               
-              // EXPRESIÓN REGULAR BASADA EN EL HTML REAL
-              // Busca: <span class="badge...">NÚMERO</span> ANIMAL
+              // EXPRESIÓN REGULAR BASADA EN TU HTML
+              // Busca: <span class="badge...">NÚMERO</span> ANIMAL</h6>
               const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>/g;
               
               const numerosDia = [];
