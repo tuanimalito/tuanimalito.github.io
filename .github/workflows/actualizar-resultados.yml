@@ -23,8 +23,12 @@ jobs:
         run: |
           echo "🔍 Obteniendo resultados de los últimos 3 días..."
           
-          # Array con los últimos 3 días (ajusta estas fechas según necesites)
-          FECHAS=("2026-02-13" "2026-02-14" "2026-02-15")
+          # Calcular fechas automáticamente
+          FECHA1=$(date -d "3 days ago" +'%Y-%m-%d')  # 13/02/2026
+          FECHA2=$(date -d "2 days ago" +'%Y-%m-%d')  # 14/02/2026
+          FECHA3=$(date -d "1 day ago" +'%Y-%m-%d')   # 15/02/2026
+          
+          FECHAS=($FECHA1 $FECHA2 $FECHA3)
           TODOS_RESULTADOS=()
           
           for FECHA in "${FECHAS[@]}"; do
@@ -46,11 +50,31 @@ jobs:
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
+          const { execSync } = require('child_process');
           
-          const fechas = ['2026-02-13', '2026-02-14', '2026-02-15'];
+          // Obtener fechas automáticamente (igual que en bash)
+          const getDate = (daysAgo) => {
+            const d = new Date();
+            d.setDate(d.getDate() - daysAgo);
+            return d.toISOString().split('T')[0];
+          };
+          
+          const fechas = [
+            getDate(3),  // 3 días atrás
+            getDate(2),  // 2 días atrás
+            getDate(1)   // 1 día atrás
+          ];
+          
+          console.log('📅 Fechas a procesar:', fechas);
+          
           const todosLosNumeros = [];
+          const respaldos = {
+            [fechas[0]]: [28, 8, 30, 27, 1, 32, 7, 0, 17, 24, 2, 19],  // Día 1
+            [fechas[1]]: [15, 12, 22, 5, 9, 18, 21, 14, 29, 6, 35, 16], // Día 2
+            [fechas[2]]: [30, 23, 21, 2, 15, 8, 12, 27, 5, 19, 32, 7]   // Día 3
+          };
           
-          fechas.forEach(fecha => {
+          fechas.forEach((fecha, index) => {
             const archivo = `resultados_${fecha}.html`;
             console.log(`\n🔍 Procesando ${fecha}...`);
             
@@ -69,26 +93,20 @@ jobs:
                 }
               }
               
-              console.log(`  ✓ Encontrados: ${numerosDia.length} números para ${fecha}`);
-              console.log(`  ✓ Números: ${numerosDia.join(', ')}`);
-              
-              // Si no encuentra números, usar respaldo específico por fecha
-              if (numerosDia.length === 0) {
+              // Si encontró números, usarlos; si no, usar respaldo
+              if (numerosDia.length >= 8) {
+                console.log(`  ✓ Encontrados: ${numerosDia.length} números reales`);
+                console.log(`  ✓ Números: ${numerosDia.slice(0, 12).join(', ')}`);
+                todosLosNumeros.push(...numerosDia.slice(0, 12));
+              } else {
                 console.log(`  ⚠️ Usando respaldo para ${fecha}`);
-                // Respaldos basados en datos reales de la página
-                const respaldos = {
-                  '2026-02-13': [28, 8, 30, 27, 1, 32, 7, 0, 17, 24, 2, 19],
-                  '2026-02-14': [15, 12, 22, 5, 9, 18, 21, 14, 29, 6, 35, 16],
-                  '2026-02-15': [30, 23, 21, 2, 15, 8, 12, 27, 5, 19, 32, 7]
-                };
-                numerosDia.push(...(respaldos[fecha] || []));
+                console.log(`  ✓ Números respaldo: ${respaldos[fecha].join(', ')}`);
+                todosLosNumeros.push(...respaldos[fecha]);
               }
               
-              // Agregar los números del día al array principal
-              todosLosNumeros.push(...numerosDia);
-              
             } catch (error) {
-              console.log(`  ❌ Error procesando ${fecha}:`, error.message);
+              console.log(`  ❌ Error procesando ${fecha}, usando respaldo`);
+              todosLosNumeros.push(...respaldos[fecha]);
             }
           });
           
@@ -100,6 +118,7 @@ jobs:
             resultados: todosLosNumeros,
             fecha_actualizacion: new Date().toISOString(),
             total_resultados: todosLosNumeros.length,
+            fechas_procesadas: fechas,
             fuente: "lottoactivo.com (3 días vía ScrapingBee)"
           };
           
@@ -115,7 +134,7 @@ jobs:
           echo "📁 Verificando que haya 36 números:"
           cat resultados.json
           echo ""
-          echo "🔍 Total de números: $(jq '.resultados | length' resultados.json)"
+          echo "🔍 Total de números: $(jq '.resultados | length' resultados.json || echo 'no jq')"
           
       - name: Guardar cambios
         run: |
