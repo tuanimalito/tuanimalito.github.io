@@ -2,9 +2,8 @@ name: Actualizar Resultados Lotto Activo
 
 on:
   schedule:
-    # Se ejecuta cada 6 horas
     - cron: '0 */6 * * *'
-  workflow_dispatch:  # Permite ejecución manual
+  workflow_dispatch:
 
 jobs:
   actualizar:
@@ -20,117 +19,85 @@ jobs:
           
       - name: Obtener página de resultados
         run: |
-          echo "🔍 Obteniendo resultados de Lotto Activo desde loteriadehoy.com..."
+          echo "🔍 Obteniendo resultados de loteriadehoy.com..."
           curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
-          echo "✅ Página descargada correctamente"
+          echo "✅ Página descargada (tamaño: $(wc -c < resultados.html) bytes)"
           
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Extraer números con script mejorado
+      - name: Extraer números con script CORREGIDO
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
+          
+          // Leer el HTML
           const html = fs.readFileSync('resultados.html', 'utf8');
           
           console.log("🔍 Analizando HTML de loteriadehoy.com...");
-          console.log("📄 Tamaño del HTML:", html.length, "caracteres");
           
-          // MÉTODO 1: Buscar números en etiquetas h4 (formato específico de loteriadehoy)
-          console.log("\n📌 Método 1: Buscando en etiquetas <h4>...");
-          const regexH4 = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
+          // ===== EXPRESIÓN REGULAR CORREGIDA =====
+          // Busca: <h4> NÚMERO ANIMAL </h4>
+          const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
+          
           const numeros = [];
           let match;
+          let contador = 0;
           
-          while ((match = regexH4.exec(html)) !== null) {
+          console.log("\n📌 Números encontrados:");
+          
+          while ((match = regex.exec(html)) !== null) {
             const numero = parseInt(match[1]);
             const animal = match[2];
+            
+            // Validar rango 0-36
             if (numero >= 0 && numero <= 36) {
               numeros.push(numero);
-              console.log(`  ✓ Encontrado: ${numero} - ${animal}`);
+              console.log(`  ${++contador}. ${numero} - ${animal}`);
             }
           }
           
-          console.log(`  📊 Total encontrados con h4: ${numeros.length}`);
+          console.log(`\n📊 Total de números encontrados: ${numeros.length}`);
           
-          // MÉTODO 2: Si no encuentra suficientes, buscar cualquier número seguido de animal
-          if (numeros.length < 8) {
-            console.log("\n📌 Método 2: Usando búsqueda genérica...");
-            const regexGeneral = /[^0-9](\d{1,2})[^0-9]*?([A-Za-zÁ-ú]+)/g;
-            let match2;
-            const numerosGenericos = [];
-            
-            while ((match2 = regexGeneral.exec(html)) !== null) {
-              const numero = parseInt(match2[1]);
-              if (numero >= 0 && numero <= 36 && !numerosGenericos.includes(numero)) {
-                numerosGenericos.push(numero);
-                console.log(`  ✓ Encontrado (genérico): ${numero}`);
-              }
-            }
-            
-            console.log(`  📊 Total encontrados con método genérico: ${numerosGenericos.length}`);
-            
-            // Combinar resultados (priorizar método 1)
-            numerosGenericos.forEach(n => {
-              if (!numeros.includes(n)) numeros.push(n);
-            });
+          // Si no se encontraron números, mostrar parte del HTML para depurar
+          if (numeros.length === 0) {
+            console.log("\n⚠️ No se encontraron números. Mostrando primeras 500 caracteres del HTML:");
+            console.log(html.substring(0, 500));
           }
           
-          // Ordenar números y tomar los primeros 36
-          numeros.sort((a, b) => a - b);
-          const resultadosFinales = numeros.slice(0, 36);
-          
-          console.log("\n📊 RESULTADO FINAL:");
-          console.log(`  Total números únicos encontrados: ${numeros.length}`);
-          console.log(`  Primeros 36: ${resultadosFinales.join(', ')}`);
-          
-          // Guardar en JSON
+          // Guardar resultados (aunque esté vacío, para depuración)
           const datos = {
-            resultados: resultadosFinales,
+            resultados: numeros,
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: resultadosFinales.length,
-            debug: {
-              total_bruto: numeros.length,
-              metodos: {
-                h4: numeros.length
-              }
-            }
+            total_resultados: numeros.length
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('\n✅ Archivo resultados.json guardado correctamente');
+          console.log('\n✅ resultados.json actualizado');
           EOF
           
-      - name: Ejecutar script de extracción
+      - name: Ejecutar script
         run: node extraer.js
         
-      - name: Verificar resultado
-        run: |
-          echo "📁 Contenido de resultados.json:"
-          cat resultados.json
-          
+      - name: Mostrar resultado
+        run: cat resultados.json
+        
       - name: Configurar Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-      - name: Guardar cambios en el repositorio
+      - name: Guardar cambios
         run: |
-          # Traer últimos cambios remotos
           git fetch origin main
-          
-          # Reset suave para mantener cambios locales
           git reset --soft origin/main
-          
-          # Agregar archivos y hacer commit si hay cambios
           git add resultados.json
-          
           if git diff --staged --quiet; then
-            echo "ℹ️ No hay cambios para commitear"
+            echo "ℹ️ Sin cambios"
           else
-            git commit -m "🔄 Actualización automática de resultados [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "🔄 Actualización automática [$(date +'%Y-%m-%d %H:%M')]"
             git push origin HEAD:main
-            echo "✅ Cambios subidos a GitHub"
+            echo "✅ Cambios subidos"
           fi
