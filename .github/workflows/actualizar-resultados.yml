@@ -1,7 +1,3 @@
-# ===== WORKFLOW CORRECTO CON SCRAPINGBEE =====
-# FECHA: 2026-02-16
-# NO USAR LOTERIADEHOY.COM
-
 name: Actualizar Resultados Lotto Activo (Oficial)
 
 on:
@@ -21,11 +17,11 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Obtener HTML vía ScrapingBee
+      - name: Obtener HTML vía ScrapingBee (Fuente Oficial)
         env:
           SCRAPINGBEE_API_KEY: ${{ secrets.SCRAPINGBEE_API_KEY }}
         run: |
-          echo "🔍 USANDO SCRAPINGBEE - FUENTE OFICIAL"
+          echo "🔍 Usando SCRAPINGBEE - Fuente Oficial"
           FECHA=$(date +'%Y-%m-%d')
           URL="https://www.lottoactivo.com/resultados/animalitos/${FECHA}/"
           echo "🌐 URL: $URL"
@@ -41,36 +37,48 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Extraer números
+      - name: Extraer números de Lotto Activo
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
           const html = fs.readFileSync('pagina_completa.html', 'utf8');
           
-          console.log("🔍 Extrayendo números...");
+          console.log("🔍 Extrayendo números de la fuente oficial...");
           
+          // Buscar el patrón: <span class="badge">NÚMERO</span> ANIMAL
           const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>/g;
           const numeros = [];
           let match;
+          let count = 0;
           
+          console.log("\n📌 Números encontrados:");
           while ((match = regex.exec(html)) !== null) {
-            const num = parseInt(match[1]);
-            if (num >= 0 && num <= 36) numeros.push(num);
+            count++;
+            const numero = parseInt(match[1]);
+            if (numero >= 0 && numero <= 36) {
+              numeros.push(numero);
+              console.log(`  ${count}. ${numero} - ${match[2]}`);
+            }
           }
           
-          console.log(`📊 Encontrados: ${numeros.length}`);
+          console.log(`\n📊 Total: ${numeros.length}`);
           
-          fs.writeFileSync('resultados.json', JSON.stringify({
+          const datos = {
             resultados: numeros,
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: numeros.length
-          }, null, 2));
+            total_resultados: numeros.length,
+            fuente: "lottoactivo.com (oficial vía ScrapingBee)"
+          };
           
+          fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
           console.log('✅ resultados.json guardado');
           EOF
           
       - name: Ejecutar extracción
         run: node extraer.js
+        
+      - name: Verificar resultado
+        run: cat resultados.json
         
       - name: Guardar cambios
         run: |
@@ -79,5 +87,10 @@ jobs:
           git fetch origin main
           git reset --soft origin/main
           git add resultados.json
-          git diff --staged --quiet || git commit -m "🔄 Actualización oficial"
-          git push origin HEAD:main
+          if git diff --staged --quiet; then
+            echo "ℹ️ Sin cambios"
+          else
+            git commit -m "🔄 Actualización oficial Lotto Activo"
+            git push origin HEAD:main
+            echo "✅ Cambios subidos"
+          fi
