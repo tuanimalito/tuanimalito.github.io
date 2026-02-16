@@ -409,12 +409,12 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        // ===== FUNCIÓN ORIGINAL PARA OBTENER FECHAS DINÁMICAS (de tu historial) =====
+        // ===== FUNCIÓN PARA OBTENER FECHAS DINÁMICAS =====
         function obtenerFechasDinamicas() {
             const hoy = new Date();
             const fechas = [];
             
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 3; i >= 1; i--) {
                 const fecha = new Date(hoy);
                 fecha.setDate(hoy.getDate() - i);
                 
@@ -425,24 +425,17 @@
                 fechas.push(`${año}-${mes}-${dia}`);
             }
             
-            // Invertir para que la más antigua sea primero
-            return fechas.reverse();
+            return fechas; // [fechaAntigua, fechaIntermedia, fechaReciente]
         }
 
-        // ===== FUNCIÓN PARA ORGANIZAR RESULTADOS CON EL ORDEN ESPECÍFICO QUE PIDES =====
+        // ===== ORGANIZAR RESULTADOS POR FECHA =====
         function organizarResultadosPorFecha(resultadosNumeros) {
-            const fechas = obtenerFechasDinamicas(); // ['2026-02-12', '2026-02-13', '2026-02-14'] por ejemplo
-            
-            // Asignar casillas según tu orden:
-            // Día 1 (más antiguo): casillas 1-12
-            // Día 2 (intermedio): casillas 13-24
-            // Día 3 (más reciente): casillas 25-36
-            
+            const fechas = obtenerFechasDinamicas();
             const resultadosPorFecha = {};
             const resultadosCompletos = [];
             
-            // Distribuir los números en las 3 fechas (12 por fecha si es posible)
-            const numerosPorFecha = 12; // 12 sorteos por día (8am a 7pm)
+            // Distribuir 12 números por fecha
+            const numerosPorFecha = 12;
             
             fechas.forEach((fecha, indexFecha) => {
                 resultadosPorFecha[fecha] = [];
@@ -452,7 +445,7 @@
                 for (let i = inicio; i < fin && i < resultadosNumeros.length; i++) {
                     const numero = resultadosNumeros[i];
                     
-                    // Determinar la hora basada en la posición dentro del día
+                    // Asignar hora basada en la posición
                     const horaIndex = i % numerosPorFecha;
                     const horas = Object.keys(ordenHoras);
                     const hora = horas[horaIndex] || '';
@@ -470,138 +463,84 @@
                 }
             });
             
-            console.log('📅 Fechas analizadas:', fechas);
+            console.log('📅 Fechas:', fechas);
             console.log('📊 Resultados por fecha:', resultadosPorFecha);
             
             return { resultadosPorFecha, resultadosCompletos, fechas };
         }
 
-        // ===== NUEVA FUNCIÓN DE BÚSQUEDA CON LA LÓGICA CORRECTA =====
-        function buscarRepeticionSegunLogica(resultadosPorFecha, fechas) {
-            // fechas viene en orden: [fechaAntigua, fechaIntermedia, fechaReciente]
-            const fechaReciente = fechas[2]; // Última fecha (la más reciente)
-            const fechaIntermedia = fechas[1]; // Fecha del medio
-            const fechaAntigua = fechas[0]; // Fecha más antigua
-            
-            console.log('🔍 Buscando repeticiones...');
-            console.log('📅 Fecha reciente (hoy):', fechaReciente);
-            console.log('📅 Fecha intermedia (ayer):', fechaIntermedia);
-            console.log('📅 Fecha antigua (anteayer):', fechaAntigua);
+        // ===== FUNCIÓN DE BÚSQUEDA MEJORADA CON FALLBACK =====
+        function buscarRepeticion(resultadosPorFecha, fechas) {
+            const fechaReciente = fechas[2];
+            const fechaIntermedia = fechas[1];
+            const fechaAntigua = fechas[0];
             
             const resultadosRecientes = resultadosPorFecha[fechaReciente] || [];
+            const resultadosIntermedios = resultadosPorFecha[fechaIntermedia] || [];
+            const resultadosAntiguos = resultadosPorFecha[fechaAntigua] || [];
             
-            // Recorrer cada resultado del día más reciente (desde 8am hasta 7pm)
+            console.log('🔍 Buscando repeticiones...');
+            
+            // Buscar en cada resultado del día reciente
             for (let i = 0; i < resultadosRecientes.length; i++) {
-                const resultadoActual = resultadosRecientes[i];
-                const numeroBuscado = resultadoActual.numero;
-                const horaActual = resultadoActual.hora;
+                const actual = resultadosRecientes[i];
+                const numeroBuscado = actual.numero;
                 
-                console.log(`\n🔎 Probando: ${horaActual} - Número ${numeroBuscado}`);
+                console.log(`Probando: ${actual.hora} - N°${numeroBuscado}`);
                 
-                // 1. Buscar en fecha intermedia (ayer)
-                const resultadosIntermedios = resultadosPorFecha[fechaIntermedia] || [];
-                const indiceEnIntermedia = resultadosIntermedios.findIndex(r => r.numero === numeroBuscado);
-                
-                if (indiceEnIntermedia !== -1) {
-                    console.log(`✅ ¡Encontrado en ${fechaIntermedia} en posición ${indiceEnIntermedia + 1}!`);
+                // Buscar en fecha intermedia
+                const indiceIntermedio = resultadosIntermedios.findIndex(r => r.numero === numeroBuscado);
+                if (indiceIntermedio !== -1) {
+                    console.log(`✅ Encontrado en ${fechaIntermedia} posición ${indiceIntermedio + 1}`);
                     
-                    // Obtener los 4 números siguientes en la fecha intermedia
                     const siguientes = [];
                     for (let j = 1; j <= 4; j++) {
-                        const siguienteIndex = indiceEnIntermedia + j;
-                        if (siguienteIndex < resultadosIntermedios.length) {
-                            siguientes.push(resultadosIntermedios[siguienteIndex]);
+                        const sigIdx = indiceIntermedio + j;
+                        if (sigIdx < resultadosIntermedios.length) {
+                            siguientes.push(resultadosIntermedios[sigIdx]);
                         }
                     }
                     
                     if (siguientes.length > 0) {
-                        console.log('➡️ Números siguientes:', siguientes.map(r => r.numero));
-                        return {
-                            encontrado: true,
-                            siguientes: siguientes,
-                            numeroRepetido: numeroBuscado,
-                            horaRepetido: horaActual,
-                            fechaRepeticion: fechaIntermedia
-                        };
-                    }
-                } else {
-                    console.log(`❌ No está en ${fechaIntermedia}, buscando en ${fechaAntigua}...`);
-                    
-                    // 2. Si no está en intermedia, buscar en fecha antigua
-                    const resultadosAntiguos = resultadosPorFecha[fechaAntigua] || [];
-                    const indiceEnAntigua = resultadosAntiguos.findIndex(r => r.numero === numeroBuscado);
-                    
-                    if (indiceEnAntigua !== -1) {
-                        console.log(`✅ ¡Encontrado en ${fechaAntigua} en posición ${indiceEnAntigua + 1}!`);
-                        
-                        // Obtener los 4 números siguientes en la fecha antigua
-                        const siguientes = [];
-                        for (let j = 1; j <= 4; j++) {
-                            const siguienteIndex = indiceEnAntigua + j;
-                            if (siguienteIndex < resultadosAntiguos.length) {
-                                siguientes.push(resultadosAntiguos[siguienteIndex]);
-                            }
-                        }
-                        
-                        if (siguientes.length > 0) {
-                            console.log('➡️ Números siguientes:', siguientes.map(r => r.numero));
-                            return {
-                                encontrado: true,
-                                siguientes: siguientes,
-                                numeroRepetido: numeroBuscado,
-                                horaRepetido: horaActual,
-                                fechaRepeticion: fechaAntigua
-                            };
-                        }
-                    } else {
-                        console.log(`❌ Tampoco está en ${fechaAntigua}, pasando al siguiente horario...`);
+                        return { encontrado: true, siguientes, esFallback: false };
                     }
                 }
+                
+                // Buscar en fecha antigua
+                const indiceAntiguo = resultadosAntiguos.findIndex(r => r.numero === numeroBuscado);
+                if (indiceAntiguo !== -1) {
+                    console.log(`✅ Encontrado en ${fechaAntigua} posición ${indiceAntiguo + 1}`);
+                    
+                    const siguientes = [];
+                    for (let j = 1; j <= 4; j++) {
+                        const sigIdx = indiceAntiguo + j;
+                        if (sigIdx < resultadosAntiguos.length) {
+                            siguientes.push(resultadosAntiguos[sigIdx]);
+                        }
+                    }
+                    
+                    if (siguientes.length > 0) {
+                        return { encontrado: true, siguientes, esFallback: false };
+                    }
+                }
+            }
+            
+            // FALLBACK: Si no encuentra repeticiones, mostrar los primeros 4 números del día reciente
+            console.log('⚠️ No se encontraron repeticiones, mostrando primeros 4 números como fallback');
+            
+            if (resultadosRecientes.length >= 4) {
+                return {
+                    encontrado: true,
+                    siguientes: resultadosRecientes.slice(0, 4),
+                    esFallback: true
+                };
             }
             
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== CARGAR RESULTADOS DESDE RESULTADOS.JSON =====
-        async function cargarResultados() {
-            try {
-                actualizarStatus('🔄 Cargando resultados...');
-                
-                const response = await fetch(RESULTADOS_URL + '?t=' + Date.now());
-                const datos = await response.json();
-                
-                console.log('📊 Resultados crudos:', datos);
-                
-                if (datos.resultados && datos.resultados.length >= 24) {
-                    
-                    // Organizar resultados por fecha según tu orden específico
-                    const { resultadosPorFecha, resultadosCompletos, fechas } = organizarResultadosPorFecha(datos.resultados);
-                    
-                    // Aplicar la lógica de búsqueda
-                    const resultado = buscarRepeticionSegunLogica(resultadosPorFecha, fechas);
-                    
-                    if (resultado.encontrado) {
-                        mostrarResultados(resultado.siguientes);
-                        
-                        // Mensaje de status informativo
-                        const fechaRep = new Date(resultado.fechaRepeticion).toLocaleDateString();
-                        actualizarStatus(`✅ Basado en repetición de las ${resultado.horaRepetido} (encontrado el ${fechaRep})`);
-                    } else {
-                        mostrarMensajeError('No se encontró ningún patrón de repetición en los últimos 3 días');
-                    }
-                    
-                } else {
-                    mostrarMensajeError('Datos insuficientes (se necesitan al menos 24 resultados)');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error:', error);
-                mostrarMensajeError('Error al cargar los resultados');
-            }
-        }
-
-        // ===== MOSTRAR RESULTADOS EN TARJETAS =====
-        function mostrarResultados(siguientes) {
+        // ===== MOSTRAR RESULTADOS =====
+        function mostrarResultados(siguientes, esFallback = false) {
             const contenedor = document.getElementById('resultado-contenido');
             
             let html = '<div class="numeros-grid">';
@@ -619,6 +558,11 @@
                 `;
             });
             html += '</div>';
+            
+            if (esFallback) {
+                html += '<p style="text-align:center; color:#999; margin-top:10px; font-size:0.9rem;">⚠️ Mostrando últimos resultados disponibles</p>';
+            }
+            
             contenedor.innerHTML = html;
         }
 
@@ -629,12 +573,53 @@
                 <div class="mensaje-error">
                     <i class="bi bi-exclamation-triangle-fill"></i>
                     <h4>Resultados no disponibles</h4>
-                    <p>${mensaje || 'Estamos trabajando para actualizar los datos.'}</p>
+                    <p>${mensaje || 'Intenta de nuevo más tarde'}</p>
                     <button class="boton-reintentar" onclick="location.reload()">
                         <i class="bi bi-arrow-clockwise"></i> Reintentar
                     </button>
                 </div>
             `;
+        }
+
+        // ===== CARGAR RESULTADOS PRINCIPAL =====
+        async function cargarResultados() {
+            try {
+                actualizarStatus('🔄 Cargando resultados...');
+                
+                const response = await fetch(RESULTADOS_URL + '?t=' + Date.now());
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                const datos = await response.json();
+                
+                if (datos.resultados && datos.resultados.length >= 24) {
+                    
+                    const { resultadosPorFecha, fechas } = organizarResultadosPorFecha(datos.resultados);
+                    const resultado = buscarRepeticion(resultadosPorFecha, fechas);
+                    
+                    if (resultado.encontrado) {
+                        mostrarResultados(resultado.siguientes, resultado.esFallback || false);
+                        if (resultado.esFallback) {
+                            actualizarStatus('⚠️ Mostrando últimos resultados (modo de prueba)');
+                        } else {
+                            const fechaActualizacion = datos.fecha_actualizacion ? 
+                                new Date(datos.fecha_actualizacion).toLocaleString() : '';
+                            actualizarStatus(`✅ Resultados actualizados ${fechaActualizacion}`);
+                        }
+                    } else {
+                        mostrarMensajeError('No se encontró patrón de repetición');
+                    }
+                    
+                } else {
+                    mostrarMensajeError('Datos insuficientes (se necesitan 24 números)');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                mostrarMensajeError('Error al cargar resultados');
+            }
         }
 
         // ===== INICIALIZACIÓN =====
