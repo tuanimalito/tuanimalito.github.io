@@ -18,7 +18,7 @@ jobs:
       - name: Obtener página de resultados
         run: |
           echo "🔍 Obteniendo resultados de Lotto Activo..."
-          curl -s -L "https://resultados365.com/resultados/Lotto+Activo+" > resultados.html
+          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
           
       - name: MOSTRAR las primeras líneas del HTML (DEPURACIÓN)
         run: |
