@@ -17,11 +17,21 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Obtener y GUARDAR el HTML completo
+      - name: Obtener HTML con User-Agent de navegador REAL
         run: |
-          echo "🔍 Obteniendo HTML de loteriadehoy.com..."
-          curl -s -L -v "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > pagina_completa.html
+          echo "🔍 Obteniendo HTML de loteriadehoy.com con User-Agent de Chrome..."
+          curl -s -L \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" \
+            -H "Accept-Language: es-ES,es;q=0.9,en;q=0.8" \
+            -H "Referer: https://www.google.com/" \
+            -H "DNT: 1" \
+            -H "Connection: keep-alive" \
+            -H "Upgrade-Insecure-Requests: 1" \
+            "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > pagina_completa.html
           echo "✅ HTML guardado. Tamaño: $(wc -l < pagina_completa.html) líneas"
+          echo "📄 Primeras 3 líneas del HTML:"
+          head -3 pagina_completa.html
           
       - name: MOSTRAR el HTML (para depuración)
         run: |
@@ -70,7 +80,7 @@ jobs:
             resultados: numeros,
             fecha_actualizacion: new Date().toISOString(),
             total_resultados: numeros.length,
-            html_preview: html.substring(0, 200) // Guardar preview para depuración
+            html_preview: html.substring(0, 200)
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
