@@ -1,0 +1,72 @@
+name: Actualizar Resultados Lotto Activo
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+        
+      - name: Obtener página de resultados
+        run: |
+          curl -s -L "https://resultados365.com/resultados/Lotto+Activo+" > resultados.html
+          
+      - name: Extraer números con Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Crear script de extracción
+        run: |
+          cat > extraer.js << 'EOF'
+          const fs = require('fs');
+          const html = fs.readFileSync('resultados.html', 'utf8');
+          
+          const numeros = [];
+          const regex = />(\d{1,2})<\s*[^>]*>\s*([A-Za-zÁ-ú]+)</g;
+          let match;
+          
+          const animalesValidos = [
+            'zamuro','raton','caiman','perro','carnero','ardilla','perico','ballena',
+            'pavo','iguana','toro','mono','caballo','gato','tigre','aguila','leon',
+            'rana','alacran','ciempies','zorro','oso','burro','chivo','cochino',
+            'gallo','camello','cebra','gallina','vaca','elefante','lapa','pescado',
+            'venado','jirafa','culebra'
+          ];
+          
+          while ((match = regex.exec(html)) !== null) {
+            const numero = parseInt(match[1]);
+            const animal = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (numero >= 0 && numero <= 36 && animalesValidos.includes(animal)) {
+              numeros.push(numero);
+            }
+          }
+          
+          const datos = {
+            resultados: numeros.slice(0, 36),
+            fecha_actualizacion: new Date().toISOString(),
+            total_resultados: Math.min(numeros.length, 36)
+          };
+          
+          fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
+          EOF
+          
+      - name: Ejecutar script
+        run: node extraer.js
+        
+      - name: Guardar cambios
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add resultados.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Actualización automática"
+          git push
