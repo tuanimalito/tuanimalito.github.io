@@ -45,8 +45,8 @@ jobs:
           
           console.log("🔍 Extrayendo números de la fuente oficial...");
           
-          // Buscar el patrón: <span class="badge">NÚMERO</span> ANIMAL
-          const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>/g;
+          // Buscar todos los números en badges (formato oficial)
+          const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>/g;
           const numeros = [];
           let match;
           let count = 0;
@@ -57,12 +57,19 @@ jobs:
             const numero = parseInt(match[1]);
             if (numero >= 0 && numero <= 36) {
               numeros.push(numero);
-              console.log(`  ${count}. ${numero} - ${match[2]}`);
+              const numeroDisplay = numero === 0 ? '00' : numero.toString().padStart(2, '0');
+              console.log(`  ${count}. ${numeroDisplay}`);
             }
           }
           
-          console.log(`\n📊 Total: ${numeros.length}`);
+          console.log(`\n📊 Total de sorteos encontrados: ${numeros.length}`);
           
+          if (numeros.length === 0) {
+            console.log("\n⚠️ No se encontraron números. Mostrando primeras 500 caracteres del HTML:");
+            console.log(html.substring(0, 500));
+          }
+          
+          // Guardar resultados
           const datos = {
             resultados: numeros,
             fecha_actualizacion: new Date().toISOString(),
@@ -71,16 +78,18 @@ jobs:
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('✅ resultados.json guardado');
+          console.log('\n✅ resultados.json guardado correctamente');
           EOF
           
       - name: Ejecutar extracción
         run: node extraer.js
         
       - name: Verificar resultado
-        run: cat resultados.json
-        
-      - name: Guardar cambios
+        run: |
+          echo "📁 Contenido de resultados.json:"
+          cat resultados.json
+          
+      - name: Guardar cambios en el repositorio
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -88,9 +97,9 @@ jobs:
           git reset --soft origin/main
           git add resultados.json
           if git diff --staged --quiet; then
-            echo "ℹ️ Sin cambios"
+            echo "ℹ️ Sin cambios en resultados.json"
           else
-            git commit -m "🔄 Actualización oficial Lotto Activo"
+            git commit -m "🔄 Actualización oficial Lotto Activo [$(date +'%Y-%m-%d %H:%M')]"
             git push origin HEAD:main
-            echo "✅ Cambios subidos"
+            echo "✅ Cambios subidos exitosamente"
           fi
