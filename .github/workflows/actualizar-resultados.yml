@@ -33,7 +33,7 @@ jobs:
           
           console.log("🔍 Analizando HTML...");
           
-          // Buscar números con animales usando tu regex original
+          // Buscar números con animales
           const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
           const numeros = [];
           let match;
@@ -42,13 +42,12 @@ jobs:
             const numero = parseInt(match[1]);
             if (numero >= 0 && numero <= 36) {
               numeros.push(numero);
-              console.log(`✓ Encontrado: ${numero} - ${match[2]}`);
+              console.log(`✓ Encontrado: ${numero}`);
             }
           }
           
           console.log(`📊 Total números encontrados: ${numeros.length}`);
           
-          // Guardar resultados
           const datos = {
             resultados: numeros.slice(0, 36),
             fecha_actualizacion: new Date().toISOString(),
@@ -65,7 +64,7 @@ jobs:
       - name: Mostrar resultado
         run: cat resultados.json
         
-      - name: Guardar cambios (con sincronización)
+      - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
