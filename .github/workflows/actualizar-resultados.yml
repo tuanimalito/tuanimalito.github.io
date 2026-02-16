@@ -1,0 +1,85 @@
+name: Actualizar Resultados Lotto Activo
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Obtener página de resultados
+        run: |
+          echo "🔍 Obteniendo resultados de Lotto Activo..."
+          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
+          
+      - name: Extraer números con Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Crear script de extracción
+        run: |
+          cat > extraer.js << 'EOF'
+          const fs = require('fs');
+          const html = fs.readFileSync('resultados.html', 'utf8');
+          
+          console.log("🔍 Analizando HTML...");
+          
+          // Buscar números con animales
+          const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
+          const numeros = [];
+          let match;
+          
+          while ((match = regex.exec(html)) !== null) {
+            const numero = parseInt(match[1]);
+            if (numero >= 0 && numero <= 36) {
+              numeros.push(numero);
+              console.log(`✓ Encontrado: ${numero}`);
+            }
+          }
+          
+          console.log(`📊 Total números encontrados: ${numeros.length}`);
+          
+          const datos = {
+            resultados: numeros.slice(0, 36),
+            fecha_actualizacion: new Date().toISOString(),
+            total_resultados: numeros.length
+          };
+          
+          fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
+          console.log('✅ Archivo resultados.json actualizado');
+          EOF
+          
+      - name: Ejecutar script
+        run: node extraer.js
+        
+      - name: Mostrar resultado
+        run: cat resultados.json
+        
+      - name: Configurar Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: Guardar cambios (forzar actualización)
+        run: |
+          # Traer últimos cambios
+          git fetch origin main
+          git reset --soft origin/main
+          
+          # Agregar y commitear
+          git add resultados.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Actualización automática [$(date +'%Y-%m-%d %H:%M')]"
+          
+          # Forzar push (sobrescribe cualquier conflicto)
+          git push origin HEAD:main --force
