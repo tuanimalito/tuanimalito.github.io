@@ -2,8 +2,8 @@ name: Actualizar Resultados Lotto Activo (3 Días Anteriores)
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
+    - cron: '0 */6 * * *'  # Se ejecuta cada 6 horas automáticamente
+  workflow_dispatch:         # Permite ejecución manual desde Actions
 
 jobs:
   actualizar:
@@ -31,12 +31,27 @@ jobs:
           echo "   Día -2: $DIA2"
           echo "   Día -1: $DIA3"
           
+          # Guardar fechas para usarlas después
+          echo "DIA1=$DIA1" >> $GITHUB_ENV
+          echo "DIA2=$DIA2" >> $GITHUB_ENV
+          echo "DIA3=$DIA3" >> $GITHUB_ENV
+          
           # Descargar cada día
           curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA1}/" > dia1.html
           curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA2}/" > dia2.html
           curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA3}/" > dia3.html
           
           echo "✅ HTMLs descargados"
+          
+      - name: Verificar que los HTMLs tienen contenido
+        run: |
+          for file in dia1.html dia2.html dia3.html; do
+            if [ ! -s "$file" ]; then
+              echo "❌ Error: $file está vacío"
+              exit 1
+            fi
+            echo "✅ $file tiene $(wc -l < $file) líneas"
+          done
           
       - name: Extraer números reales
         run: |
@@ -50,16 +65,41 @@ jobs:
           NUM2=$(extraer_numeros dia2.html)
           NUM3=$(extraer_numeros dia3.html)
           
-          # Verificar que tenemos números reales
-          if [ -z "$NUM1" ] || [ -z "$NUM2" ] || [ -z "$NUM3" ]; then
-            echo "❌ No se pudieron obtener números reales"
+          # Verificar que tenemos números reales (deben ser 12 por día)
+          if [ -z "$NUM1" ]; then
+            echo "❌ No se encontraron números para el día $DIA1"
+            exit 1
+          fi
+          
+          if [ -z "$NUM2" ]; then
+            echo "❌ No se encontraron números para el día $DIA2"
+            exit 1
+          fi
+          
+          if [ -z "$NUM3" ]; then
+            echo "❌ No se encontraron números para el día $DIA3"
             exit 1
           fi
           
           echo "📊 Números encontrados:"
-          echo "   Día -3: $NUM1"
-          echo "   Día -2: $NUM2"
-          echo "   Día -1: $NUM3"
+          echo "   $DIA1: $NUM1"
+          echo "   $DIA2: $NUM2"
+          echo "   $DIA3: $NUM3"
+          
+          # Verificar que cada día tenga 12 números
+          CONTAR1=$(echo $NUM1 | tr ',' '\n' | wc -l)
+          CONTAR2=$(echo $NUM2 | tr ',' '\n' | wc -l)
+          CONTAR3=$(echo $NUM3 | tr ',' '\n' | wc -l)
+          
+          if [ $CONTAR1 -ne 12 ] || [ $CONTAR2 -ne 12 ] || [ $CONTAR3 -ne 12 ]; then
+            echo "❌ Error: No se encontraron 12 números por día"
+            echo "   Día $DIA1: $CONTAR1 números"
+            echo "   Día $DIA2: $CONTAR2 números"
+            echo "   Día $DIA3: $CONTAR3 números"
+            exit 1
+          fi
+          
+          echo "✅ Verificación: 12 números por día correctos"
           
           # Crear JSON con los números reales
           cat > resultados.json << EOF
@@ -87,9 +127,9 @@ jobs:
           git reset --soft origin/main
           git add resultados.json
           if git diff --staged --quiet; then
-            echo "ℹ️ Sin cambios"
+            echo "ℹ️ Sin cambios en resultados.json"
           else
-            git commit -m "🔄 Resultados reales días -3,-2,-1 [$(date +'%Y-%m-%d')]"
+            git commit -m "🔄 Resultados reales días $(date +'%Y-%m-%d')"
             git push origin HEAD:main
-            echo "✅ Cambios subidos"
+            echo "✅ Cambios subidos exitosamente"
           fi
