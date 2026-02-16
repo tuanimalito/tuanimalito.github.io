@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-61YTHM256Z');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto Activo - Resultados Dr. Animalitos</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* ===== ESTILOS COMPLETOS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tarjeta {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .cabecera {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .cabecera h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .cabecera .sub {
+            font-size: 1.4rem;
+            font-weight: 600;
+            opacity: 0.95;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .fecha {
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .fecha span {
+            background: #667eea;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 30px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .ad-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        .ad-container-middle {
+            margin: 20px 0;
+        }
+
+        .ad-container-bottom {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .seccion-datos {
+            padding: 30px;
+            background: #f8fafc;
+        }
+
+        .tarjeta-dato {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tarjeta-dato h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .numero-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .numero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .numero-card .numero {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .numero-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 10px auto;
+        }
+
+        .numero-card .animal {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 10px;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        .mensaje-error {
+            text-align: center;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .mensaje-error i {
+            font-size: 4rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        .mensaje-error h4 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .mensaje-error p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .boton-reintentar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .boton-reintentar:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            max-width: 800px;
+            width: 100%;
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer .social-links a:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .footer .copyright {
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer .copyright span {
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer .credits a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer .credits a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 700px) {
+            .numeros-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .numeros-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tarjeta">
+        <div class="cabecera">
+            <h1>Lotto Activo</h1>
+            <div class="sub">Dr.animalitos</div>
+        </div>
+
+        <div class="fecha">
+            <span id="fechaActual"></span>
+        </div>
+
+        <div class="status-bar" id="statusBar">
+            ⏳ Cargando...
+        </div>
+        <div class="seccion-datos">
+            <div class="tarjeta-dato">
+                <h3>Resultados</h3>
+                <div id="resultado-contenido">
+                    <div class="no-data">Cargando...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
+                    class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
+                    class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
+                    class="bi bi-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank"
+                rel="noopener noreferrer">alexandermata834@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== CONFIGURACIÓN =====
+        const RESULTADOS_URL = 'resultados.json';
+        
+        // ===== DICCIONARIO DE ANIMALES =====
+        const animales = {
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra'
+        };
+
+        // ===== ORDEN DE HORAS =====
+        const ordenHoras = {
+            '08:00 AM': 1, '09:00 AM': 2, '10:00 AM': 3, '11:00 AM': 4,
+            '12:00 PM': 5, '01:00 PM': 6, '02:00 PM': 7, '03:00 PM': 8,
+            '04:00 PM': 9, '05:00 PM': 10, '06:00 PM': 11, '07:00 PM': 12
+        };
+
+        function obtenerRutaImagen(numero) {
+            if (numero === '00' || numero === 0) return 'animalitos/animalitos_loto/00.png';
+            return `animalitos/animalitos_loto/${numero}.png`;
+        }
+
+        function mostrarFecha() {
+            const hoy = new Date();
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+
+        function actualizarStatus(mensaje) {
+            document.getElementById('statusBar').innerHTML = mensaje;
+        }
+
+        // ===== FUNCIÓN PARA OBTENER FECHAS DINÁMICAS =====
+        function obtenerFechasDinamicas() {
+            const hoy = new Date();
+            const fechas = [];
+            
+            for (let i = 3; i >= 1; i--) {
+                const fecha = new Date(hoy);
+                fecha.setDate(hoy.getDate() - i);
+                
+                const año = fecha.getFullYear();
+                const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                const dia = String(fecha.getDate()).padStart(2, '0');
+                
+                fechas.push(`${año}-${mes}-${dia}`);
+            }
+            
+            return fechas; // [fechaAntigua, fechaIntermedia, fechaReciente]
+        }
+
+        // ===== ORGANIZAR RESULTADOS POR FECHA =====
+        function organizarResultadosPorFecha(resultadosNumeros) {
+            const fechas = obtenerFechasDinamicas();
+            const resultadosPorFecha = {};
+            const resultadosCompletos = [];
+            
+            // Distribuir 12 números por fecha
+            const numerosPorFecha = 12;
+            
+            fechas.forEach((fecha, indexFecha) => {
+                resultadosPorFecha[fecha] = [];
+                const inicio = indexFecha * numerosPorFecha;
+                const fin = inicio + numerosPorFecha;
+                
+                for (let i = inicio; i < fin && i < resultadosNumeros.length; i++) {
+                    const numero = resultadosNumeros[i];
+                    
+                    // Asignar hora basada en la posición
+                    const horaIndex = i % numerosPorFecha;
+                    const horas = Object.keys(ordenHoras);
+                    const hora = horas[horaIndex] || '';
+                    
+                    const resultado = {
+                        numero: numero,
+                        animal: animales[numero] || 'desconocido',
+                        hora: hora,
+                        fecha: fecha,
+                        casilla: i + 1
+                    };
+                    
+                    resultadosPorFecha[fecha].push(resultado);
+                    resultadosCompletos.push(resultado);
+                }
+            });
+            
+            console.log('📅 Fechas:', fechas);
+            console.log('📊 Resultados por fecha:', resultadosPorFecha);
+            
+            return { resultadosPorFecha, resultadosCompletos, fechas };
+        }
+
+        // ===== FUNCIÓN DE BÚSQUEDA MEJORADA CON FALLBACK =====
+        function buscarRepeticion(resultadosPorFecha, fechas) {
+            const fechaReciente = fechas[2];
+            const fechaIntermedia = fechas[1];
+            const fechaAntigua = fechas[0];
+            
+            const resultadosRecientes = resultadosPorFecha[fechaReciente] || [];
+            const resultadosIntermedios = resultadosPorFecha[fechaIntermedia] || [];
+            const resultadosAntiguos = resultadosPorFecha[fechaAntigua] || [];
+            
+            console.log('🔍 Buscando repeticiones...');
+            
+            // Buscar en cada resultado del día reciente
+            for (let i = 0; i < resultadosRecientes.length; i++) {
+                const actual = resultadosRecientes[i];
+                const numeroBuscado = actual.numero;
+                
+                console.log(`Probando: ${actual.hora} - N°${numeroBuscado}`);
+                
+                // Buscar en fecha intermedia
+                const indiceIntermedio = resultadosIntermedios.findIndex(r => r.numero === numeroBuscado);
+                if (indiceIntermedio !== -1) {
+                    console.log(`✅ Encontrado en ${fechaIntermedia} posición ${indiceIntermedio + 1}`);
+                    
+                    const siguientes = [];
+                    for (let j = 1; j <= 4; j++) {
+                        const sigIdx = indiceIntermedio + j;
+                        if (sigIdx < resultadosIntermedios.length) {
+                            siguientes.push(resultadosIntermedios[sigIdx]);
+                        }
+                    }
+                    
+                    if (siguientes.length > 0) {
+                        return { encontrado: true, siguientes, esFallback: false };
+                    }
+                }
+                
+                // Buscar en fecha antigua
+                const indiceAntiguo = resultadosAntiguos.findIndex(r => r.numero === numeroBuscado);
+                if (indiceAntiguo !== -1) {
+                    console.log(`✅ Encontrado en ${fechaAntigua} posición ${indiceAntiguo + 1}`);
+                    
+                    const siguientes = [];
+                    for (let j = 1; j <= 4; j++) {
+                        const sigIdx = indiceAntiguo + j;
+                        if (sigIdx < resultadosAntiguos.length) {
+                            siguientes.push(resultadosAntiguos[sigIdx]);
+                        }
+                    }
+                    
+                    if (siguientes.length > 0) {
+                        return { encontrado: true, siguientes, esFallback: false };
+                    }
+                }
+            }
+            
+            // FALLBACK: Si no encuentra repeticiones, mostrar los primeros 4 números del día reciente
+            console.log('⚠️ No se encontraron repeticiones, mostrando primeros 4 números como fallback');
+            
+            if (resultadosRecientes.length >= 4) {
+                return {
+                    encontrado: true,
+                    siguientes: resultadosRecientes.slice(0, 4),
+                    esFallback: true
+                };
+            }
+            
+            return { encontrado: false, siguientes: [] };
+        }
+
+        // ===== MOSTRAR RESULTADOS =====
+        function mostrarResultados(siguientes, esFallback = false) {
+            const contenedor = document.getElementById('resultado-contenido');
+            
+            let html = '<div class="numeros-grid">';
+            siguientes.forEach(r => {
+                const numDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
+                const nombreAnimal = r.numero === 0 ? 'delfín/ballena' : animales[r.numero];
+                
+                html += `
+                    <div class="numero-card">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_loto/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            if (esFallback) {
+                html += '<p style="text-align:center; color:#999; margin-top:10px; font-size:0.9rem;">⚠️ Mostrando últimos resultados disponibles</p>';
+            }
+            
+            contenedor.innerHTML = html;
+        }
+
+        // ===== MOSTRAR MENSAJE DE ERROR =====
+        function mostrarMensajeError(mensaje = '') {
+            const contenedor = document.getElementById('resultado-contenido');
+            contenedor.innerHTML = `
+                <div class="mensaje-error">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <h4>Resultados no disponibles</h4>
+                    <p>${mensaje || 'Intenta de nuevo más tarde'}</p>
+                    <button class="boton-reintentar" onclick="location.reload()">
+                        <i class="bi bi-arrow-clockwise"></i> Reintentar
+                    </button>
+                </div>
+            `;
+        }
+
+        // ===== CARGAR RESULTADOS PRINCIPAL =====
+        async function cargarResultados() {
+            try {
+                actualizarStatus('🔄 Cargando resultados...');
+                
+                const response = await fetch(RESULTADOS_URL + '?t=' + Date.now());
+                
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                const datos = await response.json();
+                
+                if (datos.resultados && datos.resultados.length >= 24) {
+                    
+                    const { resultadosPorFecha, fechas } = organizarResultadosPorFecha(datos.resultados);
+                    const resultado = buscarRepeticion(resultadosPorFecha, fechas);
+                    
+                    if (resultado.encontrado) {
+                        mostrarResultados(resultado.siguientes, resultado.esFallback || false);
+                        if (resultado.esFallback) {
+                            actualizarStatus('⚠️ Mostrando últimos resultados (modo de prueba)');
+                        } else {
+                            const fechaActualizacion = datos.fecha_actualizacion ? 
+                                new Date(datos.fecha_actualizacion).toLocaleString() : '';
+                            actualizarStatus(`✅ Resultados actualizados ${fechaActualizacion}`);
+                        }
+                    } else {
+                        mostrarMensajeError('No se encontró patrón de repetición');
+                    }
+                    
+                } else {
+                    mostrarMensajeError('Datos insuficientes (se necesitan 24 números)');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                mostrarMensajeError('Error al cargar resultados');
+            }
+        }
+
+        // ===== INICIALIZACIÓN =====
+        window.onload = () => {
+            mostrarFecha();
+            cargarResultados();
+            
+            // Actualizar cada 6 horas
+            setInterval(() => {
+                console.log('🔄 Actualización automática...');
+                cargarResultados();
+            }, 6 * 60 * 60 * 1000);
+        };
+    </script>
+</body>
+
+</html>
