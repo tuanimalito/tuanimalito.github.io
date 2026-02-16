@@ -37,7 +37,12 @@
     32,
     7
   ],
-  "fecha_actualizacion": "2026-02-16T19:41:51.237Z",
+  "fecha_actualizacion": "2026-02-16T21:12:52.691Z",
   "total_resultados": 36,
-  "fuente": "lottoactivo.com (3 días vía ScrapingBee)"
+  "fechas": {
+    "dia1": "2026-02-13",
+    "dia2": "2026-02-14",
+    "dia3": "2026-02-15"
+  },
+  "fuente": "lottoactivo.com (extracción real)"
 }
