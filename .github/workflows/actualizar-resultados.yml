@@ -17,120 +17,76 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Obtener página de resultados
+      - name: Obtener y GUARDAR el HTML completo
         run: |
-          echo "🔍 Obteniendo resultados de loteriadehoy.com..."
-          curl -s -L -v "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
-          echo "✅ Página descargada. Tamaño: $(wc -l < resultados.html) líneas"
+          echo "🔍 Obteniendo HTML de loteriadehoy.com..."
+          curl -s -L -v "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > pagina_completa.html
+          echo "✅ HTML guardado. Tamaño: $(wc -l < pagina_completa.html) líneas"
           
-      - name: Mostrar primeras líneas (depuración)
+      - name: MOSTRAR el HTML (para depuración)
         run: |
-          echo "📄 Primeras 20 líneas del HTML:"
-          head -20 resultados.html
+          echo "📄 PRIMERAS 50 LÍNEAS DEL HTML:"
+          echo "========================================"
+          head -50 pagina_completa.html
+          echo "========================================"
+          echo ""
+          echo "🔍 BUSCANDO PATRONES DE NÚMEROS:"
+          echo "========================================"
+          grep -E '<h4>[0-9]+' pagina_completa.html | head -10
+          echo "========================================"
           
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Extraer números con MÚLTIPLES MÉTODOS
+      - name: Extraer números con EXPRESIÓN CORRECTA
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
           
-          console.log("🔍 Iniciando extracción múltiple...");
-          const html = fs.readFileSync('resultados.html', 'utf8');
+          console.log("🔍 Leyendo HTML guardado...");
+          const html = fs.readFileSync('pagina_completa.html', 'utf8');
           
-          // ===== MÉTODO 1: Buscar en etiquetas H4 =====
-          console.log("\n📌 MÉTODO 1: Buscando en <h4>...");
-          const regexH4 = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
-          const numerosH4 = [];
+          console.log("📊 Buscando números en el HTML...");
+          
+          // MÉTODO 1: Buscar patrón exacto de loteriadehoy
+          const regex = /<h4>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/g;
+          const numeros = [];
           let match;
           
-          while ((match = regexH4.exec(html)) !== null) {
+          console.log("\n📌 Números encontrados en <h4>:");
+          while ((match = regex.exec(html)) !== null) {
             const numero = parseInt(match[1]);
-            if (numero >= 0 && numero <= 36) {
-              numerosH4.push(numero);
-              console.log(`  ✓ H4: ${numero} - ${match[2]}`);
-            }
-          }
-          console.log(`  Total H4: ${numerosH4.length}`);
-          
-          // ===== MÉTODO 2: Buscar números en cualquier etiqueta =====
-          console.log("\n📌 MÉTODO 2: Buscando números en etiquetas...");
-          const regexEtiquetas = /<[^>]+>(\d{1,2})<\/[^>]+>/g;
-          const numerosEtiquetas = [];
-          let match2;
-          
-          while ((match2 = regexEtiquetas.exec(html)) !== null) {
-            const numero = parseInt(match2[1]);
-            if (numero >= 0 && numero <= 36 && !numerosEtiquetas.includes(numero)) {
-              numerosEtiquetas.push(numero);
-              console.log(`  ✓ Etiqueta: ${numero}`);
-            }
-          }
-          console.log(`  Total en etiquetas: ${numerosEtiquetas.length}`);
-          
-          // ===== MÉTODO 3: Búsqueda genérica por patrón número + animal =====
-          console.log("\n📌 MÉTODO 3: Búsqueda genérica número+animal...");
-          const regexGeneral = /(\d{1,2})\s+([A-Za-zÁ-ú]+)/g;
-          const numerosGenerales = [];
-          let match3;
-          
-          while ((match3 = regexGeneral.exec(html)) !== null) {
-            const numero = parseInt(match3[1]);
-            if (numero >= 0 && numero <= 36 && !numerosGenerales.includes(numero)) {
-              numerosGenerales.push(numero);
-              console.log(`  ✓ General: ${numero} - ${match3[2]}`);
-            }
-          }
-          console.log(`  Total general: ${numerosGenerales.length}`);
-          
-          // ===== SELECCIONAR EL MEJOR RESULTADO =====
-          let numerosFinales = [];
-          if (numerosH4.length >= 8) {
-            console.log("\n✅ Usando MÉTODO 1 (H4)");
-            numerosFinales = numerosH4;
-          } else if (numerosEtiquetas.length >= 8) {
-            console.log("\n✅ Usando MÉTODO 2 (Etiquetas)");
-            numerosFinales = numerosEtiquetas;
-          } else if (numerosGenerales.length >= 8) {
-            console.log("\n✅ Usando MÉTODO 3 (General)");
-            numerosFinales = numerosGenerales;
-          } else {
-            console.log("\n⚠️ NINGÚN MÉTODO encontró suficientes números");
-            numerosFinales = numerosGenerales.length > 0 ? numerosGenerales : 
-                            (numerosEtiquetas.length > 0 ? numerosEtiquetas : numerosH4);
+            const animal = match[2];
+            console.log(`  ✓ ${numero} - ${animal}`);
+            numeros.push(numero);
           }
           
-          // Eliminar duplicados y ordenar
-          numerosFinales = [...new Set(numerosFinales)].sort((a, b) => a - b);
-          
-          console.log(`\n📊 RESULTADO FINAL: ${numerosFinales.length} números`);
-          console.log(`   Números: ${numerosFinales.join(', ')}`);
+          console.log(`\n📊 Total encontrados: ${numeros.length}`);
           
           // Guardar resultados
           const datos = {
-            resultados: numerosFinales,
+            resultados: numeros,
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: numerosFinales.length,
-            debug: {
-              metodo1: numerosH4.length,
-              metodo2: numerosEtiquetas.length,
-              metodo3: numerosGenerales.length
-            }
+            total_resultados: numeros.length,
+            html_preview: html.substring(0, 200) // Guardar preview para depuración
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('\n✅ resultados.json actualizado');
+          console.log('✅ resultados.json guardado');
           EOF
           
-      - name: Ejecutar script
+      - name: Ejecutar extracción
         run: node extraer.js
         
-      - name: Mostrar resultado
+      - name: Verificar resultado
         run: cat resultados.json
         
+      - name: Guardar HTML para inspección (opcional)
+        run: |
+          git add pagina_completa.html || true
+          
       - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
@@ -139,7 +95,7 @@ jobs:
           git reset --soft origin/main
           git add resultados.json
           if git diff --staged --quiet; then
-            echo "ℹ️ Sin cambios"
+            echo "ℹ️ Sin cambios en resultados.json"
           else
             git commit -m "🔄 Actualización automática $(date +'%Y-%m-%d %H:%M')"
             git push origin HEAD:main
