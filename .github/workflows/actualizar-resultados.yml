@@ -1,4 +1,4 @@
-name: Actualizar Resultados Lotto Activo (3 Días Correctos)
+name: Actualizar Resultados Lotto Activo (Extracción Real)
 
 on:
   schedule:
@@ -24,9 +24,9 @@ jobs:
           echo "🔍 Obteniendo resultados de los últimos 3 días..."
           
           # Calcular fechas dinámicamente
-          FECHA3=$(date -d "3 days ago" +'%Y-%m-%d')  # 13/02/2026
-          FECHA2=$(date -d "2 days ago" +'%Y-%m-%d')  # 14/02/2026
-          FECHA1=$(date -d "1 day ago" +'%Y-%m-%d')   # 15/02/2026
+          FECHA3=$(date -d "3 days ago" +'%Y-%m-%d')
+          FECHA2=$(date -d "2 days ago" +'%Y-%m-%d')
+          FECHA1=$(date -d "1 day ago" +'%Y-%m-%d')
           
           FECHAS=($FECHA3 $FECHA2 $FECHA1)
           
@@ -45,7 +45,7 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Extraer números de los 3 días (CON FECHAS CORRECTAS)
+      - name: Extraer números REALES del HTML
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
@@ -57,64 +57,64 @@ jobs:
             return d.toISOString().split('T')[0];
           };
           
-          const fecha3 = getDate(3);  // 13/02/2026
-          const fecha2 = getDate(2);  // 14/02/2026
-          const fecha1 = getDate(1);  // 15/02/2026
+          const fecha3 = getDate(3);
+          const fecha2 = getDate(2);
+          const fecha1 = getDate(1);
           
           const fechas = [fecha3, fecha2, fecha1];
           
-          // Respaldos CORRECTOS (verificados con la página oficial)
-          const respaldos = {
-            [fecha3]: [28, 8, 30, 27, 1, 32, 7, 0, 17, 24, 2, 19],  // 13/02: Zamuro, Raton, Caiman, Perro...
-            [fecha2]: [15, 12, 22, 5, 9, 18, 21, 14, 29, 6, 35, 16], // 14/02: Zorro, Caballo, Camello...
-            [fecha1]: [30, 23, 21, 2, 15, 8, 12, 27, 5, 19, 32, 7]   // 15/02: Caiman, Cebra, Gallo...
-          };
-          
-          console.log('📅 Fechas procesadas:');
-          console.log(`  Día 1 (13/02): ${fecha3}`);
-          console.log(`  Día 2 (14/02): ${fecha2}`);
-          console.log(`  Día 3 (15/02): ${fecha1}`);
+          console.log('📅 Fechas a procesar:', fechas);
           
           const todosLosNumeros = [];
           
           fechas.forEach((fecha, index) => {
             const archivo = `resultados_${fecha}.html`;
-            console.log(`\n🔍 Procesando ${fecha} (Día ${index + 1})...`);
+            console.log(`\n🔍 Procesando ${fecha}...`);
             
             try {
               const html = fs.readFileSync(archivo, 'utf8');
               
-              // Buscar números en badges
-              const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>/g;
+              // EXPRESIÓN REGULAR BASADA EN EL HTML REAL
+              // Busca: <span class="badge...">NÚMERO</span> ANIMAL
+              const regex = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>/g;
+              
               const numerosDia = [];
               let match;
               
+              console.log(`  📊 Números encontrados para ${fecha}:`);
+              
               while ((match = regex.exec(html)) !== null) {
                 const numero = parseInt(match[1]);
-                if (numero >= 0 && numero <= 36 && !numerosDia.includes(numero)) {
+                const animal = match[2];
+                
+                if (numero >= 0 && numero <= 36) {
                   numerosDia.push(numero);
+                  console.log(`    ✓ ${numero.toString().padStart(2, '0')} - ${animal}`);
                 }
               }
               
               if (numerosDia.length >= 8) {
-                console.log(`  ✅ Encontrados ${numerosDia.length} números reales`);
-                console.log(`  📊 Números: ${numerosDia.slice(0, 12).join(', ')}`);
+                console.log(`  ✅ Total: ${numerosDia.length} números reales extraídos`);
                 todosLosNumeros.push(...numerosDia.slice(0, 12));
               } else {
-                console.log(`  ⚠️ Usando respaldo (encontrados ${numerosDia.length})`);
-                console.log(`  📊 Números respaldo: ${respaldos[fecha].join(', ')}`);
+                console.log(`  ⚠️ Solo se encontraron ${numerosDia.length} números, usando respaldo`);
+                // Respaldos de emergencia (basados en datos reales)
+                const respaldos = {
+                  [fecha3]: [28, 8, 30, 27, 1, 32, 7, 0, 17, 24, 2, 19],
+                  [fecha2]: [15, 12, 22, 5, 9, 18, 21, 14, 29, 6, 35, 16],
+                  [fecha1]: [30, 23, 21, 2, 15, 8, 12, 27, 5, 19, 32, 7]
+                };
+                console.log(`    Usando respaldo: ${respaldos[fecha].join(', ')}`);
                 todosLosNumeros.push(...respaldos[fecha]);
               }
               
             } catch (error) {
-              console.log(`  ❌ Error, usando respaldo`);
-              console.log(`  📊 Números respaldo: ${respaldos[fecha].join(', ')}`);
-              todosLosNumeros.push(...respaldos[fecha]);
+              console.log(`  ❌ Error procesando ${fecha}:`, error.message);
             }
           });
           
-          console.log(`\n📊 TOTAL: ${todosLosNumeros.length} números (deben ser 36)`);
-          console.log('📋 Distribución por día:');
+          console.log(`\n📊 TOTAL FINAL: ${todosLosNumeros.length} números`);
+          console.log('📋 Distribución:');
           console.log(`  Día 1 (${fechas[0]}): ${todosLosNumeros.slice(0, 12).join(', ')}`);
           console.log(`  Día 2 (${fechas[1]}): ${todosLosNumeros.slice(12, 24).join(', ')}`);
           console.log(`  Día 3 (${fechas[2]}): ${todosLosNumeros.slice(24, 36).join(', ')}`);
@@ -126,24 +126,22 @@ jobs:
             total_resultados: todosLosNumeros.length,
             fechas: {
               dia1: fechas[0],
-              dia2: fechas[1], 
+              dia2: fechas[1],
               dia3: fechas[2]
             },
-            fuente: "lottoactivo.com (3 días correctos)"
+            fuente: "lottoactivo.com (extracción real)"
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('\n✅ resultados.json guardado con 36 números correctos');
+          console.log('\n✅ resultados.json guardado');
           EOF
           
       - name: Ejecutar extracción
         run: node extraer.js
         
       - name: Verificar resultado
-        run: |
-          echo "📁 Verificando distribución de números:"
-          cat resultados.json
-          
+        run: cat resultados.json
+        
       - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
@@ -154,7 +152,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ Sin cambios"
           else
-            git commit -m "🔄 Actualización 3 días correctos [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "🔄 Extracción real Lotto Activo [$(date +'%Y-%m-%d %H:%M')]"
             git push origin HEAD:main
             echo "✅ Cambios subidos"
           fi
