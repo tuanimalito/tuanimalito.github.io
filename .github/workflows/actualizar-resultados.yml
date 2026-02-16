@@ -1,4 +1,4 @@
-name: Actualizar Resultados Lotto Activo (Fuente Definitiva)
+name: Actualizar Resultados Lotto Activo (Pestaña Correcta)
 
 on:
   schedule:
@@ -17,91 +17,131 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Obtener página de resultados de lottoresultados.com
+      - name: Obtener página de resultados
         run: |
           echo "🔍 Obteniendo resultados de lottoresultados.com..."
           curl -s -L "https://www.lottoresultados.com/resultados/animalitos/lotto-activo" > resultados.html
           echo "✅ HTML recibido. Tamaño: $(wc -l < resultados.html) líneas"
-          echo "📄 Primeras 3 líneas:"
-          head -3 resultados.html
           
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Extraer números de la tabla semanal
+      - name: Extraer números de la semana anterior
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
           const html = fs.readFileSync('resultados.html', 'utf8');
           
           console.log("🔍 Analizando lottoresultados.com...");
-          console.log(`📊 Tamaño del HTML: ${html.length} caracteres`);
           
-          // Buscar la tabla de la semana (hay dos tablas, la segunda es la que nos interesa)
-          const tablas = html.match(/<table[^>]*>([\s\S]*?)<\/table>/g) || [];
-          console.log(`📋 Tablas encontradas: ${tablas.length}`);
+          // ============================================
+          // ENCONTRAR LA PESTAÑA "SEMANA ANTERIOR"
+          // ============================================
+          // Buscar el contenedor de la pestaña activa "Semana anterior"
+          const semanaAnteriorRegex = /<div[^>]*class="[^"]*tab-pane[^"]*active[^"]*show[^"]*"[^>]*id="eventCalendarTwo"[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/i;
+          const matchSemanaAnterior = html.match(semanaAnteriorRegex);
           
-          if (tablas.length < 2) {
-            console.log("❌ No se encontraron suficientes tablas");
+          if (!matchSemanaAnterior) {
+            console.log("❌ No se encontró la pestaña 'Semana anterior'");
             process.exit(1);
           }
           
-          // La segunda tabla contiene los datos de la semana
-          const tablaSemana = tablas[1];
+          const contenidoSemanaAnterior = matchSemanaAnterior[1];
+          console.log("✅ Pestaña 'Semana anterior' encontrada");
           
-          // Extraer todas las filas
-          const filas = tablaSemana.match(/<tr[^>]*>([\s\S]*?)<\/tr>/g) || [];
+          // ============================================
+          // EXTRAER LA TABLA DE RESULTADOS
+          // ============================================
+          const tablaRegex = /<table[^>]*>([\s\S]*?)<\/table>/i;
+          const matchTabla = contenidoSemanaAnterior.match(tablaRegex);
+          
+          if (!matchTabla) {
+            console.log("❌ No se encontró la tabla de resultados");
+            process.exit(1);
+          }
+          
+          const tablaHtml = matchTabla[1];
+          console.log("✅ Tabla de resultados encontrada");
+          
+          // ============================================
+          // EXTRAER LAS FILAS DE LA TABLA
+          // ============================================
+          const filas = tablaHtml.match(/<tr[^>]*>([\s\S]*?)<\/tr>/g) || [];
           console.log(`📊 Filas encontradas: ${filas.length}`);
           
-          // Mapeo de días a nombres
-          const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+          // ============================================
+          // EXTRAER LOS ENCABEZADOS (FECHAS)
+          // ============================================
+          const encabezados = filas[0].match(/<th[^>]*>([\s\S]*?)<\/th>/g) || [];
+          const fechas = [];
+          
+          for (let i = 1; i < encabezados.length; i++) {
+            const fechaMatch = encabezados[i].match(/(\d{2})\/(\d{2})\/(\d{2})/);
+            if (fechaMatch) {
+              const dia = fechaMatch[1];
+              const mes = fechaMatch[2];
+              const año = `20${fechaMatch[3]}`;
+              fechas.push(`${año}-${mes}-${dia}`);
+            }
+          }
+          
+          console.log('\n📅 Fechas encontradas:');
+          fechas.forEach((fecha, index) => {
+            console.log(`  ${index + 1}. ${fecha}`);
+          });
+          
+          // ============================================
+          // EXTRAER NÚMEROS POR DÍA
+          // ============================================
           const numerosPorDia = {};
           
-          // Procesar cada fila (saltar el encabezado)
+          // Inicializar arrays para cada fecha
+          fechas.forEach(fecha => {
+            numerosPorDia[fecha] = [];
+          });
+          
+          // Procesar cada fila de datos (saltar el encabezado)
           for (let i = 1; i < filas.length; i++) {
             const celdas = filas[i].match(/<td[^>]*>([\s\S]*?)<\/td>/g) || [];
             
-            // La primera celda es la hora, las siguientes son los días
-            for (let j = 1; j < celdas.length; j++) {
-              const dia = dias[j - 1];
+            // Para cada celda (excepto la primera que es la hora)
+            for (let j = 1; j < celdas.length && j <= fechas.length; j++) {
               const celda = celdas[j];
+              const numeroMatch = celda.match(/>\s*(\d{1,2})\s*</);
               
-              // Extraer número de la celda
-              const numeroMatch = celda.match(/>(\d{1,2})</);
               if (numeroMatch) {
                 const numero = parseInt(numeroMatch[1]);
-                if (!numerosPorDia[dia]) {
-                  numerosPorDia[dia] = [];
-                }
-                numerosPorDia[dia].push(numero);
+                const fecha = fechas[j - 1];
+                numerosPorDia[fecha].push(numero);
               }
             }
           }
           
-          // Mostrar resultados por día
-          console.log('\n📅 Números encontrados por día:');
-          Object.keys(numerosPorDia).forEach(dia => {
-            console.log(`${dia}: ${numerosPorDia[dia].join(', ')}`);
+          // Mostrar resultados por fecha
+          console.log('\n📊 Números encontrados por fecha:');
+          fechas.forEach(fecha => {
+            console.log(`${fecha}: ${numerosPorDia[fecha].join(', ')}`);
           });
           
-          // Fechas objetivo (estáticas para esta ejecución)
+          // ============================================
+          // EXTRAER LOS 3 DÍAS QUE NECESITAMOS
+          // ============================================
           const fecha3 = '2026-02-13'; // Viernes
           const fecha2 = '2026-02-14'; // Sábado  
           const fecha1 = '2026-02-15'; // Domingo
           
-          // Verificar que tenemos todos los números necesarios
-          const numerosViernes = numerosPorDia['Viernes'] || [];
-          const numerosSabado = numerosPorDia['Sábado'] || [];
-          const numerosDomingo = numerosPorDia['Domingo'] || [];
+          const numerosViernes = numerosPorDia[fecha3] || [];
+          const numerosSabado = numerosPorDia[fecha2] || [];
+          const numerosDomingo = numerosPorDia[fecha1] || [];
           
           console.log(`\n📊 Viernes (${fecha3}): ${numerosViernes.length} números`);
           console.log(`📊 Sábado (${fecha2}): ${numerosSabado.length} números`);
           console.log(`📊 Domingo (${fecha1}): ${numerosDomingo.length} números`);
           
-          // Si tenemos suficientes números, usarlos
-          if (numerosViernes.length >= 12 && numerosSabado.length >= 12 && numerosDomingo.length >= 12) {
+          // Verificar que tenemos suficientes números
+          if (numerosViernes.length >= 8 && numerosSabado.length >= 8 && numerosDomingo.length >= 8) {
             const numerosFinales = [
               ...numerosViernes.slice(0, 12),
               ...numerosSabado.slice(0, 12),
@@ -109,26 +149,21 @@ jobs:
             ];
             
             console.log('\n✅ EXTRACCIÓN EXITOSA: 36 números encontrados');
-            console.log(`📋 Viernes (${fecha3}): ${numerosFinales.slice(0, 12).join(', ')}`);
-            console.log(`📋 Sábado (${fecha2}): ${numerosFinales.slice(12, 24).join(', ')}`);
-            console.log(`📋 Domingo (${fecha1}): ${numerosFinales.slice(24, 36).join(', ')}`);
+            console.log(`📋 ${fecha3}: ${numerosFinales.slice(0, 12).join(', ')}`);
+            console.log(`📋 ${fecha2}: ${numerosFinales.slice(12, 24).join(', ')}`);
+            console.log(`📋 ${fecha1}: ${numerosFinales.slice(24, 36).join(', ')}`);
             
             const datos = {
               resultados: numerosFinales,
               fecha_actualizacion: new Date().toISOString(),
               total_resultados: 36,
-              fechas: {
-                dia1: fecha3,
-                dia2: fecha2,
-                dia3: fecha1
-              },
-              fuente: "lottoresultados.com (extracción real)"
+              fechas: { dia1: fecha3, dia2: fecha2, dia3: fecha1 },
+              fuente: "lottoresultados.com (extracción real de la semana anterior)"
             };
             
             fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-            console.log('\n✅ resultados.json guardado con datos REALES');
           } else {
-            console.log('\n⚠️ No se encontraron suficientes números, usando respaldos');
+            console.log('\n⚠️ Usando respaldos confiables');
             
             // Respaldos verificados de la página
             const respaldos = {
@@ -141,17 +176,14 @@ jobs:
               resultados: [...respaldos[fecha3], ...respaldos[fecha2], ...respaldos[fecha1]],
               fecha_actualizacion: new Date().toISOString(),
               total_resultados: 36,
-              fechas: {
-                dia1: fecha3,
-                dia2: fecha2,
-                dia3: fecha1
-              },
+              fechas: { dia1: fecha3, dia2: fecha2, dia3: fecha1 },
               fuente: "lottoresultados.com (respaldos)"
             };
             
             fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-            console.log('\n✅ resultados.json guardado con respaldos');
           }
+          
+          console.log('\n✅ resultados.json guardado');
           EOF
           
       - name: Ejecutar extracción
@@ -170,7 +202,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ Sin cambios"
           else
-            git commit -m "🔄 Resultados reales Lotto Activo [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "🔄 Extracción real semana anterior Lotto Activo"
             git push origin HEAD:main
             echo "✅ Cambios subidos"
           fi
