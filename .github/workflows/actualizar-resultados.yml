@@ -1,4 +1,4 @@
-name: Actualizar Resultados Lotto Activo
+name: Actualizar Resultados Lotto Activo (Oficial)
 
 on:
   schedule:
@@ -17,32 +17,29 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Obtener HTML con User-Agent de navegador REAL
+      - name: Obtener HTML vía ScrapingBee (Fuente Oficial)
+        env:
+          SCRAPINGBEE_API_KEY: ${{ secrets.SCRAPINGBEE_API_KEY }}
         run: |
-          echo "🔍 Obteniendo HTML de loteriadehoy.com con User-Agent de Chrome..."
-          curl -s -L \
-            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
-            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" \
-            -H "Accept-Language: es-ES,es;q=0.9,en;q=0.8" \
-            -H "Referer: https://www.google.com/" \
-            -H "DNT: 1" \
-            -H "Connection: keep-alive" \
-            -H "Upgrade-Insecure-Requests: 1" \
-            "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > pagina_completa.html
-          echo "✅ HTML guardado. Tamaño: $(wc -l < pagina_completa.html) líneas"
-          echo "📄 Primeras 3 líneas del HTML:"
-          head -3 pagina_completa.html
+          echo "🔍 Obteniendo resultados de la fuente oficial vía ScrapingBee..."
+          FECHA_ACTUAL=$(date +'%Y-%m-%d')
+          echo "📅 Fecha solicitada: $FECHA_ACTUAL"
           
-      - name: MOSTRAR el HTML (para depuración)
+          URL="https://www.lottoactivo.com/resultados/animalitos/${FECHA_ACTUAL}/"
+          echo "🌐 URL: $URL"
+          
+          # Llamada a ScrapingBee con parámetros optimizados
+          curl -s -L "https://app.scrapingbee.com/api/v1/?api_key=${SCRAPINGBEE_API_KEY}&url=${URL}&render_js=false&premium_proxy=true&country_code=ve" > pagina_completa.html
+          
+          echo "✅ HTML recibido. Tamaño: $(wc -l < pagina_completa.html) líneas"
+          echo "📄 Primeras 5 líneas del HTML:"
+          head -5 pagina_completa.html
+          
+      - name: Mostrar HTML para depuración
         run: |
           echo "📄 PRIMERAS 50 LÍNEAS DEL HTML:"
           echo "========================================"
           head -50 pagina_completa.html
-          echo "========================================"
-          echo ""
-          echo "🔍 BUSCANDO PATRONES DE NÚMEROS:"
-          echo "========================================"
-          grep -E '<h4>[0-9]+' pagina_completa.html | head -10
           echo "========================================"
           
       - name: Configurar Node.js
@@ -50,54 +47,85 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Extraer números con EXPRESIÓN CORRECTA
+      - name: Extraer números de Lotto Activo
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
           
-          console.log("🔍 Leyendo HTML guardado...");
+          console.log("🔍 Analizando HTML de la fuente oficial...");
           const html = fs.readFileSync('pagina_completa.html', 'utf8');
           
-          console.log("📊 Buscando números en el HTML...");
+          // Buscar específicamente los resultados de Lotto Activo
+          // Patrón basado en la estructura HTML que proporcionaste
+          const regex = /<div[^>]*class="[^"]*col[^"]*"[^>]*>[\s\S]*?<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>[\s\S]*?Lotto Activo\s*(\d{2}:\d{2}\s*(?:AM|PM))<\/p>/gi;
           
-          // MÉTODO 1: Buscar patrón exacto de loteriadehoy
-          const regex = /<h4>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/g;
           const numeros = [];
           let match;
+          let contador = 0;
           
-          console.log("\n📌 Números encontrados en <h4>:");
+          console.log("\n📌 Resultados de Lotto Activo encontrados:");
+          console.log("========================================");
+          
           while ((match = regex.exec(html)) !== null) {
+            contador++;
             const numero = parseInt(match[1]);
             const animal = match[2];
-            console.log(`  ✓ ${numero} - ${animal}`);
-            numeros.push(numero);
+            const hora = match[3];
+            
+            // Validar rango 0-36
+            if (numero >= 0 && numero <= 36) {
+              numeros.push(numero);
+              const numeroDisplay = numero === 0 ? '00' : numero.toString().padStart(2, '0');
+              console.log(`  ${contador}. ${numeroDisplay} - ${animal} (${hora})`);
+            }
           }
           
-          console.log(`\n📊 Total encontrados: ${numeros.length}`);
+          console.log("========================================");
+          console.log(`\n📊 Total sorteos encontrados: ${numeros.length}`);
+          
+          // Si no encuentra con el primer método, intentar con búsqueda más simple
+          if (numeros.length === 0) {
+            console.log("\n⚠️ Usando método de respaldo (búsqueda simple)...");
+            
+            // Buscar cualquier badge con número seguido de nombre
+            const regexSimple = /<span[^>]*class="[^"]*badge[^"]*"[^>]*>(\d{1,2})<\/span>\s*([A-Za-zÁ-ú]+)<\/h6>/g;
+            
+            while ((match = regexSimple.exec(html)) !== null) {
+              const numero = parseInt(match[1]);
+              if (numero >= 0 && numero <= 36) {
+                numeros.push(numero);
+                console.log(`  ✓ ${numero} (método simple)`);
+              }
+            }
+          }
+          
+          // Eliminar duplicados y ordenar
+          const numerosUnicos = [...new Set(numeros)].sort((a, b) => a - b);
+          
+          console.log(`\n📋 Números únicos encontrados: ${numerosUnicos.length}`);
+          console.log(`📋 Números: ${numerosUnicos.join(', ')}`);
           
           // Guardar resultados
           const datos = {
-            resultados: numeros,
+            resultados: numerosUnicos,
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: numeros.length,
-            html_preview: html.substring(0, 200)
+            total_resultados: numerosUnicos.length,
+            fuente: "lottoactivo.com (oficial vía ScrapingBee)"
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('✅ resultados.json guardado');
+          console.log('\n✅ resultados.json guardado correctamente');
           EOF
           
       - name: Ejecutar extracción
         run: node extraer.js
         
-      - name: Verificar resultado
-        run: cat resultados.json
-        
-      - name: Guardar HTML para inspección (opcional)
+      - name: Verificar resultado final
         run: |
-          git add pagina_completa.html || true
+          echo "📁 Contenido de resultados.json:"
+          cat resultados.json
           
-      - name: Guardar cambios
+      - name: Guardar cambios en el repositorio
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -107,7 +135,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "ℹ️ Sin cambios en resultados.json"
           else
-            git commit -m "🔄 Actualización automática $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "🔄 Actualización oficial Lotto Activo [$(date +'%Y-%m-%d %H:%M')]"
             git push origin HEAD:main
-            echo "✅ Cambios subidos"
+            echo "✅ Cambios subidos exitosamente"
           fi
