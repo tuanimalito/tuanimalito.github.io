@@ -26,39 +26,53 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
-      - name: Crear script de extracción
-        run: |
-          cat > extraer.js << 'EOF'
-          const fs = require('fs');
-          const html = fs.readFileSync('resultados.html', 'utf8');
-          
-          console.log("🔍 Analizando HTML...");
-          
-          // Buscar números con animales
-          const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
-          const numeros = [];
-          let match;
-          
-          while ((match = regex.exec(html)) !== null) {
-            const numero = parseInt(match[1]);
-            if (numero >= 0 && numero <= 36) {
-              numeros.push(numero);
-              console.log(`✓ Encontrado: ${numero}`);
-            }
-          }
-          
-          console.log(`📊 Total números encontrados: ${numeros.length}`);
-          
-          const datos = {
-            resultados: numeros.slice(0, 36),
-            fecha_actualizacion: new Date().toISOString(),
-            total_resultados: numeros.length
-          };
-          
-          fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
-          console.log('✅ Archivo resultados.json actualizado');
-          EOF
+       - name: Crear script de extracción
+  run: |
+    cat > extraer.js << 'EOF'
+    const fs = require('fs');
+    const html = fs.readFileSync('resultados.html', 'utf8');
+    
+    console.log("🔍 Analizando HTML...");
+    
+    // Método 1: Buscar números en etiquetas h4 (formato: <h4>28 Zamuro</h4>)
+    const regexH4 = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
+    const numeros = [];
+    let match;
+    
+    while ((match = regexH4.exec(html)) !== null) {
+      const numero = parseInt(match[1]);
+      if (numero >= 0 && numero <= 36) {
+        numeros.push(numero);
+        console.log(`✓ Encontrado en h4: ${numero} - ${match[2]}`);
+      }
+    }
+    
+    // Método 2: Buscar cualquier número seguido de un animal (formato más genérico)
+    if (numeros.length === 0) {
+      console.log("⚠️ No se encontraron con h4, usando método genérico...");
+      const regexGeneral = />(\d{1,2})\s+([A-Za-zÁ-ú]+)</g;
+      while ((match = regexGeneral.exec(html)) !== null) {
+        const numero = parseInt(match[1]);
+        if (numero >= 0 && numero <= 36) {
+          numeros.push(numero);
+          console.log(`✓ Encontrado (genérico): ${numero}`);
+        }
+      }
+    }
+    
+    console.log(`📊 Total números encontrados: ${numeros.length}`);
+    console.log("Números:", numeros);
+    
+    const datos = {
+      resultados: numeros.slice(0, 36),
+      fecha_actualizacion: new Date().toISOString(),
+      total_resultados: numeros.length
+    };
+    
+    fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
+    console.log('✅ Archivo resultados.json actualizado');
+    EOF   
+     
           
       - name: Ejecutar script
         run: node extraer.js
