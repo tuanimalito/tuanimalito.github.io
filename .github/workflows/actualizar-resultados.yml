@@ -20,58 +20,105 @@ jobs:
       - name: Obtener página de resultados
         run: |
           echo "🔍 Obteniendo resultados de loteriadehoy.com..."
-          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
-          echo "✅ Página descargada (tamaño: $(wc -c < resultados.html) bytes)"
+          curl -s -L -v "https://loteriadehoy.com/animalito/lottoactivo/resultados/" > resultados.html
+          echo "✅ Página descargada. Tamaño: $(wc -l < resultados.html) líneas"
+          
+      - name: Mostrar primeras líneas (depuración)
+        run: |
+          echo "📄 Primeras 20 líneas del HTML:"
+          head -20 resultados.html
           
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Extraer números con script CORREGIDO
+      - name: Extraer números con MÚLTIPLES MÉTODOS
         run: |
           cat > extraer.js << 'EOF'
           const fs = require('fs');
           
-          // Leer el HTML
+          console.log("🔍 Iniciando extracción múltiple...");
           const html = fs.readFileSync('resultados.html', 'utf8');
           
-          console.log("🔍 Analizando HTML de loteriadehoy.com...");
-          
-          // ===== EXPRESIÓN REGULAR CORREGIDA =====
-          // Busca: <h4> NÚMERO ANIMAL </h4>
-          const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
-          
-          const numeros = [];
+          // ===== MÉTODO 1: Buscar en etiquetas H4 =====
+          console.log("\n📌 MÉTODO 1: Buscando en <h4>...");
+          const regexH4 = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>/gi;
+          const numerosH4 = [];
           let match;
-          let contador = 0;
           
-          console.log("\n📌 Números encontrados:");
-          
-          while ((match = regex.exec(html)) !== null) {
+          while ((match = regexH4.exec(html)) !== null) {
             const numero = parseInt(match[1]);
-            const animal = match[2];
-            
-            // Validar rango 0-36
             if (numero >= 0 && numero <= 36) {
-              numeros.push(numero);
-              console.log(`  ${++contador}. ${numero} - ${animal}`);
+              numerosH4.push(numero);
+              console.log(`  ✓ H4: ${numero} - ${match[2]}`);
             }
           }
+          console.log(`  Total H4: ${numerosH4.length}`);
           
-          console.log(`\n📊 Total de números encontrados: ${numeros.length}`);
+          // ===== MÉTODO 2: Buscar números en cualquier etiqueta =====
+          console.log("\n📌 MÉTODO 2: Buscando números en etiquetas...");
+          const regexEtiquetas = /<[^>]+>(\d{1,2})<\/[^>]+>/g;
+          const numerosEtiquetas = [];
+          let match2;
           
-          // Si no se encontraron números, mostrar parte del HTML para depurar
-          if (numeros.length === 0) {
-            console.log("\n⚠️ No se encontraron números. Mostrando primeras 500 caracteres del HTML:");
-            console.log(html.substring(0, 500));
+          while ((match2 = regexEtiquetas.exec(html)) !== null) {
+            const numero = parseInt(match2[1]);
+            if (numero >= 0 && numero <= 36 && !numerosEtiquetas.includes(numero)) {
+              numerosEtiquetas.push(numero);
+              console.log(`  ✓ Etiqueta: ${numero}`);
+            }
+          }
+          console.log(`  Total en etiquetas: ${numerosEtiquetas.length}`);
+          
+          // ===== MÉTODO 3: Búsqueda genérica por patrón número + animal =====
+          console.log("\n📌 MÉTODO 3: Búsqueda genérica número+animal...");
+          const regexGeneral = /(\d{1,2})\s+([A-Za-zÁ-ú]+)/g;
+          const numerosGenerales = [];
+          let match3;
+          
+          while ((match3 = regexGeneral.exec(html)) !== null) {
+            const numero = parseInt(match3[1]);
+            if (numero >= 0 && numero <= 36 && !numerosGenerales.includes(numero)) {
+              numerosGenerales.push(numero);
+              console.log(`  ✓ General: ${numero} - ${match3[2]}`);
+            }
+          }
+          console.log(`  Total general: ${numerosGenerales.length}`);
+          
+          // ===== SELECCIONAR EL MEJOR RESULTADO =====
+          let numerosFinales = [];
+          if (numerosH4.length >= 8) {
+            console.log("\n✅ Usando MÉTODO 1 (H4)");
+            numerosFinales = numerosH4;
+          } else if (numerosEtiquetas.length >= 8) {
+            console.log("\n✅ Usando MÉTODO 2 (Etiquetas)");
+            numerosFinales = numerosEtiquetas;
+          } else if (numerosGenerales.length >= 8) {
+            console.log("\n✅ Usando MÉTODO 3 (General)");
+            numerosFinales = numerosGenerales;
+          } else {
+            console.log("\n⚠️ NINGÚN MÉTODO encontró suficientes números");
+            numerosFinales = numerosGenerales.length > 0 ? numerosGenerales : 
+                            (numerosEtiquetas.length > 0 ? numerosEtiquetas : numerosH4);
           }
           
-          // Guardar resultados (aunque esté vacío, para depuración)
+          // Eliminar duplicados y ordenar
+          numerosFinales = [...new Set(numerosFinales)].sort((a, b) => a - b);
+          
+          console.log(`\n📊 RESULTADO FINAL: ${numerosFinales.length} números`);
+          console.log(`   Números: ${numerosFinales.join(', ')}`);
+          
+          // Guardar resultados
           const datos = {
-            resultados: numeros,
+            resultados: numerosFinales,
             fecha_actualizacion: new Date().toISOString(),
-            total_resultados: numeros.length
+            total_resultados: numerosFinales.length,
+            debug: {
+              metodo1: numerosH4.length,
+              metodo2: numerosEtiquetas.length,
+              metodo3: numerosGenerales.length
+            }
           };
           
           fs.writeFileSync('resultados.json', JSON.stringify(datos, null, 2));
@@ -84,20 +131,17 @@ jobs:
       - name: Mostrar resultado
         run: cat resultados.json
         
-      - name: Configurar Git
+      - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-      - name: Guardar cambios
-        run: |
           git fetch origin main
           git reset --soft origin/main
           git add resultados.json
           if git diff --staged --quiet; then
             echo "ℹ️ Sin cambios"
           else
-            git commit -m "🔄 Actualización automática [$(date +'%Y-%m-%d %H:%M')]"
+            git commit -m "🔄 Actualización automática $(date +'%Y-%m-%d %H:%M')"
             git push origin HEAD:main
             echo "✅ Cambios subidos"
           fi
