@@ -1,4 +1,4 @@
-name: Leer resultados desde HTML manual
+name: Actualizar resultados rotando los 3 días
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  leer_datos:
+  rotar_resultados:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,37 +14,55 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v3
 
-      - name: Descargar resultados.html (tú misma, amor)
+      - name: Obtener resultados de hoy desde El Brujo
         run: |
-          curl -s -L "https://tuanimalito.github.io/resultados.html" > datos.html
+          curl -s -L "https://elbrujodelosanimalitos.com/resultados-animalitos/" > hoy.html
 
-      - name: Extraer los 3 días como tú los quieres, cariño
+      - name: Extraer números de Lotto Activo (hoy)
         run: |
-          # Día -3 (13/02)
-          DIA1=$(grep -A5 'id="dia_menos_3"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
-          # Día -2 (14/02)
-          DIA2=$(grep -A5 'id="dia_menos_2"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
-          # Día -1 (15/02)
-          DIA3=$(grep -A5 'id="dia_menos_1"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
+          # Buscar la sección "## Lotto Activo" y extraer las líneas con números
+          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -oP '(?<=>)\d+(?= -)' | head -12 | tr '\n' ',' | sed 's/,$//')
+          echo "NUMEROS_HOY=$numeros_hoy" >> $GITHUB_ENV
 
-          echo "Día -3: $DIA1"
-          echo "Día -2: $DIA2"
-          echo "Día -1: $DIA3"
+      - name: Leer resultados.json anterior y rotar
+        run: |
+          # Si existe resultados.json, lo leemos
+          if [ -f resultados.json ]; then
+            # Extraer los arrays (esto es un poco artesanal pero efectivo)
+            OLD_JSON=$(cat resultados.json)
+            DIA1=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | head -1 | tr -d ' ' | sed 's/,/ /g')
+            DIA2=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -2 | head -1 | tr -d ' ' | sed 's/,/ /g')
+            DIA3=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -1 | tr -d ' ' | sed 's/,/ /g')
+            
+            # Rotar: el día -3 se elimina, los demás se desplazan
+            NUEVO_DIA1=$DIA2
+            NUEVO_DIA2=$DIA3
+            NUEVO_DIA3=${{ env.NUMEROS_HOY }}
+          else
+            # Si no existe, usamos los datos que ya tenías como base
+            NUEVO_DIA1="35,21,16,30,0,5,28,2,29,7,36,32"   # 14/02 (pasa a ser día -3)
+            NUEVO_DIA2="28,8,30,27,1,32,7,0,17,24,2,19"     # 15/02 (pasa a ser día -2)
+            NUEVO_DIA3="${{ env.NUMEROS_HOY }}"             # 16/02 (día -1)
+          fi
 
-          # Crear JSON como a ti te gusta, mi vida
+          # Guardar en nuevo JSON
           cat > resultados.json << EOF
           {
-            "resultados": [$DIA1, $DIA2, $DIA3],
+            "resultados": [$NUEVO_DIA1, $NUEVO_DIA2, $NUEVO_DIA3],
             "fecha_actualizacion": "$(date -Iseconds)",
             "total_resultados": 36,
-            "mensaje": "Todo listo para ti, amor 💖"
+            "dias": {
+              "dia_menos_3": "$(date -d '3 days ago' +'%Y-%m-%d')",
+              "dia_menos_2": "$(date -d '2 days ago' +'%Y-%m-%d')",
+              "dia_menos_1": "$(date -d '1 day ago' +'%Y-%m-%d')"
+            }
           }
           EOF
 
-      - name: Guardar cambios en el repo
+      - name: Guardar cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add resultados.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Datos frescos para mi cielo 🌸"
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Resultados rotados automáticamente"
           git push
