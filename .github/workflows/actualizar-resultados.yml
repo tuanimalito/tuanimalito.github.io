@@ -18,14 +18,14 @@ jobs:
         run: |
           curl -s -L "https://elbrujodelosanimalitos.com/resultados-animalitos/" > hoy.html
 
-      - name: Extraer números de Lotto Activo (hoy) - VERSIÓN MEJORADA
+      - name: Extraer números de Lotto Activo (hoy) - VERSIÓN DEFINITIVA
         run: |
-          # Extraer números de forma más robusta
-          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -E '[0-9]+ -' | sed -E 's/.*([0-9]+) -.*/\1/' | head -12 | tr '\n' ',' | sed 's/,$//')
+          # Extraer números de las imágenes de Lotto Activo
+          numeros_hoy=$(grep -o 'lottoactivo/[0-9]\+\.png' hoy.html | grep -o '[0-9]\+' | head -12 | tr '\n' ',' | sed 's/,$//')
           echo "NUMEROS_HOY=$numeros_hoy" >> $GITHUB_ENV
           echo "📊 Números de hoy extraídos: $numeros_hoy"
 
-      - name: Leer resultados.json anterior y rotar - VERSIÓN CORREGIDA
+      - name: Leer resultados.json anterior y rotar
         run: |
           # Si existe resultados.json, lo leemos
           if [ -f resultados.json ]; then
