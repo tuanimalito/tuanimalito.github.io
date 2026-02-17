@@ -1,135 +1,50 @@
-name: Actualizar Resultados Lotto Activo (3 Días Anteriores)
+name: Leer resultados desde HTML manual
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Se ejecuta cada 6 horas automáticamente
-  workflow_dispatch:         # Permite ejecución manual desde Actions
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
-  actualizar:
+  leer_datos:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          
-      - name: Obtener resultados de los 3 días anteriores
+
+      - name: Descargar resultados.html (tú misma, amor)
         run: |
-          echo "🔍 Obteniendo resultados de loteriadehoy.com..."
-          
-          # Calcular fechas de los 3 días anteriores
-          DIA1=$(date -d "3 days ago" +'%Y-%m-%d')  # 13/02/2026
-          DIA2=$(date -d "2 days ago" +'%Y-%m-%d')  # 14/02/2026
-          DIA3=$(date -d "1 day ago" +'%Y-%m-%d')   # 15/02/2026
-          
-          echo "📅 Buscando resultados de:"
-          echo "   Día -3: $DIA1"
-          echo "   Día -2: $DIA2"
-          echo "   Día -1: $DIA3"
-          
-          # Guardar fechas para usarlas después
-          echo "DIA1=$DIA1" >> $GITHUB_ENV
-          echo "DIA2=$DIA2" >> $GITHUB_ENV
-          echo "DIA3=$DIA3" >> $GITHUB_ENV
-          
-          # Descargar cada día
-          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA1}/" > dia1.html
-          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA2}/" > dia2.html
-          curl -s -L "https://loteriadehoy.com/animalito/lottoactivo/resultados/${DIA3}/" > dia3.html
-          
-          echo "✅ HTMLs descargados"
-          
-      - name: Verificar que los HTMLs tienen contenido
+          curl -s -L "https://tuanimalito.github.io/resultados.html" > datos.html
+
+      - name: Extraer los 3 días como tú los quieres, cariño
         run: |
-          for file in dia1.html dia2.html dia3.html; do
-            if [ ! -s "$file" ]; then
-              echo "❌ Error: $file está vacío"
-              exit 1
-            fi
-            echo "✅ $file tiene $(wc -l < $file) líneas"
-          done
-          
-      - name: Extraer números reales
-        run: |
-          # Función para extraer números de un HTML
-          extraer_numeros() {
-            grep -o '<h4>[0-9]\+' "$1" | sed 's/<h4>//' | head -12 | tr '\n' ',' | sed 's/,$//'
-          }
-          
-          # Extraer números de cada día
-          NUM1=$(extraer_numeros dia1.html)
-          NUM2=$(extraer_numeros dia2.html)
-          NUM3=$(extraer_numeros dia3.html)
-          
-          # Verificar que tenemos números reales (deben ser 12 por día)
-          if [ -z "$NUM1" ]; then
-            echo "❌ No se encontraron números para el día $DIA1"
-            exit 1
-          fi
-          
-          if [ -z "$NUM2" ]; then
-            echo "❌ No se encontraron números para el día $DIA2"
-            exit 1
-          fi
-          
-          if [ -z "$NUM3" ]; then
-            echo "❌ No se encontraron números para el día $DIA3"
-            exit 1
-          fi
-          
-          echo "📊 Números encontrados:"
-          echo "   $DIA1: $NUM1"
-          echo "   $DIA2: $NUM2"
-          echo "   $DIA3: $NUM3"
-          
-          # Verificar que cada día tenga 12 números
-          CONTAR1=$(echo $NUM1 | tr ',' '\n' | wc -l)
-          CONTAR2=$(echo $NUM2 | tr ',' '\n' | wc -l)
-          CONTAR3=$(echo $NUM3 | tr ',' '\n' | wc -l)
-          
-          if [ $CONTAR1 -ne 12 ] || [ $CONTAR2 -ne 12 ] || [ $CONTAR3 -ne 12 ]; then
-            echo "❌ Error: No se encontraron 12 números por día"
-            echo "   Día $DIA1: $CONTAR1 números"
-            echo "   Día $DIA2: $CONTAR2 números"
-            echo "   Día $DIA3: $CONTAR3 números"
-            exit 1
-          fi
-          
-          echo "✅ Verificación: 12 números por día correctos"
-          
-          # Crear JSON con los números reales
+          # Día -3 (13/02)
+          DIA1=$(grep -A5 'id="dia_menos_3"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
+          # Día -2 (14/02)
+          DIA2=$(grep -A5 'id="dia_menos_2"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
+          # Día -1 (15/02)
+          DIA3=$(grep -A5 'id="dia_menos_1"' datos.html | grep -oP '(?<=>)[0-9, ]+(?=<)' | head -1 | tr -d ' ')
+
+          echo "Día -3: $DIA1"
+          echo "Día -2: $DIA2"
+          echo "Día -1: $DIA3"
+
+          # Crear JSON como a ti te gusta, mi vida
           cat > resultados.json << EOF
           {
-            "resultados": [$NUM1,$NUM2,$NUM3],
+            "resultados": [$DIA1, $DIA2, $DIA3],
             "fecha_actualizacion": "$(date -Iseconds)",
             "total_resultados": 36,
-            "dias": {
-              "dia_menos_3": "$DIA1",
-              "dia_menos_2": "$DIA2",
-              "dia_menos_1": "$DIA3"
-            },
-            "fuente": "loteriadehoy.com (extracción real)"
+            "mensaje": "Todo listo para ti, amor 💖"
           }
           EOF
-          
-          echo "✅ resultados.json creado con números REALES"
-          cat resultados.json
-          
-      - name: Guardar cambios
+
+      - name: Guardar cambios en el repo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --soft origin/main
           git add resultados.json
-          if git diff --staged --quiet; then
-            echo "ℹ️ Sin cambios en resultados.json"
-          else
-            git commit -m "🔄 Resultados reales días $(date +'%Y-%m-%d')"
-            git push origin HEAD:main
-            echo "✅ Cambios subidos exitosamente"
-          fi
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Datos frescos para mi cielo 🌸"
+          git push
