@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Resultados Animalitos</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f3ff; padding: 30px; }
+        .container { max-width: 800px; margin: auto; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(107,70,193,0.2); }
+        h1 { color: #6b46c1; text-align: center; margin-bottom: 30px; }
+        .loterias { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .btn-loteria { flex: 1; padding: 12px; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; background: #e9d8fd; color: #553c9a; }
+        .btn-loteria.active { background: #6b46c1; color: white; }
+        .input-area { background: #faf5ff; border-radius: 15px; padding: 20px; margin: 20px 0; }
+        label { display: block; font-weight: 600; margin: 10px 0 5px; color: #2d3748; }
+        textarea { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: monospace; font-size: 1.1rem; resize: vertical; }
+        textarea:focus { border-color: #9f7aea; outline: none; }
+        .info { background: #e9d8fd; padding: 15px; border-radius: 10px; margin: 20px 0; color: #44337a; font-size: 0.95rem; }
+        .btn-guardar { background: #48bb78; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: 600; width: 100%; font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
+        .btn-guardar:hover { background: #38a169; transform: translateY(-2px); }
+        .mensaje { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; }
+        .mensaje.exito { background: #c6f6d5; color: #22543d; display: block; }
+        .mensaje.error { background: #fed7d7; color: #742a2a; display: block; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📥 Cargar resultado del día</h1>
+    <p style="text-align:center; color:#718096;">Ingresá los 12 números de HOY para la lotería seleccionada</p>
+
+    <div class="loterias">
+        <button class="btn-loteria active" onclick="seleccionarLoteria('lotto')">🦁 Lotto Activo</button>
+        <button class="btn-loteria" onclick="seleccionarLoteria('granja')">🐔 Granja Millonaria</button>
+        <button class="btn-loteria" onclick="seleccionarLoteria('guacharo')">🦜 Guacharo Activo</button>
+    </div>
+
+    <div class="input-area">
+        <label>📋 Números de HOY (separados por comas, en orden de 8am a 7pm)</label>
+        <textarea id="numerosInput" rows="4" placeholder="Ej: 30, 23, 21, 2, 36, 16, 35, 20, 11, 1, 5, 0">30, 23, 21, 2, 36, 16, 35, 20, 11, 1, 5, 0</textarea>
+        
+        <div class="info">
+            💡 <strong>Importante:</strong> Cada lotería tiene su propia cantidad de sorteos:<br>
+            - Lotto Activo: 12 sorteos (8am a 7pm)<br>
+            - Granja Millonaria: 10 sorteos<br>
+            - Guacharo Activo: 12 sorteos
+        </div>
+    </div>
+
+    <button class="btn-guardar" onclick="guardarResultado()">💾 Guardar como resultado de HOY</button>
+    <div id="mensaje" class="mensaje"></div>
+</div>
+
+<script>
+    let loteriaActual = 'lotto';
+
+    function seleccionarLoteria(loteria) {
+        loteriaActual = loteria;
+        document.querySelectorAll('.btn-loteria').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    function guardarResultado() {
+        const raw = document.getElementById('numerosInput').value;
+        const nums = raw.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
+        // Validar según la lotería
+        let esperados = 12;
+        if (loteriaActual === 'granja') esperados = 10;
+
+        if (nums.length !== esperados) {
+            mostrarMensaje(`❌ Se requieren exactamente ${esperados} números. Tenés ${nums.length}.`, 'error');
+            return;
+        }
+
+        // Guardar en localStorage (simulado - acá después se puede enviar a GitHub)
+        const datos = {
+            loteria: loteriaActual,
+            numeros: nums,
+            fecha: new Date().toISOString().split('T')[0]
+        };
+
+        // Mostrar éxito
+        mostrarMensaje(`✅ Números de ${loteriaActual} guardados correctamente.`, 'exito');
+        console.log('Datos guardados:', datos);
+    }
+
+    function mostrarMensaje(texto, tipo) {
+        const msg = document.getElementById('mensaje');
+        msg.textContent = texto;
+        msg.className = `mensaje ${tipo}`;
+        setTimeout(() => {
+            msg.style.display = 'none';
+        }, 5000);
+    }
+</script>
+</body>
+</html>

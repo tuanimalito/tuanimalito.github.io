@@ -13,10 +13,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Granja Millionaria - Resultados</title>
-    <!-- Bootstrap Icons para el footer -->
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* Los estilos se mantienen igual */
         * {
             margin: 0;
             padding: 0;
@@ -315,7 +314,7 @@
         <div class="social-links">
             <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
                     class="bi bi-facebook"></i></a>
-            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
+            <a href="https://www.tiktok.com/@animalitotiktok" target="_blank" rel="noopener noreferrer"><i
                     class="bi bi-tiktok"></i></a>
             <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
                     class="bi bi-instagram"></i></a>
@@ -328,296 +327,130 @@
     </footer>
 
     <script>
-        // ===== DICCIONARIO DE ANIMALES (0-38 con ballena) =====
+        // ===== CONFIGURACIÓN =====
+        const JSON_URL = 'data/granja.json';
+
+        // ===== DICCIONARIO DE ANIMALES =====
         const animales = {
-            '00': 'ballena',
-            0: 'delfín',
-            1: 'carnero',
-            2: 'toro',
-            3: 'ciempiés',
-            4: 'alacrán',
-            5: 'león',
-            6: 'rana',
-            7: 'perico',
-            8: 'ratón',
-            9: 'águila',
-            10: 'tigre',
-            11: 'gato',
-            12: 'caballo',
-            13: 'mono',
-            14: 'paloma',
-            15: 'zorro',
-            16: 'oso',
-            17: 'pavo',
-            18: 'burro',
-            19: 'chivo',
-            20: 'cochino',
-            21: 'gallo',
-            22: 'camello',
-            23: 'cebra',
-            24: 'iguana',
-            25: 'gallina',
-            26: 'vaca',
-            27: 'perro',
-            28: 'zamuro',
-            29: 'elefante',
-            30: 'caimán',
-            31: 'lapa',
-            32: 'ardilla',
-            33: 'pescado',
-            34: 'venado',
-            35: 'jirafa',
-            36: 'culebra',
-            37: 'mariposa',
-            38: 'conejo'
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'mariposa', 38: 'conejo'
         };
 
-        // ===== RUTA DE IMÁGENES ACTUALIZADA (GRANJA) =====
         function obtenerRutaImagen(numero) {
-            if (numero === '00') {
-                return 'animalitos/animalitos_granja/00.png';
-            }
+            if (numero === '00' || numero === 0) return 'animalitos/animalitos_granja/00.png';
             return `animalitos/animalitos_granja/${numero}.png`;
         }
 
         function mostrarFecha() {
             const hoy = new Date();
-            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', opciones);
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
         }
 
         function actualizarStatus(mensaje) {
-            const statusBar = document.getElementById('statusBar');
-            statusBar.innerHTML = mensaje;
+            document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        // ===== FUNCIÓN PARA OBTENER FECHAS DINÁMICAS =====
-        function obtenerFechasDinamicas() {
-            const hoy = new Date();
-            const fechas = [];
-            
-            for (let i = 1; i <= 3; i++) {
-                const fecha = new Date(hoy);
-                fecha.setDate(hoy.getDate() - i);
-                
-                const año = fecha.getFullYear();
-                const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-                const dia = String(fecha.getDate()).padStart(2, '0');
-                
-                fechas.push(`${año}-${mes}-${dia}`);
-            }
-            
-            // Invertir para que la más antigua sea primero
-            return fechas.reverse();
-        }
-
-        // ===== FUNCIÓN PARA OBTENER RESULTADOS DE UNA FECHA =====
-        async function obtenerResultadosFecha(fechaStr) {
+        // ===== FUNCIÓN PRINCIPAL =====
+        async function cargarResultados() {
             try {
-                const url = `https://api.allorigins.win/get?url=${encodeURIComponent('https://loteriadehoy.com/animalito/granjamillionaria/resultados/' + fechaStr + '/')}`;
-                const response = await fetch(url);
+                actualizarStatus('🔄 Cargando resultados...');
+                const response = await fetch(JSON_URL + '?t=' + Date.now());
                 const data = await response.json();
 
-                const resultados = [];
-                const regex = /<h4[^>]*>(\d{1,2})\s+([A-Za-zÁ-ú]+)<\/h4>\s*<h5[^>]*>Granja Millionaria\s*(\d{2}:\d{2}\s*(?:AM|PM))<\/h5>/gi;
+                if (data.resultados && data.resultados.length === 3) {
+                    const [dia3, dia2, dia1] = data.resultados;
 
-                let match;
-                while ((match = regex.exec(data.contents)) !== null) {
-                    const numero = parseInt(match[1], 10);
-                    const animal = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    const hora = match[3];
+                    // Construir array de 30 resultados (10 por día)
+                    const todos = [
+                        ...dia3.map((num, idx) => ({ numero: num, casilla: idx + 1 })),
+                        ...dia2.map((num, idx) => ({ numero: num, casilla: idx + 11 })),
+                        ...dia1.map((num, idx) => ({ numero: num, casilla: idx + 21 }))
+                    ];
 
-                    if (numero >= 0 && numero <= 38) {
-                        resultados.push({ numero, animal, hora });
+                    const resultado = buscarRepeticion(todos);
+                    
+                    if (resultado.encontrado) {
+                        mostrarResultados(resultado.siguientes);
+                        actualizarStatus(`✅ Actualizado: ${new Date(data.fecha_actualizacion).toLocaleString()}`);
+                    } else {
+                        mostrarResultados([]);
+                        actualizarStatus('No se encontraron repeticiones');
                     }
                 }
-
-                // Ordenar por hora
-                return resultados.sort((a, b) => {
-                    const ordenHoras = {
-                        '08:00 AM': 1, '09:00 AM': 2, '10:00 AM': 3, '11:00 AM': 4,
-                        '12:00 PM': 5, '01:00 PM': 6, '02:00 PM': 7, '03:00 PM': 8,
-                        '04:00 PM': 9, '05:00 PM': 10, '06:00 PM': 11, '07:00 PM': 12
-                    };
-                    return ordenHoras[a.hora] - ordenHoras[b.hora];
-                });
-
             } catch (error) {
-                console.error(`Error obteniendo ${fechaStr}:`, error);
-                return [];
+                console.error('Error:', error);
+                mostrarResultados([]);
+                actualizarStatus('❌ Error al cargar');
             }
         }
 
-        // ===== COMBINA LOS 3 DÍAS EN UN SOLO ARRAY CON CASILLAS (30 casillas) =====
-        async function obtenerTodosLosResultados() {
-            const fechas = obtenerFechasDinamicas();
-            
-            console.log('📅 Fechas analizadas:', fechas);
-            
-            const todosLosResultados = [];
-            
-            for (const fecha of fechas) {
-                const resultados = await obtenerResultadosFecha(fecha);
-                todosLosResultados.push(...resultados);
-            }
-            
-            // Asignar número de casilla (1-30)
-            return todosLosResultados.map((resultado, index) => ({
-                ...resultado,
-                casilla: index + 1
-            }));
-        }
-
-        // ===== FUNCIÓN PARA BUSCAR REPETICIÓN CON 30 CASILLAS =====
-        function buscarRepeticionPorCasillas(resultados) {
-            const totalCasillas = resultados.length; // Deberían ser 30
-            const resultadosPorDia = 10;
-            
-            console.log(`📊 Analizando ${totalCasillas} casillas (${resultadosPorDia} por día)`);
-            
-            // Crear un mapa para búsqueda rápida
-            const mapaNumeros = new Map();
-            
-            // Registrar cada resultado con su casilla
+        // ===== LÓGICA DE BÚSQUEDA PARA 30 CASILLAS =====
+        function buscarRepeticion(resultados) {
+            const mapa = new Map();
             resultados.forEach(r => {
-                if (!mapaNumeros.has(r.numero)) {
-                    mapaNumeros.set(r.numero, []);
-                }
-                mapaNumeros.get(r.numero).push(r);
+                if (!mapa.has(r.numero)) mapa.set(r.numero, []);
+                mapa.get(r.numero).push(r);
             });
-            
-            // El último día ocupa las casillas 21-30 (índices 20-29)
-            const inicioUltimoDia = 20; // índice 20 = casilla 21
-            const finUltimoDia = 30;    // hasta índice 29 = casilla 30
-            
-            // Buscar el primer número del último día que se repite
-            for (let i = inicioUltimoDia; i < finUltimoDia; i++) {
-                if (i >= resultados.length) break;
-                
-                const resultadoActual = resultados[i];
-                
-                // Buscar en días anteriores (casillas 1-20)
-                const repeticiones = mapaNumeros.get(resultadoActual.numero)?.filter(r => r.casilla <= 20) || [];
-                
+
+            // Último día: casillas 21-30 (índices 20-29)
+            for (let i = 20; i < 30; i++) {
+                const actual = resultados[i];
+                const repeticiones = (mapa.get(actual.numero) || []).filter(r => r.casilla <= 20);
+
                 if (repeticiones.length > 0) {
-                    // Encontrar la repetición con la casilla más cercana
-                    const repeticion = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                    
-                    console.log(`✅ Repetición encontrada: Casilla ${resultadoActual.casilla} (${resultadoActual.numero}) coincide con casilla ${repeticion.casilla}`);
-                    
-                    // Determinar las siguientes 4 casillas después de la repetición
-                    const casillaRepeticion = repeticion.casilla;
-                    const siguientesCasillas = [];
-                    
+                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
+                    const siguientes = [];
+
                     for (let j = 1; j <= 4; j++) {
-                        const casillaSiguiente = casillaRepeticion + j;
-                        // Asegurar que no nos pasemos de las 30 casillas
-                        if (casillaSiguiente <= 30) {
-                            const resultado = resultados.find(r => r.casilla === casillaSiguiente);
-                            if (resultado) {
-                                siguientesCasillas.push(resultado);
-                                console.log(`   ✓ Siguiente ${j}: casilla ${casillaSiguiente} - ${resultado.numero}`);
-                            }
-                        }
+                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
+                        if (sig) siguientes.push(sig);
                     }
-                    
-                    return {
-                        encontrado: true,
-                        siguientes: siguientesCasillas
-                    };
+
+                    if (siguientes.length > 0) return { encontrado: true, siguientes };
                 }
             }
-            
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== FUNCIÓN PARA MOSTRAR SOLO LOS 4 NÚMEROS =====
-        function mostrarResultadoBusqueda(siguientes) {
+        // ===== MOSTRAR RESULTADOS =====
+        function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
-
+            
             if (!siguientes || siguientes.length === 0) {
-                contenedor.innerHTML = `<div class="no-data">No hay resultados disponibles</div>`;
+                contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles</div>';
                 return;
             }
 
-            let html = `<div class="numeros-grid">`;
-
+            let html = '<div class="numeros-grid">';
             siguientes.forEach(r => {
-                let numeroParaImagen;
-                let numeroDisplay;
-                let nombreAnimal;
-                
-                if (r.numero === 0 && r.animal === 'ballena') {
-                    numeroParaImagen = '00';
-                    numeroDisplay = '00';
-                    nombreAnimal = 'ballena';
-                } else {
-                    numeroParaImagen = r.numero;
-                    numeroDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
-                    nombreAnimal = animales[r.numero];
-                }
+                const numDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
+                const nombreAnimal = animales[r.numero] || 'desconocido';
 
                 html += `
                     <div class="numero-card">
-                        <div class="numero">${numeroDisplay}</div>
-                        <img src="${obtenerRutaImagen(numeroParaImagen)}" alt="${nombreAnimal}">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_granja/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
             });
-
-            html += `</div>`;
+            html += '</div>';
             contenedor.innerHTML = html;
-        }
-
-        // ===== FUNCIÓN PRINCIPAL =====
-        async function iniciarBusqueda() {
-            actualizarStatus('🔄 Cargando...');
-            
-            const todosLosResultados = await obtenerTodosLosResultados();
-            console.log('📋 Resultados con casillas (1-30):');
-            todosLosResultados.forEach(r => {
-                console.log(`Casilla ${String(r.casilla).padStart(2, '0')}: ${r.numero} (${r.animal})`);
-            });
-            
-            const resultado = buscarRepeticionPorCasillas(todosLosResultados);
-            
-            if (resultado.encontrado && resultado.siguientes.length > 0) {
-                mostrarResultadoBusqueda(resultado.siguientes);
-                actualizarStatus('');
-            } else {
-                mostrarResultadoBusqueda([]);
-                actualizarStatus('');
-            }
-        }
-
-        // ===== ACTUALIZACIÓN AUTOMÁTICA CADA 24 HORAS =====
-        function programarActualizacionDiaria() {
-            const ahora = new Date();
-            const manana = new Date(ahora);
-            manana.setDate(ahora.getDate() + 1);
-            manana.setHours(0, 0, 0, 0);
-            
-            const tiempoHastaManana = manana - ahora;
-            
-            console.log(`⏰ Próxima actualización en ${Math.round(tiempoHastaManana / 1000 / 60)} minutos`);
-            
-            setTimeout(() => {
-                console.log('🔄 Actualización diaria ejecutada');
-                iniciarBusqueda();
-                
-                setInterval(() => {
-                    console.log('🔄 Actualización diaria ejecutada');
-                    iniciarBusqueda();
-                }, 24 * 60 * 60 * 1000);
-                
-            }, tiempoHastaManana);
         }
 
         window.onload = () => {
             mostrarFecha();
-            iniciarBusqueda();
-            programarActualizacionDiaria();
+            cargarResultados();
+            setInterval(cargarResultados, 6 * 60 * 60 * 1000);
         };
     </script>
 </body>

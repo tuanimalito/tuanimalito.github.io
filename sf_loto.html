@@ -12,11 +12,10 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Activo - Resultados Dr. Animalitos</title>
+    <title>Lotto Activo - Resultados</title>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* ===== ESTILOS COMPLETOS ===== */
         * {
             margin: 0;
             padding: 0;
@@ -186,49 +185,6 @@
             color: #999;
             font-size: 1.2rem;
         }
-        
-        .mensaje-error {
-            text-align: center;
-            padding: 50px 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-        
-        .mensaje-error i {
-            font-size: 4rem;
-            color: #ff6b6b;
-            margin-bottom: 20px;
-        }
-        
-        .mensaje-error h4 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        
-        .mensaje-error p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-        
-        .boton-reintentar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .boton-reintentar:hover {
-            transform: translateY(-2px);
-        }
 
         .footer {
             max-width: 800px;
@@ -372,8 +328,8 @@
 
     <script>
         // ===== CONFIGURACIÓN =====
-        const RESULTADOS_URL = 'resultados.json';
-        
+        const JSON_URL = 'data/lotto.json';
+
         // ===== DICCIONARIO DE ANIMALES =====
         const animales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
@@ -384,13 +340,6 @@
             24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
             29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
             34: 'venado', 35: 'jirafa', 36: 'culebra'
-        };
-
-        // ===== ORDEN DE HORAS =====
-        const ordenHoras = {
-            '08:00 AM': 1, '09:00 AM': 2, '10:00 AM': 3, '11:00 AM': 4,
-            '12:00 PM': 5, '01:00 PM': 6, '02:00 PM': 7, '03:00 PM': 8,
-            '04:00 PM': 9, '05:00 PM': 10, '06:00 PM': 11, '07:00 PM': 12
         };
 
         function obtenerRutaImagen(numero) {
@@ -409,145 +358,81 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        // ===== FUNCIÓN PARA OBTENER FECHAS DINÁMICAS =====
-        function obtenerFechasDinamicas() {
-            const hoy = new Date();
-            const fechas = [];
-            
-            for (let i = 3; i >= 1; i--) {
-                const fecha = new Date(hoy);
-                fecha.setDate(hoy.getDate() - i);
-                
-                const año = fecha.getFullYear();
-                const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-                const dia = String(fecha.getDate()).padStart(2, '0');
-                
-                fechas.push(`${año}-${mes}-${dia}`);
+        // ===== FUNCIÓN PRINCIPAL =====
+        async function cargarResultados() {
+            try {
+                actualizarStatus('🔄 Cargando resultados...');
+                const response = await fetch(JSON_URL + '?t=' + Date.now());
+                const data = await response.json();
+
+                if (data.resultados && data.resultados.length === 3) {
+                    const [dia3, dia2, dia1] = data.resultados;
+
+                    // Construir array de 36 resultados con casillas
+                    const todos = [
+                        ...dia3.map((num, idx) => ({ numero: num, casilla: idx + 1 })),
+                        ...dia2.map((num, idx) => ({ numero: num, casilla: idx + 13 })),
+                        ...dia1.map((num, idx) => ({ numero: num, casilla: idx + 25 }))
+                    ];
+
+                    const resultado = buscarRepeticion(todos);
+                    
+                    if (resultado.encontrado) {
+                        mostrarResultados(resultado.siguientes);
+                        actualizarStatus(`✅ Actualizado: ${new Date(data.fecha_actualizacion).toLocaleString()}`);
+                    } else {
+                        mostrarResultados([]);
+                        actualizarStatus('No se encontraron repeticiones');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarResultados([]);
+                actualizarStatus('❌ Error al cargar');
             }
-            
-            return fechas; // [fechaAntigua, fechaIntermedia, fechaReciente]
         }
 
-        // ===== ORGANIZAR RESULTADOS POR FECHA =====
-        function organizarResultadosPorFecha(resultadosNumeros) {
-            const fechas = obtenerFechasDinamicas();
-            const resultadosPorFecha = {};
-            const resultadosCompletos = [];
-            
-            // Distribuir 12 números por fecha
-            const numerosPorFecha = 12;
-            
-            fechas.forEach((fecha, indexFecha) => {
-                resultadosPorFecha[fecha] = [];
-                const inicio = indexFecha * numerosPorFecha;
-                const fin = inicio + numerosPorFecha;
-                
-                for (let i = inicio; i < fin && i < resultadosNumeros.length; i++) {
-                    const numero = resultadosNumeros[i];
-                    
-                    // Asignar hora basada en la posición
-                    const horaIndex = i % numerosPorFecha;
-                    const horas = Object.keys(ordenHoras);
-                    const hora = horas[horaIndex] || '';
-                    
-                    const resultado = {
-                        numero: numero,
-                        animal: animales[numero] || 'desconocido',
-                        hora: hora,
-                        fecha: fecha,
-                        casilla: i + 1
-                    };
-                    
-                    resultadosPorFecha[fecha].push(resultado);
-                    resultadosCompletos.push(resultado);
-                }
+        // ===== LÓGICA DE BÚSQUEDA =====
+        function buscarRepeticion(resultados) {
+            const mapa = new Map();
+            resultados.forEach(r => {
+                if (!mapa.has(r.numero)) mapa.set(r.numero, []);
+                mapa.get(r.numero).push(r);
             });
-            
-            console.log('📅 Fechas:', fechas);
-            console.log('📊 Resultados por fecha:', resultadosPorFecha);
-            
-            return { resultadosPorFecha, resultadosCompletos, fechas };
-        }
 
-        // ===== FUNCIÓN DE BÚSQUEDA MEJORADA CON FALLBACK =====
-        function buscarRepeticion(resultadosPorFecha, fechas) {
-            const fechaReciente = fechas[2];
-            const fechaIntermedia = fechas[1];
-            const fechaAntigua = fechas[0];
-            
-            const resultadosRecientes = resultadosPorFecha[fechaReciente] || [];
-            const resultadosIntermedios = resultadosPorFecha[fechaIntermedia] || [];
-            const resultadosAntiguos = resultadosPorFecha[fechaAntigua] || [];
-            
-            console.log('🔍 Buscando repeticiones...');
-            
-            // Buscar en cada resultado del día reciente
-            for (let i = 0; i < resultadosRecientes.length; i++) {
-                const actual = resultadosRecientes[i];
-                const numeroBuscado = actual.numero;
-                
-                console.log(`Probando: ${actual.hora} - N°${numeroBuscado}`);
-                
-                // Buscar en fecha intermedia
-                const indiceIntermedio = resultadosIntermedios.findIndex(r => r.numero === numeroBuscado);
-                if (indiceIntermedio !== -1) {
-                    console.log(`✅ Encontrado en ${fechaIntermedia} posición ${indiceIntermedio + 1}`);
-                    
+            for (let i = 24; i < 36; i++) {
+                const actual = resultados[i];
+                const repeticiones = (mapa.get(actual.numero) || []).filter(r => r.casilla <= 24);
+
+                if (repeticiones.length > 0) {
+                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
                     const siguientes = [];
+
                     for (let j = 1; j <= 4; j++) {
-                        const sigIdx = indiceIntermedio + j;
-                        if (sigIdx < resultadosIntermedios.length) {
-                            siguientes.push(resultadosIntermedios[sigIdx]);
-                        }
+                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
+                        if (sig) siguientes.push(sig);
                     }
-                    
-                    if (siguientes.length > 0) {
-                        return { encontrado: true, siguientes, esFallback: false };
-                    }
-                }
-                
-                // Buscar en fecha antigua
-                const indiceAntiguo = resultadosAntiguos.findIndex(r => r.numero === numeroBuscado);
-                if (indiceAntiguo !== -1) {
-                    console.log(`✅ Encontrado en ${fechaAntigua} posición ${indiceAntiguo + 1}`);
-                    
-                    const siguientes = [];
-                    for (let j = 1; j <= 4; j++) {
-                        const sigIdx = indiceAntiguo + j;
-                        if (sigIdx < resultadosAntiguos.length) {
-                            siguientes.push(resultadosAntiguos[sigIdx]);
-                        }
-                    }
-                    
-                    if (siguientes.length > 0) {
-                        return { encontrado: true, siguientes, esFallback: false };
-                    }
+
+                    if (siguientes.length > 0) return { encontrado: true, siguientes };
                 }
             }
-            
-            // FALLBACK: Si no encuentra repeticiones, mostrar los primeros 4 números del día reciente
-            console.log('⚠️ No se encontraron repeticiones, mostrando primeros 4 números como fallback');
-            
-            if (resultadosRecientes.length >= 4) {
-                return {
-                    encontrado: true,
-                    siguientes: resultadosRecientes.slice(0, 4),
-                    esFallback: true
-                };
-            }
-            
             return { encontrado: false, siguientes: [] };
         }
 
         // ===== MOSTRAR RESULTADOS =====
-        function mostrarResultados(siguientes, esFallback = false) {
+        function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
             
+            if (!siguientes || siguientes.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles</div>';
+                return;
+            }
+
             let html = '<div class="numeros-grid">';
             siguientes.forEach(r => {
                 const numDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
                 const nombreAnimal = r.numero === 0 ? 'delfín/ballena' : animales[r.numero];
-                
+
                 html += `
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
@@ -558,80 +443,13 @@
                 `;
             });
             html += '</div>';
-            
-            if (esFallback) {
-                html += '<p style="text-align:center; color:#999; margin-top:10px; font-size:0.9rem;">⚠️ Mostrando últimos resultados disponibles</p>';
-            }
-            
             contenedor.innerHTML = html;
         }
 
-        // ===== MOSTRAR MENSAJE DE ERROR =====
-        function mostrarMensajeError(mensaje = '') {
-            const contenedor = document.getElementById('resultado-contenido');
-            contenedor.innerHTML = `
-                <div class="mensaje-error">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    <h4>Resultados no disponibles</h4>
-                    <p>${mensaje || 'Intenta de nuevo más tarde'}</p>
-                    <button class="boton-reintentar" onclick="location.reload()">
-                        <i class="bi bi-arrow-clockwise"></i> Reintentar
-                    </button>
-                </div>
-            `;
-        }
-
-        // ===== CARGAR RESULTADOS PRINCIPAL =====
-        async function cargarResultados() {
-            try {
-                actualizarStatus('🔄 Cargando resultados...');
-                
-                const response = await fetch(RESULTADOS_URL + '?t=' + Date.now());
-                
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
-                }
-                
-                const datos = await response.json();
-                
-                if (datos.resultados && datos.resultados.length >= 24) {
-                    
-                    const { resultadosPorFecha, fechas } = organizarResultadosPorFecha(datos.resultados);
-                    const resultado = buscarRepeticion(resultadosPorFecha, fechas);
-                    
-                    if (resultado.encontrado) {
-                        mostrarResultados(resultado.siguientes, resultado.esFallback || false);
-                        if (resultado.esFallback) {
-                            actualizarStatus('⚠️ Mostrando últimos resultados (modo de prueba)');
-                        } else {
-                            const fechaActualizacion = datos.fecha_actualizacion ? 
-                                new Date(datos.fecha_actualizacion).toLocaleString() : '';
-                            actualizarStatus(`✅ Resultados actualizados ${fechaActualizacion}`);
-                        }
-                    } else {
-                        mostrarMensajeError('No se encontró patrón de repetición');
-                    }
-                    
-                } else {
-                    mostrarMensajeError('Datos insuficientes (se necesitan 24 números)');
-                }
-                
-            } catch (error) {
-                console.error('❌ Error:', error);
-                mostrarMensajeError('Error al cargar resultados');
-            }
-        }
-
-        // ===== INICIALIZACIÓN =====
         window.onload = () => {
             mostrarFecha();
             cargarResultados();
-            
-            // Actualizar cada 6 horas
-            setInterval(() => {
-                console.log('🔄 Actualización automática...');
-                cargarResultados();
-            }, 6 * 60 * 60 * 1000);
+            setInterval(cargarResultados, 6 * 60 * 60 * 1000);
         };
     </script>
 </body>
