@@ -264,10 +264,58 @@
 
 <body>
     <div class="tarjeta">
-        <div class="cabecera">
-            <h1>Guacharo Activo</h1>
-            <div class="sub">Dr.animalitos</div>
+       <div class="cabecera" style="position: relative; padding-left: 100px;">
+    <!-- Menú a la izquierda -->
+    <div style="position: absolute; top: 50%; left: 30px; transform: translateY(-50%); z-index: 10;">
+        <div class="dropdown" style="position: relative; display: inline-block;">
+            <button style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 18px; border-radius: 40px; font-size: 1rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(5px); transition: all 0.3s;">
+                <i class="bi bi-grid" style="font-size: 1.2rem;"></i>
+                <span>Más loterías</span>
+                <i class="bi bi-chevron-down" style="font-size: 0.9rem;"></i>
+            </button>
+            <div style="display: none; position: absolute; top: 50px; left: 0; background: white; min-width: 240px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); overflow: hidden; z-index: 100;" class="dropdown-menu">
+                <a href="index.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
+                    <i class="bi bi-house-door-fill" style="color: #667eea;"></i> Inicio
+                </a>
+                <a href="sf_loto.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
+                    <i class="bi bi-dice-6-fill" style="color: #667eea;"></i> Lotto Activo
+                </a>
+                <a href="sf_granja.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
+                    <i class="bi bi-flower2" style="color: #667eea;"></i> Granja Millonaria
+                </a>
+                <a href="sf_guacharo.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; transition: 0.2s;">
+                    <i class="bi bi-feather" style="color: #667eea;"></i> Guacharo Activo
+                </a>
+            </div>
         </div>
+    </div>
+    
+    <!-- Título centrado (se ajusta automáticamente) -->
+    <h1>Guacharo Activo</h1></h1>
+    <div class="sub">Dr.animalitos</div>
+</div>
+
+<script>
+    (function() {
+        const button = document.querySelector('.dropdown button');
+        const menu = document.querySelector('.dropdown-menu');
+        
+        if (button && menu) {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            document.addEventListener('click', function() {
+                menu.style.display = 'none';
+            });
+            
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    })();
+</script>
 
         <div class="fecha">
             <span id="fechaActual"></span>
@@ -461,5 +509,6 @@
         };
     </script>
 </body>
+
 
 </html>
