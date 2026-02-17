@@ -1,20 +1,10 @@
-# Si existe resultados.json, lo leemos
-if [ -f resultados.json ]; then
-  # Extraer los arrays de forma segura
-  OLD_JSON=$(cat resultados.json)
-  
-  # Extraer cada array por separado
-  DIA1_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | head -1 | tr -d ' ' | sed 's/,/ /g')
-  DIA2_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -2 | head -1 | tr -d ' ' | sed 's/,/ /g')
-  DIA3_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -1 | tr -d ' ' | sed 's/,/ /g')
-  
-  # Convertir espacios a comas
-  NUEVO_DIA1=$(echo $DIA2_ARRAY | tr ' ' ',')
-  NUEVO_DIA2=$(echo $DIA3_ARRAY | tr ' ' ',')
-  NUEVO_DIA3="${{ env.NUMEROS_HOY }}"
-else
-  # Si no existe, usamos los datos que ya tenías como base
-  NUEVO_DIA1="35,21,16,30,0,5,28,2,29,7,36,32"
-  NUEVO_DIA2="28,8,30,27,1,32,7,0,17,24,2,19"
-  NUEVO_DIA3="${{ env.NUMEROS_HOY }}"
-fi
+{
+  "resultados": [, , ],
+  "fecha_actualizacion": "2026-02-17T04:59:02+00:00",
+  "total_resultados": 36,
+  "dias": {
+    "dia_menos_3": "2026-02-14",
+    "dia_menos_2": "2026-02-15",
+    "dia_menos_1": "2026-02-16"
+  }
+}
