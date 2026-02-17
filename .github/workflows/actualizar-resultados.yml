@@ -18,37 +18,38 @@ jobs:
         run: |
           curl -s -L "https://elbrujodelosanimalitos.com/resultados-animalitos/" > hoy.html
 
-      - name: Extraer números de Lotto Activo (hoy) - VERSIÓN CORREGIDA
+      - name: Extraer números de Lotto Activo (hoy) - VERSIÓN MEJORADA
         run: |
-          # Extraer números de forma directa y robusta
-          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -o '[0-9]\+ -' | sed 's/ -//' | head -12 | tr '\n' ',' | sed 's/,$//')
+          # Extraer números de forma más robusta
+          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -E '[0-9]+ -' | sed -E 's/.*([0-9]+) -.*/\1/' | head -12 | tr '\n' ',' | sed 's/,$//')
           echo "NUMEROS_HOY=$numeros_hoy" >> $GITHUB_ENV
           echo "📊 Números de hoy extraídos: $numeros_hoy"
 
-      - name: Leer resultados.json anterior y rotar
+      - name: Leer resultados.json anterior y rotar - VERSIÓN CORREGIDA
         run: |
           # Si existe resultados.json, lo leemos
           if [ -f resultados.json ]; then
-            # Extraer los arrays (esto es un poco artesanal pero efectivo)
             OLD_JSON=$(cat resultados.json)
-            DIA1=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | head -1 | tr -d ' ' | sed 's/,/ /g')
-            DIA2=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -2 | head -1 | tr -d ' ' | sed 's/,/ /g')
-            DIA3=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -1 | tr -d ' ' | sed 's/,/ /g')
+            
+            # Extraer cada array por separado
+            DIA1_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | head -1 | tr -d ' ' | sed 's/,/ /g')
+            DIA2_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -2 | head -1 | tr -d ' ' | sed 's/,/ /g')
+            DIA3_ARRAY=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -1 | tr -d ' ' | sed 's/,/ /g')
             
             # Rotar: el día -3 se elimina, los demás se desplazan
-            NUEVO_DIA1=$(echo $DIA2 | tr ' ' ',')
-            NUEVO_DIA2=$(echo $DIA3 | tr ' ' ',')
+            NUEVO_DIA1=$(echo $DIA2_ARRAY | tr ' ' ',')
+            NUEVO_DIA2=$(echo $DIA3_ARRAY | tr ' ' ',')
             NUEVO_DIA3=${{ env.NUMEROS_HOY }}
           else
             # Si no existe, usamos los datos que ya tenías como base
-            NUEVO_DIA1="35,21,16,30,0,5,28,2,29,7,36,32"   # 14/02 (pasa a ser día -3)
-            NUEVO_DIA2="28,8,30,27,1,32,7,0,17,24,2,19"     # 15/02 (pasa a ser día -2)
-            NUEVO_DIA3="${{ env.NUMEROS_HOY }}"             # 16/02 (día -1)
+            NUEVO_DIA1="35,21,16,30,0,5,28,2,29,7,36,32"
+            NUEVO_DIA2="28,8,30,27,1,32,7,0,17,24,2,19"
+            NUEVO_DIA3="${{ env.NUMEROS_HOY }}"
           fi
 
-          echo "✅ Nuevo día -3 (antes día -2): $NUEVO_DIA1"
-          echo "✅ Nuevo día -2 (antes día -1): $NUEVO_DIA2"
-          echo "✅ Nuevo día -1 (hoy): $NUEVO_DIA3"
+          echo "✅ Nuevo día -3: $NUEVO_DIA1"
+          echo "✅ Nuevo día -2: $NUEVO_DIA2"
+          echo "✅ Nuevo día -1: $NUEVO_DIA3"
 
           # Guardar en nuevo JSON
           cat > resultados.json << EOF
