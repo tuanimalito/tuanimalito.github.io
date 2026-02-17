@@ -18,11 +18,12 @@ jobs:
         run: |
           curl -s -L "https://elbrujodelosanimalitos.com/resultados-animalitos/" > hoy.html
 
-      - name: Extraer números de Lotto Activo (hoy)
+      - name: Extraer números de Lotto Activo (hoy) - VERSIÓN CORREGIDA
         run: |
-          # Buscar la sección "## Lotto Activo" y extraer las líneas con números
-          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -oP '(?<=>)\d+(?= -)' | head -12 | tr '\n' ',' | sed 's/,$//')
+          # Extraer números de forma directa y robusta
+          numeros_hoy=$(grep -A20 '## Lotto Activo' hoy.html | grep -o '[0-9]\+ -' | sed 's/ -//' | head -12 | tr '\n' ',' | sed 's/,$//')
           echo "NUMEROS_HOY=$numeros_hoy" >> $GITHUB_ENV
+          echo "📊 Números de hoy extraídos: $numeros_hoy"
 
       - name: Leer resultados.json anterior y rotar
         run: |
@@ -35,8 +36,8 @@ jobs:
             DIA3=$(echo "$OLD_JSON" | grep -oP '(?<="resultados": \[)[^\]]+' | tail -1 | tr -d ' ' | sed 's/,/ /g')
             
             # Rotar: el día -3 se elimina, los demás se desplazan
-            NUEVO_DIA1=$DIA2
-            NUEVO_DIA2=$DIA3
+            NUEVO_DIA1=$(echo $DIA2 | tr ' ' ',')
+            NUEVO_DIA2=$(echo $DIA3 | tr ' ' ',')
             NUEVO_DIA3=${{ env.NUMEROS_HOY }}
           else
             # Si no existe, usamos los datos que ya tenías como base
@@ -44,6 +45,10 @@ jobs:
             NUEVO_DIA2="28,8,30,27,1,32,7,0,17,24,2,19"     # 15/02 (pasa a ser día -2)
             NUEVO_DIA3="${{ env.NUMEROS_HOY }}"             # 16/02 (día -1)
           fi
+
+          echo "✅ Nuevo día -3 (antes día -2): $NUEVO_DIA1"
+          echo "✅ Nuevo día -2 (antes día -1): $NUEVO_DIA2"
+          echo "✅ Nuevo día -1 (hoy): $NUEVO_DIA3"
 
           # Guardar en nuevo JSON
           cat > resultados.json << EOF
