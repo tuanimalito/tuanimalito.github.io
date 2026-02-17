@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos Lotto Activo - Para Workflow</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f9f9ff; padding: 30px; }
+        .contenedor { max-width: 800px; margin: auto; }
+        h1 { color: #6b46c1; }
+        .dia { background: white; border-radius: 20px; padding: 20px; margin: 20px 0; box-shadow: 0 5px 15px rgba(107,70,193,0.1); }
+        .numeros { font-size: 1.5rem; font-weight: bold; color: #2d3748; background: #f0f0ff; padding: 15px; border-radius: 15px; }
+        .fecha { color: #718096; }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>🐾 Resultados Lotto Activo</h1>
+        <p>Estos son los datos que lee el workflow, mi amor 💖</p>
+
+        <!-- DÍA -3: 13/02/2026 -->
+        <div class="dia" id="dia_menos_3">
+            <h2>📆 Día -3: 13 de febrero de 2026</h2>
+            <div class="numeros">19, 29, 15, 18, 21, 36, 27, 1, 9, 22, 1, 29</div>
+        </div>
+
+        <!-- DÍA -2: 14/02/2026 -->
+        <div class="dia" id="dia_menos_2">
+            <h2>📆 Día -2: 14 de febrero de 2026</h2>
+            <div class="numeros">35, 21, 16, 30, 0, 5, 28, 2, 29, 7, 36, 32</div>
+        </div>
+
+        <!-- DÍA -1: 15/02/2026 -->
+        <div class="dia" id="dia_menos_1">
+            <h2>📆 Día -1: 15 de febrero de 2026</h2>
+            <div class="numeros">28, 8, 30, 27, 1, 32, 7, 0, 17, 24, 2, 19</div>
+        </div>
+
+        <p class="fecha">✨ Actualizado: <span id="fecha_actualizacion"></span></p>
+    </div>
+    <script>
+        document.getElementById('fecha_actualizacion').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
