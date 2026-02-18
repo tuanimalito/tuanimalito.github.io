@@ -1,0 +1,66 @@
+name: 🤖 Actualización Automática de Resultados
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 8:30 PM (hora Venezuela)
+    - cron: '0 0 * * *'  # 8pm en Venezuela = 0 UTC
+  workflow_dispatch:  # Permite ejecución manual
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Instalar dependencias
+        run: |
+          mkdir -p scripts
+          cd scripts
+          echo '{"dependencies":{"node-fetch":"^3.3.2"}}' > package.json
+          npm install
+
+      - name: 🔍 Obtener resultados de la API
+        id: obtener
+        run: |
+          # Copiar el script (lo creamos en el paso anterior)
+          node scripts/obtener_de_api.js
+        continue-on-error: true
+
+      - name: 📤 Actualizar archivos JSON
+        if: success()
+        run: |
+          if [ -f temp_resultados/nuevos.json ]; then
+            # Leer los resultados
+            NUEVOS=$(cat temp_resultados/nuevos.json)
+            
+            # Actualizar guacharo.json
+            if [ -f data/guacharo.json ]; then
+              node -e "
+                const fs = require('fs');
+                const nuevos = JSON.parse(process.env.NUEVOS);
+                const actual = JSON.parse(fs.readFileSync('data/guacharo.json'));
+                const [diaViejo, diaMedio, diaReciente] = actual.resultados;
+                actual.resultados = [diaMedio, diaReciente, nuevos.guacharo];
+                actual.fecha_actualizacion = new Date().toISOString();
+                fs.writeFileSync('data/guacharo.json', JSON.stringify(actual, null, 2));
+              "
+              echo "✅ guacharo.json actualizado"
+            fi
+          fi
+
+      - name: 📤 Commit y push
+        run: |
+          git config --global user.name "Dr. Animalitos Bot"
+          git config --global user.email "bot@tuanimalito.github.io"
+          git add data/*.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Actualización automática $(date +'%d/%m/%Y')"
+          git push
