@@ -1,0 +1,207 @@
+name: 🤖 Actualizar Resultados Diarios
+
+on:
+  # Se ejecuta todos los días a las 8:00 PM (hora Venezuela)
+  schedule:
+    - cron: '0 0 * * *'  # 8pm en Venezuela son 0 UTC
+  # También permite ejecución manual desde la interfaz de GitHub
+  workflow_dispatch:
+    inputs:
+      loteria:
+        description: 'Lotería a actualizar (todas si se deja vacío)'
+        required: false
+        default: 'todas'
+        type: choice
+        options:
+          - todas
+          - lotto
+          - granja
+          - guacharo
+
+# Permisos necesarios para escribir en el repositorio
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  actualizar_resultados:
+    runs-on: ubuntu-latest
+    name: Actualizar JSON de resultados
+    
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Obtener todo el historial para comparar cambios
+      
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 📦 Instalar dependencias (si las hay)
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          fi
+        continue-on-error: true
+      
+      - name: 🐍 Configurar Python (opcional, por si prefieres Python)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: 🔍 Obtener resultados del día
+        id: obtener_datos
+        run: |
+          echo "🔍 Buscando resultados para $(date +%Y-%m-%d)"
+          
+          # Crear directorio temporal
+          mkdir -p temp_resultados
+          
+          # Aquí puedes elegir: JavaScript o Python
+          # Yo recomiendo JavaScript por simplicidad
+          
+          # Opción 1: JavaScript (recomendada)
+          cat > temp_resultados/obtener_datos.js << 'EOF'
+          const fs = require('fs');
+          
+          // Simulación de obtención de datos
+          // EN EL FUTURO: Aquí harías fetch a una API real
+          function obtenerResultadosReales() {
+            // Esto es un EJEMPLO - reemplázalo con tu lógica real
+            return {
+              lotto: [35, 21, 16, 30, 0, 5, 28, 2, 29, 7, 36, 32],
+              granja: [30, 29, 23, 38, 37, 8, 12, 36, 10, 22],
+              guacharo: ["00", 36, 72, 22, 39, 71, 54, 27, 44, 0, 30, 59]
+            };
+          }
+          
+          const resultados = obtenerResultadosReales();
+          fs.writeFileSync('temp_resultados/nuevos.json', JSON.stringify(resultados, null, 2));
+          console.log('✅ Datos obtenidos y guardados');
+          EOF
+          
+          # Ejecutar el script JavaScript
+          node temp_resultados/obtener_datos.js
+          
+          # Mostrar los datos obtenidos
+          echo "📊 Datos obtenidos:"
+          cat temp_resultados/nuevos.json
+      
+      - name: 🔄 Actualizar archivos JSON
+        id: actualizar
+        run: |
+          echo "🔄 Actualizando archivos JSON..."
+          
+          # Crear script de actualización
+          cat > temp_resultados/actualizar.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Función para rotar resultados (mantener 3 días)
+          function rotarResultados(jsonActual, nuevosNumeros) {
+            if (!jsonActual || !jsonActual.resultados || jsonActual.resultados.length !== 3) {
+              return {
+                resultados: [nuevosNumeros, nuevosNumeros, nuevosNumeros], // fallback
+                fecha_actualizacion: new Date().toISOString()
+              };
+            }
+            
+            // Mantener: [día más viejo, día intermedio, día nuevo]
+            // Pero en realidad queremos: [día intermedio, día reciente, día nuevo]
+            const [diaViejo, diaMedio, diaReciente] = jsonActual.resultados;
+            
+            return {
+              resultados: [diaMedio, diaReciente, nuevosNumeros],
+              fecha_actualizacion: new Date().toISOString()
+            };
+          }
+          
+          // Cargar datos nuevos
+          const nuevos = JSON.parse(fs.readFileSync('temp_resultados/nuevos.json'));
+          
+          // Procesar cada lotería
+          const loterias = ['lotto', 'granja', 'guacharo'];
+          let cambios = false;
+          
+          loterias.forEach(loteria => {
+            const ruta = `data/${loteria}.json`;
+            
+            if (!fs.existsSync(ruta)) {
+              console.log(`⚠️ ${ruta} no existe, creando...`);
+              // Crear archivo por defecto si no existe
+              const defaultData = {
+                resultados: [
+                  Array(loteria === 'granja' ? 10 : 12).fill(0),
+                  Array(loteria === 'granja' ? 10 : 12).fill(0),
+                  nuevos[loteria] || Array(loteria === 'granja' ? 10 : 12).fill(0)
+                ],
+                fecha_actualizacion: new Date().toISOString()
+              };
+              fs.writeFileSync(ruta, JSON.stringify(defaultData, null, 2));
+              cambios = true;
+              console.log(`✅ ${ruta} creado`);
+              return;
+            }
+            
+            try {
+              const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
+              
+              if (nuevos[loteria]) {
+                const actualizado = rotarResultados(actual, nuevos[loteria]);
+                
+                // Solo escribir si hay cambios
+                if (JSON.stringify(actual) !== JSON.stringify(actualizado)) {
+                  fs.writeFileSync(ruta, JSON.stringify(actualizado, null, 2));
+                  cambios = true;
+                  console.log(`✅ ${ruta} actualizado`);
+                } else {
+                  console.log(`⏸️ ${ruta} sin cambios`);
+                }
+              }
+            } catch (error) {
+              console.error(`❌ Error procesando ${ruta}:`, error.message);
+            }
+          });
+          
+          // Guardar flag de cambios
+          fs.writeFileSync('temp_resultados/hubo_cambios', cambios ? 'true' : 'false');
+          EOF
+          
+          # Ejecutar script de actualización
+          node temp_resultados/actualizar.js
+          
+          # Verificar si hubo cambios
+          if [ -f temp_resultados/hubo_cambios ]; then
+            HUBO_CAMBIOS=$(cat temp_resultados/hubo_cambios)
+            echo "HUBO_CAMBIOS=$HUBO_CAMBIOS" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: 📤 Commit y push automático
+        if: steps.actualizar.outputs.HUBO_CAMBIOS == 'true'
+        run: |
+          git config --global user.name "Dr. Animalitos Bot"
+          git config --global user.email "bot@tuanimalito.github.io"
+          
+          git add data/*.json
+          
+          # Fecha actual para el mensaje
+          FECHA=$(date +"%d/%m/%Y")
+          
+          git commit -m "🤖 Actualización automática de resultados - ${FECHA}"
+          git push
+          
+          echo "✅ Cambios subidos a GitHub"
+      
+      - name: ℹ️ No hay cambios
+        if: steps.actualizar.outputs.HUBO_CAMBIOS != 'true'
+        run: |
+          echo "⏸️ No se detectaron cambios en los resultados. No se realizó commit."
+      
+      - name: 📊 Resumen final
+        run: |
+          echo "🎉 Proceso completado exitosamente"
+          echo "📅 Fecha: $(date)"
+          echo "📁 Repositorio: ${{ github.repository }}"
