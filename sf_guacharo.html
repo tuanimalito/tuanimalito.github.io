@@ -422,36 +422,53 @@
                 const response = await fetch(JSON_URL + '?t=' + Date.now());
                 const data = await response.json();
 
-                if (data.resultados && data.resultados.length === 3) {
-                    const [dia3, dia2, dia1] = data.resultados;
+                if (!data.resultados || data.resultados.length !== 3) {
+                    actualizarStatus('❌ Error: Formato de datos incorrecto');
+                    mostrarResultados([]);
+                    return;
+                }
 
-                    // Procesar cada día para identificar "00" como string
-                    const procesarDia = (dia, inicioCasilla) => {
-                        return dia.map((num, idx) => {
-                            const esDobleCero = num === "00";
-                            return {
-                                numero: esDobleCero ? 0 : num, // Para lógica interna usamos 0
-                                esDobleCero: esDobleCero,
-                                casilla: idx + inicioCasilla
-                            };
-                        });
-                    };
-
-                    const todos = [
-                        ...procesarDia(dia3, 1),
-                        ...procesarDia(dia2, 13),
-                        ...procesarDia(dia1, 25)
-                    ];
-
-                    const resultado = buscarRepeticion(todos);
+                const [dia3, dia2, dia1] = data.resultados;
+                
+                // Validar que TODOS los días tengan 12 números COMPLETOS
+                const numerosEsperados = 12;
+                
+                if (!dia3 || dia3.length !== numerosEsperados || 
+                    !dia2 || dia2.length !== numerosEsperados || 
+                    !dia1 || dia1.length !== numerosEsperados) {
                     
-                    if (resultado.encontrado) {
-                        mostrarResultados(resultado.siguientes);
-                        actualizarStatus(`✅ Actualizado: ${new Date(data.fecha_actualizacion).toLocaleString()}`);
-                    } else {
-                        mostrarResultados([]);
-                        actualizarStatus('No se encontraron repeticiones');
-                    }
+                    actualizarStatus('❌ ERROR: Datos incompletos - Contacta al administrador');
+                    console.error('Datos incompletos:', { dia3, dia2, dia1 });
+                    mostrarResultados([]);
+                    return;
+                }
+
+                // Procesar cada día para identificar "00" como string
+                const procesarDia = (dia, inicioCasilla) => {
+                    return dia.map((num, idx) => {
+                        const esDobleCero = num === "00";
+                        return {
+                            numero: esDobleCero ? 0 : num,
+                            esDobleCero: esDobleCero,
+                            casilla: idx + inicioCasilla
+                        };
+                    });
+                };
+
+                const todos = [
+                    ...procesarDia(dia3, 1),
+                    ...procesarDia(dia2, 13),
+                    ...procesarDia(dia1, 25)
+                ];
+
+                const resultado = buscarRepeticion(todos);
+                
+                if (resultado.encontrado) {
+                    mostrarResultados(resultado.siguientes);
+                    actualizarStatus(`✅ Actualizado: ${new Date(data.fecha_actualizacion).toLocaleString()}`);
+                } else {
+                    mostrarResultados([]);
+                    actualizarStatus('No se encontraron repeticiones');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -460,12 +477,11 @@
             }
         }
 
-        // ===== LÓGICA DE BÚSQUEDA MODIFICADA =====
+        // ===== LÓGICA DE BÚSQUEDA =====
         function buscarRepeticion(resultados) {
             const mapa = new Map();
             
             resultados.forEach(r => {
-                // Para la búsqueda, "00" y 0 son distintos (usamos esDobleCero como clave)
                 const clave = r.esDobleCero ? '00' : r.numero;
                 
                 if (!mapa.has(clave)) mapa.set(clave, []);
@@ -493,7 +509,7 @@
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== MOSTRAR RESULTADOS MODIFICADO =====
+        // ===== MOSTRAR RESULTADOS =====
         function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
             

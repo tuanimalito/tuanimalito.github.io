@@ -25,7 +25,7 @@
 <body>
 <div class="container">
     <h1>📥 Cargar resultado del día</h1>
-    <p style="text-align:center; color:#718096;">Ingresá los 12 números de HOY para la lotería seleccionada</p>
+    <p style="text-align:center; color:#718096;">Ingresá los números de HOY para la lotería seleccionada</p>
 
     <div class="loterias">
         <button class="btn-loteria active" onclick="seleccionarLoteria('lotto')">🦁 Lotto Activo</button>
@@ -34,14 +34,14 @@
     </div>
 
     <div class="input-area">
-        <label>📋 Números de HOY (separados por comas, en orden de 8am a 7pm)</label>
-        <textarea id="numerosInput" rows="4" placeholder="Ej: 30, 23, 21, 2, 36, 16, 35, 20, 11, 1, 5, 0">30, 23, 21, 2, 36, 16, 35, 20, 11, 1, 5, 0</textarea>
+        <label>📋 Números de HOY (separados por comas)</label>
+        <textarea id="numerosInput" rows="4" placeholder="Ej: 30, 23, 21, 2, 36, 16, 35, 20, 11, 1, 5, 0"></textarea>
         
         <div class="info">
-            💡 <strong>Importante:</strong> Cada lotería tiene su propia cantidad de sorteos:<br>
-            - Lotto Activo: 12 sorteos (8am a 7pm)<br>
-            - Granja Millonaria: 10 sorteos<br>
-            - Guacharo Activo: 12 sorteos
+            💡 <strong>Importante:</strong><br>
+            - Lotto Activo: 12 números (puede incluir "00" para ballena)<br>
+            - Granja Millonaria: 10 números<br>
+            - Guacharo Activo: 12 números (puede incluir "00" para ballena)
         </div>
     </div>
 
@@ -63,7 +63,12 @@
 
     async function guardarResultado() {
         const raw = document.getElementById('numerosInput').value;
-        const nums = raw.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+        
+        // Procesar manteniendo "00" como string si existe
+        const nums = raw.split(',').map(n => {
+            const trimmed = n.trim();
+            return trimmed === "00" ? "00" : parseInt(trimmed);
+        }).filter(n => n === "00" || !isNaN(n));
 
         let esperados = 12;
         if (loteriaActual === 'granja') esperados = 10;
@@ -73,10 +78,8 @@
             return;
         }
 
-        // Ruta del archivo JSON en el repositorio
         const ruta = `data/${loteriaActual}.json`;
 
-        // Primero obtenemos el archivo actual para tener su sha (necesario para actualizar)
         try {
             const getResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/${ruta}?ref=${BRANCH}`, {
                 headers: {
@@ -91,25 +94,22 @@
 
             const fileData = await getResponse.json();
             const sha = fileData.sha;
-            const content = atob(fileData.content); // decodificar base64
-
-            // Parsear el JSON actual
+            const content = atob(fileData.content);
             const jsonActual = JSON.parse(content);
             
-            // Rotar: el nuevo día se convierte en el día más reciente
-            // Tomamos los dos últimos días y agregamos el nuevo
-            const [dia3, dia2] = jsonActual.resultados; // ignoramos el más viejo
-            const nuevoResultado = [dia2, nums]; // el nuevo pasa a ser el día -1
+            // ✅ CORRECCIÓN: Mantener SIEMPRE 3 días completos
+            const [diaViejo, diaMedio, diaReciente] = jsonActual.resultados;
+            
+            // El nuevo orden: [día medio, día reciente, día nuevo]
+            const nuevoResultado = [diaMedio, diaReciente, nums];
 
             const jsonActualizado = {
                 resultados: nuevoResultado,
                 fecha_actualizacion: new Date().toISOString()
             };
 
-            // Convertir a base64
             const contenidoBase64 = btoa(JSON.stringify(jsonActualizado, null, 2));
 
-            // Subir el archivo actualizado
             const putResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/${ruta}`, {
                 method: 'PUT',
                 headers: {
