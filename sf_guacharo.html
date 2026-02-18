@@ -11,8 +11,8 @@
         gtag('config', 'G-61YTHM256Z');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guacharo Activo - Resultados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Guacharo Activo - Super Fijos</title>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -26,7 +26,7 @@
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -37,43 +37,120 @@
             max-width: 800px;
             width: 100%;
             background: white;
-            border-radius: 48px 48px 32px 32px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 32px 32px 24px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .cabecera {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 30px;
+            padding: 25px 15px;
             text-align: center;
             color: white;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .cabecera h1 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
         }
 
         .cabecera .sub {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             font-weight: 600;
             opacity: 0.95;
             background: rgba(255, 255, 255, 0.2);
             display: inline-block;
-            padding: 8px 30px;
+            padding: 5px 20px;
             border-radius: 50px;
             backdrop-filter: blur(10px);
+            margin: 0 auto;
+        }
+
+        /* ✅ MENÚ MEJORADO PARA MÓVIL */
+        .menu-container {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-button:active {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0.95);
+        }
+
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .menu-dropdown.show {
+            display: block;
+        }
+
+        .menu-dropdown a {
+            color: #333;
+            padding: 15px 18px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .menu-dropdown a:active {
+            background: #f5f5f5;
+        }
+
+        .menu-dropdown a i {
+            font-size: 1.2rem;
+            width: 24px;
+            color: #667eea;
         }
 
         .fecha {
             background: #f8f9fa;
             color: #333;
             text-align: center;
-            padding: 15px;
-            font-size: 1.2rem;
+            padding: 12px;
+            font-size: 1rem;
             font-weight: 500;
             border-bottom: 1px solid #e9ecef;
         }
@@ -81,17 +158,18 @@
         .fecha span {
             background: #667eea;
             color: white;
-            padding: 5px 20px;
+            padding: 4px 15px;
             border-radius: 30px;
-            margin-left: 10px;
+            margin-left: 8px;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .status-bar {
             background: #f8f9fa;
-            padding: 15px 20px;
+            padding: 12px 15px;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #666;
             border-bottom: 1px solid #e9ecef;
         }
@@ -99,91 +177,83 @@
         .ad-container {
             max-width: 800px;
             width: 100%;
-            margin: 20px auto;
-            padding: 10px;
+            margin: 15px auto;
+            padding: 5px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             backdrop-filter: blur(5px);
             text-align: center;
         }
 
-        .ad-container-middle {
-            margin: 20px 0;
-        }
-
-        .ad-container-bottom {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
         .seccion-datos {
-            padding: 30px;
+            padding: 20px 15px;
             background: #f8fafc;
         }
 
         .tarjeta-dato {
             background: white;
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            padding: 20px 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         .tarjeta-dato h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #333;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
             font-weight: 700;
         }
 
+        /* ✅ SUPER FIJOS EN 2 FILAS DE 2 PARA MÓVIL */
         .numeros-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .numero-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 20px;
-            padding: 20px;
+            padding: 15px 10px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .numero-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        .numero-card:active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .numero-card .numero {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .numero-card img {
-            width: 120px;
-            height: 120px;
+            width: 90px;
+            height: 90px;
             object-fit: contain;
-            margin: 10px auto;
+            margin: 5px auto;
         }
 
         .numero-card .animal {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #666;
-            margin-top: 10px;
+            margin-top: 5px;
             text-transform: capitalize;
             font-weight: 500;
         }
 
         .no-data {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             color: #999;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .footer {
@@ -192,39 +262,39 @@
             background: #2d3748;
             color: #a0aec0;
             text-align: center;
-            padding: 30px 20px;
-            border-radius: 30px 30px 0 0;
+            padding: 25px 15px;
+            border-radius: 24px 24px 0 0;
         }
 
         .footer .social-links {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .footer .social-links a {
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            transition: all 0.2s ease;
             text-decoration: none;
         }
 
-        .footer .social-links a:hover {
+        .footer .social-links a:active {
             background: #667eea;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .footer .copyright {
-            margin: 15px 0;
-            font-size: 0.95rem;
+            margin: 10px 0;
+            font-size: 0.85rem;
         }
 
         .footer .copyright span {
@@ -235,28 +305,15 @@
         .footer .credits a {
             color: #a0aec0;
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            font-size: 0.85rem;
         }
 
-        .footer .credits a:hover {
-            color: #667eea;
-        }
-
-        @media (max-width: 700px) {
+        @media (min-width: 700px) {
             .numeros-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(4, 1fr);
             }
-        }
-
-        @media (max-width: 400px) {
-            .numeros-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer .social-links a {
-                width: 35px;
-                height: 35px;
-                font-size: 1.2rem;
+            .cabecera h1 {
+                font-size: 3rem;
             }
         }
     </style>
@@ -264,58 +321,49 @@
 
 <body>
     <div class="tarjeta">
-       <div class="cabecera" style="position: relative; padding-left: 100px;">
-    <!-- Menú a la izquierda -->
-    <div style="position: absolute; top: 50%; left: 30px; transform: translateY(-50%); z-index: 10;">
-        <div class="dropdown" style="position: relative; display: inline-block;">
-            <button style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 18px; border-radius: 40px; font-size: 1rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(5px); transition: all 0.3s;">
-                <i class="bi bi-grid" style="font-size: 1.2rem;"></i>
-                <span>Más loterías</span>
-                <i class="bi bi-chevron-down" style="font-size: 0.9rem;"></i>
-            </button>
-            <div style="display: none; position: absolute; top: 50px; left: 0; background: white; min-width: 240px; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); overflow: hidden; z-index: 100;" class="dropdown-menu">
-                <a href="index.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
-                    <i class="bi bi-house-door-fill" style="color: #667eea;"></i> Inicio
-                </a>
-                <a href="sf_loto.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
-                    <i class="bi bi-dice-6-fill" style="color: #667eea;"></i> Lotto Activo
-                </a>
-                <a href="sf_granja.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: 0.2s;">
-                    <i class="bi bi-flower2" style="color: #667eea;"></i> Granja Millonaria
-                </a>
-                <a href="sf_guacharo.html" style="color: #333; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 12px; transition: 0.2s;">
-                    <i class="bi bi-feather" style="color: #667eea;"></i> Guacharo Activo
-                </a>
+        <div class="cabecera">
+            <!-- ✅ MENÚ MEJORADO PARA MÓVIL -->
+            <div class="menu-container">
+                <button class="menu-button" id="menuButton">
+                    <i class="bi bi-grid"></i>
+                </button>
+                <div class="menu-dropdown" id="menuDropdown">
+                    <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                    <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
+                    <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
+                    <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
+                </div>
             </div>
+            
+            <!-- Título centrado -->
+            <h1>Guacharo Activo</h1>
+            <div class="sub">Dr.animalitos</div>
         </div>
-    </div>
-    
-    <!-- Título centrado (se ajusta automáticamente) -->
-    <h1>Guacharo Activo</h1>
-    <div class="sub">Dr.animalitos</div>
-</div>
 
-<script>
-    (function() {
-        const button = document.querySelector('.dropdown button');
-        const menu = document.querySelector('.dropdown-menu');
-        
-        if (button && menu) {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-            });
-            
-            document.addEventListener('click', function() {
-                menu.style.display = 'none';
-            });
-            
-            menu.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-    })();
-</script>
+        <script>
+            // ✅ MENÚ MEJORADO CON TOUCH
+            (function() {
+                const menuBtn = document.getElementById('menuButton');
+                const menuDropdown = document.getElementById('menuDropdown');
+                
+                if (menuBtn && menuDropdown) {
+                    menuBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        menuDropdown.classList.toggle('show');
+                    });
+                    
+                    document.addEventListener('click', function(e) {
+                        if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+                            menuDropdown.classList.remove('show');
+                        }
+                    });
+                    
+                    menuDropdown.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                }
+            })();
+        </script>
 
         <div class="fecha">
             <span id="fechaActual"></span>
@@ -326,7 +374,7 @@
         </div>
 
         <!-- Anuncio medio superior -->
-        <div class="ad-container ad-container-middle">
+        <div class="ad-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
                 crossorigin="anonymous"></script>
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
@@ -346,7 +394,7 @@
         </div>
 
         <!-- Anuncio inferior -->
-        <div class="ad-container ad-container-bottom">
+        <div class="ad-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
                 crossorigin="anonymous"></script>
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
@@ -375,10 +423,27 @@
     </footer>
 
     <script>
+        // ===== SEGURIDAD =====
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+        (function detectDevTools() {
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() { console.clear(); }
+            });
+            console.log(element);
+        })();
+
         // ===== CONFIGURACIÓN =====
         const JSON_URL = 'data/guacharo.json';
 
-        // ===== DICCIONARIO DE ANIMALES AMPLIADO =====
         const animales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
             4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
@@ -415,35 +480,20 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        // ===== FUNCIÓN PRINCIPAL =====
         async function cargarResultados() {
             try {
-                actualizarStatus('🔄 Cargando resultados...');
+                actualizarStatus('🔄 Cargando...');
                 const response = await fetch(JSON_URL + '?t=' + Date.now());
                 const data = await response.json();
 
                 if (!data.resultados || data.resultados.length !== 3) {
-                    actualizarStatus('❌ Error: Formato de datos incorrecto');
+                    actualizarStatus('❌ Error de datos');
                     mostrarResultados([]);
                     return;
                 }
 
                 const [dia3, dia2, dia1] = data.resultados;
-                
-                // Validar que TODOS los días tengan 12 números COMPLETOS
-                const numerosEsperados = 12;
-                
-                if (!dia3 || dia3.length !== numerosEsperados || 
-                    !dia2 || dia2.length !== numerosEsperados || 
-                    !dia1 || dia1.length !== numerosEsperados) {
-                    
-                    actualizarStatus('❌ ERROR: Datos incompletos - Contacta al administrador');
-                    console.error('Datos incompletos:', { dia3, dia2, dia1 });
-                    mostrarResultados([]);
-                    return;
-                }
 
-                // Procesar cada día para identificar "00" como string
                 const procesarDia = (dia, inicioCasilla) => {
                     return dia.map((num, idx) => {
                         const esDobleCero = num === "00";
@@ -465,25 +515,23 @@
                 
                 if (resultado.encontrado) {
                     mostrarResultados(resultado.siguientes);
-                    actualizarStatus(`✅ Actualizado: ${new Date(data.fecha_actualizacion).toLocaleString()}`);
+                    actualizarStatus('✅ Actualizado');
                 } else {
                     mostrarResultados([]);
-                    actualizarStatus('No se encontraron repeticiones');
+                    actualizarStatus('Sin repeticiones');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 mostrarResultados([]);
-                actualizarStatus('❌ Error al cargar');
+                actualizarStatus('❌ Error');
             }
         }
 
-        // ===== LÓGICA DE BÚSQUEDA =====
         function buscarRepeticion(resultados) {
             const mapa = new Map();
             
             resultados.forEach(r => {
                 const clave = r.esDobleCero ? '00' : r.numero;
-                
                 if (!mapa.has(clave)) mapa.set(clave, []);
                 mapa.get(clave).push(r);
             });
@@ -491,7 +539,6 @@
             for (let i = 24; i < 36; i++) {
                 const actual = resultados[i];
                 const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                
                 const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
 
                 if (repeticiones.length > 0) {
@@ -509,12 +556,11 @@
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== MOSTRAR RESULTADOS =====
         function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
             
             if (!siguientes || siguientes.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles</div>';
+                contenedor.innerHTML = '<div class="no-data">No hay resultados</div>';
                 return;
             }
 
