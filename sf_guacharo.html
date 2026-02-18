@@ -291,7 +291,7 @@
     </div>
     
     <!-- Título centrado (se ajusta automáticamente) -->
-    <h1>Guacharo Activo</h1></h1>
+    <h1>Guacharo Activo</h1>
     <div class="sub">Dr.animalitos</div>
 </div>
 
@@ -398,8 +398,9 @@
             74: 'turpial', 75: 'guácharo'
         };
 
-        function obtenerRutaImagen(numero) {
-            if (numero === '00' || numero === 0) return 'animalitos/animalitos_guacharo/00.png';
+        function obtenerRutaImagen(numero, esDobleCero = false) {
+            if (esDobleCero) return 'animalitos/animalitos_guacharo/00.png';
+            if (numero === 0) return 'animalitos/animalitos_guacharo/0.png';
             return `animalitos/animalitos_guacharo/${numero}.png`;
         }
 
@@ -424,11 +425,22 @@
                 if (data.resultados && data.resultados.length === 3) {
                     const [dia3, dia2, dia1] = data.resultados;
 
-                    // Construir array de 36 resultados
+                    // Procesar cada día para identificar "00" como string
+                    const procesarDia = (dia, inicioCasilla) => {
+                        return dia.map((num, idx) => {
+                            const esDobleCero = num === "00";
+                            return {
+                                numero: esDobleCero ? 0 : num, // Para lógica interna usamos 0
+                                esDobleCero: esDobleCero,
+                                casilla: idx + inicioCasilla
+                            };
+                        });
+                    };
+
                     const todos = [
-                        ...dia3.map((num, idx) => ({ numero: num, casilla: idx + 1 })),
-                        ...dia2.map((num, idx) => ({ numero: num, casilla: idx + 13 })),
-                        ...dia1.map((num, idx) => ({ numero: num, casilla: idx + 25 }))
+                        ...procesarDia(dia3, 1),
+                        ...procesarDia(dia2, 13),
+                        ...procesarDia(dia1, 25)
                     ];
 
                     const resultado = buscarRepeticion(todos);
@@ -448,17 +460,23 @@
             }
         }
 
-        // ===== LÓGICA DE BÚSQUEDA =====
+        // ===== LÓGICA DE BÚSQUEDA MODIFICADA =====
         function buscarRepeticion(resultados) {
             const mapa = new Map();
+            
             resultados.forEach(r => {
-                if (!mapa.has(r.numero)) mapa.set(r.numero, []);
-                mapa.get(r.numero).push(r);
+                // Para la búsqueda, "00" y 0 son distintos (usamos esDobleCero como clave)
+                const clave = r.esDobleCero ? '00' : r.numero;
+                
+                if (!mapa.has(clave)) mapa.set(clave, []);
+                mapa.get(clave).push(r);
             });
 
             for (let i = 24; i < 36; i++) {
                 const actual = resultados[i];
-                const repeticiones = (mapa.get(actual.numero) || []).filter(r => r.casilla <= 24);
+                const claveActual = actual.esDobleCero ? '00' : actual.numero;
+                
+                const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
 
                 if (repeticiones.length > 0) {
                     const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
@@ -475,7 +493,7 @@
             return { encontrado: false, siguientes: [] };
         }
 
-        // ===== MOSTRAR RESULTADOS =====
+        // ===== MOSTRAR RESULTADOS MODIFICADO =====
         function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
             
@@ -486,13 +504,22 @@
 
             let html = '<div class="numeros-grid">';
             siguientes.forEach(r => {
-                const numDisplay = r.numero === 0 ? '00' : String(r.numero).padStart(2, '0');
-                const nombreAnimal = animales[r.numero] || 'desconocido';
+                let numDisplay, nombreAnimal, rutaImagen;
+                
+                if (r.esDobleCero) {
+                    numDisplay = "00";
+                    nombreAnimal = "ballena";
+                    rutaImagen = obtenerRutaImagen(0, true);
+                } else {
+                    numDisplay = String(r.numero).padStart(2, '0');
+                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
+                    rutaImagen = obtenerRutaImagen(r.numero, false);
+                }
 
                 html += `
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
-                        <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}" 
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
                              onerror="this.src='animalitos/animalitos_guacharo/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
@@ -509,6 +536,5 @@
         };
     </script>
 </body>
-
 
 </html>
