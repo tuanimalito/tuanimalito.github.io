@@ -2,11 +2,11 @@
  * SCRIPT DEFINITIVO - Dr. Animalitos
  * CONFIGURACIÓN PARA LAS 4 LOTERÍAS:
  * - Guácharo Activo (12 números) ✅ API oficial
- * - Granja Millonaria (10 números) ✅ API oficial
- * - Granjazo Millonario (10 números) ✅ API oficial
+ * - Granja Millonaria (10 números) ✅ API oficial con fecha
+ * - Granjazo Millonario (10 números) ✅ API oficial con fecha
  * - Lotto Activo (12 números) ✅ API OFICIAL (lottoactivo.com)
  * 
- * MI PRINCESA, AHORA SÍ, TODO FUNCIONA PERFECTO 🚀
+ * MI REY, AHORA SÍ, TODO FUNCIONA PERFECTO 🚀
  */
 
 const fs = require('fs');
@@ -24,6 +24,8 @@ const CONFIG = {
     procesar: async (fecha) => {
       const fechaStr = fecha.toISOString().split('T')[0];
       const url = `${CONFIG.guacharo.apiUrl}?exact_date=${fechaStr}&extended=true&_t=${Date.now()}`;
+      
+      console.log(`   📡 URL: ${url}`);
       
       const response = await fetch(url, {
         headers: {
@@ -45,13 +47,18 @@ const CONFIG = {
     }
   },
 
-  // 🐔 GRANJA MILLONARIA (10 números)
+  // 🐔 GRANJA MILLONARIA (10 números) - VERSIÓN CON FECHA
   granja: {
-    apiUrl: 'http://www.granjamillonaria.com/Resource?a=animalitos-hoy',
+    apiUrl: 'http://www.granjamillonaria.com/Resource',
     numeros: 10,
     nombre: 'Granja Millonaria',
-    procesar: async () => {
-      const response = await fetch(CONFIG.granja.apiUrl, {
+    procesar: async (fecha) => {
+      const fechaStr = fecha.toISOString().split('T')[0];
+      const url = `http://www.granjamillonaria.com/Resource?a=animalitos-hoy&fecha=${fechaStr}&_t=${Date.now()}`;
+      
+      console.log(`   📡 URL: ${url}`);
+      
+      const response = await fetch(url, {
         headers: {
           'User-Agent': 'DrAnimalitosBot/1.0',
           'Accept': 'application/json'
@@ -59,6 +66,7 @@ const CONFIG = {
       });
       
       if (!response.ok) return null;
+      
       const data = await response.json();
       
       if (!data.rss || !Array.isArray(data.rss)) return null;
@@ -72,13 +80,18 @@ const CONFIG = {
     }
   },
 
-  // 🦁 GRANJAZO MILLONARIO (10 números)
+  // 🦁 GRANJAZO MILLONARIO (10 números) - VERSIÓN CON FECHA
   granjazo: {
-    apiUrl: 'http://www.granjamillonaria.com/Resource?a=granjazo-hoy',
+    apiUrl: 'http://www.granjamillonaria.com/Resource',
     numeros: 10,
     nombre: 'Granjazo Millonario',
-    procesar: async () => {
-      const response = await fetch(CONFIG.granjazo.apiUrl, {
+    procesar: async (fecha) => {
+      const fechaStr = fecha.toISOString().split('T')[0];
+      const url = `http://www.granjamillonaria.com/Resource?a=granjazo-hoy&fecha=${fechaStr}&_t=${Date.now()}`;
+      
+      console.log(`   📡 URL: ${url}`);
+      
+      const response = await fetch(url, {
         headers: {
           'User-Agent': 'DrAnimalitosBot/1.0',
           'Accept': 'application/json'
@@ -86,6 +99,7 @@ const CONFIG = {
       });
       
       if (!response.ok) return null;
+      
       const data = await response.json();
       
       if (!data.rss || !Array.isArray(data.rss)) return null;
