@@ -466,9 +466,9 @@
         };
 
         function obtenerRutaImagen(numero) {
-            if (numero === '00' || numero === 0) return 'animalitos/animalitos_granjazo/00.png';
+            if (numero === '00' || numero === 0) return 'animalitos/animalitos_granja/00.png';
             const numFormateado = String(numero).padStart(2, '0');
-            return `animalitos/animalitos_granjazo/${numFormateado}.png`;
+            return `animalitos/animalitos_granja/${numFormateado}.png`;
         }
 
         function mostrarFecha() {
@@ -562,7 +562,7 @@
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${obtenerRutaImagen(r.numero)}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_granjazo/00.png'">
+                             onerror="this.src='animalitos/animalitos_granja/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
