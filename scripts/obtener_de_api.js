@@ -2,11 +2,11 @@
  * SCRIPT DEFINITIVO - Dr. Animalitos
  * CONFIGURACIÓN PARA LAS 4 LOTERÍAS:
  * - Guácharo Activo (12 números) ✅ API oficial
- * - Granja Millonaria (10 números) ✅ API oficial con fecha
- * - Granjazo Millonario (10 números) ✅ API oficial con fecha
+ * - Granja Millonaria (10 números) ✅ API oficial (con lista completa)
+ * - Granjazo Millonario (10 números) ✅ API oficial (con lista completa)
  * - Lotto Activo (12 números) ✅ API OFICIAL (lottoactivo.com)
  * 
- * MI REY, AHORA SÍ, TODO FUNCIONA PERFECTO 🚀
+ * MI REY, ESTO YA ESTÁ LISTO PARA VOLAR 🚀
  */
 
 const fs = require('fs');
@@ -47,18 +47,21 @@ const CONFIG = {
     }
   },
 
-  // 🐔 GRANJA MILLONARIA (10 números) - VERSIÓN CON FECHA
+  // 🐔 GRANJA MILLONARIA (10 números) - VERSIÓN DEFINITIVA
   granja: {
-    apiUrl: 'http://www.granjamillonaria.com/Resource',
+    apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
     nombre: 'Granja Millonaria',
     procesar: async (fecha) => {
-      const fechaStr = fecha.toISOString().split('T')[0];
-      const url = `http://www.granjamillonaria.com/Resource?a=animalitos-hoy&fecha=${fechaStr}&_t=${Date.now()}`;
+      // La API de Granja usa formato DD/MM/YYYY
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const año = fecha.getFullYear();
+      const fechaStr = `${dia}/${mes}/${año}`;
       
-      console.log(`   📡 URL: ${url}`);
+      console.log(`   📡 Buscando fecha: ${fechaStr}`);
       
-      const response = await fetch(url, {
+      const response = await fetch(CONFIG.granja.apiUrl, {
         headers: {
           'User-Agent': 'DrAnimalitosBot/1.0',
           'Accept': 'application/json'
@@ -66,32 +69,40 @@ const CONFIG = {
       });
       
       if (!response.ok) return null;
-      
       const data = await response.json();
       
-      if (!data.rss || !Array.isArray(data.rss)) return null;
+      // Buscar la fecha específica en el array
+      const diaData = data.find(d => d.fecha === fechaStr);
+      if (!diaData || !diaData.rss) {
+        console.log(`   ⚠️ No hay datos para ${fechaStr}`);
+        return null;
+      }
       
-      const numeros = data.rss
+      const numeros = diaData.rss
         .filter(item => item.nu)
         .map(item => parseInt(item.nu))
         .slice(0, 10);
       
+      console.log(`   ✅ Encontrados ${numeros.length} números`);
       return numeros.length === 10 ? numeros : null;
     }
   },
 
-  // 🦁 GRANJAZO MILLONARIO (10 números) - VERSIÓN CON FECHA
+  // 🦁 GRANJAZO MILLONARIO (10 números) - VERSIÓN DEFINITIVA
   granjazo: {
-    apiUrl: 'http://www.granjamillonaria.com/Resource',
+    apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
     nombre: 'Granjazo Millonario',
     procesar: async (fecha) => {
-      const fechaStr = fecha.toISOString().split('T')[0];
-      const url = `http://www.granjamillonaria.com/Resource?a=granjazo-hoy&fecha=${fechaStr}&_t=${Date.now()}`;
+      // Mismo formato DD/MM/YYYY
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const año = fecha.getFullYear();
+      const fechaStr = `${dia}/${mes}/${año}`;
       
-      console.log(`   📡 URL: ${url}`);
+      console.log(`   📡 Buscando fecha: ${fechaStr}`);
       
-      const response = await fetch(url, {
+      const response = await fetch(CONFIG.granjazo.apiUrl, {
         headers: {
           'User-Agent': 'DrAnimalitosBot/1.0',
           'Accept': 'application/json'
@@ -99,16 +110,21 @@ const CONFIG = {
       });
       
       if (!response.ok) return null;
-      
       const data = await response.json();
       
-      if (!data.rss || !Array.isArray(data.rss)) return null;
+      // Buscar la fecha específica en el array
+      const diaData = data.find(d => d.fecha === fechaStr);
+      if (!diaData || !diaData.rsj) {
+        console.log(`   ⚠️ No hay datos para ${fechaStr}`);
+        return null;
+      }
       
-      const numeros = data.rss
+      const numeros = diaData.rsj
         .filter(item => item.nu)
         .map(item => parseInt(item.nu))
         .slice(0, 10);
       
+      console.log(`   ✅ Encontrados ${numeros.length} números`);
       return numeros.length === 10 ? numeros : null;
     }
   },
@@ -121,7 +137,7 @@ const CONFIG = {
     procesar: async (fecha) => {
       const fechaStr = fecha.toISOString().split('T')[0]; // YYYY-MM-DD
       
-      // Este es el option que usa la página oficial para obtener los resultados con imágenes
+      // Este es el option que usa la página oficial
       const formData = new URLSearchParams();
       formData.append('option', 'WDNxcnFwcnNPb1lrd3VTSXEyYll0USRMNFJSNm50dzBHbTZxd1d3VjI4b0ZvVEY4djEyNElpNWpIenpsTWlqY1pKdENLT2E4dlZpaWV1SXk3WThTMkZmMVl6WUZudXNFMTcrUzJYMmhiL0xOQT09');
       formData.append('loteria', 'lotto_activo');
@@ -145,7 +161,6 @@ const CONFIG = {
       
       const data = await response.json();
       
-      // Verificar que tenemos datos
       if (!data.datos || !Array.isArray(data.datos)) {
         console.log('   ❌ No hay datos en la respuesta');
         return null;
@@ -153,21 +168,17 @@ const CONFIG = {
       
       console.log(`   ✅ Recibidos ${data.datos.length} sorteos`);
       
-      // La página oficial ordena por hora, nosotros también
       const ordenados = data.datos.sort((a, b) => {
         const horaA = parseInt(a.time_s.split(':')[0]);
         const horaB = parseInt(b.time_s.split(':')[0]);
         return horaA - horaB;
       });
       
-      // Extraer los números (ya vienen con el formato correcto)
       const numeros = ordenados.map(item => {
         const num = item.number_animal;
-        // Si es "00" lo dejamos como string, si no, número
         return num === "00" ? "00" : parseInt(num);
       });
       
-      // Verificar que tenemos 12 números
       if (numeros.length === 12) {
         console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
         return numeros;
@@ -183,9 +194,6 @@ const CONFIG = {
 // FUNCIONES AUXILIARES
 // ============================================
 
-/**
- * Obtiene resultados para una fecha específica
- */
 async function obtenerResultadosPorFecha(loteria, fecha) {
   const config = CONFIG[loteria];
   if (!config) return null;
@@ -199,19 +207,12 @@ async function obtenerResultadosPorFecha(loteria, fecha) {
   }
 }
 
-/**
- * Obtiene resultados del día actual
- */
 async function obtenerResultadosHoy(loteria) {
   const hoy = new Date();
-  // Ajustar a hora de Venezuela (UTC-4)
   const fechaLocal = new Date(hoy.getTime() - (4 * 60 * 60 * 1000));
   return await obtenerResultadosPorFecha(loteria, fechaLocal);
 }
 
-/**
- * Obtiene resultados de días anteriores (para respaldo)
- */
 async function obtenerResultadosPasados(loteria, diasAtras = 1) {
   const fecha = new Date();
   fecha.setDate(fecha.getDate() - diasAtras);
@@ -219,13 +220,6 @@ async function obtenerResultadosPasados(loteria, diasAtras = 1) {
   return await obtenerResultadosPorFecha(loteria, fechaLocal);
 }
 
-// ============================================
-// ACTUALIZACIÓN DE ARCHIVOS JSON
-// ============================================
-
-/**
- * Actualiza un archivo JSON con nuevos resultados
- */
 function actualizarJSON(loteria, nuevosNumeros) {
   const ruta = path.join(__dirname, `../data/${loteria}.json`);
   
@@ -238,7 +232,6 @@ function actualizarJSON(loteria, nuevosNumeros) {
     const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
     const [diaViejo, diaMedio, diaReciente] = actual.resultados;
     
-    // Rotar: [día medio, día reciente, día nuevo]
     actual.resultados = [diaMedio, diaReciente, nuevosNumeros];
     actual.fecha_actualizacion = new Date().toISOString();
     
@@ -251,10 +244,6 @@ function actualizarJSON(loteria, nuevosNumeros) {
   }
 }
 
-// ============================================
-// FUNCIÓN PRINCIPAL
-// ============================================
-
 async function main() {
   console.log('🎯 INICIANDO AUTOMATIZACIÓN DE RESULTADOS');
   console.log('==========================================');
@@ -265,19 +254,16 @@ async function main() {
   const loterias = ['guacharo', 'granja', 'granjazo', 'lotto'];
   const numerosEsperados = { guacharo: 12, granja: 10, granjazo: 10, lotto: 12 };
 
-  // 1️⃣ INTENTAR CON HOY PARA CADA LOTERÍA
   for (const loteria of loterias) {
     console.log(`\n🔍 Buscando ${CONFIG[loteria].nombre}...`);
     
     let numeros = await obtenerResultadosHoy(loteria);
     
-    // Si hoy no tiene, intentar con ayer
     if (!numeros || numeros.length !== numerosEsperados[loteria]) {
       console.log(`⚠️ No hay datos de hoy, buscando ayer...`);
       numeros = await obtenerResultadosPasados(loteria, 1);
     }
     
-    // Si ayer tampoco, intentar con anteayer
     if (!numeros || numeros.length !== numerosEsperados[loteria]) {
       console.log(`⚠️ Tampoco ayer, buscando anteayer...`);
       numeros = await obtenerResultadosPasados(loteria, 2);
@@ -292,7 +278,6 @@ async function main() {
     }
   }
 
-  // 2️⃣ ACTUALIZAR ARCHIVOS JSON
   console.log('\n📦 ACTUALIZANDO ARCHIVOS JSON...');
   console.log('==========================================');
   
@@ -305,7 +290,6 @@ async function main() {
     }
   }
 
-  // 3️⃣ RESUMEN FINAL
   console.log('\n🎉 RESUMEN FINAL');
   console.log('==========================================');
   console.log(`✅ Loterías actualizadas: ${actualizados} de ${loterias.length}`);
@@ -319,7 +303,6 @@ async function main() {
   console.log('==========================================');
 }
 
-// Ejecutar
 main().catch(error => {
   console.error('💥 Error fatal:', error);
   process.exit(1);
