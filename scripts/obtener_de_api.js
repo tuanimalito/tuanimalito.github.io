@@ -6,7 +6,7 @@
  * - Granjazo Millonario (10 números) ✅ API oficial (con lista completa)
  * - Lotto Activo (12 números) ✅ API OFICIAL con orden correcto
  * 
- * MI REY, ESTO YA ESTÁ LISTO PARA VOLAR 🚀
+ * MI REY, CON ESTA VERSIÓN LOS 3 DÍAS QUEDAN CORRECTAMENTE ROTADOS 🚀
  */
 
 const fs = require('fs');
@@ -47,7 +47,7 @@ const CONFIG = {
     }
   },
 
-  // 🐔 GRANJA MILLONARIA (10 números) - VERSIÓN DEFINITIVA
+  // 🐔 GRANJA MILLONARIA (10 números)
   granja: {
     apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
@@ -86,7 +86,7 @@ const CONFIG = {
     }
   },
 
-  // 🦁 GRANJAZO MILLONARIO (10 números) - VERSIÓN DEFINITIVA
+  // 🦁 GRANJAZO MILLONARIO (10 números)
   granjazo: {
     apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
@@ -218,7 +218,7 @@ async function obtenerResultadosPasados(loteria, diasAtras = 1) {
 }
 
 // ============================================
-// ACTUALIZACIÓN DE ARCHIVOS JSON - CORREGIDA
+// ACTUALIZACIÓN DE ARCHIVOS JSON - VERSIÓN CORREGIDA
 // ============================================
 
 function actualizarJSON(loteria, nuevosNumeros) {
@@ -232,15 +232,18 @@ function actualizarJSON(loteria, nuevosNumeros) {
   try {
     const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
     
-    // ✅ CORRECCIÓN: Mantener los dos días anteriores y agregar el nuevo
+    // ✅ TOMAMOS LOS 3 DÍAS ACTUALES
     const [diaViejo, diaMedio, diaReciente] = actual.resultados;
     
-    // El nuevo orden debe ser: [diaMedio, diaReciente, nuevosNumeros]
+    // ✅ ROTACIÓN CORRECTA:
+    // - El día medio pasa a ser el más viejo
+    // - El día reciente pasa a ser el del medio
+    // - El nuevo día se agrega como el más reciente
     actual.resultados = [diaMedio, diaReciente, nuevosNumeros];
     actual.fecha_actualizacion = new Date().toISOString();
     
     fs.writeFileSync(ruta, JSON.stringify(actual, null, 2));
-    console.log(`✅ ${loteria}.json actualizado`);
+    console.log(`✅ ${loteria}.json actualizado (rotación correcta)`);
     return true;
   } catch (error) {
     console.error(`❌ Error actualizando ${loteria}.json:`, error.message);
@@ -249,7 +252,7 @@ function actualizarJSON(loteria, nuevosNumeros) {
 }
 
 // ============================================
-// FUNCIÓN PRINCIPAL - CORREGIDA
+// FUNCIÓN PRINCIPAL
 // ============================================
 
 async function main() {
@@ -289,7 +292,7 @@ async function main() {
   console.log('\n📦 ACTUALIZANDO ARCHIVOS JSON...');
   console.log('==========================================');
   
-  let actualizados = 0; // ✅ Declaramos la variable aquí
+  let actualizados = 0;
   for (const loteria of loterias) {
     if (resultados[loteria]) {
       if (actualizarJSON(loteria, resultados[loteria])) {
