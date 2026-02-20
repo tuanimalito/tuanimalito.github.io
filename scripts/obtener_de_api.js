@@ -4,7 +4,7 @@
  * - Guácharo Activo (12 números) ✅ API oficial
  * - Granja Millonaria (10 números) ✅ API oficial (con lista completa)
  * - Granjazo Millonario (10 números) ✅ API oficial (con lista completa)
- * - Lotto Activo (12 números) ✅ API OFICIAL (lottoactivo.com)
+ * - Lotto Activo (12 números) ✅ API OFICIAL con orden correcto
  * 
  * MI REY, ESTO YA ESTÁ LISTO PARA VOLAR 🚀
  */
@@ -53,7 +53,6 @@ const CONFIG = {
     numeros: 10,
     nombre: 'Granja Millonaria',
     procesar: async (fecha) => {
-      // La API de Granja usa formato DD/MM/YYYY
       const dia = String(fecha.getDate()).padStart(2, '0');
       const mes = String(fecha.getMonth() + 1).padStart(2, '0');
       const año = fecha.getFullYear();
@@ -71,7 +70,6 @@ const CONFIG = {
       if (!response.ok) return null;
       const data = await response.json();
       
-      // Buscar la fecha específica en el array
       const diaData = data.find(d => d.fecha === fechaStr);
       if (!diaData || !diaData.rss) {
         console.log(`   ⚠️ No hay datos para ${fechaStr}`);
@@ -94,7 +92,6 @@ const CONFIG = {
     numeros: 10,
     nombre: 'Granjazo Millonario',
     procesar: async (fecha) => {
-      // Mismo formato DD/MM/YYYY
       const dia = String(fecha.getDate()).padStart(2, '0');
       const mes = String(fecha.getMonth() + 1).padStart(2, '0');
       const año = fecha.getFullYear();
@@ -112,7 +109,6 @@ const CONFIG = {
       if (!response.ok) return null;
       const data = await response.json();
       
-      // Buscar la fecha específica en el array
       const diaData = data.find(d => d.fecha === fechaStr);
       if (!diaData || !diaData.rsj) {
         console.log(`   ⚠️ No hay datos para ${fechaStr}`);
@@ -128,71 +124,67 @@ const CONFIG = {
       return numeros.length === 10 ? numeros : null;
     }
   },
-  
-// 🎲 LOTTO ACTIVO (12 números) - CON ORDEN CORRECTO POR HORA
-lotto: {
-  apiUrl: 'https://lottoactivo.com/core/process.php',
-  numeros: 12,
-  nombre: 'Lotto Activo',
-  procesar: async (fecha) => {
-    const fechaStr = fecha.toISOString().split('T')[0];
-    
-    const formData = new URLSearchParams();
-    formData.append('option', 'WDNxcnFwcnNPb1lrd3VTSXEyYll0USRMNFJSNm50dzBHbTZxd1d3VjI4b0ZvVEY4djEyNElpNWpIenpsTWlqY1pKdENLT2E4dlZpaWV1SXk3WThTMkZmMVl6WUZudXNFMTcrUzJYMmhiL0xOQT09');
-    formData.append('loteria', 'lotto_activo');
-    formData.append('fecha', fechaStr);
-    
-    console.log(`   📡 Enviando petición a process.php para ${fechaStr}`);
-    
-    const response = await fetch('https://lottoactivo.com/core/process.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'DrAnimalitosBot/1.0'
-      },
-      body: formData
-    });
-    
-    if (!response.ok) return null;
-    const data = await response.json();
-    
-    if (!data.datos || !Array.isArray(data.datos)) return null;
-    
-    console.log(`   ✅ Recibidos ${data.datos.length} sorteos`);
-    
-    // Definir el orden correcto de las horas (de 8am a 7pm)
-    const ordenHoras = [
-      '08:00', '09:00', '10:00', '11:00', '12:00',
-      '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'
-    ];
-    
-    // Función para normalizar la hora (convertir "09:00am" a "09:00")
-    const normalizarHora = (horaStr) => {
-      return horaStr.replace('am', '').replace('pm', '').trim();
-    };
-    
-    // Ordenar según la lista de horas
-    const ordenados = data.datos.sort((a, b) => {
-      const horaA = normalizarHora(a.time_s);
-      const horaB = normalizarHora(b.time_s);
-      return ordenHoras.indexOf(horaA) - ordenHoras.indexOf(horaB);
-    });
-    
-    const numeros = ordenados.map(item => {
-      const num = item.number_animal;
-      return num === "00" ? "00" : parseInt(num);
-    });
-    
-    if (numeros.length === 12) {
-      console.log(`   ✅ Números obtenidos (orden por hora): ${numeros.join(', ')}`);
-      return numeros;
-    } else {
-      console.log(`   ⚠️ Solo se obtuvieron ${numeros.length} de 12 números`);
-      return null;
+
+  // 🎲 LOTTO ACTIVO (12 números) - CON ORDEN CORRECTO
+  lotto: {
+    apiUrl: 'https://lottoactivo.com/core/process.php',
+    numeros: 12,
+    nombre: 'Lotto Activo',
+    procesar: async (fecha) => {
+      const fechaStr = fecha.toISOString().split('T')[0];
+      
+      const formData = new URLSearchParams();
+      formData.append('option', 'WDNxcnFwcnNPb1lrd3VTSXEyYll0USRMNFJSNm50dzBHbTZxd1d3VjI4b0ZvVEY4djEyNElpNWpIenpsTWlqY1pKdENLT2E4dlZpaWV1SXk3WThTMkZmMVl6WUZudXNFMTcrUzJYMmhiL0xOQT09');
+      formData.append('loteria', 'lotto_activo');
+      formData.append('fecha', fechaStr);
+      
+      console.log(`   📡 Enviando petición a process.php para ${fechaStr}`);
+      
+      const response = await fetch('https://lottoactivo.com/core/process.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'DrAnimalitosBot/1.0'
+        },
+        body: formData
+      });
+      
+      if (!response.ok) return null;
+      const data = await response.json();
+      
+      if (!data.datos || !Array.isArray(data.datos)) return null;
+      
+      console.log(`   ✅ Recibidos ${data.datos.length} sorteos`);
+      
+      const ordenHoras = [
+        '08:00', '09:00', '10:00', '11:00', '12:00',
+        '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'
+      ];
+      
+      const normalizarHora = (horaStr) => {
+        return horaStr.replace('am', '').replace('pm', '').trim();
+      };
+      
+      const ordenados = data.datos.sort((a, b) => {
+        const horaA = normalizarHora(a.time_s);
+        const horaB = normalizarHora(b.time_s);
+        return ordenHoras.indexOf(horaA) - ordenHoras.indexOf(horaB);
+      });
+      
+      const numeros = ordenados.map(item => {
+        const num = item.number_animal;
+        return num === "00" ? "00" : parseInt(num);
+      });
+      
+      if (numeros.length === 12) {
+        console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
+        return numeros;
+      } else {
+        console.log(`   ⚠️ Solo se obtuvieron ${numeros.length} de 12 números`);
+        return null;
+      }
     }
   }
-}
- 
 };
 
 // ============================================
@@ -225,6 +217,10 @@ async function obtenerResultadosPasados(loteria, diasAtras = 1) {
   return await obtenerResultadosPorFecha(loteria, fechaLocal);
 }
 
+// ============================================
+// ACTUALIZACIÓN DE ARCHIVOS JSON - CORREGIDA
+// ============================================
+
 function actualizarJSON(loteria, nuevosNumeros) {
   const ruta = path.join(__dirname, `../data/${loteria}.json`);
   
@@ -235,8 +231,11 @@ function actualizarJSON(loteria, nuevosNumeros) {
 
   try {
     const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
+    
+    // ✅ CORRECCIÓN: Mantener los dos días anteriores y agregar el nuevo
     const [diaViejo, diaMedio, diaReciente] = actual.resultados;
     
+    // El nuevo orden debe ser: [diaMedio, diaReciente, nuevosNumeros]
     actual.resultados = [diaMedio, diaReciente, nuevosNumeros];
     actual.fecha_actualizacion = new Date().toISOString();
     
@@ -248,6 +247,10 @@ function actualizarJSON(loteria, nuevosNumeros) {
     return false;
   }
 }
+
+// ============================================
+// FUNCIÓN PRINCIPAL - CORREGIDA
+// ============================================
 
 async function main() {
   console.log('🎯 INICIANDO AUTOMATIZACIÓN DE RESULTADOS');
@@ -283,38 +286,17 @@ async function main() {
     }
   }
 
- // ============================================
-// ACTUALIZACIÓN DE ARCHIVOS JSON - CORREGIDA
-// ============================================
-
-function actualizarJSON(loteria, nuevosNumeros) {
-  const ruta = path.join(__dirname, `../data/${loteria}.json`);
+  console.log('\n📦 ACTUALIZANDO ARCHIVOS JSON...');
+  console.log('==========================================');
   
-  if (!fs.existsSync(ruta)) {
-    console.error(`❌ No existe ${ruta}`);
-    return false;
+  let actualizados = 0; // ✅ Declaramos la variable aquí
+  for (const loteria of loterias) {
+    if (resultados[loteria]) {
+      if (actualizarJSON(loteria, resultados[loteria])) {
+        actualizados++;
+      }
+    }
   }
-
-  try {
-    const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
-    
-    // ✅ CORRECCIÓN: Mantener los dos días anteriores y agregar el nuevo
-    const [dia1, dia2, dia3] = actual.resultados; // dia1 = más viejo, dia3 = más reciente
-    
-    // El nuevo orden debe ser: [dia2, dia3, nuevosNumeros]
-    // Es decir: descartamos el más viejo, y agregamos el nuevo al final
-    actual.resultados = [dia2, dia3, nuevosNumeros];
-    actual.fecha_actualizacion = new Date().toISOString();
-    
-    fs.writeFileSync(ruta, JSON.stringify(actual, null, 2));
-    console.log(`✅ ${loteria}.json actualizado correctamente`);
-    console.log(`   📊 Días: [Ayer, Hoy, Nuevo]`);
-    return true;
-  } catch (error) {
-    console.error(`❌ Error actualizando ${loteria}.json:`, error.message);
-    return false;
-  }
-}
 
   console.log('\n🎉 RESUMEN FINAL');
   console.log('==========================================');
