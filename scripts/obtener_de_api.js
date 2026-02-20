@@ -128,66 +128,71 @@ const CONFIG = {
       return numeros.length === 10 ? numeros : null;
     }
   },
-
-  // 🎲 LOTTO ACTIVO (12 números) - VERSIÓN OFICIAL
-  lotto: {
-    apiUrl: 'https://lottoactivo.com/core/process.php',
-    numeros: 12,
-    nombre: 'Lotto Activo',
-    procesar: async (fecha) => {
-      const fechaStr = fecha.toISOString().split('T')[0]; // YYYY-MM-DD
-      
-      // Este es el option que usa la página oficial
-      const formData = new URLSearchParams();
-      formData.append('option', 'WDNxcnFwcnNPb1lrd3VTSXEyYll0USRMNFJSNm50dzBHbTZxd1d3VjI4b0ZvVEY4djEyNElpNWpIenpsTWlqY1pKdENLT2E4dlZpaWV1SXk3WThTMkZmMVl6WUZudXNFMTcrUzJYMmhiL0xOQT09');
-      formData.append('loteria', 'lotto_activo');
-      formData.append('fecha', fechaStr);
-      
-      console.log(`   📡 Enviando petición a process.php para ${fechaStr}`);
-      
-      const response = await fetch('https://lottoactivo.com/core/process.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'User-Agent': 'DrAnimalitosBot/1.0'
-        },
-        body: formData
-      });
-      
-      if (!response.ok) {
-        console.log(`   ❌ Respuesta HTTP: ${response.status}`);
-        return null;
-      }
-      
-      const data = await response.json();
-      
-      if (!data.datos || !Array.isArray(data.datos)) {
-        console.log('   ❌ No hay datos en la respuesta');
-        return null;
-      }
-      
-      console.log(`   ✅ Recibidos ${data.datos.length} sorteos`);
-      
-      const ordenados = data.datos.sort((a, b) => {
-        const horaA = parseInt(a.time_s.split(':')[0]);
-        const horaB = parseInt(b.time_s.split(':')[0]);
-        return horaA - horaB;
-      });
-      
-      const numeros = ordenados.map(item => {
-        const num = item.number_animal;
-        return num === "00" ? "00" : parseInt(num);
-      });
-      
-      if (numeros.length === 12) {
-        console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
-        return numeros;
-      } else {
-        console.log(`   ⚠️ Solo se obtuvieron ${numeros.length} de 12 números`);
-        return null;
-      }
+  
+// 🎲 LOTTO ACTIVO (12 números) - CON ORDEN CORRECTO POR HORA
+lotto: {
+  apiUrl: 'https://lottoactivo.com/core/process.php',
+  numeros: 12,
+  nombre: 'Lotto Activo',
+  procesar: async (fecha) => {
+    const fechaStr = fecha.toISOString().split('T')[0];
+    
+    const formData = new URLSearchParams();
+    formData.append('option', 'WDNxcnFwcnNPb1lrd3VTSXEyYll0USRMNFJSNm50dzBHbTZxd1d3VjI4b0ZvVEY4djEyNElpNWpIenpsTWlqY1pKdENLT2E4dlZpaWV1SXk3WThTMkZmMVl6WUZudXNFMTcrUzJYMmhiL0xOQT09');
+    formData.append('loteria', 'lotto_activo');
+    formData.append('fecha', fechaStr);
+    
+    console.log(`   📡 Enviando petición a process.php para ${fechaStr}`);
+    
+    const response = await fetch('https://lottoactivo.com/core/process.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'DrAnimalitosBot/1.0'
+      },
+      body: formData
+    });
+    
+    if (!response.ok) return null;
+    const data = await response.json();
+    
+    if (!data.datos || !Array.isArray(data.datos)) return null;
+    
+    console.log(`   ✅ Recibidos ${data.datos.length} sorteos`);
+    
+    // Definir el orden correcto de las horas (de 8am a 7pm)
+    const ordenHoras = [
+      '08:00', '09:00', '10:00', '11:00', '12:00',
+      '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'
+    ];
+    
+    // Función para normalizar la hora (convertir "09:00am" a "09:00")
+    const normalizarHora = (horaStr) => {
+      return horaStr.replace('am', '').replace('pm', '').trim();
+    };
+    
+    // Ordenar según la lista de horas
+    const ordenados = data.datos.sort((a, b) => {
+      const horaA = normalizarHora(a.time_s);
+      const horaB = normalizarHora(b.time_s);
+      return ordenHoras.indexOf(horaA) - ordenHoras.indexOf(horaB);
+    });
+    
+    const numeros = ordenados.map(item => {
+      const num = item.number_animal;
+      return num === "00" ? "00" : parseInt(num);
+    });
+    
+    if (numeros.length === 12) {
+      console.log(`   ✅ Números obtenidos (orden por hora): ${numeros.join(', ')}`);
+      return numeros;
+    } else {
+      console.log(`   ⚠️ Solo se obtuvieron ${numeros.length} de 12 números`);
+      return null;
     }
   }
+}
+ 
 };
 
 // ============================================
