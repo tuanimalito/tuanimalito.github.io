@@ -283,17 +283,38 @@ async function main() {
     }
   }
 
-  console.log('\n📦 ACTUALIZANDO ARCHIVOS JSON...');
-  console.log('==========================================');
+ // ============================================
+// ACTUALIZACIÓN DE ARCHIVOS JSON - CORREGIDA
+// ============================================
+
+function actualizarJSON(loteria, nuevosNumeros) {
+  const ruta = path.join(__dirname, `../data/${loteria}.json`);
   
-  let actualizados = 0;
-  for (const loteria of loterias) {
-    if (resultados[loteria]) {
-      if (actualizarJSON(loteria, resultados[loteria])) {
-        actualizados++;
-      }
-    }
+  if (!fs.existsSync(ruta)) {
+    console.error(`❌ No existe ${ruta}`);
+    return false;
   }
+
+  try {
+    const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
+    
+    // ✅ CORRECCIÓN: Mantener los dos días anteriores y agregar el nuevo
+    const [dia1, dia2, dia3] = actual.resultados; // dia1 = más viejo, dia3 = más reciente
+    
+    // El nuevo orden debe ser: [dia2, dia3, nuevosNumeros]
+    // Es decir: descartamos el más viejo, y agregamos el nuevo al final
+    actual.resultados = [dia2, dia3, nuevosNumeros];
+    actual.fecha_actualizacion = new Date().toISOString();
+    
+    fs.writeFileSync(ruta, JSON.stringify(actual, null, 2));
+    console.log(`✅ ${loteria}.json actualizado correctamente`);
+    console.log(`   📊 Días: [Ayer, Hoy, Nuevo]`);
+    return true;
+  } catch (error) {
+    console.error(`❌ Error actualizando ${loteria}.json:`, error.message);
+    return false;
+  }
+}
 
   console.log('\n🎉 RESUMEN FINAL');
   console.log('==========================================');
