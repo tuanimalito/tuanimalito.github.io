@@ -446,31 +446,30 @@
         const JSON_URL = 'data/granjazo.json';
 
         // ===== DICCIONARIO DE ANIMALES PARA GRANJAZO (76 números) =====
-        const animales = {
-            1: 'carnero', 2: 'toro', 3: 'ciempiés',
-            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
-            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
-            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
-            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
-            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
-            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
-            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'mariposa', 38: 'conejo',
-            39: 'rinoceronte', 40: 'hipopotamo', 41: 'bufalo', 42: 'murcielago', 43: 'koala',
-            44: 'puma', 45: 'canguro', 46: 'lobo', 47: 'toptuga', 48: 'morsa',
-            49: 'hiena', 50: 'comadreja', 51: 'dragon', 52: 'chacal', 53: 'jaguar',
-            54: 'camalion', 55: 'foca', 56: 'arminio', 57: 'jabali', 58: 'castor',
-            59: 'guacamayo', 60: 'tiburon', 61: 'turpial', 62: 'tucan', 63: 'cachicamo',
-            64: 'hormiga', 65: 'gorila', 66: 'bisonte', 67: 'flamengo', 68: 'araña',
-            69: 'pavo real', 70: 'cangrejo', 71: 'rabipelao', 72: 'pelicano', 73: 'colibri',
-            74: 'escarabajo', 75: 'codorniz' 76: 'mantis'
-        };
+       const animales = {
+    1: 'carnero', 2: 'toro', 3: 'ciempiés',
+    4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+    9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+    14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+    19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+    24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+    29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+    34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'mariposa', 38: 'conejo',
+    39: 'rinoceronte', 40: 'hipopotamo', 41: 'bufalo', 42: 'murcielago', 43: 'koala',
+    44: 'puma', 45: 'canguro', 46: 'lobo', 47: 'toptuga', 48: 'morsa',
+    49: 'hiena', 50: 'comadreja', 51: 'dragon', 52: 'chacal', 53: 'jaguar',
+    54: 'camalion', 55: 'foca', 56: 'arminio', 57: 'jabali', 58: 'castor',
+    59: 'guacamayo', 60: 'tiburon', 61: 'turpial', 62: 'tucan', 63: 'cachicamo',
+    64: 'hormiga', 65: 'gorila', 66: 'bisonte', 67: 'flamengo', 68: 'araña',
+    69: 'pavo real', 70: 'cangrejo', 71: 'rabipelao', 72: 'pelicano', 73: 'colibri',
+    74: 'escarabajo', 75: 'codorniz', 76: 'mantis'  // ✅ COMA AGREGADA
+};
 
-        function obtenerRutaImagen(numero) {
-            if (numero === '00' || numero === 0) return 'animalitos/animalitos_granja/00.png';
-            const numFormateado = String(numero).padStart(2, '0');
-            return `animalitos/animalitos_granja/${numFormateado}.png`;
+      function obtenerRutaImagen(numero) {
+    if (numero === '00' || numero === 0) return 'animalitos/animalitos_granjazo/00.png';
+    const numFormateado = String(numero).padStart(2, '0');
+    return `animalitos/animalitos_granjazo/${numFormateado}.png`;
         }
-
         function mostrarFecha() {
             const hoy = new Date();
             document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
