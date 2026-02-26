@@ -2,8 +2,7 @@ name: 🤖 Actualización Automática de Resultados
 
 on:
   schedule:
-    # Se ejecuta todos los días a las 8:30 PM (hora Venezuela)
-    - cron: '0 0 * * *'  # 8pm en Venezuela = 0 UTC
+    - cron: '0 3 * * *'  # 11:00 PM hora Venezuela (3:00 UTC)
   workflow_dispatch:  # Permite ejecución manual
 
 permissions:
@@ -30,19 +29,15 @@ jobs:
 
       - name: 🔍 Obtener resultados de la API
         id: obtener
-        run: |
-          # Copiar el script (lo creamos en el paso anterior)
-          node scripts/obtener_de_api.js
+        run: node scripts/obtener_de_api.js
         continue-on-error: true
 
       - name: 📤 Actualizar archivos JSON
         if: success()
         run: |
           if [ -f temp_resultados/nuevos.json ]; then
-            # Leer los resultados
             NUEVOS=$(cat temp_resultados/nuevos.json)
             
-            # Actualizar guacharo.json
             if [ -f data/guacharo.json ]; then
               node -e "
                 const fs = require('fs');
