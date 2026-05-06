@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal -->
+  <url>
+    <loc>https://tuanimalito.github.io/index.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Página de Granja Millonaria -->
+  <url>
+    <loc>https://tuanimalito.github.io/sf_granja.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de Lotto Activo -->
+  <url>
+    <loc>https://tuanimalito.github.io/sf_loto.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de Guacharo Activo -->
+  <url>
+    <loc>https://tuanimalito.github.io/sf_guacharo.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
