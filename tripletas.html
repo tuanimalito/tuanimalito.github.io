@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-61YTHM256Z');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Bases para Tripletas - Lotto Activo</title>
+    <meta name="description" content="Las mejores Bases para Tripletas para Lotto Activo basadas en análisis estadístico.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 32px 32px 24px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 900px;
+            padding: 0;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .cabecera {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .cabecera h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+        }
+        
+        .cabecera .sub {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.95;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+        }
+        
+        .menu-container {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+        }
+        
+        .menu-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-button:active {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0.95);
+        }
+        
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+        
+        .menu-dropdown.show {
+            display: block;
+        }
+        
+        .menu-dropdown a {
+            color: #333;
+            padding: 15px 18px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        
+        .menu-dropdown a:active {
+            background: #f5f5f5;
+        }
+        
+        .menu-dropdown a i {
+            font-size: 1.2rem;
+            width: 24px;
+            color: #667eea;
+        }
+        
+        .datetime-container {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .datetime-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+        
+        .datetime-item i {
+            font-size: 0.9rem;
+        }
+        
+        .status-bar {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .result-container {
+            padding: 20px 15px;
+            background: #f8fafc;
+        }
+        
+        .tarjeta-dato {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .tarjeta-dato h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .numero-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .numero-card:active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .numero-card .numero {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .numero-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin: 5px auto;
+        }
+        
+        .numero-card .animal {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 5px;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 1rem;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 30px;
+            color: #e74c3c;
+            font-size: 1rem;
+            background: #fef2f2;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+        
+        .ad-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 15px auto;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+        
+        .footer {
+            max-width: 900px;
+            width: 100%;
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 24px 24px 0 0;
+        }
+        
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .footer .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .footer .social-links a:active {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .footer .copyright {
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .footer .copyright span {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .footer .credits a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (min-width: 700px) {
+            .numeros-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .cabecera h1 {
+                font-size: 3rem;
+            }
+            .cabecera .sub {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cabecera">
+            <div class="menu-container">
+                <button class="menu-button" id="menuButton">
+                    <i class="bi bi-grid"></i>
+                </button>
+                <div class="menu-dropdown" id="menuDropdown">
+                    <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                    <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
+                    <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
+                    <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
+                    <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
+                </div>
+            </div>
+            <h1>Bases para Tripletas</h1>
+            <div class="sub">Lotto Activo</div>
+        </div>
+        
+        <script>
+            (function() {
+                const menuBtn = document.getElementById('menuButton');
+                const menuDropdown = document.getElementById('menuDropdown');
+                
+                if (menuBtn && menuDropdown) {
+                    menuBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        menuDropdown.classList.toggle('show');
+                    });
+                    
+                    document.addEventListener('click', function(e) {
+                        if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+                            menuDropdown.classList.remove('show');
+                        }
+                    });
+                    
+                    menuDropdown.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                }
+            })();
+        </script>
+        
+        <!-- Fecha y Hora Automática -->
+        <div class="datetime-container">
+            <div class="datetime-item">
+                <i class="bi bi-calendar3"></i>
+                <span id="fechaActual"></span>
+            </div>
+            <div class="datetime-item">
+                <i class="bi bi-clock"></i>
+                <span id="horaActual"></span>
+            </div>
+        </div>
+        
+        <div class="status-bar" id="statusBar">
+            🔄 Cargando datos del JSON...
+        </div>
+        
+        <!-- Anuncio superior -->
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+                data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="result-container">
+            <div class="tarjeta-dato">
+                <h3>Bases para Tripletas</h3>
+                <div id="resultado-contenido">
+                    <div class="no-data">
+                        <div class="loading-spinner"></div>
+                        Cargando...
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Anuncio inferior -->
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+                data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== FUNCIÓN DE FECHA Y HORA AUTOMÁTICA =====
+        function actualizarFechaHora() {
+            const ahora = new Date();
+            const opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+            const fechaFormateada = ahora.toLocaleDateString('es-ES', opcionesFecha);
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+            const horaFormateada = `${horas}:${minutos}:${segundos}`;
+            
+            const fechaElemento = document.getElementById('fechaActual');
+            const horaElemento = document.getElementById('horaActual');
+            
+            if (fechaElemento) fechaElemento.innerText = fechaFormateada;
+            if (horaElemento) horaElemento.innerText = horaFormateada;
+        }
+        
+        setInterval(actualizarFechaHora, 1000);
+        
+        // ===== SEGURIDAD =====
+        (function() {
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('keydown', e => {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85)) {
+                    e.preventDefault();
+                }
+            });
+            (function detectDevTools() {
+                const element = new Image();
+                Object.defineProperty(element, 'id', {
+                    get: function() { console.clear(); }
+                });
+                console.log(element);
+            })();
+        })();
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            actualizarFechaHora();
+            
+            const resultadoContenedor = document.getElementById('resultado-contenido');
+            const statusBar = document.getElementById('statusBar');
+            // Ruta de imágenes para Lotto Activo
+            const baseImagePath = 'animalitos/animalitos_loto/';
+            
+            // Ruta del JSON
+            const JSON_URL = 'datos/loteria.json';
+            
+            function formatNumber(num) {
+                if (num === 0 || num === '00') return '00';
+                return num.toString();
+            }
+            
+            function normalizarNumero(valor) {
+                if (valor === '00' || valor === 0) return 0;
+                return parseInt(valor);
+            }
+            
+            // Diccionario de animales para Lotto Activo (0-36)
+            function obtenerAnimal(num) {
+                const animales = {
+                    0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
+                    5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
+                    10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
+                    15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
+                    20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
+                    25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
+                    30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
+                    35: 'jirafa', 36: 'culebra'
+                };
+                return animales[num] || 'desconocido';
+            }
+            
+            // Bases para Tripletas: ≤19 = +1,+2,+3 | ≥20 = -1,-2,-3
+            function calcularSuperFijos(seed) {
+                let resultados = [seed];
+                
+                if (seed <= 19) {
+                    let current = seed;
+                    const incrementos = [1, 2, 3];
+                    for (let i = 0; i < incrementos.length; i++) {
+                        const suma = current + incrementos[i];
+                        if (suma <= 36) {
+                            resultados.push(suma);
+                            current = suma;
+                        }
+                    }
+                } else {
+                    let current = seed;
+                    const decrementos = [1, 2, 3];
+                    for (let i = 0; i < decrementos.length; i++) {
+                        const resta = current - decrementos[i];
+                        if (resta >= 0) {
+                            resultados.push(resta);
+                            current = resta;
+                        }
+                    }
+                }
+                
+                return [...new Set(resultados)];
+            }
+            
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            function mostrarError(mensaje) {
+                resultadoContenedor.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        ${mensaje}
+                    </div>
+                `;
+                statusBar.innerHTML = '❌ Error al cargar los datos';
+            }
+            
+            async function cargarNumeroBase() {
+                try {
+                    statusBar.innerHTML = '<span class="loading-spinner"></span> Conectando con la base de datos...';
+                    
+                    const response = await fetch(JSON_URL + '?t=' + Date.now());
+                    if (!response.ok) throw new Error('No se pudo cargar el archivo JSON');
+                    
+                    const data = await response.json();
+                    
+                    if (!data.resultados || data.resultados.length === 0) {
+                        throw new Error('El JSON no contiene resultados');
+                    }
+                    
+                    const ultimoDia = data.resultados[data.resultados.length - 1];
+                    
+                    if (!ultimoDia || ultimoDia.length === 0) {
+                        throw new Error('El último día no tiene resultados');
+                    }
+                    
+                    let numeroBaseRaw = ultimoDia[ultimoDia.length - 1];
+                    let numeroBase = normalizarNumero(numeroBaseRaw);
+                    
+                    statusBar.innerHTML = `✅ Último resultado del JSON: ${formatNumber(numeroBase)} - ${obtenerAnimal(numeroBase)}`;
+                    
+                    return { numeroBase, numeroBaseRaw };
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    mostrarError(`No se pudieron cargar los datos: ${error.message}`);
+                    throw error;
+                }
+            }
+            
+            function mostrarSuperFijos(numeroBase, numeroBaseRaw) {
+                const resultados = calcularSuperFijos(numeroBase);
+                
+                if (!resultados || resultados.length === 0) {
+                    mostrarError('No se pudieron generar las Bases para Tripletas');
+                    return;
+                }
+                
+                const shuffled = shuffleArray([...resultados]);
+                
+                let html = '<div class="numeros-grid">';
+                shuffled.forEach(num => {
+                    const displayNum = formatNumber(num);
+                    const nombreAnimal = obtenerAnimal(num);
+                    const imageUrl = `${baseImagePath}${displayNum}.png`;
+                    
+                    html += `
+                        <div class="numero-card">
+                            <div class="numero">${displayNum}</div>
+                            <img src="${imageUrl}" alt="${nombreAnimal}" 
+                                 onerror="this.src='animalitos/animalitos_loto/00.png'">
+                            <div class="animal">${nombreAnimal}</div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                
+                const baseInfo = document.createElement('div');
+                baseInfo.style.cssText = 'margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 10px; text-align: center; font-size: 0.85rem; color: #555;';
+                baseInfo.innerHTML = `<i class="fas fa-chart-line"></i> Basado en el número: <strong>${formatNumber(numeroBaseRaw)}</strong> (${obtenerAnimal(numeroBase)})`;
+                
+                resultadoContenedor.innerHTML = html;
+                resultadoContenedor.appendChild(baseInfo);
+            }
+            
+            async function inicializar() {
+                try {
+                    const { numeroBase, numeroBaseRaw } = await cargarNumeroBase();
+                    mostrarSuperFijos(numeroBase, numeroBaseRaw);
+                } catch (error) {
+                    console.error('Inicialización fallida:', error);
+                }
+            }
+            
+            inicializar();
+        });
+    </script>
+</body>
+</html>
