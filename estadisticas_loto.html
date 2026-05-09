@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Estadisticas - Lotto Activo</title>
-    <meta name="description" content="Obtén los mejores datos y super fijos para la Guacharo Activo. Pronósticos actualizados basados en estadísticas de repetición para ganar hoy mismo.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Estadísticas - Lotto Activo</title>
+    <meta name="description" content="Estadísticas y análisis de Lotto Activo. Datos actualizados basados en resultados históricos.">
     <!-- Favicons -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="assets/images/apple-touch-icon.webp" rel="apple-touch-icon">
     <link rel="canonical" href="https://tuanimalito.github.io/estadisticas_loto.html" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
@@ -85,12 +85,9 @@
             font-weight: 400;
         }
 
-        /* MENÚ HAMBURGUESA */
-        .menu-container {
-            position: relative;
-        }
-
-        .menu-button {
+        /* Menú hamburguesa mejorado */
+        .mobile-nav-toggle {
+            display: none;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
@@ -99,58 +96,153 @@
             border-radius: 12px;
             font-size: 1.4rem;
             cursor: pointer;
-            display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
         }
-
-        .menu-button:hover {
+        
+        .mobile-nav-toggle:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
-        .menu-dropdown {
-            display: none;
-            position: absolute;
-            top: 55px;
-            right: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .menu-dropdown.show {
-            display: block;
-        }
-
-        .menu-dropdown a {
-            color: #1e293b;
-            padding: 14px 18px;
-            text-decoration: none;
+        
+        .navbar {
             display: flex;
             align-items: center;
-            gap: 12px;
+        }
+        
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+        }
+        
+        .navbar ul li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            color: #f1f5f9;
+            text-decoration: none;
             font-weight: 500;
             font-size: 14px;
-            border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s;
+            padding: 8px 15px;
+            border-radius: 50px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-
-        .menu-dropdown a:last-child {
+        
+        .navbar ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown desktop */
+        .navbar ul li.dropdown ul {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+            flex-direction: column;
+        }
+        
+        .navbar ul li.dropdown:hover ul {
+            opacity: 1;
+            visibility: visible;
+            top: 35px;
+        }
+        
+        .navbar ul li.dropdown ul li {
+            margin: 0;
+        }
+        
+        .navbar ul li.dropdown ul li a {
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .navbar ul li.dropdown ul li a:hover {
+            background: #f5f5f5;
+            transform: none;
+        }
+        
+        .navbar ul li.dropdown ul li:last-child a {
             border-bottom: none;
         }
-
-        .menu-dropdown a:hover {
-            background: #f1f5f9;
-        }
-
-        .menu-dropdown a i {
-            font-size: 1.2rem;
-            width: 24px;
-            color: #3b82f6;
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: flex;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 999;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .navbar.show {
+                right: 0;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .navbar ul li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .navbar ul li a {
+                color: #333;
+                padding: 12px 15px;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .navbar ul li.dropdown ul {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                display: none;
+                background: #f8f9fa;
+                margin-top: 5px;
+                border-radius: 8px;
+            }
+            
+            .navbar ul li.dropdown.open ul {
+                display: block;
+            }
+            
+            .navbar ul li.dropdown ul li a {
+                padding-left: 35px;
+            }
         }
 
         .main-content {
@@ -600,42 +692,75 @@
                 🎯 GSM PROFESIONAL v3.0
                 <small>ESTADISTICAS LOTTO ACTIVO</small>
             </h1>
-            <div class="menu-container">
-                <button class="menu-button" id="menuButton">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="menu-dropdown" id="menuDropdown">
-                    <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
-                    <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
-                    <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
-                    <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
-                    <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
-                    <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
-                </div>
-            </div>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+                    <li><a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a></li>
+                    <li><a href="nosotros.html"><i class="bi bi-people-fill"></i> Sobre Nosotros</a></li>
+                    <li class="dropdown">
+                        <a href="#"><i class="bi bi-bar-chart-steps"></i> Estadisticas <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="estadisticas_loto.html">🎲 Loto Activo</a></li>
+                            <li><a href="estadisticas_guacharo.html">🐦 Guacharo Activo</a></li>
+                            <li><a href="estadisticas_granja.html">🌾 Granja Millonaria</a></li>
+                            <li><a href="estadisticas_granjazo.html">⚡ Granjazo</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <script>
             (function() {
-                const menuBtn = document.getElementById('menuButton');
-                const menuDropdown = document.getElementById('menuDropdown');
+                const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+                const navbar = document.getElementById('navbar');
                 
-                if (menuBtn && menuDropdown) {
-                    menuBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        menuDropdown.classList.toggle('show');
-                    });
-                    
-                    document.addEventListener('click', function(e) {
-                        if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
-                            menuDropdown.classList.remove('show');
+                if (mobileNavToggle && navbar) {
+                    mobileNavToggle.addEventListener('click', function() {
+                        navbar.classList.toggle('show');
+                        const icon = mobileNavToggle.querySelector('i');
+                        if (icon) {
+                            if (navbar.classList.contains('show')) {
+                                icon.classList.remove('bi-list');
+                                icon.classList.add('bi-x');
+                            } else {
+                                icon.classList.remove('bi-x');
+                                icon.classList.add('bi-list');
+                            }
                         }
                     });
-                    
-                    menuDropdown.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                    });
                 }
+                
+                // Cerrar menú al hacer clic en enlace
+                document.querySelectorAll('#navbar a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navbar && navbar.classList.contains('show')) {
+                            navbar.classList.remove('show');
+                            const icon = mobileNavToggle?.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('bi-x');
+                                icon.classList.add('bi-list');
+                            }
+                        }
+                    });
+                });
+                
+                // Dropdown en móvil
+                const dropdowns = document.querySelectorAll('#navbar .dropdown');
+                dropdowns.forEach(dropdown => {
+                    const link = dropdown.querySelector('a');
+                    if (link) {
+                        link.addEventListener('click', function(e) {
+                            if (window.innerWidth <= 768) {
+                                e.preventDefault();
+                                dropdown.classList.toggle('open');
+                            }
+                        });
+                    }
+                });
             })();
         </script>
 
@@ -643,12 +768,11 @@
             <div id="statsBanner" class="stats-banner hidden"></div>
             <div id="errorMessage" class="error-message hidden"></div>
 
-            <!-- Anuncio interno -->
             <div class="ad-container">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-                crossorigin="anonymous"></script>
+                    crossorigin="anonymous"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-                data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -664,7 +788,7 @@
                 <div class="stats-grid" id="generalStats"></div>
                 <div class="mapa-zona-container">
                     <div class="heatmap-section">
-                        <h2>🔥 <small>Mapa de Calor</small></h2>
+                        <h2>🔥 <small>Mapa de Calor (0-36 + 00)</small></h2>
                         <div id="heatmap" class="heatmap-grid"></div>
                     </div>
                     <div id="zonaCazaRealTime" class="zona-caza-section"></div>
@@ -691,12 +815,11 @@
                 </div>
             </div>
 
-            <!-- Anuncio inferior interno -->
             <div class="ad-container">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-                crossorigin="anonymous"></script>
+                    crossorigin="anonymous"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-                data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -716,12 +839,11 @@
         </footer>
     </div>
 
-    <!-- Anuncio inferior -->
     <div class="ad-container">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-        crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-        data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -730,55 +852,24 @@
     <script>
         // ==================== MEDIDAS DE SEGURIDAD ====================
         (function() {
-            // Prevenir clic derecho
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            // Prevenir combinaciones de teclado
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
             document.addEventListener('keydown', function(e) {
-                if (e.keyCode === 123 || // F12
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
-                    (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-                    (e.ctrlKey && e.keyCode === 83)) { // Ctrl+S
-                    e.preventDefault();
-                return false;
-            }
-        });
-            
-            // Prevenir selección de texto
-            document.addEventListener('selectstart', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            // Prevenir arrastre de imágenes
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('dragstart', function(e) {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                    (e.ctrlKey && e.keyCode === 83)) {
                     e.preventDefault();
                     return false;
-                });
+                }
             });
-            
-            // Deshabilitar copiar y cortar
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+            document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
             document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
             document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
-            
-            // Detector de herramientas de desarrollo
             (function detectDevTools() {
                 const element = new Image();
-                Object.defineProperty(element, 'id', {
-                    get: function() {
-                        console.clear();
-                        console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;');
-                    }
-                });
+                Object.defineProperty(element, 'id', { get: function() { console.clear(); console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;'); } });
                 console.log(element);
             })();
-            
-            // Limpiar consola periódicamente
             setInterval(function() { console.clear(); }, 1000);
         })();
         
@@ -824,6 +915,18 @@
             '30-39': [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
         };
 
+        // Diccionario de animales
+        const animales = {
+            0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
+            5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
+            10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
+            15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
+            20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
+            25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
+            30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
+            35: 'jirafa', 36: 'culebra'
+        };
+
         // ==================== FUNCIONES AUXILIARES ====================
         function formatearNumero(valor) {
             if (valor === 100) return '00';
@@ -842,13 +945,20 @@
         function obtenerZona(numero) {
             if (numero === 100) return 'ZONA #0';
             const terminacion = numero % 10;
+            if (terminacion === 0) return 'ZONA #0';
             return `ZONA #${terminacion}`;
         }
 
         function obtenerSecuencia(numero) {
             if (numero === 100) return '0-9';
-            const decena = Math.floor(numero / 10) * 10;
-            return `${decena}-${decena + 9}`;
+            if (numero >= 0 && numero <= 9) return '0-9';
+            if (numero >= 10 && numero <= 19) return '10-19';
+            if (numero >= 20 && numero <= 29) return '20-29';
+            return '30-39';
+        }
+
+        function obtenerAnimal(num) {
+            return animales[num] || 'desconocido';
         }
 
         // ==================== FUNCIONES DE ANÁLISIS ====================
@@ -938,18 +1048,13 @@
             return resultado;
         }
 
-        function obtenerAcompañantesSecuencia(numero) {
-            return obtenerAcompañantes(numero, 'secuencia');
-        }
-
-        function obtenerAcompañantesZona(numero) {
-            return obtenerAcompañantes(numero, 'zona');
-        }
+        function obtenerAcompañantesSecuencia(numero) { return obtenerAcompañantes(numero, 'secuencia'); }
+        function obtenerAcompañantesZona(numero) { return obtenerAcompañantes(numero, 'zona'); }
 
         function calcularZonaCaza() {
             const zonasActivas = ZONAS_CAZA_FIJAS.filter(zona => 
                 zona.numeros.some(n => n <= config.max || n === 100)
-                );
+            );
             const actividad = new Array(zonasActivas.length).fill(0);
             const ultimos12 = historialFiltrado.slice(0, 12);
             
@@ -996,22 +1101,17 @@
             return `
                 <h3>🎯 Zona de Caza · ${zona.nombre}</h3>
                 <div class="zona-caza-badges">
-                ${zona.numeros.map(n => `
-                        <div class="number-badge small" onclick="seleccionarNumero(${n})" style="cursor: pointer;">${formatearNumero(n)}</div>
-                    `).join('')}
+                    ${zona.numeros.map(n => `<div class="number-badge small" onclick="seleccionarNumero(${n})" style="cursor: pointer;">${formatearNumero(n)}</div>`).join('')}
                 </div>
                 <div style="background: white; padding: 8px; border-radius: 6px;">
                     <div style="font-weight: 600; font-size: 12px; margin-bottom: 6px;">📊 Frecuencia:</div>
-                ${numerosConFrecuencia.slice(0, 5).map((item, index) => `
+                    ${numerosConFrecuencia.slice(0, 5).map((item, index) => `
                         <div class="zona-frecuencia-item">
                             <div class="zona-frecuencia-numero">
                                 <div class="number-badge small" onclick="seleccionarNumero(${item.numero})" style="cursor: pointer;">${formatearNumero(item.numero)}</div>
                                 <span>${formatearNumero(item.numero)}</span>
                             </div>
-                            <span class="zona-frecuencia-badge">
-                                ${item.frecuencia} ${item.frecuencia === 1 ? 'vez' : 'veces'} 
-                                ${index === 0 ? '👑' : ''}
-                            </span>
+                            <span class="zona-frecuencia-badge">${item.frecuencia} ${item.frecuencia === 1 ? 'vez' : 'veces'} ${index === 0 ? '👑' : ''}</span>
                         </div>
                     `).join('')}
                 </div>
@@ -1051,26 +1151,10 @@
             }
             
             document.getElementById('generalStats').innerHTML = `
-                <div class="stat-card">
-                    <h3>Sorteos</h3>
-                    <div class="stat-value">${historialFiltrado.length}</div>
-                    <div class="stat-sub">${historialFiltrado[0]?.fechaStr||''}</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Rango</h3>
-                    <div class="stat-value">${config.min}-${config.max}</div>
-                    <div class="stat-sub">${config.especiales.join(', ')}</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Zona Caza</h3>
-                    <div class="stat-value">${zona.nombre}</div>
-                    <div class="stat-sub">12 últimos</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Rey 👑</h3>
-                    <div class="stat-value">${formatearNumero(rey.num)} ${obtenerIcono(rey.num)}</div>
-                    <div class="stat-sub">${rey.freq} veces</div>
-                </div>
+                <div class="stat-card"><h3>Sorteos</h3><div class="stat-value">${historialFiltrado.length}</div><div class="stat-sub">${historialFiltrado[0]?.fechaStr||''}</div></div>
+                <div class="stat-card"><h3>Rango</h3><div class="stat-value">${config.min}-${config.max}</div><div class="stat-sub">${config.especiales.join(', ')}</div></div>
+                <div class="stat-card"><h3>Zona Caza</h3><div class="stat-value">${zona.nombre}</div><div class="stat-sub">12 últimos</div></div>
+                <div class="stat-card"><h3>Rey 👑</h3><div class="stat-value">${formatearNumero(rey.num)} ${obtenerIcono(rey.num)}</div><div class="stat-sub">${rey.freq} veces</div></div>
             `;
             document.getElementById('kingIndicator').innerHTML = `👑 Rey: ${formatearNumero(rey.num)} ${obtenerIcono(rey.num)}`;
         }
@@ -1080,23 +1164,39 @@
             const maxFreq = Math.max(...Object.values(frec), 1);
             const numeros = [];
             for (let i = config.min; i <= config.max; i++) numeros.push(i);
-                if (config.especiales.includes('00')) numeros.push(100);
+            if (config.especiales.includes('00')) numeros.push(100);
             numeros.sort((a,b) => a-b);
             
             let html = '';
-            numeros.forEach(n => {
-                const freq = frec[n] || 0;
-                const intensidad = (freq / maxFreq) * 100;
-                const r = Math.min(255, 200 + intensidad * 0.55);
-                const g = Math.max(50, 255 - intensidad * 2);
-                const b = Math.max(50, 200 - intensidad);
-                let clase = 'heatmap-cell';
-                if (selectedNumber === n) clase += ' selected';
-                if (estaCaliente(n)) clase += ' highlight';
-                if (n === 0) clase += ' delfin';
-                if (n === 100) clase += ' ballena';
-                html += `<div class="${clase}" style="background: rgb(${r},${g},${b})" onclick="seleccionarNumero(${n})">${formatearNumero(n)}</div>`;
-            });
+            for (let fila = 0; fila < 4; fila++) {
+                for (let col = 0; col <= 9; col++) {
+                    const n = fila * 10 + col;
+                    if (n >= config.min && n <= config.max) {
+                        const freq = frec[n] || 0;
+                        const intensidad = (freq / maxFreq) * 100;
+                        const r = Math.min(255, 200 + intensidad * 0.55);
+                        const g = Math.max(50, 255 - intensidad * 2);
+                        const b = Math.max(50, 200 - intensidad);
+                        let clase = 'heatmap-cell';
+                        if (selectedNumber === n) clase += ' selected';
+                        if (estaCaliente(n)) clase += ' highlight';
+                        if (n === 0) clase += ' delfin';
+                        html += `<div class="${clase}" style="background: rgb(${r},${g},${b})" onclick="seleccionarNumero(${n})">${formatearNumero(n)}</div>`;
+                    }
+                }
+            }
+            // Añadir el 00
+            const n = 100;
+            const freq = frec[n] || 0;
+            const intensidad = (freq / maxFreq) * 100;
+            const r = Math.min(255, 200 + intensidad * 0.55);
+            const g = Math.max(50, 255 - intensidad * 2);
+            const b = Math.max(50, 200 - intensidad);
+            let clase = 'heatmap-cell ballena';
+            if (selectedNumber === n) clase += ' selected';
+            if (estaCaliente(n)) clase += ' highlight';
+            html += `<div class="${clase}" style="background: rgb(${r},${g},${b})" onclick="seleccionarNumero(${n})">00</div>`;
+            
             document.getElementById('heatmap').innerHTML = html;
         }
 
@@ -1104,13 +1204,13 @@
             const frec = calcularFrecuencias();
             const numeros = [];
             for (let i = config.min; i <= config.max; i++) numeros.push(i);
-                if (config.especiales.includes('00')) numeros.push(100);
+            if (config.especiales.includes('00')) numeros.push(100);
             
             const ranking = numeros
-            .map(n => ({ numero: n, frecuencia: frec[n]||0, ultima: ultimaAparicion(n), estado: getEstado(n) }))
-            .filter(item => item.frecuencia > 0)
-            .sort((a,b) => b.frecuencia - a.frecuencia || b.ultima - a.ultima)
-            .slice(0,10);
+                .map(n => ({ numero: n, frecuencia: frec[n]||0, ultima: ultimaAparicion(n), estado: getEstado(n) }))
+                .filter(item => item.frecuencia > 0)
+                .sort((a,b) => b.frecuencia - a.frecuencia || b.ultima - a.ultima)
+                .slice(0,10);
             
             let html = '';
             ranking.forEach((item, i) => {
@@ -1119,7 +1219,13 @@
                 const acompañantes = obtenerAcompañantesSecuencia(item.numero).slice(0,2).map(a => formatearNumero(a.numero)).join(', ');
                 let estadoClass = item.estado === '🔥' ? 'hot' : item.estado === '🟡' ? 'warm' : 'cold';
                 const fechaStr = item.ultima ? formatFechaDisplay(item.ultima) : '-';
-                html += `<tr><td>${i+1}</td><td><strong>${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td><td>${item.frecuencia}</td><td>${fechaStr}</td><td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td><td>${madurez}</td><td>${acompañantes}</td></tr>`;
+                html += `<tr><td>${i+1}</td>}<strong>${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
+                        <td>${item.frecuencia}</td>
+                        <td>${fechaStr}</td>
+                        <td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td>
+                        <td>${madurez}</td>
+                        <td>${acompañantes}</td>
+                    </tr>`;
             });
             document.getElementById('top10Body').innerHTML = html;
         }
@@ -1145,7 +1251,7 @@
             const puntajes = {};
             const numeros = [];
             for (let i = config.min; i <= config.max; i++) numeros.push(i);
-                if (config.especiales.includes('00')) numeros.push(100);
+            if (config.especiales.includes('00')) numeros.push(100);
             numeros.forEach(n => {
                 let pts = 0;
                 if (semillas.includes(n)) pts += 10;
@@ -1157,8 +1263,8 @@
             const ranking = Object.entries(puntajes).map(([n,p]) => ({ numero: parseInt(n), puntaje: p })).sort((a,b) => b.puntaje - a.puntaje).slice(0,3);
             document.getElementById('prediction').innerHTML = `
                 <div style="display:flex; gap:16px; justify-content:center;">
-                ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px;">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Opción ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
-            </div>`;
+                    ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px;">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Opción ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
+                </div>`;
         }
 
         function seleccionarNumero(num) {
@@ -1177,7 +1283,7 @@
             document.getElementById('numberInfo').innerHTML = html;
         }
 
-        // ==================== CARGA AUTOMÁTICA DESDE LOTTO.JSON ====================
+        // ==================== CARGA AUTOMÁTICA DESDE JSON ====================
         async function cargarDatos() {
             const emptyState = document.getElementById('emptyState');
             const results = document.getElementById('results');
@@ -1196,7 +1302,6 @@
                 const data = await response.json();
                 console.log('📊 Datos cargados:', data);
                 
-                // CORREGIDO: Buscar específicamente los datos de Lotto Activo
                 let resultadosData;
                 if (data.lotto_activo) {
                     resultadosData = data.lotto_activo;
@@ -1206,15 +1311,11 @@
                     throw new Error('No se encontraron resultados para Lotto Activo');
                 }
                 
-                if (!resultadosData || resultadosData.length === 0) {
-                    throw new Error('El JSON no contiene resultados');
-                }
+                if (!resultadosData || resultadosData.length === 0) throw new Error('El JSON no contiene resultados');
                 
-                // Tomar los últimos 3 sorteos
                 const ultimosTres = resultadosData.slice(-3);
                 historialCompleto = [];
                 
-                // Fechas dinámicas basadas en la fecha actual
                 const hoy = new Date();
                 const fechasBase = [];
                 for (let i = 0; i < ultimosTres.length; i++) {
@@ -1250,7 +1351,6 @@
                 historialFiltrado = [...historialCompleto];
                 
                 console.log('✅ Datos procesados correctamente:', historialFiltrado.length, 'sorteos');
-                console.log('🎯 Resultados:', historialFiltrado);
                 
                 if (historialFiltrado.length > 0) {
                     const primera = historialFiltrado[historialFiltrado.length-1].fecha;
@@ -1279,10 +1379,7 @@
             }
         }
 
-        // Exponer función global para que onclick funcione
         window.seleccionarNumero = seleccionarNumero;
-
-        // Inicialización
         cargarDatos();
     </script>
 </body>
