@@ -413,7 +413,7 @@
         </div>
         
         <div class="status-bar" id="statusBar">
-            🔄 Cargando datos del JSON...
+            🔄 Cargando datos...
         </div>
         
         <!-- Anuncio superior -->
@@ -589,12 +589,12 @@
                     statusBar.innerHTML = '<span class="loading-spinner"></span> Conectando con la base de datos...';
                     
                     const response = await fetch(JSON_URL + '?t=' + Date.now());
-                    if (!response.ok) throw new Error('No se pudo cargar el archivo JSON');
+                    if (!response.ok) throw new Error('No se pudo cargar los datos');
                     
                     const data = await response.json();
                     
                     if (!data.resultados || data.resultados.length === 0) {
-                        throw new Error('El JSON no contiene resultados');
+                        throw new Error('no contiene resultados');
                     }
                     
                     const ultimoDia = data.resultados[data.resultados.length - 1];
@@ -606,7 +606,7 @@
                     let numeroBaseRaw = ultimoDia[ultimoDia.length - 1];
                     let numeroBase = normalizarNumero(numeroBaseRaw);
                     
-                    statusBar.innerHTML = `✅ Último resultado del JSON: ${formatNumber(numeroBase)} - ${obtenerAnimal(numeroBase)}`;
+                    statusBar.innerHTML = `✅ Dr.animalitos: ${formatNumber(numeroBase)} - ${obtenerAnimal(numeroBase)}`;
                     
                     return { numeroBase, numeroBaseRaw };
                     
@@ -646,7 +646,7 @@
                 
                 const baseInfo = document.createElement('div');
                 baseInfo.style.cssText = 'margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 10px; text-align: center; font-size: 0.85rem; color: #555;';
-                baseInfo.innerHTML = `<i class="fas fa-chart-line"></i> Basado en el número: <strong>${formatNumber(numeroBaseRaw)}</strong> (${obtenerAnimal(numeroBase)})`;
+                baseInfo.innerHTML = `<i class="fas fa-chart-line"></i> El mas Caliente: <strong>${formatNumber(numeroBaseRaw)}</strong> (${obtenerAnimal(numeroBase)})`;
                 
                 resultadoContenedor.innerHTML = html;
                 resultadoContenedor.appendChild(baseInfo);
