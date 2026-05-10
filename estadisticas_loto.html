@@ -63,7 +63,6 @@
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             padding: 20px 32px;
             border-bottom: 1px solid #334155;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -719,7 +718,8 @@
                 const navbar = document.getElementById('navbar');
                 
                 if (mobileNavToggle && navbar) {
-                    mobileNavToggle.addEventListener('click', function() {
+                    mobileNavToggle.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         navbar.classList.toggle('show');
                         const icon = mobileNavToggle.querySelector('i');
                         if (icon) {
@@ -1219,13 +1219,15 @@
                 const acompañantes = obtenerAcompañantesSecuencia(item.numero).slice(0,2).map(a => formatearNumero(a.numero)).join(', ');
                 let estadoClass = item.estado === '🔥' ? 'hot' : item.estado === '🟡' ? 'warm' : 'cold';
                 const fechaStr = item.ultima ? formatFechaDisplay(item.ultima) : '-';
-                html += `<tr><td>${i+1}</td>}<strong>${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
-                        <td>${item.frecuencia}</td>
-                        <td>${fechaStr}</td>
-                        <td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td>
-                        <td>${madurez}</td>
-                        <td>${acompañantes}</td>
-                    </tr>`;
+                html += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
+                    <td>${item.frecuencia}</td>
+                    <td>${fechaStr}</td>
+                    <td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td>
+                    <td>${madurez}</td>
+                    <td>${acompañantes}</td>
+                </tr>`;
             });
             document.getElementById('top10Body').innerHTML = html;
         }
