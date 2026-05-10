@@ -801,7 +801,7 @@
                                 <tr><th>#</th><th>N°</th><th>F</th><th>Últ</th><th>Est</th><th>Mad</th><th>Acomp</th></tr>
                             </thead>
                             <tbody id="top10Body"></tbody>
-                        </tr>
+                        </table>
                     </div>
                 </div>
                 <div style="margin-bottom: 20px;">
@@ -1243,7 +1243,7 @@
                     <td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td>
                     <td>${madurez}</td>
                     <td>${acompañantes}</td>
-                </table>`;
+                </tr>`;
             });
             document.getElementById('top10Body').innerHTML = html;
         }
