@@ -7,7 +7,6 @@
     <meta name="description" content="Estadísticas y análisis de Granjazo. Datos actualizados basados en resultados históricos.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Favicons -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="assets/images/apple-touch-icon.webp" rel="apple-touch-icon">
     <link rel="canonical" href="https://tuanimalito.github.io/estadisticas_granjazo.html" />
@@ -63,7 +62,6 @@
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             padding: 20px 32px;
             border-bottom: 1px solid #334155;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -85,11 +83,9 @@
             font-weight: 400;
         }
 
-        .menu-container {
-            position: relative;
-        }
-
-        .menu-button {
+        /* MENÚ HAMBURGUESA */
+        .mobile-nav-toggle {
+            display: none;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
@@ -98,58 +94,153 @@
             border-radius: 12px;
             font-size: 1.4rem;
             cursor: pointer;
-            display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
         }
-
-        .menu-button:hover {
+        
+        .mobile-nav-toggle:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
-        .menu-dropdown {
-            display: none;
-            position: absolute;
-            top: 55px;
-            right: 0;
-            background: white;
-            min-width: 220px;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .menu-dropdown.show {
-            display: block;
-        }
-
-        .menu-dropdown a {
-            color: #1e293b;
-            padding: 14px 18px;
-            text-decoration: none;
+        
+        .navbar {
             display: flex;
             align-items: center;
-            gap: 12px;
+        }
+        
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+        }
+        
+        .navbar ul li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            color: #f1f5f9;
+            text-decoration: none;
             font-weight: 500;
             font-size: 14px;
-            border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s;
+            padding: 8px 15px;
+            border-radius: 50px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-
-        .menu-dropdown a:last-child {
+        
+        .navbar ul li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown desktop */
+        .navbar ul li.dropdown ul {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+            z-index: 100;
+            flex-direction: column;
+        }
+        
+        .navbar ul li.dropdown:hover ul {
+            opacity: 1;
+            visibility: visible;
+            top: 35px;
+        }
+        
+        .navbar ul li.dropdown ul li {
+            margin: 0;
+        }
+        
+        .navbar ul li.dropdown ul li a {
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .navbar ul li.dropdown ul li a:hover {
+            background: #f5f5f5;
+            transform: none;
+        }
+        
+        .navbar ul li.dropdown ul li:last-child a {
             border-bottom: none;
         }
-
-        .menu-dropdown a:hover {
-            background: #f1f5f9;
-        }
-
-        .menu-dropdown a i {
-            font-size: 1.2rem;
-            width: 24px;
-            color: #3b82f6;
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: flex;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 999;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .navbar.show {
+                right: 0;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .navbar ul li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .navbar ul li a {
+                color: #333;
+                padding: 12px 15px;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .navbar ul li.dropdown ul {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                display: none;
+                background: #f8f9fa;
+                margin-top: 5px;
+                border-radius: 8px;
+            }
+            
+            .navbar ul li.dropdown.open ul {
+                display: block;
+            }
+            
+            .navbar ul li.dropdown ul li a {
+                padding-left: 35px;
+            }
         }
 
         .main-content {
@@ -575,42 +666,76 @@
                 🎯 GSM PROFESIONAL v3.0
                 <small>ESTADISTICAS GRANJAZO (1-76)</small>
             </h1>
-            <div class="menu-container">
-                <button class="menu-button" id="menuButton">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="menu-dropdown" id="menuDropdown">
-                    <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
-                    <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
-                    <a href="estadisticas_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
-                    <a href="estadisticas_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
-                    <a href="estadisticas_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
-                    <a href="estadisticas_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
-                </div>
-            </div>
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+                    <li><a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a></li>
+                    <li><a href="nosotros.html"><i class="bi bi-people-fill"></i> Sobre Nosotros</a></li>
+                    <li class="dropdown">
+                        <a href="#"><i class="bi bi-bar-chart-steps"></i> Estadisticas <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="estadisticas_loto.html">🎲 Loto Activo</a></li>
+                            <li><a href="estadisticas_guacharo.html">🐦 Guacharo Activo</a></li>
+                            <li><a href="estadisticas_granja.html">🌾 Granja Millonaria</a></li>
+                            <li><a href="estadisticas_granjazo.html">⚡ Granjazo</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <script>
             (function() {
-                const menuBtn = document.getElementById('menuButton');
-                const menuDropdown = document.getElementById('menuDropdown');
+                const mobileNavToggle = document.getElementById('mobileNavToggle');
+                const navbar = document.getElementById('navbar');
                 
-                if (menuBtn && menuDropdown) {
-                    menuBtn.addEventListener('click', function(e) {
+                if (mobileNavToggle && navbar) {
+                    mobileNavToggle.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        menuDropdown.classList.toggle('show');
-                    });
-                    
-                    document.addEventListener('click', function(e) {
-                        if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
-                            menuDropdown.classList.remove('show');
+                        navbar.classList.toggle('show');
+                        const icon = mobileNavToggle.querySelector('i');
+                        if (icon) {
+                            if (navbar.classList.contains('show')) {
+                                icon.classList.remove('bi-list');
+                                icon.classList.add('bi-x');
+                            } else {
+                                icon.classList.remove('bi-x');
+                                icon.classList.add('bi-list');
+                            }
                         }
                     });
-                    
-                    menuDropdown.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                    });
                 }
+                
+                // Cerrar menú al hacer clic en un enlace
+                document.querySelectorAll('#navbar a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (navbar && navbar.classList.contains('show')) {
+                            navbar.classList.remove('show');
+                            const icon = mobileNavToggle?.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('bi-x');
+                                icon.classList.add('bi-list');
+                            }
+                        }
+                    });
+                });
+                
+                // Dropdown en móvil
+                const dropdowns = document.querySelectorAll('#navbar .dropdown');
+                dropdowns.forEach(dropdown => {
+                    const link = dropdown.querySelector('a');
+                    if (link) {
+                        link.addEventListener('click', function(e) {
+                            if (window.innerWidth <= 768) {
+                                e.preventDefault();
+                                dropdown.classList.toggle('open');
+                            }
+                        });
+                    }
+                });
             })();
         </script>
 
@@ -620,9 +745,9 @@
 
             <div class="ad-container">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-                crossorigin="anonymous"></script>
+                    crossorigin="anonymous"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-                data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -667,9 +792,9 @@
 
             <div class="ad-container">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-                crossorigin="anonymous"></script>
+                    crossorigin="anonymous"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-                data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -691,9 +816,9 @@
 
     <div class="ad-container">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-        crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-        data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -708,9 +833,9 @@
                     (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
                     (e.ctrlKey && e.keyCode === 83)) {
                     e.preventDefault();
-                return false;
-            }
-        });
+                    return false;
+                }
+            });
             document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
             document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
             document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
@@ -895,7 +1020,7 @@
         function calcularZonaCaza() {
             const zonasActivas = ZONAS_CAZA_FIJAS.filter(zona => 
                 zona.numeros.some(n => n <= config.max)
-                );
+            );
             const actividad = new Array(zonasActivas.length).fill(0);
             const ultimos12 = historialFiltrado.slice(0, 12);
             
@@ -942,11 +1067,11 @@
             return `
                 <h3>🎯 Zona de Caza · ${zona.nombre}</h3>
                 <div class="zona-caza-badges">
-                ${zona.numeros.map(n => `<div class="number-badge small" onclick="seleccionarNumero(${n})" style="cursor: pointer;">${formatearNumero(n)}</div>`).join('')}
+                    ${zona.numeros.map(n => `<div class="number-badge small" onclick="seleccionarNumero(${n})" style="cursor: pointer;">${formatearNumero(n)}</div>`).join('')}
                 </div>
                 <div style="background: white; padding: 8px; border-radius: 6px;">
                     <div style="font-weight: 600; font-size: 12px; margin-bottom: 6px;">📊 Frecuencia:</div>
-                ${numerosConFrecuencia.slice(0, 5).map((item, index) => `
+                    ${numerosConFrecuencia.slice(0, 5).map((item, index) => `
                         <div class="zona-frecuencia-item">
                             <div class="zona-frecuencia-numero">
                                 <div class="number-badge small" onclick="seleccionarNumero(${item.numero})" style="cursor: pointer;">${formatearNumero(item.numero)}</div>
@@ -1001,7 +1126,6 @@
             const frec = calcularFrecuencias();
             const maxFreq = Math.max(...Object.values(frec), 1);
             
-            // Generar números del 1 al 76 en filas de 10
             let html = '';
             for (let fila = 0; fila < 8; fila++) {
                 for (let col = 1; col <= 10; col++) {
@@ -1026,12 +1150,12 @@
             const frec = calcularFrecuencias();
             const numeros = [];
             for (let i = config.min; i <= config.max; i++) numeros.push(i);
-                
-                const ranking = numeros
-            .map(n => ({ numero: n, frecuencia: frec[n]||0, ultima: ultimaAparicion(n), estado: getEstado(n) }))
-            .filter(item => item.frecuencia > 0)
-            .sort((a,b) => b.frecuencia - a.frecuencia || b.ultima - a.ultima)
-            .slice(0,10);
+            
+            const ranking = numeros
+                .map(n => ({ numero: n, frecuencia: frec[n]||0, ultima: ultimaAparicion(n), estado: getEstado(n) }))
+                .filter(item => item.frecuencia > 0)
+                .sort((a,b) => b.frecuencia - a.frecuencia || b.ultima - a.ultima)
+                .slice(0,10);
             
             let html = '';
             ranking.forEach((item, i) => {
@@ -1040,7 +1164,15 @@
                 const acompañantes = obtenerAcompañantesSecuencia(item.numero).slice(0,2).map(a => formatearNumero(a.numero)).join(', ');
                 let estadoClass = item.estado === '🔥' ? 'hot' : item.estado === '🟡' ? 'warm' : 'cold';
                 const fechaStr = item.ultima ? formatFechaDisplay(item.ultima) : '-';
-                html += `<tr><td>${i+1}</td><td><strong>${formatearNumero(item.numero)}</strong></td><td>${item.frecuencia}</td><td>${fechaStr}</td><td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td><td>${madurez}</td><td>${acompañantes}</td></tr>`;
+                html += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${formatearNumero(item.numero)}</strong></td>
+                    <td>${item.frecuencia}</td>
+                    <td>${fechaStr}</td>
+                    <td><span class="${estadoClass}" style="padding:2px 4px; border-radius:3px;">${item.estado}</span></td>
+                    <td>${madurez}</td>
+                    <td>${acompañantes}</td>
+                </tr>`;
             });
             document.getElementById('top10Body').innerHTML = html;
         }
@@ -1066,19 +1198,19 @@
             const puntajes = {};
             const numeros = [];
             for (let i = config.min; i <= config.max; i++) numeros.push(i);
-                numeros.forEach(n => {
-                    let pts = 0;
-                    if (semillas.includes(n)) pts += 10;
-                    if (arrastre.includes(n)) pts += 8;
-                    if (zona.numeros.includes(n)) pts += 6;
-                    if (espejos.includes(n)) pts += 5;
-                    if (pts > 0) puntajes[n] = pts;
-                });
+            numeros.forEach(n => {
+                let pts = 0;
+                if (semillas.includes(n)) pts += 10;
+                if (arrastre.includes(n)) pts += 8;
+                if (zona.numeros.includes(n)) pts += 6;
+                if (espejos.includes(n)) pts += 5;
+                if (pts > 0) puntajes[n] = pts;
+            });
             const ranking = Object.entries(puntajes).map(([n,p]) => ({ numero: parseInt(n), puntaje: p })).sort((a,b) => b.puntaje - a.puntaje).slice(0,3);
             document.getElementById('prediction').innerHTML = `
                 <div style="display:flex; gap:16px; justify-content:center;">
-                ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px;">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Opción ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
-            </div>`;
+                    ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px;">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Opción ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
+                </div>`;
         }
 
         function seleccionarNumero(num) {
