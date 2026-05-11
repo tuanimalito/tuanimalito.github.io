@@ -5,175 +5,103 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-61YTHM256Z');
-    </script>
+    <title>Datos de Animalitos | TuAnimalito</title>
     
-    <title>Datos de Animalitos Hoy | TuAnimalito</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/stylesheets/styles.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary-color: #4a69bd;
-            --primary-dark: #2c3e50;
-            --white: #ffffff;
-            --danger: #fe2c55;
-        }
-
-        body { font-family: 'Poppins', sans-serif; background: #f5f7fa; margin: 0; }
-
-        /* HEADER */
-        #header { background: var(--primary-dark); padding: 15px 0; color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo h1 { font-size: 24px; margin: 0; font-weight: 700; color: white; }
-        .logo span { color: #ffd700; }
-
-        /* SECCIÓN DE VIDEOS ESTILO GALERÍA */
-        .videos-section {
-            background: linear-gradient(135deg, #667eea 0, #764ba2 100%);
-            padding: 80px 0;
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        
+        /* Contenedor de la sección */
+        .video-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 60px 0;
             color: white;
         }
 
-        .video-item {
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s ease;
+        /* La "Caja" del video - Aquí es donde corregimos el error de tus fotos */
+        .video-box {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
         }
 
-        .video-item:hover { transform: translateY(-10px); }
-
-        .video-preview {
+        /* EL TRUCO DEFINITIVO: Esto obliga al video a ser 16:9 sin scrolls */
+        .video-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 20px;
+            padding-bottom: 56.25%; /* Proporción 16:9 */
+            height: 0;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             background: #000;
         }
 
-        .video-preview img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Botón Play central */
-        .play-trigger {
+        .video-container iframe {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70px; height: 70px;
-            background: rgba(255, 0, 0, 0.9);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 30px;
-            transition: 0.3s;
-            border: 3px solid white;
-        }
-
-        .video-item:hover .play-trigger { background: #ff0000; scale: 1.1; }
-
-        .video-item h4 { margin-top: 20px; font-weight: 600; font-size: 1.1rem; }
-
-        /* MODAL DEL REPRODUCTOR (FLOTANTE) */
-        .video-overlay {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content-video {
-            width: 90%;
-            max-width: 900px;
-            position: relative;
-        }
-
-        /* Contenedor del Iframe para que no se corte nunca */
-        .iframe-wrapper {
-            position: relative;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding-bottom: 56.25%; /* Relación 16:9 */
-            height: 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            height: 100%;
+            border: 0;
         }
 
-        .iframe-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
+        .video-info { padding: 20px; color: #333; }
+        .video-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .video-info p { font-size: 0.9rem; color: #666; margin: 0; }
 
-        .close-video-btn {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .close-video-btn:hover { color: #ff0000; }
+        header { background: #1a1a1a; padding: 20px 0; text-align: center; color: white; }
     </style>
 </head>
 <body>
 
-    <header id="header">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo"><h1>🚨 Tu<span>.</span>Animalito💲</h1></div>
-            <nav style="font-weight: 500;">Tutoriales en Video</nav>
-        </div>
+    <header>
+        <h1>🚨 Tu.Animalito💲</h1>
     </header>
 
-    <main id="main">
-        <section class="videos-section">
+    <main>
+        <section class="video-section">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2 style="font-weight: 700;">📺 Aprende a Ganar</h2>
-                    <p>Haz clic en cualquier video para iniciar el tutorial</p>
+                    <h2>🎥 Tutoriales Estratégicos</h2>
+                    <p>Mira los videos directamente aquí abajo</p>
                 </div>
 
-                <div class="row gy-5">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="video-item" onclick="openVideo('N28B6IwVc24')">
-                            <div class="video-preview">
-                                <img src="assets/images/blog/mini1.png" alt="Video 1">
-                                <div class="play-trigger"><i class="bi bi-play-fill"></i></div>
+                <div class="row">
+                    <div class="col-lg-6 mx-auto">
+                        <div class="video-box">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/N28B6IwVc24?rel=0&modestbranding=1" 
+                                    title="Video 1"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
                             </div>
-                            <h4>¿Por qué repiten tanto?</h4>
+                            <div class="video-info">
+                                <h3>¿Por qué repiten tanto los animalitos?</h3>
+                                <p>Análisis técnico de las repeticiones en los sorteos diarios.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="video-item" onclick="openVideo('vIeULHiR2Tc')">
-                            <div class="video-preview">
-                                <img src="assets/images/blog/mini2.png" alt="Video 2">
-                                <div class="play-trigger"><i class="bi bi-play-fill"></i></div>
+                    <div class="col-lg-6 mx-auto">
+                        <div class="video-box">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/vIeULHiR2Tc?rel=0&modestbranding=1" 
+                                    title="Video 2"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
                             </div>
-                            <h4>Truco de las Tripletas</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="video-item" onclick="openVideo('CieyyhPgOpA')">
-                            <div class="video-preview">
-                                <img src="assets/images/blog/mini3.png" alt="Video 3">
-                                <div class="play-trigger"><i class="bi bi-play-fill"></i></div>
+                            <div class="video-info">
+                                <h3>Cómo armar Tripletas ganadoras</h3>
+                                <p>Domina las combinaciones para maximizar tus premios.</p>
                             </div>
-                            <h4>Fijos Loto Activo</h4>
                         </div>
                     </div>
                 </div>
@@ -181,52 +109,9 @@
         </section>
     </main>
 
-    <div id="videoOverlay" class="video-overlay" onclick="closeVideo()">
-        <div class="modal-content-video" onclick="event.stopPropagation()">
-            <span class="close-video-btn" onclick="closeVideo()">&times;</span>
-            <div class="iframe-wrapper" id="playerTarget">
-                </div>
-        </div>
-    </div>
-
-    <script>
-        /**
-         * Abre el video en una ventana flotante
-         * Esto evita conflictos de diseño en la página principal
-         */
-        function openVideo(videoId) {
-            const overlay = document.getElementById('videoOverlay');
-            const target = document.getElementById('playerTarget');
-            
-            // Cargamos el iframe con parámetros de autoplay y modestbranding (menos logos)
-            target.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>`;
-            
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
-        }
-
-        /**
-         * Cierra el video y limpia el reproductor
-         */
-        function closeVideo() {
-            const overlay = document.getElementById('videoOverlay');
-            const target = document.getElementById('playerTarget');
-            
-            target.innerHTML = ''; // Limpiar el iframe para detener el audio
-            overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Habilita scroll nuevamente
-        }
-
-        // Cerrar con la tecla Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") closeVideo();
-        });
-    </script>
+    <footer class="py-4 text-center">
+        <p>&copy; 2026 TuAnimalito. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
