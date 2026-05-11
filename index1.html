@@ -1,102 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    
-    <title>TuAnimalito | Sistema Antibloqueo</title>
-    
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Reproductor YouTube - Configuración para evitar Error 153</title>
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-        .video-container-prof { padding: 50px 0; }
-        
-        .card-video {
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 10px;
-            margin-bottom: 30px;
-            border: 1px solid #334155;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Contenedor Proporcional 16:9 */
-        .video-box {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Grid de videos */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Tarjeta de video */
+        .video-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Contenedor del video - Configuración ANTI-ERROR 153 */
+        .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
+            aspect-ratio: 16 / 9;
             background: #000;
+            cursor: pointer;
         }
 
-        .video-box iframe {
+        /* Thumbnail personalizado */
+        .video-thumbnail {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+            z-index: 1;
         }
 
-        h2, h5 { text-align: center; }
+        /* Overlay con botón de play */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .video-wrapper:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,0,0,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #ff0000;
+        }
+
+        /* Badge de YouTube */
+        .youtube-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff0000;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 3;
+            font-family: monospace;
+        }
+
+        /* Contenido de la tarjeta */
+        .video-info {
+            padding: 20px;
+            color: white;
+        }
+
+        .video-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .video-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .video-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 12px;
+        }
+
+        /* Contenedor del iframe (cuando está cargado) */
+        .iframe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .play-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+        }
+
+        /* Animación de carga */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .iframe-container {
+            animation: fadeIn 0.3s ease;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 YouTube Player Pro</h1>
+            <p>Configuración optimizada anti Error 153 | Sirve localmente o en tu servidor</p>
+        </div>
 
-    <header class="py-4 text-center" style="background: #1a1a1a;">
-        <h1 style="font-weight: 700; color: #ffd700;">🚨 Tu.Animalito💲</h1>
-    </header>
-
-    <main class="video-container-prof">
-        <div class="container">
-            <div class="row justify-content-center">
-                
-                <div class="col-lg-6">
-                    <div class="card-video">
-                        <div class="video-box">
-                            <iframe 
-                                id="player1"
-                                src="https://www.youtube.com/embed/N28B6IwVc24?enablejsapi=1&origin=https://tuanimalito.github.io&rel=0&modestbranding=1" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <h5 class="mt-3">¿Por qué repiten tanto?</h5>
+        <div class="videos-grid">
+            <!-- ============================================= -->
+            <!-- VIDEO 1 - COLOCA AQUÍ TU PRIMER VIDEO          -->
+            <!-- ============================================= -->
+            <div class="video-card" data-video-id="N28B6IwVc24" data-video-title="Aprende Loto Activo Hoy" data-video-desc="Datos Loto Activo y La Granjita - Métodos y estrategias para ganar">
+                <div class="video-wrapper" id="video-wrapper-1">
+                    <!-- Thumbnail (cámbialo por la imagen que quieras) -->
+                    <img class="video-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%232c3e50'/%3E%3Ctext x='8' y='4.5' text-anchor='middle' fill='white' font-size='3' dy='.3em'%3EVideo 1%3C/text%3E%3C/svg%3E" alt="Thumbnail video 1">
+                    <div class="play-overlay">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="youtube-badge">
+                        <span>▶</span> YouTube
                     </div>
                 </div>
+                <div class="video-info">
+                    <h3>🎯 APRENDE LOTO ACTIVO HOY</h3>
+                    <p>Datos Loto Activo y La Granjita - Métodos y estrategias para ganar</p>
+                    <span class="video-tag">📹 Tutorial</span>
+                    <span class="video-tag">🎲 Loto Activo</span>
+                </div>
+            </div>
 
-                <div class="col-lg-6">
-                    <div class="card-video">
-                        <div class="video-box">
-                            <iframe 
-                                id="player2"
-                                src="https://www.youtube.com/embed/vIeULHiR2Tc?enablejsapi=1&origin=https://tuanimalito.github.io&rel=0&modestbranding=1" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <h5 class="mt-3">Truco de las Tripletas</h5>
+            <!-- ============================================= -->
+            <!-- VIDEO 2 - COLOCA AQUÍ TU SEGUNDO VIDEO         -->
+            <!-- ============================================= -->
+            <div class="video-card" data-video-id="vIeULHiR2Tc" data-video-title="Ejemplo Tutorial" data-video-desc="Video de ejemplo - Reemplázalo con tu contenido">
+                <div class="video-wrapper" id="video-wrapper-2">
+                    <img class="video-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%2334495e'/%3E%3Ctext x='8' y='4.5' text-anchor='middle' fill='white' font-size='3' dy='.3em'%3EVideo 2%3C/text%3E%3C/svg%3E" alt="Thumbnail video 2">
+                    <div class="play-overlay">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="youtube-badge">
+                        <span>▶</span> YouTube
                     </div>
                 </div>
+                <div class="video-info">
+                    <h3>🎯 Video de Ejemplo</h3>
+                    <p>Reemplaza este video con el tuyo cambiando el data-video-id</p>
+                    <span class="video-tag">📹 Tutorial</span>
+                </div>
+            </div>
 
+            <!-- ============================================= -->
+            <!-- VIDEO 3 - COLOCA AQUÍ TU TERCER VIDEO          -->
+            <!-- ============================================= -->
+            <div class="video-card" data-video-id="CieyyhPgOpA" data-video-title="Ejemplo Música" data-video-desc="Video de ejemplo - Reemplázalo con tu contenido">
+                <div class="video-wrapper" id="video-wrapper-3">
+                    <img class="video-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%2334495e'/%3E%3Ctext x='8' y='4.5' text-anchor='middle' fill='white' font-size='3' dy='.3em'%3EVideo 3%3C/text%3E%3C/svg%3E" alt="Thumbnail video 3">
+                    <div class="play-overlay">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div class="youtube-badge">
+                        <span>▶</span> YouTube
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>🎵 Video de Ejemplo 3</h3>
+                    <p>Reemplaza este video con el tuyo cambiando el data-video-id</p>
+                    <span class="video-tag">🎵 Música</span>
+                </div>
             </div>
         </div>
-    </main>
+
+        <div class="footer">
+            <p>✅ Configuración anti Error 153 implementada: <strong>youtube-nocookie.com</strong> + <strong>referrerpolicy="strict-origin-when-cross-origin"</strong></p>
+            <p>📌 Para añadir tus videos: cambia el atributo <strong>data-video-id</strong> en cada tarjeta por el ID de tu video de YouTube</p>
+        </div>
+    </div>
 
     <script>
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        (function() {
+            // ===================================================
+            // CONFIGURACIÓN QUE EVITA EL ERROR 153
+            // ===================================================
+            // 1. Se usa youtube-nocookie.com en lugar de youtube.com
+            // 2. Se añade referrerpolicy="strict-origin-when-cross-origin"
+            // 3. Se incluyen todos los parámetros necesarios
+            // ===================================================
 
-      // Esta función "despierta" el reproductor de forma oficial
-      function onYouTubeIframeAPIReady() {
-        console.log("API de YouTube cargada y lista para saltar bloqueos.");
-      }
+            function loadYouTubeVideo(videoId, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                // Evitar cargar múltiples veces el mismo video
+                if (container.querySelector('.iframe-container')) return;
+
+                // Obtener el thumbnail y el overlay
+                const thumbnail = container.querySelector('.video-thumbnail');
+                const playOverlay = container.querySelector('.play-overlay');
+                const badge = container.querySelector('.youtube-badge');
+
+                // Crear contenedor para el iframe
+                const iframeContainer = document.createElement('div');
+                iframeContainer.className = 'iframe-container';
+
+                // Crear iframe con TODAS las configuraciones para evitar Error 153
+                const iframe = document.createElement('iframe');
+
+                // 🔥 CLAVE 1: Usar youtube-nocookie.com en lugar de youtube.com
+                // 🔥 CLAVE 2: Incluir referrerpolicy en el iframe
+                // 🔥 CLAVE 3: Parámetros limpios sin ?si=
+                iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1`;
+                
+                // 🔥 CLAVE 4: Atributo referrerpolicy (el más importante)
+                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                
+                // Permisos necesarios
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                iframe.allowFullscreen = true;
+                iframe.loading = "lazy";
+                iframe.title = "YouTube video player";
+
+                // Añadir el iframe al contenedor
+                iframeContainer.appendChild(iframe);
+                
+                // Ocultar thumbnail y overlay
+                if (thumbnail) thumbnail.style.opacity = '0';
+                if (playOverlay) playOverlay.style.opacity = '0';
+                if (badge) badge.style.opacity = '0';
+                
+                // Añadir el contenedor del iframe
+                container.appendChild(iframeContainer);
+            }
+
+            // Configurar todos los videos
+            function setupVideos() {
+                const videoCards = document.querySelectorAll('.video-card');
+                
+                videoCards.forEach((card, index) => {
+                    const videoId = card.getAttribute('data-video-id');
+                    if (!videoId) return;
+                    
+                    const wrapper = card.querySelector('.video-wrapper');
+                    if (!wrapper) return;
+                    
+                    // Asignar ID único si no tiene
+                    if (!wrapper.id) {
+                        wrapper.id = `video-wrapper-${index + 1}`;
+                    }
+                    
+                    // Agregar evento de clic
+                    wrapper.addEventListener('click', function(e) {
+                        // Evitar que el clic se propague si ya hay un iframe
+                        if (this.querySelector('.iframe-container')) return;
+                        loadYouTubeVideo(videoId, this.id);
+                    });
+                });
+            }
+
+            // Inicializar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupVideos);
+            } else {
+                setupVideos();
+            }
+        })();
     </script>
-
 </body>
 </html>
