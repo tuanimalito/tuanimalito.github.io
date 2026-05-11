@@ -5,112 +5,138 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <title>Datos de Animalitos | TuAnimalito</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-61YTHM256Z');
+    </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Datos de Animalitos Hoy | TuAnimalito</title>
+    
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-        
-        /* Contenedor de la sección */
-        .video-section {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        :root {
+            --primary-dark: #1a1a1a;
+            --gradient-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; }
+
+        #header { background: var(--primary-dark); padding: 15px 0; color: white; text-align: center; }
+        .logo h1 { font-size: 24px; margin: 0; font-weight: 700; color: white; }
+
+        /* SECCIÓN DE VIDEOS RECONSTRUIDA */
+        .video-gallery-section {
+            background: var(--gradient-bg);
             padding: 60px 0;
             color: white;
         }
 
-        /* La "Caja" del video - Aquí es donde corregimos el error de tus fotos */
-        .video-box {
+        .video-card-final {
             background: #fff;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             margin-bottom: 30px;
         }
 
-        /* EL TRUCO DEFINITIVO: Esto obliga al video a ser 16:9 sin scrolls */
-        .video-container {
+        /* EL TRUCO QUE USAN LAS WEBS PROFESIONALES */
+        /* Esto elimina el error de scroll grises y el video cortado */
+        .video-responsive-container {
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* Proporción 16:9 */
-            height: 0;
-            overflow: hidden;
+            width: 100% !important;
+            padding-bottom: 56.25% !important; /* Mantiene 16:9 exacto */
+            height: 0 !important;
             background: #000;
+            overflow: hidden !important;
+            line-height: 0; /* Mata cualquier espacio fantasma inferior */
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .video-responsive-container iframe {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0 !important;
         }
 
-        .video-info { padding: 20px; color: #333; }
-        .video-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-        .video-info p { font-size: 0.9rem; color: #666; margin: 0; }
+        .video-info {
+            padding: 20px;
+            color: #333;
+        }
+        .video-info h4 { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+        .video-info p { font-size: 0.85rem; color: #666; margin: 0; }
 
-        header { background: #1a1a1a; padding: 20px 0; text-align: center; color: white; }
+        footer { background: var(--primary-dark); color: white; padding: 30px 0; text-align: center; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>🚨 Tu.Animalito💲</h1>
+    <header id="header">
+        <div class="container">
+            <div class="logo"><h1>🚨 Tu<span>.</span>Animalito💲</h1></div>
+        </div>
     </header>
 
     <main>
-        <section class="video-section">
+        <section class="video-gallery-section">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2>🎥 Tutoriales Estratégicos</h2>
-                    <p>Mira los videos directamente aquí abajo</p>
+                    <h2 style="font-weight: 700;">🎥 Tutoriales Estratégicos</h2>
+                    <p>Contenido actualizado para ganar en los sorteos</p>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-6 mx-auto">
-                        <div class="video-box">
-                            <div class="video-container">
+                <div class="row justify-content-center">
+                    
+                    <div class="col-lg-6">
+                        <div class="video-card-final">
+                            <div class="video-responsive-container">
                                 <iframe 
-                                    src="https://www.youtube.com/embed/N28B6IwVc24?rel=0&modestbranding=1" 
-                                    title="Video 1"
+                                    src="https://www.youtube.com/embed/N28B6IwVc24?modestbranding=1&rel=0&iv_load_policy=3" 
+                                    title="Repeticiones"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                     allowfullscreen>
                                 </iframe>
                             </div>
                             <div class="video-info">
-                                <h3>¿Por qué repiten tanto los animalitos?</h3>
-                                <p>Análisis técnico de las repeticiones en los sorteos diarios.</p>
+                                <h4>¿Por qué repiten tanto?</h4>
+                                <p>Descubre la lógica detrás de los resultados frecuentes.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 mx-auto">
-                        <div class="video-box">
-                            <div class="video-container">
+                    <div class="col-lg-6">
+                        <div class="video-card-final">
+                            <div class="video-responsive-container">
                                 <iframe 
-                                    src="https://www.youtube.com/embed/vIeULHiR2Tc?rel=0&modestbranding=1" 
-                                    title="Video 2"
+                                    src="https://www.youtube.com/embed/vIeULHiR2Tc?modestbranding=1&rel=0&iv_load_policy=3" 
+                                    title="Tripletas"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                     allowfullscreen>
                                 </iframe>
                             </div>
                             <div class="video-info">
-                                <h3>Cómo armar Tripletas ganadoras</h3>
-                                <p>Domina las combinaciones para maximizar tus premios.</p>
+                                <h4>Truco de las Tripletas</h4>
+                                <p>Cómo armar combinaciones efectivas para hoy.</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-4 text-center">
-        <p>&copy; 2026 TuAnimalito. Todos los derechos reservados.</p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TuAnimalito - Todos los derechos reservados</p>
+        </div>
     </footer>
 
 </body>
