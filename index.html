@@ -442,7 +442,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE YOUTUBE - REEMPLAZO COMPLETO DE TIKTOK -->
+        <!-- SECCIÓN DE YOUTUBE - CONFIGURACIÓN ANTI-ERROR 153 APLICADA -->
         <section id="videos-destacados" class="recent-posts sections-bg videos-section">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
@@ -492,7 +492,7 @@
                     <!-- Video 3 -->
                     <div class="col-lg-4 col-md-6">
                         <div class="video-card fade-in" id="video-card-3">
-                            <div class="thumbnail-container" onclick="loadYouTubeVideo('https://youtu.be/N28B6IwVc24', 'video-card-3')">
+                            <div class="thumbnail-container" onclick="loadYouTubeVideo('N28B6IwVc24', 'video-card-3')">
                                 <img src="assets/images/blog/mini3.png" alt="Video Tutorial Secuencias" class="thumbnail-img">
                                 <div class="play-button-overlay">
                                     <div class="play-icon">▶</div>
@@ -587,13 +587,19 @@
                 console.log(element);
             })();
 
-            // FUNCIÓN PARA CARGAR VIDEOS DE YOUTUBE (Reemplaza TikTok)
+            // ===================================================
+            // FUNCIÓN PARA CARGAR VIDEOS DE YOUTUBE
+            // CONFIGURACIÓN ANTI-ERROR 153 APLICADA
+            // ===================================================
             window.loadYouTubeVideo = function(videoId, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
                 
                 const thumbnailContainer = container.querySelector('.thumbnail-container');
                 if (!thumbnailContainer) return;
+                
+                // Evitar cargar el mismo video múltiples veces
+                if (thumbnailContainer.parentElement.querySelector('.youtube-embed-container')) return;
                 
                 // Crear contenedor para el video de YouTube
                 const videoContainer = document.createElement('div');
@@ -602,32 +608,44 @@
                 // Crear iframe de YouTube
                 const iframe = document.createElement('iframe');
                 
-                // Limpiar el ID del video (soporta URLs completas o IDs directos)
+                // Extraer el ID del video (soporta URLs completas o IDs directos)
                 let cleanVideoId = videoId;
                 
-                // Extraer ID si es una URL de YouTube
-                if (videoId.includes('youtu.be') || videoId.includes('youtube.com')) {
+                if (videoId && (videoId.includes('youtu.be') || videoId.includes('youtube.com'))) {
                     try {
-                        const url = new URL(videoId);
                         if (videoId.includes('youtu.be')) {
-                            cleanVideoId = url.pathname.substring(1);
-                        } else {
-                            cleanVideoId = url.searchParams.get('v') || cleanVideoId;
+                            const parts = videoId.split('/');
+                            cleanVideoId = parts[parts.length - 1].split('?')[0];
+                        } else if (videoId.includes('watch?v=')) {
+                            const urlParams = new URLSearchParams(videoId.split('?')[1]);
+                            cleanVideoId = urlParams.get('v');
                         }
                     } catch(e) {
-                        console.warn('Error al parsear URL de YouTube:', e);
+                        console.warn('Error al parsear URL:', e);
                     }
                 }
                 
-                // Configurar iframe con parámetros óptimos para YouTube
-                iframe.src = `https://www.youtube.com/embed/${cleanVideoId}?autoplay=1&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&disablekb=0&fs=1&playsinline=1`;
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+                // 🔥 CONFIGURACIÓN QUE EVITA EL ERROR 153 🔥
+                // 1. Usamos youtube-nocookie.com en lugar de youtube.com
+                // 2. Añadimos referrerpolicy al iframe
+                // 3. Parámetros limpios sin ?si=
+                iframe.src = `https://www.youtube-nocookie.com/embed/${cleanVideoId}?autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1`;
+                
+                // 🔥 CLAVE: El atributo referrerpolicy es OBLIGATORIO
+                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
                 iframe.allowFullscreen = true;
                 iframe.loading = "lazy";
                 iframe.title = "Video tutorial de Animalitos";
                 
                 videoContainer.appendChild(iframe);
-                thumbnailContainer.replaceWith(videoContainer);
+                
+                // Ocultar la miniatura y mostrar el video
+                thumbnailContainer.style.opacity = '0';
+                setTimeout(() => {
+                    thumbnailContainer.replaceWith(videoContainer);
+                }, 100);
             };
 
             // Reloj
