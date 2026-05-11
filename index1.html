@@ -5,86 +5,98 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <title>TuAnimalito | Tutoriales Oficiales</title>
+    <title>TuAnimalito | Sistema Antibloqueo</title>
     
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
-        .video-section { padding: 60px 0; }
+        .video-container-prof { padding: 50px 0; }
         
-        /* Contenedor Profesional Antibloqueo */
-        .video-wrapper-final {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* Relación 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-            background: #000;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        .card-video {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .video-wrapper-final iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Contenedor Proporcional 16:9 */
+        .video-box {
+            position: relative;
             width: 100%;
-            height: 100%;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: 0;
         }
 
-        .video-card {
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 15px;
-            margin-bottom: 30px;
-            border: 1px solid #334155;
-        }
-
-        h1, h4 { text-align: center; margin-bottom: 30px; }
+        h2, h5 { text-align: center; }
     </style>
 </head>
 <body>
 
-    <header class="py-4 text-center">
-        <h1>🚨 Tu.Animalito💲</h1>
+    <header class="py-4 text-center" style="background: #1a1a1a;">
+        <h1 style="font-weight: 700; color: #ffd700;">🚨 Tu.Animalito💲</h1>
     </header>
 
-    <main class="video-section">
+    <main class="video-container-prof">
         <div class="container">
             <div class="row justify-content-center">
                 
                 <div class="col-lg-6">
-                    <div class="video-card">
-                        <div class="video-wrapper-final">
+                    <div class="card-video">
+                        <div class="video-box">
                             <iframe 
+                                id="player1"
                                 src="https://www.youtube.com/embed/N28B6IwVc24?enablejsapi=1&origin=https://tuanimalito.github.io&rel=0&modestbranding=1" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <h4 class="mt-3">¿Por qué repiten tanto?</h4>
+                        <h5 class="mt-3">¿Por qué repiten tanto?</h5>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="video-card">
-                        <div class="video-wrapper-final">
+                    <div class="card-video">
+                        <div class="video-box">
                             <iframe 
+                                id="player2"
                                 src="https://www.youtube.com/embed/vIeULHiR2Tc?enablejsapi=1&origin=https://tuanimalito.github.io&rel=0&modestbranding=1" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <h4 class="mt-3">Truco de las Tripletas</h4>
+                        <h5 class="mt-3">Truco de las Tripletas</h5>
                     </div>
                 </div>
 
             </div>
         </div>
     </main>
+
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // Esta función "despierta" el reproductor de forma oficial
+      function onYouTubeIframeAPIReady() {
+        console.log("API de YouTube cargada y lista para saltar bloqueos.");
+      }
+    </script>
 
 </body>
 </html>
