@@ -28,4 +28,67 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+   <!-- Página de Granjazo Activo -->
+  <url>
+    <loc>https://tuanimalito.github.io/sf_granjazo.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <!-- Página de Tripletas -->
+  <url>
+    <loc>https://tuanimalito.github.io/tripletas.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <!-- Página de Estadisticas loto -->
+  <url>
+    <loc>https://tuanimalito.github.io/estadisticas_loto.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <!-- Página de Estadisticas guacharo -->
+  <url>
+    <loc>https://tuanimalito.github.io/estadisticas_guacharo.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de Estadisticas granja -->
+  <url>
+    <loc>https://tuanimalito.github.io/estadisticas_granja.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de Estadisticas granjazo -->
+  <url>
+    <loc>https://tuanimalito.github.io/estadisticas_granjazo.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de Noticias 1 -->
+  <url>
+    <loc>https://tuanimalito.github.io/noticias1.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <!-- Página de Noticias 2 -->
+  <url>
+    <loc>https://tuanimalito.github.io/noticias2.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+   <!-- Página de Noticias 3 -->
+  <url>
+    <loc>https://tuanimalito.github.io/noticias3.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
