@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Estadísticas - Lotto Activo</title>
-    <meta name="description" content="Estadísticas y análisis de Lotto Activo. Datos actualizados basados en resultados históricos.">
-    <!-- Favicons -->
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="assets/images/apple-touch-icon.webp" rel="apple-touch-icon">
-    <link rel="canonical" href="https://tuanimalito.github.io/estadisticas_loto.html" />
+    <title>Estadisticas - Guacharo Activo</title>
+    <meta name="description" content="Estadísticas y análisis de Guacharo Activo. Datos actualizados basados en resultados históricos.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="assets/images/apple-touch-icon.webp" rel="apple-touch-icon">
+    <link rel="canonical" href="https://tuanimalito.github.io/estadisticas_guacharo.html" />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
@@ -323,6 +322,16 @@
             color: #64748b;
         }
 
+        .ad-container {
+            max-width: 1800px;
+            width: 100%;
+            margin: 15px auto;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
         .heatmap-section {
             background: white;
             border-radius: 8px;
@@ -535,6 +544,14 @@
             border: 2px solid #fbbf24;
         }
 
+        .number-badge.delfin {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+
+        .number-badge.ballena {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
         .info-card {
             background: white;
             border-radius: 12px;
@@ -644,16 +661,6 @@
             font-size: 12px;
         }
 
-        .ad-container {
-            max-width: 1800px;
-            width: 100%;
-            margin: 15px auto;
-            padding: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
-
         .hidden {
             display: none;
         }
@@ -691,9 +698,9 @@
         <div class="header">
             <h1>
                 🎯 GSM PROFESIONAL v3.0
-                <small>ESTADISTICAS LOTTO ACTIVO</small>
+                <small>ESTADISTICAS GUACHARO ACTIVO (0-75 + 00)</small>
             </h1>
-            <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
                 <i class="bi bi-list"></i>
             </button>
             <nav id="navbar" class="navbar">
@@ -716,7 +723,7 @@
 
         <script>
             (function() {
-                const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+                const mobileNavToggle = document.getElementById('mobileNavToggle');
                 const navbar = document.getElementById('navbar');
                 
                 if (mobileNavToggle && navbar) {
@@ -765,9 +772,9 @@
         </script>
 
         <div class="main-content">
-            <!-- Nuevo banner de Super Fijos -->
+            <!-- Banner de Super Fijos -->
             <div class="super-fijos-banner">
-                🌟 <strong>Nuestros Super Fijos</strong> se generan mediante un algoritmo de análisis de los últimos 30 días (360 sorteos), identificando tendencias en <span class="highlight">✅ Guacharo Activo</span>.
+                🌟 <strong>Nuestros Super Fijos</strong> se generan mediante un algoritmo de análisis de los últimos 30 días (360 sorteos), identificando tendencias en <span class="highlight">✅ Guácharo Activo</span>.
             </div>
 
             <div class="ad-container">
@@ -791,7 +798,7 @@
             <div id="results" class="hidden">
                 <div class="mapa-zona-container">
                     <div class="heatmap-section">
-                        <h2>🔥 <small>Mapa de Calor Dinámico (0-36 + 00)</small></h2>
+                        <h2>🔥 <small>Mapa de Calor Dinámico (0-75 + 00)</small></h2>
                         <div id="heatmap" class="heatmap-grid"></div>
                     </div>
                     <div id="zonaFriaRealTime" class="zona-fria-section"></div>
@@ -877,47 +884,21 @@
         })();
         
         // ==================== CONFIGURACIÓN ====================
-        const JSON_URL = 'data/lotto.json';
+        const JSON_URL = 'data/guacharo.json';
         
         let historialCompleto = [];
         let historialFiltrado = [];
         let selectedNumber = null;
         
+        // GUACHARO ACTIVO: Rango 0-75 + 00 (ballena)
         const config = {
             min: 0,
-            max: 36,
+            max: 75,
             especiales: ['00'],
             sorteosPorDia: 12
         };
 
-        // ==================== ZONAS Y SECUENCIAS ====================
-        const ZONAS_FRIAS_FIJAS = [
-            { nombre: "0-9", numeros: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100] },
-            { nombre: "10-19", numeros: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] },
-            { nombre: "20-29", numeros: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] },
-            { nombre: "30-39", numeros: [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] }
-        ];
-
-        const ZONAS = {
-            'ZONA #0': [0, 10, 20, 30, 100],
-            'ZONA #1': [1, 11, 21, 31],
-            'ZONA #2': [2, 12, 22, 32],
-            'ZONA #3': [3, 13, 23, 33],
-            'ZONA #4': [4, 14, 24, 34],
-            'ZONA #5': [5, 15, 25, 35],
-            'ZONA #6': [6, 16, 26, 36],
-            'ZONA #7': [7, 17, 27],
-            'ZONA #8': [8, 18, 28],
-            'ZONA #9': [9, 19, 29]
-        };
-
-        const SECUENCIAS = {
-            '0-9': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100],
-            '10-19': [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-            '20-29': [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-            '30-39': [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
-        };
-
+        // Diccionario de animales para Guacharo Activo
         const animales = {
             0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
             5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
@@ -926,9 +907,54 @@
             20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
             25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
             30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
-            35: 'jirafa', 36: 'culebra'
+            35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo', 39: 'lechuza',
+            40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa', 44: 'chigüire',
+            45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín', 49: 'pereza',
+            50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol', 54: 'grillo',
+            55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga', 59: 'pantera',
+            60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo', 64: 'gavilán',
+            65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar', 69: 'conejo',
+            70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo', 74: 'turpial',
+            75: 'guácharo'
         };
 
+        // ==================== ZONAS Y SECUENCIAS (0-75 + 00) ====================
+        const ZONAS_FRIAS_FIJAS = [
+            { nombre: "0-9", numeros: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100] },
+            { nombre: "10-19", numeros: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] },
+            { nombre: "20-29", numeros: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] },
+            { nombre: "30-39", numeros: [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] },
+            { nombre: "40-49", numeros: [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] },
+            { nombre: "50-59", numeros: [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] },
+            { nombre: "60-69", numeros: [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] },
+            { nombre: "70-75", numeros: [70, 71, 72, 73, 74, 75] }
+        ];
+
+        const ZONAS = {
+            'ZONA #0': [0, 10, 20, 30, 40, 50, 60, 70, 100],
+            'ZONA #1': [1, 11, 21, 31, 41, 51, 61, 71],
+            'ZONA #2': [2, 12, 22, 32, 42, 52, 62, 72],
+            'ZONA #3': [3, 13, 23, 33, 43, 53, 63, 73],
+            'ZONA #4': [4, 14, 24, 34, 44, 54, 64, 74],
+            'ZONA #5': [5, 15, 25, 35, 45, 55, 65, 75],
+            'ZONA #6': [6, 16, 26, 36, 46, 56, 66],
+            'ZONA #7': [7, 17, 27, 37, 47, 57, 67],
+            'ZONA #8': [8, 18, 28, 38, 48, 58, 68],
+            'ZONA #9': [9, 19, 29, 39, 49, 59, 69]
+        };
+
+        const SECUENCIAS = {
+            '0-9': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100],
+            '10-19': [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+            '20-29': [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+            '30-39': [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+            '40-49': [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+            '50-59': [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
+            '60-69': [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
+            '70-75': [70, 71, 72, 73, 74, 75]
+        };
+
+        // ==================== FUNCIONES AUXILIARES ====================
         function formatearNumero(valor) {
             if (valor === 100) return '00';
             return valor.toString();
@@ -955,9 +981,18 @@
             if (numero >= 0 && numero <= 9) return '0-9';
             if (numero >= 10 && numero <= 19) return '10-19';
             if (numero >= 20 && numero <= 29) return '20-29';
-            return '30-39';
+            if (numero >= 30 && numero <= 39) return '30-39';
+            if (numero >= 40 && numero <= 49) return '40-49';
+            if (numero >= 50 && numero <= 59) return '50-59';
+            if (numero >= 60 && numero <= 69) return '60-69';
+            return '70-75';
         }
 
+        function obtenerAnimal(num) {
+            return animales[num] || 'desconocido';
+        }
+
+        // ==================== FUNCIONES DE ANÁLISIS ====================
         function calcularFrecuencias() {
             const frec = {};
             historialFiltrado.forEach(s => s.numeros.forEach(n => frec[n] = (frec[n]||0)+1));
@@ -1134,16 +1169,13 @@
             return historialFiltrado[0]?.numeros.slice(9,12) || [];
         }
 
+        // ==================== ACTUALIZACIONES UI ====================
         function actualizarHeatmap() {
             const frec = calcularFrecuencias();
             const maxFreq = Math.max(...Object.values(frec), 1);
-            const numeros = [];
-            for (let i = config.min; i <= config.max; i++) numeros.push(i);
-            if (config.especiales.includes('00')) numeros.push(100);
-            numeros.sort((a,b) => a-b);
             
             let html = '';
-            for (let fila = 0; fila < 4; fila++) {
+            for (let fila = 0; fila < 8; fila++) {
                 for (let col = 0; col <= 9; col++) {
                     const n = fila * 10 + col;
                     if (n >= config.min && n <= config.max) {
@@ -1160,6 +1192,7 @@
                     }
                 }
             }
+            // Añadir el 00
             const n = 100;
             const freq = frec[n] || 0;
             const intensidad = (freq / maxFreq) * 100;
@@ -1278,12 +1311,14 @@
                 console.log('📊 Datos cargados:', data);
                 
                 let resultadosData;
-                if (data.lotto_activo) {
-                    resultadosData = data.lotto_activo;
+                if (data.guacharo_activo) {
+                    resultadosData = data.guacharo_activo;
+                } else if (data.guacharo) {
+                    resultadosData = data.guacharo;
                 } else if (data.resultados) {
                     resultadosData = data.resultados;
                 } else {
-                    throw new Error('No se encontraron resultados para Lotto Activo');
+                    throw new Error('No se encontraron resultados para Guacharo Activo');
                 }
                 
                 if (!resultadosData || resultadosData.length === 0) throw new Error('El JSON no contiene resultados');
