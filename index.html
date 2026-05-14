@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags de seguridad -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -9,7 +8,6 @@
     <meta http-equiv="Expires" content="0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <!-- Google tag (gtag.js) con ofuscación -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
     <script>
         const _0x4f2e = ['js', 'new', 'config', 'G-61YTHM256Z', 'push', 'dataLayer'];
@@ -23,172 +21,605 @@
     
     <title>Datos de Animalitos Hoy | Fijos, Explosivos y Calientes - TuAnimalito</title>
     <meta name="keywords" content="resultados, loterías, venezuela, triple, sorteo, signo, zodiacal, millonario, dato, estadística, historico, anterior">
-    <meta name="description" content="Datos de animalitos para hoy: fijos, explosivos y calientes para La Granja Millonaria, Granjazo, Lotto Activo y Guácharo Activo. Resultados de loterías en Venezuela y estadísticas.">
+    <meta name="description" content="Datos de animalitos para hoy: fijos, explosivos y calientes para La Granja Millonaria, Granjazo, Lotto Activo y Guácharo Activo.">
     
-    <!-- Favicons -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="assets/images/apple-touch-icon.webp" rel="apple-touch-icon">
     <link rel="canonical" href="https://tuanimalito.github.io/index.html" />
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Vendor CSS Files -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css?v=1.0.1" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css?v=1.0.1" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css?v=1.0.1" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css?v=1.0.1" rel="stylesheet">
-    
-    <!-- Main CSS File -->
     <link href="assets/stylesheets/styles.min.css?v=1.0.1" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
     <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
     
     <style>
+        /* ============================================================
+           NUEVA IDENTIDAD VISUAL - GUACHARO THEME
+           Colores: Azul marino + Amarillo + Naranja (sin emojis)
+        ============================================================ */
         :root {
-            --primary-color: #4a69bd;
-            --primary-dark: #2c3e50;
-            --secondary-color: #e67e22;
-            --danger-color: #fe2c55;
-            --text-dark: #2c3e50;
-            --text-light: #666;
-            --white: #ffffff;
+            --guacharo-dark: #0a1c2f;
+            --guacharo-primary: #0d2b3e;
+            --guacharo-accent-yellow: #f5b042;
+            --guacharo-accent-orange: #e86f2c;
+            --guacharo-light-bg: #f8fafc;
+            --guacharo-white: #ffffff;
+            --guacharo-text-dark: #1a2a3a;
+            --guacharo-text-light: #5a6e7c;
+            --guacharo-border: #e2e8f0;
+            --guacharo-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --guacharo-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --guacharo-shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, #f5f7fa 0, #c3cfe2 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--guacharo-light-bg);
+            color: var(--guacharo-text-dark);
             line-height: 1.6;
         }
-        
-        /* Header */
+
+        /* HEADER - Azul marino sólido */
         #header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            background: var(--guacharo-primary);
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 3px solid var(--guacharo-accent-yellow);
         }
-        
+
+        #header .container-fluid {
+            padding: 12px 24px;
+        }
+
         #header .logo h1 {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
             margin: 0;
-            color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: var(--guacharo-white);
+            letter-spacing: -0.5px;
         }
-        
+
         #header .logo h1 span {
-            color: #ffd700;
+            color: var(--guacharo-accent-yellow);
+            background: none;
+            padding: 0;
         }
-        
-        /* ===== MENÚ MEJORADO ===== */
+
+        /* NAVEGACIÓN PRINCIPAL */
         .navbar {
             display: flex;
             align-items: center;
         }
-        
+
         .navbar ul {
             margin: 0;
             padding: 0;
             display: flex;
             list-style: none;
+            gap: 4px;
         }
-        
-        .navbar ul li {
-            margin: 0 10px;
-            position: relative;
-        }
-        
+
         .navbar ul li a {
-            color: var(--white);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 8px 15px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
-        
+
         .navbar ul li a:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
+            background: var(--guacharo-accent-yellow);
+            color: var(--guacharo-primary);
         }
-        
-        /* Dropdown en desktop */
+
+        /* DROPDOWN - Versión desktop corregida */
+        .navbar ul li.dropdown {
+            position: relative;
+        }
+
+        .navbar ul li.dropdown > a::after {
+            content: "▼";
+            font-size: 10px;
+            margin-left: 6px;
+        }
+
         .navbar ul li.dropdown ul {
             position: absolute;
-            top: 45px;
+            top: 42px;
             left: 0;
-            background: white;
-            min-width: 200px;
+            background: var(--guacharo-white);
+            min-width: 220px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: var(--guacharo-shadow-lg);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
+            transition: all 0.25s ease;
             flex-direction: column;
+            gap: 0;
+            border: 1px solid var(--guacharo-border);
+            z-index: 1001;
         }
-        
+
         .navbar ul li.dropdown:hover ul {
             opacity: 1;
             visibility: visible;
-            top: 35px;
+            top: 38px;
         }
-        
+
         .navbar ul li.dropdown ul li {
             margin: 0;
         }
-        
+
         .navbar ul li.dropdown ul li a {
-            color: #333;
-            padding: 10px 20px;
+            color: var(--guacharo-text-dark);
+            padding: 12px 20px;
             border-radius: 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--guacharo-border);
+            font-weight: 500;
         }
-        
+
         .navbar ul li.dropdown ul li a:hover {
-            background: #f5f5f5;
-            transform: none;
+            background: var(--guacharo-light-bg);
+            color: var(--guacharo-accent-orange);
         }
-        
+
         .navbar ul li.dropdown ul li:last-child a {
             border-bottom: none;
         }
-        
-        /* Menú hamburguesa para móvil */
+
+        /* MENÚ HAMBURGUESA - VERSIÓN CORREGIDA */
         .mobile-nav-toggle {
             display: none;
             font-size: 28px;
             cursor: pointer;
-            color: white;
+            color: var(--guacharo-white);
             background: none;
             border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
         }
-        
-        .mobile-nav-toggle i {
-            font-size: 28px;
+
+        /* SECCIONES */
+        .sections-bg {
+            background: transparent;
+            padding: 40px 0;
         }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
+
+        .section-header {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-header h2 {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--guacharo-primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--guacharo-accent-orange);
+            border-radius: 2px;
+        }
+
+        .section-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--guacharo-primary);
+            margin: 25px 0 15px;
+        }
+
+        .section-header h6 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--guacharo-text-light);
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: var(--guacharo-text-light);
+            line-height: 1.7;
+        }
+
+        /* RELOJ - Estilo destacado */
+        .clock-container {
+            background: linear-gradient(135deg, var(--guacharo-primary), var(--guacharo-dark));
+            color: var(--guacharo-white);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto 35px auto;
+            max-width: 350px;
+            box-shadow: var(--guacharo-shadow-lg);
+            border: 1px solid rgba(245, 176, 66, 0.3);
+        }
+
+        .clock-title {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .clock-time {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-family: 'Inter', monospace;
+        }
+
+        .clock-date {
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.85;
+        }
+
+        /* TARJETAS - Diseño audaz */
+        article {
+            background: var(--guacharo-white);
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: var(--guacharo-shadow-sm);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--guacharo-border);
+        }
+
+        article:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--guacharo-shadow-lg);
+            border-color: var(--guacharo-accent-yellow);
+        }
+
+        .post-img {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .post-img img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        article:hover .post-img img {
+            transform: scale(1.05);
+        }
+
+        article h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 20px 24px 12px;
+            color: var(--guacharo-primary);
+        }
+
+        article .cta-btn {
+            margin: 0 24px 20px;
+            display: inline-block;
+            background: var(--guacharo-accent-yellow);
+            color: var(--guacharo-primary);
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            letter-spacing: 0.5px;
+        }
+
+        article .cta-btn:hover {
+            background: var(--guacharo-accent-orange);
+            color: var(--guacharo-white);
+            transform: translateY(-2px);
+        }
+
+        .post-meta {
+            padding: 0 24px 24px;
+        }
+
+        .post-author {
+            font-size: 13px;
+            color: var(--guacharo-text-light);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .post-category {
+            color: var(--guacharo-accent-orange);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin: 20px 24px 0;
+            text-transform: uppercase;
+        }
+
+        .title a {
+            color: var(--guacharo-primary);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0 24px;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .title a:hover {
+            color: var(--guacharo-accent-orange);
+        }
+
+        /* SECCIÓN VIDEOS - Estilo renovado */
+        .videos-section {
+            background: linear-gradient(135deg, var(--guacharo-primary) 0%, var(--guacharo-dark) 100%);
+            padding: 60px 0;
+            margin: 30px 0;
+        }
+
+        .videos-section .section-header h2 {
+            color: var(--guacharo-white);
+        }
+
+        .videos-section .section-header h2::after {
+            background: var(--guacharo-accent-yellow);
+        }
+
+        .videos-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .video-card {
+            background: var(--guacharo-white);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: var(--guacharo-shadow-md);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--guacharo-shadow-lg);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            background: var(--guacharo-dark);
+        }
+
+        .thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .thumbnail-container:hover .play-button-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--guacharo-accent-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--guacharo-primary);
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .thumbnail-container:hover .play-icon {
+            transform: scale(1.1);
+        }
+
+        .youtube-badge-mini {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #ff0000;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 18px 20px 8px;
+            color: var(--guacharo-primary);
+        }
+
+        .video-card p {
+            font-size: 14px;
+            color: var(--guacharo-text-light);
+            margin: 0 20px 18px;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        #footer {
+            background: var(--guacharo-primary);
+            color: var(--guacharo-white);
+            padding: 50px 0 30px;
+            margin-top: 50px;
+            border-top: 3px solid var(--guacharo-accent-yellow);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--guacharo-white);
+            border-radius: 50%;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .social-links a:hover {
+            background: var(--guacharo-accent-yellow);
+            color: var(--guacharo-primary);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .credits {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .credits a {
+            color: var(--guacharo-accent-yellow);
+            text-decoration: none;
+        }
+
+        /* SCROLL TOP */
+        .scroll-top {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 48px;
+            height: 48px;
+            background: var(--guacharo-accent-yellow);
+            color: var(--guacharo-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--guacharo-shadow-md);
+            text-decoration: none;
+            z-index: 999;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .scroll-top:hover {
+            background: var(--guacharo-accent-orange);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--guacharo-primary);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #preloader.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* YOUTUBE EMBED */
+        .youtube-embed-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .youtube-embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ============================================================
+           RESPONSIVE - MENÚ MÓVIL CORREGIDO
+        ============================================================ */
+        @media (max-width: 991px) {
             .mobile-nav-toggle {
                 display: block;
             }
@@ -197,16 +628,17 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 300px;
+                width: 85%;
+                max-width: 320px;
                 height: 100vh;
-                background: white;
+                background: var(--guacharo-white);
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 80px 20px 20px;
-                transition: right 0.3s ease;
-                z-index: 999;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                padding: 80px 20px 30px;
+                transition: right 0.3s ease-in-out;
+                z-index: 1000;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+                overflow-y: auto;
             }
             
             .navbar.show {
@@ -216,18 +648,33 @@
             .navbar ul {
                 flex-direction: column;
                 width: 100%;
+                gap: 0;
             }
             
             .navbar ul li {
                 margin: 0;
                 width: 100%;
+                border-bottom: 1px solid var(--guacharo-border);
             }
             
             .navbar ul li a {
-                color: #333;
-                padding: 12px 15px;
+                color: var(--guacharo-text-dark);
+                padding: 14px 16px;
                 width: 100%;
                 justify-content: flex-start;
+                font-size: 15px;
+                border-radius: 0;
+            }
+            
+            .navbar ul li a:hover {
+                background: var(--guacharo-light-bg);
+                color: var(--guacharo-accent-orange);
+            }
+            
+            /* Dropdown en móvil - CORREGIDO */
+            .navbar ul li.dropdown > a::after {
+                content: "▼";
+                margin-left: auto;
             }
             
             .navbar ul li.dropdown ul {
@@ -236,9 +683,11 @@
                 visibility: visible;
                 box-shadow: none;
                 display: none;
-                background: #f8f9fa;
-                margin-top: 5px;
-                border-radius: 8px;
+                background: var(--guacharo-light-bg);
+                margin: 0;
+                border-radius: 0;
+                border: none;
+                width: 100%;
             }
             
             .navbar ul li.dropdown.open ul {
@@ -246,12 +695,38 @@
             }
             
             .navbar ul li.dropdown ul li a {
-                padding-left: 35px;
+                padding-left: 32px;
+                background: var(--guacharo-light-bg);
+                border-bottom: 1px solid var(--guacharo-border);
+            }
+            
+            .navbar ul li.dropdown ul li:last-child a {
+                border-bottom: none;
             }
         }
-        
-        /* Reloj y otros estilos */
-        .clock-container{background:linear-gradient(135deg,var(--primary-dark),var(--primary-color));color:var(--white);padding:20px 25px;border-radius:20px;text-align:center;margin:20px auto;max-width:350px;box-shadow:0 10px 30px rgba(0,0,0,0.12);position:relative;overflow:hidden}.clock-container::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.1) 0,transparent 70%);animation:rotate 20s linear infinite}@keyframes rotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}.clock-title{font-size:20px;margin-bottom:10px;font-weight:600;position:relative;z-index:1}.clock-time{font-size:42px;font-weight:700;letter-spacing:2px;position:relative;z-index:1;text-shadow:2px 2px 4px rgba(0,0,0,0.3);animation:pulse 2s infinite}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}.clock-date{font-size:16px;margin-top:8px;opacity:0.9;position:relative;z-index:1;text-transform:capitalize}.sections-bg{background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);border-radius:20px;margin:30px 0;padding:40px 0;box-shadow:0 5px 20px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.2)}.section-header{text-align:center;padding:0 20px}.section-header h2{font-size:36px;font-weight:700;color:var(--primary-dark);margin-bottom:15px;position:relative;display:inline-block}.section-header h2::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));border-radius:3px}.section-header h1{font-size:32px;font-weight:600;color:var(--primary-dark);margin:20px 0}.section-header h6{font-size:18px;font-weight:500;color:var(--text-light);line-height:1.6}.section-header p{font-size:16px;color:var(--text-light);line-height:1.8;max-width:800px;margin:0 auto}.post-img{border-radius:15px;overflow:hidden;margin-bottom:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s ease}.post-img img{transition:all 0.3s ease;width:100%;height:auto}.post-img:hover img{transform:scale(1.1)}article{background:var(--white);border-radius:20px;padding:20px;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s ease;height:100%;display:flex;flex-direction:column;border:1px solid rgba(0,0,0,0.05)}article:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.15)}article h3{font-size:22px;font-weight:600;color:var(--primary-dark);margin:15px 0 10px}.cta-btn{display:inline-block;padding:12px 30px;background:linear-gradient(135deg,var(--primary-color),var(--primary-dark));color:var(--white);text-decoration:none;border-radius:50px;font-weight:500;transition:all 0.3s ease;margin:15px 0;text-align:center;box-shadow:0 5px 15px rgba(74,105,189,0.3)}.cta-btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(74,105,189,0.4)}.post-meta{display:flex;flex-direction:column;gap:5px}.post-author{color:var(--text-light);font-size:14px;margin:0}.title a{color:var(--primary-dark);text-decoration:none;transition:all 0.3s ease;font-size:18px;font-weight:600;line-height:1.4}.title a:hover{color:var(--primary-color)}.post-category{color:var(--secondary-color);font-weight:600;font-size:14px;margin-bottom:8px;text-transform:uppercase}.videos-section{background:linear-gradient(135deg,#667eea 0,#764ba2 100%);padding:60px 0;position:relative;overflow:hidden}.video-card{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.12);transition:all 0.3s ease;height:100%;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.2)}.video-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 15px 40px rgba(0,0,0,0.15)}.thumbnail-container{position:relative;width:100%;aspect-ratio:16/9;border-radius:15px;overflow:hidden;cursor:pointer;background:linear-gradient(135deg,#667eea 0,#764ba2 100%);max-width:100%;margin:0 auto 15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);border:3px solid rgba(255,255,255,0.1)}.thumbnail-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}.thumbnail-container:hover .thumbnail-img{transform:scale(1.1)}.play-button-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s ease;backdrop-filter:blur(3px)}.thumbnail-container:hover .play-button-overlay{opacity:1}.play-icon{width:60px;height:60px;background:linear-gradient(135deg,#FF0000,#cc0000);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:28px;box-shadow:0 10px 25px rgba(255,0,0,0.4);transform:scale(0.9);transition:all 0.3s ease;animation:pulse 2s infinite}.youtube-badge-mini{position:absolute;top:15px;right:15px;background:linear-gradient(135deg,#FF0000,#cc0000);color:white;padding:6px 12px;border-radius:25px;font-size:13px;font-weight:600;z-index:2;pointer-events:none;display:flex;align-items:center;gap:5px;font-family:'Poppins',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.2)}.youtube-embed-container{position:relative;width:100%;aspect-ratio:16/9;border-radius:15px;overflow:hidden;max-width:100%;margin:0 auto 15px;box-shadow:0 15px 40px rgba(0,0,0,0.15);border:3px solid rgba(255,255,255,0.1);background:#000}.youtube-embed-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}#footer{background:linear-gradient(135deg,var(--primary-dark),var(--primary-color));color:var(--white);padding:40px 0;margin-top:50px;position:relative;overflow:hidden}.social-links a{display:flex;align-items:center;justify-content:center;width:45px;height:45px;background:rgba(255,255,255,0.1);color:var(--white);border-radius:50%;margin:0 10px;transition:all 0.3s ease;font-size:20px;text-decoration:none}.social-links a:hover{background:var(--white);color:var(--primary-color);transform:translateY(-5px) scale(1.1)}.scroll-top{position:fixed;right:30px;bottom:30px;width:50px;height:50px;background:linear-gradient(135deg,var(--primary-color),var(--primary-dark));color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:999;cursor:pointer}.scroll-top:hover{transform:scale(1.1)}#preloader{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#667eea 0,#764ba2 100%);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease}#preloader.hide{opacity:0;pointer-events:none}@media (max-width:768px){.section-header h2{font-size:28px}.section-header h1{font-size:24px}.clock-time{font-size:32px}}
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .section-header h1 {
+                font-size: 24px;
+            }
+            
+            .clock-time {
+                font-size: 36px;
+            }
+            
+            article h2 {
+                font-size: 18px;
+            }
+            
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -260,20 +735,20 @@
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <h1>🚨Tu<span>.</span>Animalito💲</h1>
+                <h1>TU<span>ANIMALITO</span></h1>
             </a>
             
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a></li>
-                    <li><a href="nosotros.html"><i class="bi bi-people-fill"></i> Sobre Nosotros</a></li>
+                    <li><a href="tripletas.html">TRIPLETAS</a></li>
+                    <li><a href="nosotros.html">SOBRE NOSOTROS</a></li>
                     <li class="dropdown">
-                        <a href="#"><i class="bi bi-bar-chart-steps"></i> Estadisticas <i class="bi bi-chevron-down"></i></a>
+                        <a href="#">ESTADISTICAS</a>
                         <ul>
-                            <li><a href="estadisticas_loto.html">🎲 Loto Activo</a></li>
-                            <li><a href="estadisticas_guacharo.html">🐦 Guacharo Activo</a></li>
-                            <li><a href="estadisticas_granja.html">🌾 Granja Millonaria</a></li>
-                            <li><a href="estadisticas_granjazo.html">⚡ Granjazo</a></li>
+                            <li><a href="estadisticas_loto.html">Loto Activo</a></li>
+                            <li><a href="estadisticas_guacharo.html">Guacharo Activo</a></li>
+                            <li><a href="estadisticas_granja.html">Granja Millonaria</a></li>
+                            <li><a href="estadisticas_granjazo.html">Granjazo</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -286,11 +761,11 @@
     </header>
 
     <main id="main"> 
-        <section id="recent-posts" class="recent-posts sections-bg">
+        <section class="recent-posts sections-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <div class="clock-container" id="clock">
-                        <div class="clock-title">Hora Actual</div>
+                        <div class="clock-title">HORA ACTUAL</div>
                         <div class="clock-time" id="current-time">Cargando...</div>
                         <div class="clock-date" id="current-date">Cargando...</div>
                     </div>
@@ -299,36 +774,34 @@
                         <div class="no-data">Consultando los últimos datos fijos de los animalitos...</div>
                     </div>
 
-                    <h1>Los mejores Datos para las Loterias de los Animalitos</h1>
+                    <h1>LOS MEJORES DATOS PARA LAS LOTERIAS DE LOS ANIMALITOS</h1>
                     
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853" data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                     
-                    <h6>Lotto Activo, Granja Millonaria, Loto Activo, La Granjita, Guacharo Activo, datos Granjazo Millonario.</h6><br>
-                    <p>Todas tus Loterías de Animalitos aquí.</p><br>
-                    <h1>Datos, Resultados de lotería de Animalitos, Revisa los resultados de los sorteos de animalitos de hoy de Lotto Activo..</h1><br>
-                    <h6>Consulta muy fácil los Datos de hoy para las Loterías de Animalitos Lotto Activo, Ruleta Activa y La Granjita. Disfruta todos los datos del Top de Animalitos con más probabilidades de salir y mucho más.</h6><br>
-                    <p>cómo jugar al blackjack,estrategias básicas para la ruleta,qué es el bono de bienvenida,cómo elegir un casino online seguro,guía de apuestas deportivas para principiantes,mejores slots para jugadores nuevos,mejor casino online 2025,casino con mejor bono de bienvenida,reseña de la tragamonedas Book of Dead, comparativa blackjack online vs físico,casinos con licencia española,problemas para retirar dinero casino,cuánto tarda un pago de casino,es seguro jugar en las vegas,cómo recuperar cuenta de casino,casino online,juegos de casino,tragaperras online,blackjack online,ruleta en vivo,bonos de casino,apuestas deportivas,juegos de azar,apuestas online</p>
+                    <h6>Lotto Activo, Granja Millonaria, Loto Activo, La Granjita, Guacharo Activo, datos Granjazo Millonario.</h6>
+                    <p>Todas tus Loterías de Animalitos aquí.</p>
+                    <h1>Datos, Resultados de lotería de Animalitos, Revisa los resultados de los sorteos de animalitos de hoy de Lotto Activo.</h1>
+                    <h6>Consulta muy fácil los Datos de hoy para las Loterías de Animalitos Lotto Activo, Ruleta Activa y La Granjita.</h6>
                 </div>
             </div>
         </section>
         
-        <section id="recent-posts" class="recent-posts sections-bg">
-            <div class="container" data-aos="fade-up">	
+        <section class="recent-posts sections-bg">
+            <div class="container" data-aos="fade-up">   
                 <div class="row gy-4">
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog1.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog1.webp" alt="Granja Millonaria" class="img-fluid">
                             </div>
-                            <h2>¡Granja Millonaria".!</h2>
-                            <a class="cta-btn" href="sf_granja.html">"VER Informacion"</a>
+                            <h2>GRANJA MILLONARIA</h2>
+                            <a class="cta-btn" href="sf_granja.html">VER INFORMACION</a>
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
                                     <p class="post-author">juegos de animalitos venezuela</p>
-                                    <p class="post-date"><time datetime="2026-05-10"></time></p>
                                 </div>
                             </div>
                         </article>
@@ -337,15 +810,14 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog2.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog2.webp" alt="Loto Activo" class="img-fluid">
                             </div>
-                            <h2>!Loto Activo".!</h2>
-                            <a class="cta-btn" href="sf_loto.html">"VER Informacion"</a>   
+                            <h2>LOTO ACTIVO</h2>
+                            <a class="cta-btn" href="sf_loto.html">VER INFORMACION</a>   
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-author">anialitos venezuela</p>
-                                    <p class="post-date"><time datetime="2026-05-01"></time></p>
+                                    <p class="post-author">animalitos venezuela</p>
                                 </div>
                             </div>
                         </article>
@@ -354,15 +826,14 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog3.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog3.webp" alt="Guacharo Activo" class="img-fluid">
                             </div>
-                            <h2>¡Guacharo Activo".!</h2>
-                            <a class="cta-btn" href="sf_guacharo.html">"VER Informacion"</a>   
+                            <h2>GUACHARO ACTIVO</h2>
+                            <a class="cta-btn" href="sf_guacharo.html">VER INFORMACION</a>   
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
                                     <p class="post-author">loterías venezuela</p>
-                                    <p class="post-date"><time datetime="2026-05-01"></time></p>
                                 </div>
                             </div>
                         </article>
@@ -371,16 +842,16 @@
             </div>
         </section>
         
-        <section id="recent-posts" class="recent-posts sections-bg">
+        <section class="recent-posts sections-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
-                    <h1>Noticias y Recomendaciones</h1>
+                    <h1>NOTICIAS Y RECOMENDACIONES</h1>
                     
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853" data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                     
-                    <h5>juegos de animalitos venezuela, anialitos venezuela, loterías venezuela, triples venezuela,</h5><br>
+                    <h5>juegos de animalitos venezuela, animalitos venezuela, loterías venezuela, triples venezuela</h5>
                     <h6>Los mejores metodos, consejos y noticias, sobre las ruletas de casino</h6>
                 </div>
 
@@ -388,16 +859,16 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog/blog-1.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog/blog-1.webp" alt="Consejos ruleta" class="img-fluid">
                             </div>
-                            <p class="post-category">Recomendacion & Consejos</p>
+                            <p class="post-category">RECOMENDACION Y CONSEJOS</p>
                             <h2 class="title">
-                                <a href="noticias1.html">Cómo ganar en la ruleta sin ser un experto: consejos y estrategias?</a>
+                                <a href="noticias1.html">Cómo ganar en la ruleta sin ser un experto: consejos y estrategias</a>
                             </h2>
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-date"><time datetime="2023-01-10">01/01/2026</time></p>
+                                    <p class="post-date"><time datetime="2026-01-01">01/01/2026</time></p>
                                 </div>
                             </div>
                         </article>
@@ -406,16 +877,16 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog/blog-2.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog/blog-2.webp" alt="Ruleta europea americana" class="img-fluid">
                             </div>
-                            <p class="post-category">Recomendacion & Consejos</p>
+                            <p class="post-category">RECOMENDACION Y CONSEJOS</p>
                             <h2 class="title">
                                 <a href="noticias2.html">Ruleta europea y americana: ¿a cuál conviene jugar?</a>
                             </h2>
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-date"><time datetime="2022-01-01">01/01/2026</time></p>
+                                    <p class="post-date"><time datetime="2026-01-01">01/01/2026</time></p>
                                 </div>
                             </div>
                         </article>
@@ -424,16 +895,16 @@
                     <div class="col-xl-4 col-md-6">
                         <article>
                             <div class="post-img">
-                                <img src="assets/images/blog/blog-3.webp" alt="" class="img-fluid">
+                                <img src="assets/images/blog/blog-3.webp" alt="Curiosidades ruleta" class="img-fluid">
                             </div>
-                            <p class="post-category">Recomendacion & Consejos</p>
+                            <p class="post-category">RECOMENDACION Y CONSEJOS</p>
                             <h2 class="title">
-                                <a href="noticias3.html">Cinco cosas que apostamos que no sabes sobre la ruleta?</a>
+                                <a href="noticias3.html">Cinco cosas que apostamos que no sabes sobre la ruleta</a>
                             </h2>
                             <div class="d-flex align-items-center">
                                 <div class="post-meta">
                                     <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-date"><time datetime="2022-01-01">01/01/2026</time></p>
+                                    <p class="post-date"><time datetime="2026-01-01">01/01/2026</time></p>
                                 </div>
                             </div>
                         </article>
@@ -442,68 +913,64 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE YOUTUBE - CONFIGURACIÓN ANTI-ERROR 153 APLICADA -->
-        <section id="videos-destacados" class="recent-posts sections-bg videos-section">
+        <section class="recent-posts sections-bg videos-section">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
-                    <h2>🎥 YouTube - Tutoriales de Animalitos</h2>
+                    <h2>YOUTUBE - TUTORIALES DE ANIMALITOS</h2>
                     <p>Los mejores videos de YouTube sobre Animalitos (haz clic en la miniatura para reproducir)</p>
                 </div>
 
                 <div class="row gy-4">
-                    <!-- Video 1 -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="video-card fade-in" id="video-card-1">
+                        <div class="video-card" id="video-card-1">
                             <div class="thumbnail-container" onclick="loadYouTubeVideo('N28B6IwVc24', 'video-card-1')">
-                                <img src="assets/images/blog/mini1.png" alt="Video Tutorial Tercios" class="thumbnail-img">
+                                <img src="assets/images/blog/mini1.png" alt="Tutorial Tercios" class="thumbnail-img">
                                 <div class="play-button-overlay">
                                     <div class="play-icon">▶</div>
                                 </div>
-                                <div class="youtube-badge-mini"><i class="bi bi-youtube"></i> YouTube</div>
+                                <div class="youtube-badge-mini">YOUTUBE</div>
                             </div>
-                            <h3>Aprende por que? Repiten Tanto</h3>
+                            <h3>Aprende por que repiten tanto</h3>
                             <p>Aprende a interpretar los datos de los animalitos como un profesional.</p>
-                            <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <span style="background:linear-gradient(135deg,#FF0000,#cc0000);color:white;padding:6px 15px;border-radius:25px;font-size:12px;">Tutorial</span>
-                                <span style="color:#666;font-size:13px;">🔴 Dr.animalitos</span>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 20px 20px;">
+                                <span style="background:var(--guacharo-accent-yellow);color:var(--guacharo-primary);padding:5px 15px;border-radius:25px;font-size:11px;font-weight:700;">TUTORIAL</span>
+                                <span style="color:var(--guacharo-text-light);font-size:12px;font-weight:500;">DR.ANIMALITOS</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Video 2 -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="video-card fade-in" id="video-card-2">
+                        <div class="video-card" id="video-card-2">
                             <div class="thumbnail-container" onclick="loadYouTubeVideo('vIeULHiR2Tc', 'video-card-2')">
-                                <img src="assets/images/blog/mini2.png" alt="Video Tutorial Tripletas" class="thumbnail-img">
+                                <img src="assets/images/blog/mini2.png" alt="Tutorial Tripletas" class="thumbnail-img">
                                 <div class="play-button-overlay">
                                     <div class="play-icon">▶</div>
                                 </div>
-                                <div class="youtube-badge-mini"><i class="bi bi-youtube"></i> YouTube</div>
+                                <div class="youtube-badge-mini">YOUTUBE</div>
                             </div>
                             <h3>Aprende a hacer Tripletas</h3>
                             <p>Descubre las mejores estrategias para aumentar tus probabilidades.</p>
-                            <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <span style="background:linear-gradient(135deg,#FF0000,#cc0000);color:white;padding:6px 15px;border-radius:25px;font-size:12px;">Tutorial</span>
-                                <span style="color:#666;font-size:13px;">🔴 Dr.animalitos</span>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 20px 20px;">
+                                <span style="background:var(--guacharo-accent-yellow);color:var(--guacharo-primary);padding:5px 15px;border-radius:25px;font-size:11px;font-weight:700;">TUTORIAL</span>
+                                <span style="color:var(--guacharo-text-light);font-size:12px;font-weight:500;">DR.ANIMALITOS</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Video 3 -->
                     <div class="col-lg-4 col-md-6">
-                        <div class="video-card fade-in" id="video-card-3">
+                        <div class="video-card" id="video-card-3">
                             <div class="thumbnail-container" onclick="loadYouTubeVideo('CieyyhPgOpA', 'video-card-3')">
-                                <img src="assets/images/blog/mini3.png" alt="Video Tutorial Secuencias" class="thumbnail-img">
+                                <img src="assets/images/blog/mini3.png" alt="Tutorial Secuencias" class="thumbnail-img">
                                 <div class="play-button-overlay">
                                     <div class="play-icon">▶</div>
                                 </div>
-                                <div class="youtube-badge-mini"><i class="bi bi-youtube"></i> YouTube</div>
+                                <div class="youtube-badge-mini">YOUTUBE</div>
                             </div>
                             <h3>Aprende super fijos para Loto Activo</h3>
                             <p>Descubre las mejores estrategias para aumentar tus probabilidades.</p>
-                            <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <span style="background:linear-gradient(135deg,#FF0000,#cc0000);color:white;padding:6px 15px;border-radius:25px;font-size:12px;">Tutorial</span>
-                                <span style="color:#666;font-size:13px;">🔴 Dr.animalitos</span>
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 20px 20px;">
+                                <span style="background:var(--guacharo-accent-yellow);color:var(--guacharo-primary);padding:5px 15px;border-radius:25px;font-size:11px;font-weight:700;">TUTORIAL</span>
+                                <span style="color:var(--guacharo-text-light);font-size:12px;font-weight:500;">DR.ANIMALITOS</span>
                             </div>
                         </div>
                     </div>
@@ -511,20 +978,20 @@
             </div>
         </section>
 
-        <section id="recent-posts" class="recent-posts sections-bg">
+        <section class="recent-posts sections-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <h1>Lotería de Animalitos, Revisa los resultados de los sorteos de animalitos de hoy de Lotto Activo.</h1>
-                    <h5>juegos de animalitos venezuela, anialitos venezuela, loterías venezuela, triples venezuela,</h5><br>
+                    <h5>juegos de animalitos venezuela, animalitos venezuela, loterías venezuela, triples venezuela</h5>
 
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853" data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-                    <h6>Granja Millonaria, Loto Activo, La Granjita, Guacharo Activo, datos Granja Millonaria, datos Chance Animalitos, datos Granjazo Millonario, datos Loto Rey,</h6><br>
-                    <p>Juega Animalitos Muy Fácil.</p><br>
-                    <p>Haz click en la loteria de Animalitos que quieras Jugar, selecciona el numero de contacto, verifica y Listo. Aceptamos Transferencias y Pago Móvil.</p><br>
-                </div>	
+                    <h6>Granja Millonaria, Loto Activo, La Granjita, Guacharo Activo, datos Granja Millonaria, datos Chance Animalitos, datos Granjazo Millonario, datos Loto Rey</h6>
+                    <p>Juega Animalitos Muy Fácil.</p>
+                    <p>Haz click en la loteria de Animalitos que quieras Jugar, selecciona el numero de contacto, verifica y Listo. Aceptamos Transferencias y Pago Móvil.</p>
+                </div>  
             </div>
         </section>
     </main>
@@ -533,17 +1000,15 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-12 col-md-12 footer-info text-center">
-                    <div class="social-links d-flex mt-4 justify-content-center">
+                    <div class="social-links">
                         <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
                         <a href="https://www.tiktok.com/@animalitotiktok" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
                         <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container mt-4">
             <div class="copyright">
-                &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+                &copy; Copyright <strong>DR.ANIMALITOS</strong>. Todos los derechos reservados
             </div>
             <div class="credits">
                 <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
@@ -551,10 +1016,9 @@
         </div>
     </footer>
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div>
 
-    <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js?v=1.0.1"></script>
     <script src="assets/vendor/aos/aos.js?v=1.0.1"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js?v=1.0.1"></script>
@@ -562,23 +1026,21 @@
 
     <script>
         (function() {
-            // Protecciones de seguridad
             document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
             document.addEventListener('keydown', function(e) {
                 if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
                     (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
                     (e.ctrlKey && e.keyCode === 83)) {
                     e.preventDefault();
-                return false;
-            }
-        });
+                    return false;
+                }
+            });
             document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
             });
             document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
             
-            // Detector DevTools
             (function detectDevTools() {
                 const element = new Image();
                 Object.defineProperty(element, 'id', {
@@ -587,28 +1049,17 @@
                 console.log(element);
             })();
 
-            // ===================================================
-            // FUNCIÓN PARA CARGAR VIDEOS DE YOUTUBE
-            // CONFIGURACIÓN ANTI-ERROR 153 APLICADA
-            // ===================================================
             window.loadYouTubeVideo = function(videoId, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
-                
                 const thumbnailContainer = container.querySelector('.thumbnail-container');
                 if (!thumbnailContainer) return;
-                
-                // Evitar cargar el mismo video múltiples veces
                 if (thumbnailContainer.parentElement.querySelector('.youtube-embed-container')) return;
                 
-                // Crear contenedor para el video de YouTube
                 const videoContainer = document.createElement('div');
                 videoContainer.className = 'youtube-embed-container';
                 
-                // Crear iframe de YouTube
                 const iframe = document.createElement('iframe');
-                
-                // Extraer el ID del video (soporta URLs completas o IDs directos)
                 let cleanVideoId = videoId;
                 
                 if (videoId && (videoId.includes('youtu.be') || videoId.includes('youtube.com'))) {
@@ -620,35 +1071,20 @@
                             const urlParams = new URLSearchParams(videoId.split('?')[1]);
                             cleanVideoId = urlParams.get('v');
                         }
-                    } catch(e) {
-                        console.warn('Error al parsear URL:', e);
-                    }
+                    } catch(e) {}
                 }
                 
-                // 🔥 CONFIGURACIÓN QUE EVITA EL ERROR 153 🔥
-                // 1. Usamos youtube-nocookie.com en lugar de youtube.com
-                // 2. Añadimos referrerpolicy al iframe
-                // 3. Parámetros limpios sin ?si=
                 iframe.src = `https://www.youtube-nocookie.com/embed/${cleanVideoId}?autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1`;
-                
-                // 🔥 CLAVE: El atributo referrerpolicy es OBLIGATORIO
                 iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-                
                 iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
                 iframe.allowFullscreen = true;
-                iframe.loading = "lazy";
                 iframe.title = "Video tutorial de Animalitos";
                 
                 videoContainer.appendChild(iframe);
-                
-                // Ocultar la miniatura y mostrar el video
                 thumbnailContainer.style.opacity = '0';
-                setTimeout(() => {
-                    thumbnailContainer.replaceWith(videoContainer);
-                }, 100);
+                setTimeout(() => thumbnailContainer.replaceWith(videoContainer), 100);
             };
 
-            // Reloj
             function updateClock() {
                 const now = new Date();
                 let hours = String(now.getHours()).padStart(2, '0');
@@ -665,23 +1101,22 @@
             updateClock();
             setInterval(updateClock, 1000);
 
-            // AOS
             if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 1000, once: true, offset: 100 });
+                AOS.init({ duration: 800, once: true, offset: 80 });
             }
 
-            // Preloader
             window.addEventListener('load', function() {
                 const preloader = document.getElementById('preloader');
                 if (preloader) preloader.classList.add('hide');
             });
 
-            // MENÚ MÓVIL
+            // MENÚ MÓVIL CORREGIDO
             const mobileNavToggle = document.getElementById('mobile-nav-toggle');
             const navbar = document.getElementById('navbar');
             
             if (mobileNavToggle && navbar) {
-                mobileNavToggle.addEventListener('click', function() {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     navbar.classList.toggle('show');
                     const icon = mobileNavToggle.querySelector('i');
                     if (icon) {
@@ -710,21 +1145,21 @@
                 });
             });
 
-            // Dropdown en móvil
+            // Dropdown en móvil - CORREGIDO
             const dropdowns = document.querySelectorAll('#navbar .dropdown');
             dropdowns.forEach(dropdown => {
                 const link = dropdown.querySelector('a');
                 if (link) {
                     link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
+                        if (window.innerWidth <= 991) {
                             e.preventDefault();
+                            e.stopPropagation();
                             dropdown.classList.toggle('open');
                         }
                     });
                 }
             });
 
-            // Scroll to top
             const scrollTop = document.querySelector('.scroll-top');
             if (scrollTop) {
                 scrollTop.addEventListener('click', function(e) {
