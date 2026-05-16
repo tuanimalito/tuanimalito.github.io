@@ -403,10 +403,6 @@
             </div>
         </div>
 
-        <div id="resultado-contenido">
-            <div class="no-data">Consultando los últimos fijos de Loto Activo...</div>
-        </div>
-
         <!-- Anuncio inferior -->
         <div class="ad-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
@@ -420,7 +416,7 @@
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #666; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis de repeticiones de los últimos 3 días (30 sorteos), identificando tendencias en Loto Activo.</p>
+        <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis de repeticiones entre los últimos 3 días, identificando patrones secuenciales en Loto Activo.</p>
     </div>
 
     <!-- Footer -->
@@ -536,7 +532,6 @@
                         
                         if (resultado.encontrado) {
                             mostrarResultados(resultado.siguientes);
-                    // ✅ SOLO MOSTRAMOS UN MENSAJE SIMPLE EN LA BARRA DE ESTADO
                             actualizarStatus('✅ Actualizado');
                         } else {
                             mostrarResultados([]);
@@ -549,32 +544,66 @@
                     }
                 }
 
+                // ===== NUEVA LÓGICA DE BÚSQUEDA (3 NIVELES JERÁRQUICOS) =====
                 function buscarRepeticion(resultados) {
-                    const mapa = new Map();
+                    // Definir los niveles
+                    const niveles = {
+                        N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1', dias: 'Día 1 (Actual)' },
+                        N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], nombre: 'N2', dias: 'Día 2 (Intermedio)' },
+                        N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], nombre: 'N3', dias: 'Día 3 (Antiguo)' }
+                    };
                     
-                    resultados.forEach(r => {
-                        const clave = r.esDobleCero ? '00' : r.numero;
-                        if (!mapa.has(clave)) mapa.set(clave, []);
-                        mapa.get(clave).push(r);
-                    });
-
-                    for (let i = 24; i < 36; i++) {
-                        const actual = resultados[i];
-                        const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                        const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
-
-                        if (repeticiones.length > 0) {
-                            const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                            const siguientes = [];
-
-                            for (let j = 1; j <= 4; j++) {
-                                const sig = resultados.find(r => r.casilla === rep.casilla + j);
-                                if (sig) siguientes.push(sig);
+                    // Función auxiliar para buscar repeticiones entre dos niveles
+                    function buscarEnPares(nivelActual, nivelPasado) {
+                        // Recorrer cada posición del nivel actual (más reciente)
+                        for (let i = 0; i < nivelActual.indices.length; i++) {
+                            const idxActual = nivelActual.indices[i];
+                            const actual = resultados[idxActual];
+                            const claveActual = actual.esDobleCero ? '00' : actual.numero;
+                            
+                            // Buscar ese mismo número en el nivel pasado
+                            for (let j = 0; j < nivelPasado.indices.length; j++) {
+                                const idxPasado = nivelPasado.indices[j];
+                                const pasado = resultados[idxPasado];
+                                const clavePasado = pasado.esDobleCero ? '00' : pasado.numero;
+                                
+                                // Si encontramos repetición
+                                if (claveActual === clavePasado) {
+                                    // Extraer los 4 números (repetición + 3 siguientes) desde la posición del nivel pasado
+                                    const siguientes = [pasado]; // empezamos con el número repetido
+                                    
+                                    for (let k = 1; k <= 3; k++) {
+                                        const sigIdx = idxPasado + k;
+                                        if (sigIdx < resultados.length && sigIdx < 36) {
+                                            siguientes.push(resultados[sigIdx]);
+                                        }
+                                    }
+                                    
+                                    // Si tenemos al menos el número repetido, devolvemos
+                                    if (siguientes.length > 0) {
+                                        return { encontrado: true, siguientes };
+                                    }
+                                }
                             }
-
-                            if (siguientes.length > 0) return { encontrado: true, siguientes };
                         }
+                        return { encontrado: false, siguientes: [] };
                     }
+                    
+                    // ORDEN DE PRIORIDAD:
+                    
+                    // 1️⃣ N1 vs N2 (prioridad máxima)
+                    let resultado = buscarEnPares(niveles.N1, niveles.N2);
+                    if (resultado.encontrado) return resultado;
+                    
+                    // 2️⃣ N1 vs N3
+                    resultado = buscarEnPares(niveles.N1, niveles.N3);
+                    if (resultado.encontrado) return resultado;
+                    
+                    // 3️⃣ N2 vs N3 (última opción)
+                    resultado = buscarEnPares(niveles.N2, niveles.N3);
+                    if (resultado.encontrado) return resultado;
+                    
+                    // No se encontró ninguna repetición
                     return { encontrado: false, siguientes: [] };
                 }
 
