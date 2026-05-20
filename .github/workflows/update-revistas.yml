@@ -22,13 +22,12 @@ jobs:
       - name: Crear carpeta para PDFs
         run: mkdir -p pdfs
         
-      - name: Descargar PDFs desde revistas.json
+      - name: Descargar PDFs usando urls_originales.json
         run: |
-          echo "Iniciando descarga de PDFs..."
+          echo "Iniciando descarga de PDFs desde URLs originales..."
           
-          # Leer cada URL del JSON
-          jq -r '.hipodromos[].url_pdf' data/revistas.json | while read url; do
-            # Verificar si la URL comienza con http (es externa)
+          # Leer las URLs originales desde urls_originales.json
+          jq -r '.hipodromos[].url_pdf' data/urls_originales.json | while read url; do
             if [[ "$url" == http* ]]; then
               filename=$(basename "$url")
               echo "Descargando: $filename"
@@ -39,33 +38,38 @@ jobs:
               else
                 echo "  ERROR: Fallo al descargar $filename"
               fi
-            else
-              echo "Ignorando URL local: $url"
             fi
           done
           
           echo "Descarga completada"
           
-      - name: Actualizar JSON con rutas locales
+      - name: Actualizar revistas.json (el que usa tu web) con rutas locales
         run: |
-          echo "Actualizando rutas en el JSON..."
+          echo "Actualizando revistas.json con rutas locales..."
           
-          # Reemplazar URLs externas por rutas locales
-          jq '.hipodromos[].url_pdf |= ("pdfs/" + (split("/") | last))' data/revistas.json > data/revistas.tmp.json
-          mv data/revistas.tmp.json data/revistas.json
+          # Generar el nuevo revistas.json usando los IDs y nombres de urls_originales.json
+          # pero con las rutas a los PDFs locales.
+          jq '.hipodromos[] | {id, nombre, logo, url_pdf: ("pdfs/" + (.url_pdf | split("/") | last))}' data/urls_originales.json > hipodromos.tmp.json
           
-          # Actualizar la fecha de la ultima actualizacion
-          jq --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '.metadata.lastUpdate = $date' data/revistas.json > data/revistas.tmp.json
-          mv data/revistas.tmp.json data/revistas.json
+          # Crear el nuevo revistas.json con la metadata y la lista de hipodromos
+          jq -n --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" --slurpfile hipodromos hipodromos.tmp.json '{
+            metadata: {
+              lastUpdate: $date,
+              totalHipodromos: ($hipodromos | length),
+              version: "1.0.0"
+            },
+            hipodromos: $hipodromos
+          }' > data/revistas.json
           
-          echo "JSON actualizado con rutas locales"
+          rm hipodromos.tmp.json
+          echo "revistas.json actualizado con rutas locales"
           
-      - name: Verificar cambios en PDFs
+      - name: Verificar cambios
         id: verificar
         run: |
           if [ -n "$(git status --porcelain pdfs/)" ] || [ -n "$(git status --porcelain data/revistas.json)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Se detectaron cambios en PDFs o en el JSON"
+            echo "Se detectaron cambios en PDFs o en revistas.json"
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "No hay cambios que guardar"
