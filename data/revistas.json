@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-20T19:28:05Z",
+    "lastUpdate": "2026-05-20T19:39:39Z",
     "totalHipodromos": 25,
     "version": "1.0.0"
   },
@@ -8,151 +8,151 @@
     {
       "id": "belmont-park",
       "nombre": "Belmont Park",
-      "logo": null,
+      "logo": "img/winner/hip3.webp",
       "url_pdf": "pdfs/BelmontPark.pdf"
     },
     {
       "id": "thistledown",
       "nombre": "ThistleDown",
-      "logo": null,
+      "logo": "img/winner/hip15.webp",
       "url_pdf": "pdfs/ThistleDown.pdf"
     },
     {
       "id": "evangeline-downs",
       "nombre": "Evangeline Downs",
-      "logo": null,
+      "logo": "img/winner/hip1.webp",
       "url_pdf": "pdfs/EvangelineDowns.pdf"
     },
     {
       "id": "delta-downs",
       "nombre": "Delta Downs",
-      "logo": null,
+      "logo": "img/winner/hip17.webp",
       "url_pdf": "pdfs/DeltaDowns.pdf"
     },
     {
       "id": "belterra-park",
       "nombre": "Belterra Park",
-      "logo": null,
+      "logo": "img/winner/hip8.webp",
       "url_pdf": "pdfs/WinBelterraPark.pdf"
     },
     {
       "id": "gulfstream-park",
       "nombre": "Gulfstream Park",
-      "logo": null,
+      "logo": "img/winner/hip6.webp",
       "url_pdf": "pdfs/GulfstreamPark.pdf"
     },
     {
       "id": "century-mile",
       "nombre": "Century Mile",
-      "logo": null,
+      "logo": "img/winner/hip13.webp",
       "url_pdf": "pdfs/CenturyMile.pdf"
     },
     {
       "id": "charles-town",
       "nombre": "Charles Town",
-      "logo": null,
+      "logo": "img/winner/hip10.webp",
       "url_pdf": "pdfs/CharlesTown.pdf"
     },
     {
       "id": "emerald-downs",
       "nombre": "Emerald Downs",
-      "logo": null,
+      "logo": "img/winner/hip19.webp",
       "url_pdf": "pdfs/EmeraldDowns.pdf"
     },
     {
       "id": "remington-park",
       "nombre": "Remington Park",
-      "logo": null,
+      "logo": "img/winner/hip2.webp",
       "url_pdf": "pdfs/RemingtonPark.pdf"
     },
     {
       "id": "lone-star-park",
       "nombre": "Lone Star Park",
-      "logo": null,
+      "logo": "img/winner/hip23.webp",
       "url_pdf": "pdfs/LoneStarPark.pdf"
     },
     {
       "id": "laurel-park",
       "nombre": "Laurel Park",
-      "logo": null,
+      "logo": "img/winner/hip24.webp",
       "url_pdf": "pdfs/LaurelPark.pdf"
     },
     {
       "id": "sam-houston",
       "nombre": "Sam Houston",
-      "logo": null,
+      "logo": "img/winner/hip18.webp",
       "url_pdf": "pdfs/SamHouston.pdf"
     },
     {
       "id": "monmouth-park",
       "nombre": "Monmouth Park",
-      "logo": null,
+      "logo": "img/winner/hip12.webp",
       "url_pdf": "pdfs/MonmouthPark.pdf"
     },
     {
       "id": "prairie-meadows",
       "nombre": "Prairie Meadows",
-      "logo": null,
+      "logo": "img/winner/hip14.webp",
       "url_pdf": "pdfs/PrairieMeadows.pdf"
     },
     {
       "id": "delaware-park",
       "nombre": "Delaware Park",
-      "logo": null,
+      "logo": "img/winner/hip1.webp",
       "url_pdf": "pdfs/DelawarePark.pdf"
     },
     {
       "id": "woodbine",
       "nombre": "Woodbine",
-      "logo": null,
+      "logo": "img/winner/hip9.webp",
       "url_pdf": "pdfs/Woodbine.pdf"
     },
     {
       "id": "fairmount-park",
       "nombre": "Fairmount Park",
-      "logo": null,
+      "logo": "img/winner/hip20.webp",
       "url_pdf": "pdfs/FairmountPark.pdf"
     },
     {
       "id": "sunray-park",
       "nombre": "Sunray Park",
-      "logo": null,
+      "logo": "img/winner/hip16.webp",
       "url_pdf": "pdfs/SunrayPark.pdf"
     },
     {
       "id": "louisiana-downs",
       "nombre": "Louisiana Downs",
-      "logo": null,
+      "logo": "img/winner/hip22.webp",
       "url_pdf": "pdfs/LouisianaDowns.pdf"
     },
     {
       "id": "los-alamitos-qh",
       "nombre": "Los Alamitos QH",
-      "logo": null,
+      "logo": "img/winner/hip1.webp",
       "url_pdf": "pdfs/LosAlamitosQH.pdf"
     },
     {
       "id": "fair-grounds",
       "nombre": "Fair Grounds",
-      "logo": null,
+      "logo": "img/winner/hip1.webp",
       "url_pdf": "pdfs/FairGrounds.pdf"
     },
     {
       "id": "hawthorne-park",
       "nombre": "Hawthorne Park",
-      "logo": null,
+      "logo": "img/winner/hip21.webp",
       "url_pdf": "pdfs/HawthornePark.pdf"
     },
     {
       "id": "parx-racing",
       "nombre": "Parx Racing",
-      "logo": null,
+      "logo": "img/winner/hip11.webp",
       "url_pdf": "pdfs/ParxRacing.pdf"
     },
     {
       "id": "santa-anita",
       "nombre": "Santa Anita Park",
-      "logo": null,
+      "logo": "img/winner/hip4.webp",
       "url_pdf": "pdfs/SantaAnitaPark.pdf"
     }
   ]
