@@ -1,9 +1,9 @@
-name: Descargar Revistas (solo Español)
+name: Descargar Revistas Automaticamente
 
 on:
-  workflow_dispatch:  # Solo manual para que usted controle cuando actualizar
-  # schedule:          # Opcional: si quiere automático, descomente la siguiente línea
-  #   - cron: '0 6 * * *'  # Todos los días a las 6:00 AM
+  schedule:
+    - cron: '0 6,12,18 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,42 +11,73 @@ permissions:
 jobs:
   descargar-pdfs:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          
       - name: Crear carpeta para PDFs
         run: mkdir -p pdfs
-
+        
       - name: Descargar PDFs desde revistas.json
         run: |
-          # Leer el JSON y extraer las URLs de los PDFs (solo las que comienzan con http)
+          echo "Iniciando descarga de PDFs..."
+          
+          # Leer cada URL del JSON
           jq -r '.hipodromos[].url_pdf' data/revistas.json | while read url; do
+            # Verificar si la URL comienza con http (es externa)
             if [[ "$url" == http* ]]; then
               filename=$(basename "$url")
-              echo "Descargando $filename desde $url"
-              wget -q --show-progress -O "pdfs/$filename" "$url"
+              echo "Descargando: $filename"
+              wget --quiet --show-progress --timeout=30 --tries=3 -O "pdfs/$filename" "$url"
+              
+              if [ $? -eq 0 ]; then
+                echo "  OK: $filename descargado"
+              else
+                echo "  ERROR: Fallo al descargar $filename"
+              fi
             else
-              echo "Ignorando URL local o inválida: $url"
+              echo "Ignorando URL local: $url"
             fi
           done
-
+          
+          echo "Descarga completada"
+          
       - name: Actualizar JSON con rutas locales
         run: |
-          # Reemplazar las URLs externas por rutas locales (pdfs/nombre_archivo.pdf)
+          echo "Actualizando rutas en el JSON..."
+          
+          # Reemplazar URLs externas por rutas locales
           jq '.hipodromos[].url_pdf |= ("pdfs/" + (split("/") | last))' data/revistas.json > data/revistas.tmp.json
           mv data/revistas.tmp.json data/revistas.json
           
-          # Actualizar la fecha de actualización
+          # Actualizar la fecha de la ultima actualizacion
           jq --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '.metadata.lastUpdate = $date' data/revistas.json > data/revistas.tmp.json
           mv data/revistas.tmp.json data/revistas.json
           
           echo "JSON actualizado con rutas locales"
-
+          
+      - name: Verificar cambios en PDFs
+        id: verificar
+        run: |
+          if [ -n "$(git status --porcelain pdfs/)" ] || [ -n "$(git status --porcelain data/revistas.json)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Se detectaron cambios en PDFs o en el JSON"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No hay cambios que guardar"
+          fi
+          
       - name: Commit y push de cambios
+        if: steps.verificar.outputs.has_changes == 'true'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add pdfs/ data/revistas.json
-          git diff --staged --quiet || git commit -m "Actualización automática de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Actualizacion automatica de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
