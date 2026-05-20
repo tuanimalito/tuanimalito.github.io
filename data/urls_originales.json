@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "lastUpdate": "2026-05-20T00:00:00Z",
+    "totalHipodromos": 25,
+    "version": "1.0.0"
+  },
+  "hipodromos": [
+    {
+      "id": "belmont-park",
+      "nombre": "Belmont Park",
+      "logo": "img/winner/hip3.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/BelmontPark.pdf"
+    },
+    {
+      "id": "thistledown",
+      "nombre": "ThistleDown",
+      "logo": "img/winner/hip15.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/ThistleDown.pdf"
+    },
+    {
+      "id": "evangeline-downs",
+      "nombre": "Evangeline Downs",
+      "logo": "img/winner/hip1.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/EvangelineDowns.pdf"
+    },
+    {
+      "id": "delta-downs",
+      "nombre": "Delta Downs",
+      "logo": "img/winner/hip17.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/DeltaDowns.pdf"
+    },
+    {
+      "id": "belterra-park",
+      "nombre": "Belterra Park",
+      "logo": "img/winner/hip8.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/WinBelterraPark.pdf"
+    },
+    {
+      "id": "gulfstream-park",
+      "nombre": "Gulfstream Park",
+      "logo": "img/winner/hip6.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/GulfstreamPark.pdf"
+    },
+    {
+      "id": "century-mile",
+      "nombre": "Century Mile",
+      "logo": "img/winner/hip13.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/CenturyMile.pdf"
+    },
+    {
+      "id": "charles-town",
+      "nombre": "Charles Town",
+      "logo": "img/winner/hip10.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/CharlesTown.pdf"
+    },
+    {
+      "id": "emerald-downs",
+      "nombre": "Emerald Downs",
+      "logo": "img/winner/hip19.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/EmeraldDowns.pdf"
+    },
+    {
+      "id": "remington-park",
+      "nombre": "Remington Park",
+      "logo": "img/winner/hip2.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/RemingtonPark.pdf"
+    },
+    {
+      "id": "lone-star-park",
+      "nombre": "Lone Star Park",
+      "logo": "img/winner/hip23.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/LoneStarPark.pdf"
+    },
+    {
+      "id": "laurel-park",
+      "nombre": "Laurel Park",
+      "logo": "img/winner/hip24.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/LaurelPark.pdf"
+    },
+    {
+      "id": "sam-houston",
+      "nombre": "Sam Houston",
+      "logo": "img/winner/hip18.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/SamHouston.pdf"
+    },
+    {
+      "id": "monmouth-park",
+      "nombre": "Monmouth Park",
+      "logo": "img/winner/hip12.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/MonmouthPark.pdf"
+    },
+    {
+      "id": "prairie-meadows",
+      "nombre": "Prairie Meadows",
+      "logo": "img/winner/hip14.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/PrairieMeadows.pdf"
+    },
+    {
+      "id": "delaware-park",
+      "nombre": "Delaware Park",
+      "logo": "img/winner/hip1.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/DelawarePark.pdf"
+    },
+    {
+      "id": "woodbine",
+      "nombre": "Woodbine",
+      "logo": "img/winner/hip9.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/Woodbine.pdf"
+    },
+    {
+      "id": "fairmount-park",
+      "nombre": "Fairmount Park",
+      "logo": "img/winner/hip20.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/FairmountPark.pdf"
+    },
+    {
+      "id": "sunray-park",
+      "nombre": "Sunray Park",
+      "logo": "img/winner/hip16.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/SunrayPark.pdf"
+    },
+    {
+      "id": "louisiana-downs",
+      "nombre": "Louisiana Downs",
+      "logo": "img/winner/hip22.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/LouisianaDowns.pdf"
+    },
+    {
+      "id": "los-alamitos-qh",
+      "nombre": "Los Alamitos QH",
+      "logo": "img/winner/hip1.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/LosAlamitosQH.pdf"
+    },
+    {
+      "id": "fair-grounds",
+      "nombre": "Fair Grounds",
+      "logo": "img/winner/hip1.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/FairGrounds.pdf"
+    },
+    {
+      "id": "hawthorne-park",
+      "nombre": "Hawthorne Park",
+      "logo": "img/winner/hip21.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/HawthornePark.pdf"
+    },
+    {
+      "id": "parx-racing",
+      "nombre": "Parx Racing",
+      "logo": "img/winner/hip11.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/ParxRacing.pdf"
+    },
+    {
+      "id": "santa-anita",
+      "nombre": "Santa Anita Park",
+      "logo": "img/winner/hip4.webp",
+      "url_pdf": "https://pollamacaco.com/Revistas/SantaAnitaPark.pdf"
+    }
+  ]
+}
