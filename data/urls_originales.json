@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "lastUpdate": "2026-05-20T00:00:00Z",
+    "totalHipodromos": 25,
+    "version": "1.0.0"
+  },
+  "hipodromos": [
+    {
+      "id": "belmont-park",
+      "nombre": "Belmont Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/BelmontPark.pdf"
+    },
+    {
+      "id": "thistledown",
+      "nombre": "ThistleDown",
+      "url_pdf": "https://pollamacaco.com/Revistas/ThistleDown.pdf"
+    },
+    {
+      "id": "evangeline-downs",
+      "nombre": "Evangeline Downs",
+      "url_pdf": "https://pollamacaco.com/Revistas/EvangelineDowns.pdf"
+    },
+    {
+      "id": "delta-downs",
+      "nombre": "Delta Downs",
+      "url_pdf": "https://pollamacaco.com/Revistas/DeltaDowns.pdf"
+    },
+    {
+      "id": "belterra-park",
+      "nombre": "Belterra Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/WinBelterraPark.pdf"
+    },
+    {
+      "id": "gulfstream-park",
+      "nombre": "Gulfstream Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/GulfstreamPark.pdf"
+    },
+    {
+      "id": "century-mile",
+      "nombre": "Century Mile",
+      "url_pdf": "https://pollamacaco.com/Revistas/CenturyMile.pdf"
+    },
+    {
+      "id": "charles-town",
+      "nombre": "Charles Town",
+      "url_pdf": "https://pollamacaco.com/Revistas/CharlesTown.pdf"
+    },
+    {
+      "id": "emerald-downs",
+      "nombre": "Emerald Downs",
+      "url_pdf": "https://pollamacaco.com/Revistas/EmeraldDowns.pdf"
+    },
+    {
+      "id": "remington-park",
+      "nombre": "Remington Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/RemingtonPark.pdf"
+    },
+    {
+      "id": "lone-star-park",
+      "nombre": "Lone Star Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/LoneStarPark.pdf"
+    },
+    {
+      "id": "laurel-park",
+      "nombre": "Laurel Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/LaurelPark.pdf"
+    },
+    {
+      "id": "sam-houston",
+      "nombre": "Sam Houston",
+      "url_pdf": "https://pollamacaco.com/Revistas/SamHouston.pdf"
+    },
+    {
+      "id": "monmouth-park",
+      "nombre": "Monmouth Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/MonmouthPark.pdf"
+    },
+    {
+      "id": "prairie-meadows",
+      "nombre": "Prairie Meadows",
+      "url_pdf": "https://pollamacaco.com/Revistas/PrairieMeadows.pdf"
+    },
+    {
+      "id": "delaware-park",
+      "nombre": "Delaware Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/DelawarePark.pdf"
+    },
+    {
+      "id": "woodbine",
+      "nombre": "Woodbine",
+      "url_pdf": "https://pollamacaco.com/Revistas/Woodbine.pdf"
+    },
+    {
+      "id": "fairmount-park",
+      "nombre": "Fairmount Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/FairmountPark.pdf"
+    },
+    {
+      "id": "sunray-park",
+      "nombre": "Sunray Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/SunrayPark.pdf"
+    },
+    {
+      "id": "louisiana-downs",
+      "nombre": "Louisiana Downs",
+      "url_pdf": "https://pollamacaco.com/Revistas/LouisianaDowns.pdf"
+    },
+    {
+      "id": "los-alamitos-qh",
+      "nombre": "Los Alamitos QH",
+      "url_pdf": "https://pollamacaco.com/Revistas/LosAlamitosQH.pdf"
+    },
+    {
+      "id": "fair-grounds",
+      "nombre": "Fair Grounds",
+      "url_pdf": "https://pollamacaco.com/Revistas/FairGrounds.pdf"
+    },
+    {
+      "id": "hawthorne-park",
+      "nombre": "Hawthorne Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/HawthornePark.pdf"
+    },
+    {
+      "id": "parx-racing",
+      "nombre": "Parx Racing",
+      "url_pdf": "https://pollamacaco.com/Revistas/ParxRacing.pdf"
+    },
+    {
+      "id": "santa-anita",
+      "nombre": "Santa Anita Park",
+      "url_pdf": "https://pollamacaco.com/Revistas/SantaAnitaPark.pdf"
+    }
+  ]
+}
