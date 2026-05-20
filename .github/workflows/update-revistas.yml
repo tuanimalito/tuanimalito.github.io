@@ -1,0 +1,52 @@
+name: Descargar Revistas (solo Español)
+
+on:
+  workflow_dispatch:  # Solo manual para que usted controle cuando actualizar
+  # schedule:          # Opcional: si quiere automático, descomente la siguiente línea
+  #   - cron: '0 6 * * *'  # Todos los días a las 6:00 AM
+
+permissions:
+  contents: write
+
+jobs:
+  descargar-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Crear carpeta para PDFs
+        run: mkdir -p pdfs
+
+      - name: Descargar PDFs desde revistas.json
+        run: |
+          # Leer el JSON y extraer las URLs de los PDFs (solo las que comienzan con http)
+          jq -r '.hipodromos[].url_pdf' data/revistas.json | while read url; do
+            if [[ "$url" == http* ]]; then
+              filename=$(basename "$url")
+              echo "Descargando $filename desde $url"
+              wget -q --show-progress -O "pdfs/$filename" "$url"
+            else
+              echo "Ignorando URL local o inválida: $url"
+            fi
+          done
+
+      - name: Actualizar JSON con rutas locales
+        run: |
+          # Reemplazar las URLs externas por rutas locales (pdfs/nombre_archivo.pdf)
+          jq '.hipodromos[].url_pdf |= ("pdfs/" + (split("/") | last))' data/revistas.json > data/revistas.tmp.json
+          mv data/revistas.tmp.json data/revistas.json
+          
+          # Actualizar la fecha de actualización
+          jq --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '.metadata.lastUpdate = $date' data/revistas.json > data/revistas.tmp.json
+          mv data/revistas.tmp.json data/revistas.json
+          
+          echo "JSON actualizado con rutas locales"
+
+      - name: Commit y push de cambios
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add pdfs/ data/revistas.json
+          git diff --staged --quiet || git commit -m "Actualización automática de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
