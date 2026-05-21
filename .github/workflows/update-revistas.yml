@@ -19,56 +19,42 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           
-      - name: Crear carpeta para PDFs
-        run: mkdir -p pdfs
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Crear carpeta para PDFs si no existe
+        run: |
+          mkdir -p pdfs
+          touch pdfs/.gitkeep
         
       - name: Descargar PDFs desde urls_originales.json
         run: |
-          echo "Iniciando descarga de PDFs..."
-          
-          # Leer URLs desde urls_originales.json (NO desde revistas.json)
+          echo "Iniciando descarga de PDFs desde el origen..."
+          # Aseguramos que jq lea correctamente las URLs de origen
           jq -r '.hipodromos[].url_pdf' data/urls_originales.json | while read url; do
             filename=$(basename "$url")
             echo "Descargando: $filename"
-            wget --quiet --show-progress --timeout=30 --tries=3 -O "pdfs/$filename" "$url"
-            
-            if [ $? -eq 0 ]; then
-              echo "  OK: $filename descargado"
-            else
-              echo "  ERROR: Fallo al descargar $filename"
-            fi
+            # Agregamos -N para descargar solo si el archivo es más nuevo que el local
+            wget -N --quiet --show-progress --timeout=30 --tries=3 -P pdfs/ "$url"
           done
-          
-          echo "Descarga completada"
-          
-      - name: Actualizar revistas.json con rutas locales
-        run: |
-          echo "Actualizando revistas.json..."
-          
-          # Generar nuevo revistas.json con rutas locales (usando urls_originales.json)
-          jq '.hipodromos[] | {id, nombre, logo, url_pdf: ("pdfs/" + (.url_pdf | split("/") | last))}' data/urls_originales.json > hipodromos.tmp.json
-          
-          jq -n --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" --slurpfile hipodromos hipodromos.tmp.json '{
-            metadata: {
-              lastUpdate: $date,
-              totalHipodromos: ($hipodromos | length),
-              version: "1.0.0"
-            },
-            hipodromos: $hipodromos
-          }' > data/revistas.json
-          
-          rm hipodromos.tmp.json
-          echo "revistas.json actualizado con rutas locales"
+          echo "Descarga completada."
+
+      - name: Ejecutar script de Python para actualizar JSON
+        run: python update_revistas.py
           
       - name: Verificar cambios
         id: verificar
         run: |
-          if [ -n "$(git status --porcelain pdfs/)" ] || [ -n "$(git status --porcelain data/revistas.json)" ]; then
+          # Forzar el rastreo de nuevos archivos en pdfs/ antes de verificar el estatus
+          git add -A pdfs/ data/revistas.json
+          if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Se detectaron cambios"
+            echo "Se detectaron cambios en los PDFs o en el JSON"
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No hay cambios"
+            echo "No hay cambios pendientes"
           fi
           
       - name: Commit y push
@@ -76,8 +62,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add pdfs/ data/revistas.json
-          git commit -m "Actualizacion automatica - $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Actualización automática de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
