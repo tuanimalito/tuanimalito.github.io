@@ -714,23 +714,26 @@
                 // Limpiar el grid
             grid.innerHTML = '';
 
-                // Crear una tarjeta por cada hipodromo en el JSON
-            data.hipodromos.forEach(hipodromo => {
-                const card = document.createElement('div');
-                card.className = 'generator-card';
-                card.innerHTML = `
-                        <img class="generator-img" src="${hipodromo.logo}" alt="${hipodromo.nombre}">
-                        <div class="generator-body">
-                            <div class="generator-category">TUWINNER</div>
-                            <h4 class="generator-title">${hipodromo.nombre}</h4>
-                            <button class="btn-carousel btn-ver-winner" data-url="${hipodromo.url_pdf}">Ver winner</button>
-                            <div class="generator-rating">
-                                <i class="fas fa-star"></i> 4.5 (250 valoraciones)
-                            </div>
+             // Cambia la sección donde generas el HTML dinámico por esta:
+        data.hipodromos.forEach(hipodromo => {
+            // Evaluamos la ruta del PDF dinámicamente según la nueva estructura de Python
+            const urlPdf = hipodromo.revistas ? hipodromo.revistas.espanol : '#';
+
+            const card = document.createElement('div');
+            card.className = 'generator-card';
+            card.innerHTML = `
+                    <img class="generator-img" src="${hipodromo.logo}" alt="${hipodromo.nombre}">
+                    <div class="generator-body">
+                        <div class="generator-category">TUWINNER</div>
+                        <h4 class="generator-title">${hipodromo.nombre}</h4>
+                        <button class="btn-carousel btn-ver-winner" data-url="${urlPdf}">Ver winner</button>
+                        <div class="generator-rating">
+                            <i class="fas fa-star"></i> 4.5 (250 valoraciones)
                         </div>
-                `;
-                grid.appendChild(card);
-            });
+                    </div>
+            `;
+            grid.appendChild(card);
+        });
 
                 // Agregar event listeners a los botones "Ver winner"
             document.querySelectorAll('.btn-ver-winner').forEach(button => {
