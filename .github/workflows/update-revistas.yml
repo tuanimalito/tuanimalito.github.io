@@ -56,7 +56,7 @@ jobs:
           echo "Descarga inteligente completada."
 
       - name: Ejecutar script de Python para actualizar JSON
-        run: python update_revistas.py
+        run: python scripts/update_revistas.py
           
       - name: Verificar cambios reales en Git
         id: verificar
