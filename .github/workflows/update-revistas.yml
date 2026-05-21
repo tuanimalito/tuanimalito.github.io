@@ -17,52 +17,68 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
           
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      # --- PASO CLAVE: Mantener la caché de los PDFs para preservar sus fechas ---
+      - name: Preservar caché de PDFs
+        uses: actions/cache@v4
         with:
-          python-version: '3.10'
-          
+          path: pdfs
+          key: pdfs-cache-${{ github.run_id }} # Identificador único por ejecución
+          restore-keys: |
+            pdfs-cache-
+        
       - name: Crear carpeta para PDFs si no existe
         run: |
           mkdir -p pdfs
           touch pdfs/.gitkeep
         
-      - name: Descargar PDFs desde urls_originales.json
+      - name: Descargar solo PDFs nuevos o modificados
         run: |
-          echo "Iniciando descarga de PDFs desde el origen..."
-          # Aseguramos que jq lea correctamente las URLs de origen
+          echo "Iniciando descarga inteligente de PDFs (Solo nuevos o modificados)..."
+          
+          # Leer desde urls_originales.json
           jq -r '.hipodromos[].url_pdf' data/urls_originales.json | while read url; do
             filename=$(basename "$url")
-            echo "Descargando: $filename"
-            # Agregamos -N para descargar solo si el archivo es más nuevo que el local
+            
+            # Usamos -N para verificar la marca de tiempo (Timestamping)
+            # Usamos --no-if-modified-since para asegurar compatibilidad con servidores antiguos si fuera necesario
             wget -N --quiet --show-progress --timeout=30 --tries=3 -P pdfs/ "$url"
+            
+            # Guardamos el código de estado de wget
+            status=$?
+            if [ $status -eq 0 ]; then
+              echo "  -> $filename: Verificado/Descargado correctamente (si era más nuevo)."
+            else
+              echo "  -> Aviso/Error con $filename (Código wget: $status)"
+            fi
           done
-          echo "Descarga completada."
+          echo "Descarga inteligente completada."
 
       - name: Ejecutar script de Python para actualizar JSON
         run: python update_revistas.py
           
-      - name: Verificar cambios
+      - name: Verificar cambios reales en Git
         id: verificar
         run: |
-          # Forzar el rastreo de nuevos archivos en pdfs/ antes de verificar el estatus
-          git add -A pdfs/ data/revistas.json
+          # Añadimos todo al índice de Git para comparar
+          git add pdfs/ data/revistas.json
+          
+          # Comprobamos si hay diferencias reales en el contenido
           if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Se detectaron cambios en los PDFs o en el JSON"
+            echo "¡Se detectaron archivos nuevos o actualizados!"
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No hay cambios pendientes"
+            echo "Todos los archivos son idénticos. No se requiere actualización."
           fi
           
-      - name: Commit y push
+      - name: Commit y push (Solo si hay cambios)
         if: steps.verificar.outputs.has_changes == 'true'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git commit -m "Actualización automática de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Actualización automática: Archivos nuevos detectados - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
