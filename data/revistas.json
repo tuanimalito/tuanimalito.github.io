@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-21T19:42:43.119934",
+    "lastUpdate": "2026-05-22T08:48:20.638940",
     "totalHipodromos": 25,
     "totalConfigurados": 25,
     "version": "1.0.0"
@@ -15,7 +15,7 @@
         "winnersChoice": "pdfs/WinBelmontPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "thistledown",
@@ -26,7 +26,7 @@
         "winnersChoice": "pdfs/WinThistleDown.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "evangeline-downs",
@@ -37,7 +37,7 @@
         "winnersChoice": "pdfs/WinEvangelineDowns.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "delta-downs",
@@ -48,7 +48,7 @@
         "winnersChoice": "pdfs/WinDeltaDowns.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "belterra-park",
@@ -59,7 +59,7 @@
         "winnersChoice": "pdfs/WinBelterraPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "gulfstream-park",
@@ -70,7 +70,7 @@
         "winnersChoice": "pdfs/WinGulfstreamPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "century-mile",
@@ -81,7 +81,7 @@
         "winnersChoice": "pdfs/WinCenturyMile.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "charles-town",
@@ -92,7 +92,7 @@
         "winnersChoice": "pdfs/WinCharlesTown.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "emerald-downs",
@@ -103,7 +103,7 @@
         "winnersChoice": "pdfs/WinEmeraldDowns.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "remington-park",
@@ -114,7 +114,7 @@
         "winnersChoice": "pdfs/WinRemingtonPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "lone-star-park",
@@ -125,7 +125,7 @@
         "winnersChoice": "pdfs/WinLoneStarPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "laurel-park",
@@ -136,7 +136,7 @@
         "winnersChoice": "pdfs/WinLaurelPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "sam-houston",
@@ -147,7 +147,7 @@
         "winnersChoice": "pdfs/WinSamHouston.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "monmouth-park",
@@ -158,7 +158,7 @@
         "winnersChoice": "pdfs/WinMonmouthPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "prairie-meadows",
@@ -169,7 +169,7 @@
         "winnersChoice": "pdfs/WinPrairieMeadows.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "delaware-park",
@@ -180,7 +180,7 @@
         "winnersChoice": "pdfs/WinDelawarePark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "woodbine",
@@ -191,7 +191,7 @@
         "winnersChoice": "pdfs/WinWoodbine.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "fairmount-park",
@@ -202,7 +202,7 @@
         "winnersChoice": "pdfs/WinFairmountPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "sunray-park",
@@ -213,7 +213,7 @@
         "winnersChoice": "pdfs/WinSunrayPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "louisiana-downs",
@@ -224,7 +224,7 @@
         "winnersChoice": "pdfs/WinLouisianaDowns.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "los-alamitos-qh",
@@ -235,7 +235,7 @@
         "winnersChoice": "pdfs/WinLosAlamitosQH.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "fair-grounds",
@@ -246,7 +246,7 @@
         "winnersChoice": "pdfs/WinFairGrounds.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "hawthorne-park",
@@ -257,7 +257,7 @@
         "winnersChoice": "pdfs/WinHawthornePark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "parx-racing",
@@ -268,7 +268,7 @@
         "winnersChoice": "pdfs/WinParxRacing.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     },
     {
       "id": "santa-anita",
@@ -279,7 +279,7 @@
         "winnersChoice": "pdfs/WinSantaAnitaPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-21"
+      "ultimaActualizacion": "2026-05-22"
     }
   ],
   "errores": null
