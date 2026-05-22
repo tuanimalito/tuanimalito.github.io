@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "ultima_actualizacion": "2026-05-22T14:59:36.980393",
+    "total_loterias": 11,
+    "fuente": "https://loteria.guru/resultados-loteria-florida"
+  },
+  "loterias": [
+    {
+      "id": "mega-millions",
+      "nombre": "Mega Millions",
+      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "19 may 2026",
+        "numeros": [10, 26, 34, 56, 64],
+        "numero_extra": 6
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": "296.000.000$"
+    },
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "20 may 2026",
+        "numeros": [10, 28, 30, 46, 57],
+        "numero_extra": 25
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": "131.000.000$"
+    },
+    {
+      "id": "lotto-florida",
+      "nombre": "Lotto Florida",
+      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "20 may 2026",
+        "numeros": [6, 15, 18, 28, 33, 38],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": "27.500.000$"
+    }
+  ]
+}
