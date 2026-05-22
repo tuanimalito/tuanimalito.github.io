@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-22T16:36:58.161811",
+    "ultima_actualizacion": "2026-05-22T17:25:59.499229",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -22,8 +22,8 @@
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "296.000.000$"
     },
@@ -44,8 +44,8 @@
         "numero_extra": 25
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "131.000.000$"
     },
@@ -67,8 +67,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "27.500.000$"
     },
@@ -90,8 +90,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "250.000$"
     },
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "100.000$"
     },
@@ -134,8 +134,8 @@
         "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "50.000$"
     },
@@ -155,8 +155,8 @@
         "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "5.000$"
     },
@@ -175,8 +175,8 @@
         "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "250$"
     },
@@ -212,8 +212,8 @@
         "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Viernes",
+        "fecha": "22 may 2026"
       },
       "bote": "50$"
     },
