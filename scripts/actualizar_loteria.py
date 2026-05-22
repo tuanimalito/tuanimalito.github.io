@@ -69,11 +69,9 @@ def obtener_datos():
         for num_elem in tarjeta.find_all('li', class_='lg-number'):
             num_texto = num_elem.text.strip()
             
-            # Intentamos convertir a número de forma segura
             try:
                 valor_num = int(num_texto)
             except ValueError:
-                # Si no es un número (ej. "P"), lo guardamos como texto para no romper el flujo
                 valor_num = num_texto
 
             if 'lg-reversed' in num_elem.get('class', []):
@@ -81,30 +79,39 @@ def obtener_datos():
             else:
                 numeros.append(valor_num)
 
-        # --- 4. Extraer el PRÓXIMO SORTEO ---
+        # --- 4. Extraer el PRÓXIMO SORTEO (LÓGICA MEJORADA) ---
         proximo_dia = ""
         proximo_fecha = ""
+        
+        # Buscamos en todas las filas de datos de la tarjeta de forma insensible a mayúsculas
         for fila in tarjeta.find_all('div', class_='lg-card-row'):
-            if 'Próximo Sorteo' in fila.text:
+            texto_fila = fila.text.lower()
+            if 'próximo' in texto_fila or 'proximo' in texto_fila:
                 dias = fila.find_all('span', class_='lg-day')
                 fechas = fila.find_all('span', class_='lg-date')
-                if len(dias) > 1:
-                    proximo_dia = dias[1].text.strip()
-                if len(fechas) > 1:
-                    proximo_fecha = fechas[1].text.strip()
+                
+                # Si la fila contiene etiquetas estructuradas de fecha, las extraemos
+                if dias:
+                    proximo_dia = dias[-1].text.strip()
+                if fechas:
+                    proximo_fecha = fechas[-1].text.strip()
+                
+                # Si no estaban en etiquetas span (texto plano), limpiamos la fila
+                if not proximo_fecha:
+                    texto_limpio = fila.text.replace("Próximo sorteo:", "").replace("Próximo Sorteo:", "").strip()
+                    proximo_fecha = texto_limpio
                 break
 
         # --- 5. Extraer el BOTE ---
         bote_elem = tarjeta.find('div', class_='lg-sum')
         bote = bote_elem.text.strip() if bote_elem else ""
 
-        # --- 6. Extraer el LOGO asegurando URL absoluta ---
+        # --- 6. Extraer el LOGO ---
         logo = ""
         logo_div = tarjeta.find('div', class_='lg-logo')
         if logo_div:
             img = logo_div.find('img')
             if img and img.get('src'):
-                # Resuelve automáticamente si la URL es relativa (/pict/...) o absoluta
                 logo = urljoin(URL, img.get('src'))
 
         # Guardamos los datos
@@ -124,7 +131,7 @@ def obtener_datos():
             },
             "bote": bote
         })
-        print(f"  Datos extraídos para: {nombre_loteria}")
+        print(f"  Datos extraídos para: {nombre_loteria} (Próximo: {proximo_dia} {proximo_fecha})")
 
     return {
         "metadata": {
@@ -136,51 +143,45 @@ def obtener_datos():
     }
 
 def datos_han_cambiado(nuevos_datos):
-    """Compara los nuevos datos extraídos con el JSON local existente para evitar redundancias."""
+    """Compara los nuevos datos con el JSON local."""
     ruta_completa = os.path.join("data", "tuloteria.json")
     
     if not os.path.exists(ruta_completa):
-        print("El archivo local no existe. Se procederá a crearlo por primera vez.")
         return True
         
     try:
         with open(ruta_completa, "r", encoding="utf-8") as f:
             datos_locales = json.load(f)
-    except Exception as e:
-        print(f"Error al leer el archivo local ({e}). Se reescribirá por seguridad.")
+    except Exception:
         return True
 
-    # Indexamos por ID para comparar fácilmente
     ultimo_sorteo_local = {l["id"]: l.get("ultimo_sorteo", {}) for l in datos_locales.get("loterias", [])}
+    proximo_sorteo_local = {l["id"]: l.get("proximo_sorteo", {}) for l in datos_locales.get("loterias", [])}
     botes_locales = {l["id"]: l.get("bote", "") for l in datos_locales.get("loterias", [])}
     
     for loteria_nueva in nuevos_datos.get("loterias", []):
         id_loteria = loteria_nueva["id"]
         
         if id_loteria not in ultimo_sorteo_local:
-            print(f"Nueva lotería detectada: {id_loteria}")
             return True
             
         sorteo_local = ultimo_sorteo_local[id_loteria]
         sorteo_nuevo = loteria_nueva.get("ultimo_sorteo", {})
         
-        # 1. Comparamos si los resultados o las fechas cambiaron
+        prox_local = proximo_sorteo_local.get(id_loteria, {})
+        prox_nuevo = loteria_nueva.get("proximo_sorteo", {})
+        
+        # Agregamos validación por si cambia la fecha del próximo sorteo en la web
         if sorteo_local.get("fecha") != sorteo_nuevo.get("fecha") or \
            sorteo_local.get("numeros") != sorteo_nuevo.get("numeros") or \
-           sorteo_local.get("numero_extra") != sorteo_nuevo.get("numero_extra"):
-            print(f"🔄 Cambio detectado en los resultados de: {loteria_nueva['nombre']}")
-            return True
-            
-        # 2. Comparamos si el bote (acumulado) cambió de valor
-        if botes_locales.get(id_loteria) != loteria_nueva.get("bote", ""):
-            print(f"💰 Cambio detectado en el bote de: {loteria_nueva['nombre']}")
+           prox_local.get("fecha") != prox_nuevo.get("fecha") or \
+           botes_locales.get(id_loteria) != loteria_nueva.get("bote", ""):
+            print(f"🔄 Cambio detectado en datos de: {loteria_nueva['nombre']}")
             return True
 
-    print("ℹ️ Todos los datos de la web coinciden con el archivo local. No se requiere actualización.")
     return False
 
 def guardar_json(datos):
-    """Guarda los datos en data/tuloteria.json"""
     ruta_completa = os.path.join("data", "tuloteria.json")
     os.makedirs(os.path.dirname(ruta_completa), exist_ok=True)
     with open(ruta_completa, "w", encoding="utf-8") as f:
@@ -198,7 +199,7 @@ def main():
         else:
             print("--- PROCESO FINALIZADO: El archivo local está al día ---")
     else:
-        print("--- ERROR: No se pudieron obtener datos válidos de la fuente ---")
+        print("--- ERROR: No se pudieron obtener datos válidos ---")
 
 if __name__ == "__main__":
     main()
