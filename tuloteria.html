@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuLoteria - Resultados de Lotería Florida</title>
+    <style>
+        /* ===== ESTILOS BÁSICOS Y LIMPIOS ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
+        .descripcion { text-align: center; color: #aaa; margin-bottom: 40px; }
+        
+        /* Grid de tarjetas */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Tarjeta de lotería */
+        .tarjeta {
+            background: #1a1a2e;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #2a2a40;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: #ffd700;
+        }
+        
+        /* Cabecera de la tarjeta */
+        .cabecera {
+            text-align: center;
+            padding: 20px 20px 0 20px;
+            border-bottom: 1px solid #2a2a40;
+        }
+        .logo { max-width: 100px; max-height: 60px; margin-bottom: 10px; }
+        .titulo { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
+        
+        /* Cuerpo de la tarjeta */
+        .cuerpo { padding: 20px; }
+        .seccion { margin-bottom: 20px; text-align: center; }
+        .etiqueta { font-size: 0.7rem; text-transform: uppercase; color: #ffd700; letter-spacing: 1px; margin-bottom: 5px; }
+        .fecha { font-weight: bold; }
+        
+        /* Números */
+        .numeros {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .numero {
+            background: #2e7d64;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .numero-extra {
+            background: #ffd700;
+            color: #1a1a2e;
+        }
+        
+        .bote {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .error { text-align: center; color: #ff5555; padding: 40px; width: 100%; grid-column: 1 / -1; }
+        .cargando { text-align: center; color: #ffd700; padding: 40px; width: 100%; grid-column: 1 / -1; }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .numero { width: 35px; height: 35px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📅 TuLoteria</h1>
+        <p class="descripcion">Resultados actualizados de las loterías de Florida</p>
+        
+        <div id="contenedor-tarjetas" class="grid">
+            <div class="cargando">🔄 Cargando resultados...</div>
+        </div>
+    </div>
+
+    <script>
+        async function cargarResultados() {
+            const contenedor = document.getElementById('contenedor-tarjetas');
+            
+            try {
+                // Forzamos actualización saltando la caché del navegador
+                const respuesta = await fetch(`data/tuloteria.json?t=${new Date().getTime()}`);
+                
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+                
+                const datos = await respuesta.json();
+                
+                if (!datos.loterias || datos.loterias.length === 0) {
+                    contenedor.innerHTML = '<div class="error">No hay resultados disponibles en este momento</div>';
+                    return;
+                }
+                
+                // Limpiar el aviso de "Cargando..."
+                contenedor.innerHTML = '';
+                
+                datos.loterias.forEach(loteria => {
+                    // --- Procesar renderizado de Números ---
+                    let numerosHtml = '';
+                    const ultSorteo = loteria.ultimo_sorteo || {};
+                    
+                    if (ultSorteo.numeros && ultSorteo.numeros.length > 0) {
+                        numerosHtml = '<div class="numeros">';
+                        ultSorteo.numeros.forEach(num => {
+                            numerosHtml += `<div class="numero">${num}</div>`;
+                        });
+                        if (ultSorteo.numero_extra !== null && ultSorteo.numero_extra !== undefined) {
+                            numerosHtml += `<div class="numero numero-extra">${ultSorteo.numero_extra}</div>`;
+                        }
+                        numerosHtml += '</div>';
+                    } else {
+                        numerosHtml = '<div class="fecha" style="color: #888; margin: 15px 0;">No publicados aún</div>';
+                    }
+                    
+                    // --- Validaciones preventivas para textos vacíos ---
+                    const proxSorteo = loteria.proximo_sorteo || {};
+                    const fechaProxima = (proxSorteo.dia || proxSorteo.fecha) 
+                        ? `${proxSorteo.dia} ${proxSorteo.fecha}`.strip() or 'Por confirmar'
+                        : 'Por confirmar';
+                        
+                    const fechaUltima = (ultSorteo.dia || ultSorteo.fecha)
+                        ? `${ultSorteo.dia} ${ultSorteo.fecha}`
+                        : 'No disponible';
+
+                    const valorBote = loteria.bote && loteria.bote.trim() !== "" ? loteria.bote : "Acumulado mínimo";
+                    
+                    // --- Renderizar la Tarjeta ---
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'tarjeta';
+                    tarjeta.innerHTML = `
+                        <div class="cabecera">
+                            <img class="logo" src="${loteria.logo}" alt="${loteria.nombre}" onerror="this.style.display='none'">
+                            <div class="titulo">${loteria.nombre}</div>
+                        </div>
+                        <div class="cuerpo">
+                            <div class="seccion">
+                                <div class="etiqueta">Último resultado</div>
+                                <div class="fecha">${fechaUltima}</div>
+                                ${numerosHtml}
+                            </div>
+                            <div class="seccion">
+                                <div class="etiqueta">Próximo Sorteo</div>
+                                <div class="fecha" style="color: #aaa;">${fechaProxima}</div>
+                            </div>
+                            <div class="seccion">
+                                <div class="etiqueta">Bote Estimado</div>
+                                <div class="bote">${valorBote}</div>
+                            </div>
+                        </div>
+                    `;
+                    contenedor.appendChild(tarjeta);
+                });
+                
+            } catch (error) {
+                console.error('Error al cargar el JSON:', error);
+                contenedor.innerHTML = `<div class="error">❌ Error al conectar con los resultados de la lotería. Por favor, recarga la página.</div>`;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', cargarResultados);
+    </script>
+</body>
+</html>
