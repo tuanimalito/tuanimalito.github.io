@@ -4,7 +4,6 @@
 
 import json
 import os
-import re
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -25,8 +24,7 @@ LOTERIAS_CONFIG = [
     {"id": "cash4life", "nombre": "Cash4Life FL"}
 ]
 
-def obtener_datos_loteria():
-    """Obtiene los datos actualizados de loteria.guru"""
+def obtener_datos():
     print(f"Obteniendo datos de: {URL_LOTERIA}")
     
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
@@ -35,11 +33,11 @@ def obtener_datos_loteria():
         response = requests.get(URL_LOTERIA, headers=headers, timeout=30)
         response.raise_for_status()
     except Exception as e:
-        print(f"Error al obtener la página: {e}")
+        print(f"Error: {e}")
         return None
     
     soup = BeautifulSoup(response.text, 'html.parser')
-    loterias_data = []
+    loterias = []
     cards = soup.find_all('div', class_='lg-card')
     
     for card in cards:
@@ -57,17 +55,14 @@ def obtener_datos_loteria():
         dia = dia_elem.get_text(strip=True) if dia_elem else ""
         fecha = fecha_elem.get_text(strip=True) if fecha_elem else ""
         
-        numeros_elems = card.find_all('li', class_='lg-number')
         numeros = []
         numero_extra = None
-        
-        for num_elem in numeros_elems:
+        for num_elem in card.find_all('li', class_='lg-number'):
             num_text = num_elem.get_text(strip=True)
             if 'lg-reversed' in num_elem.get('class', []):
                 numero_extra = int(num_text) if num_text.isdigit() else None
-            else:
-                if num_text.isdigit():
-                    numeros.append(int(num_text))
+            elif num_text.isdigit():
+                numeros.append(int(num_text))
         
         proximo_dia = ""
         proximo_fecha = ""
@@ -85,13 +80,13 @@ def obtener_datos_loteria():
         bote = bote_elem.get_text(strip=True) if bote_elem else ""
         
         logo = ""
-        logo_parent = card.find('div', class_='lg-logo')
-        if logo_parent:
-            img = logo_parent.find('img')
+        logo_div = card.find('div', class_='lg-logo')
+        if logo_div:
+            img = logo_div.find('img')
             if img and img.get('src'):
                 logo = img.get('src')
         
-        loterias_data.append({
+        loterias.append({
             "id": config["id"],
             "nombre": nombre,
             "logo": logo,
@@ -111,35 +106,32 @@ def obtener_datos_loteria():
     return {
         "metadata": {
             "ultimaActualizacion": datetime.now().isoformat(),
-            "totalLoterias": len(loterias_data),
+            "totalLoterias": len(loterias),
             "fuente": URL_LOTERIA
         },
-        "loterias": loterias_data
+        "loterias": loterias
     }
 
-def guardar_datos(data, ruta="data/tuloteria.json"):
-    """Guarda los datos en el archivo JSON"""
+def guardar_datos(data):
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
-    ruta_completa = os.path.join(project_root, ruta)
-    os.makedirs(os.path.dirname(ruta_completa), exist_ok=True)
-    with open(ruta_completa, "w", encoding="utf-8") as f:
+    ruta = os.path.join(project_root, "data", "tuloteria.json")
+    os.makedirs(os.path.dirname(ruta), exist_ok=True)
+    with open(ruta, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"Datos guardados en {ruta}")
-    print(f"Total loterías actualizadas: {data['metadata']['totalLoterias']}")
+    print(f"Total loterías: {data['metadata']['totalLoterias']}")
 
 def main():
     print("=" * 60)
-    print(f"ACTUALIZANDO RESULTADOS DE LOTERÍA - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"ACTUALIZANDO RESULTADOS - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
-    datos = obtener_datos_loteria()
+    datos = obtener_datos()
     if datos:
         guardar_datos(datos)
-        print("\n" + "=" * 60)
-        print("ACTUALIZACIÓN COMPLETADA EXITOSAMENTE")
-        print("=" * 60)
+        print("ACTUALIZACIÓN COMPLETADA")
     else:
-        print("\nERROR: No se pudieron obtener los datos")
+        print("ERROR: No se pudieron obtener los datos")
 
 if __name__ == "__main__":
     main()
