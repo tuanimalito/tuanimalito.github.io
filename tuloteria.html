@@ -3,20 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuLoteria - Resultados de Lotería Florida</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>TuLoteria | Resultados Lotería Florida Hoy - Powerball, Mega Millions y Más</title>
+    <meta name="description" content="Resultados actualizados de la Lotería de Florida. Consulta los números ganadores de Powerball, Mega Millions, Florida Lotto, Pick 3, Pick 4, Fantasy 5 y más. ¡Comprueba tu boleto ahora!">
+    <meta name="keywords" content="lotería florida hoy, resultado de la lotería de la florida, florida lottery results, powerball, mega millions, florida lotto, pick 3, pick 4, cash4life, fantasy 5, lotería de miami, fl lottery">
+    <meta name="author" content="TuLoteria">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tuanimalito.github.io/">
+    
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="TuLoteria | Resultados Lotería Florida Hoy">
+    <meta property="og:description" content="Resultados actualizados de la Lotería de Florida. Powerball, Mega Millions, Florida Lotto y más.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tuanimalito.github.io/">
+    
+    <!-- Favicon -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiAAADMwAAZgAAAGcAAABoAAAAaQAAAGsAAABtAAAAbgAAAG8AAABwAAAAcQAAAHIAAAB0AAAAdgAAAHkAAAB+AAAA" rel="icon" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS (solo para el carrusel y utilidades) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         /* ===== ESTILOS BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a1a;
             color: #e0e0e0;
+        }
+        
+        /* ===== TOPBAR ===== */
+        .topbar {
+            background: linear-gradient(135deg, #0a0a1a, #0f0f25);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 12px 0;
+        }
+        
+        .topbar-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .topbar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .topbar-item i {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+        
+        .topbar-item a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .topbar-item a:hover {
+            color: #ffd700;
+        }
+        
+        /* ===== NAVBAR PREMIUM ===== */
+        .navbar-premium {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        
+        .logo span {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links-premium {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            align-items: center;
+        }
+        
+        .nav-links-premium li {
+            position: relative;
+            list-style: none;
+        }
+        
+        .nav-links-premium a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
+            padding: 8px 0;
+        }
+        
+        .nav-links-premium a:hover,
+        .nav-links-premium a.active {
+            color: #ffd700;
+        }
+        
+        .nav-links-premium a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 2px;
+        }
+        
+        /* Dropdown */
+        .nav-links-premium li.dropdown {
+            position: relative;
+        }
+        
+        .nav-links-premium li.dropdown > a {
+            cursor: pointer;
+        }
+        
+        .dropdown .dropdown-arrow {
+            font-size: 0.7rem;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-links-premium li.dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #1a1a2e, #0f0f25);
+            min-width: 220px;
+            border-radius: 12px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-links-premium li.dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
+        
+        .dropdown-menu a {
+            color: #e0e0e0;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: block;
+        }
+        
+        .dropdown-menu a:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            padding-left: 25px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: #ffd700;
+            cursor: pointer;
+        }
+        
+        /* ===== CARRUSEL ===== */
+        .carousel-premium {
+            position: relative;
+            margin-bottom: 0;
+        }
+        
+        .carousel-item-premium {
+            position: relative;
+            min-height: 450px;
+        }
+        
+        .carousel-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+        
+        .carousel-caption-premium {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            z-index: 10;
+        }
+        
+        .carousel-caption-premium h5 {
+            font-size: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #ffd700;
+        }
+        
+        .carousel-caption-premium h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        /* Contenedor principal - respeta la estructura original */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 20px;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
-        h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
-        .descripcion { text-align: center; color: #aaa; margin-bottom: 40px; }
         
+        /* Mantener los estilos originales de las tarjetas */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -30,6 +273,7 @@
             border: 1px solid #2a2a40;
             transition: transform 0.2s, box-shadow 0.2s;
         }
+        
         .tarjeta:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -41,13 +285,39 @@
             padding: 20px 20px 0 20px;
             border-bottom: 1px solid #2a2a40;
         }
-        .logo { max-width: 100px; max-height: 60px; margin-bottom: 10px; }
-        .titulo { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
         
-        .cuerpo { padding: 20px; }
-        .seccion { margin-bottom: 20px; text-align: center; }
-        .etiqueta { font-size: 0.7rem; text-transform: uppercase; color: #ffd700; letter-spacing: 1px; margin-bottom: 5px; }
-        .fecha { font-weight: bold; }
+        .logo-tarjeta { 
+            max-width: 100px; 
+            max-height: 60px; 
+            margin-bottom: 10px; 
+        }
+        
+        .titulo-tarjeta { 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+        }
+        
+        .cuerpo { 
+            padding: 20px; 
+        }
+        
+        .seccion { 
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
+        
+        .etiqueta { 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            color: #ffd700; 
+            letter-spacing: 1px; 
+            margin-bottom: 5px; 
+        }
+        
+        .fecha { 
+            font-weight: bold; 
+        }
         
         .numeros {
             display: flex;
@@ -56,6 +326,7 @@
             gap: 10px;
             margin: 15px 0;
         }
+        
         .numero {
             background: #2e7d64;
             width: 45px;
@@ -67,6 +338,7 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
+        
         .numero-extra {
             background: #ffd700;
             color: #1a1a2e;
@@ -78,25 +350,359 @@
             color: #ffd700;
         }
         
-        .error { text-align: center; color: #ff5555; padding: 40px; width: 100%; grid-column: 1 / -1; }
-        .cargando { text-align: center; color: #ffd700; padding: 40px; width: 100%; grid-column: 1 / -1; }
+        .error { 
+            text-align: center; 
+            color: #ff5555; 
+            padding: 40px; 
+            width: 100%; 
+            grid-column: 1 / -1; 
+        }
+        
+        .cargando { 
+            text-align: center; 
+            color: #ffd700; 
+            padding: 40px; 
+            width: 100%; 
+            grid-column: 1 / -1; 
+        }
+        
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .section-header h2 span {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-header p {
+            color: #888;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .divider-gold {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffb700);
+            border-radius: 3px;
+            margin: 20px auto 0;
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer-premium {
+            background: #0a0a1a;
+            color: #888;
+            text-align: center;
+            padding: 50px 20px 30px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 215, 0, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+        }
+        
+        .copyright span {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        
+        .copyright a {
+            color: #888;
+            text-decoration: none;
+        }
+        
+        .copyright a:hover {
+            color: #ffd700;
+        }
+        
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            text-decoration: none;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            color: #0a0a1a;
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links-premium {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+                gap: 15px;
+            }
+            .nav-links-premium.show {
+                display: flex;
+            }
+            .dropdown-menu {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                margin-top: 10px;
+                box-shadow: none;
+                background: rgba(255, 215, 0, 0.05);
+                width: 100%;
+            }
+            .nav-links-premium li.dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            .nav-links-premium li.dropdown.open .dropdown-menu {
+                display: block;
+            }
+            .dropdown-menu a {
+                text-align: center;
+            }
+            .carousel-caption-premium h1 {
+                font-size: 1.8rem;
+            }
+        }
         
         @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .numero { width: 35px; height: 35px; font-size: 1rem; }
+            .carousel-img, .carousel-item-premium {
+                height: 350px;
+            }
+            .carousel-caption-premium h1 {
+                font-size: 1.3rem;
+            }
+            .carousel-caption-premium h5 {
+                font-size: 0.8rem;
+            }
+            .grid { 
+                grid-template-columns: 1fr; 
+            }
+            .numero { 
+                width: 35px; 
+                height: 35px; 
+                font-size: 1rem; 
+            }
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 993px) {
+            .dropdown-menu {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📅 TuLoteria</h1>
-        <p class="descripcion">Resultados actualizados de las loterías de Florida</p>
+
+    <!-- Topbar Start -->
+    <div class="topbar">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="topbar-info d-flex justify-content-between flex-wrap">
+                            <div class="topbar-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Florida, Estados Unidos</span>
+                            </div>
+                            <div class="topbar-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:info@tuloteria.com">info@tuloteria.com</a>
+                            </div>
+                            <div class="topbar-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Resultados actualizados hoy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div class="navbar-premium">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="logo">
+                    <h1><span>Tu</span>Loteria</h1>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links-premium" id="navLinks">
+                    <li><a href="#" class="active">Inicio</a></li>
+                    <li><a href="#">Winner Choice</a></li>
+                    <li class="dropdown">
+                        <a href="#">Loterías <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Powerball</a></li>
+                            <li><a href="#">Mega Millions</a></li>
+                            <li><a href="#">Florida Lotto</a></li>
+                            <li><a href="#">Cash4Life</a></li>
+                            <li><a href="#">Fantasy 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Somos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Carousel Start -->
+    <div class="carousel-premium">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active carousel-item-premium">
+                    <img class="carousel-img" src="https://via.placeholder.com/1920x450/1a1a2e/ffd700?text=Powerball" alt="Powerball Florida">
+                    <div class="carousel-caption-premium">
+                        <h5>LOTERÍA DE FLORIDA</h5>
+                        <h1>Resultados Powerball y Mega Millions</h1>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item-premium">
+                    <img class="carousel-img" src="https://via.placeholder.com/1920x450/1a1a2e/ffd700?text=Mega+Millions" alt="Mega Millions Florida">
+                    <div class="carousel-caption-premium">
+                        <h5>GRANDES JACKPOTS</h5>
+                        <h1>¡Revisa los números ganadores!</h1>
+                    </div>
+                </div>
+                <div class="carousel-item carousel-item-premium">
+                    <img class="carousel-img" src="https://via.placeholder.com/1920x450/1a1a2e/ffd700?text=Florida+Lotto" alt="Florida Lotto">
+                    <div class="carousel-caption-premium">
+                        <h5>SORTEOS DIARIOS</h5>
+                        <h1>Pick 3, Pick 4, Fantasy 5 y más</h1>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+    <!-- CONTENIDO PRINCIPAL - La lógica original intacta -->
+    <div class="main-container">
+        <div class="section-header">
+            <span class="section-badge">Resultados Oficiales</span>
+            <h2> <span>TuLoteria</span> Florida</h2>
+            <p>Resultados actualizados de las loterías de Florida - Powerball, Mega Millions, Florida Lotto, Cash4Life, Fantasy 5 y más</p>
+            <div class="divider-gold"></div>
+        </div>
         
         <div id="contenedor-tarjetas" class="grid">
             <div class="cargando">🔄 Cargando resultados...</div>
         </div>
     </div>
 
+    <!-- Footer Start -->
+    <footer class="footer-premium">
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>TuLoteria</span></strong>. Todos los derechos reservados.
+            <br><a href="mailto:info@tuloteria.com">info@tuloteria.com</a>
+            <br><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts necesarios para el carrusel y menú -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ===== LÓGICA ORIGINAL - COMPLETAMENTE INTACTA ===== -->
     <script>
         async function cargarResultados() {
             const contenedor = document.getElementById('contenedor-tarjetas');
@@ -157,8 +763,8 @@
                     tarjeta.className = 'tarjeta';
                     tarjeta.innerHTML = `
                         <div class="cabecera">
-                            <img class="logo" src="${loteria.logo}" alt="${loteria.nombre}" onerror="this.style.display='none'">
-                            <div class="titulo">${loteria.nombre}</div>
+                            <img class="logo-tarjeta" src="${loteria.logo}" alt="${loteria.nombre}" onerror="this.style.display='none'">
+                            <div class="titulo-tarjeta">${loteria.nombre}</div>
                         </div>
                         <div class="cuerpo">
                             <div class="seccion">
@@ -186,6 +792,49 @@
         }
         
         document.addEventListener('DOMContentLoaded', cargarResultados);
+    </script>
+    <!-- ===== FIN DE LA LÓGICA ORIGINAL ===== -->
+
+    <!-- Scripts adicionales para menú móvil y back to top (no afectan la lógica principal) -->
+    <script>
+        // Menu movil toggle (no interfiere con cargarResultados)
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+        }
+
+        // Dropdown para móviles
+        const dropdownTrigger = document.querySelector('.dropdown > a');
+        if (dropdownTrigger) {
+            dropdownTrigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     </script>
 </body>
 </html>
