@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuLoteria - Resultados de Lotería Florida</title>
     <style>
-        /* ===== ESTILOS BÁSICOS Y LIMPIOS ===== */
+        /* ===== ESTILOS BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -53,7 +53,7 @@
         .etiqueta { font-size: 0.7rem; text-transform: uppercase; color: #ffd700; letter-spacing: 1px; margin-bottom: 5px; }
         .fecha { font-weight: bold; }
         
-        /* Números */
+        /* Esferas de los Números */
         .numeros {
             display: flex;
             justify-content: center;
@@ -107,7 +107,7 @@
             const contenedor = document.getElementById('contenedor-tarjetas');
             
             try {
-                // Forzamos actualización saltando la caché del navegador
+                // El parámetro ?t= evita que el navegador use datos viejos guardados en caché
                 const respuesta = await fetch(`data/tuloteria.json?t=${new Date().getTime()}`);
                 
                 if (!respuesta.ok) {
@@ -121,14 +121,14 @@
                     return;
                 }
                 
-                // Limpiar el aviso de "Cargando..."
+                // Limpiamos el texto de carga antes de renderizar
                 contenedor.innerHTML = '';
                 
                 datos.loterias.forEach(loteria => {
-                    // --- Procesar renderizado de Números ---
                     let numerosHtml = '';
                     const ultSorteo = loteria.ultimo_sorteo || {};
                     
+                    // Renderizado dinámico de las esferas numéricas
                     if (ultSorteo.numeros && ultSorteo.numeros.length > 0) {
                         numerosHtml = '<div class="numeros">';
                         ultSorteo.numeros.forEach(num => {
@@ -142,19 +142,21 @@
                         numerosHtml = '<div class="fecha" style="color: #888; margin: 15px 0;">No publicados aún</div>';
                     }
                     
-                    // --- Validaciones preventivas para textos vacíos ---
+                    // Procesamiento y limpieza estricta de textos para evitar errores en pantalla
                     const proxSorteo = loteria.proximo_sorteo || {};
-                    const fechaProxima = (proxSorteo.dia || proxSorteo.fecha) 
-                        ? `${proxSorteo.dia} ${proxSorteo.fecha}`.strip() or 'Por confirmar'
-                        : 'Por confirmar';
+                    let fechaProxima = 'Por confirmar';
+                    if (proxSorteo.dia || proxSorteo.fecha) {
+                        fechaProxima = `${proxSorteo.dia || ''} ${proxSorteo.fecha || ''}`.trim() || 'Por confirmar';
+                    }
                         
-                    const fechaUltima = (ultSorteo.dia || ultSorteo.fecha)
-                        ? `${ultSorteo.dia} ${ultSorteo.fecha}`
-                        : 'No disponible';
+                    let fechaUltima = 'No disponible';
+                    if (ultSorteo.dia || ultSorteo.fecha) {
+                        fechaUltima = `${ultSorteo.dia || ''} ${ultSorteo.fecha || ''}`.trim();
+                    }
 
                     const valorBote = loteria.bote && loteria.bote.trim() !== "" ? loteria.bote : "Acumulado mínimo";
                     
-                    // --- Renderizar la Tarjeta ---
+                    // Creación e inyección de la tarjeta al HTML
                     const tarjeta = document.createElement('div');
                     tarjeta.className = 'tarjeta';
                     tarjeta.innerHTML = `
@@ -182,11 +184,12 @@
                 });
                 
             } catch (error) {
-                console.error('Error al cargar el JSON:', error);
-                contenedor.innerHTML = `<div class="error">❌ Error al conectar con los resultados de la lotería. Por favor, recarga la página.</div>`;
+                console.error('Error al procesar el JSON:', error);
+                contenedor.innerHTML = `<div class="error">❌ Error al conectar con los resultados de la lotería. Por favor, intente recargar la página.</div>`;
             }
         }
         
+        // Ejecución al terminar de estructurar el DOM
         document.addEventListener('DOMContentLoaded', cargarResultados);
     </script>
 </body>
