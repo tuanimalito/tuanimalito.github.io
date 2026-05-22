@@ -17,14 +17,12 @@
         h1 { text-align: center; color: #ffd700; margin-bottom: 10px; }
         .descripcion { text-align: center; color: #aaa; margin-bottom: 40px; }
         
-        /* Grid de tarjetas */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
         }
         
-        /* Tarjeta de lotería */
         .tarjeta {
             background: #1a1a2e;
             border-radius: 16px;
@@ -38,7 +36,6 @@
             border-color: #ffd700;
         }
         
-        /* Cabecera de la tarjeta */
         .cabecera {
             text-align: center;
             padding: 20px 20px 0 20px;
@@ -47,13 +44,11 @@
         .logo { max-width: 100px; max-height: 60px; margin-bottom: 10px; }
         .titulo { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
         
-        /* Cuerpo de la tarjeta */
         .cuerpo { padding: 20px; }
         .seccion { margin-bottom: 20px; text-align: center; }
         .etiqueta { font-size: 0.7rem; text-transform: uppercase; color: #ffd700; letter-spacing: 1px; margin-bottom: 5px; }
         .fecha { font-weight: bold; }
         
-        /* Esferas de los Números */
         .numeros {
             display: flex;
             justify-content: center;
@@ -107,7 +102,6 @@
             const contenedor = document.getElementById('contenedor-tarjetas');
             
             try {
-                // El parámetro ?t= evita que el navegador use datos viejos guardados en caché
                 const respuesta = await fetch(`data/tuloteria.json?t=${new Date().getTime()}`);
                 
                 if (!respuesta.ok) {
@@ -121,14 +115,12 @@
                     return;
                 }
                 
-                // Limpiamos el texto de carga antes de renderizar
                 contenedor.innerHTML = '';
                 
                 datos.loterias.forEach(loteria => {
                     let numerosHtml = '';
                     const ultSorteo = loteria.ultimo_sorteo || {};
                     
-                    // Renderizado dinámico de las esferas numéricas
                     if (ultSorteo.numeros && ultSorteo.numeros.length > 0) {
                         numerosHtml = '<div class="numeros">';
                         ultSorteo.numeros.forEach(num => {
@@ -142,11 +134,16 @@
                         numerosHtml = '<div class="fecha" style="color: #888; margin: 15px 0;">No publicados aún</div>';
                     }
                     
-                    // Procesamiento y limpieza estricta de textos para evitar errores en pantalla
+                    // --- CORRECCIÓN EN EL PROCESAMIENTO DE FECHAS FUTURAS ---
                     const proxSorteo = loteria.proximo_sorteo || {};
                     let fechaProxima = 'Por confirmar';
-                    if (proxSorteo.dia || proxSorteo.fecha) {
-                        fechaProxima = `${proxSorteo.dia || ''} ${proxSorteo.fecha || ''}`.trim() || 'Por confirmar';
+                    
+                    if (proxSorteo.fecha || proxSorteo.dia) {
+                        const diaStr = proxSorteo.dia ? proxSorteo.dia.trim() : '';
+                        const fechaStr = proxSorteo.fecha ? proxSorteo.fecha.trim() : '';
+                        
+                        // Combinamos de forma limpia evitando duplicar textos vacíos
+                        fechaProxima = `${diaStr} ${fechaStr}`.trim() || 'Por confirmar';
                     }
                         
                     let fechaUltima = 'No disponible';
@@ -156,7 +153,6 @@
 
                     const valorBote = loteria.bote && loteria.bote.trim() !== "" ? loteria.bote : "Acumulado mínimo";
                     
-                    // Creación e inyección de la tarjeta al HTML
                     const tarjeta = document.createElement('div');
                     tarjeta.className = 'tarjeta';
                     tarjeta.innerHTML = `
@@ -172,7 +168,7 @@
                             </div>
                             <div class="seccion">
                                 <div class="etiqueta">Próximo Sorteo</div>
-                                <div class="fecha" style="color: #aaa;">${fechaProxima}</div>
+                                <div class="fecha" style="color: #ffd700;">${fechaProxima}</div>
                             </div>
                             <div class="seccion">
                                 <div class="etiqueta">Bote Estimado</div>
@@ -189,7 +185,6 @@
             }
         }
         
-        // Ejecución al terminar de estructurar el DOM
         document.addEventListener('DOMContentLoaded', cargarResultados);
     </script>
 </body>
