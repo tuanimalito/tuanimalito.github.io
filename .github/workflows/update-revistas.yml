@@ -2,13 +2,16 @@ name: Actualizar Revistas
 
 on:
   schedule:
-    - cron: '0 6,12,18 * * *'
+    # 14,15,16 representan las 14:00, 15:00 y 16:00 UTC
+    # Esto equivale a las 10:00 AM, 11:00 AM y 12:00 PM hora de Venezuela (UTC-4)
+    - cron: '0 14,15,16 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
+
   actualizar-revistas:
     runs-on: ubuntu-latest
     
