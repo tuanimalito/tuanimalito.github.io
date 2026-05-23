@@ -14,6 +14,13 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+    <!-- Página tu resultado -->
+  <url>
+    <loc>https://tuanimalito.github.io/tuloteria.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Página de Granja Millonaria -->
   <url>
     <loc>https://tuanimalito.github.io/sf_granja.html</loc>
