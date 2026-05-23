@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-23T05:59:34.349275",
+    "ultima_actualizacion": "2026-05-23T15:55:34.599314",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Martes",
         "fecha": "26 may 2026"
       },
-      "bote": "296.000.000$"
+      "bote": "311.000.000$"
     },
     {
       "id": "powerball",
@@ -93,7 +93,7 @@
         "dia": "Martes",
         "fecha": "26 may 2026"
       },
-      "bote": "250.000$"
+      "bote": "275.000$"
     },
     {
       "id": "fantasy-5",
