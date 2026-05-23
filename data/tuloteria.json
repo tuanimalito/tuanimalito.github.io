@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-22T22:50:27.229403",
+    "ultima_actualizacion": "2026-05-23T05:59:34.349275",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "19 may 2026",
+        "dia": "Viernes",
+        "fecha": "22 may 2026",
         "numeros": [
-          10,
-          26,
+          3,
+          22,
           34,
-          56,
-          64
+          54,
+          61
         ],
-        "numero_extra": 6
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Martes",
+        "fecha": "26 may 2026"
       },
       "bote": "296.000.000$"
     },
@@ -77,21 +77,21 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "19 may 2026",
+        "dia": "Viernes",
+        "fecha": "22 may 2026",
         "numeros": [
-          7,
-          8,
-          21,
-          23,
-          31,
-          40
+          3,
+          4,
+          5,
+          6,
+          34,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Martes",
+        "fecha": "26 may 2026"
       },
       "bote": "250.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Viernes",
         "fecha": "22 may 2026",
         "numeros": [
-          3,
-          11,
-          21,
-          23,
-          27
+          9,
+          15,
+          25,
+          33,
+          34
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Viernes",
         "fecha": "22 may 2026",
         "numeros": [
+          0,
+          0,
           3,
-          4,
-          2,
           7,
-          0
+          9
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Viernes",
         "fecha": "22 may 2026",
         "numeros": [
-          8,
-          5,
+          7,
           3,
+          9,
           8
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "22 may 2026",
         "numeros": [
-          2,
-          2,
-          8
+          3,
+          0,
+          7
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "250$"
     },
@@ -207,13 +207,13 @@
         "fecha": "22 may 2026",
         "numeros": [
           3,
-          6
+          0
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026"
+        "dia": "Sábado",
+        "fecha": "23 may 2026"
       },
       "bote": "50$"
     },
