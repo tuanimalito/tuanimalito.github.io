@@ -2,7 +2,7 @@ name: Actualizar Resultados Lotería
 
 on:
   schedule:
-    - cron: '0 3,15,22 * * *'    # Se ejecuta a las 3:00, 15:00 y 22:00 UTC (Ajustado a husos horarios de sorteos)
+    - cron: '0 * * * *'          # Se ejecuta automáticamente cada hora (al minuto 0)
   workflow_dispatch:            # Permite que lo actives manualmente haciendo clic en GitHub si lo deseas
 
 permissions:
