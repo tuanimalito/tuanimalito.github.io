@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-25T16:27:07.751046",
+    "ultima_actualizacion": "2026-05-25T18:47:50.777792",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -96,28 +96,6 @@
       "bote": "275.000$"
     },
     {
-      "id": "fantasy-5",
-      "nombre": "Fantasy 5 FL",
-      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "24 may 2026",
-        "numeros": [
-          3,
-          12,
-          18,
-          33,
-          34
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "25 may 2026"
-      },
-      "bote": "100.000$"
-    },
-    {
       "id": "cash-pop",
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
@@ -140,13 +118,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "24 may 2026",
+        "dia": "Lunes",
+        "fecha": "25 may 2026",
         "numeros": [
-          6,
-          7
+          5,
+          4
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "Lunes",
@@ -169,6 +147,28 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "fantasy-5",
+      "nombre": "Fantasy 5 FL",
+      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "25 may 2026",
+        "numeros": [
+          2,
+          12,
+          17,
+          25,
+          35
+        ],
+        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
