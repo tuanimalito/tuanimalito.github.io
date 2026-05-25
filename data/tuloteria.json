@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-24T21:04:13.910698",
+    "ultima_actualizacion": "2026-05-25T04:25:25.716026",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -96,6 +96,28 @@
       "bote": "275.000$"
     },
     {
+      "id": "fantasy-5",
+      "nombre": "Fantasy 5 FL",
+      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Domingo",
+        "fecha": "24 may 2026",
+        "numeros": [
+          3,
+          12,
+          18,
+          33,
+          34
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "25 may 2026"
+      },
+      "bote": "100.000$"
+    },
+    {
       "id": "cash-pop",
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
@@ -118,17 +140,17 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "23 may 2026",
+        "dia": "Domingo",
+        "fecha": "24 may 2026",
         "numeros": [
-          7,
-          1
+          6,
+          7
         ],
-        "numero_extra": 7
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "24 may 2026"
+        "dia": "Lunes",
+        "fecha": "25 may 2026"
       },
       "bote": "50$"
     },
@@ -147,28 +169,6 @@
           55
         ],
         "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "fantasy-5",
-      "nombre": "Fantasy 5 FL",
-      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "24 may 2026",
-        "numeros": [
-          7,
-          11,
-          13,
-          34,
-          36
-        ],
-        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
