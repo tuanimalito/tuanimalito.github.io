@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-25T18:47:50.777792",
+    "ultima_actualizacion": "2026-05-25T20:25:17.440803",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,7 +103,7 @@
         "dia": "Lunes",
         "fecha": "25 may 2026",
         "numeros": [
-          12
+          11
         ],
         "numero_extra": null
       },
