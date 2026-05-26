@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-25T20:25:17.440803",
+    "ultima_actualizacion": "2026-05-26T00:12:12.242058",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -96,6 +96,91 @@
       "bote": "275.000$"
     },
     {
+      "id": "fantasy-5",
+      "nombre": "Fantasy 5 FL",
+      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "25 may 2026",
+        "numeros": [
+          2,
+          12,
+          17,
+          25,
+          35
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026"
+      },
+      "bote": "100.000$"
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "23 may 2026",
+        "numeros": [
+          5,
+          4,
+          6,
+          0,
+          4
+        ],
+        "numero_extra": 7
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026"
+      },
+      "bote": "50.000$"
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "23 may 2026",
+        "numeros": [
+          2,
+          4,
+          1,
+          5
+        ],
+        "numero_extra": 7
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026"
+      },
+      "bote": "5.000$"
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "23 may 2026",
+        "numeros": [
+          7,
+          9,
+          5
+        ],
+        "numero_extra": 7
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026"
+      },
+      "bote": "500$"
+    },
+    {
       "id": "cash-pop",
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
@@ -147,91 +232,6 @@
           55
         ],
         "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "fantasy-5",
-      "nombre": "Fantasy 5 FL",
-      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "25 may 2026",
-        "numeros": [
-          2,
-          12,
-          17,
-          25,
-          35
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "23 may 2026",
-        "numeros": [
-          5,
-          4,
-          6,
-          0,
-          4
-        ],
-        "numero_extra": 7
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "23 may 2026",
-        "numeros": [
-          2,
-          4,
-          1,
-          5
-        ],
-        "numero_extra": 7
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "23 may 2026",
-        "numeros": [
-          7,
-          9,
-          5
-        ],
-        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "",
