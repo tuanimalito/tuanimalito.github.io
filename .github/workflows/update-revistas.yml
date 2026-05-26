@@ -2,8 +2,7 @@ name: Actualizar Revistas
 
 on:
   schedule:
-    # 14,15,16 representan las 14:00, 15:00 y 16:00 UTC
-    # Esto equivale a las 10:00 AM, 11:00 AM y 12:00 PM hora de Venezuela (UTC-4)
+    # Se ejecuta a las 10:00 AM, 11:00 AM y 12:00 PM hora de Venezuela (UTC-4)
     - cron: '0 14,15,16 * * *'
   workflow_dispatch:
 
@@ -11,7 +10,6 @@ permissions:
   contents: write
 
 jobs:
-
   actualizar-revistas:
     runs-on: ubuntu-latest
     
@@ -22,41 +20,30 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
           
-      # --- PASO CLAVE: Mantener la caché de los PDFs para preservar sus fechas ---
-      - name: Preservar caché de PDFs
-        uses: actions/cache@v4
-        with:
-          path: pdfs
-          key: pdfs-cache-${{ github.run_id }} # Identificador único por ejecución
-          restore-keys: |
-            pdfs-cache-
-        
       - name: Crear carpeta para PDFs si no existe
         run: |
           mkdir -p pdfs
           touch pdfs/.gitkeep
-        
-      - name: Descargar solo PDFs nuevos o modificados
+
+      - name: Descargar PDFs de forma segura
         run: |
-          echo "Iniciando descarga inteligente de PDFs (Solo nuevos o modificados)..."
+          echo "Iniciando descarga de PDFs desde la fuente principal..."
           
-          # Leer desde urls_originales.json
+          # Limpiamos los PDFs viejos para asegurar que si la fuente no actualizó, no mostremos contenido viejo
+          rm -f pdfs/*.pdf
+          touch pdfs/.gitkeep
+
+          # Leer URLs y descargar cada una de manera independiente
           jq -r '.hipodromos[].url_pdf' data/urls_originales.json | while read url; do
-            filename=$(basename "$url")
-            
-            # Usamos -N para verificar la marca de tiempo (Timestamping)
-            # Usamos --no-if-modified-since para asegurar compatibilidad con servidores antiguos si fuera necesario
-            wget -N --quiet --show-progress --timeout=30 --tries=3 -P pdfs/ "$url"
-            
-            # Guardamos el código de estado de wget
-            status=$?
-            if [ $status -eq 0 ]; then
-              echo "  -> $filename: Verificado/Descargado correctamente (si era más nuevo)."
-            else
-              echo "  -> Aviso/Error con $filename (Código wget: $status)"
+            if [ ! -z "$url" ] && [ "$url" != "null" ]; then
+              filename=$(basename "$url")
+              echo "Intentando descargar: $filename"
+              
+              # Intenta descargar. Si da error 404 u otro, continúa con el siguiente sin romper el flujo
+              wget --timeout=20 --tries=2 -P pdfs/ "$url" || echo "Aviso: No se pudo obtener $filename de la fuente principal."
             fi
           done
-          echo "Descarga inteligente completada."
+          echo "Proceso de descarga completado."
 
       - name: Ejecutar script de Python para actualizar JSON
         run: python scripts/update_revistas.py
@@ -64,16 +51,13 @@ jobs:
       - name: Verificar cambios reales en Git
         id: verificar
         run: |
-          # Añadimos todo al índice de Git para comparar
           git add pdfs/ data/revistas.json
-          
-          # Comprobamos si hay diferencias reales en el contenido
           if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "¡Se detectaron archivos nuevos o actualizados!"
+            echo "¡Se detectaron cambios en las revistas!"
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "Todos los archivos son idénticos. No se requiere actualización."
+            echo "No hay cambios nuevos hoy."
           fi
           
       - name: Commit y push (Solo si hay cambios)
@@ -81,7 +65,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git commit -m "Actualización automática: Archivos nuevos detectados - $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Actualización automática: Revistas hípicas - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
