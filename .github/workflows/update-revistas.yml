@@ -46,7 +46,7 @@ jobs:
           echo "Proceso de descarga completado."
 
       - name: Ejecutar script de Python para actualizar JSON
-        run: python scripts/update_revistas.py
+           run: python scripts/limpieza_profunda.py
           
       - name: Verificar cambios reales en Git
         id: verificar
