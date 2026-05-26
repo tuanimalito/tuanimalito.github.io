@@ -4,7 +4,8 @@ import json
 import os
 import urllib.request
 import re
-from datetime import datetime, email.utils
+import email.utils
+from datetime import datetime
 
 def verificar_si_es_de_hoy(url):
     """
@@ -13,7 +14,7 @@ def verificar_si_es_de_hoy(url):
     """
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-        req = urllib.request.Request(url, headers=headers, method='HEAD') # HEAD solo pide los datos del archivo, no lo descarga completo
+        req = urllib.request.Request(url, headers=headers, method='HEAD') # HEAD solo pide los datos del archivo
         
         with urllib.request.urlopen(req, timeout=10) as response:
             url_time = response.headers.get('Last-Modified')
@@ -29,7 +30,7 @@ def verificar_si_es_de_hoy(url):
             else:
                 print(f"    ⚠️ Archivo rechazado por viejo. Fecha en servidor: {fecha_archivo} | Hoy es: {fecha_hoy}")
                 return False
-        return True # Si el servidor no envía fecha, por seguridad permitimos el paso pero lo ideal es verificarlo
+        return True # Si el servidor no envía fecha, por seguridad permitimos el paso
     except Exception as e:
         print(f"    ⚠️ No se pudo verificar la fecha en el servidor: {str(e)}")
         return False
@@ -54,7 +55,7 @@ def descargar_de_respaldo(nombre_hipodromo, nombre_archivo, destino_carpeta):
         
         url_respaldo = None
         for enlace in enlaces:
-            if palabra_clave in enlace.lower():
+            if palavra_clave in enlace.lower():
                 if enlace.startswith('http'):
                     url_respaldo = enlace
                 else:
@@ -62,7 +63,7 @@ def descargar_de_respaldo(nombre_hipodromo, nombre_archivo, destino_carpeta):
                 break
                 
         if url_respaldo:
-            # ¡FILTRO CRÍTICO!: Verificar si el archivo de respaldo realmente es de hoy
+            # Verificar si el archivo de respaldo realmente es de hoy
             if not verificar_si_es_de_hoy(url_respaldo):
                 print(f"    ❌ El PDF de respaldo en El Oasis también es antiguo.")
                 return False
@@ -104,7 +105,7 @@ def main():
         "metadata": {
             "lastUpdate": datetime.now().isoformat(),
             "totalHipodromos": len(fuente_data.get("hipodromos", [])),
-            "version": "1.3.0"
+            "version": "1.3.1"
         },
         "hipodromos": [],
         "errores": None
@@ -119,12 +120,10 @@ def main():
         
         # 1. Comprobar lo descargado por el Workflow de la fuente principal
         if nombre_archivo and os.path.exists(ruta_fisica_pdf):
-            # El archivo físico existe, pero... ¿es una revista nueva de hoy?
             print(f"  -> Verificando vigencia de: {hipo['nombre']}")
             if verificar_si_es_de_hoy(url_pdf):
                 esta_activo = True
             else:
-                # Si es viejo, lo borramos inmediatamente para no dejar basura
                 try:
                     os.remove(ruta_fisica_pdf)
                 except:
