@@ -2,6 +2,7 @@ name: Actualizar Revistas
 
 on:
   schedule:
+    # Se ejecuta a las 10:00 AM, 11:00 AM y 12:00 PM hora de Venezuela (UTC-4)
     - cron: '0 14,15,16 * * *'
   workflow_dispatch:
 
@@ -21,24 +22,24 @@ jobs:
           
       - name: Limpiar y recrear carpeta de PDFs
         run: |
-          echo "Limpiando PDFs antiguos del repositorio..."
+          echo "Limpiando PDFs antiguos del repositorio para evitar duplicados..."
           rm -rf pdfs
           mkdir -p pdfs
           touch pdfs/.gitkeep
 
-      - name: Descargar PDFs de forma segura
+      - name: Descargar PDFs de la Fuente Principal
         run: |
-          echo "Iniciando descarga de PDFs frescos..."
+          echo "Intentando obtener PDFs de la fuente primaria..."
           jq -r '.hipodromos[].url_pdf' data/urls_originales.json | while read url; do
             if [ ! -z "$url" ] && [ "$url" != "null" ]; then
               filename=$(basename "$url")
-              echo "Intentando obtener hoy: $filename"
-              wget --timeout=20 --tries=2 -P pdfs/ "$url" || echo "Aviso: No disponible aún $filename."
+              # Intenta descargar de PollaMacaco. Si falla, continúa en silencio.
+              wget --timeout=15 --tries=1 -P pdfs/ "$url" || echo "Aviso: No disponible en fuente primaria: $filename."
             fi
           done
 
-      - name: Ejecutar script de Python para actualizar JSON
-        run: python scripts/limpieza_profunda.py
+      - name: Ejecutar script de Python con Respaldo Inteligente
+        run: python scripts/update_revistas.py
           
       - name: Verificar cambios reales en Git
         id: verificar
@@ -46,16 +47,18 @@ jobs:
           git add pdfs/ data/revistas.json
           if [ -n "$(git status --porcelain)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "¡Nuevas revistas detectadas hoy!"
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No hay actualizaciones nuevas respecto a la hora anterior."
           fi
           
-      - name: Commit y push
+      - name: Commit y push de resultados
         if: steps.verificar.outputs.has_changes == 'true'
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git commit -m "Forzando limpieza profunda del servidor"
+          git commit -m "Actualización automática: Sincronización de revistas - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
