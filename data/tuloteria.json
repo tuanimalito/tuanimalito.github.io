@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-26T00:12:12.242058",
+    "ultima_actualizacion": "2026-05-26T05:07:54.159682",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "23 may 2026",
+        "dia": "Lunes",
+        "fecha": "25 may 2026",
         "numeros": [
-          4,
-          16,
-          41,
+          17,
+          32,
           48,
-          66
+          60,
+          64
         ],
-        "numero_extra": 26
+        "numero_extra": 10
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "25 may 2026"
+        "dia": "Miércoles",
+        "fecha": "27 may 2026"
       },
       "bote": "141.000.000$"
     },
@@ -103,11 +103,11 @@
         "dia": "Lunes",
         "fecha": "25 may 2026",
         "numeros": [
-          2,
-          12,
-          17,
-          25,
-          35
+          1,
+          7,
+          24,
+          26,
+          31
         ],
         "numero_extra": null
       },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "25 may 2026"
+        "dia": "Martes",
+        "fecha": "26 may 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Lunes",
         "fecha": "25 may 2026",
         "numeros": [
-          5,
-          4
+          7,
+          8
         ],
-        "numero_extra": 8
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "25 may 2026"
+        "dia": "Martes",
+        "fecha": "26 may 2026"
       },
       "bote": "50$"
     },
