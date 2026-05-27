@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-26T20:21:29.758418",
+    "ultima_actualizacion": "2026-05-27T05:22:21.187592",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026",
+        "dia": "Martes",
+        "fecha": "26 may 2026",
         "numeros": [
-          3,
-          22,
-          34,
-          54,
-          61
+          1,
+          5,
+          49,
+          51,
+          59
         ],
-        "numero_extra": 8
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "311.000.000$"
     },
@@ -77,21 +77,21 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "22 may 2026",
+        "dia": "Martes",
+        "fecha": "26 may 2026",
         "numeros": [
-          3,
-          4,
-          5,
-          6,
-          34,
-          36
+          7,
+          8,
+          10,
+          12,
+          30,
+          42
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "275.000$"
     },
@@ -103,82 +103,19 @@
         "dia": "Martes",
         "fecha": "26 may 2026",
         "numeros": [
-          1,
-          17,
+          13,
           20,
-          33,
-          35
+          27,
+          34,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
+        "dia": "Miércoles",
+        "fecha": "27 may 2026"
       },
       "bote": "100.000$"
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026",
-        "numeros": [
-          9,
-          8,
-          4,
-          4,
-          1
-        ],
-        "numero_extra": 9
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026",
-        "numeros": [
-          0,
-          3,
-          7,
-          2
-        ],
-        "numero_extra": 9
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026",
-        "numeros": [
-          1,
-          7,
-          2
-        ],
-        "numero_extra": 9
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
-      },
-      "bote": "500$"
     },
     {
       "id": "cash-pop",
@@ -193,29 +130,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
+        "dia": "Miércoles",
+        "fecha": "27 may 2026"
       },
       "bote": "250$"
-    },
-    {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026",
-        "numeros": [
-          3,
-          7
-        ],
-        "numero_extra": 9
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "26 may 2026"
-      },
-      "bote": "50$"
     },
     {
       "id": "cash4life",
@@ -230,6 +148,88 @@
           30,
           52,
           55
+        ],
+        "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026",
+        "numeros": [
+          9,
+          9,
+          0,
+          1,
+          8
+        ],
+        "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026",
+        "numeros": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026",
+        "numeros": [
+          7,
+          5,
+          6
+        ],
+        "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "26 may 2026",
+        "numeros": [
+          3,
+          7
         ],
         "numero_extra": 4
       },
