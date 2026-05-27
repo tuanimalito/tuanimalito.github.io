@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-27T00:05:43.233887",
-    "totalHipodromos": 25,
-    "version": "1.5.0"
+    "lastUpdate": "2026-05-27T01:59:47.314561",
+    "totalHipodromos": 27,
+    "version": "1.7.0"
   },
   "hipodromos": [
+    {
+      "id": "mountaineer",
+      "nombre": "Mountaineer",
+      "logo": "img/logos/mountaineer.png",
+      "revistas": {
+        "espanol": "pdfs/Mountaineer.pdf",
+        "winnersChoice": "pdfs/Mountaineer.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-27"
+    },
+    {
+      "id": "assiniboia",
+      "nombre": "Assiniboia Downs",
+      "logo": "img/logos/assiniboia.png",
+      "revistas": {
+        "espanol": "pdfs/Assiniboia.pdf",
+        "winnersChoice": "pdfs/Assiniboia.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-27"
+    },
     {
       "id": "belmont-park",
       "nombre": "Belmont Park",
@@ -21,10 +43,10 @@
       "nombre": "ThistleDown",
       "logo": "img/winner/hip15.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/ThistleDown.pdf",
+        "winnersChoice": "pdfs/ThistleDown.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -219,10 +241,10 @@
       "nombre": "Louisiana Downs",
       "logo": "img/winner/hip22.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/LouisianaDowns.pdf",
+        "winnersChoice": "pdfs/LouisianaDowns.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -263,10 +285,10 @@
       "nombre": "Parx Racing",
       "logo": "img/winner/hip11.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/ParxRacing.pdf",
+        "winnersChoice": "pdfs/ParxRacing.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
