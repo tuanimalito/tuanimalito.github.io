@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-26T23:45:02.564128",
+    "lastUpdate": "2026-05-27T00:05:43.233887",
     "totalHipodromos": 25,
-    "version": "1.3.1"
+    "version": "1.5.0"
   },
   "hipodromos": [
     {
@@ -14,7 +14,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "thistledown",
@@ -25,7 +25,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "evangeline-downs",
@@ -36,7 +36,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "delta-downs",
@@ -47,7 +47,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "belterra-park",
@@ -58,7 +58,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "gulfstream-park",
@@ -69,7 +69,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "century-mile",
@@ -80,7 +80,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "charles-town",
@@ -91,7 +91,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "emerald-downs",
@@ -102,7 +102,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "remington-park",
@@ -113,7 +113,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "lone-star-park",
@@ -124,7 +124,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "laurel-park",
@@ -135,7 +135,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "sam-houston",
@@ -146,7 +146,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "monmouth-park",
@@ -157,7 +157,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "prairie-meadows",
@@ -168,7 +168,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "delaware-park",
@@ -179,7 +179,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "woodbine",
@@ -190,7 +190,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "fairmount-park",
@@ -201,7 +201,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "sunray-park",
@@ -212,7 +212,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "louisiana-downs",
@@ -223,7 +223,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "los-alamitos-qh",
@@ -234,7 +234,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "fair-grounds",
@@ -245,7 +245,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "hawthorne-park",
@@ -256,7 +256,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "parx-racing",
@@ -267,7 +267,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     },
     {
       "id": "santa-anita",
@@ -278,7 +278,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-26"
+      "ultimaActualizacion": "2026-05-27"
     }
   ],
   "errores": null
