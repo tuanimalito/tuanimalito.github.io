@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-27T01:59:47.314561",
+    "lastUpdate": "2026-05-27T02:32:10.385336",
     "totalHipodromos": 27,
     "version": "1.7.0"
   },
@@ -8,7 +8,7 @@
     {
       "id": "mountaineer",
       "nombre": "Mountaineer",
-      "logo": "img/logos/mountaineer.png",
+      "logo": "img/winner/hip5.webp",
       "revistas": {
         "espanol": "pdfs/Mountaineer.pdf",
         "winnersChoice": "pdfs/Mountaineer.pdf"
@@ -19,7 +19,7 @@
     {
       "id": "assiniboia",
       "nombre": "Assiniboia Downs",
-      "logo": "img/logos/assiniboia.png",
+      "logo": "img/winner/hip7.webp",
       "revistas": {
         "espanol": "pdfs/Assiniboia.pdf",
         "winnersChoice": "pdfs/Assiniboia.pdf"
