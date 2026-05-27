@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-27T02:32:10.385336",
+    "lastUpdate": "2026-05-27T16:16:04.456287",
     "totalHipodromos": 27,
     "version": "1.7.0"
   },
@@ -10,10 +10,10 @@
       "nombre": "Mountaineer",
       "logo": "img/winner/hip5.webp",
       "revistas": {
-        "espanol": "pdfs/Mountaineer.pdf",
-        "winnersChoice": "pdfs/Mountaineer.pdf"
+        "espanol": "#",
+        "winnersChoice": "#"
       },
-      "activo": true,
+      "activo": false,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -32,10 +32,10 @@
       "nombre": "Belmont Park",
       "logo": "img/winner/hip3.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/BelmontPark.pdf",
+        "winnersChoice": "pdfs/BelmontPark.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -65,10 +65,10 @@
       "nombre": "Delta Downs",
       "logo": "img/winner/hip17.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/DeltaDowns.pdf",
+        "winnersChoice": "pdfs/DeltaDowns.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -76,10 +76,10 @@
       "nombre": "Belterra Park",
       "logo": "img/winner/hip8.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/WinBelterraPark.pdf",
+        "winnersChoice": "pdfs/WinBelterraPark.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -197,10 +197,10 @@
       "nombre": "Delaware Park",
       "logo": "img/winner/hip1.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/DelawarePark.pdf",
+        "winnersChoice": "pdfs/DelawarePark.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-05-27"
     },
     {
@@ -241,10 +241,10 @@
       "nombre": "Louisiana Downs",
       "logo": "img/winner/hip22.webp",
       "revistas": {
-        "espanol": "pdfs/LouisianaDowns.pdf",
-        "winnersChoice": "pdfs/LouisianaDowns.pdf"
+        "espanol": "#",
+        "winnersChoice": "#"
       },
-      "activo": true,
+      "activo": false,
       "ultimaActualizacion": "2026-05-27"
     },
     {
