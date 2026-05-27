@@ -6,6 +6,18 @@
   },
   "hipodromos": [
     {
+      "id": "mountaineer",
+      "nombre": "Mountaineer",
+      "logo": "img/logos/mountaineer.png",
+      "url_pdf": "https://pollamacaco.com/Revistas/Mountaineer.pdf"
+    },
+    {
+      "id": "assiniboia",
+      "nombre": "Assiniboia Downs",
+      "logo": "img/logos/assiniboia.png",
+      "url_pdf": "https://pollamacaco.com/Revistas/Assiniboia.pdf"
+    },
+    {
       "id": "belmont-park",
       "nombre": "Belmont Park",
       "logo": "img/winner/hip3.webp",
