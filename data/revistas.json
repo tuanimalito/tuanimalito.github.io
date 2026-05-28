@@ -1,18 +1,10 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-28T16:27:04.282180",
+    "lastUpdate": "2026-05-28T16:58:04.487226",
     "totalHipodromos": 27,
     "version": "1.7.0"
   },
   "hipodromos": [
-      {
-      "id": "Penn-National",
-      "nombre": "Penn National",
-      "logo": "img/winner/hip32.webp",
-      "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
-      },
     {
       "id": "mountaineer",
       "nombre": "Mountaineer",
@@ -60,7 +52,7 @@
     {
       "id": "evangeline-downs",
       "nombre": "Evangeline Downs",
-      "logo": "img/winner/hip31.webp",
+      "logo": "img/winner/hip1.webp",
       "revistas": {
         "espanol": "pdfs/EvangelineDowns.pdf",
         "winnersChoice": "pdfs/EvangelineDowns.pdf"
