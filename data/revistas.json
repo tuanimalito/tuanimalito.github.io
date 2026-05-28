@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-27T17:18:47.860702",
+    "lastUpdate": "2026-05-28T16:27:04.282180",
     "totalHipodromos": 27,
     "version": "1.7.0"
   },
@@ -14,18 +14,18 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "assiniboia",
       "nombre": "Assiniboia Downs",
       "logo": "img/winner/hip7.webp",
       "revistas": {
-        "espanol": "pdfs/Assiniboia.pdf",
-        "winnersChoice": "pdfs/Assiniboia.pdf"
+        "espanol": "#",
+        "winnersChoice": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "belmont-park",
@@ -36,7 +36,7 @@
         "winnersChoice": "pdfs/BelmontPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "thistledown",
@@ -47,18 +47,18 @@
         "winnersChoice": "pdfs/ThistleDown.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "evangeline-downs",
       "nombre": "Evangeline Downs",
       "logo": "img/winner/hip1.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/EvangelineDowns.pdf",
+        "winnersChoice": "pdfs/EvangelineDowns.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "delta-downs",
@@ -69,7 +69,7 @@
         "winnersChoice": "pdfs/DeltaDowns.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "belterra-park",
@@ -80,7 +80,7 @@
         "winnersChoice": "pdfs/WinBelterraPark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "gulfstream-park",
@@ -91,7 +91,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "century-mile",
@@ -102,18 +102,18 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "charles-town",
       "nombre": "Charles Town",
       "logo": "img/winner/hip10.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/CharlesTown.pdf",
+        "winnersChoice": "pdfs/CharlesTown.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "emerald-downs",
@@ -124,7 +124,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "remington-park",
@@ -135,7 +135,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "lone-star-park",
@@ -146,7 +146,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "laurel-park",
@@ -157,7 +157,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "sam-houston",
@@ -168,7 +168,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "monmouth-park",
@@ -179,7 +179,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "prairie-meadows",
@@ -190,7 +190,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "delaware-park",
@@ -201,7 +201,7 @@
         "winnersChoice": "pdfs/DelawarePark.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "woodbine",
@@ -212,7 +212,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "fairmount-park",
@@ -223,7 +223,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "sunray-park",
@@ -234,7 +234,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "louisiana-downs",
@@ -245,7 +245,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "los-alamitos-qh",
@@ -256,7 +256,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "fair-grounds",
@@ -267,18 +267,18 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "hawthorne-park",
       "nombre": "Hawthorne Park",
       "logo": "img/winner/hip21.webp",
       "revistas": {
-        "espanol": "#",
-        "winnersChoice": "#"
+        "espanol": "pdfs/HawthornePark.pdf",
+        "winnersChoice": "pdfs/HawthornePark.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "parx-racing",
@@ -289,7 +289,7 @@
         "winnersChoice": "pdfs/ParxRacing.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     },
     {
       "id": "santa-anita",
@@ -300,7 +300,7 @@
         "winnersChoice": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-05-27"
+      "ultimaActualizacion": "2026-05-28"
     }
   ],
   "errores": null
