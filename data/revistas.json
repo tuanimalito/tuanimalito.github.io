@@ -5,6 +5,14 @@
     "version": "1.7.0"
   },
   "hipodromos": [
+      {
+      "id": "Penn-National",
+      "nombre": "Penn National",
+      "logo": "img/winner/hip32.webp",
+      "revistas": {
+        "espanol": "#",
+        "winnersChoice": "#"
+      },
     {
       "id": "mountaineer",
       "nombre": "Mountaineer",
@@ -52,7 +60,7 @@
     {
       "id": "evangeline-downs",
       "nombre": "Evangeline Downs",
-      "logo": "img/winner/hip1.webp",
+      "logo": "img/winner/hip31.webp",
       "revistas": {
         "espanol": "pdfs/EvangelineDowns.pdf",
         "winnersChoice": "pdfs/EvangelineDowns.pdf"
