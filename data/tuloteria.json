@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-28T04:14:36.040136",
+    "ultima_actualizacion": "2026-05-28T08:49:11.912530",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Sábado",
         "fecha": "30 may 2026"
       },
-      "bote": "154.000.000$"
+      "bote": "172.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -70,7 +70,7 @@
         "dia": "Sábado",
         "fecha": "30 may 2026"
       },
-      "bote": "28.250.000$"
+      "bote": "29.250.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "27 may 2026"
+        "dia": "Jueves",
+        "fecha": "28 may 2026"
       },
       "bote": "250$"
     },
