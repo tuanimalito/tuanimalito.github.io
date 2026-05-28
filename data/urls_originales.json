@@ -4,7 +4,7 @@
     "version": "2.0.0"
   },
   "hipodromos": [
- { "id": "belterra-park", "nombre": "Belterra Park", "logo": "img/winner/hip1.webp", "codigo_oasis": "btp" },
+    { "id": "belterra-park", "nombre": "Belterra Park", "logo": "img/winner/hip1.webp", "codigo_oasis": "btp" },
     { "id": "charles-town", "nombre": "Charles Town", "logo": "img/winner/hip2.webp", "codigo_oasis": "ct" },
     { "id": "delaware-park", "nombre": "Delaware Park", "logo": "img/winner/hip3.webp", "codigo_oasis": "del" },
     { "id": "delta-downs", "nombre": "Delta Downs", "logo": "img/winner/hip4.webp", "codigo_oasis": "ded" },
