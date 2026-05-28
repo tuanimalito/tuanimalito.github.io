@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-28T12:05:14.123456",
+    "lastUpdate": "2026-05-28T19:20:25.298083",
     "fechaCartelera": "2026-05-28",
     "totalHipodromos": 13
   },
@@ -9,7 +9,69 @@
       "id": "belterra-park",
       "nombre": "Belterra Park",
       "logo": "img/winner/hip8.webp",
-      "revistas": { "espanol": "pdfs/btp.pdf" },
+      "revistas": {
+        "espanol": "pdfs/btp.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "charles-town",
+      "nombre": "Charles Town",
+      "logo": "img/winner/hip10.webp",
+      "revistas": {
+        "espanol": "pdfs/ct.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "delaware-park",
+      "nombre": "Delaware Park",
+      "logo": "img/winner/hip1.webp",
+      "revistas": {
+        "espanol": "pdfs/del.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "delta-downs",
+      "nombre": "Delta Downs",
+      "logo": "img/winner/hip17.webp",
+      "revistas": {
+        "espanol": "pdfs/ded.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "evangeline-downs",
+      "nombre": "Evangeline Downs",
+      "logo": "img/winner/hip1.webp",
+      "revistas": {
+        "espanol": "pdfs/evd.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "hawthorne-park",
+      "nombre": "Hawthorne Park",
+      "logo": "img/winner/hip21.webp",
+      "revistas": {
+        "espanol": "pdfs/haw.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "thistledown",
+      "nombre": "ThistleDown",
+      "logo": "img/winner/hip15.webp",
+      "revistas": {
+        "espanol": "pdfs/tdn.pdf"
+      },
       "activo": true,
       "ultimaActualizacion": "2026-05-28"
     },
@@ -17,7 +79,59 @@
       "id": "mountaineer",
       "nombre": "Mountaineer",
       "logo": "img/winner/hip5.webp",
-      "revistas": { "espanol": "#" },
+      "revistas": {
+        "espanol": "#"
+      },
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "assiniboia",
+      "nombre": "Assiniboia Downs",
+      "logo": "img/winner/hip7.webp",
+      "revistas": {
+        "espanol": "#"
+      },
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "belmont-park",
+      "nombre": "Belmont Park",
+      "logo": "img/winner/hip3.webp",
+      "revistas": {
+        "espanol": "#"
+      },
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "gulfstream-park",
+      "nombre": "Gulfstream Park",
+      "logo": "img/winner/hip6.webp",
+      "revistas": {
+        "espanol": "#"
+      },
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "parx-racing",
+      "nombre": "Parx Racing",
+      "logo": "img/winner/hip11.webp",
+      "revistas": {
+        "espanol": "#"
+      },
+      "activo": false,
+      "ultimaActualizacion": "2026-05-28"
+    },
+    {
+      "id": "santa-anita",
+      "nombre": "Santa Anita Park",
+      "logo": "img/winner/hip4.webp",
+      "revistas": {
+        "espanol": "#"
+      },
       "activo": false,
       "ultimaActualizacion": "2026-05-28"
     }
