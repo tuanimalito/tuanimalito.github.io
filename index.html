@@ -12,7 +12,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Dr. Animalitos">
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   window.OneSignalDeferred.push(async function(OneSignal) {
@@ -22,29 +22,20 @@
     });
   });
 </script>
-    <script>
+
+<link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+<link rel="icon" type="image/webp" href="./img/favicon.webp">
+<link rel="apple-touch-icon" href="./img/favicon.webp">
+
+<script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('App lista para instalar', reg))
-        .catch(err => console.error('Error al registrar la app', err));
+        .then(reg => console.log('Service Worker registrado con éxito', reg))
+        .catch(err => console.error('Error al registrar el Service Worker', err));
     });
   }
 </script>
-
-    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-    <link rel="icon" type="image/webp" href="./img/favicon.webp">
-    <link rel="apple-touch-icon" href="./img/favicon.webp">
-
-    <script>
-     if ('serviceWorker' in navigator) {
-     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('PWA de Dr. Animalitos lista para la acción', reg))
-        .catch(err => console.error('Error al registrar la app', err));
-      });
-     }
-     </script>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-61YTHM256Z"></script>
     <script>
