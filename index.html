@@ -12,6 +12,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Dr. Animalitos">
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "e43732b4-3eca-432b-9c0c-46ef4229f494",
+      safari_web_id: "web.onesignal.auto.10427bc5-9cbe-4ee0-88cb-7e4a64d1f564"
+    });
+  });
+</script>
 
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
     <link rel="icon" type="image/webp" href="./img/favicon.webp">
