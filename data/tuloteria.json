@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-28T22:01:37.787470",
+    "ultima_actualizacion": "2026-05-29T05:17:13.810418",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "28 may 2026",
         "numeros": [
-          18,
-          22,
-          25,
-          35,
-          36
+          1,
+          12,
+          20,
+          21,
+          23
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "28 may 2026",
         "numeros": [
-          3,
-          4,
-          1,
-          0,
-          7
+          8,
+          2,
+          6,
+          5,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "28 may 2026",
         "numeros": [
-          1,
-          7,
-          4,
-          5
+          6,
+          6,
+          6,
+          7
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "28 may 2026",
         "numeros": [
-          9,
-          9,
-          2
+          1,
+          4,
+          4
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "28 may 2026",
         "numeros": [
-          9,
-          0
+          6,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026"
+        "dia": "Viernes",
+        "fecha": "29 may 2026"
       },
       "bote": "50$"
     },
