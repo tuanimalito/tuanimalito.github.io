@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-29T18:14:53.022907",
+    "ultima_actualizacion": "2026-05-29T21:10:53.352707",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026",
+        "dia": "Viernes",
+        "fecha": "29 may 2026",
         "numeros": [
           1,
-          12,
-          20,
-          21,
-          23
+          5,
+          16,
+          30,
+          36
         ],
         "numero_extra": null
       },
@@ -122,14 +122,14 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026",
+        "dia": "Viernes",
+        "fecha": "29 may 2026",
         "numeros": [
-          8,
-          2,
+          7,
+          9,
+          1,
           6,
-          5,
-          9
+          8
         ],
         "numero_extra": 2
       },
@@ -144,13 +144,13 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026",
+        "dia": "Viernes",
+        "fecha": "29 may 2026",
         "numeros": [
-          6,
-          6,
-          6,
-          7
+          5,
+          7,
+          2,
+          3
         ],
         "numero_extra": 2
       },
@@ -165,12 +165,12 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026",
+        "dia": "Viernes",
+        "fecha": "29 may 2026",
         "numeros": [
           1,
-          4,
-          4
+          7,
+          7
         ],
         "numero_extra": 2
       },
@@ -188,7 +188,7 @@
         "dia": "Viernes",
         "fecha": "29 may 2026",
         "numeros": [
-          1
+          6
         ],
         "numero_extra": null
       },
@@ -203,11 +203,11 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "28 may 2026",
+        "dia": "Viernes",
+        "fecha": "29 may 2026",
         "numeros": [
-          6,
-          9
+          9,
+          1
         ],
         "numero_extra": 2
       },
