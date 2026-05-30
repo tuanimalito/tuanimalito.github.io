@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Mapa del sitio para buscadores
+Sitemap: https://tuanimalito.github.io/sitemap.xml
