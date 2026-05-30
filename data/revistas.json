@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "lastUpdate": "2026-05-30T15:05:04.739459",
+    "lastUpdate": "2026-05-30T15:32:37.763393",
     "fechaCartelera": "2026-05-30",
-    "totalHipodromos": 19
+    "totalHipodromos": 22
   },
   "hipodromos": [
     {
@@ -191,6 +191,36 @@
       "logo": "img/winner/hip19.webp",
       "revistas": {
         "espanol": "pdfs/wo.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-30"
+    },
+    {
+      "id": "Emerald-Downs",
+      "nombre": "Emerald Downs",
+      "logo": "img/winner/hip20.webp",
+      "revistas": {
+        "espanol": "pdfs/emd.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-30"
+    },
+    {
+      "id": "Los-Alamitos-QH",
+      "nombre": "Los Alamitos QH",
+      "logo": "img/winner/hip21.webp",
+      "revistas": {
+        "espanol": "pdfs/la.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-30"
+    },
+    {
+      "id": "Monmouth-Park",
+      "nombre": "Monmouth Park",
+      "logo": "img/winner/hip22.webp",
+      "revistas": {
+        "espanol": "pdfs/mth.pdf"
       },
       "activo": true,
       "ultimaActualizacion": "2026-05-30"
