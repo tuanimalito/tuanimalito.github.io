@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-31T19:26:23.107989",
+    "ultima_actualizacion": "2026-05-31T21:09:19.418736",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
-          15
+          9
         ],
         "numero_extra": null
       },
