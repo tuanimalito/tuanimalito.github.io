@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-30T20:12:00.902405",
+    "ultima_actualizacion": "2026-05-31T05:22:59.822465",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "27 may 2026",
+        "dia": "Sábado",
+        "fecha": "30 may 2026",
         "numeros": [
-          5,
-          14,
-          21,
-          31,
-          51
+          1,
+          27,
+          35,
+          44,
+          52
         ],
-        "numero_extra": 13
+        "numero_extra": 12
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "172.000.000$"
     },
@@ -54,21 +54,21 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "27 may 2026",
+        "dia": "Sábado",
+        "fecha": "30 may 2026",
         "numeros": [
-          5,
-          11,
-          22,
-          34,
-          44,
-          48
+          3,
+          6,
+          7,
+          35,
+          36,
+          39
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "29.250.000$"
     },
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "30 may 2026",
         "numeros": [
-          1,
-          8,
-          2,
-          8,
-          6
+          5,
+          6,
+          3,
+          0,
+          9
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Sábado",
         "fecha": "30 may 2026",
         "numeros": [
-          1,
-          6,
-          2,
-          5
+          0,
+          7,
+          7,
+          8
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Sábado",
         "fecha": "30 may 2026",
         "numeros": [
-          7,
-          4,
-          9
+          9,
+          3,
+          1
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Sábado",
         "fecha": "30 may 2026",
         "numeros": [
-          3,
-          1
+          1,
+          6
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "30 may 2026"
+        "dia": "Domingo",
+        "fecha": "31 may 2026"
       },
       "bote": "50$"
     },
