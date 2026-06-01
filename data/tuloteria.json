@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-05-31T21:09:19.418736",
+    "ultima_actualizacion": "2026-06-01T04:58:13.064642",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
-          10,
-          15,
-          21,
-          24,
-          29
+          2,
+          7,
+          12,
+          13,
+          33
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
-          7,
-          4,
-          0,
+          2,
           9,
-          4
+          7,
+          3,
+          8
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
+          7,
           0,
-          1,
-          1,
-          7
+          4,
+          6
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
-          5,
-          2,
-          0
+          0,
+          4,
+          3
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Domingo",
         "fecha": "31 may 2026",
         "numeros": [
-          7,
-          4
+          6,
+          1
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "31 may 2026"
+        "dia": "Lunes",
+        "fecha": "01 jun 2026"
       },
       "bote": "50$"
     },
