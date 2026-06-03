@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-03T09:59:37.111746",
+    "ultima_actualizacion": "2026-06-03T18:53:40.688811",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
-          12,
+          8,
           19,
-          23,
-          31,
-          36
+          21,
+          25,
+          31
         ],
         "numero_extra": null
       },
@@ -122,14 +122,14 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
-          9,
-          6,
-          4,
+          7,
+          0,
           2,
-          0
+          0,
+          3
         ],
         "numero_extra": 0
       },
@@ -144,13 +144,13 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
+          2,
+          3,
           5,
-          3,
-          3,
-          8
+          0
         ],
         "numero_extra": 0
       },
@@ -165,12 +165,12 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
-          4,
-          3,
-          7
+          8,
+          7,
+          9
         ],
         "numero_extra": 0
       },
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
-          13
+          7
         ],
         "numero_extra": null
       },
@@ -203,10 +203,10 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026",
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026",
         "numeros": [
-          8,
+          2,
           8
         ],
         "numero_extra": 0
