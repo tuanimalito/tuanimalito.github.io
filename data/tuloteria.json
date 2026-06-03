@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-02T21:54:08.377521",
+    "ultima_actualizacion": "2026-06-03T04:54:40.800888",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "29 may 2026",
+        "dia": "Martes",
+        "fecha": "02 jun 2026",
         "numeros": [
-          19,
-          24,
-          47,
-          59,
-          65
+          15,
+          26,
+          43,
+          48,
+          60
         ],
-        "numero_extra": 7
+        "numero_extra": 12
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "346.000.000$"
     },
@@ -77,21 +77,21 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "29 may 2026",
+        "dia": "Martes",
+        "fecha": "02 jun 2026",
         "numeros": [
-          7,
-          15,
-          23,
-          25,
-          31,
-          45
+          1,
+          22,
+          32,
+          39,
+          42,
+          44
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "425.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Martes",
         "fecha": "02 jun 2026",
         "numeros": [
-          2,
           12,
-          14,
-          26,
+          19,
+          23,
+          31,
           36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Martes",
         "fecha": "02 jun 2026",
         "numeros": [
-          0,
           9,
+          6,
           4,
-          4,
-          1
+          2,
+          0
         ],
-        "numero_extra": 7
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Martes",
         "fecha": "02 jun 2026",
         "numeros": [
-          1,
-          0,
-          7,
-          6
+          5,
+          3,
+          3,
+          8
         ],
-        "numero_extra": 7
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Martes",
         "fecha": "02 jun 2026",
         "numeros": [
-          7,
-          1,
+          4,
+          3,
           7
         ],
-        "numero_extra": 7
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Martes",
         "fecha": "02 jun 2026",
         "numeros": [
-          6,
-          0
+          8,
+          8
         ],
-        "numero_extra": 7
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "02 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "03 jun 2026"
       },
       "bote": "50$"
     },
