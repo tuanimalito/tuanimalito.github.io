@@ -7,6 +7,13 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+    <!-- Página de pronosticos -->
+  <url>
+    <loc>https://tuanimalito.github.io/pronosticador.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
     <!-- Página de winner -->
   <url>
     <loc>https://tuanimalito.github.io/winner.html</loc>
