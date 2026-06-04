@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-04T04:48:16.455252",
+    "ultima_actualizacion": "2026-06-04T08:54:51.890254",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Sábado",
         "fecha": "06 jun 2026"
       },
-      "bote": "194.000.000$"
+      "bote": "212.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -70,7 +70,7 @@
         "dia": "Sábado",
         "fecha": "06 jun 2026"
       },
-      "bote": "1.000.000$"
+      "bote": "1.250.000$"
     },
     {
       "id": "jackpot-triple-play",
