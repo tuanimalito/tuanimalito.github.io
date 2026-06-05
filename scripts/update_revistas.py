@@ -4,6 +4,10 @@ import os
 import urllib.request
 import re
 from datetime import datetime
+from zoneinfo import ZoneInfo  # Asegura el manejo correcto de la hora de Venezuela
+
+# Definimos la zona horaria de Venezuela de forma explícita
+TZ_VE = ZoneInfo("America/Caracas")
 
 def obtener_fecha_activa_oasis():
     url_oasis = "http://eloasiss.com/revistas_gac.php"
@@ -20,11 +24,11 @@ def obtener_fecha_activa_oasis():
         if coincidencia:
             return coincidencia.group(1)
         
-        # Respaldo en caso de que no lea el HTML, usar fecha actual del sistema
-        return datetime.now().strftime("%Y-%m-%d")
+        # Respaldo usando la fecha actual del sistema en la zona horaria de Venezuela
+        return datetime.now(TZ_VE).strftime("%Y-%m-%d")
     except Exception as e:
         print(f"⚠️ Error conectando a El Oasis: {e}")
-        return datetime.now().strftime("%Y-%m-%d")
+        return datetime.now(TZ_VE).strftime("%Y-%m-%d")
 
 def descargar_revista(fecha, codigo, destino):
     url_pdf = f"http://eloasiss.com/descargas/revista/download/{fecha}/{codigo}.pdf"
@@ -55,11 +59,13 @@ def main():
         fuente_data = json.load(f)
         
     fecha_oasis = obtener_fecha_activa_oasis()
+    ahora_ve = datetime.now(TZ_VE)
+    
     print(f"Procesando revistas de El Oasis para la fecha: {fecha_oasis}")
     
     data_web = {
         "metadata": {
-            "lastUpdate": datetime.now().isoformat(),
+            "lastUpdate": ahora_ve.isoformat(),
             "fechaCartelera": fecha_oasis,
             "totalHipodromos": len(fuente_data.get("hipodromos", []))
         },
@@ -85,7 +91,7 @@ def main():
                 "espanol": ruta_final_pdf
             },
             "activo": exito,
-            "ultimaActualizacion": datetime.now().strftime("%Y-%m-%d")
+            "ultimaActualizacion": ahora_ve.strftime("%Y-%m-%d")
         })
         
         print(f"    Resultado -> {'[ACTIVO]' if exito else '[NO JUEGA]'}")
