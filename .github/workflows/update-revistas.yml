@@ -2,8 +2,8 @@ name: Actualizar Revistas Oasis
 
 on:
   schedule:
-    # Ejecución automática a las 10:00 AM, 11:00 AM y 12:00 PM hora de Venezuela (UTC-4)
-    - cron: '0 14,15,16 * * *'
+    # Se ejecutará aproximadamente a las 10:12 AM, 11:12 AM y 12:12 PM hora de Venezuela
+    - cron: '12 14,15,16 * * *'
   workflow_dispatch:
 
 permissions:
