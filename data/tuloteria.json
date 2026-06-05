@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-04T21:47:38.261168",
+    "ultima_actualizacion": "2026-06-05T04:22:59.585380",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "04 jun 2026",
         "numeros": [
-          8,
-          16,
-          18,
-          29,
+          6,
+          7,
+          9,
+          14,
           33
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "04 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "04 jun 2026",
         "numeros": [
-          2,
-          4,
-          9,
-          5,
-          3
+          0,
+          6,
+          7,
+          3,
+          7
         ],
-        "numero_extra": 4
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "04 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "04 jun 2026",
         "numeros": [
+          9,
           8,
-          1,
-          4,
-          1
+          6,
+          5
         ],
-        "numero_extra": 4
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "04 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "04 jun 2026",
         "numeros": [
-          3,
-          1,
-          4
+          0,
+          7,
+          5
         ],
-        "numero_extra": 4
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "04 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "04 jun 2026",
         "numeros": [
-          6,
-          3
+          2,
+          9
         ],
-        "numero_extra": 4
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "04 jun 2026"
+        "dia": "Viernes",
+        "fecha": "05 jun 2026"
       },
       "bote": "50$"
     },
