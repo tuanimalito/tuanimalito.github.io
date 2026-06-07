@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-07T05:43:31.443042",
+    "ultima_actualizacion": "2026-06-07T09:26:24.418355",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Lunes",
         "fecha": "08 jun 2026"
       },
-      "bote": "212.000.000$"
+      "bote": "225.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -70,7 +70,7 @@
         "dia": "Miércoles",
         "fecha": "10 jun 2026"
       },
-      "bote": "1.250.000$"
+      "bote": "2.000.000$"
     },
     {
       "id": "jackpot-triple-play",
