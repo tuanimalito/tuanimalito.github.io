@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-10T04:38:26.997233",
+    "ultima_actualizacion": "2026-06-10T08:57:09.053891",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Viernes",
         "fecha": "12 jun 2026"
       },
-      "bote": "392.000.000$"
+      "bote": "413.000.000$"
     },
     {
       "id": "powerball",
@@ -93,7 +93,7 @@
         "dia": "Viernes",
         "fecha": "12 jun 2026"
       },
-      "bote": "650.000$"
+      "bote": "800.000$"
     },
     {
       "id": "fantasy-5",
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "09 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "10 jun 2026"
       },
       "bote": "250$"
     },
