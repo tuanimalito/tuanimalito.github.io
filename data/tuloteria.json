@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-12T21:57:25.779345",
+    "ultima_actualizacion": "2026-06-13T04:41:47.282158",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,22 +10,22 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "09 jun 2026",
+        "dia": "Viernes",
+        "fecha": "12 jun 2026",
         "numeros": [
           9,
-          30,
-          36,
-          38,
-          40
+          17,
+          24,
+          39,
+          51
         ],
         "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": "413.000.000$"
+      "bote": "430.000.000$"
     },
     {
       "id": "powerball",
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "09 jun 2026",
+        "dia": "Viernes",
+        "fecha": "12 jun 2026",
         "numeros": [
-          3,
-          10,
-          11,
-          25,
-          29,
-          34
+          1,
+          7,
+          14,
+          23,
+          34,
+          41
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": "800.000$"
+      "bote": "950.000$"
     },
     {
       "id": "fantasy-5",
@@ -103,17 +103,17 @@
         "dia": "Viernes",
         "fecha": "12 jun 2026",
         "numeros": [
-          8,
-          16,
-          18,
-          19,
-          24
+          2,
+          21,
+          22,
+          24,
+          25
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Sábado",
+        "fecha": "13 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -126,16 +126,16 @@
         "fecha": "12 jun 2026",
         "numeros": [
           5,
-          8,
-          9,
+          3,
           5,
-          5
+          7,
+          1
         ],
-        "numero_extra": 7
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Sábado",
+        "fecha": "13 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Viernes",
         "fecha": "12 jun 2026",
         "numeros": [
-          2,
-          7,
+          3,
+          4,
           0,
-          8
+          5
         ],
-        "numero_extra": 7
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Sábado",
+        "fecha": "13 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "12 jun 2026",
         "numeros": [
-          0,
-          0,
-          2
+          8,
+          1,
+          8
         ],
-        "numero_extra": 7
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Sábado",
+        "fecha": "13 jun 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "12 jun 2026",
         "numeros": [
           3,
-          3
+          8
         ],
-        "numero_extra": 7
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "12 jun 2026"
+        "dia": "Sábado",
+        "fecha": "13 jun 2026"
       },
       "bote": "50$"
     },
