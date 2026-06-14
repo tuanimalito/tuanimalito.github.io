@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-14T17:38:09.734810",
+    "ultima_actualizacion": "2026-06-14T19:49:23.844661",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Domingo",
+        "fecha": "14 jun 2026",
         "numeros": [
+          4,
+          8,
+          15,
           16,
-          21,
-          23,
-          31,
-          35
+          24
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Domingo",
+        "fecha": "14 jun 2026",
         "numeros": [
-          6,
-          9,
-          2,
           4,
-          8
+          2,
+          9,
+          5,
+          1
         ],
-        "numero_extra": 0
+        "numero_extra": 1
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Domingo",
+        "fecha": "14 jun 2026",
         "numeros": [
-          5,
-          2,
-          4,
-          4
+          0,
+          7,
+          7,
+          6
         ],
-        "numero_extra": 0
+        "numero_extra": 1
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Domingo",
+        "fecha": "14 jun 2026",
         "numeros": [
-          9,
-          1,
-          4
+          3,
+          5,
+          8
         ],
-        "numero_extra": 0
+        "numero_extra": 1
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Domingo",
+        "fecha": "14 jun 2026",
         "numeros": [
-          2,
-          3
+          5,
+          6
         ],
-        "numero_extra": 0
+        "numero_extra": 1
       },
       "proximo_sorteo": {
         "dia": "Domingo",
