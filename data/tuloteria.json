@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-15T17:59:35.456332",
+    "ultima_actualizacion": "2026-06-15T21:17:02.232734",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,7 +103,7 @@
         "dia": "Lunes",
         "fecha": "15 jun 2026",
         "numeros": [
-          6
+          10
         ],
         "numero_extra": null
       },
@@ -140,13 +140,13 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "14 jun 2026",
+        "dia": "Lunes",
+        "fecha": "15 jun 2026",
         "numeros": [
-          4,
-          10,
-          22,
-          26,
+          5,
+          8,
+          12,
+          24,
           28
         ],
         "numero_extra": null
