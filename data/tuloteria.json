@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-15T21:17:02.232734",
+    "ultima_actualizacion": "2026-06-16T05:23:38.119748",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "13 jun 2026",
+        "dia": "Lunes",
+        "fecha": "15 jun 2026",
         "numeros": [
-          3,
-          13,
-          44,
-          50,
-          53
+          25,
+          55,
+          57,
+          60,
+          62
         ],
-        "numero_extra": 2
+        "numero_extra": 23
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "15 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "17 jun 2026"
       },
       "bote": "269.000.000$"
     },
@@ -96,46 +96,6 @@
       "bote": "950.000$"
     },
     {
-      "id": "cash-pop",
-      "nombre": "Cash Pop FL",
-      "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "15 jun 2026",
-        "numeros": [
-          10
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "15 jun 2026"
-      },
-      "bote": "250$"
-    },
-    {
-      "id": "cash4life",
-      "nombre": "Cash4Life FL",
-      "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 feb 2026",
-        "numeros": [
-          20,
-          25,
-          30,
-          52,
-          55
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
@@ -143,19 +103,19 @@
         "dia": "Lunes",
         "fecha": "15 jun 2026",
         "numeros": [
-          5,
-          8,
-          12,
-          24,
-          28
+          6,
+          17,
+          23,
+          28,
+          34
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": ""
+      "bote": "100.000$"
     },
     {
       "id": "pick-5",
@@ -174,10 +134,10 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": ""
+      "bote": "50.000$"
     },
     {
       "id": "pick-4",
@@ -195,10 +155,10 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": ""
+      "bote": "5.000$"
     },
     {
       "id": "pick-3",
@@ -215,10 +175,28 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
       },
-      "bote": ""
+      "bote": "500$"
+    },
+    {
+      "id": "cash-pop",
+      "nombre": "Cash Pop FL",
+      "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "15 jun 2026",
+        "numeros": [
+          10
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
+      },
+      "bote": "250$"
     },
     {
       "id": "pick-2",
@@ -232,6 +210,28 @@
           6
         ],
         "numero_extra": 8
+      },
+      "proximo_sorteo": {
+        "dia": "Martes",
+        "fecha": "16 jun 2026"
+      },
+      "bote": "50$"
+    },
+    {
+      "id": "cash4life",
+      "nombre": "Cash4Life FL",
+      "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "21 feb 2026",
+        "numeros": [
+          20,
+          25,
+          30,
+          52,
+          55
+        ],
+        "numero_extra": 4
       },
       "proximo_sorteo": {
         "dia": "",
