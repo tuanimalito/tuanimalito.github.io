@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-19T07:21:07.014519",
+    "ultima_actualizacion": "2026-06-19T19:01:55.814252",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -96,28 +96,6 @@
       "bote": "1.100.000$"
     },
     {
-      "id": "fantasy-5",
-      "nombre": "Fantasy 5 FL",
-      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "18 jun 2026",
-        "numeros": [
-          3,
-          8,
-          11,
-          13,
-          35
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "19 jun 2026"
-      },
-      "bote": "100.000$"
-    },
-    {
       "id": "cash-pop",
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
@@ -150,6 +128,28 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "fantasy-5",
+      "nombre": "Fantasy 5 FL",
+      "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "19 jun 2026",
+        "numeros": [
+          4,
+          12,
+          26,
+          28,
+          30
+        ],
+        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
