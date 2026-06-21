@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-20T20:21:14.718663",
+    "ultima_actualizacion": "2026-06-21T06:11:14.352163",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "17 jun 2026",
+        "dia": "Sábado",
+        "fecha": "20 jun 2026",
         "numeros": [
-          3,
-          26,
-          49,
-          53,
-          61
+          16,
+          20,
+          44,
+          48,
+          50
         ],
-        "numero_extra": 12
+        "numero_extra": 15
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Lunes",
+        "fecha": "22 jun 2026"
       },
       "bote": "302.000.000$"
     },
@@ -54,21 +54,21 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "17 jun 2026",
+        "dia": "Sábado",
+        "fecha": "20 jun 2026",
         "numeros": [
-          12,
-          26,
-          27,
-          40,
-          42,
-          51
+          1,
+          9,
+          22,
+          25,
+          41,
+          46
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "24 jun 2026"
       },
       "bote": "4.250.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Sábado",
         "fecha": "20 jun 2026",
         "numeros": [
-          6,
-          8,
-          20,
+          1,
+          2,
+          17,
           23,
-          28
+          27
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "20 jun 2026",
         "numeros": [
-          8,
-          5,
           9,
-          6,
+          3,
+          2,
+          7,
           1
         ],
-        "numero_extra": 9
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Sábado",
         "fecha": "20 jun 2026",
         "numeros": [
-          1,
-          6,
-          0,
-          8
+          3,
+          5,
+          4,
+          0
         ],
-        "numero_extra": 9
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -169,14 +169,14 @@
         "fecha": "20 jun 2026",
         "numeros": [
           3,
-          8,
-          2
+          4,
+          3
         ],
-        "numero_extra": 9
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Sábado",
         "fecha": "20 jun 2026",
         "numeros": [
-          4,
-          0
+          5,
+          3
         ],
-        "numero_extra": 9
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "20 jun 2026"
+        "dia": "Domingo",
+        "fecha": "21 jun 2026"
       },
       "bote": "50$"
     },
