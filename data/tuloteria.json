@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-25T17:20:04.476179",
+    "ultima_actualizacion": "2026-06-25T20:16:01.516391",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Jueves",
+        "fecha": "25 jun 2026",
         "numeros": [
-          1,
-          4,
-          7,
-          12,
-          32
+          6,
+          9,
+          17,
+          27,
+          28
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Jueves",
+        "fecha": "25 jun 2026",
         "numeros": [
-          5,
-          4,
           2,
-          3,
-          5
+          5,
+          9,
+          0,
+          1
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Jueves",
+        "fecha": "25 jun 2026",
         "numeros": [
+          7,
+          9,
           1,
-          8,
-          4,
-          0
+          6
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Jueves",
+        "fecha": "25 jun 2026",
         "numeros": [
-          2,
-          6,
-          2
+          3,
+          7,
+          8
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -188,7 +188,7 @@
         "dia": "Jueves",
         "fecha": "25 jun 2026",
         "numeros": [
-          5
+          4
         ],
         "numero_extra": null
       },
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Jueves",
+        "fecha": "25 jun 2026",
         "numeros": [
-          3,
-          9
+          5,
+          4
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
         "dia": "Jueves",
