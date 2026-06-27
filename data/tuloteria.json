@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-26T20:04:19.268461",
+    "ultima_actualizacion": "2026-06-27T04:59:17.374552",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,22 +10,22 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "23 jun 2026",
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
         "numeros": [
-          48,
-          51,
-          60,
-          63,
-          66
+          5,
+          13,
+          30,
+          33,
+          52
         ],
-        "numero_extra": 20
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
-      "bote": "489.000.000$"
+      "bote": "511.000.000$"
     },
     {
       "id": "powerball",
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "23 jun 2026",
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
         "numeros": [
-          6,
-          7,
-          10,
-          11,
-          42,
-          46
+          9,
+          12,
+          15,
+          25,
+          30,
+          38
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
-      "bote": "1.400.000$"
+      "bote": "1.550.000$"
     },
     {
       "id": "fantasy-5",
@@ -112,73 +112,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
+        "dia": "Sábado",
+        "fecha": "27 jun 2026"
       },
       "bote": "100.000$"
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
-        "numeros": [
-          0,
-          5,
-          3,
-          4,
-          6
-        ],
-        "numero_extra": 1
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
-        "numeros": [
-          3,
-          4,
-          9,
-          0
-        ],
-        "numero_extra": 1
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
-        "numeros": [
-          2,
-          8,
-          7
-        ],
-        "numero_extra": 1
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
-      },
-      "bote": "500$"
     },
     {
       "id": "cash-pop",
@@ -193,29 +130,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
+        "dia": "Sábado",
+        "fecha": "27 jun 2026"
       },
       "bote": "250$"
-    },
-    {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
-        "numeros": [
-          2,
-          7
-        ],
-        "numero_extra": 1
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026"
-      },
-      "bote": "50$"
     },
     {
       "id": "cash4life",
@@ -232,6 +150,88 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
+        "numeros": [
+          7,
+          0,
+          0,
+          4,
+          5
+        ],
+        "numero_extra": 8
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
+        "numeros": [
+          4,
+          2,
+          7,
+          4
+        ],
+        "numero_extra": 8
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
+        "numeros": [
+          7,
+          0,
+          4
+        ],
+        "numero_extra": 8
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "26 jun 2026",
+        "numeros": [
+          3,
+          5
+        ],
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "",
