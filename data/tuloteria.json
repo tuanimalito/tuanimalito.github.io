@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-28T16:20:11.477459",
+    "ultima_actualizacion": "2026-06-28T18:11:50.983894",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
+          6,
+          2,
+          2,
           7,
-          0,
-          0,
-          4,
-          5
+          3
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
-          4,
-          2,
+          3,
           7,
-          4
+          8,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
+          9,
           7,
-          0,
-          4
+          8
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
         "dia": "Domingo",
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "26 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
-          3,
-          5
+          9,
+          3
         ],
-        "numero_extra": 8
+        "numero_extra": 2
       },
       "proximo_sorteo": {
         "dia": "Domingo",
