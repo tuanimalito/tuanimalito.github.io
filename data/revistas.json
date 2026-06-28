@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-06-28T08:17:12.506682-04:00",
+    "lastUpdate": "2026-06-28T10:49:00.648840-04:00",
     "fechaCartelera": "2026-06-28",
     "totalHipodromos": 25
   },
@@ -60,9 +60,9 @@
       "nombre": "Hawthorne Park",
       "logo": "img/winner/hip6.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/haw.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -80,9 +80,9 @@
       "nombre": "Mountaineer",
       "logo": "img/winner/hip8.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/mnr.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -110,9 +110,9 @@
       "nombre": "Gulfstream Park",
       "logo": "img/winner/hip11.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/gp.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -160,9 +160,9 @@
       "nombre": "Churchill Downs",
       "logo": "img/winner/hip16.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/cd.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -170,9 +170,9 @@
       "nombre": "Laurel Park",
       "logo": "img/winner/hip17.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/lrl.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -190,9 +190,9 @@
       "nombre": "Woodbine T-bred",
       "logo": "img/winner/hip19.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/wo.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
@@ -220,9 +220,9 @@
       "nombre": "Monmouth Park",
       "logo": "img/winner/hip22.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/mth.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-06-28"
     },
     {
