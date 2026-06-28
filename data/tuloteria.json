@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-27T20:15:13.270140",
+    "ultima_actualizacion": "2026-06-28T00:10:56.704381",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -96,46 +96,6 @@
       "bote": "1.550.000$"
     },
     {
-      "id": "cash-pop",
-      "nombre": "Cash Pop FL",
-      "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026",
-        "numeros": [
-          2
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026"
-      },
-      "bote": "250$"
-    },
-    {
-      "id": "cash4life",
-      "nombre": "Cash4Life FL",
-      "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 feb 2026",
-        "numeros": [
-          20,
-          25,
-          30,
-          52,
-          55
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
@@ -152,10 +112,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
       },
-      "bote": ""
+      "bote": "100.000$"
     },
     {
       "id": "pick-5",
@@ -174,10 +134,10 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
       },
-      "bote": ""
+      "bote": "50.000$"
     },
     {
       "id": "pick-4",
@@ -195,10 +155,10 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
       },
-      "bote": ""
+      "bote": "5.000$"
     },
     {
       "id": "pick-3",
@@ -215,10 +175,28 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
       },
-      "bote": ""
+      "bote": "500$"
+    },
+    {
+      "id": "cash-pop",
+      "nombre": "Cash Pop FL",
+      "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
+        "numeros": [
+          2
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "27 jun 2026"
+      },
+      "bote": "250$"
     },
     {
       "id": "pick-2",
@@ -232,6 +210,28 @@
           5
         ],
         "numero_extra": 8
+      },
+      "proximo_sorteo": {
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
+      },
+      "bote": "50$"
+    },
+    {
+      "id": "cash4life",
+      "nombre": "Cash4Life FL",
+      "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "21 feb 2026",
+        "numeros": [
+          20,
+          25,
+          30,
+          52,
+          55
+        ],
+        "numero_extra": 4
       },
       "proximo_sorteo": {
         "dia": "",
