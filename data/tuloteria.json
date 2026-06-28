@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-28T00:10:56.704381",
+    "ultima_actualizacion": "2026-06-28T05:23:36.322734",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
-          13,
-          14,
+          3,
           16,
-          21,
-          38
+          28,
+          30,
+          59
         ],
-        "numero_extra": 14
+        "numero_extra": 11
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026"
+        "dia": "Lunes",
+        "fecha": "29 jun 2026"
       },
       "bote": "348.000.000$"
     },
@@ -54,21 +54,21 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "24 jun 2026",
+        "dia": "Sábado",
+        "fecha": "27 jun 2026",
         "numeros": [
-          6,
-          14,
-          33,
-          36,
-          41,
-          51
+          2,
+          10,
+          21,
+          26,
+          30,
+          44
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "01 jul 2026"
       },
       "bote": "5.750.000$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026"
+        "dia": "Domingo",
+        "fecha": "28 jun 2026"
       },
       "bote": "250$"
     },
