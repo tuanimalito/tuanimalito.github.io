@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-29T19:11:17.722168",
+    "ultima_actualizacion": "2026-06-29T21:40:33.919465",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          4
+          9
         ],
         "numero_extra": null
       },
