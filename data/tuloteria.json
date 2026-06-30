@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-30T04:18:37.985570",
+    "ultima_actualizacion": "2026-06-30T08:34:32.511835",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Miércoles",
         "fecha": "01 jul 2026"
       },
-      "bote": "360.000.000$"
+      "bote": "375.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "250$"
     },
