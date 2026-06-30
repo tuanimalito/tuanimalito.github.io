@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-06-29T21:40:33.919465",
+    "ultima_actualizacion": "2026-06-30T04:18:37.985570",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "27 jun 2026",
+        "dia": "Lunes",
+        "fecha": "29 jun 2026",
         "numeros": [
-          3,
-          16,
-          28,
-          30,
+          10,
+          14,
+          41,
+          53,
           59
         ],
-        "numero_extra": 11
+        "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Miércoles",
+        "fecha": "01 jul 2026"
       },
       "bote": "360.000.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          7,
-          10,
-          11,
-          20,
-          27
+          6,
+          8,
+          14,
+          31,
+          33
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          1,
+          9,
+          6,
+          8,
           0,
-          5,
-          7,
-          9
+          1
         ],
-        "numero_extra": 6
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          9,
-          6,
-          6,
-          7
+          2,
+          0,
+          3,
+          2
         ],
-        "numero_extra": 6
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          7,
-          0,
-          3
+          2,
+          9,
+          5
         ],
-        "numero_extra": 6
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Lunes",
         "fecha": "29 jun 2026",
         "numeros": [
-          5,
-          2
+          0,
+          5
         ],
-        "numero_extra": 6
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "29 jun 2026"
+        "dia": "Martes",
+        "fecha": "30 jun 2026"
       },
       "bote": "50$"
     },
