@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-02T08:58:30.209375-04:00",
+    "lastUpdate": "2026-07-02T11:23:57.298181-04:00",
     "fechaCartelera": "2026-07-02",
     "totalHipodromos": 25
   },
@@ -20,9 +20,9 @@
       "nombre": "Charles Town",
       "logo": "img/winner/hip2.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ct.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-02"
     },
     {
@@ -40,9 +40,9 @@
       "nombre": "Delta Downs",
       "logo": "img/winner/hip4.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ded.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-02"
     },
     {
@@ -50,9 +50,9 @@
       "nombre": "Evangeline Downs",
       "logo": "img/winner/hip5.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/evd.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-02"
     },
     {
@@ -70,9 +70,9 @@
       "nombre": "ThistleDown",
       "logo": "img/winner/hip7.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/tdn.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-02"
     },
     {
@@ -150,9 +150,9 @@
       "nombre": "Penn National",
       "logo": "img/winner/hip15.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/pen.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-02"
     },
     {
