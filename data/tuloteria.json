@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-02T18:42:13.175465",
+    "ultima_actualizacion": "2026-07-02T20:24:47.103816",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Jueves",
         "fecha": "02 jul 2026",
         "numeros": [
-          13
+          9
         ],
         "numero_extra": null
       },
