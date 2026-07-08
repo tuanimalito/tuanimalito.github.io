@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-08T19:46:53.077031",
+    "ultima_actualizacion": "2026-07-08T21:17:38.397913",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Miércoles",
         "fecha": "08 jul 2026",
         "numeros": [
-          15
+          6
         ],
         "numero_extra": null
       },
