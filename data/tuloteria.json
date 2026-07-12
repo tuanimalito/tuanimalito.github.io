@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-12T19:16:39.966655",
+    "ultima_actualizacion": "2026-07-12T21:02:17.633860",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          7
+          12
         ],
         "numero_extra": null
       },
