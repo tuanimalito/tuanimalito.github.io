@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-12T04:30:32.239008",
+    "ultima_actualizacion": "2026-07-12T07:32:29.427419",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "11 jul 2026"
+        "dia": "Domingo",
+        "fecha": "12 jul 2026"
       },
       "bote": "250$"
     },
