@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-12T21:02:17.633860",
+    "ultima_actualizacion": "2026-07-13T04:36:24.775026",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          8,
-          9,
-          26,
-          27,
-          31
+          1,
+          6,
+          16,
+          24,
+          27
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "12 jul 2026"
+        "dia": "Lunes",
+        "fecha": "13 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          5,
-          6,
-          6,
           2,
-          8
+          8,
+          7,
+          9,
+          0
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "12 jul 2026"
+        "dia": "Lunes",
+        "fecha": "13 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          6,
+          3,
           8,
-          2,
-          3
+          1,
+          8
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "12 jul 2026"
+        "dia": "Lunes",
+        "fecha": "13 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          4,
-          9,
-          0
+          1,
+          1,
+          8
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "12 jul 2026"
+        "dia": "Lunes",
+        "fecha": "13 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Domingo",
         "fecha": "12 jul 2026",
         "numeros": [
-          3,
-          3
+          1,
+          7
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "12 jul 2026"
+        "dia": "Lunes",
+        "fecha": "13 jul 2026"
       },
       "bote": "50$"
     },
