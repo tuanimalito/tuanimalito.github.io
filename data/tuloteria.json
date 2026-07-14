@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-13T20:20:11.357084",
+    "ultima_actualizacion": "2026-07-14T03:26:13.553518",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -26,28 +26,6 @@
         "fecha": "14 jul 2026"
       },
       "bote": "637.000.000$"
-    },
-    {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "11 jul 2026",
-        "numeros": [
-          8,
-          10,
-          14,
-          45,
-          59
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
-      },
-      "bote": "478.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -112,8 +90,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
+        "dia": "Martes",
+        "fecha": "14 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +103,17 @@
         "dia": "Lunes",
         "fecha": "13 jul 2026",
         "numeros": [
-          4,
           1,
-          1,
-          8,
-          5
+          6,
+          2,
+          3,
+          8
         ],
-        "numero_extra": 3
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
+        "dia": "Martes",
+        "fecha": "14 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +125,16 @@
         "dia": "Lunes",
         "fecha": "13 jul 2026",
         "numeros": [
-          1,
-          6,
-          5,
-          0
+          7,
+          9,
+          0,
+          6
         ],
-        "numero_extra": 3
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
+        "dia": "Martes",
+        "fecha": "14 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +146,15 @@
         "dia": "Lunes",
         "fecha": "13 jul 2026",
         "numeros": [
-          7,
           9,
-          3
+          8,
+          0
         ],
-        "numero_extra": 3
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
+        "dia": "Martes",
+        "fecha": "14 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,16 +184,38 @@
         "dia": "Lunes",
         "fecha": "13 jul 2026",
         "numeros": [
-          8,
-          4
+          1,
+          7
         ],
-        "numero_extra": 3
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "13 jul 2026"
+        "dia": "Martes",
+        "fecha": "14 jul 2026"
       },
       "bote": "50$"
+    },
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "11 jul 2026",
+        "numeros": [
+          8,
+          10,
+          14,
+          45,
+          59
+        ],
+        "numero_extra": 5
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
+      },
+      "bote": ""
     },
     {
       "id": "cash4life",
