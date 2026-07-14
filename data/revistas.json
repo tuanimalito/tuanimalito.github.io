@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-14T08:12:30.687927-04:00",
+    "lastUpdate": "2026-07-14T10:51:26.447782-04:00",
     "fechaCartelera": "2026-07-14",
     "totalHipodromos": 25
   },
@@ -70,9 +70,9 @@
       "nombre": "ThistleDown",
       "logo": "img/winner/hip7.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/tdn.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
@@ -80,9 +80,9 @@
       "nombre": "Mountaineer",
       "logo": "img/winner/hip8.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/mnr.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
@@ -90,9 +90,9 @@
       "nombre": "Assiniboia Downs",
       "logo": "img/winner/hip9.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/asd.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
@@ -120,9 +120,9 @@
       "nombre": "Parx Racing",
       "logo": "img/winner/hip12.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/prx.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
@@ -140,9 +140,9 @@
       "nombre": "Horseshoe Indianapolis",
       "logo": "img/winner/hip14.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ind.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
@@ -240,9 +240,9 @@
       "nombre": "Finger Lakes",
       "logo": "img/winner/hip24.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/fl.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-14"
     },
     {
