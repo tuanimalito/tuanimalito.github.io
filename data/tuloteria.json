@@ -1,32 +1,10 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-14T20:18:44.316464",
+    "ultima_actualizacion": "2026-07-15T03:25:44.390541",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
-    {
-      "id": "mega-millions",
-      "nombre": "Mega Millions",
-      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "10 jul 2026",
-        "numeros": [
-          2,
-          39,
-          44,
-          46,
-          56
-        ],
-        "numero_extra": 23
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
-      },
-      "bote": "637.000.000$"
-    },
     {
       "id": "powerball",
       "nombre": "Powerball",
@@ -73,29 +51,6 @@
       "bote": "2.500.000$"
     },
     {
-      "id": "jackpot-triple-play",
-      "nombre": "Jackpot Triple Play",
-      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "10 jul 2026",
-        "numeros": [
-          11,
-          15,
-          32,
-          40,
-          45,
-          46
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
-      },
-      "bote": "325.000$"
-    },
-    {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
@@ -112,8 +67,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +80,17 @@
         "dia": "Martes",
         "fecha": "14 jul 2026",
         "numeros": [
-          1,
-          7,
+          5,
           3,
-          9,
-          6
+          1,
+          2,
+          4
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +102,16 @@
         "dia": "Martes",
         "fecha": "14 jul 2026",
         "numeros": [
-          3,
-          8,
-          5,
-          5
+          4,
+          7,
+          9,
+          2
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +123,15 @@
         "dia": "Martes",
         "fecha": "14 jul 2026",
         "numeros": [
-          0,
-          4,
-          6
+          9,
+          9,
+          2
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,16 +161,38 @@
         "dia": "Martes",
         "fecha": "14 jul 2026",
         "numeros": [
-          1,
-          6
+          4,
+          3
         ],
-        "numero_extra": 6
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "14 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "15 jul 2026"
       },
       "bote": "50$"
+    },
+    {
+      "id": "mega-millions",
+      "nombre": "Mega Millions",
+      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "10 jul 2026",
+        "numeros": [
+          2,
+          39,
+          44,
+          46,
+          56
+        ],
+        "numero_extra": 23
+      },
+      "proximo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "17 jul 2026"
+      },
+      "bote": ""
     },
     {
       "id": "cash4life",
@@ -232,6 +209,29 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "jackpot-triple-play",
+      "nombre": "Jackpot Triple Play",
+      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "10 jul 2026",
+        "numeros": [
+          11,
+          15,
+          32,
+          40,
+          45,
+          46
+        ],
+        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
