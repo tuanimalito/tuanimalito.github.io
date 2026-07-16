@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-16T08:20:08.910628-04:00",
+    "lastUpdate": "2026-07-16T11:02:10.224075-04:00",
     "fechaCartelera": "2026-07-16",
     "totalHipodromos": 25
   },
@@ -10,9 +10,9 @@
       "nombre": "Belterra Park",
       "logo": "img/winner/hip1.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/btp.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -20,9 +20,9 @@
       "nombre": "Charles Town",
       "logo": "img/winner/hip2.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ct.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -30,9 +30,9 @@
       "nombre": "Delaware Park",
       "logo": "img/winner/hip3.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/del.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -40,9 +40,9 @@
       "nombre": "Delta Downs",
       "logo": "img/winner/hip4.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ded.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -50,9 +50,9 @@
       "nombre": "Evangeline Downs",
       "logo": "img/winner/hip5.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/evd.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -70,9 +70,9 @@
       "nombre": "ThistleDown",
       "logo": "img/winner/hip7.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/tdn.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -120,9 +120,9 @@
       "nombre": "Parx Racing",
       "logo": "img/winner/hip12.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/prx.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -140,9 +140,9 @@
       "nombre": "Horseshoe Indianapolis",
       "logo": "img/winner/hip14.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ind.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -150,9 +150,9 @@
       "nombre": "Penn National",
       "logo": "img/winner/hip15.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/pen.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -190,9 +190,9 @@
       "nombre": "Woodbine T-bred",
       "logo": "img/winner/hip19.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/wo.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
@@ -230,9 +230,9 @@
       "nombre": "Saratoga",
       "logo": "img/winner/hip23.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/sar.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-16"
     },
     {
