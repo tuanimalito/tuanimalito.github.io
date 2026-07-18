@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronosticador de Ruleta - Loto Animalitos</title>
+    <!-- Tailwind CSS para el diseño responsivo moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Material Icons para íconos pulidos -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <!-- Fuente Inter para legibilidad premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080c14;
+            background-image: radial-gradient(circle at 50% 50%, #0f172a 0%, #080c14 100%);
+        }
+        /* Transiciones suaves */
+        .transition-all-300 {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Animaciones para las fichas */
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop-in {
+            animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-center items-center p-4">
+
+    <!-- Contenedor Principal Ultra-Limpio y Centrado -->
+    <main class="w-full max-w-xl bg-slate-900/90 backdrop-blur-md border border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+        
+        <!-- Línea decorativa superior dinámica dependiente del modo activo -->
+        <div id="decorativeLine" class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-500 to-teal-400 transition-all-300"></div>
+
+        <!-- Encabezado de la Aplicación -->
+        <div class="text-center mb-6">
+            <div id="headerIconContainer" class="inline-flex items-center justify-center bg-emerald-500/10 p-3 rounded-full mb-3 transition-all-300">
+                <span id="headerIcon" class="material-icons text-emerald-400 text-3xl transition-all-300">casino</span>
+            </div>
+            <h1 id="appTitle" class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent transition-all-300">
+                PRONOSTICADOR TU ANIMALITO
+            </h1>
+            <p id="appSubtitle" class="text-xs text-slate-400 mt-1 transition-all-300">GSM Profesional V.5</p>
+        </div>
+
+        <!-- Selector de Modos (Pestañas Estilo Dashboard) -->
+        <div class="grid grid-cols-2 gap-2 bg-slate-950/60 p-1.5 rounded-2xl border border-slate-800/60 mb-6">
+            <button 
+                id="tabStandard"
+                class="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 bg-slate-850 text-white shadow-lg border border-slate-700/50"
+            >
+                <span class="material-icons text-lg">casino</span>
+                    Cortesia
+            </button>
+            <button 
+                id="tabPremium"
+                class="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 text-slate-400 hover:text-amber-200"
+            >
+                <span class="material-icons text-lg">workspace_premium</span>
+                Premium
+            </button>
+        </div>
+
+        <!-- Panel de Entrada de Semilla -->
+        <div class="bg-slate-950/60 border border-slate-800/85 rounded-2xl p-5 mb-6">
+            <label for="numeroInput" class="text-sm text-slate-400 block text-center mb-3">
+                Ingresa el número que salió en la ruleta (0-36 o 00):
+            </label>
+            <div class="flex gap-2 max-w-xs mx-auto">
+                <input 
+                    type="text" 
+                    id="numeroInput" 
+                    placeholder="Ej: 15, 00, 3" 
+                    class="flex-1 bg-slate-900 border-2 border-slate-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-lg font-bold text-center text-white focus:outline-none transition-all-300"
+                    autocomplete="off"
+                >
+                <button 
+                    id="btnConsultar"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 rounded-xl flex items-center justify-center transition-all-300 active:scale-95"
+                >
+                    <span id="btnIcon" class="material-icons">query_stats</span>
+                </button>
+            </div>
+            
+            <!-- Mensaje de Error Interno -->
+            <div id="errorMsg" class="text-rose-400 text-xs font-semibold mt-3 hidden flex items-center justify-center gap-1">
+                <span class="material-icons text-sm">error</span>
+                <span id="errorText"></span>
+            </div>
+        </div>
+
+        <!-- Pantalla de Secuencia Resultante -->
+        <div class="min-h-[160px] flex flex-col justify-center items-center">
+            
+            <!-- Estado Inicial de Espera -->
+            <div id="estadoVacio" class="text-center py-6 text-slate-500">
+                <span id="vacioIcon" class="material-icons text-5xl mb-3 opacity-30 text-emerald-400">shuffle</span>
+                <p id="vacioText" class="text-sm max-w-sm mx-auto">Estas usando la version GSM Profesional V.5.</p>
+            </div>
+
+            <!-- Resultado Activo de la Secuencia -->
+            <div id="estadoActivo" class="w-full hidden">
+                <div class="text-center mb-5">
+                    <span id="secuenciaLabel" class="text-xs text-slate-400 uppercase tracking-widest block font-bold">
+                        Informacion para los proximos resultados.
+                    </span>
+                    <span class="text-[10px] text-emerald-400/80 mt-0.5 block" id="exclusionNote">GSM (Generador Serie Mia Profesional).</span>
+                </div>
+                
+                <!-- Grilla de Animales Aleatorios -->
+                <div id="secuenciaGrid" class="grid grid-cols-2 sm:grid-cols-5 gap-3 justify-center items-stretch">
+                    <!-- Las fichas se generarán dinámicamente -->
+                </div>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <!-- Lógica de Negocio y Algoritmos -->
+    <script>
+        // Mapeo Oficial de Números a Nombres (Animales)
+        const ANIMALES = {
+            '00': 'ballena', '0': 'delfín', '1': 'carnero', '2': 'toro', '3': 'ciempiés',
+            '4': 'alacrán', '5': 'león', '6': 'rana', '7': 'perico', '8': 'ratón',
+            '9': 'águila', '10': 'tigre', '11': 'gato', '12': 'caballo', '13': 'mono',
+            '14': 'paloma', '15': 'zorro', '16': 'oso', '17': 'pavo', '18': 'burro',
+            '19': 'chivo', '20': 'cochino', '21': 'gallo', '22': 'camello', '23': 'cebra',
+            '24': 'iguana', '25': 'gallina', '26': 'vaca', '27': 'perro', '28': 'zamuro',
+            '29': 'elefante', '30': 'caimán', '31': 'lapa', '32': 'ardilla', '33': 'pescado',
+            '34': 'venado', '35': 'jirafa', '36': 'culebra'
+        };
+
+        // Reglas de Semillas y Secuencias (Modo Estándar)
+        const SECUENCIAS_MAP = [
+            { seeds: ['0', '1'], group: '(0-1)', seq: ['2', '0', '28', '13', '1', '00'] },
+            { seeds: ['2', '36'], group: '(2-36)', seq: ['14', '2', '0', '24', '36', '13'] },
+            { seeds: ['3', '35'], group: '(3-35)', seq: ['15', '3', '24', '23', '35', '14'] },
+            { seeds: ['4', '34'], group: '(4-34)', seq: ['16', '4', '23', '22', '34', '15'] },
+            { seeds: ['5', '33'], group: '(5-33)', seq: ['17', '5', '22', '21', '33', '16'] },
+            { seeds: ['6', '32'], group: '(6-32)', seq: ['18', '6', '21', '20', '32', '17'] },
+            { seeds: ['7', '31'], group: '(7-31)', seq: ['11', '7', '20', '19', '31', '18'] },
+            { seeds: ['8', '30'], group: '(8-30)', seq: ['12', '8', '19', '26', '30', '11'] },
+            { seeds: ['9', '29'], group: '(9-29)', seq: ['28', '9', '26', '25', '29', '12'] },
+            { seeds: ['10', '28'], group: '(10-28)', seq: ['27', '10', '25', '0', '28', '9'] },
+            { seeds: ['11', '27'], group: '(11-27)', seq: ['30', '11', '7', '00', '27', '10'] },
+            { seeds: ['12', '26'], group: '(12-26)', seq: ['29', '12', '8', '9', '26', '30'] },
+            { seeds: ['13', '25'], group: '(13-25)', seq: ['36', '13', '1', '10', '25', '29'] },
+            { seeds: ['14', '24'], group: '(14-24)', seq: ['35', '14', '2', '3', '24', '36'] },
+            { seeds: ['15', '23'], group: '(15-23)', seq: ['34', '15', '3', '4', '23', '35'] },
+            { seeds: ['16', '22'], group: '(16-22)', seq: ['33', '16', '4', '5', '22', '34'] },
+            { seeds: ['17', '21'], group: '(17-21)', seq: ['32', '17', '5', '6', '21', '33'] },
+            { seeds: ['18', '20'], group: '(18-20)', seq: ['31', '18', '6', '7', '20', '32'] },
+            { seeds: ['19', '00'], group: '(19-00)', seq: ['8', '19', '31', '1', '00', '27'] }
+        ];
+
+        // Reglas de Semillas y Secuencias (Modo Premium)
+        const PREMIUM_MAP = {
+            '0': ['13', '1', '00'],
+            '1': ['2', '0', '28'],
+            '2': ['24', '36', '13'],
+            '3': ['23', '35', '14'],
+            '4': ['22', '34', '15'],
+            '5': ['21', '33', '16'],
+            '6': ['20', '32', '17'],
+            '7': ['11', '7', '20'],
+            '8': ['26', '30', '11'],
+            '9': ['25', '29', '12'],
+            '10': ['0', '28', '9'],
+            '11': ['00', '27', '10'],
+            '12': ['9', '26', '30'],
+            '13': ['10', '25', '29'],
+            '14': ['3', '24', '36'],
+            '15': ['4', '23', '35'],
+            '16': ['5', '22', '34'],
+            '17': ['6', '21', '33'],
+            '18': ['7', '20', '32'],
+            '19': ['1', '00', '27'],
+            '00': ['1', '00', '27'], // Mapeado de respaldo coherente para doble cero en premium
+            '20': ['31', '18', '6'],
+            '21': ['32', '17', '5'],
+            '22': ['33', '16', '4'],
+            '23': ['34', '15', '3'],
+            '24': ['35', '14', '2'],
+            '25': ['36', '13', '1'],
+            '26': ['29', '12', '8'],
+            '27': ['30', '11', '7'],
+            '28': ['27', '10', '25'],
+            '29': ['28', '9', '26'],
+            '30': ['12', '8', '19'],
+            '31': ['11', '7', '20'],
+            '32': ['18', '6', '21'],
+            '33': ['17', '5', '22'],
+            '34': ['16', '4', '23'],
+            '35': ['15', '3', '24'],
+            '36': ['14', '2', '0']
+        };
+
+        // Estado del Modo Activo: 'standard' o 'premium'
+        let currentMode = 'standard';
+
+        // Función de Ruta de Imagen Oficial
+        function obtenerRutaImagen(numero, esDobleCero = false) {
+            if (esDobleCero) return 'animalitos/animalitos_loto/00.png';
+            if (numero === 0) return 'animalitos/animalitos_loto/0.png';
+            return `animalitos/animalitos_loto/${numero}.png`;
+        }
+
+        // Obtener color para borde o detalles según número de ruleta
+        function getRuletaColor(num) {
+            if (num === '0' || num === '00') return 'bg-emerald-600/95 border-emerald-500';
+            const rojos = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+            return rojos.includes(parseInt(num, 10)) 
+                ? 'bg-rose-600/95 border-rose-500' 
+                : 'bg-slate-950 border-slate-700';
+        }
+
+        // Algoritmo de barajado Fisher-Yates para asegurar aleatoriedad real
+        function mezclarArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Fallback elegante para imágenes no disponibles
+        function fallbackImage(imgElement, numero, nombre) {
+            const parent = imgElement.parentElement;
+            if (parent) {
+                parent.innerHTML = `
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-slate-950 text-white p-1 select-none">
+                        <span class="text-[9px] font-bold text-slate-400 capitalize truncate w-full">${nombre}</span>
+                        <span class="text-base font-black">${numero}</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Ejecutar consulta basada en el modo e input actual
+        function ejecutarConsulta(inputVal) {
+            const errorMsg = document.getElementById('errorMsg');
+            const estadoVacio = document.getElementById('estadoVacio');
+            const estadoActivo = document.getElementById('estadoActivo');
+
+            errorMsg.classList.add('hidden');
+
+            if (!inputVal) {
+                mostrarError("Por favor, introduce un número.");
+                return;
+            }
+
+            // Normalización de la entrada del usuario
+            let numeroBuscado = inputVal.trim();
+            if (numeroBuscado === '000' || numeroBuscado === '00') {
+                numeroBuscado = '00';
+            } else if (numeroBuscado !== '00') {
+                const num = parseInt(numeroBuscado, 10);
+                if (isNaN(num) || num < 0 || num > 36) {
+                    mostrarError("Número inválido. Utiliza (0-36) o (00).");
+                    return;
+                }
+                numeroBuscado = num.toString();
+            }
+
+            let secuenciaFiltrada = [];
+
+            if (currentMode === 'standard') {
+                // Modo Estándar
+                const coincidencia = SECUENCIAS_MAP.find(regla => regla.seeds.includes(numeroBuscado));
+                if (!coincidencia) {
+                    mostrarError("No se encontró secuencia registrada para esta semilla estándar.");
+                    return;
+                }
+                // Excluir semilla del pronóstico resultante
+                secuenciaFiltrada = coincidencia.seq.filter(num => num !== numeroBuscado);
+            } else {
+                // Modo Premium
+                const coincidenciaPremium = PREMIUM_MAP[numeroBuscado];
+                if (!coincidenciaPremium) {
+                    mostrarError("No se encontró secuencia registrada para esta semilla premium.");
+                    return;
+                }
+                // Excluir semilla preventivamente de haber alguna duplicación
+                secuenciaFiltrada = coincidenciaPremium.filter(num => num !== numeroBuscado);
+            }
+
+            // Mezclar aleatoriamente el array final resultante
+            const secuenciaAleatoria = mezclarArray(secuenciaFiltrada);
+
+            // Mostrar el contenedor de resultados y ocultar pantalla de espera
+            estadoVacio.classList.add('hidden');
+            estadoActivo.classList.remove('hidden');
+
+            // Renderizar las tarjetas resultantes en el grid
+            const secuenciaGrid = document.getElementById('secuenciaGrid');
+            secuenciaGrid.innerHTML = '';
+
+            // Ajustar dinámicamente las columnas del grid basadas en la longitud de salida
+            if (secuenciaAleatoria.length <= 3) {
+                secuenciaGrid.className = "grid grid-cols-3 gap-4 justify-center max-w-sm mx-auto";
+            } else {
+                secuenciaGrid.className = "grid grid-cols-2 sm:grid-cols-5 gap-3 justify-center items-stretch";
+            }
+
+            secuenciaAleatoria.forEach((numSeq, index) => {
+                const animalSeq = ANIMALES[numSeq] || 'Desconocido';
+                const esDobleCeroSeq = (numSeq === '00');
+                const rutaImgSeq = obtenerRutaImagen(esDobleCeroSeq ? 0 : parseInt(numSeq, 10), esDobleCeroSeq);
+                const colorFicha = getRuletaColor(numSeq);
+
+                const cardSeq = document.createElement('div');
+                cardSeq.className = "bg-slate-950/80 border border-slate-800/90 rounded-2xl p-2.5 flex flex-col items-center justify-between text-center relative overflow-hidden transition-all-300 hover:border-emerald-500/50 hover:scale-[1.03] animate-pop-in";
+                cardSeq.style.animationDelay = `${index * 50}ms`;
+                
+                cardSeq.innerHTML = `
+                    <div class="absolute top-1 left-2 text-[9px] font-black text-slate-600 select-none">
+                        #${index + 1}
+                    </div>
+                    <div class="w-full flex justify-end items-center mb-1">
+                        <span class="text-[10px] px-1.5 py-0.5 rounded-md font-extrabold text-white ${colorFicha}">
+                            ${numSeq}
+                        </span>
+                    </div>
+                    <!-- Contenedor de Imagen de Animalito -->
+                    <div class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden mb-1 relative select-none">
+                        <img 
+                            src="${rutaImgSeq}" 
+                            alt="${animalSeq}" 
+                            class="w-full h-full object-cover"
+                            onerror="fallbackImage(this, '${numSeq}', '${animalSeq}')"
+                        >
+                    </div>
+                    <span class="text-[10px] font-bold capitalize text-slate-300 truncate w-full">
+                        ${animalSeq}
+                    </span>
+                `;
+                secuenciaGrid.appendChild(cardSeq);
+            });
+        }
+
+        // Mostrar mensaje de error estilizado
+        function mostrarError(msg) {
+            const errorMsg = document.getElementById('errorMsg');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = msg;
+            errorMsg.classList.remove('hidden');
+        }
+
+        // Cambiar entre modos de pronóstico
+        function setMode(mode) {
+            if (currentMode === mode) return;
+            currentMode = mode;
+
+            const tabStandard = document.getElementById('tabStandard');
+            const tabPremium = document.getElementById('tabPremium');
+            const decorativeLine = document.getElementById('decorativeLine');
+            const headerIconContainer = document.getElementById('headerIconContainer');
+            const headerIcon = document.getElementById('headerIcon');
+            const btnConsultar = document.getElementById('btnConsultar');
+            const appSubtitle = document.getElementById('appSubtitle');
+            const appTitle = document.getElementById('appTitle');
+            const vacioIcon = document.getElementById('vacioIcon');
+            const vacioText = document.getElementById('vacioText');
+            const inputVal = document.getElementById('numeroInput').value;
+
+            if (mode === 'premium') {
+                // Estilizar Premium (Esquema Dorado/Ámbar)
+                tabPremium.className = "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 border border-amber-400/50";
+                tabStandard.className = "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 text-slate-400 hover:text-emerald-200";
+                
+                decorativeLine.className = "absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-500 to-yellow-400 transition-all-300";
+                headerIconContainer.className = "inline-flex items-center justify-center bg-amber-500/10 p-3 rounded-full mb-3 transition-all-300";
+                headerIcon.className = "material-icons text-amber-400 text-3xl transition-all-300";
+                headerIcon.textContent = "workspace_premium";
+                btnConsultar.className = "bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 rounded-xl flex items-center justify-center transition-all-300 active:scale-95";
+                
+                appTitle.className = "text-2xl font-extrabold tracking-tight bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent transition-all-300";
+                appSubtitle.textContent = "Secuencias Exclusivas de 3 Fichas sin Semilla";
+                vacioIcon.className = "material-icons text-5xl mb-3 opacity-30 text-amber-400";
+                vacioIcon.textContent = "workspace_premium";
+                vacioText.textContent = "Ingresa una semilla para calcular la secuencia Premium simplificada de 3 números.";
+                
+                document.getElementById('secuenciaLabel').textContent = "Secuencia Premium (Aleatoria)";
+                document.getElementById('exclusionNote').textContent = "Sugerencia óptima de 3 números sin semilla";
+            } else {
+                // Estilizar Estándar (Esquema Esmeralda/Teal)
+                tabStandard.className = "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 bg-slate-850 text-white shadow-lg border border-slate-700/50";
+                tabPremium.className = "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all-300 text-slate-400 hover:text-amber-200";
+                
+                decorativeLine.className = "absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-500 to-teal-400 transition-all-300";
+                headerIconContainer.className = "inline-flex items-center justify-center bg-emerald-500/10 p-3 rounded-full mb-3 transition-all-300";
+                headerIcon.className = "material-icons text-emerald-400 text-3xl transition-all-300";
+                headerIcon.textContent = "casino";
+                btnConsultar.className = "bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 rounded-xl flex items-center justify-center transition-all-300 active:scale-95";
+                
+                appTitle.className = "text-2xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent transition-all-300";
+                appSubtitle.textContent = "Generador Aleatorio de Secuencias Sin Semilla";
+                vacioIcon.className = "material-icons text-5xl mb-3 opacity-30 text-emerald-400";
+                vacioIcon.textContent = "shuffle";
+                vacioText.textContent = "Ingresa una semilla para calcular y mezclar la secuencia recomendada de 5 números.";
+                
+                document.getElementById('secuenciaLabel').textContent = "Secuencia de Salida (Aleatoria)";
+                document.getElementById('exclusionNote').textContent = "Semilla de entrada excluida del pronóstico";
+            }
+
+            // Recalcular instantáneamente si ya había un valor en el input
+            if (inputVal) {
+                ejecutarConsulta(inputVal);
+            }
+        }
+
+        // Eventos de entrada
+        document.getElementById('btnConsultar').addEventListener('click', () => {
+            const val = document.getElementById('numeroInput').value;
+            ejecutarConsulta(val);
+        });
+
+        document.getElementById('numeroInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                ejecutarConsulta(e.target.value);
+            }
+        });
+
+        // Eventos para cambiar de modo/pestaña
+        document.getElementById('tabStandard').addEventListener('click', () => setMode('standard'));
+        document.getElementById('tabPremium').addEventListener('click', () => setMode('premium'));
+
+        // ==================== MEDIDAS DE SEGURIDAD ====================
+        (function() {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                    (e.ctrlKey && e.keyCode === 83)) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+            document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
+            document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+            (function detectDevTools() {
+                const element = new Image();
+                Object.defineProperty(element, 'id', { get: function() { console.clear(); console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;'); } });
+                console.log(element);
+            })();
+            setInterval(function() { console.clear(); }, 1000);
+        })();
+    </script>
+</body>
+</html>
