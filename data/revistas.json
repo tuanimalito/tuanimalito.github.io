@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-19T07:58:02.742205-04:00",
+    "lastUpdate": "2026-07-19T09:41:39.656265-04:00",
     "fechaCartelera": "2026-07-19",
     "totalHipodromos": 25
   },
@@ -10,9 +10,9 @@
       "nombre": "Belterra Park",
       "logo": "img/winner/hip1.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/btp.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -60,9 +60,9 @@
       "nombre": "Hawthorne Park",
       "logo": "img/winner/hip6.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/haw.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -80,9 +80,9 @@
       "nombre": "Mountaineer",
       "logo": "img/winner/hip8.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/mnr.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -110,9 +110,9 @@
       "nombre": "Gulfstream Park",
       "logo": "img/winner/hip11.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/gp.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -190,9 +190,9 @@
       "nombre": "Woodbine T-bred",
       "logo": "img/winner/hip19.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/wo.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -210,9 +210,9 @@
       "nombre": "Los Alamitos QH",
       "logo": "img/winner/hip21.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/la.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -220,9 +220,9 @@
       "nombre": "Monmouth Park",
       "logo": "img/winner/hip22.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/mth.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
@@ -230,9 +230,9 @@
       "nombre": "Saratoga",
       "logo": "img/winner/hip23.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/sar.pdf"
       },
-      "activo": false,
+      "activo": true,
       "ultimaActualizacion": "2026-07-19"
     },
     {
