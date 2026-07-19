@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-19T03:45:20.812083",
+    "ultima_actualizacion": "2026-07-19T06:38:25.496814",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -26,6 +26,51 @@
         "fecha": "21 jul 2026"
       },
       "bote": "707.000.000$"
+    },
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "18 jul 2026",
+        "numeros": [
+          9,
+          14,
+          44,
+          50,
+          56
+        ],
+        "numero_extra": 3
+      },
+      "proximo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "20 jul 2026"
+      },
+      "bote": "526.000.000$"
+    },
+    {
+      "id": "lotto-florida",
+      "nombre": "Lotto Florida",
+      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "18 jul 2026",
+        "numeros": [
+          8,
+          13,
+          26,
+          28,
+          32,
+          48
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "22 jul 2026"
+      },
+      "bote": "3.000.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -58,11 +103,11 @@
         "dia": "Sábado",
         "fecha": "18 jul 2026",
         "numeros": [
-          6,
-          7,
-          10,
-          28,
-          30
+          2,
+          12,
+          16,
+          17,
+          28
         ],
         "numero_extra": null
       },
@@ -148,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "18 jul 2026"
+        "dia": "Domingo",
+        "fecha": "19 jul 2026"
       },
       "bote": "250$"
     },
@@ -173,28 +218,6 @@
       "bote": "50$"
     },
     {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "15 jul 2026",
-        "numeros": [
-          2,
-          7,
-          18,
-          29,
-          38
-        ],
-        "numero_extra": 16
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
-      },
-      "bote": ""
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -209,29 +232,6 @@
           55
         ],
         "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "lotto-florida",
-      "nombre": "Lotto Florida",
-      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "15 jul 2026",
-        "numeros": [
-          13,
-          17,
-          31,
-          37,
-          38,
-          45
-        ],
-        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
