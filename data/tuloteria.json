@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-20T20:37:38.708616",
+    "ultima_actualizacion": "2026-07-21T04:21:11.191823",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,22 +32,22 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "18 jul 2026",
+        "dia": "Lunes",
+        "fecha": "20 jul 2026",
         "numeros": [
+          2,
           9,
-          14,
           44,
-          50,
-          56
+          53,
+          59
         ],
-        "numero_extra": 3
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
+        "dia": "Miércoles",
+        "fecha": "22 jul 2026"
       },
-      "bote": "544.000.000$"
+      "bote": "567.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -103,82 +103,19 @@
         "dia": "Lunes",
         "fecha": "20 jul 2026",
         "numeros": [
-          4,
-          14,
-          26,
+          11,
           28,
-          31
+          29,
+          33,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
+        "dia": "Martes",
+        "fecha": "21 jul 2026"
       },
       "bote": "100.000$"
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026",
-        "numeros": [
-          7,
-          5,
-          1,
-          9,
-          7
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026",
-        "numeros": [
-          4,
-          6,
-          4,
-          1
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026",
-        "numeros": [
-          2,
-          0,
-          5
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
-      },
-      "bote": "500$"
     },
     {
       "id": "cash-pop",
@@ -199,25 +136,6 @@
       "bote": "250$"
     },
     {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026",
-        "numeros": [
-          7,
-          8
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "20 jul 2026"
-      },
-      "bote": "50$"
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -232,6 +150,88 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "20 jul 2026",
+        "numeros": [
+          5,
+          6,
+          1,
+          8,
+          6
+        ],
+        "numero_extra": 2
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "20 jul 2026",
+        "numeros": [
+          2,
+          1,
+          7,
+          2
+        ],
+        "numero_extra": 2
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "20 jul 2026",
+        "numeros": [
+          6,
+          8,
+          8
+        ],
+        "numero_extra": 2
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "20 jul 2026",
+        "numeros": [
+          0,
+          5
+        ],
+        "numero_extra": 2
       },
       "proximo_sorteo": {
         "dia": "",
