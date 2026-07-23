@@ -2,9 +2,8 @@ name: Actualizar Revistas Oasis
 
 on:
   schedule:
-    # Programado a las 11, 12 y 13 UTC (Equivale a las 7:00 AM, 8:00 AM y 9:00 AM hora de Venezuela)
-    # Contando con el retraso de GitHub, la ejecución real iniciará en el bloque de la tarde.
-    - cron: '0 11,12,13 * * *'
+    # 16:00, 17:00 y 18:00 UTC equivalen a 12:00 PM, 1:00 PM y 2:00 PM (GMT-4)
+    - cron: '0 16,17,18 * * *'
   workflow_dispatch:
 
 permissions:
