@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-23T21:14:29.908368",
+    "ultima_actualizacion": "2026-07-24T03:32:48.103546",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "23 jul 2026"
+        "dia": "Viernes",
+        "fecha": "24 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "23 jul 2026",
         "numeros": [
-          3,
-          8,
-          9,
+          5,
           7,
-          8
+          2,
+          4,
+          7
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "23 jul 2026"
+        "dia": "Viernes",
+        "fecha": "24 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -149,14 +149,14 @@
         "numeros": [
           6,
           5,
-          5,
-          2
+          1,
+          0
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "23 jul 2026"
+        "dia": "Viernes",
+        "fecha": "24 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "23 jul 2026",
         "numeros": [
-          8,
-          9,
-          7
+          3,
+          1,
+          5
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "23 jul 2026"
+        "dia": "Viernes",
+        "fecha": "24 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "23 jul 2026",
         "numeros": [
-          4,
-          9
+          0,
+          4
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "23 jul 2026"
+        "dia": "Viernes",
+        "fecha": "24 jul 2026"
       },
       "bote": "50$"
     },
