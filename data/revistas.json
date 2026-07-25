@@ -255,5 +255,15 @@
       "activo": false,
       "ultimaActualizacion": "2026-07-25"
     }
+    {
+      "id": "del-mar",
+      "nombre": "Del Mar",
+      "logo": "img/winner/hip26.webp",
+      "revistas": {
+        "espanol": "pdfs/dmr.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-05-28"
+    }
   ]
 }
