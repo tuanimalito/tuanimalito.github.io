@@ -265,5 +265,15 @@
       "activo": true,
       "ultimaActualizacion": "2026-07-25"
     }
+    {
+      "id": "ellis-park",
+      "nombre": "Ellis Park",
+      "logo": "img/winner/hip27.webp",
+      "revistas": {
+        "espanol": "pdfs/elp.pdf"
+      },
+      "activo": true,
+      "ultimaActualizacion": "2026-07-25"
+    }
   ]
 }
