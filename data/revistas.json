@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-25T13:52:54.506234-04:00",
+    "lastUpdate": "2026-07-25T14:13:42.505639-04:00",
     "fechaCartelera": "2026-07-25",
-    "totalHipodromos": 25
+    "totalHipodromos": 26
   },
   "hipodromos": [
     {
@@ -254,7 +254,7 @@
       },
       "activo": false,
       "ultimaActualizacion": "2026-07-25"
-    }
+    },
     {
       "id": "del-mar",
       "nombre": "Del Mar",
@@ -263,7 +263,7 @@
         "espanol": "pdfs/dmr.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-05-28"
+      "ultimaActualizacion": "2026-07-25"
     }
   ]
 }
