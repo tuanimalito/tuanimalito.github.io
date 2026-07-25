@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-25T12:48:50.980053-04:00",
+    "lastUpdate": "2026-07-25T13:52:54.506234-04:00",
     "fechaCartelera": "2026-07-25",
     "totalHipodromos": 25
   },
@@ -254,16 +254,6 @@
       },
       "activo": false,
       "ultimaActualizacion": "2026-07-25"
-    }
-    {
-      "id": "del-mar",
-      "nombre": "Del Mar",
-      "logo": "img/winner/hip26.webp",
-      "revistas": {
-        "espanol": "pdfs/dmr.pdf"
-      },
-      "activo": true,
-      "ultimaActualizacion": "2026-05-28"
     }
   ]
 }
