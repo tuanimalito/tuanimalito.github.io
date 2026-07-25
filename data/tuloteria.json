@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-24T20:25:45.314768",
+    "ultima_actualizacion": "2026-07-25T04:17:03.197125",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,22 +10,22 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "21 jul 2026",
+        "dia": "Viernes",
+        "fecha": "24 jul 2026",
         "numeros": [
-          25,
-          37,
-          59,
-          68,
-          70
+          2,
+          5,
+          42,
+          44,
+          60
         ],
-        "numero_extra": 10
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Martes",
+        "fecha": "28 jul 2026"
       },
-      "bote": "743.000.000$"
+      "bote": "800.000.000$"
     },
     {
       "id": "powerball",
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "21 jul 2026",
+        "dia": "Viernes",
+        "fecha": "24 jul 2026",
         "numeros": [
-          5,
-          13,
-          21,
+          4,
+          15,
+          17,
           23,
-          32,
-          34
+          28,
+          31
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Martes",
+        "fecha": "28 jul 2026"
       },
-      "bote": "625.000$"
+      "bote": "775.000$"
     },
     {
       "id": "fantasy-5",
@@ -104,16 +104,16 @@
         "fecha": "24 jul 2026",
         "numeros": [
           1,
-          20,
+          10,
           22,
-          28,
+          25,
           35
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Sábado",
+        "fecha": "25 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Viernes",
         "fecha": "24 jul 2026",
         "numeros": [
-          7,
-          5,
-          5,
-          9,
-          8
+          8,
+          6,
+          4,
+          4,
+          5
         ],
-        "numero_extra": 3
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Sábado",
+        "fecha": "25 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Viernes",
         "fecha": "24 jul 2026",
         "numeros": [
-          3,
-          1,
-          5,
-          9
+          8,
+          9,
+          7,
+          2
         ],
-        "numero_extra": 3
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Sábado",
+        "fecha": "25 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "24 jul 2026",
         "numeros": [
-          4,
-          4,
-          6
+          5,
+          9,
+          4
         ],
-        "numero_extra": 3
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Sábado",
+        "fecha": "25 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Viernes",
         "fecha": "24 jul 2026",
         "numeros": [
-          5,
-          3
+          4,
+          7
         ],
-        "numero_extra": 3
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "24 jul 2026"
+        "dia": "Sábado",
+        "fecha": "25 jul 2026"
       },
       "bote": "50$"
     },
