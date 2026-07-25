@@ -28,7 +28,7 @@
     { "id": "Monmouth-Park", "nombre": "Monmouth Park", "logo": "img/winner/hip22.webp", "codigo_oasis": "mth" },
     { "id": "Saratoga", "nombre": "Saratoga", "logo": "img/winner/hip23.webp", "codigo_oasis": "sar" },
     { "id": "Finger-Lakes", "nombre": "Finger Lakes", "logo": "img/winner/hip24.webp", "codigo_oasis": "fl" },
-    { "id": "Canterbury", "nombre": "Canterbury", "logo": "img/winner/hip25.webp", "codigo_oasis": "cby" }
+    { "id": "Canterbury", "nombre": "Canterbury", "logo": "img/winner/hip25.webp", "codigo_oasis": "cby" },
     { "id": "del-mar", "nombre": "Del Mar", "logo": "img/winner/hip26.webp", "codigo_oasis": "dmr" }
   ]
 }
