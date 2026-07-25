@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-25T14:13:42.505639-04:00",
+    "lastUpdate": "2026-07-25T14:31:17.407414-04:00",
     "fechaCartelera": "2026-07-25",
-    "totalHipodromos": 26
+    "totalHipodromos": 27
   },
   "hipodromos": [
     {
@@ -264,7 +264,7 @@
       },
       "activo": true,
       "ultimaActualizacion": "2026-07-25"
-    }
+    },
     {
       "id": "ellis-park",
       "nombre": "Ellis Park",
