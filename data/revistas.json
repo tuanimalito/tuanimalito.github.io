@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "lastUpdate": "2026-07-26T15:04:20.641996-04:00",
-    "fechaCartelera": "2026-07-26",
+    "lastUpdate": "2026-07-27T13:37:29.234641-04:00",
+    "fechaCartelera": "2026-07-27",
     "totalHipodromos": 27
   },
   "hipodromos": [
@@ -13,7 +13,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "charles-town",
@@ -23,7 +23,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "delaware-park",
@@ -33,7 +33,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "delta-downs",
@@ -43,7 +43,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "evangeline-downs",
@@ -53,7 +53,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "hawthorne-park",
@@ -63,17 +63,17 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "thistledown",
       "nombre": "ThistleDown",
       "logo": "img/winner/hip7.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/tdn.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": true,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "mountaineer",
@@ -83,7 +83,7 @@
         "espanol": "pdfs/mnr.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "assiniboia",
@@ -93,7 +93,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "belmont-park",
@@ -103,7 +103,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "gulfstream-park",
@@ -113,7 +113,7 @@
         "espanol": "pdfs/gp.pdf"
       },
       "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "parx-racing",
@@ -123,7 +123,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "santa-anita",
@@ -133,17 +133,17 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "indiana-grand",
       "nombre": "Horseshoe Indianapolis",
       "logo": "img/winner/hip14.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/ind.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": true,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "penn-national",
@@ -153,7 +153,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "churchill-downs",
@@ -163,7 +163,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Laurel-Park",
@@ -173,27 +173,27 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Prairie-Meadows",
       "nombre": "Prairie Meadows",
       "logo": "img/winner/hip18.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/prm.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": true,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Woodbine-T-bred",
       "nombre": "Woodbine T-bred",
       "logo": "img/winner/hip19.webp",
       "revistas": {
-        "espanol": "pdfs/wo.pdf"
+        "espanol": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": false,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Emerald-Downs",
@@ -203,7 +203,7 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Los-Alamitos-QH",
@@ -213,37 +213,37 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Monmouth-Park",
       "nombre": "Monmouth Park",
       "logo": "img/winner/hip22.webp",
       "revistas": {
-        "espanol": "pdfs/mth.pdf"
+        "espanol": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": false,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Saratoga",
       "nombre": "Saratoga",
       "logo": "img/winner/hip23.webp",
       "revistas": {
-        "espanol": "pdfs/sar.pdf"
+        "espanol": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": false,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Finger-Lakes",
       "nombre": "Finger Lakes",
       "logo": "img/winner/hip24.webp",
       "revistas": {
-        "espanol": "#"
+        "espanol": "pdfs/fl.pdf"
       },
-      "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": true,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "Canterbury",
@@ -253,27 +253,27 @@
         "espanol": "#"
       },
       "activo": false,
-      "ultimaActualizacion": "2026-07-26"
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "del-mar",
       "nombre": "Del Mar",
       "logo": "img/winner/hip26.webp",
       "revistas": {
-        "espanol": "pdfs/dmr.pdf"
+        "espanol": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": false,
+      "ultimaActualizacion": "2026-07-27"
     },
     {
       "id": "ellis-park",
       "nombre": "Ellis Park",
       "logo": "img/winner/hip27.webp",
       "revistas": {
-        "espanol": "pdfs/elp.pdf"
+        "espanol": "#"
       },
-      "activo": true,
-      "ultimaActualizacion": "2026-07-26"
+      "activo": false,
+      "ultimaActualizacion": "2026-07-27"
     }
   ]
 }
