@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-26T21:05:23.120363",
+    "ultima_actualizacion": "2026-07-27T03:53:37.261647",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "26 jul 2026"
+        "dia": "Lunes",
+        "fecha": "27 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -126,16 +126,16 @@
         "fecha": "26 jul 2026",
         "numeros": [
           0,
-          5,
-          1,
-          4,
-          6
+          9,
+          8,
+          3,
+          3
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "26 jul 2026"
+        "dia": "Lunes",
+        "fecha": "27 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -148,15 +148,15 @@
         "fecha": "26 jul 2026",
         "numeros": [
           9,
-          8,
-          2,
-          3
+          1,
+          1,
+          0
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "26 jul 2026"
+        "dia": "Lunes",
+        "fecha": "27 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "26 jul 2026",
         "numeros": [
-          9,
           0,
-          9
+          9,
+          7
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "26 jul 2026"
+        "dia": "Lunes",
+        "fecha": "27 jul 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "26 jul 2026",
         "numeros": [
           4,
-          3
+          8
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "26 jul 2026"
+        "dia": "Lunes",
+        "fecha": "27 jul 2026"
       },
       "bote": "50$"
     },
