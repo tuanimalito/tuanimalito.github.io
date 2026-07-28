@@ -661,6 +661,31 @@
             display: none;
         }
 
+        /* Estilos de la sección Premium */
+        @keyframes blinkGold {
+            0% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
+            50% { color: #fbbf24; text-shadow: 0 0 10px rgba(251, 191, 36, 0.8), 0 0 18px rgba(245, 158, 11, 0.6); }
+            100% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
+        }
+
+        .premium-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            color: #f1f5f9;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.15);
+        }
+
+        .premium-phone {
+            font-weight: 800;
+            font-size: 16px;
+            animation: blinkGold 1.5s infinite;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
             .mapa-zona-container {
                 flex-direction: column;
@@ -685,6 +710,9 @@
             .super-fijos-banner {
                 font-size: 11px;
                 padding: 12px;
+            }
+            .premium-phone {
+                font-size: 14px;
             }
         }
     </style>
@@ -817,7 +845,7 @@
                 </div>
                 <div style="margin-bottom: 20px;">
                     <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
-                    <div id="superFijos" style="background: white; border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0;"></div>
+                    <div id="superFijos" style="background: white; border-radius: 8px; padding: 0px; border: none;"></div>
                 </div>
             </div>
 
@@ -1223,28 +1251,33 @@
         }
 
         function actualizarSuperFijos() {
-            const semillas = calcularSemillas();
-            const arrastre = calcularArrastre();
-            const zona = calcularZonaFria();
-            const espejos = calcularEspejos();
-            const puntajes = {};
-            const numeros = [];
-            for (let i = config.min; i <= config.max; i++) numeros.push(i);
-            if (config.especiales.includes('00')) numeros.push(100);
-            numeros.forEach(n => {
-                let pts = 0;
-                if (semillas.includes(n)) pts += 10;
-                if (arrastre.includes(n)) pts += 8;
-                if (zona.numeros.includes(n)) pts += 6;
-                if (espejos.includes(n)) pts += 5;
-                if (pts > 0) puntajes[n] = pts;
-            });
-            const ranking = Object.entries(puntajes).map(([n,p]) => ({ numero: parseInt(n), puntaje: p })).sort((a,b) => b.puntaje - a.puntaje).slice(0,3);
             document.getElementById('superFijos').innerHTML = `
-                <div style="display:flex; gap:16px; justify-content:center;">
-                    ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px; cursor:pointer;" onclick="seleccionarNumero(${r.numero})">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Fijo ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
-                </div>
-                <div style="text-align:center; margin-top:12px; font-size:11px; color:#64748b;">Basado en Semillas, Arrastre, Zona Fría y Espejos</div>`;
+                <div class="premium-box">
+                    <div style="font-size: 28px; margin-bottom: 8px;">👑 🔒 👑</div>
+                    <h3 style="color: #f59e0b; font-size: 16px; margin-bottom: 8px; text-transform: uppercase;">
+                        Esta opción es Premium
+                    </h3>
+                    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
+                        Para ver los super fijos comunícate al 
+                        <a href="https://wa.me/584248671967" target="_blank" style="text-decoration: none;">
+                            <span class="premium-phone">+58 424 8671967</span>
+                        </a>
+                    </p>
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 15px; opacity: 0.6;">
+                        <div style="text-align: center;">
+                            <div class="number-badge king" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 1</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 2</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 3</div>
+                        </div>
+                    </div>
+                </div>`;
         }
 
         function seleccionarNumero(num) {
