@@ -227,6 +227,7 @@
             text-align: center;
             transition: transform 0.2s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
         }
 
         .numero-card:active {
@@ -347,7 +348,7 @@
             
             <!-- Título centrado -->
             <h1>Datos de Lotto Activo</h1>
-            <div class="sub">TENDENCIAS DE HOY (ANÁLISIS TÉCNICO).</div>
+            <div class="sub">TENDENCIAS DE HOY (ANÁLISIS PREMIUM).</div>
         </div>
 
         <script>
@@ -398,7 +399,7 @@
 
         <div class="seccion-datos">
             <div class="tarjeta-dato">
-                <h3>Super Fijos</h3>
+                <h3>Super Fijos (Premium)</h3>
                 <div id="resultado-contenido">
                     <div class="no-data">Cargando...</div>
                 </div>
@@ -418,7 +419,7 @@
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #666; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis de repeticiones entre los últimos 3 días, identificando patrones secuenciales en Loto Activo.</p>
+        <p>Nuestros <strong>Super Fijos Premium</strong> se seleccionan mediante un algoritmo avanzado de análisis probabilístico y matriz de repeticiones de los últimos 3 días en Loto Activo.</p>
     </div>
 
     <!-- Footer -->
@@ -530,14 +531,15 @@
                             ...procesarDia(dia1, 25)
                         ];
 
-                        const resultado = buscarRepeticion(todos);
+                        // Ejecutar la Lógica PREMIUM
+                        const resultado = buscarRepeticionPremium(todos);
                         
-                        if (resultado.encontrado) {
+                        if (resultado.encontrado && resultado.siguientes.length === 4) {
                             mostrarResultados(resultado.siguientes);
-                            actualizarStatus('✅ Actualizado');
+                            actualizarStatus('⚡ Pronóstico Premium Activo');
                         } else {
                             mostrarResultados([]);
-                            actualizarStatus('Sin repeticiones');
+                            actualizarStatus('Sin datos suficientes');
                         }
                     } catch (error) {
                         console.error('Error:', error);
@@ -546,67 +548,88 @@
                     }
                 }
 
-                // ===== NUEVA LÓGICA DE BÚSQUEDA (3 NIVELES JERÁRQUICOS) =====
-                function buscarRepeticion(resultados) {
-                    // Definir los niveles
-                    const niveles = {
-                        N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1', dias: 'Día 1 (Actual)' },
-                        N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], nombre: 'N2', dias: 'Día 2 (Intermedio)' },
-                        N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], nombre: 'N3', dias: 'Día 3 (Antiguo)' }
-                    };
-                    
-                    // Función auxiliar para buscar repeticiones entre dos niveles
-                    function buscarEnPares(nivelActual, nivelPasado) {
-                        // Recorrer cada posición del nivel actual (más reciente)
-                        for (let i = 0; i < nivelActual.indices.length; i++) {
-                            const idxActual = nivelActual.indices[i];
-                            const actual = resultados[idxActual];
-                            const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                            
-                            // Buscar ese mismo número en el nivel pasado
-                            for (let j = 0; j < nivelPasado.indices.length; j++) {
-                                const idxPasado = nivelPasado.indices[j];
-                                const pasado = resultados[idxPasado];
-                                const clavePasado = pasado.esDobleCero ? '00' : pasado.numero;
-                                
-                                // Si encontramos repetición
-                                if (claveActual === clavePasado) {
-                                    // Extraer los 4 números (repetición + 3 siguientes) desde la posición del nivel pasado
-                                    const siguientes = [pasado]; // empezamos con el número repetido
-                                    
-                                    for (let k = 1; k <= 3; k++) {
-                                        const sigIdx = idxPasado + k;
-                                        if (sigIdx < resultados.length && sigIdx < 36) {
-                                            siguientes.push(resultados[sigIdx]);
-                                        }
-                                    }
-                                    
-                                    // Si tenemos al menos el número repetido, devolvemos
-                                    if (siguientes.length > 0) {
-                                        return { encontrado: true, siguientes };
-                                    }
-                                }
-                            }
+                // ===== LÓGICA PREMIUM: SELECCIÓN EXCLUSIVA DE LAS 4 TARJETAS =====
+                function buscarRepeticionPremium(resultados) {
+                    const candidatosMap = new Map();
+
+                    // 1. Contar la frecuencia y dar peso según la reciencia (Día 1 tiene más peso)
+                    resultados.forEach((item) => {
+                        const clave = item.esDobleCero ? '00' : String(item.numero);
+                        let pesoReciencia = item.casilla >= 25 ? 3 : (item.casilla >= 13 ? 2 : 1);
+
+                        if (!candidatosMap.has(clave)) {
+                            candidatosMap.set(clave, {
+                                item: item,
+                                frecuencia: 1,
+                                score: pesoReciencia,
+                                casillas: [item.casilla]
+                            });
+                        } else {
+                            const actual = candidatosMap.get(clave);
+                            actual.frecuencia += 1;
+                            actual.score += pesoReciencia * 2; // Bonificación extra por repetición
+                            actual.casillas.push(item.casilla);
                         }
-                        return { encontrado: false, siguientes: [] };
+                    });
+
+                    // 2. Extraer proyecciones de secuencia (siguiente número tras una repetición)
+                    const proyecciones = [];
+                    for (let i = 0; i < resultados.length - 1; i++) {
+                        const claveActual = resultados[i].esDobleCero ? '00' : String(resultados[i].numero);
+                        const datos = candidatosMap.get(claveActual);
+
+                        if (datos && datos.frecuencia > 1) {
+                            // Si el número se repite, el elemento inmediatamente posterior es un fuerte candidato
+                            const siguiente = resultados[i + 1];
+                            proyecciones.push(siguiente);
+                        }
                     }
-                    
-                    // ORDEN DE PRIORIDAD:
-                    
-                    // 1️⃣ N1 vs N2 (prioridad máxima)
-                    let resultado = buscarEnPares(niveles.N1, niveles.N2);
-                    if (resultado.encontrado) return resultado;
-                    
-                    // 2️⃣ N1 vs N3
-                    resultado = buscarEnPares(niveles.N1, niveles.N3);
-                    if (resultado.encontrado) return resultado;
-                    
-                    // 3️⃣ N2 vs N3 (última opción)
-                    resultado = buscarEnPares(niveles.N2, niveles.N3);
-                    if (resultado.encontrado) return resultado;
-                    
-                    // No se encontró ninguna repetición
-                    return { encontrado: false, siguientes: [] };
+
+                    // 3. Crear el array final priorizado de exactamente 4 tarjetas
+                    let seleccionados = [];
+                    let clavesAgregadas = new Set();
+
+                    // Prioridad A: Proyecciones derivadas de repeticiones
+                    for (let proj of proyecciones) {
+                        const c = proj.esDobleCero ? '00' : String(proj.numero);
+                        if (!clavesAgregadas.has(c)) {
+                            seleccionados.push(proj);
+                            clavesAgregadas.add(c);
+                        }
+                        if (seleccionados.length === 4) break;
+                    }
+
+                    // Prioridad B: Si faltan, ordenar la totalidad de números por Score/Frecuencia
+                    if (seleccionados.length < 4) {
+                        const ordenados = Array.from(candidatosMap.values()).sort((a, b) => b.score - a.score);
+
+                        for (let cand of ordenados) {
+                            const c = cand.item.esDobleCero ? '00' : String(cand.item.numero);
+                            if (!clavesAgregadas.has(c)) {
+                                seleccionados.push(cand.item);
+                                clavesAgregadas.add(c);
+                            }
+                            if (seleccionados.length === 4) break;
+                        }
+                    }
+
+                    // Prioridad C: Relleno de seguridad con las casillas más recientes (Día 1)
+                    if (seleccionados.length < 4) {
+                        for (let i = resultados.length - 1; i >= 0; i--) {
+                            const item = resultados[i];
+                            const c = item.esDobleCero ? '00' : String(item.numero);
+                            if (!clavesAgregadas.has(c)) {
+                                seleccionados.push(item);
+                                clavesAgregadas.add(c);
+                            }
+                            if (seleccionados.length === 4) break;
+                        }
+                    }
+
+                    return {
+                        encontrado: seleccionados.length === 4,
+                        siguientes: seleccionados.slice(0, 4)
+                    };
                 }
 
                 function mostrarResultados(siguientes) {
