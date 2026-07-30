@@ -644,6 +644,130 @@
             display: none;
         }
 
+        /* ESTILOS DE BLOQUEO PREMIUM */
+        .premium-locked-wrapper {
+            position: relative;
+            min-height: 450px;
+        }
+
+        .locked-blur {
+            filter: blur(8px) opacity(0.4);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .premium-lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 15px;
+        }
+
+        .premium-lock-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 25px 20px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            animation: pulseBorder 3s infinite alternate;
+        }
+
+        @keyframes pulseBorder {
+            0% { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+            100% { border-color: #fbbf24; box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+        }
+
+        .premium-lock-card .icon-badge {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .premium-lock-card h3 {
+            color: #f1f5f9;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .premium-lock-card p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        .premium-lock-card .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .premium-lock-card input[type="text"] {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .premium-lock-card input[type="text"]:focus {
+            border-color: #f59e0b;
+        }
+
+        .premium-lock-card .btn-unlock {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .premium-lock-card .btn-unlock:hover {
+            transform: scale(1.03);
+        }
+
+        .premium-lock-card .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 11px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: opacity 0.2s;
+        }
+
+        .premium-lock-card .btn-whatsapp:hover {
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
             .mapa-zona-container {
                 flex-direction: column;
@@ -774,33 +898,53 @@
                 <p>Obteniendo información del JSON</p>
             </div>
 
-            <div id="results" class="hidden">
-                <div class="mapa-zona-container">
-                    <div class="heatmap-section">
-                        <h2>🔥 <small>Mapa de Calor Dinámico (1-38)</small></h2>
-                        <div id="heatmap" class="heatmap-grid"></div>
+            <div class="premium-locked-wrapper">
+                <div id="results" class="hidden">
+                    <div class="mapa-zona-container">
+                        <div class="heatmap-section">
+                            <h2>🔥 <small>Mapa de Calor Dinámico (1-38)</small></h2>
+                            <div id="heatmap" class="heatmap-grid"></div>
+                        </div>
+                        <div id="zonaFriaRealTime" class="zona-fria-section"></div>
                     </div>
-                    <div id="zonaFriaRealTime" class="zona-fria-section"></div>
-                </div>
-                <div id="numberInfo"></div>
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; margin-bottom: 8px;">📊 TOP 10 <span id="kingIndicator"></span></h2>
-                    <div class="table-container">
-                        <table id="top10Table">
-                            <thead>
-                                <tr><th>#</th><th>N°</th><th>F</th><th>Últ</th><th>Est</th><th>Mad</th><th>Acomp</th></tr>
-                            </thead>
-                            <tbody id="top10Body"></tbody>
-                        </table>
+                    <div id="numberInfo"></div>
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 16px; margin-bottom: 8px;">📊 TOP 10 <span id="kingIndicator"></span></h2>
+                        <div class="table-container">
+                            <table id="top10Table">
+                                <thead>
+                                    <tr><th>#</th><th>N°</th><th>F</th><th>Últ</th><th>Est</th><th>Mad</th><th>Acomp</th></tr>
+                                </thead>
+                                <tbody id="top10Body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 16px; margin-bottom: 8px;">🎲 Probabilidades para Hoy</h2>
+                        <div class="stats-grid" id="probabilidadesStats"></div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
+                        <div id="superFijos" style="background: white; border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0;"></div>
                     </div>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; margin-bottom: 8px;">🎲 Probabilidades para Hoy</h2>
-                    <div class="stats-grid" id="probabilidadesStats"></div>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
-                    <div id="superFijos" style="background: white; border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0;"></div>
+
+                <!-- OVERLAY DE BLOQUEO PREMIUM -->
+                <div id="premiumOverlay" class="premium-lock-overlay hidden">
+                    <div class="premium-lock-card">
+                        <div class="icon-badge">👑</div>
+                        <h3>Módulo Premium Exclusivo</h3>
+                        <p>Acceda a las analíticas en tiempo real, mapas de calor dinámicos y algoritmos de proyección para Granja Millonaria.</p>
+                        
+                        <div class="input-group">
+                            <input type="text" id="licenseKeyInput" placeholder="CLAVE DE ACTIVACIÓN" autocomplete="off">
+                            <button class="btn-unlock" onclick="desbloquearConClave()">Activar</button>
+                        </div>
+                        
+                        <a href="https://wa.me/584120000000?text=Hola,%20deseo%20adquirir%20mi%20clave%20de%20acceso%20Premium%20para%20Granja%20Millonaria" target="_blank" class="btn-whatsapp">
+                            <i class="bi bi-whatsapp"></i> Obtener Acceso VIP
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -861,7 +1005,39 @@
             })();
             setInterval(function() { console.clear(); }, 1000);
         })();
-        
+
+        // ==================== LÓGICA DE LICENCIA Y BLOQUEO PREMIUM ====================
+        const LICENCIA_KEY_GRANJA = 'granja_premium_access';
+        const VALID_KEY_GRANJA = 'GM-STAT-2026-OK';
+        const PROMO_KEY = 'PROMO-GSM-2026';
+
+        function verificarAccesoPremium() {
+            const hasAccess = localStorage.getItem(LICENCIA_KEY_GRANJA);
+            const results = document.getElementById('results');
+            const overlay = document.getElementById('premiumOverlay');
+
+            if (hasAccess === 'true') {
+                results.classList.remove('locked-blur');
+                overlay.classList.add('hidden');
+            } else {
+                results.classList.add('locked-blur');
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        function desbloquearConClave() {
+            const input = document.getElementById('licenseKeyInput');
+            const key = input ? input.value.trim().toUpperCase() : '';
+
+            if (key === VALID_KEY_GRANJA || key === PROMO_KEY) {
+                localStorage.setItem(LICENCIA_KEY_GRANJA, 'true');
+                verificarAccesoPremium();
+                alert('¡Suscripción Activada Exitosamente!');
+            } else {
+                alert('Clave de activación inválida. Contacte al soporte vía WhatsApp para adquirir su pase VIP.');
+            }
+        }
+
         // ==================== CONFIGURACIÓN ====================
         const JSON_URL = 'data/granja.json';
         
@@ -1286,6 +1462,9 @@
                 actualizarSuperFijos();
                 document.getElementById('zonaFriaRealTime').innerHTML = mostrarZonaFriaTiempoReal();
                 
+                // Ejecutar verificación de Premium al cargar correctamente
+                verificarAccesoPremium();
+
             } catch (error) {
                 console.error('❌ Error detallado:', error);
                 errorDiv.innerHTML = `❌ Error: ${error.message}`;
@@ -1296,6 +1475,7 @@
         }
 
         window.seleccionarNumero = seleccionarNumero;
+        window.desbloquearConClave = desbloquearConClave;
         cargarDatos();
     </script>
 </body>
