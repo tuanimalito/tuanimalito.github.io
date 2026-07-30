@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-30T09:35:10.651126",
+    "ultima_actualizacion": "2026-07-30T16:42:24.182952",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "29 jul 2026",
+        "dia": "Jueves",
+        "fecha": "30 jul 2026",
         "numeros": [
-          13
+          2
         ],
         "numero_extra": null
       },
