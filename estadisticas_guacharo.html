@@ -28,6 +28,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="google-adsense-account" content="ca-pub-7995132393364853">
     
     <style>
         * {
@@ -270,90 +271,6 @@
             font-weight: 800;
         }
 
-        /* ESTILOS PREMIUM PARA SUPER FIJOS */
-        .premium-wrapper {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: white;
-            border: 1px solid #e2e8f0;
-            padding: 16px;
-        }
-
-        .premium-blur {
-            filter: blur(8px);
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(4px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .premium-badge {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            font-weight: 800;
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-        }
-
-        .premium-overlay h4 {
-            font-size: 1.1rem;
-            color: #0f172a;
-            margin-bottom: 4px;
-            font-weight: 800;
-        }
-
-        .premium-overlay p {
-            font-size: 0.85rem;
-            color: #475569;
-            margin-bottom: 12px;
-            max-width: 320px;
-            line-height: 1.3;
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .btn-whatsapp:hover {
-            transform: scale(1.03);
-        }
-
-        .btn-whatsapp:active {
-            transform: scale(0.96);
-        }
-
         .empty-state {
             text-align: center;
             padding: 60px 40px;
@@ -406,6 +323,16 @@
         .stat-sub {
             font-size: 11px;
             color: #64748b;
+        }
+
+        .ad-container {
+            max-width: 1800px;
+            width: 100%;
+            margin: 15px auto;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
         }
 
         .heatmap-section {
@@ -741,6 +668,31 @@
             display: none;
         }
 
+        /* Estilos de la sección Premium */
+        @keyframes blinkGold {
+            0% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
+            50% { color: #fbbf24; text-shadow: 0 0 10px rgba(251, 191, 36, 0.8), 0 0 18px rgba(245, 158, 11, 0.6); }
+            100% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
+        }
+
+        .premium-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            color: #f1f5f9;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.15);
+        }
+
+        .premium-phone {
+            font-weight: 800;
+            font-size: 16px;
+            animation: blinkGold 1.5s infinite;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
             .mapa-zona-container {
                 flex-direction: column;
@@ -765,6 +717,9 @@
             .super-fijos-banner {
                 font-size: 11px;
                 padding: 12px;
+            }
+            .premium-phone {
+                font-size: 14px;
             }
         }
     </style>
@@ -853,6 +808,16 @@
                 🌟 <strong>Nuestros Super Fijos</strong> se generan mediante un algoritmo de análisis de los últimos 30 días (360 sorteos), identificando tendencias en <span class="highlight">✅ Guácharo Activo</span>.
             </div>
 
+            <div class="ad-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                    crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+                    data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
             <div id="errorMessage" class="error-message hidden"></div>
 
             <div id="emptyState" class="empty-state">
@@ -885,27 +850,20 @@
                     <h2 style="font-size: 16px; margin-bottom: 8px;">🎲 Probabilidades para Hoy</h2>
                     <div class="stats-grid" id="probabilidadesStats"></div>
                 </div>
-
-                <!-- SECCIÓN SUPER FIJOS (REDISEÑADA A PREMIUM) -->
                 <div style="margin-bottom: 20px;">
                     <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
-                    <div class="premium-wrapper">
-                        <!-- Capa de bloqueo sobre los resultados -->
-                        <div class="premium-overlay">
-                            <div class="premium-badge"><i class="bi bi-star-fill"></i> Exclusivo Premium</div>
-                            <h4>Pronósticos VIP Bloqueados</h4>
-                            <p>Obtén el acceso directo a la jugada con mayor tasa de acierto para hoy.</p>
-                            <a href="https://wa.me/580000000000?text=Hola,%20deseo%20desbloquear%20los%20Super%20Fijos%20Premium%20de%20Guacharo%20Activo" 
-                               target="_blank" 
-                               class="btn-whatsapp">
-                                <i class="bi bi-whatsapp"></i> Desbloquear por WhatsApp
-                            </a>
-                        </div>
-                        
-                        <!-- Contenido desenfocado -->
-                        <div id="superFijos" class="premium-blur"></div>
-                    </div>
+                    <div id="superFijos" style="background: white; border-radius: 8px; padding: 0px; border: none;"></div>
                 </div>
+            </div>
+
+            <div class="ad-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+                    crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+                    data-ad-slot="8481248642" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
 
@@ -920,6 +878,16 @@
                 <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
             </div>
         </footer>
+    </div>
+
+    <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+            crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+            data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <script>
@@ -1315,29 +1283,35 @@
             `;
         }
 
+        /* Reemplazado para aplicar el Bloqueo Premium de estadisticas_loto */
         function actualizarSuperFijos() {
-            const semillas = calcularSemillas();
-            const arrastre = calcularArrastre();
-            const zona = calcularZonaFria();
-            const espejos = calcularEspejos();
-            const puntajes = {};
-            const numeros = [];
-            for (let i = config.min; i <= config.max; i++) numeros.push(i);
-            if (config.especiales.includes('00')) numeros.push(100);
-            numeros.forEach(n => {
-                let pts = 0;
-                if (semillas.includes(n)) pts += 10;
-                if (arrastre.includes(n)) pts += 8;
-                if (zona.numeros.includes(n)) pts += 6;
-                if (espejos.includes(n)) pts += 5;
-                if (pts > 0) puntajes[n] = pts;
-            });
-            const ranking = Object.entries(puntajes).map(([n,p]) => ({ numero: parseInt(n), puntaje: p })).sort((a,b) => b.puntaje - a.puntaje).slice(0,3);
             document.getElementById('superFijos').innerHTML = `
-                <div style="display:flex; gap:16px; justify-content:center;">
-                    ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px;">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Fijo ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
-                </div>
-                <div style="text-align:center; margin-top:12px; font-size:11px; color:#64748b;">Basado en Semillas, Arrastre, Zona Fría y Espejos</div>`;
+                <div class="premium-box">
+                    <div style="font-size: 28px; margin-bottom: 8px;">👑 🔒 👑</div>
+                    <h3 style="color: #f59e0b; font-size: 16px; margin-bottom: 8px; text-transform: uppercase;">
+                        Esta opción es Premium
+                    </h3>
+                    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
+                        Para ver los super fijos comunícate al 
+                        <a href="https://wa.me/584248671967" target="_blank" style="text-decoration: none;">
+                            <span class="premium-phone">+58 424 8671967</span>
+                        </a>
+                    </p>
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 15px; opacity: 0.6;">
+                        <div style="text-align: center;">
+                            <div class="number-badge king" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 1</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 2</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 3</div>
+                        </div>
+                    </div>
+                </div>`;
         }
 
         function seleccionarNumero(num) {
