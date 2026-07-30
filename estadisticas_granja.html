@@ -644,128 +644,29 @@
             display: none;
         }
 
-        /* ESTILOS DE BLOQUEO PREMIUM */
-        .premium-locked-wrapper {
-            position: relative;
-            min-height: 450px;
+        /* Estilos de la sección Premium */
+        @keyframes blinkGold {
+            0% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
+            50% { color: #fbbf24; text-shadow: 0 0 10px rgba(251, 191, 36, 0.8), 0 0 18px rgba(245, 158, 11, 0.6); }
+            100% { color: #d97706; text-shadow: 0 0 2px rgba(245, 158, 11, 0.2); }
         }
 
-        .locked-blur {
-            filter: blur(8px) opacity(0.4);
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .premium-lock-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-            padding: 15px;
-        }
-
-        .premium-lock-card {
-            background: rgba(15, 23, 42, 0.95);
+        .premium-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 2px solid #f59e0b;
-            border-radius: 20px;
-            padding: 25px 20px;
-            max-width: 420px;
-            width: 100%;
+            border-radius: 12px;
+            padding: 24px 16px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            color: #ffffff;
-            animation: pulseBorder 3s infinite alternate;
-        }
-
-        @keyframes pulseBorder {
-            0% { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
-            100% { border-color: #fbbf24; box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
-        }
-
-        .premium-lock-card .icon-badge {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .premium-lock-card h3 {
             color: #f1f5f9;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.15);
         }
 
-        .premium-lock-card p {
-            color: #94a3b8;
-            font-size: 13px;
-            margin-bottom: 18px;
-            line-height: 1.4;
-        }
-
-        .premium-lock-card .input-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .premium-lock-card input[type="text"] {
-            flex: 1;
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            background: #1e293b;
-            color: #ffffff;
-            font-size: 13px;
-            outline: none;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .premium-lock-card input[type="text"]:focus {
-            border-color: #f59e0b;
-        }
-
-        .premium-lock-card .btn-unlock {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .premium-lock-card .btn-unlock:hover {
-            transform: scale(1.03);
-        }
-
-        .premium-lock-card .btn-whatsapp {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 11px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 13px;
-            transition: opacity 0.2s;
-        }
-
-        .premium-lock-card .btn-whatsapp:hover {
-            opacity: 0.9;
+        .premium-phone {
+            font-weight: 800;
+            font-size: 16px;
+            animation: blinkGold 1.5s infinite;
+            display: inline-block;
+            letter-spacing: 0.5px;
         }
 
         @media (max-width: 768px) {
@@ -792,6 +693,9 @@
             .super-fijos-banner {
                 font-size: 11px;
                 padding: 12px;
+            }
+            .premium-phone {
+                font-size: 14px;
             }
         }
     </style>
@@ -898,53 +802,33 @@
                 <p>Obteniendo información del JSON</p>
             </div>
 
-            <div class="premium-locked-wrapper">
-                <div id="results" class="hidden">
-                    <div class="mapa-zona-container">
-                        <div class="heatmap-section">
-                            <h2>🔥 <small>Mapa de Calor Dinámico (1-38)</small></h2>
-                            <div id="heatmap" class="heatmap-grid"></div>
-                        </div>
-                        <div id="zonaFriaRealTime" class="zona-fria-section"></div>
+            <div id="results" class="hidden">
+                <div class="mapa-zona-container">
+                    <div class="heatmap-section">
+                        <h2>🔥 <small>Mapa de Calor Dinámico (1-38)</small></h2>
+                        <div id="heatmap" class="heatmap-grid"></div>
                     </div>
-                    <div id="numberInfo"></div>
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 16px; margin-bottom: 8px;">📊 TOP 10 <span id="kingIndicator"></span></h2>
-                        <div class="table-container">
-                            <table id="top10Table">
-                                <thead>
-                                    <tr><th>#</th><th>N°</th><th>F</th><th>Últ</th><th>Est</th><th>Mad</th><th>Acomp</th></tr>
-                                </thead>
-                                <tbody id="top10Body"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 16px; margin-bottom: 8px;">🎲 Probabilidades para Hoy</h2>
-                        <div class="stats-grid" id="probabilidadesStats"></div>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
-                        <div id="superFijos" style="background: white; border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0;"></div>
+                    <div id="zonaFriaRealTime" class="zona-fria-section"></div>
+                </div>
+                <div id="numberInfo"></div>
+                <div style="margin-bottom: 20px;">
+                    <h2 style="font-size: 16px; margin-bottom: 8px;">📊 TOP 10 <span id="kingIndicator"></span></h2>
+                    <div class="table-container">
+                        <table id="top10Table">
+                            <thead>
+                                <tr><th>#</th><th>N°</th><th>F</th><th>Últ</th><th>Est</th><th>Mad</th><th>Acomp</th></tr>
+                            </thead>
+                            <tbody id="top10Body"></tbody>
+                        </table>
                     </div>
                 </div>
-
-                <!-- OVERLAY DE BLOQUEO PREMIUM -->
-                <div id="premiumOverlay" class="premium-lock-overlay hidden">
-                    <div class="premium-lock-card">
-                        <div class="icon-badge">👑</div>
-                        <h3>Módulo Premium Exclusivo</h3>
-                        <p>Acceda a las analíticas en tiempo real, mapas de calor dinámicos y algoritmos de proyección para Granja Millonaria.</p>
-                        
-                        <div class="input-group">
-                            <input type="text" id="licenseKeyInput" placeholder="CLAVE DE ACTIVACIÓN" autocomplete="off">
-                            <button class="btn-unlock" onclick="desbloquearConClave()">Activar</button>
-                        </div>
-                        
-                        <a href="https://wa.me/584120000000?text=Hola,%20deseo%20adquirir%20mi%20clave%20de%20acceso%20Premium%20para%20Granja%20Millonaria" target="_blank" class="btn-whatsapp">
-                            <i class="bi bi-whatsapp"></i> Obtener Acceso VIP
-                        </a>
-                    </div>
+                <div style="margin-bottom: 20px;">
+                    <h2 style="font-size: 16px; margin-bottom: 8px;">🎲 Probabilidades para Hoy</h2>
+                    <div class="stats-grid" id="probabilidadesStats"></div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <h2 style="font-size: 16px; margin-bottom: 8px;">⚡ Super Fijos</h2>
+                    <div id="superFijos" style="background: white; border-radius: 8px; padding: 0px; border: none;"></div>
                 </div>
             </div>
 
@@ -1005,39 +889,7 @@
             })();
             setInterval(function() { console.clear(); }, 1000);
         })();
-
-        // ==================== LÓGICA DE LICENCIA Y BLOQUEO PREMIUM ====================
-        const LICENCIA_KEY_GRANJA = 'granja_premium_access';
-        const VALID_KEY_GRANJA = 'GM-STAT-2026-OK';
-        const PROMO_KEY = 'PROMO-GSM-2026';
-
-        function verificarAccesoPremium() {
-            const hasAccess = localStorage.getItem(LICENCIA_KEY_GRANJA);
-            const results = document.getElementById('results');
-            const overlay = document.getElementById('premiumOverlay');
-
-            if (hasAccess === 'true') {
-                results.classList.remove('locked-blur');
-                overlay.classList.add('hidden');
-            } else {
-                results.classList.add('locked-blur');
-                overlay.classList.remove('hidden');
-            }
-        }
-
-        function desbloquearConClave() {
-            const input = document.getElementById('licenseKeyInput');
-            const key = input ? input.value.trim().toUpperCase() : '';
-
-            if (key === VALID_KEY_GRANJA || key === PROMO_KEY) {
-                localStorage.setItem(LICENCIA_KEY_GRANJA, 'true');
-                verificarAccesoPremium();
-                alert('¡Suscripción Activada Exitosamente!');
-            } else {
-                alert('Clave de activación inválida. Contacte al soporte vía WhatsApp para adquirir su pase VIP.');
-            }
-        }
-
+        
         // ==================== CONFIGURACIÓN ====================
         const JSON_URL = 'data/granja.json';
         
@@ -1350,27 +1202,33 @@
         }
 
         function actualizarSuperFijos() {
-            const semillas = calcularSemillas();
-            const arrastre = calcularArrastre();
-            const zona = calcularZonaFria();
-            const espejos = calcularEspejos();
-            const puntajes = {};
-            const numeros = [];
-            for (let i = config.min; i <= config.max; i++) numeros.push(i);
-            numeros.forEach(n => {
-                let pts = 0;
-                if (semillas.includes(n)) pts += 10;
-                if (arrastre.includes(n)) pts += 8;
-                if (zona.numeros.includes(n)) pts += 6;
-                if (espejos.includes(n)) pts += 5;
-                if (pts > 0) puntajes[n] = pts;
-            });
-            const ranking = Object.entries(puntajes).map(([n,p]) => ({ numero: parseInt(n), puntaje: p })).sort((a,b) => b.puntaje - a.puntaje).slice(0,3);
             document.getElementById('superFijos').innerHTML = `
-                <div style="display:flex; gap:16px; justify-content:center;">
-                    ${ranking.map((r,i) => `<div style="text-align:center;"><div class="number-badge ${i===0?'king':''}" style="width:40px; height:40px; cursor:pointer;" onclick="seleccionarNumero(${r.numero})">${formatearNumero(r.numero)}</div><div style="font-size:11px; margin-top:4px;">Fijo ${i+1}</div><div style="font-size:10px; color:#64748b;">${r.puntaje} pts</div></div>`).join('')}
-                </div>
-                <div style="text-align:center; margin-top:12px; font-size:11px; color:#64748b;">Basado en Semillas, Arrastre, Zona Fría y Espejos</div>`;
+                <div class="premium-box">
+                    <div style="font-size: 28px; margin-bottom: 8px;">👑 🔒 👑</div>
+                    <h3 style="color: #f59e0b; font-size: 16px; margin-bottom: 8px; text-transform: uppercase;">
+                        Esta opción es Premium
+                    </h3>
+                    <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
+                        Para ver los super fijos comunícate al 
+                        <a href="https://wa.me/584248671967" target="_blank" style="text-decoration: none;">
+                            <span class="premium-phone">+58 424 8671967</span>
+                        </a>
+                    </p>
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 15px; opacity: 0.6;">
+                        <div style="text-align: center;">
+                            <div class="number-badge king" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 1</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 2</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="number-badge" style="width: 40px; height: 40px; filter: blur(3px);">?</div>
+                            <div style="font-size: 11px; margin-top: 4px; color: #94a3b8;">Fijo 3</div>
+                        </div>
+                    </div>
+                </div>`;
         }
 
         function seleccionarNumero(num) {
@@ -1462,9 +1320,6 @@
                 actualizarSuperFijos();
                 document.getElementById('zonaFriaRealTime').innerHTML = mostrarZonaFriaTiempoReal();
                 
-                // Ejecutar verificación de Premium al cargar correctamente
-                verificarAccesoPremium();
-
             } catch (error) {
                 console.error('❌ Error detallado:', error);
                 errorDiv.innerHTML = `❌ Error: ${error.message}`;
@@ -1475,7 +1330,6 @@
         }
 
         window.seleccionarNumero = seleccionarNumero;
-        window.desbloquearConClave = desbloquearConClave;
         cargarDatos();
     </script>
 </body>
