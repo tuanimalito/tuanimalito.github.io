@@ -83,7 +83,7 @@
             margin: 0 auto;
         }
 
-        /* ✅ MENÚ MEJORADO PARA MÓVIL */
+        /* MENÚ MEJORADO PARA MÓVIL */
         .menu-container {
             position: absolute;
             top: 15px;
@@ -203,6 +203,7 @@
             border-radius: 24px;
             padding: 20px 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
         }
 
         .tarjeta-dato h3 {
@@ -213,7 +214,93 @@
             font-weight: 700;
         }
 
-        /* ✅ SUPER FIJOS EN 2 FILAS DE 2 PARA MÓVIL */
+        /* ===== ESTILOS PREMIUM ===== */
+        .premium-wrapper {
+            position: relative;
+            min-height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .premium-blur {
+            filter: blur(10px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            color: #744210;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(253, 160, 133, 0.4);
+        }
+
+        .premium-overlay h4 {
+            font-size: 1.3rem;
+            color: #1a202c;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .premium-overlay p {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            max-width: 320px;
+            line-height: 1.4;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.3rem;
+        }
+
+        /* ===== SUPER FIJOS EN GRID ===== */
         .numeros-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -226,13 +313,7 @@
             border-radius: 20px;
             padding: 15px 10px;
             text-align: center;
-            transition: transform 0.2s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .numero-card:active {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .numero-card .numero {
@@ -310,12 +391,6 @@
             font-weight: 600;
         }
 
-        .footer .credits a {
-            color: #a0aec0;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -330,7 +405,7 @@
 <body>
     <div class="tarjeta">
         <div class="cabecera">
-            <!-- ✅ MENÚ MEJORADO PARA MÓVIL -->
+            <!-- MENÚ MEJORADO PARA MÓVIL -->
             <div class="menu-container">
                 <button class="menu-button" id="menuButton">
                     <i class="bi bi-grid"></i>
@@ -347,12 +422,12 @@
             </div>
             
             <!-- Título centrado -->
-          <h1>Datos de Guacharo Activo</h1>
-          <div class="sub">TENDENCIAS DE HOY (ANÁLISIS TÉCNICO).</div>
+            <h1>Datos de Guacharo Activo</h1>
+            <div class="sub">TENDENCIAS DE HOY (ANÁLISIS TÉCNICO).</div>
         </div>
 
         <script>
-            // ✅ MENÚ MEJORADO CON TOUCH
+            // MENÚ MEJORADO CON TOUCH
             (function() {
                 const menuBtn = document.getElementById('menuButton');
                 const menuDropdown = document.getElementById('menuDropdown');
@@ -398,14 +473,27 @@
         <div class="seccion-datos">
             <div class="tarjeta-dato">
                 <h3>Super Fijos</h3>
-                <div id="resultado-contenido">
-                    <div class="no-data">Cargando...</div>
+
+                <!-- CONTENEDOR CON CAPA PREMIUM -->
+                <div class="premium-wrapper" id="premiumContainer">
+                    <!-- Overlay Premium -->
+                    <div class="premium-overlay" id="premiumOverlay">
+                        <div class="premium-badge"><i class="bi bi-star-fill"></i> Exclusivo Premium</div>
+                        <h4>Pronóstico VIP Bloqueado</h4>
+                        <p>Obtén acceso inmediato a las jugadas de mayor probabilidad de hoy.</p>
+                        <a href="https://wa.me/580000000000?text=Hola,%20deseo%20desbloquear%20los%20Super%20Fijos%20Premium%20de%20Guacharo%20Activo" 
+                           target="_blank" 
+                           class="btn-whatsapp">
+                            <i class="bi bi-whatsapp"></i> Contactar por WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Contenido enmascarado/difuminado -->
+                    <div id="resultado-contenido" class="premium-blur">
+                        <div class="no-data">Cargando pronósticos...</div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div id="resultado-contenido">
-            <div class="no-data">Consultando los últimos fijos de Guacharo Activo...</div>
         </div>
 
         <!-- Anuncio inferior -->
@@ -429,193 +517,193 @@
         <div class="social-links">
             <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
                 class="bi bi-facebook"></i></a>
-                <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
-                    class="bi bi-tiktok"></i></a>
-                    <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
-                        class="bi bi-instagram"></i></a>
-                    </div>
-                    <div class="copyright">
-                        &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
-                        <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank"
-                        rel="noopener noreferrer">alexandermata834@gmail.com</a>
-                    </div>
-                </footer>
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
+                class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
+                class="bi bi-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Dr.animalitos</span></strong>. All Rights Reserved
+            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank"
+            rel="noopener noreferrer">alexandermata834@gmail.com</a>
+        </div>
+    </footer>
 
-                <script>
+    <script>
         // ===== SEGURIDAD =====
-                    document.addEventListener('contextmenu', e => e.preventDefault());
-                    document.addEventListener('keydown', function(e) {
-                        if (e.keyCode === 123 || 
-                            (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-                            (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-                            (e.ctrlKey && e.keyCode === 85)) {
-                            e.preventDefault();
-                    }
-                });
-                    (function detectDevTools() {
-                        const element = new Image();
-                        Object.defineProperty(element, 'id', {
-                            get: function() { console.clear(); }
-                        });
-                        console.log(element);
-                    })();
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+        (function detectDevTools() {
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() { console.clear(); }
+            });
+            console.log(element);
+        })();
 
         // ===== CONFIGURACIÓN =====
-                    const JSON_URL = 'data/guacharo.json';
+        const JSON_URL = 'data/guacharo.json';
 
-                    const animales = {
-                        '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
-                        4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
-                        9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
-                        14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
-                        19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
-                        24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
-                        29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
-                        34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
-                        39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
-                        44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
-                        49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
-                        54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
-                        59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
-                        64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
-                        69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
-                        74: 'turpial', 75: 'guácharo'
-                    };
+        const animales = {
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
+            39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
+            44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
+            49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
+            54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
+            59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
+            64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
+            69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
+            74: 'turpial', 75: 'guácharo'
+        };
 
-                    function obtenerRutaImagen(numero, esDobleCero = false) {
-                        if (esDobleCero) return 'animalitos/animalitos_guacharo/00.png';
-                        if (numero === 0) return 'animalitos/animalitos_guacharo/0.png';
-                        return `animalitos/animalitos_guacharo/${numero}.png`;
+        function obtenerRutaImagen(numero, esDobleCero = false) {
+            if (esDobleCero) return 'animalitos/animalitos_guacharo/00.png';
+            if (numero === 0) return 'animalitos/animalitos_guacharo/0.png';
+            return `animalitos/animalitos_guacharo/${numero}.png`;
+        }
+
+        function mostrarFecha() {
+            const hoy = new Date();
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+
+        function actualizarStatus(mensaje) {
+            document.getElementById('statusBar').innerHTML = mensaje;
+        }
+
+        async function cargarResultados() {
+            try {
+                actualizarStatus('🔄 Cargando...');
+                const response = await fetch(JSON_URL + '?t=' + Date.now());
+                const data = await response.json();
+
+                if (!data.resultados || data.resultados.length !== 3) {
+                    actualizarStatus('❌ Error de datos');
+                    mostrarResultados([]);
+                    return;
+                }
+
+                const [dia3, dia2, dia1] = data.resultados;
+
+                const procesarDia = (dia, inicioCasilla) => {
+                    return dia.map((num, idx) => {
+                        const esDobleCero = num === "00";
+                        return {
+                            numero: esDobleCero ? 0 : num,
+                            esDobleCero: esDobleCero,
+                            casilla: idx + inicioCasilla
+                        };
+                    });
+                };
+
+                const todos = [
+                    ...procesarDia(dia3, 1),
+                    ...procesarDia(dia2, 13),
+                    ...procesarDia(dia1, 25)
+                ];
+
+                const resultado = buscarRepeticion(todos);
+
+                if (resultado.encontrado) {
+                    mostrarResultados(resultado.siguientes);
+                    actualizarStatus('✅ Actualizado');
+                } else {
+                    mostrarResultados([]);
+                    actualizarStatus('Sin repeticiones');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarResultados([]);
+                actualizarStatus('❌ Error');
+            }
+        }
+
+        function buscarRepeticion(resultados) {
+            const mapa = new Map();
+
+            resultados.forEach(r => {
+                const clave = r.esDobleCero ? '00' : r.numero;
+                if (!mapa.has(clave)) mapa.set(clave, []);
+                mapa.get(clave).push(r);
+            });
+
+            for (let i = 24; i < 36; i++) {
+                const actual = resultados[i];
+                const claveActual = actual.esDobleCero ? '00' : actual.numero;
+                const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
+
+                if (repeticiones.length > 0) {
+                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
+                    const siguientes = [];
+
+                    for (let j = 1; j <= 4; j++) {
+                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
+                        if (sig) siguientes.push(sig);
                     }
 
-                    function mostrarFecha() {
-                        const hoy = new Date();
-                        document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
-                            year: 'numeric', month: 'long', day: 'numeric'
-                        });
-                    }
+                    if (siguientes.length > 0) return { encontrado: true, siguientes };
+                }
+            }
+            return { encontrado: false, siguientes: [] };
+        }
 
-                    function actualizarStatus(mensaje) {
-                        document.getElementById('statusBar').innerHTML = mensaje;
-                    }
+        function mostrarResultados(siguientes) {
+            const contenedor = document.getElementById('resultado-contenido');
 
-                    async function cargarResultados() {
-                        try {
-                            actualizarStatus('🔄 Cargando...');
-                            const response = await fetch(JSON_URL + '?t=' + Date.now());
-                            const data = await response.json();
+            if (!siguientes || siguientes.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay resultados</div>';
+                return;
+            }
 
-                            if (!data.resultados || data.resultados.length !== 3) {
-                                actualizarStatus('❌ Error de datos');
-                                mostrarResultados([]);
-                                return;
-                            }
+            let html = '<div class="numeros-grid">';
+            siguientes.forEach(r => {
+                let numDisplay, nombreAnimal, rutaImagen;
 
-                            const [dia3, dia2, dia1] = data.resultados;
+                if (r.esDobleCero) {
+                    numDisplay = "00";
+                    nombreAnimal = "ballena";
+                    rutaImagen = obtenerRutaImagen(0, true);
+                } else {
+                    numDisplay = String(r.numero).padStart(2, '0');
+                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
+                    rutaImagen = obtenerRutaImagen(r.numero, false);
+                }
 
-                            const procesarDia = (dia, inicioCasilla) => {
-                                return dia.map((num, idx) => {
-                                    const esDobleCero = num === "00";
-                                    return {
-                                        numero: esDobleCero ? 0 : num,
-                                        esDobleCero: esDobleCero,
-                                        casilla: idx + inicioCasilla
-                                    };
-                                });
-                            };
-
-                            const todos = [
-                                ...procesarDia(dia3, 1),
-                                ...procesarDia(dia2, 13),
-                                ...procesarDia(dia1, 25)
-                            ];
-
-                            const resultado = buscarRepeticion(todos);
-
-                            if (resultado.encontrado) {
-                                mostrarResultados(resultado.siguientes);
-                                actualizarStatus('✅ Actualizado');
-                            } else {
-                                mostrarResultados([]);
-                                actualizarStatus('Sin repeticiones');
-                            }
-                        } catch (error) {
-                            console.error('Error:', error);
-                            mostrarResultados([]);
-                            actualizarStatus('❌ Error');
-                        }
-                    }
-
-                    function buscarRepeticion(resultados) {
-                        const mapa = new Map();
-
-                        resultados.forEach(r => {
-                            const clave = r.esDobleCero ? '00' : r.numero;
-                            if (!mapa.has(clave)) mapa.set(clave, []);
-                            mapa.get(clave).push(r);
-                        });
-
-                        for (let i = 24; i < 36; i++) {
-                            const actual = resultados[i];
-                            const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                            const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
-
-                            if (repeticiones.length > 0) {
-                                const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                                const siguientes = [];
-
-                                for (let j = 1; j <= 4; j++) {
-                                    const sig = resultados.find(r => r.casilla === rep.casilla + j);
-                                    if (sig) siguientes.push(sig);
-                                }
-
-                                if (siguientes.length > 0) return { encontrado: true, siguientes };
-                            }
-                        }
-                        return { encontrado: false, siguientes: [] };
-                    }
-
-                    function mostrarResultados(siguientes) {
-                        const contenedor = document.getElementById('resultado-contenido');
-
-                        if (!siguientes || siguientes.length === 0) {
-                            contenedor.innerHTML = '<div class="no-data">No hay resultados</div>';
-                            return;
-                        }
-
-                        let html = '<div class="numeros-grid">';
-                        siguientes.forEach(r => {
-                            let numDisplay, nombreAnimal, rutaImagen;
-
-                            if (r.esDobleCero) {
-                                numDisplay = "00";
-                                nombreAnimal = "ballena";
-                                rutaImagen = obtenerRutaImagen(0, true);
-                            } else {
-                                numDisplay = String(r.numero).padStart(2, '0');
-                                nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                                rutaImagen = obtenerRutaImagen(r.numero, false);
-                            }
-
-                            html += `
+                html += `
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
                              onerror="this.src='animalitos/animalitos_guacharo/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
-                            `;
-                        });
-                        html += '</div>';
-                        contenedor.innerHTML = html;
-                    }
+                `;
+            });
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
 
-                    window.onload = () => {
-                        mostrarFecha();
-                        cargarResultados();
-                        setInterval(cargarResultados, 6 * 60 * 60 * 1000);
-                    };
-                </script>
-            </body>
+        window.onload = () => {
+            mostrarFecha();
+            cargarResultados();
+            setInterval(cargarResultados, 6 * 60 * 60 * 1000);
+        };
+    </script>
+</body>
 
-            </html>
+</html>
