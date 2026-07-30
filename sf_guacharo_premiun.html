@@ -15,12 +15,12 @@
     <title>Datos Premium de Guacharo Activo Hoy | Pronósticos VIP</title>
     <meta name="description" content="Obtén los mejores datos Premium y super fijos para Guacharo Activo Hoy. Pronósticos actualizados basados en estadísticas de repetición para ganar hoy mismo.">
     <meta name="keywords" content="datos de guacharo activo, pronosticos guacharo activo, animalitos activos, datos para hoy, guacharo activo resultados, premium, vip">
-    <link rel="canonical" href="https://tuanimalito.github.io/sf_guacharo.html" />
 
     <!-- Favicons -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.webp" type="image/webp" sizes="512x512">
     <link rel="apple-touch-icon" href="./favicon.webp">
+    <link rel="canonical" href="https://tuanimalito.github.io/sf_guacharo.html" />
     
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -529,24 +529,6 @@
     </footer>
 
     <script>
-        // ===== SEGURIDAD =====
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === 123 || 
-                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-                (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
-            }
-        });
-        (function detectDevTools() {
-            const element = new Image();
-            Object.defineProperty(element, 'id', {
-                get: function() { console.clear(); }
-            });
-            console.log(element);
-        })();
-
         // ===== CONFIGURACIÓN =====
         const JSON_URL = 'data/guacharo.json';
 
@@ -665,7 +647,7 @@
         function mostrarResultados(siguientes) {
             const contenedor = document.getElementById('resultado-contenido');
 
-            if (!siguientes || me.length === 0 || siguientes.length === 0) {
+            if (!siguientes || siguientes.length === 0) {
                 contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles en este momento.</div>';
                 return;
             }
