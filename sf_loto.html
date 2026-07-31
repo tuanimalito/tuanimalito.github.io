@@ -195,6 +195,9 @@
         .seccion-datos {
             padding: 20px 15px;
             background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .tarjeta-dato {
@@ -239,7 +242,6 @@
             gap: 15px;
         }
 
-        /* ===== ETIQUETA PREMIUM DORADO CON TITILO ===== */
         .premium-badge {
             font-size: 2.2rem;
             font-weight: 900;
@@ -262,7 +264,6 @@
             margin-right: 10px;
         }
 
-        /* ===== ANIMACIÓN TITILO ===== */
         @keyframes shimmerGold {
             0% {
                 background-position: 0% 50%;
@@ -278,7 +279,6 @@
             }
         }
 
-        /* ===== TEXTO DE CONTACTO ===== */
         .premium-message {
             color: white;
             font-size: 1.1rem;
@@ -292,7 +292,6 @@
             font-size: 1.2rem;
         }
 
-        /* ===== BOTÓN WHATSAPP ===== */
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
@@ -318,15 +317,18 @@
             font-size: 1.5rem;
         }
 
-        /* ===== TARJETAS BLOQUEADAS (con opacidad) ===== */
+        /* ===== TARJETAS Y GRID DE RESULTADOS ===== */
         .numeros-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .locked-grid {
             filter: blur(0px);
             opacity: 0.6;
-            transition: all 0.3s;
             pointer-events: none;
         }
 
@@ -421,7 +423,7 @@
 
         @media (min-width: 700px) {
             .numeros-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
             .cabecera h1 {
                 font-size: 3rem;
@@ -505,12 +507,18 @@
         </div>
 
         <div class="seccion-datos">
+            <!-- SECCIÓN NUEVA: INFORMACIÓN DE CORTESÍA -->
+            <div class="tarjeta-dato">
+                <h3>Información de Cortesía</h3>
+                <div id="cortesia-contenido" style="min-height: 150px;">
+                    <div class="no-data">Cargando cortesía...</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN PREMIUM: SUPER FIJOS -->
             <div class="tarjeta-dato">
                 <h3>Super Fijos</h3>
-                
-                <!-- ===== CONTENEDOR CON OVERLAY PREMIUM ===== -->
                 <div class="premium-container">
-                    <!-- Overlay Premium (siempre visible) -->
                     <div class="premium-overlay">
                         <div class="premium-badge">
                             <i class="bi bi-crown-fill"></i> PREMIUM
@@ -530,7 +538,6 @@
                         </a>
                     </div>
 
-                    <!-- Contenido (bloqueado visualmente) -->
                     <div id="resultado-contenido" style="min-height: 250px;">
                         <div class="no-data">Cargando...</div>
                     </div>
@@ -621,6 +628,62 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
+        // ===== GENERADOR ALEATORIO =====
+        function obtener4Aleatorios(todos) {
+            const copia = [...todos];
+            const seleccionados = [];
+            while (seleccionados.length < 4 && copia.length > 0) {
+                const indexRandom = Math.floor(Math.random() * copia.length);
+                seleccionados.push(copia.splice(indexRandom, 1)[0]);
+            }
+            return seleccionados;
+        }
+
+        // ===== FUNCIÓN AUXILIAR: REVISAR COINCIDENCIAS CON DÍA ANTIGUO =====
+        function obtenerResultadoAntiguoNoRepetido(diaAntiguo, listaExistente) {
+            const esMismoNumero = (a, b) => {
+                if (a.esDobleCero && b.esDobleCero) return true;
+                return !a.esDobleCero && !b.esDobleCero && a.numero === b.numero;
+            };
+
+            for (let i = 0; i < diaAntiguo.length; i++) {
+                const candidato = diaAntiguo[i];
+                // Verifica si el candidato se repite en el listado actual
+                const yaExiste = listaExistente.some(item => esMismoNumero(item, candidato));
+                
+                if (!yaExiste) {
+                    return candidato; // Retorna la primera posición que NO esté repetida
+                }
+            }
+            return null;
+        }
+
+        // ===== INFORMACIÓN DE CORTESÍA CON FILTRADO DE REPETIDOS =====
+        function informacionDeCortecia(todos, superFijosSiguientes) {
+            let cuatroTarjetas = [];
+
+            // 1. Obtener las 4 primeras tarjetas (Super Fijos o Aleatorios)
+            if (superFijosSiguientes && superFijosSiguientes.length >= 4) {
+                cuatroTarjetas = superFijosSiguientes.slice(0, 4);
+            } else {
+                cuatroTarjetas = obtener4Aleatorios(todos);
+            }
+
+            // Día 3 más antiguo son las primeras 12 casillas (índices 0 a 11)
+            const diaAntiguo = todos.slice(0, 12);
+            const resultadoFinal = [...cuatroTarjetas];
+
+            // 2. Evaluar y añadir las 2 tarjetas adicionales sin repeticiones
+            for (let count = 0; count < 2; count++) {
+                const noRepetido = obtenerResultadoAntiguoNoRepetido(diaAntiguo, resultadoFinal);
+                if (noRepetido) {
+                    resultadoFinal.push(noRepetido);
+                }
+            }
+
+            return resultadoFinal;
+        }
+
         async function cargarResultados() {
             try {
                 actualizarStatus('🔄 Cargando...');
@@ -629,7 +692,8 @@
 
                 if (!data.resultados || data.resultados.length !== 3) {
                     actualizarStatus('❌ Error de datos');
-                    mostrarResultados([]);
+                    mostrarResultados('resultado-contenido', [], true);
+                    mostrarResultados('cortesia-contenido', [], false);
                     return;
                 }
 
@@ -640,7 +704,8 @@
                     !dia2 || dia2.length !== numerosEsperados || 
                     !dia1 || dia1.length !== numerosEsperados) {
                     actualizarStatus('❌ Datos incompletos');
-                    mostrarResultados([]);
+                    mostrarResultados('resultado-contenido', [], true);
+                    mostrarResultados('cortesia-contenido', [], false);
                     return;
                 }
 
@@ -663,21 +728,28 @@
 
                 const resultado = buscarRepeticion(todos);
                 
+                // Renderizar Super Fijos
                 if (resultado.encontrado) {
-                    mostrarResultados(resultado.siguientes);
+                    mostrarResultados('resultado-contenido', resultado.siguientes, true);
                     actualizarStatus('✅ Actualizado');
                 } else {
-                    mostrarResultados([]);
+                    mostrarResultados('resultado-contenido', [], true);
                     actualizarStatus('Sin repeticiones');
                 }
+
+                // Generar y Renderizar Información de Cortesía (6 Tarjetas con filtro)
+                const cortesiaResultados = informacionDeCortecia(todos, resultado.siguientes);
+                mostrarResultados('cortesia-contenido', cortesiaResultados, false);
+
             } catch (error) {
                 console.error('Error:', error);
-                mostrarResultados([]);
+                mostrarResultados('resultado-contenido', [], true);
+                mostrarResultados('cortesia-contenido', [], false);
                 actualizarStatus('❌ Error');
             }
         }
 
-        // ===== LÓGICA DE BÚSQUEDA (3 NIVELES JERÁRQUICOS) =====
+        // ===== LÓGICA DE BÚSQUEDA =====
         function buscarRepeticion(resultados) {
             const niveles = {
                 N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1', dias: 'Día 1 (Actual)' },
@@ -715,7 +787,6 @@
                 return { encontrado: false, siguientes: [] };
             }
             
-            // ORDEN DE PRIORIDAD:
             let resultado = buscarEnPares(niveles.N1, niveles.N2);
             if (resultado.encontrado) return resultado;
             
@@ -728,15 +799,17 @@
             return { encontrado: false, siguientes: [] };
         }
 
-        function mostrarResultados(siguientes) {
-            const contenedor = document.getElementById('resultado-contenido');
+        function mostrarResultados(idContenedor, siguientes, esBloqueado) {
+            const contenedor = document.getElementById(idContenedor);
             
             if (!siguientes || siguientes.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay resultados</div>';
+                contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles</div>';
                 return;
             }
 
-            let html = '<div class="numeros-grid">';
+            const claseGrid = esBloqueado ? 'numeros-grid locked-grid' : 'numeros-grid';
+            let html = `<div class="${claseGrid}">`;
+            
             siguientes.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 
