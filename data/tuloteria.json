@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-30T20:19:51.753087",
+    "ultima_actualizacion": "2026-07-31T04:29:45.472595",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "30 jul 2026",
         "numeros": [
-          2,
+          1,
+          5,
           9,
-          21,
-          22,
-          27
+          15,
+          28
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "30 jul 2026"
+        "dia": "Viernes",
+        "fecha": "31 jul 2026"
       },
       "bote": "100.000$"
     },
@@ -126,16 +126,16 @@
         "fecha": "30 jul 2026",
         "numeros": [
           2,
-          4,
+          6,
+          6,
           2,
-          5,
-          7
+          2
         ],
-        "numero_extra": 9
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "30 jul 2026"
+        "dia": "Viernes",
+        "fecha": "31 jul 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "30 jul 2026",
         "numeros": [
-          4,
-          1,
+          5,
           7,
-          5
+          8,
+          6
         ],
-        "numero_extra": 9
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "30 jul 2026"
+        "dia": "Viernes",
+        "fecha": "31 jul 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "30 jul 2026",
         "numeros": [
-          5,
-          9,
-          3
+          7,
+          0,
+          1
         ],
-        "numero_extra": 9
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "30 jul 2026"
+        "dia": "Viernes",
+        "fecha": "31 jul 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "30 jul 2026",
         "numeros": [
-          6,
-          5
+          3,
+          0
         ],
-        "numero_extra": 9
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "30 jul 2026"
+        "dia": "Viernes",
+        "fecha": "31 jul 2026"
       },
       "bote": "50$"
     },
