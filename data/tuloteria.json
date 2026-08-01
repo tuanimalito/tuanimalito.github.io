@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-07-31T20:24:38.805729",
+    "ultima_actualizacion": "2026-08-01T04:26:41.239819",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "28 jul 2026",
+        "dia": "Viernes",
+        "fecha": "31 jul 2026",
         "numeros": [
-          34,
-          48,
-          49,
-          59,
-          70
+          4,
+          18,
+          26,
+          43,
+          51
         ],
-        "numero_extra": 12
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Martes",
+        "fecha": "04 ago 2026"
       },
       "bote": "50.000.000$"
     },
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "28 jul 2026",
+        "dia": "Viernes",
+        "fecha": "31 jul 2026",
         "numeros": [
-          2,
-          4,
-          16,
-          19,
-          29,
-          42
+          3,
+          9,
+          12,
+          27,
+          35,
+          40
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Martes",
+        "fecha": "04 ago 2026"
       },
-      "bote": "925.000$"
+      "bote": "1.100.000$"
     },
     {
       "id": "fantasy-5",
@@ -103,17 +103,17 @@
         "dia": "Viernes",
         "fecha": "31 jul 2026",
         "numeros": [
-          3,
-          11,
+          4,
+          13,
           19,
-          20,
-          22
+          35,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Sábado",
+        "fecha": "01 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Viernes",
         "fecha": "31 jul 2026",
         "numeros": [
-          9,
-          2,
-          4,
-          8,
-          1
+          3,
+          7,
+          0,
+          0,
+          2
         ],
-        "numero_extra": 1
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Sábado",
+        "fecha": "01 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Viernes",
         "fecha": "31 jul 2026",
         "numeros": [
+          3,
           0,
-          3,
-          3,
-          4
+          1,
+          8
         ],
-        "numero_extra": 1
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Sábado",
+        "fecha": "01 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "31 jul 2026",
         "numeros": [
-          8,
+          6,
           8,
           3
         ],
-        "numero_extra": 1
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Sábado",
+        "fecha": "01 ago 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "31 jul 2026",
         "numeros": [
           1,
-          7
+          3
         ],
-        "numero_extra": 1
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "31 jul 2026"
+        "dia": "Sábado",
+        "fecha": "01 ago 2026"
       },
       "bote": "50$"
     },
