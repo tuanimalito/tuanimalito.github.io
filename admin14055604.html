@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador - Gestión VIP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c20 0%, #1a103c 50%, #2b0c36 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 750px;
+            width: 100%;
+            background: #151226;
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        h2 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ffe57f 0%, #ffd700 50%, #ff8f00 100%);
+            color: #000;
+            border: none;
+            padding: 14px 20px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1c1735;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #1f1a3a;
+            color: #ffd700;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-active {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid #4caf50;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .badge-expired {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid #f44336;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 600px) {
+            .btn-group {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="bi bi-shield-lock-fill"></i> Panel Administrador VIP (Firebase)</h2>
+        
+        <div class="btn-group">
+            <button class="btn" id="btnGenerar"><i class="bi bi-plus-circle-fill"></i> Generar Acceso (5 Días)</button>
+        </div>
+
+        <h3 style="color:#ffd700; margin-bottom: 10px; font-size: 1.2rem; text-align: center;"><i class="bi bi-people-fill"></i> Usuarios Registrados</h3>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código #</th>
+                        <th>Ingreso</th>
+                        <th>Egreso</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-clientes">
+                    <tr><td colspan="5">Cargando clientes de Firebase...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            databaseURL: "https://dato-animalitos-default-rtdb.firebaseio.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.firebasestorage.app",
+            messagingSenderId: "759403364736",
+            appId: "1:759403364736:web:c686aea85758245a7f4165"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        onSnapshot(collection(db, "clientes"), (snapshot) => {
+            const clientes = [];
+            snapshot.forEach((docSnap) => {
+                clientes.push({ id: docSnap.id, ...docSnap.data() });
+            });
+            actualizarTabla(clientes);
+        });
+
+        document.getElementById('btnGenerar').addEventListener('click', async () => {
+            const num = Math.floor(Math.random() * 90000) + 10000;
+            const nuevoCodigo = String(num);
+            
+            const hoy = new Date();
+            const egreso = new Date();
+            egreso.setDate(hoy.getDate() + 5);
+
+            const formatDate = (date) => {
+                const yyyy = date.getFullYear();
+                const mm = String(date.getMonth() + 1).padStart(2, '0');
+                const dd = String(date.getDate()).padStart(2, '0');
+                return `${yyyy}-${mm}-${dd}`;
+            };
+
+            const nuevoCliente = {
+                codigo: nuevoCodigo,
+                fecha_ingreso: formatDate(hoy),
+                fecha_egreso: formatDate(egreso),
+                activo: true
+            };
+
+            try {
+                await addDoc(collection(db, "clientes"), nuevoCliente);
+                alert("✅ Acceso VIP registrado en Firebase: " + nuevoCodigo + "\nValidez hasta: " + nuevoCliente.fecha_egreso);
+            } catch (e) {
+                alert("❌ Error al guardar en Firebase: " + e.message);
+            }
+        });
+
+        function actualizarTabla(clientes) {
+            const tbody = document.getElementById('tabla-clientes');
+            if (clientes.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5">No hay accesos registrados en la base de datos</td></tr>';
+                return;
+            }
+
+            const hoyStr = new Date().toISOString().split('T')[0];
+
+            tbody.innerHTML = clientes.map(c => {
+                const esActivo = c.activo && c.fecha_egreso >= hoyStr;
+                const statusBadge = esActivo 
+                    ? '<span class="badge-active">ACTIVO</span>' 
+                    : '<span class="badge-expired">VENCIDO</span>';
+
+                return `
+                    <tr>
+                        <td><strong style="color:#ffd700; font-size:1.1rem;">${c.codigo}</strong></td>
+                        <td>${c.fecha_ingreso}</td>
+                        <td>${c.fecha_egreso}</td>
+                        <td>${statusBadge}</td>
+                        <td><button class="btn-danger" data-id="${c.id}"><i class="bi bi-trash-fill"></i> Eliminar</button></td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.querySelectorAll('.btn-danger').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const id = e.target.closest('button').getAttribute('data-id');
+                    if (confirm("¿Deseas eliminar permanentemente este registro VIP?")) {
+                        await deleteDoc(doc(db, "clientes", id));
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
