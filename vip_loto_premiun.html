@@ -21,6 +21,9 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
 
+    <!-- SweetAlert2 (Para el Prompt de Login VIP) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Favicons -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.webp" type="image/webp" sizes="512x512">
@@ -103,7 +106,6 @@
             letter-spacing: 1px;
         }
 
-        /* ✅ FIX DEL MENÚ DESPLEGABLE */
         .menu-container {
             position: absolute;
             top: 15px;
@@ -333,7 +335,6 @@
             font-size: 0.95rem;
         }
 
-        /* ✅ FOOTER REDISEÑADO VISIBLE */
         .footer {
             width: 100%;
             background: #0d0a18;
@@ -407,7 +408,7 @@
     <div class="main-wrapper">
         <div class="tarjeta">
             <div class="cabecera">
-                <!-- ✅ MENÚ DE NAVEGACIÓN -->
+                <!-- MENÚ DE NAVEGACIÓN -->
                 <div class="menu-container">
                     <button class="menu-button" id="menuButton" aria-label="Abrir Menú">
                         <i class="bi bi-grid"></i>
@@ -433,7 +434,7 @@
             </div>
 
             <div class="status-bar" id="statusBar">
-                ⏳ Cargando análisis Premium...
+                🔒 Autenticando acceso VIP...
             </div>
 
             <!-- AdSense Superior -->
@@ -445,15 +446,15 @@
 
             <div class="seccion-datos">
                 <div class="premium-btn-container">
-                    <a href="#resultado-contenido" class="btn-premium-exclusive">
-                        <i class="bi bi-crown-fill"></i> Acceso Exclusivo Premium
+                    <a href="javascript:void(0)" onclick="solicitarCodigoVIP()" class="btn-premium-exclusive">
+                        <i class="bi bi-crown-fill"></i> Ingresar Clave VIP
                     </a>
                 </div>
 
                 <div class="tarjeta-dato">
                     <h3><i class="bi bi-shield-lock-fill"></i> Super Fijos Premium</h3>
                     <div id="resultado-contenido">
-                        <div class="no-data">Cargando datos VIP...</div>
+                        <div class="no-data">🔒 Contenido bloqueado. Ingresa tu clave Premium.</div>
                     </div>
                 </div>
             </div>
@@ -470,7 +471,7 @@
             <p>Nuestros <strong>Super Fijos Premium</strong> se generan mediante un algoritmo de análisis identificando patrones secuenciales de alta precisión en Lotto Activo.</p>
         </div>
 
-        <!-- FOOTER INTEGRADO Y VISIBLE -->
+        <!-- FOOTER INTEGRADO -->
         <footer class="footer">
             <div class="social-links">
                 <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
@@ -484,8 +485,83 @@
         </footer>
     </div>
 
+    <!-- MÓDULOS FIREBASE FIRESTORE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-placeholder",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Hacer la función accesible globalmente
+        window.validarCodigoFirestore = async function(codigoIngresado) {
+            try {
+                const docRef = doc(db, "clientes", codigoIngresado);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    const hoy = new Date().toISOString().split('T')[0];
+
+                    if (data.egreso >= hoy) {
+                        localStorage.setItem("vip_code_loto", codigoIngresado);
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Acceso Concedido!',
+                            text: `Bienvenido. Acceso válido hasta el ${data.egreso}`,
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                        cargarResultadosVIP();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Código Expirado',
+                            text: `Tu suscripción venció el ${data.egreso}. Por favor renueva tu acceso.`
+                        });
+                        actualizarStatus('❌ Acceso expirado');
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Código Inválido',
+                        text: 'El código ingresado no existe en el sistema.'
+                    });
+                    actualizarStatus('❌ Código incorrecto');
+                }
+            } catch (error) {
+                console.error("Error al consultar Firestore:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de Conexión',
+                    text: 'No se pudo verificar el código en la base de datos.'
+                });
+            }
+        };
+
+        // Verificar sesión guardada al entrar
+        window.verificarSesionExistente = async function() {
+            const codigoGuardado = localStorage.getItem("vip_code_loto");
+            if (codigoGuardado) {
+                await window.validarCodigoFirestore(codigoGuardado);
+            } else {
+                actualizarStatus('🔑 Ingrese su clave VIP para acceder');
+                solicitarCodigoVIP();
+            }
+        };
+    </script>
+
     <script>
-        // Lógica del Menú Desplegable con compatibilidad móvil/touch
+        // Lógica del Menú Desplegable
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.getElementById('menuButton');
             const menuDropdown = document.getElementById('menuDropdown');
@@ -504,6 +580,34 @@
             }
         });
 
+        // Prompt para pedir clave al usuario
+        function solicitarCodigoVIP() {
+            Swal.fire({
+                title: '🔑 Acceso VIP',
+                text: 'Ingresa tu código de 5 dígitos:',
+                input: 'text',
+                inputAttributes: {
+                    maxlength: 5,
+                    autocapitalize: 'off',
+                    autocorrect: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Validar Acceso',
+                cancelButtonText: 'Cancelar',
+                preConfirm: (codigo) => {
+                    if (!codigo || codigo.length < 5) {
+                        Swal.showValidationMessage('Ingresa un código válido de 5 dígitos');
+                    }
+                    return codigo;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    actualizarStatus('🔄 Verificando clave en servidor...');
+                    window.validarCodigoFirestore(result.value.trim());
+                }
+            });
+        }
+
         // Seguridad del cliente
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', function(e) {
@@ -514,7 +618,6 @@
             }
         });
 
-        // Configuración y carga de datos
         const JSON_URL = 'data/lotto.json';
 
         const animales = {
@@ -545,7 +648,7 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        async function cargarResultados() {
+        async function cargarResultadosVIP() {
             try {
                 actualizarStatus('🔄 Cargando pronóstico Premium...');
                 const response = await fetch(JSON_URL + '?t=' + Date.now());
@@ -589,7 +692,7 @@
                 
                 if (resultado.encontrado) {
                     mostrarResultados(resultado.siguientes);
-                    actualizarStatus('✨ Pronóstico Premium Actualizado');
+                    actualizarStatus('✨ Pronóstico Premium Desbloqueado');
                 } else {
                     mostrarResultados([]);
                     actualizarStatus('Sin repeticiones');
@@ -683,8 +786,11 @@
 
         window.onload = () => {
             mostrarFecha();
-            cargarResultados();
-            setInterval(cargarResultados, 6 * 60 * 60 * 1000);
+            setTimeout(() => {
+                if (window.verificarSesionExistente) {
+                    window.verificarSesionExistente();
+                }
+            }, 500);
         };
     </script>
 </body>
