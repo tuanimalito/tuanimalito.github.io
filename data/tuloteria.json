@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-04T03:27:40.975066",
+    "ultima_actualizacion": "2026-08-04T06:35:14.527902",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "03 ago 2026",
+        "numeros": [
+          8,
+          30,
+          41,
+          48,
+          54
+        ],
+        "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "05 ago 2026"
+      },
+      "bote": "748.000.000$"
+    },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
@@ -81,11 +103,11 @@
         "dia": "Lunes",
         "fecha": "03 ago 2026",
         "numeros": [
-          9,
-          10,
-          24,
-          25,
-          31
+          4,
+          5,
+          6,
+          18,
+          36
         ],
         "numero_extra": null
       },
@@ -171,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "03 ago 2026"
+        "dia": "Martes",
+        "fecha": "04 ago 2026"
       },
       "bote": "250$"
     },
@@ -194,28 +216,6 @@
         "fecha": "04 ago 2026"
       },
       "bote": "50$"
-    },
-    {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "01 ago 2026",
-        "numeros": [
-          6,
-          17,
-          27,
-          48,
-          50
-        ],
-        "numero_extra": 5
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "05 ago 2026"
-      },
-      "bote": ""
     },
     {
       "id": "cash4life",
