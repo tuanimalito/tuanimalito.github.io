@@ -16,13 +16,14 @@
     <meta name="description" content="Obtén los mejores datos Premium y super fijos para Granjazo Millonario Hoy. Pronósticos actualizados basados en estadísticas de repetición para ganar hoy mismo.">
     <meta name="keywords" content="datos de Granjazo Millonario, pronosticos granjazo millonario, animalitos activos, datos para hoy, granjazo millonario resultados, premium, vip">
 
-    <!-- Favicons -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.webp" type="image/webp" sizes="512x512">
     <link rel="apple-touch-icon" href="./favicon.webp">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <style>
         * {
@@ -92,7 +93,6 @@
             letter-spacing: 1px;
         }
 
-        /* ✅ MENÚ MEJORADO PARA MÓVIL */
         .menu-container {
             position: absolute;
             top: 15px;
@@ -207,81 +207,414 @@
         .seccion-datos {
             padding: 20px 15px;
             background: #151226;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .tarjeta-dato {
-            background: #1c1735;
             border-radius: 24px;
-            padding: 20px 15px;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 215, 0, 0.15);
+            padding: 22px 16px;
+            position: relative;
+            overflow: hidden;
         }
 
         .tarjeta-dato h3 {
             font-size: 1.5rem;
-            color: #ffd700;
+            font-weight: 900;
             margin-bottom: 20px;
             text-align: center;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- SUPER FIJOS - BLOQUEADO --- */
+        .tarjeta-superfijos {
+            background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
+            border: 1px solid rgba(255, 107, 107, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 107, 107, 0.1);
+        }
+        .tarjeta-superfijos h3 {
+            color: #ff6b6b;
+            -webkit-text-fill-color: #ff6b6b;
+            background: none;
+        }
+        .tarjeta-superfijos .numero-card {
+            background: linear-gradient(180deg, #2a1a1a 0%, #1a0d0d 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+        .tarjeta-superfijos .numero-card .numero {
+            color: #ff6b6b;
+        }
+        .tarjeta-superfijos .numero-card .animal {
+            color: #ff9999;
+        }
+        .tarjeta-superfijos .numero-card::before {
+            content: "SUPER";
+            background: #ff6b6b;
+        }
+
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
+        .tarjeta-forense {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+        }
+        .tarjeta-forense h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.6rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .tarjeta-forense h3 i {
+            color: #ffd700;
+        }
+
+        .forense-sub {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .forense-sub:last-child {
+            margin-bottom: 0;
+        }
+        .forense-sub h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
         }
-
-        /* 🌟 BOTÓN EXCLUSIVO PREMIUM CON ANIMACIÓN SOFT PULSE 🌟 */
-        .premium-btn-container {
-            text-align: center;
-            margin: 0 auto 25px auto;
+        .forense-sub h4 i {
+            color: #ffd700;
         }
 
-        .btn-premium-exclusive {
+        .tabla-forense {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .tabla-forense th {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .tabla-forense td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+        .tabla-forense tr:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .rey-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+            color: #0a0a0f;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .acompanante-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 2px 3px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .acompanante-badge:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .prediccion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .prediccion-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .prediccion-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+        }
+        .prediccion-item .numero {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        .prediccion-item .label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .prediccion-item .puntaje {
+            font-size: 0.8rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ===== OVERLAY PREMIUM ===== */
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 25px;
+            text-align: center;
+            gap: 15px;
+        }
+
+        .premium-overlay.hidden {
+            display: none;
+        }
+
+        .premium-badge {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .premium-badge i {
+            -webkit-text-fill-color: #ffd700;
+            color: #ffd700;
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        @keyframes shimmerGold {
+            0% {
+                background-position: 0% 50%;
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+            50% {
+                background-position: 100% 50%;
+                text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+                background-position: 0% 50%;
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        .premium-message {
+            color: #c8d0e0;
+            font-size: 1rem;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .premium-message strong {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .premium-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .premium-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            padding: 14px 20px;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 3px;
+            font-weight: 700;
+            outline: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .premium-input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+        }
+
+        .premium-input::placeholder {
+            color: #666;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .premium-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-premium {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #ffe57f 0%, #ffd700 50%, #ff8f00 100%);
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 800;
-            padding: 14px 28px;
+            gap: 8px;
+            padding: 12px 24px;
             border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            border: 2px solid #fff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            animation: pulseSuave 2.5s infinite ease-in-out;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
             cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
         }
 
-        @keyframes pulseSuave {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            }
-            50% {
-                transform: scale(1.04);
-                box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.6);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            }
+        .btn-premium:active {
+            transform: scale(0.95);
         }
 
-        .btn-premium-exclusive:active {
-            transform: scale(0.98);
+        .btn-unlock {
+            background: linear-gradient(135deg, #ffd700, #ff8f00);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            min-width: 140px;
         }
 
-        /* ✅ SUPER FIJOS EN 2 FILAS DE 2 PARA MÓVIL */
+        .btn-unlock:hover {
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #51cf66;
+            font-size: 0.9rem;
+            background: rgba(81, 207, 102, 0.1);
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(81, 207, 102, 0.2);
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
         .numeros-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-top: 10px;
+            filter: blur(0px);
+            opacity: 0.5;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .numeros-grid.unlocked {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .numeros-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: scale(0.98);
+        }
+
+        .locked-grid-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            transition: all 0.8s ease;
+        }
+
+        .premium-container {
+            position: relative;
+            min-height: 200px;
         }
 
         .numero-card {
@@ -393,18 +726,41 @@
             font-weight: 600;
         }
 
-        .footer .credits a {
-            color: #a0aec0;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
             .cabecera h1 {
                 font-size: 3rem;
+            }
+            .premium-badge {
+                font-size: 3.5rem;
+            }
+            .premium-message {
+                font-size: 1.1rem;
+            }
+            .prediccion-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .prediccion-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .prediccion-item .numero {
+                font-size: 1.5rem;
+            }
+            .tabla-forense {
+                font-size: 0.7rem;
+            }
+            .tabla-forense th,
+            .tabla-forense td {
+                padding: 6px 6px;
+            }
+            .acompanante-badge {
+                font-size: 0.6rem;
+                padding: 1px 6px;
             }
         }
     </style>
@@ -413,7 +769,6 @@
 <body>
     <div class="tarjeta">
         <div class="cabecera">
-            <!-- ✅ MENÚ MEJORADO PARA MÓVIL -->
             <div class="menu-container">
                 <button class="menu-button" id="menuButton">
                     <i class="bi bi-grid"></i>
@@ -423,19 +778,17 @@
                     <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
                     <a href="estadisticas_granjazo.html"><i class="bi bi-feather"></i> Estadisticas</a>
                     <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
-                    <a href="sf_granja_premiun.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
-                    <a href="sf_granjazo_premiun.html"><i class="bi bi-feather"></i> Granjazo</a>
+                    <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
+                    <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
                     <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
                 </div>
             </div>
             
-            <!-- Título centrado -->
             <h1><i class="bi bi-star-fill"></i> Granjazo VIP</h1>
             <div class="sub"><i class="bi bi-gem"></i> PRONÓSTICOS PREMIUM DE HOY</div>
         </div>
 
         <script>
-            // ✅ MENÚ MEJORADO CON TOUCH
             (function() {
                 const menuBtn = document.getElementById('menuButton');
                 const menuDropdown = document.getElementById('menuDropdown');
@@ -467,7 +820,6 @@
             ⏳ Cargando análisis Premium...
         </div>
 
-        <!-- Anuncio medio superior -->
         <div class="ad-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
             crossorigin="anonymous"></script>
@@ -479,22 +831,70 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- 🌟 BOTÓN EXCLUSIVO PREMIUM CON TITILADO SUAVE 🌟 -->
-            <div class="premium-btn-container">
-                <a href="#resultado-contenido" class="btn-premium-exclusive">
-                    <i class="bi bi-crown-fill"></i> Acceso Exclusivo Premium
-                </a>
+            <!-- SUPER FIJOS - BLOQUEADO (3 números) -->
+            <div class="tarjeta-superfijos tarjeta-dato">
+                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
+
+                <div class="premium-overlay" id="premiumOverlay">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a los <strong>Super Fijos</strong> ingresando tu clave o suscríbete vía WhatsApp.
+                    </p>
+                    
+                    <div class="premium-input-group">
+                        <input type="text" class="premium-input" id="claveInput" placeholder="Ingresa tu clave VIP" maxlength="20" autocomplete="off">
+                        
+                        <div class="error-message" id="errorMessage">
+                            <i class="bi bi-exclamation-circle"></i> Clave incorrecta. Verifica e intenta nuevamente.
+                        </div>
+                        <div class="success-message" id="successMessage">
+                            <i class="bi bi-check-circle-fill"></i> ¡Clave correcta! Acceso desbloqueado.
+                        </div>
+                        
+                        <div class="premium-buttons">
+                            <button class="btn-premium btn-unlock" id="btnUnlock">
+                                <i class="bi bi-unlock-fill"></i> Desbloquear
+                            </button>
+                            <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20activar%20la%20funci%C3%B3n%20Premium%20de%20Granjazo%20Millonario" 
+                               class="btn-premium btn-whatsapp" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="bi bi-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
+                    <div class="no-data">Cargando...</div>
+                </div>
             </div>
 
-            <div class="tarjeta-dato">
-                <h3><i class="bi bi-shield-lock-fill"></i> Super Fijos Premium</h3>
-                <div id="resultado-contenido">
-                    <div class="no-data">Cargando datos VIP...</div>
+            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+            <div class="tarjeta-forense tarjeta-dato">
+                <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
+                
+                <!-- TOP 10 + REY -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                    <div id="forense-top10" style="overflow-x: auto;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                    </div>
+                </div>
+
+                <!-- Predicción Inteligente -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
+                    <div id="forense-prediccion">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Anuncio inferior -->
         <div class="ad-container">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
             crossorigin="anonymous"></script>
@@ -510,7 +910,6 @@
         <p>Nuestros <strong>Super Fijos Premium</strong> se generan mediante un algoritmo de análisis identificando patrones secuenciales de alta precisión en Granjazo Millonario.</p>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="social-links">
             <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
@@ -528,7 +927,467 @@
     </footer>
 
     <script>
-        // ===== SEGURIDAD =====
+        // ============================================================
+        // 🔥 CONFIGURACIÓN DE FIREBASE
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.firebasestorage.app",
+            messagingSenderId: "759403364736",
+            appId: "1:759403364736:web:c686aea85758245a7f4165"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ============================================================
+        // 🚀 FUNCIONES PREMIUM
+        // ============================================================
+        
+        const STORAGE_KEY = 'granjazo_premium_unlocked';
+        let usuarioAutenticado = false;
+
+        function isUnlocked() {
+            return localStorage.getItem(STORAGE_KEY) === 'true';
+        }
+
+        function unlockContent() {
+            usuarioAutenticado = true;
+            localStorage.setItem(STORAGE_KEY, 'true');
+            document.getElementById('premiumOverlay').classList.add('hidden');
+            const grid = document.querySelector('.numeros-grid-3');
+            if (grid) {
+                grid.classList.remove('locked-grid');
+                grid.classList.add('locked-grid-desbloqueado');
+            }
+        }
+
+        function lockContent() {
+            usuarioAutenticado = false;
+            localStorage.removeItem(STORAGE_KEY);
+            document.getElementById('premiumOverlay').classList.remove('hidden');
+            const grid = document.querySelector('.numeros-grid-3');
+            if (grid) {
+                grid.classList.add('locked-grid');
+                grid.classList.remove('locked-grid-desbloqueado');
+            }
+        }
+
+        // ============================================================
+        // 🔐 VALIDACIÓN CON FIRESTORE
+        // ============================================================
+        async function validarCodigo(codigo) {
+            if (!codigo) return false;
+            
+            const hoyStr = new Date().toISOString().split('T')[0];
+            
+            try {
+                const q = firebase.firestore().collection("clientes")
+                    .where("codigo", "==", codigo)
+                    .where("activo", "==", true);
+                    
+                const querySnapshot = await q.get();
+                let esValido = false;
+                
+                querySnapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
+                        esValido = true;
+                    }
+                });
+                
+                return esValido;
+            } catch (e) {
+                console.error("Error al consultar Firebase:", e);
+                return false;
+            }
+        }
+
+        // ============================================================
+        // 🎯 EVENTOS
+        // ============================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnUnlock = document.getElementById('btnUnlock');
+            const claveInput = document.getElementById('claveInput');
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+
+            if (isUnlocked()) {
+                unlockContent();
+            }
+
+            btnUnlock.addEventListener('click', async function() {
+                const clave = claveInput.value.trim();
+                
+                if (!clave) {
+                    errorMsg.textContent = '⚠️ Por favor, ingresa tu clave VIP.';
+                    errorMsg.classList.add('show');
+                    successMsg.classList.remove('show');
+                    return;
+                }
+
+                btnUnlock.disabled = true;
+                btnUnlock.innerHTML = '<i class="bi bi-hourglass-split"></i> Verificando...';
+
+                try {
+                    const esValida = await validarCodigo(clave);
+                    
+                    if (esValida) {
+                        successMsg.classList.add('show');
+                        errorMsg.classList.remove('show');
+                        unlockContent();
+                        localStorage.setItem('granjazo_premium_token', clave);
+                        
+                        setTimeout(() => {
+                            successMsg.classList.remove('show');
+                        }, 2000);
+                    } else {
+                        errorMsg.textContent = '❌ Clave incorrecta o expirada. Comunícate por WhatsApp para renovar tu suscripción.';
+                        errorMsg.classList.add('show');
+                        successMsg.classList.remove('show');
+                        claveInput.value = '';
+                        claveInput.focus();
+                    }
+                } catch (error) {
+                    console.error('Error al verificar:', error);
+                    errorMsg.textContent = '⚠️ Error de conexión. Inténtalo de nuevo.';
+                    errorMsg.classList.add('show');
+                } finally {
+                    btnUnlock.disabled = false;
+                    btnUnlock.innerHTML = '<i class="bi bi-unlock-fill"></i> Desbloquear';
+                }
+            });
+
+            claveInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    btnUnlock.click();
+                }
+            });
+
+            claveInput.addEventListener('input', function() {
+                errorMsg.classList.remove('show');
+                successMsg.classList.remove('show');
+            });
+        });
+
+        // ============================================================
+        // 🔄 VERIFICAR SESIÓN PREVIA
+        // ============================================================
+        async function verificarSesionPrevia() {
+            const tokenGuardado = localStorage.getItem('granjazo_premium_token');
+            if (tokenGuardado) {
+                const esValido = await validarCodigo(tokenGuardado);
+                if (esValido) {
+                    unlockContent();
+                } else {
+                    localStorage.removeItem('granjazo_premium_token');
+                    lockContent();
+                }
+            }
+        }
+
+        // ============================================================
+        // 📊 ANÁLISIS FORENSE PREMIUM (adaptado para Granjazo - 76 números)
+        // ============================================================
+        let historialFiltrado = [];
+        let config = { min: 0, max: 76, especiales: ['00'] };
+
+        function formatearNumero(valor) {
+            if (valor === 100) return '00';
+            return valor.toString();
+        }
+
+        function obtenerIcono(valor) {
+            return valor === 0 ? '🐬' : valor === 100 ? '🐋' : '';
+        }
+
+        function formatFechaDisplay(date) {
+            if (!date) return '-';
+            return `${String(date.getDate()).padStart(2,'0')}/${String(date.getMonth()+1).padStart(2,'0')}/${date.getFullYear()}`;
+        }
+
+        function obtenerAnimalForense(num) {
+            const animalesMap = {
+                0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
+                5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
+                10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
+                15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
+                20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
+                25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
+                30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
+                35: 'jirafa', 36: 'culebra', 37: 'mariposa', 38: 'conejo',
+                39: 'rinoceronte', 40: 'hipopotamo', 41: 'bufalo', 42: 'murcielago', 43: 'koala',
+                44: 'puma', 45: 'canguro', 46: 'lobo', 47: 'toptuga', 48: 'morsa',
+                49: 'hiena', 50: 'comadreja', 51: 'dragon', 52: 'chacal', 53: 'jaguar',
+                54: 'camalion', 55: 'foca', 56: 'arminio', 57: 'jabali', 58: 'castor',
+                59: 'guacamayo', 60: 'tiburon', 61: 'turpial', 62: 'tucan', 63: 'cachicamo',
+                64: 'hormiga', 65: 'gorila', 66: 'bisonte', 67: 'flamengo', 68: 'araña',
+                69: 'pavo real', 70: 'cangrejo', 71: 'rabipelao', 72: 'pelicano', 73: 'colibri',
+                74: 'escarabajo', 75: 'codorniz', 76: 'mantis'
+            };
+            return animalesMap[num] || 'desconocido';
+        }
+
+        function obtenerAcompanantesForense(numero) {
+            const frecAcompanantes = {};
+            
+            historialFiltrado.forEach(sorteo => {
+                if (sorteo.numeros.includes(numero)) {
+                    sorteo.numeros.forEach(n => {
+                        if (n !== numero) {
+                            frecAcompanantes[n] = (frecAcompanantes[n] || 0) + 1;
+                        }
+                    });
+                }
+            });
+            
+            return Object.entries(frecAcompanantes)
+                .map(([n, freq]) => ({ numero: parseInt(n), frecuencia: freq }))
+                .sort((a, b) => b.frecuencia - a.frecuencia)
+                .slice(0, 3);
+        }
+
+        function calcularFrecuenciasForense() {
+            const frec = {};
+            historialFiltrado.forEach(s => s.numeros.forEach(n => frec[n] = (frec[n]||0)+1));
+            return frec;
+        }
+
+        function ultimaAparicionForense(num) {
+            for (let i = 0; i < historialFiltrado.length; i++) {
+                if (historialFiltrado[i].numeros.includes(num)) return historialFiltrado[i].fecha;
+            }
+            return null;
+        }
+
+        function calcularSemillasForense() {
+            if (historialFiltrado.length < 2) return [];
+            const ultimos2 = historialFiltrado.slice(0,2);
+            const frec = {};
+            ultimos2.forEach(s => s.numeros.forEach(n => frec[n] = (frec[n]||0)+1));
+            return Object.entries(frec).filter(([_,f]) => f >= 2).map(([n,_]) => parseInt(n));
+        }
+
+        function calcularArrastreForense() {
+            if (historialFiltrado.length < 3) return [];
+            const ultimos3 = historialFiltrado.slice(0,3);
+            const frec = {};
+            ultimos3.forEach(s => s.numeros.forEach(n => frec[n] = (frec[n]||0)+1));
+            return Object.entries(frec).sort((a,b) => b[1]-a[1]).slice(0,5).map(([n,_]) => parseInt(n));
+        }
+
+        function calcularEspejosForense() {
+            return historialFiltrado[0]?.numeros.slice(9,12) || [];
+        }
+
+        function calcularZonaCazaForense() {
+            const zonas = [
+                { nombre: "Zona 0-9", numeros: [0,1,2,3,4,5,6,7,8,9,100] },
+                { nombre: "Zona 10-19", numeros: [10,11,12,13,14,15,16,17,18,19] },
+                { nombre: "Zona 20-29", numeros: [20,21,22,23,24,25,26,27,28,29] },
+                { nombre: "Zona 30-39", numeros: [30,31,32,33,34,35,36,37,38,39] },
+                { nombre: "Zona 40-49", numeros: [40,41,42,43,44,45,46,47,48,49] },
+                { nombre: "Zona 50-59", numeros: [50,51,52,53,54,55,56,57,58,59] },
+                { nombre: "Zona 60-69", numeros: [60,61,62,63,64,65,66,67,68,69] },
+                { nombre: "Zona 70-79", numeros: [70,71,72,73,74,75,76] }
+            ];
+            const actividad = new Array(zonas.length).fill(0);
+            const ultimos12 = historialFiltrado.slice(0, 12);
+            
+            ultimos12.forEach(s => {
+                s.numeros.forEach(n => {
+                    for (let i = 0; i < zonas.length; i++) {
+                        if (zonas[i].numeros.includes(n)) {
+                            actividad[i]++;
+                            break;
+                        }
+                    }
+                });
+            });
+            
+            let zonaMin = 0;
+            let minActividad = actividad[0];
+            for (let i = 1; i < actividad.length; i++) {
+                if (actividad[i] < minActividad) {
+                    minActividad = actividad[i];
+                    zonaMin = i;
+                }
+            }
+            
+            return {
+                nombre: zonas[zonaMin].nombre,
+                numeros: zonas[zonaMin].numeros.filter(n => n <= 76 || n === 100),
+                actividad,
+                indice: zonaMin
+            };
+        }
+
+        function actualizarForenseTop10() {
+            const frec = calcularFrecuenciasForense();
+            const numeros = [];
+            for (let i = config.min; i <= config.max; i++) numeros.push(i);
+            if (config.especiales.includes('00')) numeros.push(100);
+            
+            const ranking = numeros
+                .map(n => ({ 
+                    numero: n, 
+                    frecuencia: frec[n]||0, 
+                    ultima: ultimaAparicionForense(n),
+                    animal: obtenerAnimalForense(n)
+                }))
+                .filter(item => item.frecuencia > 0)
+                .sort((a,b) => b.frecuencia - a.frecuencia || (b.ultima?.getTime() || 0) - (a.ultima?.getTime() || 0))
+                .slice(0,10);
+            
+            let rey = { num: null, freq: -1 };
+            for (let i = config.min; i <= config.max; i++) {
+                if ((frec[i]||0) > rey.freq) rey = { num: i, freq: frec[i]||0 };
+            }
+            if (config.especiales.includes('00') && (frec[100]||0) > rey.freq) {
+                rey = { num: 100, freq: frec[100]||0 };
+            }
+
+            let html = `
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                    <div class="rey-badge">
+                        <i class="bi bi-crown-fill"></i> REY: ${formatearNumero(rey.num)} ${obtenerIcono(rey.num)} (${rey.freq} veces)
+                    </div>
+                </div>
+                <table class="tabla-forense">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Número</th>
+                            <th>Animal</th>
+                            <th>Frecuencia</th>
+                            <th>Última</th>
+                            <th>Acompañantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            ranking.forEach((item, i) => {
+                const acompañantes = obtenerAcompanantesForense(item.numero);
+                const fechaStr = item.ultima ? formatFechaDisplay(item.ultima) : '-';
+                const esRey = item.numero === rey.num;
+                
+                html += `
+                    <tr ${esRey ? 'style="background: rgba(255,215,0,0.1);"' : ''}>
+                        <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#FBBF24'};">
+                            ${esRey ? '👑' : '#'}${i+1}
+                        </td>
+                        <td><strong style="font-size: 14px; color: ${esRey ? '#ffd700' : '#fff'};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
+                        <td style="color: #94a3b8;">${item.animal}</td>
+                        <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#fff'};">${item.frecuencia}</td>
+                        <td style="color: #94a3b8;">${fechaStr}</td>
+                        <td>
+                            ${acompañantes.length > 0 ? acompañantes.map(a => 
+                                `<span class="acompanante-badge" onclick="seleccionarNumeroForense(${a.numero})">${formatearNumero(a.numero)}</span>`
+                            ).join('') : '<span style="color: #64748b;">-</span>'}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('forense-top10').innerHTML = html;
+        }
+
+        function actualizarForensePrediccion() {
+            const semillas = calcularSemillasForense();
+            const arrastre = calcularArrastreForense();
+            const zona = calcularZonaCazaForense();
+            const espejos = calcularEspejosForense();
+            const puntajes = {};
+            const numeros = [];
+            for (let i = config.min; i <= config.max; i++) numeros.push(i);
+            if (config.especiales.includes('00')) numeros.push(100);
+            
+            numeros.forEach(n => {
+                let pts = 0;
+                if (semillas.includes(n)) pts += 10;
+                if (arrastre.includes(n)) pts += 8;
+                if (zona.numeros.includes(n)) pts += 6;
+                if (espejos.includes(n)) pts += 5;
+                if (pts > 0) puntajes[n] = pts;
+            });
+            
+            const ranking = Object.entries(puntajes)
+                .map(([n,p]) => ({ numero: parseInt(n), puntaje: p }))
+                .sort((a,b) => b.puntaje - a.puntaje)
+                .slice(0,3);
+
+            const labels = ['⭐ Opción 1', '🎁 Opción 2', '🔥 Opción 3'];
+            const colores = ['#ffd700', '#C0C0C0', '#CD7F32'];
+            
+            let html = `<div class="prediccion-grid">`;
+            
+            if (ranking.length === 0) {
+                html += `
+                    <div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 20px;">
+                        <i class="bi bi-info-circle" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+                        No hay suficientes datos para generar predicción.
+                    </div>
+                `;
+            } else {
+                ranking.forEach((item, i) => {
+                    const animal = obtenerAnimalForense(item.numero);
+                    html += `
+                        <div class="prediccion-item">
+                            <div class="numero" style="color: ${colores[i]};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</div>
+                            <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">${animal}</div>
+                            <div class="label">${labels[i]}</div>
+                            <div class="puntaje">${item.puntaje} pts</div>
+                        </div>
+                    `;
+                });
+            }
+            
+            html += `</div>`;
+            
+            html += `
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ffd700; border-radius: 3px;"></span> Semillas (10pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ff6b6b; border-radius: 3px;"></span> Arrastre (8pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #4caf50; border-radius: 3px;"></span> Zona (6pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #b388ff; border-radius: 3px;"></span> Espejos (5pts)
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('forense-prediccion').innerHTML = html;
+        }
+
+        function seleccionarNumeroForense(num) {
+            alert(`🔍 Analizando número ${formatearNumero(num)}`);
+        }
+
+        function cargarDatosForense() {
+            if (historialFiltrado && historialFiltrado.length > 0) {
+                actualizarForenseTop10();
+                actualizarForensePrediccion();
+            }
+        }
+
+        // ============================================================
+        // 📊 LÓGICA DE DATOS PRINCIPAL (ADAPTADA PARA GRANJAZO)
+        // ============================================================
+        
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', function(e) {
             if (e.keyCode === 123 || 
@@ -546,10 +1405,8 @@
             console.log(element);
         })();
 
-        // ===== CONFIGURACIÓN =====
         const JSON_URL = 'data/granjazo.json';
 
-        // ===== DICCIONARIO DE ANIMALES PARA GRANJAZO (76 números) =====
         const animales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
             4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
@@ -586,68 +1443,11 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        async function cargarResultados() {
-            try {
-                actualizarStatus('🔄 Cargando pronóstico Premium...');
-                const response = await fetch(JSON_URL + '?t=' + Date.now());
-                const data = await response.json();
-
-                if (!data.resultados || data.resultados.length !== 3) {
-                    actualizarStatus('❌ Error de datos');
-                    mostrarResultados([]);
-                    return;
-                }
-
-                const [dia3, dia2, dia1] = data.resultados;
-                const numerosEsperados = 10; // Granjazo opera con 10 sorteos diarios
-                
-                if (!dia3 || dia3.length !== numerosEsperados || 
-                    !dia2 || dia2.length !== numerosEsperados || 
-                    !dia1 || dia1.length !== numerosEsperados) {
-                    actualizarStatus('❌ Datos incompletos');
-                    mostrarResultados([]);
-                    return;
-                }
-
-                const procesarDia = (dia, inicioCasilla) => {
-                    return dia.map((num, idx) => {
-                        const esDobleCero = num === "00";
-                        return {
-                            numero: esDobleCero ? 0 : num,
-                            esDobleCero: esDobleCero,
-                            casilla: idx + inicioCasilla
-                        };
-                    });
-                };
-
-                const todos = [
-                    ...procesarDia(dia3, 0),
-                    ...procesarDia(dia2, 10),
-                    ...procesarDia(dia1, 20)
-                ];
-
-                const resultado = buscarRepeticion(todos);
-                
-                if (resultado.encontrado) {
-                    mostrarResultados(resultado.siguientes);
-                    actualizarStatus('✨ Pronóstico Premium Actualizado');
-                } else {
-                    mostrarResultados([]);
-                    actualizarStatus('Sin repeticiones');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                mostrarResultados([]);
-                actualizarStatus('❌ Error');
-            }
-        }
-
-        // ===== LÓGICA DE BÚSQUEDA (3 NIVELES JERÁRQUICOS ADAPTADA A GRANJAZO - 30 CASILLAS) =====
         function buscarRepeticion(resultados) {
             const niveles = {
-                N1: { indices: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29], nombre: 'N1', dias: 'Día 1 (Actual)' },
-                N2: { indices: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], nombre: 'N2', dias: 'Día 2 (Intermedio)' },
-                N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], nombre: 'N3', dias: 'Día 3 (Antiguo)' }
+                N1: { indices: [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] },
+                N2: { indices: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] },
+                N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] }
             };
             
             function buscarEnPares(nivelActual, nivelPasado) {
@@ -663,24 +1463,19 @@
                         
                         if (claveActual === clavePasado) {
                             const siguientes = [pasado];
-                            
                             for (let k = 1; k <= 3; k++) {
                                 const sigIdx = idxPasado + k;
                                 if (sigIdx < resultados.length && sigIdx < 30) {
                                     siguientes.push(resultados[sigIdx]);
                                 }
                             }
-                            
-                            if (siguientes.length > 0) {
-                                return { encontrado: true, siguientes };
-                            }
+                            if (siguientes.length > 0) return { encontrado: true, siguientes };
                         }
                     }
                 }
                 return { encontrado: false, siguientes: [] };
             }
             
-            // ORDEN DE PRIORIDAD:
             let resultado = buscarEnPares(niveles.N1, niveles.N2);
             if (resultado.encontrado) return resultado;
             
@@ -693,18 +1488,26 @@
             return { encontrado: false, siguientes: [] };
         }
 
-        function mostrarResultados(siguientes) {
+        function mostrarSuperFijos(items) {
             const contenedor = document.getElementById('resultado-contenido');
-            
-            if (!siguientes || siguientes.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay resultados disponibles en este momento.</div>';
+
+            if (!items || items.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
                 return;
             }
 
-            let html = '<div class="numeros-grid">';
-            siguientes.forEach(r => {
+            let claseGrid = 'numeros-grid-3';
+            
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+            } else {
+                claseGrid += ' locked-grid-desbloqueado';
+            }
+
+            let html = `<div class="${claseGrid}">`;
+            items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
-                
+
                 if (r.esDobleCero) {
                     numDisplay = "00";
                     nombreAnimal = "ballena";
@@ -728,11 +1531,94 @@
             contenedor.innerHTML = html;
         }
 
-        window.onload = () => {
+        async function cargarDatosServidor() {
+            try {
+                const response = await fetch(JSON_URL + '?t=' + Date.now());
+                if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+
+                const data = await response.json();
+                const [dia3, dia2, dia1] = data.resultados;
+
+                const procesarDia = (dia, inicioCasilla) => {
+                    return dia.map((num, idx) => {
+                        const esDobleCero = num === "00";
+                        return {
+                            numero: esDobleCero ? 0 : num,
+                            esDobleCero: esDobleCero,
+                            casilla: idx + inicioCasilla
+                        };
+                    });
+                };
+
+                const todos = [
+                    ...procesarDia(dia3, 0),
+                    ...procesarDia(dia2, 10),
+                    ...procesarDia(dia1, 20)
+                ];
+
+                // ===== CONSTRUIR HISTORIAL FORENSE =====
+                const hoy = new Date();
+                const fechasBase = [];
+                for (let i = 0; i < 3; i++) {
+                    const fecha = new Date(hoy);
+                    fecha.setDate(hoy.getDate() - (3 - i));
+                    const dia = String(fecha.getDate()).padStart(2, '0');
+                    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                    const año = fecha.getFullYear();
+                    fechasBase.push(`${dia}/${mes}/${año}`);
+                }
+
+                const dias = [dia1, dia2, dia3];
+                historialFiltrado = [];
+                dias.forEach((sorteo, idx) => {
+                    const fechaStr = fechasBase[idx] || `Día ${idx+1}`;
+                    const partes = fechaStr.split('/');
+                    const fecha = new Date(partes[2], partes[1]-1, partes[0]);
+                    const numeros = [];
+                    sorteo.forEach(valor => {
+                        if (valor === '00') {
+                            numeros.push(100);
+                        } else {
+                            numeros.push(parseInt(valor));
+                        }
+                    });
+                    historialFiltrado.push({ fecha, fechaStr, numeros });
+                });
+                historialFiltrado.sort((a, b) => b.fecha - a.fecha);
+
+                // SUPER FIJOS
+                const resultado = buscarRepeticion(todos);
+                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+                
+                mostrarSuperFijos(superFijos);
+                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
+
+                // ANÁLISIS FORENSE
+                cargarDatosForense();
+
+                await verificarSesionPrevia();
+
+            } catch (error) {
+                console.error('Error:', error);
+                actualizarStatus('⚠️ Error al cargar datos del servidor');
+                const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
+                document.getElementById('resultado-contenido').innerHTML = msjError;
+                document.getElementById('forense-top10').innerHTML = msjError;
+                document.getElementById('forense-prediccion').innerHTML = msjError;
+            }
+        }
+
+        // ============================================================
+        // 🚀 INICIALIZACIÓN
+        // ============================================================
+        window.onload = async () => {
             mostrarFecha();
-            cargarResultados();
-            setInterval(cargarResultados, 6 * 60 * 60 * 1000);
+            await cargarDatosServidor();
+            setInterval(cargarDatosServidor, 6 * 60 * 60 * 1000);
         };
+
+        // Exponer función para clic en acompañantes
+        window.seleccionarNumeroForense = seleccionarNumeroForense;
     </script>
 </body>
 
