@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-05T19:46:38.191079",
+    "ultima_actualizacion": "2026-08-05T21:20:15.101530",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Miércoles",
         "fecha": "05 ago 2026",
         "numeros": [
-          2
+          1
         ],
         "numero_extra": null
       },
