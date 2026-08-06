@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-06T06:39:00.679031",
+    "ultima_actualizacion": "2026-08-06T09:45:17.509696",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026"
       },
-      "bote": "786.000.000$"
+      "bote": "856.000.000$"
     },
     {
       "id": "mega-millions",
@@ -50,29 +50,6 @@
       "bote": "70.000.000$"
     },
     {
-      "id": "lotto-florida",
-      "nombre": "Lotto Florida",
-      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "05 ago 2026",
-        "numeros": [
-          4,
-          19,
-          21,
-          22,
-          30,
-          45
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
-      },
-      "bote": "6.000.000$"
-    },
-    {
       "id": "jackpot-triple-play",
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
@@ -94,6 +71,29 @@
         "fecha": "07 ago 2026"
       },
       "bote": "1.300.000$"
+    },
+    {
+      "id": "lotto-florida",
+      "nombre": "Lotto Florida",
+      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "05 ago 2026",
+        "numeros": [
+          4,
+          19,
+          21,
+          22,
+          30,
+          45
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "08 ago 2026"
+      },
+      "bote": "1.000.000$"
     },
     {
       "id": "fantasy-5",
