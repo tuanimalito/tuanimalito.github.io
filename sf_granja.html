@@ -1679,6 +1679,7 @@
             return seleccionados;
         }
 
+        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -1687,8 +1688,15 @@
                 return;
             }
 
+            // MEZCLAR ALEATORIAMENTE (Fisher-Yates)
+            const shuffled = [...items];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
             let html = '<div class="numeros-grid-5">';
-            items.forEach(r => {
+            shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 let claseExtra = '';
 
