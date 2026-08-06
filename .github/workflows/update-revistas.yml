@@ -2,8 +2,8 @@ name: Actualizar Revistas Oasis
 
 on:
   schedule:
-    # 16:00, 17:00 y 18:00 UTC equivalen a 12:00 PM, 1:00 PM y 2:00 PM (GMT-4)
-    - cron: '0 16,17,18 * * *'
+    # 15:00, 16:00 y 17:00 UTC equivalen a 11:00 AM, 12:00 PM y 1:00 PM (GMT-4)
+    - cron: '0 15,16,17 * * *'
   workflow_dispatch:
 
 permissions:
