@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-07T00:09:57.351021",
+    "ultima_actualizacion": "2026-08-07T03:55:18.698928",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "06 ago 2026"
+        "dia": "Viernes",
+        "fecha": "07 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "06 ago 2026",
         "numeros": [
-          9,
-          3,
           7,
+          4,
+          0,
           6,
-          8
+          5
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "06 ago 2026"
+        "dia": "Viernes",
+        "fecha": "07 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "06 ago 2026",
         "numeros": [
-          2,
-          9,
-          9,
-          4
+          1,
+          0,
+          4,
+          8
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "06 ago 2026"
+        "dia": "Viernes",
+        "fecha": "07 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "06 ago 2026",
         "numeros": [
-          8,
-          6,
-          9
+          9,
+          5,
+          6
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "06 ago 2026"
+        "dia": "Viernes",
+        "fecha": "07 ago 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "06 ago 2026",
         "numeros": [
           9,
-          2
+          4
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "06 ago 2026"
+        "dia": "Viernes",
+        "fecha": "07 ago 2026"
       },
       "bote": "50$"
     },
