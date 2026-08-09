@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-08T18:50:22.578921",
+    "ultima_actualizacion": "2026-08-09T02:20:22.205676",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026",
         "numeros": [
-          7,
-          7,
-          1,
-          9,
-          8
+          3,
+          4,
+          2,
+          2,
+          7
         ],
         "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Domingo",
+        "fecha": "09 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026",
         "numeros": [
-          2,
-          7,
-          2,
-          1
+          9,
+          6,
+          9,
+          7
         ],
         "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Domingo",
+        "fecha": "09 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026",
         "numeros": [
-          1,
-          5,
-          7
+          6,
+          4,
+          3
         ],
         "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Domingo",
+        "fecha": "09 ago 2026"
       },
       "bote": "500$"
     },
@@ -188,7 +188,7 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026",
         "numeros": [
-          9
+          13
         ],
         "numero_extra": null
       },
@@ -206,14 +206,14 @@
         "dia": "Sábado",
         "fecha": "08 ago 2026",
         "numeros": [
-          0,
-          3
+          1,
+          5
         ],
         "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Domingo",
+        "fecha": "09 ago 2026"
       },
       "bote": "50$"
     },
