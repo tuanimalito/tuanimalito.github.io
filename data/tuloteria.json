@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-09T02:20:22.205676",
+    "ultima_actualizacion": "2026-08-09T04:24:05.092738",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "05 ago 2026",
+        "dia": "Sábado",
+        "fecha": "08 ago 2026",
         "numeros": [
-          14,
-          20,
-          59,
-          60,
-          61
+          5,
+          9,
+          35,
+          54,
+          63
         ],
-        "numero_extra": 25
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Lunes",
+        "fecha": "10 ago 2026"
       },
       "bote": "856.000.000$"
     },
@@ -77,23 +77,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "05 ago 2026",
+        "dia": "Sábado",
+        "fecha": "08 ago 2026",
         "numeros": [
-          4,
-          19,
-          21,
-          22,
-          30,
-          45
+          3,
+          11,
+          20,
+          25,
+          40,
+          42
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "12 ago 2026"
       },
-      "bote": "1.000.000$"
+      "bote": "1.250.000$"
     },
     {
       "id": "fantasy-5",
@@ -112,8 +112,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "08 ago 2026"
+        "dia": "Domingo",
+        "fecha": "09 ago 2026"
       },
       "bote": "100.000$"
     },
