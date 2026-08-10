@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-10T02:25:16.658483",
+    "ultima_actualizacion": "2026-08-10T04:45:33.879421",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "09 ago 2026",
         "numeros": [
-          4,
-          7,
-          22,
+          9,
+          14,
           24,
-          26
+          27,
+          28
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "09 ago 2026"
+        "dia": "Lunes",
+        "fecha": "10 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "09 ago 2026"
+        "dia": "Lunes",
+        "fecha": "10 ago 2026"
       },
       "bote": "250$"
     },
