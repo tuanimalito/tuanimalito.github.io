@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-11T19:12:32.419645",
+    "ultima_actualizacion": "2026-08-11T20:55:58.222374",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Miércoles",
         "fecha": "12 ago 2026"
       },
-      "bote": "975.000.000$"
+      "bote": "1.000.000.000$"
     },
     {
       "id": "mega-millions",
@@ -188,7 +188,7 @@
         "dia": "Martes",
         "fecha": "11 ago 2026",
         "numeros": [
-          6
+          15
         ],
         "numero_extra": null
       },
