@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-10T20:53:04.531081",
+    "ultima_actualizacion": "2026-08-11T02:18:49.531753",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -125,17 +125,17 @@
         "dia": "Lunes",
         "fecha": "10 ago 2026",
         "numeros": [
-          4,
-          8,
           0,
-          9,
-          2
+          0,
+          6,
+          5,
+          5
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "10 ago 2026"
+        "dia": "Martes",
+        "fecha": "11 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Lunes",
         "fecha": "10 ago 2026",
         "numeros": [
-          5,
-          0,
           9,
-          7
+          4,
+          7,
+          5
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "10 ago 2026"
+        "dia": "Martes",
+        "fecha": "11 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -169,14 +169,14 @@
         "fecha": "10 ago 2026",
         "numeros": [
           7,
-          6,
-          4
+          4,
+          3
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "10 ago 2026"
+        "dia": "Martes",
+        "fecha": "11 ago 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Lunes",
         "fecha": "10 ago 2026",
         "numeros": [
-          0,
-          7
+          1,
+          4
         ],
-        "numero_extra": 2
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "10 ago 2026"
+        "dia": "Martes",
+        "fecha": "11 ago 2026"
       },
       "bote": "50$"
     },
