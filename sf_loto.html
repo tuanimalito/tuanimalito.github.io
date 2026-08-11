@@ -290,11 +290,12 @@
             border-radius: 10px;
         }
 
-        /* --- TRIPLETAS (Púrpura) - SIEMPRE VISIBLE --- */
+        /* --- TRIPLETAS (Púrpura) - PREMIUM BLOQUEADO --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
+            position: relative;
         }
         .tarjeta-tripletas::before {
             content: '';
@@ -324,6 +325,41 @@
         .tarjeta-tripletas .numero-card::before {
             content: "TRIPLETA";
             background: #b388ff;
+        }
+
+        /* Overlay para Tripletas */
+        .premium-overlay-tripletas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(179, 136, 255, 0.2);
+        }
+
+        .premium-overlay-tripletas::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(179, 136, 255, 0.1), transparent, rgba(179, 136, 255, 0.1));
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
@@ -362,11 +398,12 @@
             background: #ff6b6b;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+            position: relative;
         }
         .tarjeta-forense::before {
             content: '';
@@ -387,6 +424,41 @@
         }
         .tarjeta-forense h3 i {
             color: #ffd700;
+        }
+
+        /* Overlay para Análisis Forense */
+        .premium-overlay-forense {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .premium-overlay-forense::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Sub-contenedores dentro de Análisis Forense */
@@ -411,6 +483,21 @@
         }
         .forense-sub h4 i {
             color: #ffd700;
+        }
+
+        /* Contenido forense bloqueado */
+        .forense-contenido-bloqueado {
+            filter: blur(8px) brightness(0.6);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .forense-contenido-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.8s ease;
         }
 
         /* Tabla Forense */
@@ -927,6 +1014,18 @@
             grid-template-columns: repeat(2, 1fr) !important;
         }
 
+        /* Contenedor para contenido premium bloqueado en tripletas */
+        .tripletas-container {
+            position: relative;
+            min-height: 200px;
+        }
+
+        /* Contenedor para contenido forense bloqueado */
+        .forense-container {
+            position: relative;
+            min-height: 300px;
+        }
+
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -1046,7 +1145,7 @@
         <div class="seccion-datos">
             <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números -->
             <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy </h3>
+                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-lock-fill"></i> solo loto activo
                 </div>
@@ -1055,13 +1154,36 @@
                 </div>
             </div>
 
-            <!-- TRIPLETAS - PÚRPURA (SIEMPRE VISIBLE) - 4 números -->
-            <div class="tarjeta-tripletas tarjeta-dato">
+            <!-- TRIPLETAS - PÚRPURA (PREMIUM BLOQUEADO) - 4 números -->
+            <div class="tarjeta-tripletas tarjeta-dato" id="tripletasCard">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Lotto Activo</h3>
                 <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-arrow-right"></i> Bases + Acompañantes de Super Fijos
                 </div>
-                <div id="tripletas-contenido" style="min-height: 150px;">
+                
+                <!-- Overlay Premium para Tripletas -->
+                <div class="premium-overlay-tripletas" id="overlayTripletas">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> TRIPLETAS PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a las Tripletas ingresando tu clave o suscríbete vía WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Tripletas" 
+                           class="whatsapp-btn" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div id="tripletas-contenido" class="tripletas-container" style="min-height: 150px;">
                     <div class="no-data">Cargando tripletas...</div>
                 </div>
             </div>
@@ -1099,23 +1221,50 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
-            <div class="tarjeta-forense tarjeta-dato">
+            <!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
+            <div class="tarjeta-forense tarjeta-dato" id="forenseCard">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 
-                <!-- TOP 10 + REY -->
-                <div class="forense-sub">
-                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                    <div id="forense-top10" style="overflow-x: auto;">
-                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                <!-- Overlay Premium para Análisis Forense -->
+                <div class="premium-overlay-forense" id="overlayForense">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
+                    </div>
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede al Análisis Forense completo ingresando tu clave o suscríbete vía WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense" 
+                           class="whatsapp-btn" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <!-- Predicción Inteligente -->
-                <div class="forense-sub">
-                    <h4><i class="bi bi-bullseye"></i> Predicción Forence</h4>
-                    <div id="forense-prediccion">
-                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
+                <div id="forense-contenido" class="forense-container">
+                    <!-- TOP 10 + REY -->
+                    <div class="forense-sub">
+                        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                        <div id="forense-top10" style="overflow-x: auto;">
+                            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                        </div>
+                    </div>
+
+                    <!-- Predicción Inteligente -->
+                    <div class="forense-sub">
+                        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
+                        <div id="forense-prediccion">
+                            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1136,7 +1285,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -1249,7 +1398,7 @@
                 
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearSuperFijos();
+                    desbloquearTodoPremium();
                     cerrarModalLogin();
                     localStorage.setItem('user_premium_token', clave);
                     alert('✅ Acceso Premium concedido');
@@ -1271,7 +1420,7 @@
                 const esValido = await validarCodigo(tokenGuardado);
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearSuperFijos();
+                    desbloquearTodoPremium();
                 } else {
                     localStorage.removeItem('user_premium_token');
                     usuarioAutenticado = false;
@@ -1279,9 +1428,10 @@
             }
         }
 
-        function desbloquearSuperFijos() {
+        function desbloquearTodoPremium() {
             usuarioAutenticado = true;
             
+            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.style.display = 'none';
             
@@ -1293,6 +1443,30 @@
                     grid.classList.add('locked-grid-desbloqueado');
                 }
                 resultadoContenedor.classList.remove('locked-grid');
+            }
+
+            // Desbloquear Tripletas
+            const overlayTripletas = document.getElementById('overlayTripletas');
+            if (overlayTripletas) overlayTripletas.style.display = 'none';
+            
+            const tripletContenedor = document.getElementById('tripletas-contenido');
+            if (tripletContenedor) {
+                const grid = tripletContenedor.querySelector('.numeros-grid');
+                if (grid) {
+                    grid.classList.remove('locked-grid');
+                    grid.classList.add('locked-grid-desbloqueado');
+                }
+                tripletContenedor.classList.remove('locked-grid');
+            }
+
+            // Desbloquear Análisis Forense
+            const overlayForense = document.getElementById('overlayForense');
+            if (overlayForense) overlayForense.style.display = 'none';
+            
+            const forenseContenedor = document.getElementById('forense-contenido');
+            if (forenseContenedor) {
+                forenseContenedor.classList.remove('forense-contenido-bloqueado');
+                forenseContenedor.classList.add('forense-contenido-desbloqueado');
             }
         }
 
@@ -1699,7 +1873,6 @@
         }
 
         function seleccionarNumeroForense(num) {
-            // Función para cuando se hace clic en un acompañante
             alert(`🔍 Analizando número ${formatearNumero(num)}`);
         }
 
@@ -1755,7 +1928,6 @@
             
             html += `</div>`;
             
-            // Agregar leyenda
             html += `
                 <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 12px;">
                     <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
@@ -1851,18 +2023,24 @@
 
                 // 1. SUPER FIJOS - BLOQUEADO (3 números)
                 mostrarSuperFijos(superFijos);
-                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
-
-                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
-                const cortesiaResultados = informacionDeCortecia(todos, superFijos);
-                mostrarCortesia(cortesiaResultados);
-
-                // 3. TRIPLETAS - SIEMPRE VISIBLE (4 números: 2 Bases + 2 Acompañantes)
+                
+                // 2. TRIPLETAS - PREMIUM BLOQUEADO (4 números: 2 Bases + 2 Acompañantes)
                 const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
                 mostrarTripletas(tripletas);
 
-                // 4. ANÁLISIS FORENSE PREMIUM
+                // 3. CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
+                const cortesiaResultados = informacionDeCortecia(todos, superFijos);
+                mostrarCortesia(cortesiaResultados);
+
+                // 4. ANÁLISIS FORENSE PREMIUM - BLOQUEADO
                 cargarDatosForense();
+
+                // Aplicar bloqueos si no está autenticado
+                if (!usuarioAutenticado) {
+                    aplicarBloqueosPremium();
+                }
+
+                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
                 await verificarSesionPrevia();
 
@@ -1875,6 +2053,26 @@
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
                 document.getElementById('forense-prediccion').innerHTML = msjError;
+            }
+        }
+
+        function aplicarBloqueosPremium() {
+            // Bloquear Tripletas
+            const tripletContenedor = document.getElementById('tripletas-contenido');
+            if (tripletContenedor) {
+                const grid = tripletContenedor.querySelector('.numeros-grid');
+                if (grid) {
+                    grid.classList.add('locked-grid');
+                    grid.classList.remove('locked-grid-desbloqueado');
+                }
+                tripletContenedor.classList.add('locked-grid');
+            }
+
+            // Bloquear Forense
+            const forenseContenedor = document.getElementById('forense-contenido');
+            if (forenseContenedor) {
+                forenseContenedor.classList.add('forense-contenido-bloqueado');
+                forenseContenedor.classList.remove('forense-contenido-desbloqueado');
             }
         }
 
@@ -1891,6 +2089,9 @@
             if (!usuarioAutenticado) {
                 claseGrid += ' locked-grid';
                 claseContainer += ' locked-grid';
+            } else {
+                claseGrid += ' locked-grid-desbloqueado';
+                claseContainer += ' locked-grid-desbloqueado';
             }
 
             let html = `<div class="${claseGrid}">`;
@@ -1921,6 +2122,7 @@
             contenedor.innerHTML = html;
         }
 
+        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -1929,8 +2131,15 @@
                 return;
             }
 
+            // MEZCLAR ALEATORIAMENTE (Fisher-Yates)
+            const shuffled = [...items];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
             let html = '<div class="numeros-grid-5">';
-            items.forEach(r => {
+            shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 let claseExtra = '';
 
@@ -1969,7 +2178,15 @@
                 return;
             }
 
-            let html = '<div class="numeros-grid">';
+            let claseGrid = 'numeros-grid';
+            
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+            } else {
+                claseGrid += ' locked-grid-desbloqueado';
+            }
+
+            let html = `<div class="${claseGrid}">`;
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
