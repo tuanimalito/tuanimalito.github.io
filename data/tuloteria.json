@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-11T20:55:58.222374",
+    "ultima_actualizacion": "2026-08-12T02:33:44.118085",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -125,17 +125,17 @@
         "dia": "Martes",
         "fecha": "11 ago 2026",
         "numeros": [
+          3,
+          8,
           7,
-          0,
-          0,
-          7,
-          1
+          6,
+          8
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "11 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "12 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Martes",
         "fecha": "11 ago 2026",
         "numeros": [
-          7,
           5,
-          0,
-          5
+          5,
+          9,
+          1
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "11 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "12 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Martes",
         "fecha": "11 ago 2026",
         "numeros": [
-          2,
-          7,
-          5
+          5,
+          3,
+          9
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "11 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "12 ago 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Martes",
         "fecha": "11 ago 2026",
         "numeros": [
-          9,
-          1
+          6,
+          8
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "11 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "12 ago 2026"
       },
       "bote": "50$"
     },
