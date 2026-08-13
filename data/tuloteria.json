@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-13T19:13:20.619529",
+    "ultima_actualizacion": "2026-08-13T20:53:27.422855",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Jueves",
         "fecha": "13 ago 2026",
         "numeros": [
-          5
+          8
         ],
         "numero_extra": null
       },
