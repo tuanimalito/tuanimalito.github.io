@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-14T20:37:19.201163",
+    "ultima_actualizacion": "2026-08-15T02:58:30.500208",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -125,17 +125,17 @@
         "dia": "Viernes",
         "fecha": "14 ago 2026",
         "numeros": [
-          8,
-          3,
           7,
-          0,
-          6
+          4,
+          6,
+          7,
+          1
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "14 ago 2026"
+        "dia": "Sábado",
+        "fecha": "15 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Viernes",
         "fecha": "14 ago 2026",
         "numeros": [
+          6,
+          7,
           5,
-          3,
-          9,
-          3
+          8
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "14 ago 2026"
+        "dia": "Sábado",
+        "fecha": "15 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "14 ago 2026",
         "numeros": [
-          9,
-          0,
-          2
+          2,
+          5,
+          5
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "14 ago 2026"
+        "dia": "Sábado",
+        "fecha": "15 ago 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Viernes",
         "fecha": "14 ago 2026",
         "numeros": [
-          0,
-          5
+          1,
+          0
         ],
-        "numero_extra": 2
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "14 ago 2026"
+        "dia": "Sábado",
+        "fecha": "15 ago 2026"
       },
       "bote": "50$"
     },
