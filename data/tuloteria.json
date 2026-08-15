@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-15T05:31:23.100010",
+    "ultima_actualizacion": "2026-08-15T12:52:07.674499",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Martes",
         "fecha": "18 ago 2026"
       },
-      "bote": "90.000.000$"
+      "bote": "100.000.000$"
     },
     {
       "id": "powerball",
