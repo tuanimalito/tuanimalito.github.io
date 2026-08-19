@@ -1391,9 +1391,9 @@
             <!-- GSM - GENERADOR DE SECUENCIAS MIA (Entre Super Fijos y Forense) -->
             <!-- ===================================================== -->
             <div class="tarjeta-gsm tarjeta-dato">
-                <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
+                <h3><i class="bi bi-robot"></i> Gsm · Generador de Secuencias Mia</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-arrow-right"></i> Secuencias solo para Loto Activo
+                    <i class="bi bi-arrow-right"></i> Método de repetición ≥ 5 · Secuencias actualizadas
                 </div>
 
                 <!-- Buscar secuencia -->
@@ -1402,7 +1402,7 @@
                     <div class="gsm-flex-row">
                         <div class="gsm-filtro-input">
                             <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
-                            <button id="gsmBuscarBtn">Buscar</button>
+                            <button id="gsmBuscarBtn">consultar</button>
                         </div>
                         <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
                     </div>
@@ -1431,7 +1431,7 @@
                     <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
                     <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Loto Activo.</p>
                     <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
-                    <p><i class="bi bi-5-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                    <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
                 </div>
             </div>
 
@@ -1515,6 +1515,7 @@
 
         let usuarioAutenticado = false;
         const JSON_URL = 'data/lotto.json';
+        const SECUENCIA_URL = 'data/secuencia.json';
 
         const animales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
@@ -2114,7 +2115,7 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS MIA
+        // GSM - GENERADOR DE SECUENCIAS MIA (CORREGIDO)
         // =====================================================
         const gsmAnimales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
@@ -2138,38 +2139,34 @@
             return Number.isInteger(num) && num >= 0 && num <= 36;
         }
 
-        // Datos GSM (se sincronizan con los datos del servidor)
-        let gsmLottoResultados = [];
+        // ===== DATOS GSM CARGADOS DESDE EL SERVIDOR =====
         let gsmSecuenciaResultados = [];
 
-        function gsmContarRepeticionesUltimosDos(lottoArrays) {
-            if (!lottoArrays || lottoArrays.length < 2) return 0;
-            const ultimo = lottoArrays[lottoArrays.length - 1];
-            const penultimo = lottoArrays[lottoArrays.length - 2];
-            if (!Array.isArray(ultimo) || !Array.isArray(penultimo)) return 0;
-            const setUltimo = new Set(ultimo.map(String));
-            const setPenultimo = new Set(penultimo.map(String));
-            let repetidos = 0;
-            for (let val of setUltimo) if (setPenultimo.has(val)) repetidos++;
-            return repetidos;
-        }
-
-        function gsmAplicarReglaSecuencia(lottoArrays, secuenciaArrays) {
-            if (!lottoArrays || lottoArrays.length < 2) return secuenciaArrays;
-            if (!Array.isArray(secuenciaArrays)) secuenciaArrays = [];
-            const repeticiones = gsmContarRepeticionesUltimosDos(lottoArrays);
-            if (repeticiones >= 5) {
-                if (secuenciaArrays.length > 0) secuenciaArrays.shift();
-                const ultimoLotto = lottoArrays[lottoArrays.length - 1];
-                if (Array.isArray(ultimoLotto)) secuenciaArrays.push([...ultimoLotto]);
+        // ===== FUNCIÓN PARA CARGAR SECUENCIA.JSON REAL =====
+        async function gsmCargarSecuenciaReal() {
+            try {
+                const response = await fetch(`${SECUENCIA_URL}?_=${new Date().getTime()}`);
+                if (!response.ok) {
+                    console.warn('⚠️ No se pudo cargar secuencia.json, usando datos de respaldo');
+                    return false;
+                }
+                const data = await response.json();
+                if (data && data.resultados && Array.isArray(data.resultados)) {
+                    gsmSecuenciaResultados = data.resultados;
+                    console.log(`✅ secuencia.json cargado: ${gsmSecuenciaResultados.length} secuencias`);
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.error('❌ Error al cargar secuencia.json:', error);
+                return false;
             }
-            while (secuenciaArrays.length > 3) secuenciaArrays.shift();
-            return secuenciaArrays;
         }
 
         function gsmObtenerSecuenciaMasRecienteConNumero(numeroBuscado) {
             const numStr = String(numeroBuscado).trim();
             if (!gsmSecuenciaResultados || gsmSecuenciaResultados.length === 0) return null;
+            // Recorrer de atrás hacia adelante (más reciente primero)
             for (let i = gsmSecuenciaResultados.length - 1; i >= 0; i--) {
                 const sec = gsmSecuenciaResultados[i];
                 if (Array.isArray(sec) && sec.some(val => String(val) === numStr)) {
@@ -2186,6 +2183,7 @@
                 return;
             }
             const numExcluirStr = String(numeroExcluir).trim();
+            // Filtrar excluyendo el número consultado
             const filtrada = secuenciaArray.filter(num => String(num) !== numExcluirStr);
             if (filtrada.length === 0) {
                 grid.innerHTML = `<span class="gsm-mensaje-vacio">la secuencia solo contiene el número consultado</span>`;
@@ -2244,7 +2242,7 @@
             tarjeta.style.display = 'inline-flex';
             mensaje.style.display = 'none';
 
-            // Obtener secuencia más reciente
+            // Obtener secuencia más reciente DESDE secuencia.json REAL
             const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
             if (!resultado) {
                 document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">el número ${val} no aparece en ninguna secuencia</span>`;
@@ -2253,9 +2251,12 @@
             gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
         }
 
-        function gsmInicializar() {
+        async function gsmInicializar() {
             const input = document.getElementById('gsmNumeroInput');
             const buscarBtn = document.getElementById('gsmBuscarBtn');
+
+            // Cargar secuencia.json real al iniciar
+            await gsmCargarSecuenciaReal();
 
             buscarBtn.addEventListener('click', gsmConsultarNumero);
             input.addEventListener('keypress', e => { if (e.key === 'Enter') gsmConsultarNumero(); });
@@ -2299,23 +2300,6 @@
                 const dia2Procesado = procesarDia(dia2, 13);
                 const dia1Procesado = procesarDia(dia1, 25);
                 const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
-
-                // ===== ACTUALIZAR GSM =====
-                // Guardar los arrays originales para GSM
-                const lottoArrays = [dia3, dia2, dia1];
-                gsmLottoResultados = lottoArrays;
-                // Inicializar secuencia desde SecuenciaData o desde cero
-                // Usamos los datos de ejemplo para inicializar
-                const SecuenciaData = {
-                    resultados: [
-                        [15,34,16,14,38],
-                        [19,23,17,35,1],
-                        [35,10,26,"00",21]
-                    ]
-                };
-                gsmSecuenciaResultados = JSON.parse(JSON.stringify(SecuenciaData.resultados));
-                // Aplicar regla con los datos de lotto
-                gsmSecuenciaResultados = gsmAplicarReglaSecuencia(gsmLottoResultados, gsmSecuenciaResultados);
 
                 const resultado = buscarRepeticion(todos);
                 const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
@@ -2502,10 +2486,10 @@
         // =====================================================
         // INICIALIZACIÓN
         // =====================================================
-        window.onload = () => {
+        window.onload = async () => {
             mostrarFecha();
-            cargarDatosServidor();
-            gsmInicializar();
+            await cargarDatosServidor();
+            await gsmInicializar();
         };
 
         // =====================================================
