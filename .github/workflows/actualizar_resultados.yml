@@ -27,32 +27,17 @@ jobs:
           echo '{"dependencies":{"node-fetch":"^3.3.2"}}' > package.json
           npm install
 
-      - name: 🔍 Obtener resultados de la API
+      - name: 🔍 Obtener resultados de la API (Lotto, Guácharo, Granja, Granjazo)
         id: obtener
         run: node scripts/obtener_de_api.js
         continue-on-error: true
 
-      - name: 📤 Actualizar archivos JSON
+      - name: 🔄 Actualizar secuencia.json con la lógica de Gsm
         if: success()
-        run: |
-          if [ -f temp_resultados/nuevos.json ]; then
-            NUEVOS=$(cat temp_resultados/nuevos.json)
-            
-            if [ -f data/guacharo.json ]; then
-              node -e "
-                const fs = require('fs');
-                const nuevos = JSON.parse(process.env.NUEVOS);
-                const actual = JSON.parse(fs.readFileSync('data/guacharo.json'));
-                const [diaViejo, diaMedio, diaReciente] = actual.resultados;
-                actual.resultados = [diaMedio, diaReciente, nuevos.guacharo];
-                actual.fecha_actualizacion = new Date().toISOString();
-                fs.writeFileSync('data/guacharo.json', JSON.stringify(actual, null, 2));
-              "
-              echo "✅ guacharo.json actualizado"
-            fi
-          fi
+        run: node scripts/actualizar_secuencia.js
+        continue-on-error: true
 
-      - name: 📤 Commit y push
+      - name: 📤 Commit y push de todos los cambios
         run: |
           git config --global user.name "Dr. Animalitos Bot"
           git config --global user.email "bot@tuanimalito.github.io"
