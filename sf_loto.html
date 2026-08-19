@@ -290,12 +290,11 @@
             border-radius: 10px;
         }
 
-        /* --- TRIPLETAS (Púrpura) - PREMIUM BLOQUEADO --- */
+        /* --- TRIPLETAS (Púrpura) - SIEMPRE VISIBLE --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
-            position: relative;
         }
         .tarjeta-tripletas::before {
             content: '';
@@ -325,41 +324,6 @@
         .tarjeta-tripletas .numero-card::before {
             content: "TRIPLETA";
             background: #b388ff;
-        }
-
-        /* Overlay para Tripletas */
-        .premium-overlay-tripletas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(179, 136, 255, 0.2);
-        }
-
-        .premium-overlay-tripletas::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(179, 136, 255, 0.1), transparent, rgba(179, 136, 255, 0.1));
-            z-index: -1;
-            pointer-events: none;
         }
 
         /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
@@ -398,12 +362,266 @@
             background: #ff6b6b;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
+        /* ================================================ */
+        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado)       */
+        /* ================================================ */
+        .tarjeta-gsm {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+        }
+        .tarjeta-gsm::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .tarjeta-gsm h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.5rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+        }
+        .tarjeta-gsm h3 i {
+            color: #ffd700;
+        }
+
+        .gsm-busqueda {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .gsm-busqueda h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-busqueda h4 i {
+            color: #ffd700;
+        }
+
+        .gsm-flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+        .gsm-filtro-input {
+            display: flex;
+            flex: 1 1 220px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 60px;
+            overflow: hidden;
+            background: #030712;
+            transition: 0.2s;
+            max-width: 320px;
+        }
+        .gsm-filtro-input:focus-within {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        .gsm-filtro-input input {
+            border: none;
+            padding: 0.65rem 1.2rem;
+            font-size: 0.95rem;
+            flex: 1;
+            outline: none;
+            background: transparent;
+            color: #ffdd99;
+            font-family: 'Inter', sans-serif;
+        }
+        .gsm-filtro-input input::placeholder {
+            color: #666;
+        }
+        .gsm-filtro-input button {
+            background: linear-gradient(135deg, #c2410c, #ea580c);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+        .gsm-filtro-input button:hover {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+        .gsm-error-validacion {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.15);
+            border-radius: 30px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .gsm-tarjeta-imagen {
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 160px;
+        }
+        .gsm-tarjeta-imagen img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-numero {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-animal {
+            font-size: 0.85rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.05rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .gsm-mensaje-vacio {
+            color: #888;
+            font-style: italic;
+            padding: 0.4rem 0;
+        }
+
+        .gsm-secuencias {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-secuencias h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-secuencias h4 i {
+            color: #ffd700;
+        }
+
+        /* ===== TARJETAS GSM MISMO TAMAÑO QUE TRIPLETAS ===== */
+        .gsm-grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gsm-tarjeta-secuencia {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            transition: all 0.3s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+        .gsm-tarjeta-secuencia:hover {
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+        .gsm-tarjeta-secuencia img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            margin-bottom: 4px;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-nom {
+            font-size: 0.75rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-top: 2px;
+        }
+
+        /* ===== INSTRUCCIONES GSM ===== */
+        .gsm-instrucciones {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-instrucciones h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-instrucciones h4 i {
+            color: #ffd700;
+        }
+        .gsm-instrucciones p {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        .gsm-instrucciones p i {
+            color: #ffd700;
+            margin-right: 6px;
+        }
+
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
         }
         .tarjeta-forense::before {
             content: '';
@@ -424,41 +642,6 @@
         }
         .tarjeta-forense h3 i {
             color: #ffd700;
-        }
-
-        /* Overlay para Análisis Forense */
-        .premium-overlay-forense {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .premium-overlay-forense::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
         }
 
         /* Sub-contenedores dentro de Análisis Forense */
@@ -483,21 +666,6 @@
         }
         .forense-sub h4 i {
             color: #ffd700;
-        }
-
-        /* Contenido forense bloqueado */
-        .forense-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .forense-contenido-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.8s ease;
         }
 
         /* Tabla Forense */
@@ -1014,18 +1182,7 @@
             grid-template-columns: repeat(2, 1fr) !important;
         }
 
-        /* Contenedor para contenido premium bloqueado en tripletas */
-        .tripletas-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        /* Contenedor para contenido forense bloqueado */
-        .forense-container {
-            position: relative;
-            min-height: 300px;
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -1047,6 +1204,9 @@
             }
             .prediccion-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -1074,6 +1234,35 @@
                 font-size: 0.6rem;
                 padding: 1px 6px;
             }
+            .gsm-filtro-input {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+            .gsm-flex-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .gsm-tarjeta-imagen {
+                width: 100%;
+                justify-content: center;
+            }
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gsm-tarjeta-secuencia {
+                min-height: 100px;
+                padding: 10px 6px;
+            }
+            .gsm-tarjeta-secuencia img {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -1087,6 +1276,8 @@
                 </button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                    <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
+                    <a href="estadisticas_loto.html"><i class="bi bi-feather"></i> Estadísticas</a>
                     <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
                     <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
                     <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
@@ -1143,7 +1334,7 @@
         <div class="seccion-datos">
             <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números -->
             <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
+                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy </h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-lock-fill"></i> solo loto activo
                 </div>
@@ -1152,36 +1343,13 @@
                 </div>
             </div>
 
-            <!-- TRIPLETAS - PÚRPURA (PREMIUM BLOQUEADO) - 4 números -->
-            <div class="tarjeta-tripletas tarjeta-dato" id="tripletasCard">
+            <!-- TRIPLETAS - PÚRPURA (SIEMPRE VISIBLE) - 4 números -->
+            <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Lotto Activo</h3>
                 <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-arrow-right"></i> Bases + Acompañantes de Super Fijos
                 </div>
-                
-                <!-- Overlay Premium para Tripletas -->
-                <div class="premium-overlay-tripletas" id="overlayTripletas">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> TRIPLETAS PREMIUM
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a las Tripletas ingresando tu clave o suscríbete vía WhatsApp.
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Tripletas" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <div id="tripletas-contenido" class="tripletas-container" style="min-height: 150px;">
+                <div id="tripletas-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando tripletas...</div>
                 </div>
             </div>
@@ -1219,50 +1387,71 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
-            <div class="tarjeta-forense tarjeta-dato" id="forenseCard">
-                <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
-                
-                <!-- Overlay Premium para Análisis Forense -->
-                <div class="premium-overlay-forense" id="overlayForense">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
+            <!-- ===================================================== -->
+            <!-- GSM - GENERADOR DE SECUENCIAS MIA (Entre Super Fijos y Forense) -->
+            <!-- ===================================================== -->
+            <div class="tarjeta-gsm tarjeta-dato">
+                <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
+                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-arrow-right"></i> Secuencias solo para Loto Activo
+                </div>
+
+                <!-- Buscar secuencia -->
+                <div class="gsm-busqueda">
+                    <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
+                    <div class="gsm-flex-row">
+                        <div class="gsm-filtro-input">
+                            <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
+                            <button id="gsmBuscarBtn">Buscar</button>
+                        </div>
+                        <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
                     </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
+                    <!-- Tarjeta imagen del número consultado -->
+                    <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
+                        <img id="gsmImagenConsultada" src="" alt="imagen" />
+                        <div class="gsm-info">
+                            <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
+                            <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+                        </div>
                     </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Análisis Forense completo ingresando tu clave o suscríbete vía WhatsApp.
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
-                        </a>
+                    <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
+                </div>
+
+                <!-- Secuencias activas -->
+                <div class="gsm-secuencias">
+                    <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">más reciente</span></h4>
+                    <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
+                        <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
                     </div>
                 </div>
 
-                <div id="forense-contenido" class="forense-container">
-                    <!-- TOP 10 + REY -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                        <div id="forense-top10" style="overflow-x: auto;">
-                            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
-                        </div>
-                    </div>
+                <!-- ===== INSTRUCCIONES GSM ===== -->
+                <div class="gsm-instrucciones">
+                    <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
+                    <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
+                    <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Loto Activo.</p>
+                    <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
+                    <p><i class="bi bi-5-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                </div>
+            </div>
 
-                    <!-- Predicción Inteligente -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                        <div id="forense-prediccion">
-                            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-                        </div>
+            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+            <div class="tarjeta-forense tarjeta-dato">
+                <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
+                
+                <!-- TOP 10 + REY -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                    <div id="forense-top10" style="overflow-x: auto;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                    </div>
+                </div>
+
+                <!-- Predicción Inteligente -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forence</h4>
+                    <div id="forense-prediccion">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
             </div>
@@ -1283,7 +1472,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -1396,7 +1585,7 @@
                 
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                     cerrarModalLogin();
                     localStorage.setItem('user_premium_token', clave);
                     alert('✅ Acceso Premium concedido');
@@ -1418,7 +1607,7 @@
                 const esValido = await validarCodigo(tokenGuardado);
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                 } else {
                     localStorage.removeItem('user_premium_token');
                     usuarioAutenticado = false;
@@ -1426,10 +1615,9 @@
             }
         }
 
-        function desbloquearTodoPremium() {
+        function desbloquearSuperFijos() {
             usuarioAutenticado = true;
             
-            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.style.display = 'none';
             
@@ -1441,30 +1629,6 @@
                     grid.classList.add('locked-grid-desbloqueado');
                 }
                 resultadoContenedor.classList.remove('locked-grid');
-            }
-
-            // Desbloquear Tripletas
-            const overlayTripletas = document.getElementById('overlayTripletas');
-            if (overlayTripletas) overlayTripletas.style.display = 'none';
-            
-            const tripletContenedor = document.getElementById('tripletas-contenido');
-            if (tripletContenedor) {
-                const grid = tripletContenedor.querySelector('.numeros-grid');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                tripletContenedor.classList.remove('locked-grid');
-            }
-
-            // Desbloquear Análisis Forense
-            const overlayForense = document.getElementById('overlayForense');
-            if (overlayForense) overlayForense.style.display = 'none';
-            
-            const forenseContenedor = document.getElementById('forense-contenido');
-            if (forenseContenedor) {
-                forenseContenedor.classList.remove('forense-contenido-bloqueado');
-                forenseContenedor.classList.add('forense-contenido-desbloqueado');
             }
         }
 
@@ -1543,11 +1707,9 @@
         }
 
         function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
-            // BASES: 2 números del día1 procesado
             const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
             const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
 
-            // ACOMPAÑANTES: 2 primeros números de Super Fijos
             let acompañantes = [];
             if (superFijos && superFijos.length >= 2) {
                 acompañantes = superFijos.slice(0, 2);
@@ -1578,7 +1740,6 @@
                 return cortesiaEstatica;
             }
 
-            // 2 números gratis: incrementos del primer número del día más reciente
             const diaMasReciente = todos.slice(24, 36);
             const primerNumero = diaMasReciente[0];
             
@@ -1596,7 +1757,6 @@
                 incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
             }
 
-            // 3 números Super Fijos
             let superFijosParaCortesia = [];
             if (superFijos && superFijos.length >= 3) {
                 superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
@@ -1669,7 +1829,7 @@
         }
 
         // =====================================================
-        // ANÁLISIS FORENSE PREMIUM (desde analisis_loto.html)
+        // ANÁLISIS FORENSE PREMIUM
         // =====================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 36, especiales: ['00'] };
@@ -1702,7 +1862,6 @@
             return animalesMap[num] || 'desconocido';
         }
 
-        // FUNCIÓN PARA CALCULAR ACOMPAÑANTES (Top 3 números que más acompañan)
         function obtenerAcompanantesForense(numero) {
             const frecAcompanantes = {};
             
@@ -1810,7 +1969,6 @@
                 .sort((a,b) => b.frecuencia - a.frecuencia || (b.ultima?.getTime() || 0) - (a.ultima?.getTime() || 0))
                 .slice(0,10);
             
-            // Encontrar el Rey
             let rey = { num: null, freq: -1 };
             for (let i = config.min; i <= config.max; i++) {
                 if ((frec[i]||0) > rey.freq) rey = { num: i, freq: frec[i]||0 };
@@ -1953,8 +2111,166 @@
             }
         }
 
-        // Exponer función para clic en acompañantes
         window.seleccionarNumeroForense = seleccionarNumeroForense;
+
+        // =====================================================
+        // GSM - GENERADOR DE SECUENCIAS MIA
+        // =====================================================
+        const gsmAnimales = {
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra'
+        };
+
+        function gsmObtenerRutaImagen(numero) {
+            const numStr = String(numero);
+            return numStr === '00' ? 'animalitos/animalitos_loto/00.png' : `animalitos/animalitos_loto/${numStr}.png`;
+        }
+
+        function gsmEsNumeroValido(input) {
+            if (input === '00') return true;
+            const num = Number(input);
+            return Number.isInteger(num) && num >= 0 && num <= 36;
+        }
+
+        // Datos GSM (se sincronizan con los datos del servidor)
+        let gsmLottoResultados = [];
+        let gsmSecuenciaResultados = [];
+
+        function gsmContarRepeticionesUltimosDos(lottoArrays) {
+            if (!lottoArrays || lottoArrays.length < 2) return 0;
+            const ultimo = lottoArrays[lottoArrays.length - 1];
+            const penultimo = lottoArrays[lottoArrays.length - 2];
+            if (!Array.isArray(ultimo) || !Array.isArray(penultimo)) return 0;
+            const setUltimo = new Set(ultimo.map(String));
+            const setPenultimo = new Set(penultimo.map(String));
+            let repetidos = 0;
+            for (let val of setUltimo) if (setPenultimo.has(val)) repetidos++;
+            return repetidos;
+        }
+
+        function gsmAplicarReglaSecuencia(lottoArrays, secuenciaArrays) {
+            if (!lottoArrays || lottoArrays.length < 2) return secuenciaArrays;
+            if (!Array.isArray(secuenciaArrays)) secuenciaArrays = [];
+            const repeticiones = gsmContarRepeticionesUltimosDos(lottoArrays);
+            if (repeticiones >= 5) {
+                if (secuenciaArrays.length > 0) secuenciaArrays.shift();
+                const ultimoLotto = lottoArrays[lottoArrays.length - 1];
+                if (Array.isArray(ultimoLotto)) secuenciaArrays.push([...ultimoLotto]);
+            }
+            while (secuenciaArrays.length > 3) secuenciaArrays.shift();
+            return secuenciaArrays;
+        }
+
+        function gsmObtenerSecuenciaMasRecienteConNumero(numeroBuscado) {
+            const numStr = String(numeroBuscado).trim();
+            if (!gsmSecuenciaResultados || gsmSecuenciaResultados.length === 0) return null;
+            for (let i = gsmSecuenciaResultados.length - 1; i >= 0; i--) {
+                const sec = gsmSecuenciaResultados[i];
+                if (Array.isArray(sec) && sec.some(val => String(val) === numStr)) {
+                    return { secuencia: [...sec], indice: i };
+                }
+            }
+            return null;
+        }
+
+        function gsmRenderizarSecuenciaActiva(secuenciaArray, numeroExcluir) {
+            const grid = document.getElementById('gsmGridSecuencias');
+            if (!secuenciaArray || !Array.isArray(secuenciaArray) || secuenciaArray.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">no hay secuencia disponible</span>`;
+                return;
+            }
+            const numExcluirStr = String(numeroExcluir).trim();
+            const filtrada = secuenciaArray.filter(num => String(num) !== numExcluirStr);
+            if (filtrada.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">la secuencia solo contiene el número consultado</span>`;
+                return;
+            }
+            let html = '';
+            filtrada.forEach(num => {
+                const numStr = String(num);
+                const nombre = gsmAnimales[numStr] || numStr;
+                const imgSrc = gsmObtenerRutaImagen(numStr);
+                html += `
+                    <div class="gsm-tarjeta-secuencia">
+                        <img src="${imgSrc}" alt="${nombre}" loading="lazy" onerror="this.style.display='none'" />
+                        <div class="gsm-info-sec">
+                            <span class="gsm-num">${numStr}</span>
+                            <span class="gsm-nom">${nombre}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function gsmConsultarNumero() {
+            const input = document.getElementById('gsmNumeroInput');
+            const val = input.value.trim();
+            const tarjeta = document.getElementById('gsmTarjetaImagen');
+            const mensaje = document.getElementById('gsmMensajeSinNumero');
+            const validacion = document.getElementById('gsmValidacionMensaje');
+
+            if (val === '') {
+                tarjeta.style.display = 'none';
+                mensaje.style.display = 'block';
+                mensaje.textContent = 'escribe un número para consultar';
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>`;
+                validacion.textContent = '';
+                return;
+            }
+            if (!gsmEsNumeroValido(val)) {
+                validacion.innerHTML = `<span class="gsm-error-validacion">⛔ rango: 0, 00, 1-36</span>`;
+                tarjeta.style.display = 'none';
+                mensaje.style.display = 'block';
+                mensaje.textContent = 'número fuera de rango';
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">número inválido</span>`;
+                return;
+            } else {
+                validacion.textContent = '';
+            }
+
+            // Mostrar imagen del número consultado
+            const nombreAnimal = gsmAnimales[val] || val;
+            const imgSrc = gsmObtenerRutaImagen(val);
+            document.getElementById('gsmImagenConsultada').src = imgSrc;
+            document.getElementById('gsmNumeroConsultado').textContent = val;
+            document.getElementById('gsmAnimalConsultado').textContent = nombreAnimal;
+            tarjeta.style.display = 'inline-flex';
+            mensaje.style.display = 'none';
+
+            // Obtener secuencia más reciente
+            const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
+            if (!resultado) {
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">el número ${val} no aparece en ninguna secuencia</span>`;
+                return;
+            }
+            gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
+        }
+
+        function gsmInicializar() {
+            const input = document.getElementById('gsmNumeroInput');
+            const buscarBtn = document.getElementById('gsmBuscarBtn');
+
+            buscarBtn.addEventListener('click', gsmConsultarNumero);
+            input.addEventListener('keypress', e => { if (e.key === 'Enter') gsmConsultarNumero(); });
+            input.addEventListener('input', function() {
+                const val = this.value.trim();
+                const validacion = document.getElementById('gsmValidacionMensaje');
+                if (val === '') { validacion.textContent = ''; return; }
+                validacion.textContent = gsmEsNumeroValido(val) ? '' : '⛔ rango: 0, 00, 1-36';
+            });
+
+            // Estado inicial
+            document.getElementById('gsmTarjetaImagen').style.display = 'none';
+            document.getElementById('gsmMensajeSinNumero').style.display = 'block';
+            document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>`;
+        }
 
         // =====================================================
         // CARGA DE DATOS PRINCIPAL
@@ -1983,6 +2299,23 @@
                 const dia2Procesado = procesarDia(dia2, 13);
                 const dia1Procesado = procesarDia(dia1, 25);
                 const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
+
+                // ===== ACTUALIZAR GSM =====
+                // Guardar los arrays originales para GSM
+                const lottoArrays = [dia3, dia2, dia1];
+                gsmLottoResultados = lottoArrays;
+                // Inicializar secuencia desde SecuenciaData o desde cero
+                // Usamos los datos de ejemplo para inicializar
+                const SecuenciaData = {
+                    resultados: [
+                        [15,34,16,14,38],
+                        [19,23,17,35,1],
+                        [35,10,26,"00",21]
+                    ]
+                };
+                gsmSecuenciaResultados = JSON.parse(JSON.stringify(SecuenciaData.resultados));
+                // Aplicar regla con los datos de lotto
+                gsmSecuenciaResultados = gsmAplicarReglaSecuencia(gsmLottoResultados, gsmSecuenciaResultados);
 
                 const resultado = buscarRepeticion(todos);
                 const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
@@ -2021,24 +2354,18 @@
 
                 // 1. SUPER FIJOS - BLOQUEADO (3 números)
                 mostrarSuperFijos(superFijos);
-                
-                // 2. TRIPLETAS - PREMIUM BLOQUEADO (4 números: 2 Bases + 2 Acompañantes)
-                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
-                mostrarTripletas(tripletas);
+                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
-                // 3. CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
+                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 4. ANÁLISIS FORENSE PREMIUM - BLOQUEADO
+                // 3. TRIPLETAS - SIEMPRE VISIBLE (4 números: 2 Bases + 2 Acompañantes)
+                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
+                mostrarTripletas(tripletas);
+
+                // 4. ANÁLISIS FORENSE PREMIUM
                 cargarDatosForense();
-
-                // Aplicar bloqueos si no está autenticado
-                if (!usuarioAutenticado) {
-                    aplicarBloqueosPremium();
-                }
-
-                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
                 await verificarSesionPrevia();
 
@@ -2051,26 +2378,6 @@
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
                 document.getElementById('forense-prediccion').innerHTML = msjError;
-            }
-        }
-
-        function aplicarBloqueosPremium() {
-            // Bloquear Tripletas
-            const tripletContenedor = document.getElementById('tripletas-contenido');
-            if (tripletContenedor) {
-                const grid = tripletContenedor.querySelector('.numeros-grid');
-                if (grid) {
-                    grid.classList.add('locked-grid');
-                    grid.classList.remove('locked-grid-desbloqueado');
-                }
-                tripletContenedor.classList.add('locked-grid');
-            }
-
-            // Bloquear Forense
-            const forenseContenedor = document.getElementById('forense-contenido');
-            if (forenseContenedor) {
-                forenseContenedor.classList.add('forense-contenido-bloqueado');
-                forenseContenedor.classList.remove('forense-contenido-desbloqueado');
             }
         }
 
@@ -2087,9 +2394,6 @@
             if (!usuarioAutenticado) {
                 claseGrid += ' locked-grid';
                 claseContainer += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
-                claseContainer += ' locked-grid-desbloqueado';
             }
 
             let html = `<div class="${claseGrid}">`;
@@ -2120,7 +2424,6 @@
             contenedor.innerHTML = html;
         }
 
-        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -2129,15 +2432,8 @@
                 return;
             }
 
-            // MEZCLAR ALEATORIAMENTE (Fisher-Yates)
-            const shuffled = [...items];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-
             let html = '<div class="numeros-grid-5">';
-            shuffled.forEach(r => {
+            items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 let claseExtra = '';
 
@@ -2176,15 +2472,7 @@
                 return;
             }
 
-            let claseGrid = 'numeros-grid';
-            
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
-            }
-
-            let html = `<div class="${claseGrid}">`;
+            let html = '<div class="numeros-grid">';
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2217,6 +2505,7 @@
         window.onload = () => {
             mostrarFecha();
             cargarDatosServidor();
+            gsmInicializar();
         };
 
         // =====================================================
