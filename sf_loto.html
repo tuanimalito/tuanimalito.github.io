@@ -2245,7 +2245,7 @@
             // Obtener secuencia más reciente DESDE secuencia.json REAL
             const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
             if (!resultado) {
-                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">el número ${val} no aparece en ninguna secuencia</span>`;
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">⚠️el número ${val} no tiene la secuencia activa ⛔ Espere el proximo resultado de la operadora</span>`;
                 return;
             }
             gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
