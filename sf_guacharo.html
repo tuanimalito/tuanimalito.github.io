@@ -1647,6 +1647,7 @@
                 let numBase = primerNumero.numero;
                 let val1 = numBase + 1;
                 let val2 = numBase + 2;
+                // RANGO GUACHARO: 0 a 75
                 if (val1 > 75) val1 = val1 - 76;
                 if (val2 > 75) val2 = val2 - 76;
                 incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
@@ -1735,6 +1736,203 @@
         }
 
         // ============================================================
+        // 📊 NUEVA FUNCIÓN: BUSCAR REPETICIÓN CON FILTRO DE DUPLICADOS
+        // ============================================================
+        function buscarRepeticionConFiltro(resultados) {
+            const niveles = {
+                N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1' },
+                N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], nombre: 'N2' },
+                N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], nombre: 'N3' }
+            };
+
+            // Función para obtener clave única del número
+            function obtenerClave(item) {
+                return item.esDobleCero ? '00' : String(item.numero);
+            }
+
+            // Función para verificar si un número ya está en la secuencia
+            function numeroYaEnSecuencia(secuencia, item) {
+                const clave = obtenerClave(item);
+                return secuencia.some(existente => obtenerClave(existente) === clave);
+            }
+
+            // Buscar en pares de niveles
+            function buscarEnPares(nivelActual, nivelPasado) {
+                for (let i = 0; i < nivelActual.indices.length; i++) {
+                    const idxActual = nivelActual.indices[i];
+                    const actual = resultados[idxActual];
+                    const claveActual = obtenerClave(actual);
+
+                    for (let j = 0; j < nivelPasado.indices.length; j++) {
+                        const idxPasado = nivelPasado.indices[j];
+                        const pasado = resultados[idxPasado];
+                        const clavePasado = obtenerClave(pasado);
+
+                        if (claveActual === clavePasado) {
+                            // Construir secuencia base con el número encontrado
+                            const secuenciaFinal = [pasado];
+
+                            // Buscar siguientes números hasta tener 3 diferentes
+                            let indiceActual = idxPasado + 1;
+                            let intentos = 0;
+                            const maxIntentos = 30; // Para evitar bucles infinitos
+
+                            while (secuenciaFinal.length < 3 && intentos < maxIntentos) {
+                                if (indiceActual < resultados.length && indiceActual < 36) {
+                                    const siguiente = resultados[indiceActual];
+                                    // Verificar si el número ya está en la secuencia
+                                    if (!numeroYaEnSecuencia(secuenciaFinal, siguiente)) {
+                                        secuenciaFinal.push(siguiente);
+                                    }
+                                    // Si está duplicado, lo saltamos y seguimos buscando
+                                    indiceActual++;
+                                } else {
+                                    // Si llegamos al final, comenzamos desde el principio del nivel
+                                    indiceActual = nivelPasado.indices[0];
+                                }
+                                intentos++;
+                            }
+
+                            // Si tenemos al menos 3 números diferentes, retornar
+                            if (secuenciaFinal.length === 3) {
+                                return {
+                                    encontrado: true,
+                                    siguientes: secuenciaFinal,
+                                    nivelOrigen: nivelPasado.nombre,
+                                    posicionOrigen: idxPasado,
+                                    secuenciaCompleta: secuenciaFinal
+                                };
+                            }
+                        }
+                    }
+                }
+                return { encontrado: false, siguientes: [] };
+            }
+
+            // Buscar en orden de prioridad
+            let resultado = buscarEnPares(niveles.N1, niveles.N2);
+            if (resultado.encontrado) return resultado;
+
+            resultado = buscarEnPares(niveles.N1, niveles.N3);
+            if (resultado.encontrado) return resultado;
+
+            resultado = buscarEnPares(niveles.N2, niveles.N3);
+            if (resultado.encontrado) return resultado;
+
+            // Si no se encuentra repetición, generar 3 números aleatorios diferentes
+            return generarNumerosUnicosAleatorios(resultados);
+        }
+
+        // Función de respaldo para generar 3 números únicos aleatorios
+        function generarNumerosUnicosAleatorios(resultados) {
+            const numerosDisponibles = resultados.slice(0, 36);
+            const seleccionados = [];
+            const clavesUsadas = new Set();
+            const maxIntentos = 100;
+            let intentos = 0;
+
+            while (seleccionados.length < 3 && intentos < maxIntentos) {
+                const idxRandom = Math.floor(Math.random() * numerosDisponibles.length);
+                const item = numerosDisponibles[idxRandom];
+                const clave = item.esDobleCero ? '00' : String(item.numero);
+
+                if (!clavesUsadas.has(clave)) {
+                    clavesUsadas.add(clave);
+                    seleccionados.push(item);
+                }
+                intentos++;
+            }
+
+            return {
+                encontrado: false,
+                siguientes: seleccionados,
+                esAleatorio: true
+            };
+        }
+
+        // ============================================================
+        // 📊 FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS MEJORADA
+        // ============================================================
+        function mostrarSuperFijosConLog(items, infoAdicional = null) {
+            const contenedor = document.getElementById('resultado-contenido');
+
+            if (!items || items.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
+                return;
+            }
+
+            let claseGrid = 'numeros-grid-3';
+
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+            } else {
+                claseGrid += ' locked-grid-desbloqueado';
+            }
+
+            // Mostrar información de origen
+            let infoHTML = '';
+            if (infoAdicional && infoAdicional.encontrado) {
+                const posicionMostrar = infoAdicional.posicionOrigen + 1;
+                infoHTML = `
+                    <div style="text-align: center; color: #ffd700; font-size: 0.75rem; margin-bottom: 12px; background: rgba(255,215,0,0.08); padding: 6px 16px; border-radius: 20px; display: inline-block; width: 100%; border: 1px solid rgba(255,215,0,0.1);">
+                        <i class="bi bi-search"></i> 
+                        GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar}) 
+                        ${infoAdicional.esAleatorio ? '• Generación aleatoria' : ''}
+                    </div>
+                `;
+            }
+
+            let html = infoHTML;
+            html += `<div class="${claseGrid}">`;
+
+            // Mostrar cada número
+            items.forEach((r, index) => {
+                let numDisplay, nombreAnimal, rutaImagen;
+
+                if (r.esDobleCero) {
+                    numDisplay = "00";
+                    nombreAnimal = "ballena";
+                    rutaImagen = obtenerRutaImagen(0, true);
+                } else {
+                    numDisplay = String(r.numero).padStart(2, '0');
+                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
+                    rutaImagen = obtenerRutaImagen(r.numero, false);
+                }
+
+                const badges = ['🔥', '⭐', '🎁'];
+
+                html += `
+                    <div class="numero-card" style="position: relative;">
+                        <div style="position: absolute; top: -5px; left: -5px; font-size: 0.8rem; background: rgba(255,215,0,0.15); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,215,0,0.2);">
+                            ${badges[index] || ''}
+                        </div>
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_guacharo/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            // Mostrar información de duplicados eliminados
+            if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
+                const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
+                if (duplicadosEliminados > 0) {
+                    html += `
+                        <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
+                            <i class="bi bi-check-circle" style="color: #4caf50;"></i> 
+                            ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
+                        </div>
+                    `;
+                }
+            }
+
+            contenedor.innerHTML = html;
+        }
+
+        // ============================================================
         // 📊 LÓGICA DE DATOS PRINCIPAL
         // ============================================================
         
@@ -1793,78 +1991,6 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        function buscarRepeticion(resultados) {
-            const mapa = new Map();
-
-            resultados.forEach(r => {
-                const clave = r.esDobleCero ? '00' : r.numero;
-                if (!mapa.has(clave)) mapa.set(clave, []);
-                mapa.get(clave).push(r);
-            });
-
-            for (let i = 24; i < 36; i++) {
-                const actual = resultados[i];
-                const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
-
-                if (repeticiones.length > 0) {
-                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                    const siguientes = [];
-
-                    for (let j = 1; j <= 4; j++) {
-                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
-                        if (sig) siguientes.push(sig);
-                    }
-
-                    if (siguientes.length > 0) return { encontrado: true, siguientes };
-                }
-            }
-            return { encontrado: false, siguientes: [] };
-        }
-
-        function mostrarSuperFijos(items) {
-            const contenedor = document.getElementById('resultado-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
-                return;
-            }
-
-            let claseGrid = 'numeros-grid-3';
-            
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
-            }
-
-            let html = `<div class="${claseGrid}">`;
-            items.forEach(r => {
-                let numDisplay, nombreAnimal, rutaImagen;
-
-                if (r.esDobleCero) {
-                    numDisplay = "00";
-                    nombreAnimal = "ballena";
-                    rutaImagen = obtenerRutaImagen(0, true);
-                } else {
-                    numDisplay = String(r.numero).padStart(2, '0');
-                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                    rutaImagen = obtenerRutaImagen(r.numero, false);
-                }
-
-                html += `
-                    <div class="numero-card">
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_guacharo/00.png'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
         async function cargarDatosServidor() {
             try {
                 const response = await fetch(JSON_URL + '?t=' + Date.now());
@@ -1920,11 +2046,20 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // SUPER FIJOS
-                const resultado = buscarRepeticion(todos);
+                // SUPER FIJOS - NUEVA FUNCIÓN CON FILTRO DE DUPLICADOS
+                const resultado = buscarRepeticionConFiltro(todos);
                 const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+
+                // Guardar información adicional para mostrar
+                const infoSuperFijos = {
+                    encontrado: resultado.encontrado,
+                    nivelOrigen: resultado.nivelOrigen || 'N/A',
+                    posicionOrigen: resultado.posicionOrigen || -1,
+                    secuenciaCompleta: resultado.secuenciaCompleta || [],
+                    esAleatorio: resultado.esAleatorio || false
+                };
                 
-                mostrarSuperFijos(superFijos);
+                mostrarSuperFijosConLog(superFijos, infoSuperFijos);
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
                 // CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
