@@ -1894,11 +1894,11 @@
                 if (r.esDobleCero || r.numero === 0) {
                     numDisplay = "00";
                     nombreAnimal = "delfín";
-                    rutaImagen = 'animalitos/animalitos_granjazo/00.png';
+                    rutaImagen = 'animalitos/animalitos_granja/00.png';
                 } else {
                     numDisplay = String(r.numero).padStart(2, '0');
                     nombreAnimal = animales[r.numero] || 'desconocido';
-                    rutaImagen = `animalitos/animalitos_granjazo/${r.numero}.png`;
+                    rutaImagen = `animalitos/animalitos_granja/${r.numero}.png`;
                 }
 
                 const badges = ['🔥', '⭐', '🎁'];
@@ -1910,7 +1910,7 @@
                         </div>
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_granjazo/00.png'">
+                             onerror="this.src='animalitos/animalitos_granja/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
