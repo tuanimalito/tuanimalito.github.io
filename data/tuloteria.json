@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-20T05:37:37.482913",
+    "ultima_actualizacion": "2026-08-20T08:49:14.438652",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Sábado",
         "fecha": "22 ago 2026"
       },
-      "bote": "48.000.000$"
+      "bote": "68.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -70,7 +70,7 @@
         "dia": "Sábado",
         "fecha": "22 ago 2026"
       },
-      "bote": "2.500.000$"
+      "bote": "3.250.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -104,9 +104,9 @@
         "fecha": "19 ago 2026",
         "numeros": [
           3,
-          17,
-          34,
-          35,
+          6,
+          10,
+          20,
           36
         ],
         "numero_extra": null
