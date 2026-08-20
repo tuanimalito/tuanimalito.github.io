@@ -1717,18 +1717,18 @@
                 if (r.esDobleCero || r.numero === 0) {
                     numDisplay = "00";
                     nombreAnimal = "delfín";
-                    rutaImagen = 'animalitos/animalitos_granjazo/00.png';
+                    rutaImagen = 'animalitos/animalitos_granja/00.png';
                 } else {
                     numDisplay = String(r.numero).padStart(2, '0');
                     nombreAnimal = animales[r.numero] || 'desconocido';
-                    rutaImagen = `animalitos/animalitos_granjazo/${r.numero}.png`;
+                    rutaImagen = `animalitos/animalitos_granja/${r.numero}.png`;
                 }
 
                 html += `
                     <div class="numero-card${claseExtra}">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_granjazo/00.png'">
+                             onerror="this.src='animalitos/animalitos_granja/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
@@ -1977,8 +1977,8 @@
         };
 
         function obtenerRutaImagen(numero, esDobleCero = false) {
-            if (esDobleCero || numero === 0) return 'animalitos/animalitos_granjazo/00.png';
-            return `animalitos/animalitos_granjazo/${numero}.png`;
+            if (esDobleCero || numero === 0) return 'animalitos/animalitos_granja/00.png';
+            return `animalitos/animalitos_granja/${numero}.png`;
         }
 
         function mostrarFecha() {
