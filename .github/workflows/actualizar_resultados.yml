@@ -32,9 +32,14 @@ jobs:
         run: node scripts/obtener_de_api.js
         continue-on-error: true
 
-      - name: 🔄 Actualizar secuencia.json con la lógica de Gsm
+      - name: 🔄 Actualizar secuencia.json (Lotto Activo)
         if: success()
         run: node scripts/actualizar_secuencia.js
+        continue-on-error: true
+
+      - name: 🔄 Actualizar secuencia_granja.json (Granja Millonaria)
+        if: success()
+        run: node scripts/actualizar_secuencia_granja.js
         continue-on-error: true
 
       - name: 📤 Commit y push de todos los cambios
