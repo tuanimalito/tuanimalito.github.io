@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-21T03:10:17.172265",
+    "ultima_actualizacion": "2026-08-21T04:47:10.883699",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,11 +103,11 @@
         "dia": "Jueves",
         "fecha": "20 ago 2026",
         "numeros": [
-          6,
-          12,
-          14,
-          18,
-          20
+          3,
+          4,
+          19,
+          20,
+          28
         ],
         "numero_extra": null
       },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "20 ago 2026"
+        "dia": "Viernes",
+        "fecha": "21 ago 2026"
       },
       "bote": "250$"
     },
