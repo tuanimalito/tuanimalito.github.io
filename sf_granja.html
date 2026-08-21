@@ -319,6 +319,265 @@
             background: #ff6b6b;
         }
 
+        /* ================================================ */
+        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado)       */
+        /* ================================================ */
+        .tarjeta-gsm {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+            border-radius: 24px;
+            padding: 22px 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .tarjeta-gsm::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .tarjeta-gsm h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.5rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+        }
+        .tarjeta-gsm h3 i {
+            color: #ffd700;
+        }
+
+        .gsm-busqueda {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .gsm-busqueda h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-busqueda h4 i {
+            color: #ffd700;
+        }
+
+        .gsm-flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+        .gsm-filtro-input {
+            display: flex;
+            flex: 1 1 220px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 60px;
+            overflow: hidden;
+            background: #030712;
+            transition: 0.2s;
+            max-width: 320px;
+        }
+        .gsm-filtro-input:focus-within {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        .gsm-filtro-input input {
+            border: none;
+            padding: 0.65rem 1.2rem;
+            font-size: 0.95rem;
+            flex: 1;
+            outline: none;
+            background: transparent;
+            color: #ffdd99;
+            font-family: 'Inter', sans-serif;
+        }
+        .gsm-filtro-input input::placeholder {
+            color: #666;
+        }
+        .gsm-filtro-input button {
+            background: linear-gradient(135deg, #c2410c, #ea580c);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+        .gsm-filtro-input button:hover {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+        .gsm-error-validacion {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.15);
+            border-radius: 30px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .gsm-tarjeta-imagen {
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 160px;
+        }
+        .gsm-tarjeta-imagen img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-numero {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-animal {
+            font-size: 0.85rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.05rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .gsm-mensaje-vacio {
+            color: #888;
+            font-style: italic;
+            padding: 0.4rem 0;
+        }
+
+        .gsm-secuencias {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-secuencias h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-secuencias h4 i {
+            color: #ffd700;
+        }
+
+        /* ===== TARJETAS GSM MISMO TAMAÑO QUE TRIPLETAS ===== */
+        .gsm-grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gsm-tarjeta-secuencia {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            transition: all 0.3s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+        .gsm-tarjeta-secuencia:hover {
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+        .gsm-tarjeta-secuencia img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            margin-bottom: 4px;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-nom {
+            font-size: 0.75rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-top: 2px;
+        }
+
+        /* ===== INSTRUCCIONES GSM ===== */
+        .gsm-instrucciones {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-instrucciones h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-instrucciones h4 i {
+            color: #ffd700;
+        }
+        .gsm-instrucciones p {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        .gsm-instrucciones p i {
+            color: #ffd700;
+            margin-right: 6px;
+        }
+
         /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
@@ -945,6 +1204,9 @@
             .prediccion-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media (max-width: 600px) {
@@ -973,6 +1235,35 @@
             }
             .premium-message {
                 font-size: 0.9rem;
+            }
+            .gsm-filtro-input {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+            .gsm-flex-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .gsm-tarjeta-imagen {
+                width: 100%;
+                justify-content: center;
+            }
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gsm-grid-tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gsm-tarjeta-secuencia {
+                min-height: 100px;
+                padding: 10px 6px;
+            }
+            .gsm-tarjeta-secuencia img {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -1082,6 +1373,54 @@
 
                 <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
                     <div class="no-data">Cargando...</div>
+                </div>
+            </div>
+
+            <!-- ===================================================== -->
+            <!-- GSM - GENERADOR DE SECUENCIAS MIA (Granja Millonaria) -->
+            <!-- ===================================================== -->
+            <div class="tarjeta-gsm tarjeta-dato">
+                <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
+                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-arrow-right"></i> Secuencias solo para Granja Millonaria
+                </div>
+
+                <!-- Buscar secuencia -->
+                <div class="gsm-busqueda">
+                    <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
+                    <div class="gsm-flex-row">
+                        <div class="gsm-filtro-input">
+                            <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
+                            <button id="gsmBuscarBtn">Buscar</button>
+                        </div>
+                        <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
+                    </div>
+                    <!-- Tarjeta imagen del número consultado -->
+                    <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
+                        <img id="gsmImagenConsultada" src="" alt="imagen" />
+                        <div class="gsm-info">
+                            <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
+                            <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+                        </div>
+                    </div>
+                    <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
+                </div>
+
+                <!-- Secuencias activas -->
+                <div class="gsm-secuencias">
+                    <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
+                    <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
+                        <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
+                    </div>
+                </div>
+
+                <!-- ===== INSTRUCCIONES GSM ===== -->
+                <div class="gsm-instrucciones">
+                    <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
+                    <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
+                    <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Granja Millonaria.</p>
+                    <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
+                    <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
                 </div>
             </div>
 
@@ -1197,6 +1536,8 @@
 
         let usuarioAutenticado = false;
         const STORAGE_KEY = 'granja_premium_unlocked';
+        const JSON_URL = 'data/granja.json';
+        const SECUENCIA_URL = 'data/secuencia_granja.json';
 
         // ============================================================
         // 🚀 FUNCIONES DEL MODAL
@@ -1735,18 +2076,15 @@
                 N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], nombre: 'N3' }
             };
 
-            // Función para obtener clave única del número
             function obtenerClave(item) {
                 return item.esDobleCero ? '00' : String(item.numero);
             }
 
-            // Función para verificar si un número ya está en la secuencia
             function numeroYaEnSecuencia(secuencia, item) {
                 const clave = obtenerClave(item);
                 return secuencia.some(existente => obtenerClave(existente) === clave);
             }
 
-            // Buscar en pares de niveles
             function buscarEnPares(nivelActual, nivelPasado) {
                 for (let i = 0; i < nivelActual.indices.length; i++) {
                     const idxActual = nivelActual.indices[i];
@@ -1759,31 +2097,24 @@
                         const clavePasado = obtenerClave(pasado);
 
                         if (claveActual === clavePasado) {
-                            // Construir secuencia base con el número encontrado
                             const secuenciaFinal = [pasado];
-
-                            // Buscar siguientes números hasta tener 3 diferentes
                             let indiceActual = idxPasado + 1;
                             let intentos = 0;
-                            const maxIntentos = 20; // Para evitar bucles infinitos
+                            const maxIntentos = 20;
 
                             while (secuenciaFinal.length < 3 && intentos < maxIntentos) {
                                 if (indiceActual < resultados.length && indiceActual < 30) {
                                     const siguiente = resultados[indiceActual];
-                                    // Verificar si el número ya está en la secuencia
                                     if (!numeroYaEnSecuencia(secuenciaFinal, siguiente)) {
                                         secuenciaFinal.push(siguiente);
                                     }
-                                    // Si está duplicado, lo saltamos y seguimos buscando
                                     indiceActual++;
                                 } else {
-                                    // Si llegamos al final, comenzamos desde el principio del nivel
                                     indiceActual = nivelPasado.indices[0];
                                 }
                                 intentos++;
                             }
 
-                            // Si tenemos al menos 3 números diferentes, retornar
                             if (secuenciaFinal.length === 3) {
                                 return {
                                     encontrado: true,
@@ -1799,7 +2130,6 @@
                 return { encontrado: false, siguientes: [] };
             }
 
-            // Buscar en orden de prioridad
             let resultado = buscarEnPares(niveles.N1, niveles.N2);
             if (resultado.encontrado) return resultado;
 
@@ -1809,11 +2139,9 @@
             resultado = buscarEnPares(niveles.N2, niveles.N3);
             if (resultado.encontrado) return resultado;
 
-            // Si no se encuentra repetición, generar 3 números aleatorios diferentes
             return generarNumerosUnicosAleatorios(resultados);
         }
 
-        // Función de respaldo para generar 3 números únicos aleatorios
         function generarNumerosUnicosAleatorios(resultados) {
             const numerosDisponibles = resultados.slice(0, 30);
             const seleccionados = [];
@@ -1859,7 +2187,6 @@
                 claseGrid += ' locked-grid-desbloqueado';
             }
 
-            // Mostrar información de origen
             let infoHTML = '';
             if (infoAdicional && infoAdicional.encontrado) {
                 const posicionMostrar = infoAdicional.posicionOrigen + 1;
@@ -1875,7 +2202,6 @@
             let html = infoHTML;
             html += `<div class="${claseGrid}">`;
 
-            // Mostrar cada número
             items.forEach((r, index) => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -1906,7 +2232,6 @@
 
             html += '</div>';
 
-            // Mostrar información de duplicados eliminados
             if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
                 const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
                 if (duplicadosEliminados > 0) {
@@ -1920,6 +2245,172 @@
             }
 
             contenedor.innerHTML = html;
+        }
+
+        // ============================================================
+        // 📊 GSM - GENERADOR DE SECUENCIAS MIA (Granja Millonaria)
+        // ============================================================
+        const gsmAnimales = {
+            '00': 'delfín', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'mariposa', 38: 'conejo'
+        };
+
+        function gsmObtenerRutaImagen(numero) {
+            const numStr = String(numero);
+            if (numStr === '00' || numStr === '0') {
+                return 'animalitos/animalitos_granja/00.png';
+            }
+            return `animalitos/animalitos_granja/${numStr}.png`;
+        }
+
+        function gsmEsNumeroValido(input) {
+            if (input === '00' || input === '0') return true;
+            const num = Number(input);
+            return Number.isInteger(num) && num >= 1 && num <= 38;
+        }
+
+        let gsmSecuenciaResultados = [];
+
+        async function gsmCargarSecuenciaReal() {
+            try {
+                const response = await fetch(`${SECUENCIA_URL}?_=${new Date().getTime()}`);
+                if (!response.ok) {
+                    console.warn('⚠️ No se pudo cargar secuencia_granja.json, usando datos de respaldo');
+                    // Datos de respaldo para Granja Millonaria
+                    gsmSecuenciaResultados = [
+                        [15, 34, 16, 14, 38],
+                        [19, 23, 17, 35, 1],
+                        [35, 10, 26, 0, 21]
+                    ];
+                    return false;
+                }
+                const data = await response.json();
+                if (data && data.resultados && Array.isArray(data.resultados)) {
+                    gsmSecuenciaResultados = data.resultados;
+                    console.log(`✅ secuencia_granja.json cargado: ${gsmSecuenciaResultados.length} secuencias`);
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.error('❌ Error al cargar secuencia_granja.json:', error);
+                // Datos de respaldo
+                gsmSecuenciaResultados = [
+                    [15, 34, 16, 14, 38],
+                    [19, 23, 17, 35, 1],
+                    [35, 10, 26, 0, 21]
+                ];
+                return false;
+            }
+        }
+
+        function gsmObtenerSecuenciaMasRecienteConNumero(numeroBuscado) {
+            const numStr = String(numeroBuscado).trim();
+            if (!gsmSecuenciaResultados || gsmSecuenciaResultados.length === 0) return null;
+            for (let i = gsmSecuenciaResultados.length - 1; i >= 0; i--) {
+                const sec = gsmSecuenciaResultados[i];
+                if (Array.isArray(sec) && sec.some(val => String(val) === numStr)) {
+                    return { secuencia: [...sec], indice: i };
+                }
+            }
+            return null;
+        }
+
+        function gsmRenderizarSecuenciaActiva(secuenciaArray, numeroExcluir) {
+            const grid = document.getElementById('gsmGridSecuencias');
+            if (!secuenciaArray || !Array.isArray(secuenciaArray) || secuenciaArray.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">no hay secuencia disponible</span>`;
+                return;
+            }
+            const numExcluirStr = String(numeroExcluir).trim();
+            const filtrada = secuenciaArray.filter(num => String(num) !== numExcluirStr);
+            if (filtrada.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">la secuencia solo contiene el número consultado</span>`;
+                return;
+            }
+            let html = '';
+            filtrada.forEach(num => {
+                const numStr = String(num);
+                const nombre = gsmAnimales[numStr] || numStr;
+                const imgSrc = gsmObtenerRutaImagen(numStr);
+                html += `
+                    <div class="gsm-tarjeta-secuencia">
+                        <img src="${imgSrc}" alt="${nombre}" loading="lazy" onerror="this.style.display='none'" />
+                        <div class="gsm-info-sec">
+                            <span class="gsm-num">${numStr}</span>
+                            <span class="gsm-nom">${nombre}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function gsmConsultarNumero() {
+            const input = document.getElementById('gsmNumeroInput');
+            const val = input.value.trim();
+            const tarjeta = document.getElementById('gsmTarjetaImagen');
+            const mensaje = document.getElementById('gsmMensajeSinNumero');
+            const validacion = document.getElementById('gsmValidacionMensaje');
+
+            if (val === '') {
+                tarjeta.style.display = 'none';
+                mensaje.style.display = 'block';
+                mensaje.textContent = 'escribe un número para consultar';
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>`;
+                validacion.textContent = '';
+                return;
+            }
+            if (!gsmEsNumeroValido(val)) {
+                validacion.innerHTML = `<span class="gsm-error-validacion">⛔ rango: 0, 00, 1-38</span>`;
+                tarjeta.style.display = 'none';
+                mensaje.style.display = 'block';
+                mensaje.textContent = 'número fuera de rango';
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">número inválido</span>`;
+                return;
+            } else {
+                validacion.textContent = '';
+            }
+
+            const nombreAnimal = gsmAnimales[val] || val;
+            const imgSrc = gsmObtenerRutaImagen(val);
+            document.getElementById('gsmImagenConsultada').src = imgSrc;
+            document.getElementById('gsmNumeroConsultado').textContent = val;
+            document.getElementById('gsmAnimalConsultado').textContent = nombreAnimal;
+            tarjeta.style.display = 'inline-flex';
+            mensaje.style.display = 'none';
+
+            const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
+            if (!resultado) {
+                document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">⚠️el número ${val} no tiene la secuencia activa ⛔ Espere el proximo resultado de la operadora</span>`;
+                return;
+            }
+            gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
+        }
+
+        async function gsmInicializar() {
+            const input = document.getElementById('gsmNumeroInput');
+            const buscarBtn = document.getElementById('gsmBuscarBtn');
+
+            await gsmCargarSecuenciaReal();
+
+            buscarBtn.addEventListener('click', gsmConsultarNumero);
+            input.addEventListener('keypress', e => { if (e.key === 'Enter') gsmConsultarNumero(); });
+            input.addEventListener('input', function() {
+                const val = this.value.trim();
+                const validacion = document.getElementById('gsmValidacionMensaje');
+                if (val === '') { validacion.textContent = ''; return; }
+                validacion.textContent = gsmEsNumeroValido(val) ? '' : '⛔ rango: 0, 00, 1-38';
+            });
+
+            document.getElementById('gsmTarjetaImagen').style.display = 'none';
+            document.getElementById('gsmMensajeSinNumero').style.display = 'block';
+            document.getElementById('gsmGridSecuencias').innerHTML = `<span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>`;
         }
 
         // ============================================================
@@ -1942,8 +2433,6 @@
         document.addEventListener('copy', function(e) { e.preventDefault(); });
         document.addEventListener('cut', function(e) { e.preventDefault(); });
         setInterval(function() { console.clear(); }, 1000);
-
-        const JSON_URL = 'data/granja.json';
 
         const animales = {
             '00': 'delfín', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
@@ -2070,6 +2559,7 @@
         window.onload = async () => {
             mostrarFecha();
             await cargarDatosServidor();
+            await gsmInicializar();
             setInterval(cargarDatosServidor, 6 * 60 * 60 * 1000);
         };
 
