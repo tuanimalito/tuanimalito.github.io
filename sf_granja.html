@@ -319,8 +319,148 @@
             background: #ff6b6b;
         }
 
+        /* --- Overlay Super Fijos --- */
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 15px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .premium-overlay.hidden {
+            display: none;
+        }
+
+        .premium-overlay::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .premium-overlay:hover {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .premium-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 1.8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            line-height: 1.2;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+        }
+
+        .premium-badge i {
+            -webkit-text-fill-color: #ffd700;
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        }
+
+        .premium-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 320px;
+            margin: 2px 0;
+            line-height: 1.5;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .premium-message strong {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .action-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        /* --- BLOQUEO SUPER FIJOS --- */
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: scale(0.98);
+        }
+
+        .premium-container.locked-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.05) 2px,
+                    rgba(0, 0, 0, 0.05) 4px
+                );
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 24px;
+        }
+
+        .locked-grid-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            transition: all 0.8s ease;
+        }
+
+        .locked-grid-desbloqueado::after {
+            display: none;
+        }
+
         /* ================================================ */
-        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado)       */
+        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado) - BLOQUEADO */
         /* ================================================ */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
@@ -352,6 +492,62 @@
             color: #ffd700;
         }
 
+        /* Overlay para GSM */
+        .premium-overlay-gsm {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .premium-overlay-gsm.hidden {
+            display: none;
+        }
+
+        .premium-overlay-gsm::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Contenido GSM bloqueado */
+        .gsm-contenido-bloqueado {
+            filter: blur(8px) brightness(0.6);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .gsm-contenido-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.8s ease;
+        }
+
+        /* Estilos GSM internos */
         .gsm-busqueda {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
@@ -490,7 +686,6 @@
             color: #ffd700;
         }
 
-        /* ===== TARJETAS GSM MISMO TAMAÑO QUE TRIPLETAS ===== */
         .gsm-grid-tarjetas {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -547,7 +742,6 @@
             margin-top: 2px;
         }
 
-        /* ===== INSTRUCCIONES GSM ===== */
         .gsm-instrucciones {
             margin-top: 16px;
             padding: 16px;
@@ -576,6 +770,12 @@
         .gsm-instrucciones p i {
             color: #ffd700;
             margin-right: 6px;
+        }
+
+        /* --- Contenedor GSM --- */
+        .gsm-container {
+            position: relative;
+            min-height: 200px;
         }
 
         /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
@@ -851,150 +1051,6 @@
             padding: 30px;
             color: #a0aec0;
             font-size: 1rem;
-        }
-
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SUPER FIJOS                   */
-        /* ================================================ */
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
-        }
-
-        .premium-overlay::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .premium-badge {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 1.8s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            line-height: 1.2;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-        }
-
-        .premium-badge i {
-            -webkit-text-fill-color: #ffd700;
-            color: #ffd700;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-
-        @keyframes shimmerGold {
-            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-        }
-
-        .premium-message {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            max-width: 320px;
-            margin: 2px 0;
-            line-height: 1.5;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 500;
-        }
-
-        .premium-message strong {
-            color: #ffd700;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        /* ================================================ */
-        /* BLOQUEO DE SUPER FIJOS                           */
-        /* ================================================ */
-        .locked-grid {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            transform: scale(0.98);
-        }
-
-        .premium-container.locked-grid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px
-                );
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 24px;
-        }
-
-        .locked-grid-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            transition: all 0.8s ease;
-        }
-
-        .locked-grid-desbloqueado::after {
-            display: none;
         }
 
         /* ================================================ */
@@ -1377,50 +1433,77 @@
             </div>
 
             <!-- ===================================================== -->
-            <!-- GSM - GENERADOR DE SECUENCIAS MIA (Granja Millonaria) -->
+            <!-- GSM - GENERADOR DE SECUENCIAS MIA (PREMIUM BLOQUEADO) -->
             <!-- ===================================================== -->
-            <div class="tarjeta-gsm tarjeta-dato">
+            <div class="tarjeta-gsm tarjeta-dato" id="gsmCard">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
                     <i class="bi bi-arrow-right"></i> Secuencias solo para Granja Millonaria
                 </div>
 
-                <!-- Buscar secuencia -->
-                <div class="gsm-busqueda">
-                    <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
-                    <div class="gsm-flex-row">
-                        <div class="gsm-filtro-input">
-                            <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
-                            <button id="gsmBuscarBtn">Buscar</button>
-                        </div>
-                        <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
+                <!-- Overlay Premium para GSM -->
+                <div class="premium-overlay-gsm" id="overlayGSM">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> GENERADOR GSM
                     </div>
-                    <!-- Tarjeta imagen del número consultado -->
-                    <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
-                        <img id="gsmImagenConsultada" src="" alt="imagen" />
-                        <div class="gsm-info">
-                            <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
-                            <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
-                        </div>
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> PREMIUM
                     </div>
-                    <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
-                </div>
-
-                <!-- Secuencias activas -->
-                <div class="gsm-secuencias">
-                    <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
-                    <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
-                        <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede al Generador de Secuencias ingresando tu clave o suscríbete vía WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20el%20Generador%20GSM%20Granja" 
+                           class="whatsapp-btn" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <!-- ===== INSTRUCCIONES GSM ===== -->
-                <div class="gsm-instrucciones">
-                    <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
-                    <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
-                    <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Granja Millonaria.</p>
-                    <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
-                    <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                <div id="gsm-contenido" class="gsm-container">
+                    <!-- Buscar secuencia -->
+                    <div class="gsm-busqueda">
+                        <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
+                        <div class="gsm-flex-row">
+                            <div class="gsm-filtro-input">
+                                <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
+                                <button id="gsmBuscarBtn">Buscar</button>
+                            </div>
+                            <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
+                        </div>
+                        <!-- Tarjeta imagen del número consultado -->
+                        <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
+                            <img id="gsmImagenConsultada" src="" alt="imagen" />
+                            <div class="gsm-info">
+                                <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
+                                <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+                            </div>
+                        </div>
+                        <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
+                    </div>
+
+                    <!-- Secuencias activas -->
+                    <div class="gsm-secuencias">
+                        <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
+                        <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
+                            <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
+                        </div>
+                    </div>
+
+                    <!-- ===== INSTRUCCIONES GSM ===== -->
+                    <div class="gsm-instrucciones">
+                        <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
+                        <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
+                        <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Granja Millonaria.</p>
+                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
+                        <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                    </div>
                 </div>
             </div>
 
@@ -1632,6 +1715,16 @@
                     grid.classList.add('locked-grid-desbloqueado');
                 }
                 resultadoContenedor.classList.remove('locked-grid');
+            }
+
+            // Desbloquear GSM
+            const overlayGSM = document.getElementById('overlayGSM');
+            if (overlayGSM) overlayGSM.classList.add('hidden');
+
+            const gsmContenedor = document.getElementById('gsm-contenido');
+            if (gsmContenedor) {
+                gsmContenedor.classList.remove('gsm-contenido-bloqueado');
+                gsmContenedor.classList.add('gsm-contenido-desbloqueado');
             }
 
             // Desbloquear Análisis Forense
@@ -2282,7 +2375,6 @@
                 const response = await fetch(`${SECUENCIA_URL}?_=${new Date().getTime()}`);
                 if (!response.ok) {
                     console.warn('⚠️ No se pudo cargar secuencia_granja.json, usando datos de respaldo');
-                    // Datos de respaldo para Granja Millonaria
                     gsmSecuenciaResultados = [
                         [15, 34, 16, 14, 38],
                         [19, 23, 17, 35, 1],
@@ -2299,7 +2391,6 @@
                 return false;
             } catch (error) {
                 console.error('❌ Error al cargar secuencia_granja.json:', error);
-                // Datos de respaldo
                 gsmSecuenciaResultados = [
                     [15, 34, 16, 14, 38],
                     [19, 23, 17, 35, 1],
@@ -2352,6 +2443,12 @@
         }
 
         function gsmConsultarNumero() {
+            // Solo permitir si está autenticado
+            if (!usuarioAutenticado) {
+                alert('🔒 Debes desbloquear el contenido Premium para usar esta herramienta.');
+                return;
+            }
+
             const input = document.getElementById('gsmNumeroInput');
             const val = input.value.trim();
             const tarjeta = document.getElementById('gsmTarjetaImagen');
