@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-22T16:32:59.523213",
+    "ultima_actualizacion": "2026-08-22T18:40:16.461802",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
+        "dia": "Sábado",
+        "fecha": "22 ago 2026",
         "numeros": [
-          6,
-          8,
-          17,
-          21,
-          30
+          9,
+          18,
+          19,
+          23,
+          26
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
+        "dia": "Sábado",
+        "fecha": "22 ago 2026",
         "numeros": [
-          5,
-          9,
-          5,
           8,
-          0
+          2,
+          4,
+          6,
+          6
         ],
-        "numero_extra": 8
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Sábado",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
+        "dia": "Sábado",
+        "fecha": "22 ago 2026",
         "numeros": [
-          1,
-          6,
           0,
-          8
+          5,
+          0,
+          2
         ],
-        "numero_extra": 8
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Sábado",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
+        "dia": "Sábado",
+        "fecha": "22 ago 2026",
         "numeros": [
-          0,
-          5,
-          4
+          3,
+          7,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Sábado",
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
+        "dia": "Sábado",
+        "fecha": "22 ago 2026",
         "numeros": [
-          0,
-          6
+          7,
+          5
         ],
-        "numero_extra": 8
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Sábado",
