@@ -233,7 +233,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Azul) - 5 números (SIEMPRE VISIBLE) --- */
+        /* --- CORTESÍA (Azul) - 5 números --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -297,7 +297,6 @@
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 107, 107, 0.1);
-            position: relative;
         }
         .tarjeta-superfijos h3 {
             color: #ff6b6b;
@@ -319,26 +318,10 @@
             background: #ff6b6b;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
-        .tarjeta-forense {
-            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
-        }
-        .tarjeta-forense h3 {
-            color: #ffd700;
-            -webkit-text-fill-color: #ffd700;
-            background: none;
-            font-size: 1.6rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-        .tarjeta-forense h3 i {
-            color: #ffd700;
-        }
-
-        /* Overlay para Análisis Forense */
-        .premium-overlay-forense {
+        /* ================================================ */
+        /* OVERLAY MEJORADO - MÁS TRANSPARENTE Y ATRACTIVO  */
+        /* ================================================ */
+        .premium-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -350,21 +333,21 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
             transition: all 0.3s ease;
         }
 
-        .premium-overlay-forense.hidden {
+        .premium-overlay.hidden {
             display: none;
         }
 
-        .premium-overlay-forense::before {
+        .premium-overlay::before {
             content: '';
             position: absolute;
             top: -1px;
@@ -377,25 +360,257 @@
             pointer-events: none;
         }
 
-        .premium-overlay-forense:hover {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .premium-overlay:hover {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
-        /* Contenido forense bloqueado */
-        .forense-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
+        .premium-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 1.8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            line-height: 1.2;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+        }
+
+        .premium-badge i {
+            -webkit-text-fill-color: #ffd700;
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        }
+
+        .premium-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 320px;
+            margin: 2px 0;
+            line-height: 1.5;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .premium-message strong {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .action-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        /* ================================================ */
+        /* BLOQUEO DE SUPER FIJOS MEJORADO                  */
+        /* ================================================ */
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
             opacity: 0.4;
             pointer-events: none;
             transition: all 0.5s ease;
+            transform: scale(0.98);
         }
 
-        .forense-contenido-desbloqueado {
+        .premium-container.locked-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.05) 2px,
+                    rgba(0, 0, 0, 0.05) 4px
+                );
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 24px;
+        }
+
+        .locked-grid-desbloqueado {
             filter: blur(0px) brightness(1);
             opacity: 1;
             pointer-events: auto;
+            transform: scale(1);
             transition: all 0.8s ease;
+        }
+
+        .locked-grid-desbloqueado::after {
+            display: none;
+        }
+
+        /* ================================================ */
+        /* BOTONES MEJORADOS                                */
+        /* ================================================ */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
+            animation: pulseBtn 2s ease-in-out infinite;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ===== MODAL LOGIN ===== */
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-login.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
+        .tarjeta-forense {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+        }
+        .tarjeta-forense h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.6rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .tarjeta-forense h3 i {
+            color: #ffd700;
         }
 
         .forense-sub {
@@ -594,284 +809,6 @@
             font-size: 1rem;
         }
 
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SUPER FIJOS                   */
-        /* ================================================ */
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
-        }
-
-        .premium-overlay::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .premium-badge {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 1.8s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            line-height: 1.2;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-        }
-
-        .premium-badge i {
-            -webkit-text-fill-color: #ffd700;
-            color: #ffd700;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-
-        @keyframes shimmerGold {
-            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-        }
-
-        .premium-message {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            max-width: 320px;
-            margin: 2px 0;
-            line-height: 1.5;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 500;
-        }
-
-        .premium-message strong {
-            color: #ffd700;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        /* ================================================ */
-        /* BLOQUEO DE SUPER FIJOS                           */
-        /* ================================================ */
-        .locked-grid {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            transform: scale(0.98);
-        }
-
-        .premium-container.locked-grid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px
-                );
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 24px;
-        }
-
-        .locked-grid-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            transition: all 0.8s ease;
-        }
-
-        .locked-grid-desbloqueado::after {
-            display: none;
-        }
-
-        /* ================================================ */
-        /* BOTONES MEJORADOS                                */
-        /* ================================================ */
-        .unlock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
-            animation: pulseBtn 2s ease-in-out infinite;
-        }
-
-        .unlock-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
-        }
-
-        .unlock-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes pulseBtn {
-            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25D366;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-        }
-
-        /* ===== MODAL LOGIN ===== */
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
         .footer {
             max-width: 800px;
             width: 100%;
@@ -919,11 +856,6 @@
         .footer .copyright span {
             color: #ffd700;
             font-weight: 600;
-        }
-
-        .forense-container {
-            position: relative;
-            min-height: 300px;
         }
 
         @media (min-width: 700px) {
@@ -987,6 +919,8 @@
                 </button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                    <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
+                    <a href="estadisticas_guacharo.html"><i class="bi bi-feather"></i> Estadisticas</a>
                     <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
                     <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
                     <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
@@ -1071,7 +1005,7 @@
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20Guacharo" 
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos" 
                            class="whatsapp-btn" 
                            target="_blank" 
                            rel="noopener noreferrer">
@@ -1085,50 +1019,23 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
-            <div class="tarjeta-forense tarjeta-dato" id="forenseCard">
+            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+            <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 
-                <!-- Overlay Premium para Análisis Forense -->
-                <div class="premium-overlay-forense" id="overlayForense">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
-                    </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Análisis Forense completo ingresando tu clave o suscríbete vía WhatsApp.
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense%20Guacharo" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
-                        </a>
+                <!-- TOP 10 + REY -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                    <div id="forense-top10" style="overflow-x: auto;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <div id="forense-contenido" class="forense-container">
-                    <!-- TOP 10 + REY -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                        <div id="forense-top10" style="overflow-x: auto;">
-                            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
-                        </div>
-                    </div>
-
-                    <!-- Predicción Inteligente -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                        <div id="forense-prediccion">
-                            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-                        </div>
+                <!-- Predicción Inteligente -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
+                    <div id="forense-prediccion">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
             </div>
@@ -1150,7 +1057,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -1256,7 +1163,7 @@
                 
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                     cerrarModalLogin();
                     localStorage.setItem(STORAGE_KEY, 'true');
                     localStorage.setItem('guacharo_premium_token', clave);
@@ -1274,12 +1181,11 @@
         };
 
         // ============================================================
-        // 🔓 DESBLOQUEAR TODO EL CONTENIDO PREMIUM
+        // 🔓 DESBLOQUEAR SUPER FIJOS
         // ============================================================
-        function desbloquearTodoPremium() {
+        function desbloquearSuperFijos() {
             usuarioAutenticado = true;
             
-            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('premiumOverlay');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             
@@ -1292,16 +1198,6 @@
                 }
                 resultadoContenedor.classList.remove('locked-grid');
             }
-
-            // Desbloquear Análisis Forense
-            const overlayForense = document.getElementById('overlayForense');
-            if (overlayForense) overlayForense.classList.add('hidden');
-            
-            const forenseContenedor = document.getElementById('forense-contenido');
-            if (forenseContenedor) {
-                forenseContenedor.classList.remove('forense-contenido-bloqueado');
-                forenseContenedor.classList.add('forense-contenido-desbloqueado');
-            }
         }
 
         // ============================================================
@@ -1313,7 +1209,7 @@
                 const esValido = await validarCodigo(tokenGuardado);
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                 } else {
                     localStorage.removeItem('guacharo_premium_token');
                     localStorage.removeItem(STORAGE_KEY);
@@ -1614,20 +1510,11 @@
             if (historialFiltrado && historialFiltrado.length > 0) {
                 actualizarForenseTop10();
                 actualizarForensePrediccion();
-                
-                // Aplicar bloqueo si no está autenticado
-                if (!usuarioAutenticado) {
-                    const forenseContenedor = document.getElementById('forense-contenido');
-                    if (forenseContenedor) {
-                        forenseContenedor.classList.add('forense-contenido-bloqueado');
-                        forenseContenedor.classList.remove('forense-contenido-desbloqueado');
-                    }
-                }
             }
         }
 
         // ============================================================
-        // 🎁 CORTESÍA - Los más calientes para hoy (SIEMPRE VISIBLE)
+        // 🎁 CORTESÍA - Los más calientes para hoy
         // ============================================================
         let cortesiaEstatica = null;
 
@@ -1647,7 +1534,6 @@
                 let numBase = primerNumero.numero;
                 let val1 = numBase + 1;
                 let val2 = numBase + 2;
-                // RANGO GUACHARO: 0 a 75
                 if (val1 > 75) val1 = val1 - 76;
                 if (val2 > 75) val2 = val2 - 76;
                 incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
@@ -1687,7 +1573,6 @@
             return seleccionados;
         }
 
-        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -1696,15 +1581,8 @@
                 return;
             }
 
-            // MEZCLAR ALEATORIAMENTE (Fisher-Yates)
-            const shuffled = [...items];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-
             let html = '<div class="numeros-grid-5">';
-            shuffled.forEach(r => {
+            items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 let claseExtra = '';
 
@@ -1732,203 +1610,6 @@
                 `;
             });
             html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
-        // ============================================================
-        // 📊 NUEVA FUNCIÓN: BUSCAR REPETICIÓN CON FILTRO DE DUPLICADOS
-        // ============================================================
-        function buscarRepeticionConFiltro(resultados) {
-            const niveles = {
-                N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1' },
-                N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], nombre: 'N2' },
-                N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], nombre: 'N3' }
-            };
-
-            // Función para obtener clave única del número
-            function obtenerClave(item) {
-                return item.esDobleCero ? '00' : String(item.numero);
-            }
-
-            // Función para verificar si un número ya está en la secuencia
-            function numeroYaEnSecuencia(secuencia, item) {
-                const clave = obtenerClave(item);
-                return secuencia.some(existente => obtenerClave(existente) === clave);
-            }
-
-            // Buscar en pares de niveles
-            function buscarEnPares(nivelActual, nivelPasado) {
-                for (let i = 0; i < nivelActual.indices.length; i++) {
-                    const idxActual = nivelActual.indices[i];
-                    const actual = resultados[idxActual];
-                    const claveActual = obtenerClave(actual);
-
-                    for (let j = 0; j < nivelPasado.indices.length; j++) {
-                        const idxPasado = nivelPasado.indices[j];
-                        const pasado = resultados[idxPasado];
-                        const clavePasado = obtenerClave(pasado);
-
-                        if (claveActual === clavePasado) {
-                            // Construir secuencia base con el número encontrado
-                            const secuenciaFinal = [pasado];
-
-                            // Buscar siguientes números hasta tener 3 diferentes
-                            let indiceActual = idxPasado + 1;
-                            let intentos = 0;
-                            const maxIntentos = 30; // Para evitar bucles infinitos
-
-                            while (secuenciaFinal.length < 3 && intentos < maxIntentos) {
-                                if (indiceActual < resultados.length && indiceActual < 36) {
-                                    const siguiente = resultados[indiceActual];
-                                    // Verificar si el número ya está en la secuencia
-                                    if (!numeroYaEnSecuencia(secuenciaFinal, siguiente)) {
-                                        secuenciaFinal.push(siguiente);
-                                    }
-                                    // Si está duplicado, lo saltamos y seguimos buscando
-                                    indiceActual++;
-                                } else {
-                                    // Si llegamos al final, comenzamos desde el principio del nivel
-                                    indiceActual = nivelPasado.indices[0];
-                                }
-                                intentos++;
-                            }
-
-                            // Si tenemos al menos 3 números diferentes, retornar
-                            if (secuenciaFinal.length === 3) {
-                                return {
-                                    encontrado: true,
-                                    siguientes: secuenciaFinal,
-                                    nivelOrigen: nivelPasado.nombre,
-                                    posicionOrigen: idxPasado,
-                                    secuenciaCompleta: secuenciaFinal
-                                };
-                            }
-                        }
-                    }
-                }
-                return { encontrado: false, siguientes: [] };
-            }
-
-            // Buscar en orden de prioridad
-            let resultado = buscarEnPares(niveles.N1, niveles.N2);
-            if (resultado.encontrado) return resultado;
-
-            resultado = buscarEnPares(niveles.N1, niveles.N3);
-            if (resultado.encontrado) return resultado;
-
-            resultado = buscarEnPares(niveles.N2, niveles.N3);
-            if (resultado.encontrado) return resultado;
-
-            // Si no se encuentra repetición, generar 3 números aleatorios diferentes
-            return generarNumerosUnicosAleatorios(resultados);
-        }
-
-        // Función de respaldo para generar 3 números únicos aleatorios
-        function generarNumerosUnicosAleatorios(resultados) {
-            const numerosDisponibles = resultados.slice(0, 36);
-            const seleccionados = [];
-            const clavesUsadas = new Set();
-            const maxIntentos = 100;
-            let intentos = 0;
-
-            while (seleccionados.length < 3 && intentos < maxIntentos) {
-                const idxRandom = Math.floor(Math.random() * numerosDisponibles.length);
-                const item = numerosDisponibles[idxRandom];
-                const clave = item.esDobleCero ? '00' : String(item.numero);
-
-                if (!clavesUsadas.has(clave)) {
-                    clavesUsadas.add(clave);
-                    seleccionados.push(item);
-                }
-                intentos++;
-            }
-
-            return {
-                encontrado: false,
-                siguientes: seleccionados,
-                esAleatorio: true
-            };
-        }
-
-        // ============================================================
-        // 📊 FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS MEJORADA
-        // ============================================================
-        function mostrarSuperFijosConLog(items, infoAdicional = null) {
-            const contenedor = document.getElementById('resultado-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
-                return;
-            }
-
-            let claseGrid = 'numeros-grid-3';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
-            }
-
-            // Mostrar información de origen
-            let infoHTML = '';
-            if (infoAdicional && infoAdicional.encontrado) {
-                const posicionMostrar = infoAdicional.posicionOrigen + 1;
-                infoHTML = `
-                    <div style="text-align: center; color: #ffd700; font-size: 0.75rem; margin-bottom: 12px; background: rgba(255,215,0,0.08); padding: 6px 16px; border-radius: 20px; display: inline-block; width: 100%; border: 1px solid rgba(255,215,0,0.1);">
-                        <i class="bi bi-search"></i> 
-                        GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar}) 
-                        ${infoAdicional.esAleatorio ? '• Generación aleatoria' : ''}
-                    </div>
-                `;
-            }
-
-            let html = infoHTML;
-            html += `<div class="${claseGrid}">`;
-
-            // Mostrar cada número
-            items.forEach((r, index) => {
-                let numDisplay, nombreAnimal, rutaImagen;
-
-                if (r.esDobleCero) {
-                    numDisplay = "00";
-                    nombreAnimal = "ballena";
-                    rutaImagen = obtenerRutaImagen(0, true);
-                } else {
-                    numDisplay = String(r.numero).padStart(2, '0');
-                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                    rutaImagen = obtenerRutaImagen(r.numero, false);
-                }
-
-                const badges = ['🔥', '⭐', '🎁'];
-
-                html += `
-                    <div class="numero-card" style="position: relative;">
-                        <div style="position: absolute; top: -5px; left: -5px; font-size: 0.8rem; background: rgba(255,215,0,0.15); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,215,0,0.2);">
-                            ${badges[index] || ''}
-                        </div>
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_guacharo/00.png'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-
-            html += '</div>';
-
-            // Mostrar información de duplicados eliminados
-            if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
-                const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
-                if (duplicadosEliminados > 0) {
-                    html += `
-                        <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
-                            <i class="bi bi-check-circle" style="color: #4caf50;"></i> 
-                            ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
-                        </div>
-                    `;
-                }
-            }
-
             contenedor.innerHTML = html;
         }
 
@@ -1991,6 +1672,78 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
+        function buscarRepeticion(resultados) {
+            const mapa = new Map();
+
+            resultados.forEach(r => {
+                const clave = r.esDobleCero ? '00' : r.numero;
+                if (!mapa.has(clave)) mapa.set(clave, []);
+                mapa.get(clave).push(r);
+            });
+
+            for (let i = 24; i < 36; i++) {
+                const actual = resultados[i];
+                const claveActual = actual.esDobleCero ? '00' : actual.numero;
+                const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
+
+                if (repeticiones.length > 0) {
+                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
+                    const siguientes = [];
+
+                    for (let j = 1; j <= 4; j++) {
+                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
+                        if (sig) siguientes.push(sig);
+                    }
+
+                    if (siguientes.length > 0) return { encontrado: true, siguientes };
+                }
+            }
+            return { encontrado: false, siguientes: [] };
+        }
+
+        function mostrarSuperFijos(items) {
+            const contenedor = document.getElementById('resultado-contenido');
+
+            if (!items || items.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
+                return;
+            }
+
+            let claseGrid = 'numeros-grid-3';
+            
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+            } else {
+                claseGrid += ' locked-grid-desbloqueado';
+            }
+
+            let html = `<div class="${claseGrid}">`;
+            items.forEach(r => {
+                let numDisplay, nombreAnimal, rutaImagen;
+
+                if (r.esDobleCero) {
+                    numDisplay = "00";
+                    nombreAnimal = "ballena";
+                    rutaImagen = obtenerRutaImagen(0, true);
+                } else {
+                    numDisplay = String(r.numero).padStart(2, '0');
+                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
+                    rutaImagen = obtenerRutaImagen(r.numero, false);
+                }
+
+                html += `
+                    <div class="numero-card">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_guacharo/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
         async function cargarDatosServidor() {
             try {
                 const response = await fetch(JSON_URL + '?t=' + Date.now());
@@ -2046,20 +1799,11 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // SUPER FIJOS - NUEVA FUNCIÓN CON FILTRO DE DUPLICADOS
-                const resultado = buscarRepeticionConFiltro(todos);
+                // SUPER FIJOS
+                const resultado = buscarRepeticion(todos);
                 const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
-
-                // Guardar información adicional para mostrar
-                const infoSuperFijos = {
-                    encontrado: resultado.encontrado,
-                    nivelOrigen: resultado.nivelOrigen || 'N/A',
-                    posicionOrigen: resultado.posicionOrigen || -1,
-                    secuenciaCompleta: resultado.secuenciaCompleta || [],
-                    esAleatorio: resultado.esAleatorio || false
-                };
                 
-                mostrarSuperFijosConLog(superFijos, infoSuperFijos);
+                mostrarSuperFijos(superFijos);
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
                 // CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
@@ -2067,7 +1811,7 @@
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // ANÁLISIS FORENSE - PREMIUM BLOQUEADO
+                // ANÁLISIS FORENSE
                 cargarDatosForense();
 
                 await verificarSesionPrevia();

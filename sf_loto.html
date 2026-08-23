@@ -241,7 +241,7 @@
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8));
         }
 
-        /* --- CORTESÍA (Azul) - 5 números (SIEMPRE VISIBLE) --- */
+        /* --- CORTESÍA (Azul) - 5 números --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -291,12 +291,11 @@
             border-radius: 10px;
         }
 
-        /* --- TRIPLETAS (Púrpura) - PREMIUM BLOQUEADO --- */
+        /* --- TRIPLETAS (Púrpura) - SIEMPRE VISIBLE --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
-            position: relative;
         }
         .tarjeta-tripletas::before {
             content: '';
@@ -328,52 +327,11 @@
             background: #b388ff;
         }
 
-        /* Overlay para Tripletas */
-        .premium-overlay-tripletas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(179, 136, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay-tripletas.hidden {
-            display: none;
-        }
-
-        .premium-overlay-tripletas::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(179, 136, 255, 0.1), transparent, rgba(179, 136, 255, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
         /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 107, 107, 0.1);
-            position: relative;
         }
         .tarjeta-superfijos::before {
             content: '';
@@ -406,13 +364,12 @@
         }
 
         /* ================================================ */
-        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado) - BLOQUEADO */
+        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado)       */
         /* ================================================ */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
         }
         .tarjeta-gsm::before {
             content: '';
@@ -435,67 +392,237 @@
             color: #ffd700;
         }
 
-        /* Overlay para GSM */
-        .premium-overlay-gsm {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
+        .gsm-busqueda {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .gsm-busqueda h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-busqueda h4 i {
+            color: #ffd700;
+        }
+
+        .gsm-flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+        .gsm-filtro-input {
+            display: flex;
+            flex: 1 1 220px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 60px;
+            overflow: hidden;
+            background: #030712;
+            transition: 0.2s;
+            max-width: 320px;
+        }
+        .gsm-filtro-input:focus-within {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        .gsm-filtro-input input {
+            border: none;
+            padding: 0.65rem 1.2rem;
+            font-size: 0.95rem;
+            flex: 1;
+            outline: none;
+            background: transparent;
+            color: #ffdd99;
+            font-family: 'Inter', sans-serif;
+        }
+        .gsm-filtro-input input::placeholder {
+            color: #666;
+        }
+        .gsm-filtro-input button {
+            background: linear-gradient(135deg, #c2410c, #ea580c);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.15s;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+        .gsm-filtro-input button:hover {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+        .gsm-error-validacion {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.15);
+            border-radius: 30px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .gsm-tarjeta-imagen {
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 160px;
+        }
+        .gsm-tarjeta-imagen img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-numero {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-imagen .gsm-info .gsm-animal {
+            font-size: 0.85rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.05rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .gsm-mensaje-vacio {
+            color: #888;
+            font-style: italic;
+            padding: 0.4rem 0;
+        }
+
+        .gsm-secuencias {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-secuencias h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-secuencias h4 i {
+            color: #ffd700;
+        }
+
+        /* ===== TARJETAS GSM MISMO TAMAÑO QUE TRIPLETAS ===== */
+        .gsm-grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gsm-tarjeta-secuencia {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            transition: all 0.3s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s ease;
+            min-height: 120px;
+        }
+        .gsm-tarjeta-secuencia:hover {
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+        .gsm-tarjeta-secuencia img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            margin-bottom: 4px;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffd700;
+        }
+        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-nom {
+            font-size: 0.75rem;
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-top: 2px;
         }
 
-        .premium-overlay-gsm.hidden {
-            display: none;
+        /* ===== INSTRUCCIONES GSM ===== */
+        .gsm-instrucciones {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+        .gsm-instrucciones h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gsm-instrucciones h4 i {
+            color: #ffd700;
+        }
+        .gsm-instrucciones p {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        .gsm-instrucciones p i {
+            color: #ffd700;
+            margin-right: 6px;
         }
 
-        .premium-overlay-gsm::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Contenido GSM bloqueado */
-        .gsm-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .gsm-contenido-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.8s ease;
-        }
-
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
         }
         .tarjeta-forense::before {
             content: '';
@@ -516,61 +643,6 @@
         }
         .tarjeta-forense h3 i {
             color: #ffd700;
-        }
-
-        /* Overlay para Análisis Forense */
-        .premium-overlay-forense {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay-forense.hidden {
-            display: none;
-        }
-
-        .premium-overlay-forense::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Contenido forense bloqueado */
-        .forense-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .forense-contenido-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.8s ease;
         }
 
         /* Sub-contenedores dentro de Análisis Forense */
@@ -701,20 +773,8 @@
             min-height: 200px;
         }
 
-        /* Contenedor para GSM */
-        .gsm-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        /* Contenedor para forense */
-        .forense-container {
-            position: relative;
-            min-height: 300px;
-        }
-
         /* ================================================ */
-        /* OVERLAY MEJORADO - SUPER FIJOS                   */
+        /* OVERLAY MEJORADO - MÁS TRANSPARENTE Y ATRACTIVO  */
         /* ================================================ */
         .premium-overlay {
             position: absolute;
@@ -736,10 +796,6 @@
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 215, 0, 0.15);
             transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
         }
 
         .premium-overlay::before {
@@ -815,7 +871,7 @@
         }
 
         /* ================================================ */
-        /* BLOQUEO DE SUPER FIJOS                           */
+        /* BLOQUEO DE SUPER FIJOS MEJORADO - MÁS DISTORSIÓN */
         /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
@@ -1126,237 +1182,6 @@
             grid-template-columns: repeat(2, 1fr) !important;
         }
 
-        /* Contenedor para contenido premium bloqueado en tripletas */
-        .tripletas-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        /* Estilos GSM */
-        .gsm-busqueda {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        .gsm-busqueda h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .gsm-busqueda h4 i {
-            color: #ffd700;
-        }
-
-        .gsm-flex-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.8rem 1.5rem;
-        }
-        .gsm-filtro-input {
-            display: flex;
-            flex: 1 1 220px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 60px;
-            overflow: hidden;
-            background: #030712;
-            transition: 0.2s;
-            max-width: 320px;
-        }
-        .gsm-filtro-input:focus-within {
-            border-color: #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-        }
-        .gsm-filtro-input input {
-            border: none;
-            padding: 0.65rem 1.2rem;
-            font-size: 0.95rem;
-            flex: 1;
-            outline: none;
-            background: transparent;
-            color: #ffdd99;
-            font-family: 'Inter', sans-serif;
-        }
-        .gsm-filtro-input input::placeholder {
-            color: #666;
-        }
-        .gsm-filtro-input button {
-            background: linear-gradient(135deg, #c2410c, #ea580c);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0 1.5rem;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: 0.15s;
-            font-family: 'Inter', sans-serif;
-            white-space: nowrap;
-            min-width: 100px;
-        }
-        .gsm-filtro-input button:hover {
-            background: linear-gradient(135deg, #ea580c, #f97316);
-        }
-        .gsm-error-validacion {
-            color: #e74c3c;
-            background: rgba(231, 76, 60, 0.15);
-            border-radius: 30px;
-            padding: 0.2rem 1.2rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-block;
-        }
-
-        .gsm-tarjeta-imagen {
-            margin-top: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 1rem;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            min-width: 160px;
-        }
-        .gsm-tarjeta-imagen img {
-            width: 52px;
-            height: 52px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: rgba(255, 215, 0, 0.1);
-            padding: 4px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        .gsm-tarjeta-imagen .gsm-info .gsm-numero {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #ffd700;
-        }
-        .gsm-tarjeta-imagen .gsm-info .gsm-animal {
-            font-size: 0.85rem;
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-            padding: 0.05rem 0.8rem;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 2px;
-        }
-        .gsm-mensaje-vacio {
-            color: #888;
-            font-style: italic;
-            padding: 0.4rem 0;
-        }
-
-        .gsm-secuencias {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.08);
-        }
-        .gsm-secuencias h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .gsm-secuencias h4 i {
-            color: #ffd700;
-        }
-
-        .gsm-grid-tarjetas {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .gsm-tarjeta-secuencia {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 14px 10px;
-            text-align: center;
-            border: 1px solid rgba(255, 215, 0, 0.12);
-            transition: all 0.3s;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-        }
-        .gsm-tarjeta-secuencia:hover {
-            border-color: #ffd700;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
-        }
-        .gsm-tarjeta-secuencia img {
-            width: 65px;
-            height: 65px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: rgba(255, 215, 0, 0.05);
-            padding: 4px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            margin-bottom: 4px;
-        }
-        .gsm-tarjeta-secuencia .gsm-info-sec {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-num {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #ffd700;
-        }
-        .gsm-tarjeta-secuencia .gsm-info-sec .gsm-nom {
-            font-size: 0.75rem;
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.08);
-            padding: 0.1rem 0.6rem;
-            border-radius: 30px;
-            display: inline-block;
-            width: fit-content;
-            margin-top: 2px;
-        }
-
-        .gsm-instrucciones {
-            margin-top: 16px;
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.08);
-        }
-        .gsm-instrucciones h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .gsm-instrucciones h4 i {
-            color: #ffd700;
-        }
-        .gsm-instrucciones p {
-            color: #ccc;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 4px;
-        }
-        .gsm-instrucciones p i {
-            color: #ffd700;
-            margin-right: 6px;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (min-width: 700px) {
             .numeros-grid {
@@ -1509,7 +1334,7 @@
         <div class="seccion-datos">
             <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números -->
             <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
+                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy </h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-lock-fill"></i> solo loto activo
                 </div>
@@ -1518,27 +1343,37 @@
                 </div>
             </div>
 
-            <!-- TRIPLETAS - PÚRPURA (PREMIUM BLOQUEADO) - 4 números -->
-            <div class="tarjeta-tripletas tarjeta-dato" id="tripletasCard">
+            <!-- TRIPLETAS - PÚRPURA (SIEMPRE VISIBLE) - 4 números -->
+            <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Lotto Activo</h3>
                 <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-arrow-right"></i> Bases + Acompañantes de Super Fijos
                 </div>
+                <div id="tripletas-contenido" style="min-height: 150px;">
+                    <div class="no-data">Cargando tripletas...</div>
+                </div>
+            </div>
 
-                <!-- Overlay Premium para Tripletas -->
-                <div class="premium-overlay-tripletas" id="overlayTripletas">
+            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números -->
+            <div class="tarjeta-superfijos tarjeta-dato">
+                <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
+
+                <div class="premium-overlay" id="overlaySuperFijos">
                     <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> TRIPLETAS PREMIUM
+                        <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
+                    </div>
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> PREMIUM
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a las Tripletas ingresando tu clave o suscríbete vía WhatsApp.
+                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía WhatsApp.
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Tripletas"
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos"
                         class="whatsapp-btn"
                         target="_blank"
                         rel="noopener noreferrer">
@@ -1547,184 +1382,97 @@
                 </div>
             </div>
 
-            <div id="tripletas-contenido" class="tripletas-container" style="min-height: 150px;">
-                <div class="no-data">Cargando tripletas...</div>
+            <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
+                <div class="no-data">Cargando...</div>
             </div>
         </div>
 
-        <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números -->
-        <div class="tarjeta-superfijos tarjeta-dato">
-            <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
+        <!-- ===================================================== -->
+        <!-- GSM - GENERADOR DE SECUENCIAS MIA (Entre Super Fijos y Forense) -->
+        <!-- ===================================================== -->
+        <div class="tarjeta-gsm tarjeta-dato">
+            <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
+            <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
+                <i class="bi bi-arrow-right"></i> Secuencias solo para Loto Activo
+            </div>
 
-            <div class="premium-overlay" id="overlaySuperFijos">
-                <div class="premium-badge">
-                    <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
+            <!-- Buscar secuencia -->
+            <div class="gsm-busqueda">
+                <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
+                <div class="gsm-flex-row">
+                    <div class="gsm-filtro-input">
+                        <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
+                        <button id="gsmBuscarBtn">Buscar</button>
+                    </div>
+                    <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
                 </div>
-                <div class="premium-badge">
-                    <i class="bi bi-crown-fill"></i> PREMIUM
+                <!-- Tarjeta imagen del número consultado -->
+                <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
+                    <img id="gsmImagenConsultada" src="" alt="imagen" />
+                    <div class="gsm-info">
+                        <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
+                        <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+                    </div>
                 </div>
-                <p class="premium-message">
-                    <strong>🔒 Contenido Exclusivo</strong><br>
-                    Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía WhatsApp.
-                </p>
-                <div class="action-buttons-group">
-                    <button class="unlock-btn" onclick="abrirModalLogin()">
-                        <i class="bi bi-unlock-fill"></i> Desbloquear
-                    </button>
-                    <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos"
-                    class="whatsapp-btn"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i class="bi bi-whatsapp"></i> WhatsApp
-                </a>
+                <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
             </div>
-        </div>
 
-        <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
-            <div class="no-data">Cargando...</div>
-        </div>
-    </div>
-
-    <!-- ===================================================== -->
-    <!-- GSM - GENERADOR DE SECUENCIAS MIA (PREMIUM BLOQUEADO) -->
-    <!-- ===================================================== -->
-    <div class="tarjeta-gsm tarjeta-dato" id="gsmCard">
-        <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
-        <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-            <i class="bi bi-arrow-right"></i> Secuencias solo para Loto Activo
-        </div>
-
-        <!-- Overlay Premium para GSM -->
-        <div class="premium-overlay-gsm" id="overlayGSM">
-            <div class="premium-badge">
-                <i class="bi bi-crown-fill"></i> GENERADOR GSM
-            </div>
-            <div class="premium-badge">
-                <i class="bi bi-crown-fill"></i> PREMIUM
-            </div>
-            <p class="premium-message">
-                <strong>🔒 Contenido Exclusivo</strong><br>
-                Accede al Generador de Secuencias ingresando tu clave o suscríbete vía WhatsApp.
-            </p>
-            <div class="action-buttons-group">
-                <button class="unlock-btn" onclick="abrirModalLogin()">
-                    <i class="bi bi-unlock-fill"></i> Desbloquear
-                </button>
-                <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20el%20Generador%20GSM"
-                class="whatsapp-btn"
-                target="_blank"
-                rel="noopener noreferrer">
-                <i class="bi bi-whatsapp"></i> WhatsApp
-            </a>
-        </div>
-    </div>
-
-    <div id="gsm-contenido" class="gsm-container">
-        <!-- Buscar secuencia -->
-        <div class="gsm-busqueda">
-            <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
-            <div class="gsm-flex-row">
-                <div class="gsm-filtro-input">
-                    <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
-                    <button id="gsmBuscarBtn">Buscar</button>
-                </div>
-                <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
-            </div>
-            <!-- Tarjeta imagen del número consultado -->
-            <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
-                <img id="gsmImagenConsultada" src="" alt="imagen" />
-                <div class="gsm-info">
-                    <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
-                    <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+            <!-- Secuencias activas -->
+            <div class="gsm-secuencias">
+                <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
+                <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
+                    <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
                 </div>
             </div>
-            <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
-        </div>
 
-        <!-- Secuencias activas -->
-        <div class="gsm-secuencias">
-            <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
-            <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
-                <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
+            <!-- ===== INSTRUCCIONES GSM ===== -->
+            <div class="gsm-instrucciones">
+                <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
+                <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
+                <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Loto Activo.</p>
+                <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
+                <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
             </div>
         </div>
 
-        <!-- ===== INSTRUCCIONES GSM ===== -->
-        <div class="gsm-instrucciones">
-            <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
-            <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
-            <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Loto Activo.</p>
-            <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
-            <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
-        </div>
-    </div>
-</div>
+        <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+        <div class="tarjeta-forense tarjeta-dato">
+            <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
 
-<!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
-<div class="tarjeta-forense tarjeta-dato" id="forenseCard">
-    <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
+            <!-- TOP 10 + REY -->
+            <div class="forense-sub">
+                <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                <div id="forense-top10" style="overflow-x: auto;">
+                    <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                </div>
+            </div>
 
-    <!-- Overlay Premium para Análisis Forense -->
-    <div class="premium-overlay-forense" id="overlayForense">
-        <div class="premium-badge">
-            <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
-        </div>
-        <div class="premium-badge">
-            <i class="bi bi-crown-fill"></i> PREMIUM
-        </div>
-        <p class="premium-message">
-            <strong>🔒 Contenido Exclusivo</strong><br>
-            Accede al Análisis Forense completo ingresando tu clave o suscríbete vía WhatsApp.
-        </p>
-        <div class="action-buttons-group">
-            <button class="unlock-btn" onclick="abrirModalLogin()">
-                <i class="bi bi-unlock-fill"></i> Desbloquear
-            </button>
-            <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense"
-            class="whatsapp-btn"
-            target="_blank"
-            rel="noopener noreferrer">
-            <i class="bi bi-whatsapp"></i> WhatsApp
-        </a>
-    </div>
-</div>
-
-<div id="forense-contenido" class="forense-container">
-    <!-- TOP 10 + REY -->
-    <div class="forense-sub">
-        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-        <div id="forense-top10" style="overflow-x: auto;">
-            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+            <!-- Predicción Inteligente -->
+            <div class="forense-sub">
+                <h4><i class="bi bi-bullseye"></i> Predicción Forence</h4>
+                <div id="forense-prediccion">
+                    <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Predicción Inteligente -->
-    <div class="forense-sub">
-        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-        <div id="forense-prediccion">
-            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-        </div>
+    <div class="ad-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
+        crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
+        data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
-</div>
-</div>
-</div>
-
-<div class="ad-container">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853"
-    crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7995132393364853"
-    data-ad-slot="4903538669" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
 </div>
 
 <div class="modal-login" id="modalLogin">
     <div class="modal-content">
         <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
         <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-        <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+        <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
         <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
         <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
     </div>
@@ -1868,7 +1616,7 @@
 
             if (esValido) {
                 usuarioAutenticado = true;
-                desbloquearTodoPremium();
+                desbloquearSuperFijos();
                 cerrarModalLogin();
                 localStorage.setItem('user_premium_token', clave);
                 alert('✅ Acceso Premium concedido');
@@ -1890,7 +1638,7 @@
             const esValido = await validarCodigo(tokenGuardado);
             if (esValido) {
                 usuarioAutenticado = true;
-                desbloquearTodoPremium();
+                desbloquearSuperFijos();
             } else {
                 localStorage.removeItem('user_premium_token');
                 usuarioAutenticado = false;
@@ -1898,15 +1646,11 @@
         }
     }
 
-    // =====================================================
-    // 🔓 DESBLOQUEAR TODO EL CONTENIDO PREMIUM
-    // =====================================================
-    function desbloquearTodoPremium() {
+    function desbloquearSuperFijos() {
         usuarioAutenticado = true;
 
-        // Desbloquear Super Fijos
         const overlaySuperFijos = document.getElementById('overlaySuperFijos');
-        if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
+        if (overlaySuperFijos) overlaySuperFijos.style.display = 'none';
 
         const resultadoContenedor = document.getElementById('resultado-contenido');
         if (resultadoContenedor) {
@@ -1916,40 +1660,6 @@
                 grid.classList.add('locked-grid-desbloqueado');
             }
             resultadoContenedor.classList.remove('locked-grid');
-        }
-
-        // Desbloquear Tripletas
-        const overlayTripletas = document.getElementById('overlayTripletas');
-        if (overlayTripletas) overlayTripletas.classList.add('hidden');
-
-        const tripletContenedor = document.getElementById('tripletas-contenido');
-        if (tripletContenedor) {
-            const grid = tripletContenedor.querySelector('.numeros-grid');
-            if (grid) {
-                grid.classList.remove('locked-grid');
-                grid.classList.add('locked-grid-desbloqueado');
-            }
-            tripletContenedor.classList.remove('locked-grid');
-        }
-
-        // Desbloquear GSM
-        const overlayGSM = document.getElementById('overlayGSM');
-        if (overlayGSM) overlayGSM.classList.add('hidden');
-
-        const gsmContenedor = document.getElementById('gsm-contenido');
-        if (gsmContenedor) {
-            gsmContenedor.classList.remove('gsm-contenido-bloqueado');
-            gsmContenedor.classList.add('gsm-contenido-desbloqueado');
-        }
-
-        // Desbloquear Análisis Forense
-        const overlayForense = document.getElementById('overlayForense');
-        if (overlayForense) overlayForense.classList.add('hidden');
-
-        const forenseContenedor = document.getElementById('forense-contenido');
-        if (forenseContenedor) {
-            forenseContenedor.classList.remove('forense-contenido-bloqueado');
-            forenseContenedor.classList.add('forense-contenido-desbloqueado');
         }
     }
 
@@ -2054,6 +1764,121 @@
     }
 
     // =====================================================
+    // NUEVA FUNCIÓN: BUSCAR REPETICIÓN CON FILTRO DE DUPLICADOS
+    // =====================================================
+    function buscarRepeticionConFiltro(resultados) {
+        const niveles = {
+            N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], nombre: 'N1' },
+            N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], nombre: 'N2' },
+            N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], nombre: 'N3' }
+        };
+
+        // Función para obtener clave única del número
+        function obtenerClave(item) {
+            return item.esDobleCero ? '00' : String(item.numero);
+        }
+
+        // Función para verificar si un número ya está en la secuencia
+        function numeroYaEnSecuencia(secuencia, item) {
+            const clave = obtenerClave(item);
+            return secuencia.some(existente => obtenerClave(existente) === clave);
+        }
+
+        // Buscar en pares de niveles
+        function buscarEnPares(nivelActual, nivelPasado) {
+            for (let i = 0; i < nivelActual.indices.length; i++) {
+                const idxActual = nivelActual.indices[i];
+                const actual = resultados[idxActual];
+                const claveActual = obtenerClave(actual);
+
+                for (let j = 0; j < nivelPasado.indices.length; j++) {
+                    const idxPasado = nivelPasado.indices[j];
+                    const pasado = resultados[idxPasado];
+                    const clavePasado = obtenerClave(pasado);
+
+                    if (claveActual === clavePasado) {
+                        // Construir secuencia base con el número encontrado
+                        const secuenciaFinal = [pasado];
+
+                        // Buscar siguientes números hasta tener 3 diferentes
+                        let indiceActual = idxPasado + 1;
+                        let intentos = 0;
+                        const maxIntentos = 20; // Para evitar bucles infinitos
+
+                        while (secuenciaFinal.length < 3 && intentos < maxIntentos) {
+                            if (indiceActual < resultados.length && indiceActual < 36) {
+                                const siguiente = resultados[indiceActual];
+                                // Verificar si el número ya está en la secuencia
+                                if (!numeroYaEnSecuencia(secuenciaFinal, siguiente)) {
+                                    secuenciaFinal.push(siguiente);
+                                }
+                                // Si está duplicado, lo saltamos y seguimos buscando
+                                indiceActual++;
+                            } else {
+                                // Si llegamos al final, comenzamos desde el principio
+                                indiceActual = 0;
+                            }
+                            intentos++;
+                        }
+
+                        // Si tenemos al menos 3 números diferentes, retornar
+                        if (secuenciaFinal.length === 3) {
+                            return {
+                                encontrado: true,
+                                siguientes: secuenciaFinal,
+                                nivelOrigen: nivelPasado.nombre,
+                                posicionOrigen: idxPasado,
+                                secuenciaCompleta: secuenciaFinal
+                            };
+                        }
+                    }
+                }
+            }
+            return { encontrado: false, siguientes: [] };
+        }
+
+        // Buscar en orden de prioridad
+        let resultado = buscarEnPares(niveles.N1, niveles.N2);
+        if (resultado.encontrado) return resultado;
+
+        resultado = buscarEnPares(niveles.N1, niveles.N3);
+        if (resultado.encontrado) return resultado;
+
+        resultado = buscarEnPares(niveles.N2, niveles.N3);
+        if (resultado.encontrado) return resultado;
+
+        // Si no se encuentra repetición, generar 3 números aleatorios diferentes
+        return generarNumerosUnicosAleatorios(resultados);
+    }
+
+    // Función de respaldo para generar 3 números únicos aleatorios
+    function generarNumerosUnicosAleatorios(resultados) {
+        const numerosDisponibles = resultados.slice(0, 36);
+        const seleccionados = [];
+        const clavesUsadas = new Set();
+        const maxIntentos = 100;
+        let intentos = 0;
+
+        while (seleccionados.length < 3 && intentos < maxIntentos) {
+            const idxRandom = Math.floor(Math.random() * numerosDisponibles.length);
+            const item = numerosDisponibles[idxRandom];
+            const clave = item.esDobleCero ? '00' : String(item.numero);
+
+            if (!clavesUsadas.has(clave)) {
+                clavesUsadas.add(clave);
+                seleccionados.push(item);
+            }
+            intentos++;
+        }
+
+        return {
+            encontrado: false,
+            siguientes: seleccionados,
+            esAleatorio: true
+        };
+    }
+
+    // =====================================================
     // CORTESÍA: 2 gratis + 3 Super Fijos = 5 números
     // =====================================================
     let cortesiaEstatica = null;
@@ -2101,54 +1926,6 @@
 
     function reiniciarCortesia() {
         cortesiaEstatica = null;
-    }
-
-    // =====================================================
-    // BÚSQUEDA DE REPETICIÓN (SUPER FIJOS - 3 números)
-    // =====================================================
-    function buscarRepeticion(resultados) {
-        const niveles = {
-            N1: { indices: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35] },
-            N2: { indices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] },
-            N3: { indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
-        };
-
-        function buscarEnPares(nivelActual, nivelPasado) {
-            for (let i = 0; i < nivelActual.indices.length; i++) {
-                const idxActual = nivelActual.indices[i];
-                const actual = resultados[idxActual];
-                const claveActual = actual.esDobleCero ? '00' : actual.numero;
-
-                for (let j = 0; j < nivelPasado.indices.length; j++) {
-                    const idxPasado = nivelPasado.indices[j];
-                    const pasado = resultados[idxPasado];
-                    const clavePasado = pasado.esDobleCero ? '00' : pasado.numero;
-
-                    if (claveActual === clavePasado) {
-                        const siguientes = [pasado];
-                        for (let k = 1; k <= 2; k++) {
-                            const sigIdx = idxPasado + k;
-                            if (sigIdx < resultados.length && sigIdx < 36) {
-                                siguientes.push(resultados[sigIdx]);
-                            }
-                        }
-                        if (siguientes.length > 0) return { encontrado: true, siguientes: siguientes };
-                    }
-                }
-            }
-            return { encontrado: false, siguientes: [] };
-        }
-
-        let resultado = buscarEnPares(niveles.N1, niveles.N2);
-        if (resultado.encontrado) return resultado;
-
-        resultado = buscarEnPares(niveles.N1, niveles.N3);
-        if (resultado.encontrado) return resultado;
-
-        resultado = buscarEnPares(niveles.N2, niveles.N3);
-        if (resultado.encontrado) return resultado;
-
-        return { encontrado: false, siguientes: [] };
     }
 
     // =====================================================
@@ -2330,24 +2107,24 @@
         }
 
         let html = `
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-                <div class="rey-badge">
-                    <i class="bi bi-crown-fill"></i> REY: ${formatearNumero(rey.num)} ${obtenerIcono(rey.num)} (${rey.freq} veces)
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                    <div class="rey-badge">
+                        <i class="bi bi-crown-fill"></i> REY: ${formatearNumero(rey.num)} ${obtenerIcono(rey.num)} (${rey.freq} veces)
+                    </div>
                 </div>
-            </div>
-            <table class="tabla-forense">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Número</th>
-                        <th>Animal</th>
-                        <th>Frecuencia</th>
-                        <th>Última</th>
-                        <th>Acompañantes</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
+                <table class="tabla-forense">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Número</th>
+                            <th>Animal</th>
+                            <th>Frecuencia</th>
+                            <th>Última</th>
+                            <th>Acompañantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
 
         ranking.forEach((item, i) => {
             const acompañantes = obtenerAcompanantesForense(item.numero);
@@ -2355,27 +2132,27 @@
             const esRey = item.numero === rey.num;
 
             html += `
-                <tr ${esRey ? 'style="background: rgba(255,215,0,0.1);"' : ''}>
-                    <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#FBBF24'};">
-                        ${esRey ? '👑' : '#'}${i+1}
-                    </td>
-                    <td><strong style="font-size: 14px; color: ${esRey ? '#ffd700' : '#fff'};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
-                    <td style="color: #94a3b8;">${item.animal}</td>
-                    <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#fff'};">${item.frecuencia}</td>
-                    <td style="color: #94a3b8;">${fechaStr}</td>
-                    <td>
-                        ${acompañantes.length > 0 ? acompañantes.map(a => 
-                            `<span class="acompanante-badge" onclick="seleccionarNumeroForense(${a.numero})">${formatearNumero(a.numero)}</span>`
-                        ).join('') : '<span style="color: #64748b;">-</span>'}
-                    </td>
-                </tr>
-            `;
+                    <tr ${esRey ? 'style="background: rgba(255,215,0,0.1);"' : ''}>
+                        <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#FBBF24'};">
+                            ${esRey ? '👑' : '#'}${i+1}
+                        </td>
+                        <td><strong style="font-size: 14px; color: ${esRey ? '#ffd700' : '#fff'};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</strong></td>
+                        <td style="color: #94a3b8;">${item.animal}</td>
+                        <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#fff'};">${item.frecuencia}</td>
+                        <td style="color: #94a3b8;">${fechaStr}</td>
+                        <td>
+                            ${acompañantes.length > 0 ? acompañantes.map(a => 
+                                `<span class="acompanante-badge" onclick="seleccionarNumeroForense(${a.numero})">${formatearNumero(a.numero)}</span>`
+                            ).join('') : '<span style="color: #64748b;">-</span>'}
+                        </td>
+                    </tr>
+                `;
         });
 
         html += `
-                </tbody>
-            </table>
-        `;
+                    </tbody>
+                </table>
+            `;
 
         document.getElementById('forense-top10').innerHTML = html;
     }
@@ -2415,43 +2192,43 @@
 
         if (ranking.length === 0) {
             html += `
-                <div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 20px;">
-                    <i class="bi bi-info-circle" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
-                    No hay suficientes datos para generar predicción.
-                </div>
-            `;
+                    <div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 20px;">
+                        <i class="bi bi-info-circle" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+                        No hay suficientes datos para generar predicción.
+                    </div>
+                `;
         } else {
             ranking.forEach((item, i) => {
                 const animal = obtenerAnimalForense(item.numero);
                 html += `
-                    <div class="prediccion-item">
-                        <div class="numero" style="color: ${colores[i]};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</div>
-                        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">${animal}</div>
-                        <div class="label">${labels[i]}</div>
-                        <div class="puntaje">${item.puntaje} pts</div>
-                    </div>
-                `;
+                        <div class="prediccion-item">
+                            <div class="numero" style="color: ${colores[i]};">${formatearNumero(item.numero)} ${obtenerIcono(item.numero)}</div>
+                            <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">${animal}</div>
+                            <div class="label">${labels[i]}</div>
+                            <div class="puntaje">${item.puntaje} pts</div>
+                        </div>
+                    `;
             });
         }
 
         html += `</div>`;
 
         html += `
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 12px;">
-                <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
-                    <span style="display: inline-block; width: 12px; height: 12px; background: #ffd700; border-radius: 3px;"></span> Semillas (10pts)
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ffd700; border-radius: 3px;"></span> Semillas (10pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #ff6b6b; border-radius: 3px;"></span> Arrastre (8pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #4caf50; border-radius: 3px;"></span> Zona (6pts)
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: #b388ff; border-radius: 3px;"></span> Espejos (5pts)
+                    </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
-                    <span style="display: inline-block; width: 12px; height: 12px; background: #ff6b6b; border-radius: 3px;"></span> Arrastre (8pts)
-                </div>
-                <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
-                    <span style="display: inline-block; width: 12px; height: 12px; background: #4caf50; border-radius: 3px;"></span> Zona (6pts)
-                </div>
-                <div style="display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: #94a3b8;">
-                    <span style="display: inline-block; width: 12px; height: 12px; background: #b388ff; border-radius: 3px;"></span> Espejos (5pts)
-                </div>
-            </div>
-        `;
+            `;
 
         document.getElementById('forense-prediccion').innerHTML = html;
     }
@@ -2460,15 +2237,6 @@
         if (historialFiltrado && historialFiltrado.length > 0) {
             actualizarForenseTop10();
             actualizarForensePrediccion();
-
-            // Aplicar bloqueo si no está autenticado
-            if (!usuarioAutenticado) {
-                const forenseContenedor = document.getElementById('forense-contenido');
-                if (forenseContenedor) {
-                    forenseContenedor.classList.add('forense-contenido-bloqueado');
-                    forenseContenedor.classList.remove('forense-contenido-desbloqueado');
-                }
-            }
         }
     }
 
@@ -2581,25 +2349,19 @@
             const nombre = gsmAnimales[numStr] || numStr;
             const imgSrc = gsmObtenerRutaImagen(numStr);
             html += `
-                <div class="gsm-tarjeta-secuencia">
-                    <img src="${imgSrc}" alt="${nombre}" loading="lazy" onerror="this.style.display='none'" />
-                    <div class="gsm-info-sec">
-                        <span class="gsm-num">${numStr}</span>
-                        <span class="gsm-nom">${nombre}</span>
+                    <div class="gsm-tarjeta-secuencia">
+                        <img src="${imgSrc}" alt="${nombre}" loading="lazy" onerror="this.style.display='none'" />
+                        <div class="gsm-info-sec">
+                            <span class="gsm-num">${numStr}</span>
+                            <span class="gsm-nom">${nombre}</span>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
         });
         grid.innerHTML = html;
     }
 
     function gsmConsultarNumero() {
-        // Solo permitir si está autenticado
-        if (!usuarioAutenticado) {
-            alert('🔒 Debes desbloquear el contenido Premium para usar esta herramienta.');
-            return;
-        }
-
         const input = document.getElementById('gsmNumeroInput');
         const val = input.value.trim();
         const tarjeta = document.getElementById('gsmTarjetaImagen');
@@ -2665,7 +2427,7 @@
     }
 
     // =====================================================
-    // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS
+    // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS MEJORADA
     // =====================================================
     function mostrarSuperFijosConLog(items, infoAdicional = null) {
         const contenedor = document.getElementById('resultado-contenido');
@@ -2682,21 +2444,23 @@
             claseContainer += ' locked-grid';
         }
 
+        // Mostrar información de origen
         let infoHTML = '';
         if (infoAdicional && infoAdicional.encontrado) {
             const posicionMostrar = infoAdicional.posicionOrigen + 1;
             infoHTML = `
-                <div style="text-align: center; color: #ffd700; font-size: 0.75rem; margin-bottom: 12px; background: rgba(255,215,0,0.08); padding: 6px 16px; border-radius: 20px; display: inline-block; width: 100%; border: 1px solid rgba(255,215,0,0.1);">
-                    <i class="bi bi-search"></i> 
-                    GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar}) 
-                    ${infoAdicional.esAleatorio ? '• Generación aleatoria' : ''}
-                </div>
-            `;
+                    <div style="text-align: center; color: #ffd700; font-size: 0.75rem; margin-bottom: 12px; background: rgba(255,215,0,0.08); padding: 6px 16px; border-radius: 20px; display: inline-block; width: 100%; border: 1px solid rgba(255,215,0,0.1);">
+                        <i class="bi bi-search"></i> 
+                        GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar}) 
+                        ${infoAdicional.esAleatorio ? '• Generación aleatoria' : ''}
+                    </div>
+                `;
         }
 
         let html = infoHTML;
         html += `<div class="${claseGrid}">`;
 
+        // Mostrar cada número
         items.forEach((r, index) => {
             let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2713,29 +2477,30 @@
             const badges = ['🔥', '⭐', '🎁'];
 
             html += `
-                <div class="numero-card" style="position: relative;">
-                    <div style="position: absolute; top: -5px; left: -5px; font-size: 0.8rem; background: rgba(255,215,0,0.15); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,215,0,0.2);">
-                        ${badges[index] || ''}
+                    <div class="numero-card" style="position: relative;">
+                        <div style="position: absolute; top: -5px; left: -5px; font-size: 0.8rem; background: rgba(255,215,0,0.15); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,215,0,0.2);">
+                            ${badges[index] || ''}
+                        </div>
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_loto/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
                     </div>
-                    <div class="numero">${numDisplay}</div>
-                    <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                         onerror="this.src='animalitos/animalitos_loto/00.png'">
-                    <div class="animal">${nombreAnimal}</div>
-                </div>
-            `;
+                `;
         });
 
         html += '</div>';
 
+        // Mostrar información de duplicados eliminados
         if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
             const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
             if (duplicadosEliminados > 0) {
                 html += `
-                    <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
-                        <i class="bi bi-check-circle" style="color: #4caf50;"></i> 
-                        ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
-                    </div>
-                `;
+                        <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
+                            <i class="bi bi-check-circle" style="color: #4caf50;"></i> 
+                            ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
+                        </div>
+                    `;
             }
         }
 
@@ -2771,9 +2536,11 @@
             const dia1Procesado = procesarDia(dia1, 25);
             const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
 
-            const resultado = buscarRepeticion(todos);
+            // Usar la nueva función con filtro de duplicados
+            const resultado = buscarRepeticionConFiltro(todos);
             const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
 
+            // Guardar información adicional para mostrar
             const infoSuperFijos = {
                 encontrado: resultado.encontrado,
                 nivelOrigen: resultado.nivelOrigen || 'N/A',
@@ -2814,26 +2581,20 @@
 
             reiniciarCortesia();
 
-            // 1. SUPER FIJOS - BLOQUEADO
+            // 1. SUPER FIJOS - BLOQUEADO (3 números) CON NUEVA FUNCIÓN
             mostrarSuperFijosConLog(superFijos, infoSuperFijos);
+            actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
-            // 2. CORTESÍA - SIEMPRE VISIBLE (5 números)
+            // 2. CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
             const cortesiaResultados = informacionDeCortecia(todos, superFijos);
             mostrarCortesia(cortesiaResultados);
 
-            // 3. TRIPLETAS - PREMIUM BLOQUEADO
+            // 3. TRIPLETAS - SIEMPRE VISIBLE (4 números: 2 Bases + 2 Acompañantes)
             const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
             mostrarTripletas(tripletas);
 
-            // 4. ANÁLISIS FORENSE - PREMIUM BLOQUEADO
+            // 4. ANÁLISIS FORENSE PREMIUM
             cargarDatosForense();
-
-            // Aplicar bloqueos si no está autenticado
-            if (!usuarioAutenticado) {
-                aplicarBloqueosPremium();
-            }
-
-            actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
             await verificarSesionPrevia();
 
@@ -2849,36 +2610,6 @@
         }
     }
 
-    function aplicarBloqueosPremium() {
-        // Bloquear Tripletas
-        const tripletContenedor = document.getElementById('tripletas-contenido');
-        if (tripletContenedor) {
-            const grid = tripletContenedor.querySelector('.numeros-grid');
-            if (grid) {
-                grid.classList.add('locked-grid');
-                grid.classList.remove('locked-grid-desbloqueado');
-            }
-            tripletContenedor.classList.add('locked-grid');
-        }
-
-        // Bloquear GSM
-        const gsmContenedor = document.getElementById('gsm-contenido');
-        if (gsmContenedor) {
-            gsmContenedor.classList.add('gsm-contenido-bloqueado');
-            gsmContenedor.classList.remove('gsm-contenido-desbloqueado');
-        }
-
-        // Bloquear Forense
-        const forenseContenedor = document.getElementById('forense-contenido');
-        if (forenseContenedor) {
-            forenseContenedor.classList.add('forense-contenido-bloqueado');
-            forenseContenedor.classList.remove('forense-contenido-desbloqueado');
-        }
-    }
-
-    // =====================================================
-    // FUNCIONES DE VISUALIZACIÓN
-    // =====================================================
     function mostrarCortesia(items) {
         const contenedor = document.getElementById('cortesia-contenido');
 
@@ -2887,15 +2618,8 @@
             return;
         }
 
-        // 🔀 MEZCLAR ALEATORIAMENTE (Fisher-Yates)
-        const shuffled = [...items];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-
         let html = '<div class="numeros-grid-5">';
-        shuffled.forEach(r => {
+        items.forEach(r => {
             let numDisplay, nombreAnimal, rutaImagen;
             let claseExtra = '';
 
@@ -2914,13 +2638,13 @@
             }
 
             html += `
-                <div class="numero-card${claseExtra}">
-                    <div class="numero">${numDisplay}</div>
-                    <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                         onerror="this.src='animalitos/animalitos_loto/00.png'">
-                    <div class="animal">${nombreAnimal}</div>
-                </div>
-            `;
+                    <div class="numero-card${claseExtra}">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_loto/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
         });
         html += '</div>';
         contenedor.innerHTML = html;
@@ -2934,15 +2658,7 @@
             return;
         }
 
-        let claseGrid = 'numeros-grid';
-
-        if (!usuarioAutenticado) {
-            claseGrid += ' locked-grid';
-        } else {
-            claseGrid += ' locked-grid-desbloqueado';
-        }
-
-        let html = `<div class="${claseGrid}">`;
+        let html = '<div class="numeros-grid">';
         items.forEach(r => {
             let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2957,13 +2673,13 @@
             }
 
             html += `
-                <div class="numero-card">
-                    <div class="numero">${numDisplay}</div>
-                    <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                         onerror="this.src='animalitos/animalitos_loto/00.png'">
-                    <div class="animal">${nombreAnimal}</div>
-                </div>
-            `;
+                    <div class="numero-card">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_loto/00.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
         });
         html += '</div>';
         contenedor.innerHTML = html;
