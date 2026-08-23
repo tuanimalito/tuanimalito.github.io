@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-23T04:44:56.945739",
+    "ultima_actualizacion": "2026-08-23T05:36:18.726855",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "22 ago 2026"
+        "dia": "Domingo",
+        "fecha": "23 ago 2026"
       },
       "bote": "250$"
     },
