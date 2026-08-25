@@ -1,10 +1,12 @@
 /**
  * SCRIPT DEFINITIVO - Dr. Animalitos
- * CONFIGURACIÓN PARA LAS 4 LOTERÍAS:
+ * CONFIGURACIÓN PARA LAS 6 LOTERÍAS:
  * - Guácharo Activo (12 números) ✅ API oficial
- * - Granja Millonaria (10 números) ✅ API oficial (con lista completa)
- * - Granjazo Millonario (10 números) ✅ API oficial (con lista completa)
+ * - Granja Millonaria (10 números) ✅ API oficial
+ * - Granjazo Millonario (10 números) ✅ API oficial
+ * - La Granjita (12 números) ✅ API oficial
  * - Lotto Activo (12 números) ✅ API OFICIAL con orden correcto
+ * - Selva Plus (12 números) ✅ NUEVA API oficial
  * 
  * MI REY, CON ESTA VERSIÓN LOS 3 DÍAS QUEDAN CORRECTAMENTE ROTADOS 🚀
  */
@@ -13,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ============================================
-// CONFIGURACIÓN DE LAS 4 LOTERÍAS
+// CONFIGURACIÓN DE LAS 6 LOTERÍAS
 // ============================================
 const CONFIG = {
   // 🦜 GUÁCHARO ACTIVO (12 números)
@@ -21,6 +23,7 @@ const CONFIG = {
     apiUrl: 'https://api.lotterly.co/v1/results/guacharo-activo/',
     numeros: 12,
     nombre: 'Guácharo Activo',
+    archivo: 'guacharo.json',
     procesar: async (fecha) => {
       const fechaStr = fecha.toISOString().split('T')[0];
       const url = `${CONFIG.guacharo.apiUrl}?exact_date=${fechaStr}&extended=true&_t=${Date.now()}`;
@@ -52,6 +55,7 @@ const CONFIG = {
     apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
     nombre: 'Granja Millonaria',
+    archivo: 'granja.json',
     procesar: async (fecha) => {
       const dia = String(fecha.getDate()).padStart(2, '0');
       const mes = String(fecha.getMonth() + 1).padStart(2, '0');
@@ -91,6 +95,7 @@ const CONFIG = {
     apiUrl: 'http://www.granjamillonaria.com/Resource?a=granja-millonaria-lista',
     numeros: 10,
     nombre: 'Granjazo Millonario',
+    archivo: 'granjazo.json',
     procesar: async (fecha) => {
       const dia = String(fecha.getDate()).padStart(2, '0');
       const mes = String(fecha.getMonth() + 1).padStart(2, '0');
@@ -125,11 +130,93 @@ const CONFIG = {
     }
   },
 
+  // 🌱 LA GRANJITA (12 números)
+  granjita: {
+    apiUrl: 'https://lagranjita.com/Resource?a=la-granjita-lista',
+    numeros: 12,
+    nombre: 'La Granjita',
+    archivo: 'granjita.json',
+    procesar: async (fecha) => {
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const año = fecha.getFullYear();
+      const fechaStr = `${dia}/${mes}/${año}`;
+      
+      console.log(`   📡 Buscando fecha: ${fechaStr}`);
+      
+      const response = await fetch(CONFIG.granjita.apiUrl, {
+        headers: {
+          'User-Agent': 'DrAnimalitosBot/1.0',
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (!response.ok) return null;
+      const data = await response.json();
+      
+      const diaData = data.find(d => d.fecha === fechaStr);
+      if (!diaData || !diaData.rss) {
+        console.log(`   ⚠️ No hay datos para ${fechaStr}`);
+        return null;
+      }
+      
+      const numeros = diaData.rss
+        .filter(item => item.nu)
+        .map(item => parseInt(item.nu))
+        .slice(0, 12);
+      
+      console.log(`   ✅ Encontrados ${numeros.length} números`);
+      return numeros.length === 12 ? numeros : null;
+    }
+  },
+
+  // 🐆 SELVA PLUS (12 números) - NUEVA Lotería
+  selva: {
+    apiUrl: 'https://www.selvaplus.com/Resource?a=selva-plus-lista',
+    numeros: 12,
+    nombre: 'Selva Plus',
+    archivo: 'selva.json',
+    procesar: async (fecha) => {
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const año = fecha.getFullYear();
+      const fechaStr = `${dia}/${mes}/${año}`;
+      
+      console.log(`   📡 Buscando fecha: ${fechaStr}`);
+      
+      const response = await fetch(CONFIG.selva.apiUrl, {
+        headers: {
+          'User-Agent': 'DrAnimalitosBot/1.0',
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (!response.ok) return null;
+      const data = await response.json();
+      
+      const diaData = data.find(d => d.fecha === fechaStr);
+      if (!diaData || !diaData.rss) {
+        console.log(`   ⚠️ No hay datos para ${fechaStr}`);
+        return null;
+      }
+      
+      // Selva Plus tiene 12 sorteos diarios
+      const numeros = diaData.rss
+        .filter(item => item.nu)
+        .map(item => parseInt(item.nu))
+        .slice(0, 12);
+      
+      console.log(`   ✅ Encontrados ${numeros.length} números`);
+      return numeros.length === 12 ? numeros : null;
+    }
+  },
+
   // 🎲 LOTTO ACTIVO (12 números) - CON ORDEN CORRECTO
   lotto: {
     apiUrl: 'https://lottoactivo.com/core/process.php',
     numeros: 12,
     nombre: 'Lotto Activo',
+    archivo: 'lotto.json',
     procesar: async (fecha) => {
       const fechaStr = fecha.toISOString().split('T')[0];
       
@@ -218,11 +305,12 @@ async function obtenerResultadosPasados(loteria, diasAtras = 1) {
 }
 
 // ============================================
-// ACTUALIZACIÓN DE ARCHIVOS JSON - VERSIÓN CORREGIDA
+// ACTUALIZACIÓN DE ARCHIVOS JSON
 // ============================================
 
 function actualizarJSON(loteria, nuevosNumeros) {
-  const ruta = path.join(__dirname, `../data/${loteria}.json`);
+  const config = CONFIG[loteria];
+  const ruta = path.join(__dirname, `../data/${config.archivo}`);
   
   if (!fs.existsSync(ruta)) {
     console.error(`❌ No existe ${ruta}`);
@@ -232,21 +320,16 @@ function actualizarJSON(loteria, nuevosNumeros) {
   try {
     const actual = JSON.parse(fs.readFileSync(ruta, 'utf8'));
     
-    // ✅ TOMAMOS LOS 3 DÍAS ACTUALES
     const [diaViejo, diaMedio, diaReciente] = actual.resultados;
     
-    // ✅ ROTACIÓN CORRECTA:
-    // - El día medio pasa a ser el más viejo
-    // - El día reciente pasa a ser el del medio
-    // - El nuevo día se agrega como el más reciente
     actual.resultados = [diaMedio, diaReciente, nuevosNumeros];
     actual.fecha_actualizacion = new Date().toISOString();
     
     fs.writeFileSync(ruta, JSON.stringify(actual, null, 2));
-    console.log(`✅ ${loteria}.json actualizado (rotación correcta)`);
+    console.log(`✅ ${config.archivo} actualizado (rotación correcta)`);
     return true;
   } catch (error) {
-    console.error(`❌ Error actualizando ${loteria}.json:`, error.message);
+    console.error(`❌ Error actualizando ${config.archivo}:`, error.message);
     return false;
   }
 }
@@ -262,8 +345,9 @@ async function main() {
   console.log('');
 
   const resultados = {};
-  const loterias = ['guacharo', 'granja', 'granjazo', 'lotto'];
-  const numerosEsperados = { guacharo: 12, granja: 10, granjazo: 10, lotto: 12 };
+  // AGREGAMOS 'selva' a la lista
+  const loterias = ['guacharo', 'granja', 'granjazo', 'granjita', 'selva', 'lotto'];
+  const numerosEsperados = { guacharo: 12, granja: 10, granjazo: 10, granjita: 12, selva: 12, lotto: 12 };
 
   for (const loteria of loterias) {
     console.log(`\n🔍 Buscando ${CONFIG[loteria].nombre}...`);
