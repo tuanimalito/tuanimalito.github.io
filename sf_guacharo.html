@@ -233,7 +233,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Azul) - 5 números (SIEMPRE VISIBLE) --- */
+        /* --- CORTESÍA (Azul) - 5 números --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -297,7 +297,6 @@
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 107, 107, 0.1);
-            position: relative;
         }
         .tarjeta-superfijos h3 {
             color: #ff6b6b;
@@ -319,26 +318,10 @@
             background: #ff6b6b;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
-        .tarjeta-forense {
-            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
-        }
-        .tarjeta-forense h3 {
-            color: #ffd700;
-            -webkit-text-fill-color: #ffd700;
-            background: none;
-            font-size: 1.6rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-        .tarjeta-forense h3 i {
-            color: #ffd700;
-        }
-
-        /* Overlay para Análisis Forense */
-        .premium-overlay-forense {
+        /* ================================================ */
+        /* OVERLAY MEJORADO - MÁS TRANSPARENTE Y ATRACTIVO  */
+        /* ================================================ */
+        .premium-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -350,21 +333,21 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
             transition: all 0.3s ease;
         }
 
-        .premium-overlay-forense.hidden {
+        .premium-overlay.hidden {
             display: none;
         }
 
-        .premium-overlay-forense::before {
+        .premium-overlay::before {
             content: '';
             position: absolute;
             top: -1px;
@@ -377,25 +360,257 @@
             pointer-events: none;
         }
 
-        .premium-overlay-forense:hover {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .premium-overlay:hover {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
-        /* Contenido forense bloqueado */
-        .forense-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
+        .premium-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 1.8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            line-height: 1.2;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+        }
+
+        .premium-badge i {
+            -webkit-text-fill-color: #ffd700;
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        }
+
+        .premium-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 320px;
+            margin: 2px 0;
+            line-height: 1.5;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .premium-message strong {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .action-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        /* ================================================ */
+        /* BLOQUEO DE SUPER FIJOS MEJORADO                  */
+        /* ================================================ */
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
             opacity: 0.4;
             pointer-events: none;
             transition: all 0.5s ease;
+            transform: scale(0.98);
         }
 
-        .forense-contenido-desbloqueado {
+        .premium-container.locked-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.05) 2px,
+                    rgba(0, 0, 0, 0.05) 4px
+                );
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 24px;
+        }
+
+        .locked-grid-desbloqueado {
             filter: blur(0px) brightness(1);
             opacity: 1;
             pointer-events: auto;
+            transform: scale(1);
             transition: all 0.8s ease;
+        }
+
+        .locked-grid-desbloqueado::after {
+            display: none;
+        }
+
+        /* ================================================ */
+        /* BOTONES MEJORADOS                                */
+        /* ================================================ */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
+            animation: pulseBtn 2s ease-in-out infinite;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ===== MODAL LOGIN ===== */
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-login.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) --- */
+        .tarjeta-forense {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+        }
+        .tarjeta-forense h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.6rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .tarjeta-forense h3 i {
+            color: #ffd700;
         }
 
         .forense-sub {
@@ -594,311 +809,6 @@
             font-size: 1rem;
         }
 
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SUPER FIJOS                   */
-        /* ================================================ */
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
-        }
-
-        .premium-overlay::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .premium-badge {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 1.8s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            line-height: 1.2;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-        }
-
-        .premium-badge i {
-            -webkit-text-fill-color: #ffd700;
-            color: #ffd700;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-
-        @keyframes shimmerGold {
-            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-        }
-
-        .premium-message {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            max-width: 320px;
-            margin: 2px 0;
-            line-height: 1.5;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 500;
-        }
-
-        .premium-message strong {
-            color: #ffd700;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .action-buttons-group .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .action-buttons-group .contact-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .action-buttons-group .contact-btn:active {
-            transform: scale(0.95);
-        }
-
-        .btn-telegram {
-            background: #0088cc;
-            color: white;
-            box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
-        }
-
-        .btn-telegram:hover {
-            box-shadow: 0 4px 35px rgba(0, 136, 204, 0.5);
-        }
-
-        .btn-sms {
-            background: #34a853;
-            color: white;
-            box-shadow: 0 4px 25px rgba(52, 168, 83, 0.3);
-        }
-
-        .btn-sms:hover {
-            box-shadow: 0 4px 35px rgba(52, 168, 83, 0.5);
-        }
-
-        .btn-gmail {
-            background: #ea4335;
-            color: white;
-            box-shadow: 0 4px 25px rgba(234, 67, 53, 0.3);
-        }
-
-        .btn-gmail:hover {
-            box-shadow: 0 4px 35px rgba(234, 67, 53, 0.5);
-        }
-
-        /* ================================================ */
-        /* BLOQUEO DE SUPER FIJOS                           */
-        /* ================================================ */
-        .locked-grid {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            transform: scale(0.98);
-        }
-
-        .premium-container.locked-grid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px
-                );
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 24px;
-        }
-
-        .locked-grid-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            transition: all 0.8s ease;
-        }
-
-        .locked-grid-desbloqueado::after {
-            display: none;
-        }
-
-        /* ================================================ */
-        /* BOTONES MEJORADOS                                */
-        /* ================================================ */
-        .unlock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
-            animation: pulseBtn 2s ease-in-out infinite;
-        }
-
-        .unlock-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
-        }
-
-        .unlock-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes pulseBtn {
-            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
-        }
-
-        /* ===== MODAL LOGIN ===== */
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
         .footer {
             max-width: 800px;
             width: 100%;
@@ -946,11 +856,6 @@
         .footer .copyright span {
             color: #ffd700;
             font-weight: 600;
-        }
-
-        .forense-container {
-            position: relative;
-            min-height: 300px;
         }
 
         @media (min-width: 700px) {
@@ -1001,17 +906,6 @@
             .premium-message {
                 font-size: 0.9rem;
             }
-            .action-buttons-group .contact-btn {
-                font-size: 0.75rem;
-                padding: 8px 14px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .action-buttons-group .contact-btn {
-                font-size: 0.7rem;
-                padding: 6px 10px;
-            }
         }
     </style>
 </head>
@@ -1025,12 +919,12 @@
                 </button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                    <a href="tripletas.html"><i class="bi bi-feather"></i> Tripletas</a>
+                    <a href="estadisticas_guacharo.html"><i class="bi bi-feather"></i> Estadisticas</a>
                     <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
                     <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
                     <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
                     <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
-                    <a href="sf_granjita.html"><i class="bi bi-feather"></i> Granjita</a>
-                    <a href="sf_selva.html"><i class="bi bi-feather"></i> Selva Plus</a>
                 </div>
             </div>
             
@@ -1105,29 +999,17 @@
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía:
+                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía WhatsApp.
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://t.me/DrAnimalitos" 
-                           class="contact-btn btn-telegram" 
+                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos" 
+                           class="whatsapp-btn" 
                            target="_blank" 
                            rel="noopener noreferrer">
-                            <i class="bi bi-telegram"></i> Telegram
-                        </a>
-                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20Guacharo" 
-                           class="contact-btn btn-sms" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-chat-dots"></i> SMS
-                        </a>
-                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Super%20Fijos%20Guacharo&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20Guacharo" 
-                           class="contact-btn btn-gmail" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-envelope"></i> Gmail
+                            <i class="bi bi-whatsapp"></i> WhatsApp
                         </a>
                     </div>
                 </div>
@@ -1137,62 +1019,23 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
-            <div class="tarjeta-forense tarjeta-dato" id="forenseCard">
+            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+            <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 
-                <!-- Overlay Premium para Análisis Forense -->
-                <div class="premium-overlay-forense" id="overlayForense">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
-                    </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Análisis Forense completo ingresando tu clave o suscríbete vía:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://t.me/DrAnimalitos" 
-                           class="contact-btn btn-telegram" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-telegram"></i> Telegram
-                        </a>
-                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense%20Guacharo" 
-                           class="contact-btn btn-sms" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-chat-dots"></i> SMS
-                        </a>
-                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Análisis%20Forense%20Guacharo&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense%20Guacharo" 
-                           class="contact-btn btn-gmail" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-envelope"></i> Gmail
-                        </a>
+                <!-- TOP 10 + REY -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
+                    <div id="forense-top10" style="overflow-x: auto;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <div id="forense-contenido" class="forense-container forense-contenido-bloqueado">
-                    <!-- TOP 10 + REY -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                        <div id="forense-top10" style="overflow-x: auto;">
-                            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
-                        </div>
-                    </div>
-
-                    <!-- Predicción Inteligente -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                        <div id="forense-prediccion">
-                            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-                        </div>
+                <!-- Predicción Inteligente -->
+                <div class="forense-sub">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
+                    <div id="forense-prediccion">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
             </div>
@@ -1214,7 +1057,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -1320,13 +1163,13 @@
                 
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                     cerrarModalLogin();
                     localStorage.setItem(STORAGE_KEY, 'true');
                     localStorage.setItem('guacharo_premium_token', clave);
                     alert('✅ Acceso Premium concedido');
                 } else {
-                    alert('❌ Código inválido o expirado. Comunícate por Telegram, SMS o Gmail para renovar tu suscripción.');
+                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
                 }
             } catch (error) {
                 console.error('Error al verificar:', error);
@@ -1338,12 +1181,11 @@
         };
 
         // ============================================================
-        // 🔓 DESBLOQUEAR TODO EL CONTENIDO PREMIUM
+        // 🔓 DESBLOQUEAR SUPER FIJOS
         // ============================================================
-        function desbloquearTodoPremium() {
+        function desbloquearSuperFijos() {
             usuarioAutenticado = true;
             
-            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('premiumOverlay');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             
@@ -1356,16 +1198,6 @@
                 }
                 resultadoContenedor.classList.remove('locked-grid');
             }
-
-            // Desbloquear Análisis Forense
-            const overlayForense = document.getElementById('overlayForense');
-            if (overlayForense) overlayForense.classList.add('hidden');
-            
-            const forenseContenedor = document.getElementById('forense-contenido');
-            if (forenseContenedor) {
-                forenseContenedor.classList.remove('forense-contenido-bloqueado');
-                forenseContenedor.classList.add('forense-contenido-desbloqueado');
-            }
         }
 
         // ============================================================
@@ -1377,7 +1209,7 @@
                 const esValido = await validarCodigo(tokenGuardado);
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearTodoPremium();
+                    desbloquearSuperFijos();
                 } else {
                     localStorage.removeItem('guacharo_premium_token');
                     localStorage.removeItem(STORAGE_KEY);
@@ -1678,20 +1510,11 @@
             if (historialFiltrado && historialFiltrado.length > 0) {
                 actualizarForenseTop10();
                 actualizarForensePrediccion();
-                
-                // Aplicar bloqueo si no está autenticado
-                if (!usuarioAutenticado) {
-                    const forenseContenedor = document.getElementById('forense-contenido');
-                    if (forenseContenedor) {
-                        forenseContenedor.classList.add('forense-contenido-bloqueado');
-                        forenseContenedor.classList.remove('forense-contenido-desbloqueado');
-                    }
-                }
             }
         }
 
         // ============================================================
-        // 🎁 CORTESÍA - Los más calientes para hoy (SIEMPRE VISIBLE)
+        // 🎁 CORTESÍA - Los más calientes para hoy
         // ============================================================
         let cortesiaEstatica = null;
 
@@ -1750,7 +1573,6 @@
             return seleccionados;
         }
 
-        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -1759,15 +1581,8 @@
                 return;
             }
 
-            // MEZCLAR ALEATORIAMENTE (Fisher-Yates)
-            const shuffled = [...items];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-
             let html = '<div class="numeros-grid-5">';
-            shuffled.forEach(r => {
+            items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
                 let claseExtra = '';
 
@@ -1996,7 +1811,7 @@
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // ANÁLISIS FORENSE - PREMIUM BLOQUEADO
+                // ANÁLISIS FORENSE
                 cargarDatosForense();
 
                 await verificarSesionPrevia();
