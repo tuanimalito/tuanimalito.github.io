@@ -1,32 +1,10 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-25T20:37:28.673943",
+    "ultima_actualizacion": "2026-08-26T03:13:11.477230",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
-    {
-      "id": "mega-millions",
-      "nombre": "Mega Millions",
-      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
-        "numeros": [
-          1,
-          25,
-          34,
-          48,
-          57
-        ],
-        "numero_extra": 24
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
-      },
-      "bote": "130.000.000$"
-    },
     {
       "id": "powerball",
       "nombre": "Powerball",
@@ -73,29 +51,6 @@
       "bote": "4.000.000$"
     },
     {
-      "id": "jackpot-triple-play",
-      "nombre": "Jackpot Triple Play",
-      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "21 ago 2026",
-        "numeros": [
-          6,
-          13,
-          26,
-          30,
-          33,
-          34
-        ],
-        "numero_extra": null
-      },
-      "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
-      },
-      "bote": "450.000$"
-    },
-    {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
@@ -112,8 +67,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "26 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +80,17 @@
         "dia": "Martes",
         "fecha": "25 ago 2026",
         "numeros": [
-          1,
-          7,
+          9,
+          9,
+          3,
           8,
-          1,
-          2
+          3
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "26 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +102,16 @@
         "dia": "Martes",
         "fecha": "25 ago 2026",
         "numeros": [
-          5,
-          5,
-          8,
-          2
+          3,
+          0,
+          9,
+          5
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "26 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +123,15 @@
         "dia": "Martes",
         "fecha": "25 ago 2026",
         "numeros": [
-          7,
-          5,
-          5
+          2,
+          9,
+          9
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "26 ago 2026"
       },
       "bote": "500$"
     },
@@ -206,16 +161,38 @@
         "dia": "Martes",
         "fecha": "25 ago 2026",
         "numeros": [
-          8,
-          8
+          4,
+          3
         ],
-        "numero_extra": 5
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "25 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "26 ago 2026"
       },
       "bote": "50$"
+    },
+    {
+      "id": "mega-millions",
+      "nombre": "Mega Millions",
+      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "21 ago 2026",
+        "numeros": [
+          1,
+          25,
+          34,
+          48,
+          57
+        ],
+        "numero_extra": 24
+      },
+      "proximo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
+      },
+      "bote": ""
     },
     {
       "id": "cash4life",
@@ -232,6 +209,29 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "jackpot-triple-play",
+      "nombre": "Jackpot Triple Play",
+      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "21 ago 2026",
+        "numeros": [
+          6,
+          13,
+          26,
+          30,
+          33,
+          34
+        ],
+        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
