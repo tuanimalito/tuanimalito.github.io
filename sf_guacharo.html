@@ -233,7 +233,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Azul) - 5 números --- */
+        /* --- CORTESÍA (Azul) - 5 números MEZCLADOS --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -273,18 +273,8 @@
             background: #4a9eff;
         }
 
-        .numero-card-gratis::before {
-            content: "🎁 GRATIS";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.55rem;
-            font-weight: 900;
-            background: #4a9eff;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
+        /* Eliminamos la etiqueta GRATIS para no revelar información */
+        /* .numero-card-gratis::before eliminado */
 
         .numeros-grid-5 {
             display: grid;
@@ -292,11 +282,12 @@
             gap: 12px;
         }
 
-        /* --- SUPER FIJOS - ROJO (BLOQUEADO) --- */
+        /* --- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 107, 107, 0.1);
+            position: relative;
         }
         .tarjeta-superfijos h3 {
             color: #ff6b6b;
@@ -975,7 +966,7 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números -->
+            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números MEZCLADOS -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
@@ -986,7 +977,7 @@
                 </div>
             </div>
 
-            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números -->
+            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
 
@@ -1104,6 +1095,18 @@
 
         let usuarioAutenticado = false;
         const STORAGE_KEY = 'guacharo_premium_unlocked';
+
+        // ============================================================
+        // FUNCIÓN DE MEZCLA (Fisher-Yates)
+        // ============================================================
+        function mezclarArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
 
         // ============================================================
         // 🚀 FUNCIONES DEL MODAL
@@ -1514,13 +1517,14 @@
         }
 
         // ============================================================
-        // 🎁 CORTESÍA - Los más calientes para hoy
+        // 🎁 CORTESÍA - Los más calientes para hoy (MEZCLADOS)
         // ============================================================
         let cortesiaEstatica = null;
 
         function informacionDeCortecia(todos, superFijos) {
             if (cortesiaEstatica) {
-                return cortesiaEstatica;
+                // Devolver una copia MEZCLADA de los datos guardados
+                return mezclarArray([...cortesiaEstatica]);
             }
 
             const diaMasReciente = todos.slice(24, 36);
@@ -1555,8 +1559,10 @@
             }
 
             const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
+            // Guardamos los datos sin mezclar en la caché
             cortesiaEstatica = todosLosNumeros;
-            return cortesiaEstatica;
+            // Devolvemos una copia MEZCLADA
+            return mezclarArray([...todosLosNumeros]);
         }
 
         function reiniciarCortesia() {
@@ -1581,14 +1587,14 @@
                 return;
             }
 
-            let html = '<div class="numeros-grid-5">';
-            items.forEach(r => {
-                let numDisplay, nombreAnimal, rutaImagen;
-                let claseExtra = '';
+            // Los items ya vienen mezclados desde informacionDeCortecia()
+            // Pero por seguridad, aplicamos mezcla nuevamente
+            const shuffled = mezclarArray([...items]);
 
-                if (r.esGratis) {
-                    claseExtra = ' numero-card-gratis';
-                }
+            let html = '<div class="numeros-grid-5">';
+            shuffled.forEach(r => {
+                let numDisplay, nombreAnimal, rutaImagen;
+                // Ya no mostramos etiqueta GRATIS para no revelar información
 
                 if (r.esDobleCero) {
                     numDisplay = "00";
@@ -1601,7 +1607,7 @@
                 }
 
                 html += `
-                    <div class="numero-card${claseExtra}">
+                    <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
                              onerror="this.src='animalitos/animalitos_guacharo/00.png'">
@@ -1709,6 +1715,9 @@
                 return;
             }
 
+            // MEZCLAR los Super Fijos antes de mostrarlos
+            const itemsMezclados = mezclarArray([...items]);
+
             let claseGrid = 'numeros-grid-3';
             
             if (!usuarioAutenticado) {
@@ -1718,7 +1727,7 @@
             }
 
             let html = `<div class="${claseGrid}">`;
-            items.forEach(r => {
+            itemsMezclados.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
                 if (r.esDobleCero) {
@@ -1806,7 +1815,7 @@
                 mostrarSuperFijos(superFijos);
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
-                // CORTESÍA - SIEMPRE VISIBLE (5 números: 2 gratis + 3 Super Fijos)
+                // CORTESÍA - SIEMPRE VISIBLE (5 números MEZCLADOS)
                 reiniciarCortesia();
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
