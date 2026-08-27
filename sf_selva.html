@@ -277,19 +277,8 @@
             background: #4a9eff;
         }
 
-        /* Badge "GRATIS" para los incrementos en cortesía */
-        .numero-card-gratis::before {
-            content: "🎁 GRATIS";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.55rem;
-            font-weight: 900;
-            background: #4a9eff;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
+        /* Eliminamos la etiqueta GRATIS para no revelar información */
+        /* .numero-card-gratis::before eliminado */
 
         /* --- TRIPLETAS (Púrpura) - SIEMPRE VISIBLE --- */
         .tarjeta-tripletas {
@@ -1421,7 +1410,7 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números -->
+            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números MEZCLADOS -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
@@ -1432,7 +1421,7 @@
                 </div>
             </div>
 
-            <!-- TRIPLETAS - PÚRPURA (SIEMPRE VISIBLE) - 4 números -->
+            <!-- TRIPLETAS - PÚRPURA (SIEMPRE VISIBLE) - 4 números MEZCLADOS -->
             <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Selva Plus</h3>
                 <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 10px;">
@@ -1443,7 +1432,7 @@
                 </div>
             </div>
 
-            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números -->
+            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
 
@@ -1696,6 +1685,17 @@
             36: 'culebra'
         };
 
+        // =====================================================        // FUNCIÓN DE MEZCLA (Fisher-Yates)
+        // =====================================================
+        function mezclarArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
         // =====================================================
         // FUNCIONES DEL MODAL
         // =====================================================
@@ -1902,7 +1902,8 @@
                 acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
             }
 
-            return [...bases, ...acompañantes];
+            // MEZCLAR antes de devolver
+            return mezclarArray([...bases, ...acompañantes]);
         }
 
         function obtener4Aleatorios(todos) {
@@ -1916,13 +1917,14 @@
         }
 
         // =====================================================
-        // CORTESÍA: 2 gratis + 3 Super Fijos = 5 números
+        // CORTESÍA: 2 gratis + 3 Super Fijos = 5 números MEZCLADOS
         // =====================================================
         let cortesiaEstatica = null;
 
         function informacionDeCortecia(todos, superFijos) {
             if (cortesiaEstatica) {
-                return cortesiaEstatica;
+                // Devolver una copia MEZCLADA de los datos guardados
+                return mezclarArray([...cortesiaEstatica]);
             }
 
             const diaMasReciente = todos.slice(24, 36);
@@ -1957,8 +1959,10 @@
             }
 
             const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
+            // Guardamos los datos sin mezclar en la caché
             cortesiaEstatica = todosLosNumeros;
-            return cortesiaEstatica;
+            // Devolvemos una copia MEZCLADA
+            return mezclarArray([...todosLosNumeros]);
         }
 
         function reiniciarCortesia() {
@@ -2543,7 +2547,7 @@
         }
 
         // =====================================================
-        // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS
+        // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS CON MEZCLA
         // =====================================================
         function mostrarSuperFijosConLog(items, infoAdicional = null) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2551,6 +2555,9 @@
                 contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
                 return;
             }
+
+            // MEZCLAR los Super Fijos antes de mostrarlos
+            const itemsMezclados = mezclarArray([...items]);
 
             let claseGrid = 'numeros-grid-3';
             let claseContainer = 'premium-container';
@@ -2575,7 +2582,7 @@
             let html = infoHTML;
             html += `<div class="${claseGrid}">`;
 
-            items.forEach((r, index) => {
+            itemsMezclados.forEach((r, index) => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
                 if (r.esDobleCero) {
@@ -2692,14 +2699,14 @@
 
                 reiniciarCortesia();
 
-                // 1. SUPER FIJOS - BLOQUEADO
+                // 1. SUPER FIJOS - BLOQUEADO (con mezcla)
                 mostrarSuperFijosConLog(superFijos, infoSuperFijos);
 
-                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números)
+                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números MEZCLADOS)
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 3. TRIPLETAS - SIEMPRE VISIBLE (4 números)
+                // 3. TRIPLETAS - SIEMPRE VISIBLE (4 números MEZCLADOS)
                 const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
                 mostrarTripletas(tripletas);
 
@@ -2733,21 +2740,14 @@
                 return;
             }
 
-            // 🔀 MEZCLAR ALEATORIAMENTE (Fisher-Yates)
-            const shuffled = [...items];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
+            // Los items ya vienen mezclados desde informacionDeCortecia()
+            // Pero por seguridad, aplicamos mezcla nuevamente
+            const shuffled = mezclarArray([...items]);
 
             let html = '<div class="numeros-grid-5">';
             shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
-                let claseExtra = '';
-
-                if (r.esGratis) {
-                    claseExtra = ' numero-card-gratis';
-                }
+                // Ya no mostramos etiqueta GRATIS para no revelar información
 
                 if (r.esDobleCero) {
                     numDisplay = "00";
@@ -2760,7 +2760,7 @@
                 }
 
                 html += `
-                    <div class="numero-card${claseExtra}">
+                    <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
                              onerror="this.src='animalitos/animalitos_selva/00.jpg'">
@@ -2780,6 +2780,7 @@
                 return;
             }
 
+            // Los items ya vienen mezclados desde obtenerTripletas()
             let html = '<div class="numeros-grid">';
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
