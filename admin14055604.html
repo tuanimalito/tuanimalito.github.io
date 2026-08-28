@@ -186,6 +186,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // 🔑 CLAVE SECRETA PARA ADMIN (DEBE COINCIDIR CON LAS REGLAS DE FIRESTORE)
+        const ADMIN_SECRET_KEY = "MI_CLAVE_SECRETA_2026";
+
         onSnapshot(collection(db, "clientes"), (snapshot) => {
             const clientes = [];
             snapshot.forEach((docSnap) => {
@@ -213,7 +216,8 @@
                 codigo: nuevoCodigo,
                 fecha_ingreso: formatDate(hoy),
                 fecha_egreso: formatDate(egreso),
-                activo: true
+                activo: true,
+                secretKey: ADMIN_SECRET_KEY  // ← AÑADIMOS LA CLAVE SECRETA
             };
 
             try {
@@ -254,7 +258,11 @@
                 btn.addEventListener('click', async (e) => {
                     const id = e.target.closest('button').getAttribute('data-id');
                     if (confirm("¿Deseas eliminar permanentemente este registro VIP?")) {
-                        await deleteDoc(doc(db, "clientes", id));
+                        try {
+                            await deleteDoc(doc(db, "clientes", id));
+                        } catch (error) {
+                            alert("❌ Error al eliminar: " + error.message);
+                        }
                     }
                 });
             });
