@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-27T20:16:58.765127",
+    "ultima_actualizacion": "2026-08-28T05:11:30.413333",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "27 ago 2026",
         "numeros": [
-          2,
-          17,
-          21,
+          3,
+          11,
+          18,
           24,
-          32
+          30
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "27 ago 2026",
         "numeros": [
-          2,
           4,
-          3,
+          4,
           7,
+          8,
           1
         ],
-        "numero_extra": 5
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "27 ago 2026",
         "numeros": [
-          8,
           3,
-          6,
-          0
+          7,
+          1,
+          7
         ],
-        "numero_extra": 5
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "27 ago 2026",
         "numeros": [
-          0,
           2,
-          8
+          1,
+          1
         ],
-        "numero_extra": 5
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "27 ago 2026",
         "numeros": [
-          6,
-          7
+          7,
+          5
         ],
-        "numero_extra": 5
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "27 ago 2026"
+        "dia": "Viernes",
+        "fecha": "28 ago 2026"
       },
       "bote": "50$"
     },
