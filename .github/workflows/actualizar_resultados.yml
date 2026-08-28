@@ -1,15 +1,16 @@
-name: 🤖 Actualización Automática de Resultados
+name: 🤖 Generador Nocturno de Pronósticos
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # 11:00 PM hora Venezuela (3:00 UTC)
-  workflow_dispatch:
+    # 03:00 UTC equivale a las 11:00 PM Hora Venezuela (UTC-4)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub si hace falta
 
 permissions:
   contents: write
 
 jobs:
-  actualizar:
+  generar-pronosticos:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Clonar repositorio
@@ -27,35 +28,20 @@ jobs:
           echo '{"dependencies":{"node-fetch":"^3.3.2"}}' > package.json
           npm install
 
-      - name: 🔍 Obtener resultados de la API
-        id: obtener
+      - name: 🔍 1. Obtener resultados del día y rotar historial
         run: node scripts/obtener_de_api.js
-        continue-on-error: true
 
-      - name: 🔄 Actualizar secuencia.json (Lotto Activo)
-        if: success()
-        run: node scripts/actualizar_secuencia.js
-        continue-on-error: true
+      - name: 🔄 2. Generar secuencias y Super Fijos para mañana
+        run: |
+          node scripts/actualizar_secuencia.js
+          node scripts/actualizar_secuencia_granja.js
+          node scripts/actualizar_secuencia_granjita.js
+          node scripts/actualizar_secuencia_selva.js
 
-      - name: 🔄 Actualizar secuencia_granja.json (Granja Millonaria)
-        if: success()
-        run: node scripts/actualizar_secuencia_granja.js
-        continue-on-error: true
-
-      - name: 🔄 Actualizar secuencia_granjita.json (La Granjita)
-        if: success()
-        run: node scripts/actualizar_secuencia_granjita.js
-        continue-on-error: true
-
-      - name: 🔄 Actualizar secuencia_selva.json (Selva Plus)
-        if: success()
-        run: node scripts/actualizar_secuencia_selva.js
-        continue-on-error: true
-
-      - name: 📤 Commit y push de todos los cambios
+      - name: 📤 3. Publicar actualización en GitHub Pages
         run: |
           git config --global user.name "Dr. Animalitos Bot"
           git config --global user.email "bot@tuanimalito.github.io"
           git add data/*.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Actualización automática $(date +'%d/%m/%Y')"
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Pronósticos actualizados para mañana $(date +'%d/%m/%Y')"
           git push
