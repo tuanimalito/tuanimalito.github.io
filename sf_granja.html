@@ -233,7 +233,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Azul) - 5 números MEZCLADOS --- */
+        /* --- CORTESÍA (Azul) - 5 números (SIEMPRE VISIBLE) --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -268,13 +268,6 @@
         .tarjeta-cortesia .numero-card .animal {
             color: #8ab8ff;
         }
-        .tarjeta-cortesia .numero-card::before {
-            content: "INFO";
-            background: #4a9eff;
-        }
-
-        /* Eliminamos la etiqueta GRATIS para no revelar información */
-        /* .numero-card-gratis::before eliminado */
 
         .numeros-grid-5 {
             display: grid;
@@ -282,7 +275,7 @@
             gap: 12px;
         }
 
-        /* --- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS --- */
+        /* --- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -304,12 +297,176 @@
         .tarjeta-superfijos .numero-card .animal {
             color: #ff9999;
         }
-        .tarjeta-superfijos .numero-card::before {
-            content: "SUPER";
-            background: #ff6b6b;
+
+        /* --- GSM - GENERADOR DE SECUENCIAS (BLOQUEADO) --- */
+        .tarjeta-gsm {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+            border-radius: 24px;
+            padding: 22px 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .tarjeta-gsm::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .tarjeta-gsm h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.5rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+        }
+        .tarjeta-gsm h3 i {
+            color: #ffd700;
         }
 
-        /* --- Overlay Super Fijos --- */
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
+        .tarjeta-forense {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+            position: relative;
+        }
+        .tarjeta-forense h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.6rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .tarjeta-forense h3 i {
+            color: #ffd700;
+        }
+
+        .forense-sub {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .forense-sub:last-child {
+            margin-bottom: 0;
+        }
+        .forense-sub h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .forense-sub h4 i {
+            color: #ffd700;
+        }
+
+        .tabla-forense {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .tabla-forense th {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .tabla-forense td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+        .tabla-forense tr:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .rey-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+            color: #0a0a0f;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .acompanante-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 2px 3px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .acompanante-badge:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .prediccion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .prediccion-item {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .prediccion-item:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+        }
+        .prediccion-item .numero {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        .prediccion-item .label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .prediccion-item .puntaje {
+            font-size: 0.8rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ================================================ */
+        /* OVERLAY MEJORADO - TODAS LAS SECCIONES PREMIUM   */
+        /* ================================================ */
         .premium-overlay {
             position: absolute;
             top: 0;
@@ -325,9 +482,9 @@
             padding: 15px;
             text-align: center;
             gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             border: 1px solid rgba(255, 215, 0, 0.15);
             transition: all 0.3s ease;
         }
@@ -350,9 +507,9 @@
         }
 
         .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .premium-badge {
@@ -408,7 +565,61 @@
             margin-top: 5px;
         }
 
-        /* --- BLOQUEO SUPER FIJOS --- */
+        .action-buttons-group .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-buttons-group .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .action-buttons-group .contact-btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+            box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
+        }
+
+        .btn-telegram:hover {
+            box-shadow: 0 4px 35px rgba(0, 136, 204, 0.5);
+        }
+
+        .btn-sms {
+            background: #34a853;
+            color: white;
+            box-shadow: 0 4px 25px rgba(52, 168, 83, 0.3);
+        }
+
+        .btn-sms:hover {
+            box-shadow: 0 4px 35px rgba(52, 168, 83, 0.5);
+        }
+
+        .btn-gmail {
+            background: #ea4335;
+            color: white;
+            box-shadow: 0 4px 25px rgba(234, 67, 53, 0.3);
+        }
+
+        .btn-gmail:hover {
+            box-shadow: 0 4px 35px rgba(234, 67, 53, 0.5);
+        }
+
+        /* ================================================ */
+        /* BLOQUEO DE CONTENIDO PREMIUM                      */
+        /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
             opacity: 0.4;
@@ -449,77 +660,24 @@
             display: none;
         }
 
-        /* ================================================ */
-        /* GSM - GENERADOR DE SECUENCIAS MIA (Dorado) - BLOQUEADO */
-        /* ================================================ */
-        .tarjeta-gsm {
-            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
-            border: 2px solid rgba(255, 215, 0, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            border-radius: 24px;
-            padding: 22px 16px;
+        /* Contenido de predicción bloqueado */
+        .prediccion-contenido-bloqueado {
+            filter: blur(8px) brightness(0.6);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .prediccion-contenido-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.8s ease;
+        }
+
+        .prediccion-container {
             position: relative;
-            overflow: hidden;
-        }
-        .tarjeta-gsm::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.04) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .tarjeta-gsm h3 {
-            color: #ffd700;
-            -webkit-text-fill-color: #ffd700;
-            background: none;
-            font-size: 1.5rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
-        }
-        .tarjeta-gsm h3 i {
-            color: #ffd700;
-        }
-
-        /* Overlay para GSM */
-        .premium-overlay-gsm {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay-gsm.hidden {
-            display: none;
-        }
-
-        .premium-overlay-gsm::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
+            min-height: 200px;
         }
 
         /* Contenido GSM bloqueado */
@@ -537,7 +695,176 @@
             transition: all 0.8s ease;
         }
 
-        /* Estilos GSM internos */
+        .gsm-container {
+            position: relative;
+            min-height: 200px;
+        }
+
+        .forense-container {
+            position: relative;
+            min-height: 300px;
+        }
+
+        /* ================================================ */
+        /* BOTONES MEJORADOS                                */
+        /* ================================================ */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
+            animation: pulseBtn 2s ease-in-out infinite;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
+        }
+
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-login.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .numeros-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .numero-card {
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .numero-card:active {
+            transform: scale(0.95);
+        }
+
+        .numero-card .numero {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .numero-card img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            margin: 4px auto;
+            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .numero-card .animal {
+            font-size: 1rem;
+            margin-top: 4px;
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+
+        /* ================================================ */
+        /* GSM - ESTILOS ESPECÍFICOS                       */
+        /* ================================================ */
         .gsm-busqueda {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
@@ -762,419 +1089,11 @@
             margin-right: 6px;
         }
 
-        /* --- Contenedor GSM --- */
-        .gsm-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
-        .tarjeta-forense {
-            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-            position: relative;
-        }
-        .tarjeta-forense h3 {
-            color: #ffd700;
-            -webkit-text-fill-color: #ffd700;
-            background: none;
-            font-size: 1.6rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-        .tarjeta-forense h3 i {
-            color: #ffd700;
-        }
-
-        /* Overlay para Análisis Forense */
-        .premium-overlay-forense {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay-forense.hidden {
-            display: none;
-        }
-
-        .premium-overlay-forense::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay-forense:hover {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        /* Contenido forense bloqueado */
-        .forense-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .forense-contenido-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.8s ease;
-        }
-
-        .forense-sub {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        .forense-sub:last-child {
-            margin-bottom: 0;
-        }
-        .forense-sub h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .forense-sub h4 i {
-            color: #ffd700;
-        }
-
-        .tabla-forense {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-        .tabla-forense th {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 8px 10px;
-            text-align: left;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        .tabla-forense td {
-            padding: 8px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: #e2e8f0;
-        }
-        .tabla-forense tr:hover {
-            background: rgba(255, 215, 0, 0.05);
-        }
-
-        .rey-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700, #d4af37);
-            color: #0a0a0f;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .acompanante-badge {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.15);
-            color: #ffd700;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin: 2px 3px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .acompanante-badge:hover {
-            background: rgba(255, 215, 0, 0.3);
-            transform: scale(1.05);
-        }
-
-        .prediccion-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        .prediccion-item {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .prediccion-item:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 215, 0, 0.4);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
-        }
-        .prediccion-item .numero {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #ffd700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-        .prediccion-item .label {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-        }
-        .prediccion-item .puntaje {
-            font-size: 0.8rem;
-            color: #ffd700;
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        .numeros-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .numeros-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .premium-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        .numero-card {
-            background: linear-gradient(145deg, #251f45 0%, #181330 100%);
-            border-radius: 20px;
-            padding: 15px 10px;
-            text-align: center;
-            transition: transform 0.2s ease;
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            position: relative;
-        }
-
-        .numero-card::before {
-            content: "VIP";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.65rem;
-            font-weight: 900;
-            background: #ffd700;
-            color: #000;
-            padding: 2px 6px;
-            border-radius: 10px;
-        }
-
-        .numero-card:active {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .numero-card .numero {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-            margin-bottom: 5px;
-        }
-
-        .numero-card img {
-            width: 90px;
-            height: 90px;
-            object-fit: contain;
-            margin: 5px auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-
-        .numero-card .animal {
-            font-size: 1.05rem;
-            color: #ffd700;
-            margin-top: 5px;
-            text-transform: capitalize;
-            font-weight: 700;
-        }
-
         .no-data {
             text-align: center;
             padding: 30px;
             color: #a0aec0;
             font-size: 1rem;
-        }
-
-        /* ================================================ */
-        /* BOTONES MEJORADOS                                */
-        /* ================================================ */
-        .unlock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
-            animation: pulseBtn 2s ease-in-out infinite;
-        }
-
-        .unlock-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
-        }
-
-        .unlock-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes pulseBtn {
-            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25D366;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-        }
-
-        /* ===== MODAL LOGIN ===== */
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
         }
 
         .footer {
@@ -1224,11 +1143,6 @@
         .footer .copyright span {
             color: #ffd700;
             font-weight: 600;
-        }
-
-        .forense-container {
-            position: relative;
-            min-height: 300px;
         }
 
         @media (min-width: 700px) {
@@ -1297,6 +1211,10 @@
             .gsm-grid-tarjetas {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .action-buttons-group .contact-btn {
+                font-size: 0.75rem;
+                padding: 8px 14px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1310,6 +1228,10 @@
             .gsm-tarjeta-secuencia img {
                 width: 50px;
                 height: 50px;
+            }
+            .action-buttons-group .contact-btn {
+                font-size: 0.7rem;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -1325,11 +1247,11 @@
                 <div class="menu-dropdown" id="menuDropdown">
                     <a href="index.html"><i class="bi bi-house-door-fill"></i> Inicio</a>
                     <a href="sf_loto.html"><i class="bi bi-dice-6-fill"></i> Lotto Activo</a>
-                    <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
+                    <a href="sf_granjita.html"><i class="bi bi-flower2"></i> La Granjita</a>
                     <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
-                    <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
-                    <a href="sf_selva.html"><i class="bi bi-feather"></i> Selva Plus</a>
-                    <a href="sf_granjita.html"><i class="bi bi-feather"></i> La Granjita</a>
+                    <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guácharo Activo</a>
+                    <a href="sf_selva.html"><i class="bi bi-tree-fill"></i> Selva Plus</a>
+                    <a href="sf_granja.html"><i class="bi bi-feather"></i> Granja Millonaria</a>
                 </div>
             </div>
             
@@ -1380,41 +1302,47 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números MEZCLADOS -->
+            <!-- ======================================== -->
+            <!-- 1. CORTESÍA - SIEMPRE VISIBLE (GRATIS)    -->
+            <!-- ======================================== -->
             <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
+                <h3><i class="bi bi-info-circle-fill"></i> Los más Calientes para Hoy</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
-                    <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-lock-fill"></i> solo Granja Millonaria
+                    <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-unlock-fill"></i> Gratis para todos
                 </div>
                 <div id="cortesia-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando cortesía...</div>
                 </div>
             </div>
 
-            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS -->
+            <!-- ======================================== -->
+            <!-- 2. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
 
-                <div class="premium-overlay" id="premiumOverlay">
+                <div class="premium-overlay" id="overlaySuperFijos">
                     <div class="premium-badge">
                         <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
                     </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía WhatsApp.
+                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía:
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20de%20Granja%20Millonaria" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-telegram"></i> Telegram
+                        </a>
+                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20Granja%20Millonaria" 
+                           class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-chat-dots"></i> SMS
+                        </a>
+                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Super%20Fijos%20Granja%20Millonaria&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos%20de%20Granja%20Millonaria" 
+                           class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-envelope"></i> Gmail
                         </a>
                     </div>
                 </div>
@@ -1424,36 +1352,38 @@
                 </div>
             </div>
 
-            <!-- ===================================================== -->
-            <!-- GSM - GENERADOR DE SECUENCIAS MIA (PREMIUM BLOQUEADO) -->
-            <!-- ===================================================== -->
+            <!-- ======================================== -->
+            <!-- 3. GSM - GENERADOR DE SECUENCIAS (PREMIUM) -->
+            <!-- ======================================== -->
             <div class="tarjeta-gsm tarjeta-dato" id="gsmCard">
-                <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
+                <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-arrow-right"></i> Secuencias solo para Granja Millonaria
+                    <i class="bi bi-crown-fill"></i> Contenido Premium - Desbloquea para usar
                 </div>
 
                 <!-- Overlay Premium para GSM -->
-                <div class="premium-overlay-gsm" id="overlayGSM">
+                <div class="premium-overlay" id="overlayGSM">
                     <div class="premium-badge">
                         <i class="bi bi-crown-fill"></i> GENERADOR GSM
                     </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Generador de Secuencias ingresando tu clave o suscríbete vía WhatsApp.
+                        Accede al Generador de Secuencias ingresando tu clave o suscríbete vía:
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20el%20Generador%20GSM%20Granja" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-telegram"></i> Telegram
+                        </a>
+                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20el%20Generador%20GSM%20Granja%20Millonaria" 
+                           class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-chat-dots"></i> SMS
+                        </a>
+                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20GSM%20Granja%20Millonaria&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20el%20Generador%20GSM%20de%20Granja%20Millonaria" 
+                           class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-envelope"></i> Gmail
                         </a>
                     </div>
                 </div>
@@ -1499,50 +1429,73 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado (BLOQUEADO) -->
+            <!-- ======================================== -->
+            <!-- 4. ANÁLISIS FORENSE - BLOQUEADO          -->
+            <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato" id="forenseCard">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 
-                <!-- Overlay Premium para Análisis Forense -->
-                <div class="premium-overlay-forense" id="overlayForense">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> ANÁLISIS FORENSE
+                <!-- TOP 10 + REY (BLOQUEADO) -->
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
+                    
+                    <!-- Overlay Premium para TOP 10 -->
+                    <div class="premium-overlay" id="overlayTop10">
+                        <div class="premium-badge" style="font-size: 1.5rem;">
+                            <i class="bi bi-crown-fill"></i> TOP 10 VIP
+                        </div>
+                        <p class="premium-message" style="font-size: 0.9rem;">
+                            <strong>🔒 Contenido Exclusivo</strong><br>
+                            Accede al TOP 10 + REY ingresando tu clave:
+                        </p>
+                        <div class="action-buttons-group">
+                            <button class="unlock-btn" onclick="abrirModalLogin()" style="padding: 8px 20px; font-size: 0.85rem;">
+                                <i class="bi bi-unlock-fill"></i> Desbloquear
+                            </button>
+                            <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-telegram"></i> Telegram
+                            </a>
+                        </div>
                     </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Análisis Forense completo ingresando tu clave o suscríbete vía WhatsApp.
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Análisis%20Forense%20Granja" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
-                        </a>
+
+                    <div id="forense-top10" class="premium-container" style="overflow-x: auto; min-height: 150px;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <div id="forense-contenido" class="forense-container forense-contenido-bloqueado">
-                    <!-- TOP 10 + REY -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                        <div id="forense-top10" style="overflow-x: auto;">
-                            <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
+                <!-- Predicción Forense (BLOQUEADA) -->
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
+                    
+                    <!-- Overlay Premium para Predicción Forense -->
+                    <div class="premium-overlay" id="overlayPrediccion">
+                        <div class="premium-badge" style="font-size: 1.5rem;">
+                            <i class="bi bi-crown-fill"></i> PREDICCIÓN VIP
+                        </div>
+                        <p class="premium-message" style="font-size: 0.9rem;">
+                            <strong>🔒 Contenido Exclusivo</strong><br>
+                            Accede a la Predicción Forense ingresando tu clave o suscríbete vía:
+                        </p>
+                        <div class="action-buttons-group">
+                            <button class="unlock-btn" onclick="abrirModalLogin()" style="padding: 8px 20px; font-size: 0.85rem;">
+                                <i class="bi bi-unlock-fill"></i> Desbloquear
+                            </button>
+                            <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-telegram"></i> Telegram
+                            </a>
+                            <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Predicción%20Forense%20Granja%20Millonaria" 
+                               class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-chat-dots"></i> SMS
+                            </a>
+                            <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Predicción%20Forense%20Granja%20Millonaria&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Predicción%20Forense%20de%20Granja%20Millonaria" 
+                               class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-envelope"></i> Gmail
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Predicción Inteligente -->
-                    <div class="forense-sub">
-                        <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                        <div id="forense-prediccion">
-                            <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-                        </div>
+                    <div id="forense-prediccion" class="prediccion-container prediccion-contenido-bloqueado">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
             </div>
@@ -1564,21 +1517,21 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear TODO el contenido Premium:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #a0aec0; text-align: center;">
-        <p>Nuestros <strong>Super Fijos Premium</strong> se generan mediante un algoritmo avanzado de alta precisión que evalúa secuencias y tendencias en Granja Millonaria.</p>
+        <p>Nuestros <strong>Super Fijos Premium</strong>, <strong>Generador GSM</strong>, <strong>TOP 10 + REY</strong> y <strong>Predicción Forense</strong> se generan mediante un algoritmo avanzado que evalúa secuencias y tendencias en Granja Millonaria.</p>
     </div>
 
     <footer class="footer">
         <div class="social-links">
             <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
                 class="bi bi-facebook"></i></a>
-            <a href="https://www.tiktok.com/@animalitotiktok" target="_blank" rel="noopener noreferrer"><i
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
                 class="bi bi-tiktok"></i></a>
             <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
                 class="bi bi-instagram"></i></a>
@@ -1610,7 +1563,6 @@
         const db = getFirestore(app);
 
         let usuarioAutenticado = false;
-        const STORAGE_KEY = 'granja_premium_unlocked';
         const JSON_URL = 'data/granja.json';
         const SECUENCIA_URL = 'data/secuencia_granja.json';
 
@@ -1686,11 +1638,10 @@
                     usuarioAutenticado = true;
                     desbloquearTodoPremium();
                     cerrarModalLogin();
-                    localStorage.setItem(STORAGE_KEY, 'true');
                     localStorage.setItem('granja_premium_token', clave);
                     alert('✅ Acceso Premium concedido');
                 } else {
-                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
+                    alert('❌ Código inválido o expirado. Comunícate por Telegram, SMS o Gmail para renovar tu suscripción.');
                 }
             } catch (error) {
                 console.error('Error al verificar:', error);
@@ -1706,9 +1657,9 @@
         // ============================================================
         function desbloquearTodoPremium() {
             usuarioAutenticado = true;
-            
-            // Desbloquear Super Fijos
-            const overlaySuperFijos = document.getElementById('premiumOverlay');
+
+            // 1. Desbloquear Super Fijos
+            const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             
             const resultadoContenedor = document.getElementById('resultado-contenido');
@@ -1721,7 +1672,7 @@
                 resultadoContenedor.classList.remove('locked-grid');
             }
 
-            // Desbloquear GSM
+            // 2. Desbloquear GSM
             const overlayGSM = document.getElementById('overlayGSM');
             if (overlayGSM) overlayGSM.classList.add('hidden');
 
@@ -1731,14 +1682,28 @@
                 gsmContenedor.classList.add('gsm-contenido-desbloqueado');
             }
 
-            // Desbloquear Análisis Forense
-            const overlayForense = document.getElementById('overlayForense');
-            if (overlayForense) overlayForense.classList.add('hidden');
-            
-            const forenseContenedor = document.getElementById('forense-contenido');
-            if (forenseContenedor) {
-                forenseContenedor.classList.remove('forense-contenido-bloqueado');
-                forenseContenedor.classList.add('forense-contenido-desbloqueado');
+            // 3. Desbloquear TOP 10
+            const overlayTop10 = document.getElementById('overlayTop10');
+            if (overlayTop10) overlayTop10.classList.add('hidden');
+            const forenseTop10 = document.getElementById('forense-top10');
+            if (forenseTop10) {
+                forenseTop10.classList.remove('locked-grid');
+                forenseTop10.classList.add('locked-grid-desbloqueado');
+            }
+
+            // 4. Desbloquear Predicción Forense
+            const overlayPrediccion = document.getElementById('overlayPrediccion');
+            if (overlayPrediccion) overlayPrediccion.classList.add('hidden');
+            const prediccionContenedor = document.getElementById('forense-prediccion');
+            if (prediccionContenedor) {
+                prediccionContenedor.classList.remove('prediccion-contenido-bloqueado');
+                prediccionContenedor.classList.add('prediccion-contenido-desbloqueado');
+            }
+
+            // Refrescar los datos si ya están cargados
+            if (historialFiltrado && historialFiltrado.length > 0) {
+                actualizarForenseTop10();
+                actualizarForensePrediccion();
             }
         }
 
@@ -1754,14 +1719,13 @@
                     desbloquearTodoPremium();
                 } else {
                     localStorage.removeItem('granja_premium_token');
-                    localStorage.removeItem(STORAGE_KEY);
                     usuarioAutenticado = false;
                 }
             }
         }
 
         // ============================================================
-        // 📊 ANÁLISIS FORENSE PREMIUM
+        // 📊 ANÁLISIS FORENSE PREMIUM - BLOQUEADO
         // ============================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 38, especiales: ['00'] };
@@ -1957,10 +1921,22 @@
                 </table>
             `;
 
-            document.getElementById('forense-top10').innerHTML = html;
+            const contenedor = document.getElementById('forense-top10');
+            if (contenedor) contenedor.innerHTML = html;
         }
 
         function actualizarForensePrediccion() {
+            // Solo mostrar si está autenticado
+            if (!usuarioAutenticado) {
+                document.getElementById('forense-prediccion').innerHTML = `
+                    <div class="no-data" style="padding: 20px;">
+                        <i class="bi bi-lock-fill" style="font-size: 1.5rem; display: block; margin-bottom: 8px; color: #ffd700;"></i>
+                        Contenido Premium - Desbloquea para ver la predicción
+                    </div>
+                `;
+                return;
+            }
+
             const semillas = calcularSemillasForense();
             const arrastre = calcularArrastreForense();
             const zona = calcularZonaCazaForense();
@@ -2032,25 +2008,33 @@
             document.getElementById('forense-prediccion').innerHTML = html;
         }
 
-        function seleccionarNumeroForense(num) {
-            alert(`🔍 Analizando número ${formatearNumero(num)}`);
-        }
-
         function cargarDatosForense() {
             if (historialFiltrado && historialFiltrado.length > 0) {
                 actualizarForenseTop10();
                 actualizarForensePrediccion();
-                
-                // Aplicar bloqueo si no está autenticado
+
+                // Aplicar bloqueos si no está autenticado
                 if (!usuarioAutenticado) {
-                    const forenseContenedor = document.getElementById('forense-contenido');
-                    if (forenseContenedor) {
-                        forenseContenedor.classList.add('forense-contenido-bloqueado');
-                        forenseContenedor.classList.remove('forense-contenido-desbloqueado');
+                    // TOP 10 - bloqueado
+                    const forenseTop10 = document.getElementById('forense-top10');
+                    if (forenseTop10) {
+                        forenseTop10.classList.add('locked-grid');
+                        forenseTop10.classList.remove('locked-grid-desbloqueado');
+                    }
+                    
+                    // Predicción - bloqueada
+                    const prediccionContenedor = document.getElementById('forense-prediccion');
+                    if (prediccionContenedor) {
+                        prediccionContenedor.classList.add('prediccion-contenido-bloqueado');
+                        prediccionContenedor.classList.remove('prediccion-contenido-desbloqueado');
                     }
                 }
             }
         }
+
+        window.seleccionarNumeroForense = function(num) {
+            alert(`🔍 Analizando número ${formatearNumero(num)}`);
+        };
 
         // ============================================================
         // 🎁 CORTESÍA - Los más calientes para hoy (MEZCLADOS)
@@ -2059,11 +2043,9 @@
 
         function informacionDeCortecia(todos, superFijos) {
             if (cortesiaEstatica) {
-                // Devolver una copia MEZCLADA de los datos guardados
                 return mezclarArray([...cortesiaEstatica]);
             }
 
-            // 2 números gratis: incrementos del primer número del día más reciente
             const diaMasReciente = todos.slice(20, 30);
             const primerNumero = diaMasReciente[0];
             
@@ -2081,7 +2063,6 @@
                 incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
             }
 
-            // 3 números Super Fijos
             let superFijosParaCortesia = [];
             if (superFijos && superFijos.length >= 3) {
                 superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
@@ -2097,9 +2078,7 @@
             }
 
             const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
-            // Guardamos los datos sin mezclar en la caché
             cortesiaEstatica = todosLosNumeros;
-            // Devolvemos una copia MEZCLADA
             return mezclarArray([...todosLosNumeros]);
         }
 
@@ -2117,7 +2096,6 @@
             return seleccionados;
         }
 
-        // 🔀 FUNCIÓN MODIFICADA CON RANDOMIZACIÓN
         function mostrarCortesia(items) {
             const contenedor = document.getElementById('cortesia-contenido');
 
@@ -2126,14 +2104,11 @@
                 return;
             }
 
-            // Los items ya vienen mezclados desde informacionDeCortecia()
-            // Pero por seguridad, aplicamos mezcla nuevamente
             const shuffled = mezclarArray([...items]);
 
             let html = '<div class="numeros-grid-5">';
             shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
-                // Ya no mostramos etiqueta GRATIS para no revelar información
 
                 if (r.numero === 0 || r.numero === '00') {
                     numDisplay = "00";
@@ -2271,15 +2246,14 @@
                 return;
             }
 
-            // MEZCLAR los Super Fijos antes de mostrarlos
             const itemsMezclados = mezclarArray([...items]);
 
             let claseGrid = 'numeros-grid-3';
+            let claseContainer = 'premium-container';
 
             if (!usuarioAutenticado) {
                 claseGrid += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
+                claseContainer += ' locked-grid';
             }
 
             let infoHTML = '';
@@ -2339,6 +2313,7 @@
                 }
             }
 
+            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
         }
 
@@ -2661,9 +2636,6 @@
             await gsmInicializar();
             setInterval(cargarDatosServidor, 6 * 60 * 60 * 1000);
         };
-
-        // Exponer función para clic en acompañantes
-        window.seleccionarNumeroForense = seleccionarNumeroForense;
     </script>
 </body>
 
