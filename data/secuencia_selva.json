@@ -8,11 +8,11 @@
       1
     ],
     [
-      15,
-      22,
-      20,
-      30,
-      1
+      7,
+      13,
+      14,
+      2,
+      8
     ],
     [
       7,
@@ -22,7 +22,7 @@
       8
     ]
   ],
-  "fecha_actualizacion": "2026-08-29T05:24:01.635Z",
+  "fecha_actualizacion": "2026-08-29T09:25:59.990Z",
   "metadata": {
     "origen": "selva.json",
     "numeros_por_secuencia": 5,
