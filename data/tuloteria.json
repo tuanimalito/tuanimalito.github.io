@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-30T06:28:09.122664",
+    "ultima_actualizacion": "2026-08-30T12:45:35.715830",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026"
       },
-      "bote": "119.000.000$"
+      "bote": "131.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -70,7 +70,7 @@
         "dia": "Miércoles",
         "fecha": "02 sept 2026"
       },
-      "bote": "5.000.000$"
+      "bote": "5.750.000$"
     },
     {
       "id": "jackpot-triple-play",
