@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-29T21:38:47.712945",
+    "ultima_actualizacion": "2026-08-30T06:28:09.122664",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "26 ago 2026",
+        "dia": "Sábado",
+        "fecha": "29 ago 2026",
         "numeros": [
-          12,
-          32,
-          45,
-          50,
-          58
+          18,
+          56,
+          62,
+          65,
+          67
         ],
-        "numero_extra": 2
+        "numero_extra": 18
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Lunes",
+        "fecha": "31 ago 2026"
       },
       "bote": "119.000.000$"
     },
@@ -54,21 +54,21 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "26 ago 2026",
+        "dia": "Sábado",
+        "fecha": "29 ago 2026",
         "numeros": [
-          5,
-          6,
-          16,
-          24,
-          32,
-          45
+          2,
+          18,
+          20,
+          22,
+          43,
+          52
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "02 sept 2026"
       },
       "bote": "5.000.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Sábado",
         "fecha": "29 ago 2026",
         "numeros": [
-          11,
-          19,
-          21,
-          29,
-          35
+          8,
+          10,
+          16,
+          20,
+          32
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "29 ago 2026",
         "numeros": [
+          7,
           1,
-          6,
-          8,
-          0,
-          6
+          1,
+          7,
+          8
         ],
-        "numero_extra": 1
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Sábado",
         "fecha": "29 ago 2026",
         "numeros": [
-          8,
+          3,
           5,
-          8,
+          4,
           3
         ],
-        "numero_extra": 1
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Sábado",
         "fecha": "29 ago 2026",
         "numeros": [
-          3,
-          7,
-          1
+          2,
+          0,
+          4
         ],
-        "numero_extra": 1
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Sábado",
         "fecha": "29 ago 2026",
         "numeros": [
-          1,
-          4
+          2,
+          0
         ],
-        "numero_extra": 1
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026"
+        "dia": "Domingo",
+        "fecha": "30 ago 2026"
       },
       "bote": "50$"
     },
