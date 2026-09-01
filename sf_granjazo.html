@@ -21,18 +21,33 @@
     <link rel="apple-touch-icon" href="./favicon.webp">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
+    <!-- OneSignal SDK -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "e528af1f-e023-4dd3-8cb0-68d389493cb5",
+                serviceWorkerOverrideForTypical: true,
+                path: "https://tuanimalito.github.io/OneSignalSDKWorker.js",
+                serviceWorkerParam: { scope: "/" },
+            });
+        });
+    </script>
+
     <!-- Firebase SDK -->
     <script type="importmap">
     {
         "imports": {
             "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
-            "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
+            "firebase-storage": "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"
         }
     }
     </script>
     
     <style>
-        /* ===== ESTILOS COMPLETOS (Mismo que antes) ===== */
+        /* ===== ESTILOS COMPLETOS ===== */
         * {
             margin: 0;
             padding: 0;
@@ -234,6 +249,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* --- CORTESÍA (Azul) - 5 números MEZCLADOS --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
             border: 1px solid rgba(74, 158, 255, 0.25);
@@ -268,17 +284,41 @@
         .tarjeta-cortesia .numero-card .animal {
             color: #8ab8ff;
         }
-        .tarjeta-cortesia .numero-card::before {
-            content: "INFO";
-            background: #4a9eff;
+
+        /* --- TRIPLETAS (Púrpura) - AHORA VISIBLE --- */
+        .tarjeta-tripletas {
+            background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
+            border: 1px solid rgba(179, 136, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
+            position: relative;
+        }
+        .tarjeta-tripletas::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(179, 136, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .tarjeta-tripletas h3 {
+            color: #b388ff;
+            -webkit-text-fill-color: #b388ff;
+            background: none;
+        }
+        .tarjeta-tripletas .numero-card {
+            background: linear-gradient(180deg, #2a1a3a 0%, #1a0d2a 100%);
+            border: 1px solid rgba(179, 136, 255, 0.2);
+        }
+        .tarjeta-tripletas .numero-card .numero {
+            color: #b388ff;
+        }
+        .tarjeta-tripletas .numero-card .animal {
+            color: #d1b3ff;
         }
 
-        .numeros-grid-5 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
+        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -300,18 +340,58 @@
         .tarjeta-superfijos .numero-card .animal {
             color: #ff9999;
         }
-        .tarjeta-superfijos .numero-card::before {
-            content: "SUPER";
-            background: #ff6b6b;
+
+        /* --- ANÁLISIS FORENSE (Dorado) - AHORA VISIBLE --- */
+        .tarjeta-forense {
+            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
+            position: relative;
+        }
+        .tarjeta-forense h3 {
+            color: #ffd700;
+            -webkit-text-fill-color: #ffd700;
+            background: none;
+            font-size: 1.6rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .tarjeta-forense h3 i {
+            color: #ffd700;
         }
 
+        .forense-sub {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .forense-sub:last-child {
+            margin-bottom: 0;
+        }
+        .forense-sub h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .forense-sub h4 i {
+            color: #ffd700;
+        }
+
+        /* ================================================ */
+        /* OVERLAY - SOLO PARA SUPER FIJOS                  */
+        /* ================================================ */
         .premium-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 24px;
+            border-radius: 18px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -320,9 +400,9 @@
             padding: 15px;
             text-align: center;
             gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             border: 1px solid rgba(255, 215, 0, 0.15);
             transition: all 0.3s ease;
         }
@@ -338,16 +418,16 @@
             left: -1px;
             right: -1px;
             bottom: -1px;
-            border-radius: 24px;
+            border-radius: 18px;
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
             z-index: -1;
             pointer-events: none;
         }
 
         .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .premium-badge {
@@ -403,6 +483,61 @@
             margin-top: 5px;
         }
 
+        .action-buttons-group .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-buttons-group .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .action-buttons-group .contact-btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+            box-shadow: 0 4px 25px rgba(0, 136, 204, 0.3);
+        }
+
+        .btn-telegram:hover {
+            box-shadow: 0 4px 35px rgba(0, 136, 204, 0.5);
+        }
+
+        .btn-sms {
+            background: #34a853;
+            color: white;
+            box-shadow: 0 4px 25px rgba(52, 168, 83, 0.3);
+        }
+
+        .btn-sms:hover {
+            box-shadow: 0 4px 35px rgba(52, 168, 83, 0.5);
+        }
+
+        .btn-gmail {
+            background: #ea4335;
+            color: white;
+            box-shadow: 0 4px 25px rgba(234, 67, 53, 0.3);
+        }
+
+        .btn-gmail:hover {
+            box-shadow: 0 4px 35px rgba(234, 67, 53, 0.5);
+        }
+
+        /* ================================================ */
+        /* BLOQUEO DE CONTENIDO - SOLO SUPER FIJOS          */
+        /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
             opacity: 0.4;
@@ -418,17 +553,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
+            background:
+                repeating-linear-gradient(0deg,
                     transparent,
                     transparent 2px,
                     rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px
-                );
+                    rgba(0, 0, 0, 0.05) 4px);
             pointer-events: none;
             z-index: 5;
-            border-radius: 24px;
+            border-radius: 18px;
         }
 
         .locked-grid-desbloqueado {
@@ -471,7 +604,8 @@
         }
 
         @keyframes pulseBtn {
-            0%, 100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
+            0%,
+            100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
             50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
         }
 
@@ -481,11 +615,11 @@
             gap: 8px;
             background: #25D366;
             color: white;
-            padding: 12px 28px;
+            padding: 10px 20px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
         }
@@ -500,118 +634,9 @@
             box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
         }
 
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .tarjeta-forense {
-            background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.1), 0 0 40px rgba(255, 215, 0, 0.05);
-        }
-        .tarjeta-forense h3 {
-            color: #ffd700;
-            -webkit-text-fill-color: #ffd700;
-            background: none;
-            font-size: 1.6rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-        .tarjeta-forense h3 i {
-            color: #ffd700;
-        }
-
-        .forense-sub {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-        .forense-sub:last-child {
-            margin-bottom: 0;
-        }
-        .forense-sub h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .forense-sub h4 i {
-            color: #ffd700;
-        }
-
+        /* ================================================ */
+        /* TABLA FORENSE - ESTILOS                          */
+        /* ================================================ */
         .tabla-forense {
             width: 100%;
             border-collapse: collapse;
@@ -706,74 +731,131 @@
             margin-top: 4px;
         }
 
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-login.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
         .numeros-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 10px;
+            gap: 12px;
+            transition: all 0.3s;
         }
 
         .numeros-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 10px;
+            gap: 12px;
+            transition: all 0.3s;
         }
 
-        .premium-container {
-            position: relative;
-            min-height: 200px;
+        .numeros-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            transition: all 0.3s;
         }
 
         .numero-card {
-            background: linear-gradient(145deg, #1f1a3a 0%, #151226 100%);
-            border-radius: 20px;
-            padding: 15px 10px;
+            border-radius: 16px;
+            padding: 14px 10px;
             text-align: center;
-            transition: transform 0.2s ease;
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
         }
 
-        .numero-card::before {
-            content: "VIP";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.65rem;
-            font-weight: 900;
-            background: #ffd700;
-            color: #000;
-            padding: 2px 6px;
-            border-radius: 10px;
-        }
-
         .numero-card:active {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+            transform: scale(0.95);
         }
 
         .numero-card .numero {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         .numero-card img {
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             object-fit: contain;
-            margin: 5px auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+            margin: 4px auto;
+            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
         }
 
         .numero-card .animal {
-            font-size: 1.05rem;
-            color: #ffd700;
-            margin-top: 5px;
+            font-size: 1rem;
+            margin-top: 4px;
             text-transform: capitalize;
             font-weight: 700;
         }
@@ -781,7 +863,7 @@
         .no-data {
             text-align: center;
             padding: 30px;
-            color: #a0aec0;
+            color: #718096;
             font-size: 1rem;
         }
 
@@ -834,12 +916,416 @@
             font-weight: 600;
         }
 
+        /* ================================================ */
+        /* TUCHAT - ESTILOS                                 */
+        /* ================================================ */
+        .tuchat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+            border: none;
+            border-radius: 60px;
+            padding: 16px 24px;
+            font-weight: 800;
+            color: #0a0a0f;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .tuchat-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        .tuchat-toggle .badge-notificacion {
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .tuchat-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .tuchat-modal-overlay.show {
+            display: flex;
+        }
+
+        .tuchat-modal {
+            background: #0f0f1a;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .tuchat-header {
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a0d2a 50%, #0d1a2a 100%);
+            padding: 18px 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tuchat-header h3 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .tuchat-header h3 i {
+            color: #ffd700;
+        }
+
+        .tuchat-header .cerrar {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            border-radius: 30px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .tuchat-header .cerrar:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .tuchat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: #0a0a12;
+            max-height: 400px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tuchat-body .mensaje-bienvenida {
+            text-align: center;
+            color: #ffd700;
+            font-size: 0.8rem;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            margin-bottom: 8px;
+        }
+
+        .tuchat-mensaje {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            word-wrap: break-word;
+            align-self: flex-start;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .tuchat-mensaje .texto img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 4px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .tuchat-mensaje.propio {
+            align-self: flex-end;
+            background: #1a2a1a;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .tuchat-mensaje.admin {
+            border-color: #ffd700;
+            border-width: 2px;
+            background: linear-gradient(145deg, #1a1a0d, #2a2a1a);
+        }
+
+        .tuchat-mensaje .usuario {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #ffd700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tuchat-mensaje .usuario .admin-badge {
+            background: #ffd700;
+            color: #0a0a0f;
+            font-size: 0.55rem;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .tuchat-mensaje .texto {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+
+        .tuchat-mensaje .hora {
+            font-size: 0.55rem;
+            color: #718096;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .tuchat-footer {
+            padding: 10px 14px;
+            background: #0f0f1a;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tuchat-footer .input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #0a0a12;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 30px;
+            padding: 2px 4px;
+            transition: border 0.3s;
+        }
+
+        .tuchat-footer .input-wrapper:focus-within {
+            border-color: #ffd700;
+        }
+
+        .tuchat-footer .input-wrapper input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 30px;
+            background: transparent;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            outline: none;
+            min-width: 60px;
+        }
+
+        .tuchat-footer .input-wrapper input::placeholder {
+            color: #555;
+        }
+
+        .tuchat-footer .btn-file {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: all 0.2s;
+            border-radius: 30px;
+        }
+
+        .tuchat-footer .btn-file:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .tuchat-footer .btn-enviar {
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #0a0a0f;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .tuchat-footer .btn-enviar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .tuchat-footer .btn-enviar:active {
+            transform: scale(0.95);
+        }
+
+        .tuchat-status {
+            background: #12121f;
+            padding: 6px 15px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #ffd700;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .tuchat-login {
+            padding: 30px 20px;
+            text-align: center;
+            background: #0a0a12;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tuchat-login .logo-chat {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .tuchat-login h4 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+        }
+
+        .tuchat-login p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .tuchat-login input {
+            padding: 12px 18px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 30px;
+            background: #151226;
+            color: #e2e8f0;
+            font-size: 1rem;
+            outline: none;
+            width: 80%;
+            text-align: center;
+            transition: border 0.3s;
+        }
+
+        .tuchat-login input:focus {
+            border-color: #ffd700;
+        }
+
+        .tuchat-login button {
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #0a0a0f;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tuchat-login button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .ticket-info {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-align: center;
+            padding: 4px;
+            background: rgba(255, 215, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.05);
+            display: none;
+        }
+
+        .ticket-info.show {
+            display: block;
+        }
+
+        #previewImagen {
+            padding: 8px 16px;
+            background: #0a0a12;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        #previewImagen img {
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        #previewImagen .file-name {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            flex: 1;
+        }
+
+        #previewImagen .btn-eliminar-img {
+            background: transparent;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px 8px;
+        }
+
+        #previewImagen .btn-eliminar-img:hover {
+            color: #ff4444;
+            transform: scale(1.1);
+        }
+
+        /* ================================================ */
+        /* RESPONSIVE                                        */
+        /* ================================================ */
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
             .numeros-grid-5 {
                 grid-template-columns: repeat(5, 1fr);
+            }
+            .numeros-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
             }
             .cabecera h1 {
                 font-size: 3rem;
@@ -856,6 +1342,12 @@
         }
 
         @media (max-width: 600px) {
+            .numeros-grid-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .numeros-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
             .prediccion-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -873,14 +1365,49 @@
                 font-size: 0.6rem;
                 padding: 1px 6px;
             }
-            .numeros-grid-5 {
-                grid-template-columns: repeat(3, 1fr);
+            .tuchat-toggle {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+                font-size: 0.85rem;
             }
-            .premium-badge {
-                font-size: 1.6rem;
+            .tuchat-modal {
+                max-height: 95vh;
+                border-radius: 20px;
             }
-            .premium-message {
-                font-size: 0.9rem;
+            .tuchat-body {
+                max-height: 300px;
+                min-height: 150px;
+            }
+            .tuchat-footer .input-wrapper input {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+            .tuchat-footer .btn-enviar {
+                padding: 6px 14px;
+                font-size: 0.85rem;
+            }
+            .tuchat-login input {
+                width: 100%;
+            }
+            .tuchat-footer {
+                padding: 8px 10px;
+            }
+            #previewImagen img {
+                max-width: 40px;
+                max-height: 40px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tuchat-modal {
+                max-height: 98vh;
+                border-radius: 16px;
+            }
+            .tuchat-body {
+                max-height: 250px;
+                min-height: 120px;
+                padding: 10px;
             }
         }
     </style>
@@ -899,8 +1426,9 @@
                     <a href="sf_granja.html"><i class="bi bi-flower2"></i> Granja Millonaria</a>
                     <a href="sf_granjazo.html"><i class="bi bi-feather"></i> Granjazo</a>
                     <a href="sf_guacharo.html"><i class="bi bi-feather"></i> Guacharo Activo</a>
-                    <a href="sf_selva.html"><i class="bi bi-feather"></i> Selva Plus</a>
+                    <a href="sf_selva.html"><i class="bi bi-tree-fill"></i> Selva Plus</a>
                     <a href="sf_granjita.html"><i class="bi bi-feather"></i> La Granjita</a>
+                    <a href="#" id="menuChatLink"><i class="bi bi-chat-fill"></i> Chat Dr.Animalitos</a>
                 </div>
             </div>
             
@@ -929,6 +1457,15 @@
                         e.stopPropagation();
                     });
                 }
+
+                const menuChatLink = document.getElementById('menuChatLink');
+                if (menuChatLink) {
+                    menuChatLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.getElementById('tuchatModal').classList.add('show');
+                        menuDropdown.classList.remove('show');
+                    });
+                }
             })();
         </script>
 
@@ -951,41 +1488,60 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- CORTESÍA - AZUL (SIEMPRE VISIBLE) - 5 números MEZCLADOS -->
+            <!-- ======================================== -->
+            <!-- 1. CORTESÍA - SIEMPRE VISIBLE (GRATIS)    -->
+            <!-- ======================================== -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
-                    <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-lock-fill"></i> solo Granjazo
+                    <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-unlock-fill"></i> Gratis para todos
                 </div>
                 <div id="cortesia-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando cortesía...</div>
                 </div>
             </div>
 
-            <!-- SUPER FIJOS - ROJO (BLOQUEADO) - 3 números MEZCLADOS -->
+            <!-- ======================================== -->
+            <!-- 2. TRIPLETAS - AHORA VISIBLE (GRATIS)    -->
+            <!-- ======================================== -->
+            <div class="tarjeta-tripletas tarjeta-dato">
+                <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Premium</h3>
+                <div style="text-align: center; color: #b388ff; font-size: 0.8rem; margin-bottom: 10px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido disponible para todos
+                </div>
+                <div id="tripletas-contenido" style="min-height: 150px;">
+                    <div class="no-data">Cargando tripletas...</div>
+                </div>
+            </div>
+
+            <!-- ======================================== -->
+            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
 
-                <div class="premium-overlay" id="premiumOverlay">
+                <div class="premium-overlay" id="overlaySuperFijos">
                     <div class="premium-badge">
                         <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
                     </div>
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> PREMIUM
-                    </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía WhatsApp.
+                        Accede a los 3 Super Fijos ingresando tu clave o suscríbete vía:
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
-                        <a href="https://wa.me/584248671967?text=Hola%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos" 
-                           class="whatsapp-btn" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-telegram"></i> Telegram
+                        </a>
+                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos" 
+                           class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-chat-dots"></i> SMS
+                        </a>
+                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Super%20Fijos&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Super%20Fijos" 
+                           class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-envelope"></i> Gmail
                         </a>
                     </div>
                 </div>
@@ -995,19 +1551,21 @@
                 </div>
             </div>
 
-            <!-- ANÁLISIS FORENSE PREMIUM - Dorado -->
+            <!-- ======================================== -->
+            <!-- 4. ANÁLISIS FORENSE - AHORA VISIBLE      -->
+            <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
-                
+
                 <!-- TOP 10 + REY -->
                 <div class="forense-sub">
                     <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                    <div id="forense-top10" style="overflow-x: auto;">
+                    <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
                         <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <!-- Predicción Inteligente -->
+                <!-- Predicción Forense -->
                 <div class="forense-sub">
                     <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
                     <div id="forense-prediccion">
@@ -1028,19 +1586,19 @@
         </div>
     </div>
 
-    <!-- MODAL LOGIN -->
+    <!-- ===== MODAL LOGIN PREMIUM ===== -->
     <div class="modal-login" id="modalLogin">
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los 3 Super Fijos:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #a0aec0; text-align: center;">
-        <p>Nuestros <strong>Super Fijos Premium</strong> se generan identificando tendencias de alta precisión en Granjazo.</p>
+        <p>Nuestros <strong>Super Fijos</strong>, <strong>Tripletas</strong> y <strong>Predicción Forense</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Granjazo.</p>
     </div>
 
     <footer class="footer">
@@ -1059,12 +1617,54 @@
         </div>
     </footer>
 
+    <!-- ===== TUCHAT - BOTÓN FLOTANTE ===== -->
+    <button class="tuchat-toggle" id="tuchatToggle">
+        <i class="bi bi-chat-fill"></i> Chat
+        <span class="badge-notificacion" id="tuchatBadge" style="display:none;">0</span>
+    </button>
+
+    <!-- ===== TUCHAT - MODAL ===== -->
+    <div class="tuchat-modal-overlay" id="tuchatModal">
+        <div class="tuchat-modal">
+            <div class="tuchat-header">
+                <h3><i class="bi bi-chat-fill"></i> Chat Dr.Animalitos</h3>
+                <button class="cerrar" id="tuchatCerrar"><i class="bi bi-x-lg"></i> Cerrar</button>
+            </div>
+            <div class="tuchat-status" id="tuchatStatus">💬 Conectando...</div>
+            <div class="ticket-info" id="ticketInfo">📌 Ticket activo</div>
+
+            <!-- LOGIN -->
+            <div class="tuchat-login" id="tuchatLogin">
+                <div class="logo-chat">🐾</div>
+                <h4>👋 Bienvenido al Chat</h4>
+                <p>Escribe tu nombre para iniciar una conversación privada con Dr.Animalitos</p>
+                <input type="text" id="tuchatNombre" placeholder="Tu nombre..." maxlength="25" />
+                <button id="tuchatBtnEntrar">Entrar al Chat</button>
+                <div id="tuchatLoginError" style="color:#ff6b6b; font-size:0.85rem;"></div>
+            </div>
+
+            <!-- CHAT BODY -->
+            <div class="tuchat-body" id="tuchatBody" style="display:none;"></div>
+
+            <!-- FOOTER -->
+            <div class="tuchat-footer" id="tuchatFooter" style="display:none;">
+                <div class="input-wrapper">
+                    <input type="text" id="tuchatMensaje" placeholder="Escribe tu mensaje..." />
+                    <button class="btn-file" id="tuchatBtnFile" title="Subir imagen"><i class="bi bi-image"></i></button>
+                    <input type="file" id="tuchatFileInput" accept="image/*" style="display:none;">
+                </div>
+                <button class="btn-enviar" id="tuchatBtnEnviar"><i class="bi bi-send-fill"></i> Enviar</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         // ============================================================
         // 🔥 CONFIGURACIÓN DE FIREBASE FIRESTORE
         // ============================================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs, onSnapshot, addDoc, doc, serverTimestamp, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
@@ -1077,9 +1677,11 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         let usuarioAutenticado = false;
         const STORAGE_KEY = 'granjazo_premium_unlocked';
+        let tuchatTicketId = null;
 
         // ============================================================
         // FUNCIÓN DE MEZCLA (Fisher-Yates)
@@ -1157,7 +1759,7 @@
                     localStorage.setItem('granjazo_premium_token', clave);
                     alert('✅ Acceso Premium concedido');
                 } else {
-                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
+                    alert('❌ Código inválido o expirado. Comunícate por Telegram, SMS o Gmail para renovar tu suscripción.');
                 }
             } catch (error) {
                 console.error('Error al verificar:', error);
@@ -1173,10 +1775,10 @@
         // ============================================================
         function desbloquearSuperFijos() {
             usuarioAutenticado = true;
-            
-            const overlaySuperFijos = document.getElementById('premiumOverlay');
+
+            // Desbloquear Super Fijos
+            const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
-            
             const resultadoContenedor = document.getElementById('resultado-contenido');
             if (resultadoContenedor) {
                 const grid = resultadoContenedor.querySelector('.numeros-grid-3');
@@ -1229,7 +1831,7 @@
         };
 
         // ============================================================
-        // 📊 ANÁLISIS FORENSE PREMIUM
+        // 📊 ANÁLISIS FORENSE - AHORA VISIBLE
         // ============================================================
         let historialFiltrado = [];
         let config = { min: 1, max: 76 };
@@ -1499,6 +2101,8 @@
             }
         }
 
+        window.seleccionarNumeroForense = seleccionarNumeroForense;
+
         // ============================================================
         // 🎁 CORTESÍA - Los más calientes para hoy (MEZCLADOS)
         // ============================================================
@@ -1589,39 +2193,89 @@
         }
 
         // ============================================================
-        // 📊 LÓGICA DE DATOS PRINCIPAL
+        // 📊 LÓGICA DE DATOS PRINCIPAL - TRIPLETAS
         // ============================================================
-        
-        // Medidas de seguridad
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === 123 || 
-                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-                (e.ctrlKey && e.keyCode === 85) ||
-                (e.ctrlKey && e.keyCode === 83)) {
-                e.preventDefault();
+        function calcularEspejo(item) {
+            let posicionOriginal = item.numero;
+            let espejoPosicion = 76 - posicionOriginal + 1;
+            if (espejoPosicion < 1) espejoPosicion = 1;
+            if (espejoPosicion > 76) espejoPosicion = 76;
+            
+            return {
+                numero: espejoPosicion,
+                esDobleCero: false,
+                casilla: item.casilla
+            };
+        }
+
+        function esMismoNumero(a, b) {
+            if (!a || !b) return false;
+            return a.numero === b.numero;
+        }
+
+        function resolverDuplicados(listaProcesada, dia2Procesado, limiteEfectivo) {
+            const resultadoLimpio = [];
+            let indiceReserva = 4;
+
+            for (let i = 0; i < limiteEfectivo; i++) {
+                let candidato = listaProcesada[i];
+                while (resultadoLimpio.some(existente => esMismoNumero(existente, candidato))) {
+                    if (indiceReserva < dia2Procesado.length) {
+                        candidato = calcularEspejo(dia2Procesado[indiceReserva]);
+                        indiceReserva++;
+                    } else {
+                        break;
+                    }
+                }
+                resultadoLimpio.push(candidato);
             }
-        });
-        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-        document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); }); });
-        document.addEventListener('copy', function(e) { e.preventDefault(); });
-        document.addEventListener('cut', function(e) { e.preventDefault(); });
-        setInterval(function() { console.clear(); }, 1000);
+            return resultadoLimpio;
+        }
 
-        const JSON_URL = 'data/granjazo.json';
+        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
+            const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
+            const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
 
-        function mostrarFecha() {
-            const hoy = new Date();
-            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
-                year: 'numeric', month: 'long', day: 'numeric'
+            let acompañantes = [];
+            if (superFijos && superFijos.length >= 2) {
+                acompañantes = superFijos.slice(0, 2);
+            } else {
+                acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
+            }
+
+            return mezclarArray([...bases, ...acompañantes]);
+        }
+
+        function mostrarTripletas(items) {
+            const contenedor = document.getElementById('tripletas-contenido');
+
+            if (!items || items.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay tripletas disponibles.</div>';
+                return;
+            }
+
+            let html = `<div class="numeros-grid">`;
+            items.forEach(r => {
+                let numDisplay = String(r.numero).padStart(2, '0');
+                let nombreAnimal = animales[r.numero] || 'desconocido';
+                let rutaImagen = `animalitos/animalitos_granja/${r.numero}.png`;
+
+                html += `
+                    <div class="numero-card">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_granja/1.png'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
             });
+            html += '</div>';
+            contenedor.innerHTML = html;
         }
 
-        function actualizarStatus(mensaje) {
-            document.getElementById('statusBar').innerHTML = mensaje;
-        }
-
+        // ============================================================
+        // 📊 LÓGICA DE SUPER FIJOS
+        // ============================================================
         function buscarRepeticion(resultados) {
             const mapa = new Map();
 
@@ -1662,11 +2316,11 @@
             const itemsMezclados = mezclarArray([...items]);
 
             let claseGrid = 'numeros-grid-3';
-            
+            let claseContainer = 'premium-container';
+
             if (!usuarioAutenticado) {
                 claseGrid += ' locked-grid';
-            } else {
-                claseGrid += ' locked-grid-desbloqueado';
+                claseContainer += ' locked-grid';
             }
 
             let html = `<div class="${claseGrid}">`;
@@ -1685,7 +2339,25 @@
                 `;
             });
             html += '</div>';
+            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
+        }
+
+        // ============================================================
+        // 📊 CARGA DE DATOS PRINCIPAL
+        // ============================================================
+        
+        const JSON_URL = 'data/granjazo.json';
+
+        function mostrarFecha() {
+            const hoy = new Date();
+            document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+
+        function actualizarStatus(mensaje) {
+            document.getElementById('statusBar').innerHTML = mensaje;
         }
 
         async function cargarDatosServidor() {
@@ -1706,11 +2378,10 @@
                     });
                 };
 
-                const todos = [
-                    ...procesarDia(dia3, 1),
-                    ...procesarDia(dia2, 13),
-                    ...procesarDia(dia1, 25)
-                ];
+                const dia3Procesado = procesarDia(dia3, 1);
+                const dia2Procesado = procesarDia(dia2, 13);
+                const dia1Procesado = procesarDia(dia1, 25);
+                const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
 
                 // ===== CONSTRUIR HISTORIAL FORENSE =====
                 const hoy = new Date();
@@ -1750,6 +2421,10 @@
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
+                // TRIPLETAS - AHORA VISIBLE (4 números MEZCLADOS)
+                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
+                mostrarTripletas(tripletas);
+
                 // ANÁLISIS FORENSE
                 cargarDatosForense();
 
@@ -1760,11 +2435,384 @@
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
                 const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
                 document.getElementById('cortesia-contenido').innerHTML = msjError;
+                document.getElementById('tripletas-contenido').innerHTML = msjError;
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
                 document.getElementById('forense-prediccion').innerHTML = msjError;
             }
         }
+
+        // ============================================================
+        // 💬 TUCHAT - SISTEMA DE TICKETS
+        // ============================================================
+        const tuchatToggle = document.getElementById('tuchatToggle');
+        const tuchatModal = document.getElementById('tuchatModal');
+        const tuchatCerrar = document.getElementById('tuchatCerrar');
+        const tuchatStatus = document.getElementById('tuchatStatus');
+        const tuchatLogin = document.getElementById('tuchatLogin');
+        const tuchatBody = document.getElementById('tuchatBody');
+        const tuchatFooter = document.getElementById('tuchatFooter');
+        const tuchatNombre = document.getElementById('tuchatNombre');
+        const tuchatBtnEntrar = document.getElementById('tuchatBtnEntrar');
+        const tuchatMensaje = document.getElementById('tuchatMensaje');
+        const tuchatBtnEnviar = document.getElementById('tuchatBtnEnviar');
+        const tuchatLoginError = document.getElementById('tuchatLoginError');
+        const tuchatBadge = document.getElementById('tuchatBadge');
+        const ticketInfo = document.getElementById('ticketInfo');
+        const tuchatBtnFile = document.getElementById('tuchatBtnFile');
+        const tuchatFileInput = document.getElementById('tuchatFileInput');
+
+        let tuchatUsuario = '';
+        let tuchatActivo = false;
+        let tuchatUnreadCount = 0;
+        let tuchatMensajesCargados = false;
+        let imagenSeleccionada = null;
+
+        const nombreGuardado = localStorage.getItem('tuchat_nombre');
+        if (nombreGuardado) {
+            tuchatNombre.value = nombreGuardado;
+        }
+
+        tuchatToggle.addEventListener('click', () => {
+            tuchatModal.classList.add('show');
+            tuchatBadge.style.display = 'none';
+            tuchatUnreadCount = 0;
+            if (tuchatActivo) {
+                tuchatMensaje.focus();
+            }
+        });
+
+        tuchatCerrar.addEventListener('click', () => {
+            tuchatModal.classList.remove('show');
+        });
+
+        tuchatModal.addEventListener('click', (e) => {
+            if (e.target === tuchatModal) {
+                tuchatModal.classList.remove('show');
+            }
+        });
+
+        tuchatBtnEntrar.addEventListener('click', entrarTuchat);
+        tuchatNombre.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') entrarTuchat();
+        });
+
+        async function entrarTuchat() {
+            const nombre = tuchatNombre.value.trim();
+            if (nombre === '') {
+                tuchatLoginError.textContent = '⚠️ Escribe tu nombre.';
+                return;
+            }
+            if (nombre.length > 25) {
+                tuchatLoginError.textContent = '⚠️ Máximo 25 caracteres.';
+                return;
+            }
+
+            tuchatUsuario = nombre;
+            tuchatActivo = true;
+            localStorage.setItem('tuchat_nombre', nombre);
+
+            tuchatLogin.style.display = 'none';
+            tuchatBody.style.display = 'flex';
+            tuchatFooter.style.display = 'flex';
+            tuchatStatus.textContent = `👤 Conectado como: ${tuchatUsuario}`;
+            tuchatMensaje.focus();
+
+            await crearTicketUsuario(nombre);
+        }
+
+        async function crearTicketUsuario(nombre) {
+            try {
+                const q = query(
+                    collection(db, "tuchat_tickets"),
+                    where("usuario", "==", nombre),
+                    where("estado", "==", "abierto")
+                );
+                const snapshot = await getDocs(q);
+
+                if (snapshot.empty) {
+                    const docRef = await addDoc(collection(db, "tuchat_tickets"), {
+                        usuario: nombre,
+                        fecha_creacion: serverTimestamp(),
+                        estado: "abierto",
+                        ultimo_mensaje: null,
+                        ultimo_remitente: null,
+                        ultimo_timestamp: null
+                    });
+                    tuchatTicketId = docRef.id;
+                    ticketInfo.classList.add('show');
+                    ticketInfo.innerHTML = `📌 Ticket #${docRef.id.slice(0, 8)} - Chat privado con Dr.Animalitos`;
+                    console.log(`✅ Ticket creado para ${nombre}: ${docRef.id}`);
+                } else {
+                    snapshot.forEach(doc => {
+                        tuchatTicketId = doc.id;
+                        ticketInfo.classList.add('show');
+                        ticketInfo.innerHTML = `📌 Ticket #${doc.id.slice(0, 8)} - Chat privado con Dr.Animalitos`;
+                    });
+                    console.log(`✅ Ticket existente para ${nombre}: ${tuchatTicketId}`);
+                }
+
+                // Mensaje de bienvenida
+                const mensajePromocion = `👑Premium GSM Profesional V.5✅
+        ✅ Acceso a los 3 súper fijós 
+        ✅ Acceso por 5 días 900bs
+        --------------------
+        👉Al activar la función premium, tiene acceso a los súper fijós de 
+        ✅Guacharo ✅Loto ✅Granja millonaria ✅Granjazo ✅La Granjita ✅Selva Plus
+        🔒 Analisis forense premium 
+        🔒 Generador de secuencias
+        🔒 Bases de Tripletas 
+        --------------------
+        Para activar la versión premium
+        Monto: 1500bs
+        Banco: Mercantil0105
+        Teléfono: 04248671967
+        C.I:14.055.604
+        --------------------
+        Nota: Debes enviar el capture de su pago por este medio.
+        🚫 NO realizo promoción de apuestas, venta de sorteos, ni juego de azar.
+        ✅No trabajo con afiliación
+        ✅*"No trabajo con suscripción**
+        ✅ Sí ofrezco: Asesoría educativa sobre gestión de recursos, análisis teórico de probabilidades y orientación para una toma de decisiones informada.`;
+
+                try {
+                    const mensajesSnapshot = await getDocs(collection(db, "tuchat_tickets", tuchatTicketId, "mensajes"));
+                    if (mensajesSnapshot.empty) {
+                        await addDoc(collection(db, "tuchat_tickets", tuchatTicketId, "mensajes"), {
+                            texto: mensajePromocion,
+                            remitente: 'Dr.Animalitos',
+                            timestamp: serverTimestamp(),
+                            esAdmin: true
+                        });
+                    }
+                } catch (e) {
+                    console.log('Mensaje de bienvenida ya enviado o error:', e);
+                }
+
+                cargarMensajesTuchat();
+            } catch (error) {
+                console.error('❌ Error al crear ticket:', error);
+                tuchatStatus.textContent = '❌ Error al conectar con el chat.';
+            }
+        }
+
+        // ============================================================
+        // SUBIR IMÁGENES
+        // ============================================================
+        if (tuchatBtnFile && tuchatFileInput) {
+            tuchatBtnFile.addEventListener('click', () => {
+                if (!tuchatActivo) {
+                    tuchatLoginError.textContent = '⚠️ Entra al chat primero.';
+                    return;
+                }
+                tuchatFileInput.click();
+            });
+
+            tuchatFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagenSeleccionada = event.target.result;
+
+                    let preview = document.getElementById('previewImagen');
+                    if (!preview) {
+                        preview = document.createElement('div');
+                        preview.id = 'previewImagen';
+                        const footer = document.getElementById('tuchatFooter');
+                        if (footer) footer.parentNode.insertBefore(preview, footer);
+                    }
+
+                    preview.style.display = 'flex';
+                    preview.innerHTML = `
+                        <img src="${event.target.result}" alt="Vista previa">
+                        <span class="file-name">${file.name}</span>
+                        <button class="btn-eliminar-img" onclick="eliminarImagenSeleccionada()">✕</button>
+                    `;
+                    tuchatStatus.textContent = `📷 Imagen seleccionada: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+                tuchatFileInput.value = '';
+            });
+        }
+
+        function eliminarImagenSeleccionada() {
+            imagenSeleccionada = null;
+            const preview = document.getElementById('previewImagen');
+            if (preview) preview.style.display = 'none';
+            tuchatStatus.textContent = `👤 Conectado como: ${tuchatUsuario}`;
+        }
+        window.eliminarImagenSeleccionada = eliminarImagenSeleccionada;
+
+        // ============================================================
+        // ENVIAR MENSAJE
+        // ============================================================
+        tuchatBtnEnviar.addEventListener('click', enviarTuchat);
+        tuchatMensaje.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') enviarTuchat();
+        });
+
+        async function enviarTuchat() {
+            if (!tuchatActivo || !tuchatTicketId) return;
+            const texto = tuchatMensaje.value.trim();
+
+            if (texto === '' && !imagenSeleccionada) return;
+
+            try {
+                const mensajeData = {
+                    remitente: tuchatUsuario,
+                    timestamp: serverTimestamp(),
+                    esAdmin: false,
+                    tipo: 'texto'
+                };
+
+                if (texto) {
+                    mensajeData.texto = texto;
+                }
+
+                if (imagenSeleccionada) {
+                    mensajeData.tipo = 'imagen';
+                    mensajeData.imagenBase64 = imagenSeleccionada;
+                    mensajeData.fileName = 'imagen_usuario.jpg';
+                    if (!texto) {
+                        mensajeData.texto = '📷 Imagen compartida';
+                    }
+                }
+
+                await addDoc(collection(db, "tuchat_tickets", tuchatTicketId, "mensajes"), mensajeData);
+
+                await updateDoc(doc(db, "tuchat_tickets", tuchatTicketId), {
+                    ultimo_mensaje: mensajeData.texto || '📷 Imagen',
+                    ultimo_remitente: tuchatUsuario,
+                    ultimo_timestamp: serverTimestamp()
+                });
+
+                tuchatMensaje.value = '';
+                imagenSeleccionada = null;
+                const preview = document.getElementById('previewImagen');
+                if (preview) preview.style.display = 'none';
+                tuchatMensaje.focus();
+            } catch (error) {
+                console.error('Error al enviar mensaje:', error);
+                tuchatStatus.textContent = '❌ Error al enviar mensaje.';
+            }
+        }
+
+        // ============================================================
+        // CARGAR MENSAJES
+        // ============================================================
+        function cargarMensajesTuchat() {
+            if (tuchatMensajesCargados || !tuchatTicketId) return;
+            tuchatMensajesCargados = true;
+
+            const q = query(
+                collection(db, "tuchat_tickets", tuchatTicketId, "mensajes"),
+                orderBy("timestamp", "asc")
+            );
+
+            onSnapshot(q, (snapshot) => {
+                const mensajesExistentes = tuchatBody.querySelectorAll('.tuchat-mensaje');
+                if (mensajesExistentes.length > 0 && snapshot.docChanges().length > 0) {
+                    snapshot.docChanges().forEach(change => {
+                        if (change.type === 'added') {
+                            const data = change.doc.data();
+                            agregarMensajeTuchat(data);
+                        }
+                    });
+                } else if (mensajesExistentes.length === 0) {
+                    tuchatBody.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        agregarMensajeTuchat(data);
+                    });
+                }
+
+                tuchatBody.scrollTop = tuchatBody.scrollHeight;
+            }, error => {
+                console.error('Error al cargar mensajes:', error);
+                tuchatStatus.textContent = '❌ Error al cargar mensajes.';
+            });
+        }
+
+        function agregarMensajeTuchat(data) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'tuchat-mensaje';
+
+            if (data.esAdmin) {
+                msgDiv.classList.add('admin');
+            } else {
+                msgDiv.classList.add('propio');
+            }
+
+            const userSpan = document.createElement('div');
+            userSpan.className = 'usuario';
+            if (data.esAdmin) {
+                userSpan.innerHTML = '👑 Dr.Animalitos <span class="admin-badge">ADMIN</span>';
+            } else {
+                userSpan.textContent = data.remitente || 'Usuario';
+            }
+
+            const textSpan = document.createElement('div');
+            textSpan.className = 'texto';
+
+            if (data.tipo === 'imagen' && data.imagenBase64) {
+                const img = document.createElement('img');
+                img.src = data.imagenBase64;
+                img.alt = 'Imagen compartida';
+                img.loading = 'lazy';
+                img.style.maxWidth = '200px';
+                img.style.maxHeight = '200px';
+                img.style.borderRadius = '8px';
+                img.style.marginTop = '4px';
+                img.style.border = '1px solid rgba(255,215,0,0.1)';
+                textSpan.appendChild(img);
+            } else {
+                textSpan.textContent = data.texto || '';
+            }
+
+            const timeSpan = document.createElement('div');
+            timeSpan.className = 'hora';
+            if (data.timestamp) {
+                const date = data.timestamp.toDate();
+                timeSpan.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            msgDiv.appendChild(userSpan);
+            msgDiv.appendChild(textSpan);
+            msgDiv.appendChild(timeSpan);
+            tuchatBody.appendChild(msgDiv);
+        }
+
+        // ============================================================
+        // FUNCIÓN PARA ADMIN
+        // ============================================================
+        window.enviarComoAdmin = async function(texto) {
+            if (!texto || texto.trim() === '') return;
+            try {
+                const q = query(collection(db, "tuchat_tickets"), where("estado", "==", "abierto"), orderBy("ultimo_timestamp", "desc"));
+                const snapshot = await getDocs(q);
+                if (!snapshot.empty) {
+                    const docRef = snapshot.docs[0];
+                    await addDoc(collection(db, "tuchat_tickets", docRef.id, "mensajes"), {
+                        texto: texto.trim(),
+                        remitente: 'Dr.Animalitos',
+                        timestamp: serverTimestamp(),
+                        esAdmin: true
+                    });
+                    await updateDoc(doc(db, "tuchat_tickets", docRef.id), {
+                        ultimo_mensaje: texto.trim(),
+                        ultimo_remitente: 'Dr.Animalitos',
+                        ultimo_timestamp: serverTimestamp()
+                    });
+                    console.log('✅ Mensaje de admin enviado');
+                }
+            } catch (error) {
+                console.error('❌ Error:', error);
+            }
+        };
+
+        console.log('💬 TuChat con sistema de tickets cargado');
 
         // ============================================================
         // 🚀 INICIALIZACIÓN
@@ -1773,10 +2821,28 @@
             mostrarFecha();
             await cargarDatosServidor();
             setInterval(cargarDatosServidor, 6 * 60 * 60 * 1000);
+            tuchatStatus.textContent = '💬 Listo para conectar';
         };
 
-        // Exponer función para clic en acompañantes
-        window.seleccionarNumeroForense = seleccionarNumeroForense;
+        // ============================================================
+        // MEDIDAS DE SEGURIDAD
+        // ============================================================
+        (function() {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                    (e.ctrlKey && e.keyCode === 83)) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+            document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
+            document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+            setInterval(function() { console.clear(); }, 1000);
+        })();
     </script>
 </body>
 
