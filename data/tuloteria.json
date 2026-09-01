@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-08-31T23:44:16.596147",
+    "ultima_actualizacion": "2026-09-01T04:52:30.886256",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "29 ago 2026",
+        "dia": "Lunes",
+        "fecha": "31 ago 2026",
         "numeros": [
-          18,
-          56,
-          62,
-          65,
-          67
+          11,
+          17,
+          25,
+          37,
+          49
         ],
-        "numero_extra": 18
+        "numero_extra": 10
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Miércoles",
+        "fecha": "02 sept 2026"
       },
       "bote": "131.000.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026",
         "numeros": [
-          3,
-          5,
           6,
-          18,
-          32
+          7,
+          28,
+          32,
+          35
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026",
         "numeros": [
-          1,
+          7,
+          8,
+          9,
           3,
-          5,
-          1,
-          9
+          0
         ],
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026",
         "numeros": [
+          7,
           3,
-          6,
-          8,
-          9
+          9,
+          5
         ],
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026",
         "numeros": [
-          4,
           0,
-          3
+          2,
+          5
         ],
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Lunes",
         "fecha": "31 ago 2026",
         "numeros": [
-          1,
-          7
+          3,
+          8
         ],
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "31 ago 2026"
+        "dia": "Martes",
+        "fecha": "01 sept 2026"
       },
       "bote": "50$"
     },
