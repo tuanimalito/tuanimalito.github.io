@@ -2192,7 +2192,7 @@
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_selva/00.png'">
+                             onerror="this.src='animalitos/animalitos_selva/00.jpg'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
@@ -2298,7 +2298,7 @@
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_selva/00.png'">
+                             onerror="this.src='animalitos/animalitos_selva/00.jpg'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
@@ -2375,7 +2375,7 @@
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_selva/00.png'">
+                             onerror="this.src='animalitos/animalitos_selva/00.jpg'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
                 `;
@@ -2411,9 +2411,9 @@
         };
 
         function obtenerRutaImagen(numero, esDobleCero = false) {
-            if (esDobleCero) return 'animalitos/animalitos_selva/00.png';
-            if (numero === 0) return 'animalitos/animalitos_selva/0.png';
-            return `animalitos/animalitos_selva/${numero}.png`;
+            if (esDobleCero) return 'animalitos/animalitos_selva/00.jpg';
+            if (numero === 0) return 'animalitos/animalitos_selva/0.jpg';
+            return `animalitos/animalitos_selva/${numero}.jpg`;
         }
 
         function mostrarFecha() {
