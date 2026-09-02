@@ -14,14 +14,15 @@
       11,
       16
     ],
-     [
-      16,
-      25,
-      8,
-      26
+    [
+      17,
+      13,
+      24,
+      7,
+      4
     ]
   ],
-  "fecha_actualizacion": "2026-09-01T08:00:35.584Z",
+  "fecha_actualizacion": "2026-09-02T07:20:45.221Z",
   "metadata": {
     "origen": "granjita.json",
     "numeros_por_secuencia": 5,
