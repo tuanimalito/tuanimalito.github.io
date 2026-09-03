@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- OneSignal SDK -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "e528af1f-e023-4dd3-8cb0-68d389493cb5",
+                serviceWorkerOverrideForTypical: true,
+                path: "https://tuanimalito.github.io/OneSignalSDKWorker.js",
+                serviceWorkerParam: { scope: "/" },
+            });
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Admin TuChat - Tickets</title>
+    <link rel="icon" href="./favicon.webp" type="image/webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #0a0a0f; min-height: 100vh; display: flex; justify-content: center; align-items: center; color: #fff; padding: 10px; }
+        .container { max-width: 500px; width: 100%; background: #0f0f1a; border-radius: 28px; border: 1px solid rgba(255,215,0,0.2); overflow: hidden; display: flex; flex-direction: column; height: 95vh; max-height: 800px; }
+        .header { background: linear-gradient(135deg, #0d0d1a, #1a0d2a); padding: 14px 16px; border-bottom: 2px solid rgba(255,215,0,0.2); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .header h2 { color: #ffd700; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+        .header .badge { background: #ff4444; color: white; border-radius: 50%; padding: 2px 8px; font-size: 0.6rem; font-weight: 700; display: none; }
+        .header .badge.show { display: inline-block; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .header .status { font-size: 0.6rem; color: #94a3b8; display: flex; align-items: center; gap: 4px; }
+        .header .status .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+        .header .status .dot.online { background: #4caf50; }
+        .header .status .dot.offline { background: #ff6b6b; }
+
+        .login-panel { padding: 30px 20px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; }
+        .login-panel .logo { font-size: 3rem; }
+        .login-panel h3 { color: #ffd700; font-size: 1.3rem; }
+        .login-panel p { color: #94a3b8; font-size: 0.85rem; max-width: 280px; }
+        .login-panel input { padding: 12px 18px; border: 1px solid rgba(255,215,0,0.2); border-radius: 30px; background: #151226; color: #fff; width: 90%; max-width: 320px; text-align: center; font-size: 0.95rem; outline: none; transition: border 0.3s; }
+        .login-panel input:focus { border-color: #ffd700; }
+        .login-panel button { background: linear-gradient(135deg, #ffd700, #d4af37); color: #0a0a0f; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; width: 90%; max-width: 320px; }
+        .login-panel button:hover { transform: scale(1.02); box-shadow: 0 4px 25px rgba(255,215,0,0.3); }
+        .login-panel .error { color: #ff6b6b; font-size: 0.85rem; min-height: 20px; }
+
+        .tickets-list { max-height: 150px; overflow-y: auto; border-bottom: 1px solid rgba(255,215,0,0.1); flex-shrink: 0; background: #0d0d18; }
+        .tickets-list::-webkit-scrollbar { width: 3px; }
+        .tickets-list::-webkit-scrollbar-thumb { background: #ffd700; border-radius: 10px; }
+        .ticket-item { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.03); cursor: pointer; transition: background 0.2s; display: flex; justify-content: space-between; align-items: center; }
+        .ticket-item:hover { background: rgba(255,215,0,0.05); }
+        .ticket-item.active { background: rgba(255,215,0,0.1); border-left: 3px solid #ffd700; }
+        .ticket-item .info { flex: 1; min-width: 0; }
+        .ticket-item .usuario { font-weight: 600; color: #ffd700; font-size: 0.8rem; }
+        .ticket-item .preview { color: #94a3b8; font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ticket-item .hora { color: #718096; font-size: 0.55rem; margin-left: 8px; flex-shrink: 0; }
+        .ticket-item .ticket-badge { background: #ff4444; color: white; border-radius: 50%; padding: 1px 6px; font-size: 0.5rem; font-weight: 700; margin-left: 6px; flex-shrink: 0; }
+        .no-tickets { text-align: center; color: #718096; padding: 20px; font-size: 0.8rem; }
+
+        .chat-container { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 6px; background: #0a0a12; }
+        .chat-container::-webkit-scrollbar { width: 3px; }
+        .chat-container::-webkit-scrollbar-thumb { background: #ffd700; border-radius: 10px; }
+
+        .mensaje { max-width: 88%; padding: 8px 12px; border-radius: 14px; background: #1a1a2e; border: 1px solid rgba(255,255,255,0.05); word-wrap: break-word; align-self: flex-start; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .mensaje.usuario { border-left: 3px solid #4a9eff; background: #0d1a2a; }
+        .mensaje.admin { align-self: flex-end; border-right: 3px solid #ffd700; background: #1a1a0d; }
+        .mensaje .nombre { font-weight: 700; font-size: 0.65rem; color: #ffd700; margin-bottom: 3px; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+        .mensaje .nombre .admin-badge { background: #ffd700; color: #0a0a0f; font-size: 0.45rem; padding: 1px 6px; border-radius: 10px; font-weight: 700; }
+        .mensaje .texto { color: #e2e8f0; font-size: 0.85rem; line-height: 1.4; word-break: break-word; }
+        .mensaje .texto img { max-width: 200px; max-height: 200px; border-radius: 8px; margin-top: 4px; border: 1px solid rgba(255,215,0,0.1); cursor: pointer; }
+        .mensaje .texto .file-link { color: #ffd700; text-decoration: underline; word-break: break-all; }
+        .mensaje .hora { font-size: 0.5rem; color: #718096; margin-top: 3px; text-align: right; }
+        .mensaje .responder-btn { background: rgba(255,215,0,0.15); color: #ffd700; border: 1px solid rgba(255,215,0,0.2); padding: 2px 10px; border-radius: 10px; font-size: 0.55rem; cursor: pointer; margin-top: 4px; transition: all 0.2s; font-weight: 600; user-select: none; }
+        .mensaje .responder-btn:hover { background: rgba(255,215,0,0.25); }
+        .mensaje .responder-btn:active { transform: scale(0.95); }
+
+        .footer { padding: 8px 12px; background: #0f0f1a; border-top: 1px solid rgba(255,215,0,0.1); display: flex; gap: 6px; flex-shrink: 0; align-items: center; flex-wrap: wrap; }
+        .footer .input-wrapper { flex: 1; display: flex; align-items: center; background: #0a0a12; border: 1px solid rgba(255,215,0,0.2); border-radius: 30px; padding: 2px 4px; transition: border 0.3s; min-width: 80px; }
+        .footer .input-wrapper:focus-within { border-color: #ffd700; }
+        .footer .input-wrapper input { flex: 1; padding: 8px 12px; border: none; border-radius: 30px; background: transparent; color: #e2e8f0; font-size: 0.85rem; outline: none; min-width: 40px; }
+        .footer .input-wrapper input::placeholder { color: #555; }
+        .footer .btn-file { background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer; padding: 4px 8px; transition: all 0.2s; border-radius: 30px; }
+        .footer .btn-file:hover { color: #ffd700; background: rgba(255,215,0,0.1); }
+        .footer button { background: linear-gradient(135deg, #ffd700, #d4af37); color: #0a0a0f; border: none; padding: 8px 14px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 0.8rem; white-space: nowrap; display: flex; align-items: center; gap: 4px; }
+        .footer button:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255,215,0,0.3); }
+        .footer button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .footer .respondiendo-a { font-size: 0.55rem; color: #ffd700; background: rgba(255,215,0,0.1); padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(255,215,0,0.2); display: none; white-space: nowrap; }
+        .footer .respondiendo-a.show { display: inline-block; }
+        .footer .ticket-seleccionado { font-size: 0.55rem; color: #94a3b8; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.03); display: none; white-space: nowrap; }
+        .footer .ticket-seleccionado.show { display: inline-block; }
+
+        .hidden { display: none !important; }
+
+        .toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: #1a1a2e; border: 1px solid #ffd700; border-radius: 14px; padding: 10px 16px; color: #fff; z-index: 9999; display: none; max-width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateX(-50%) translateY(-15px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .toast.show { display: block; }
+        .toast .toast-title { font-weight: 700; color: #ffd700; font-size: 0.8rem; }
+        .toast .toast-body { font-size: 0.75rem; color: #e2e8f0; margin-top: 2px; }
+
+        @media (max-width: 480px) {
+            .container { border-radius: 20px; height: 98vh; max-height: none; }
+            .header h2 { font-size: 0.85rem; }
+            .login-panel h3 { font-size: 1.1rem; }
+            .login-panel input, .login-panel button { width: 100%; }
+            .footer button { padding: 6px 10px; font-size: 0.7rem; }
+            .footer .input-wrapper input { font-size: 0.8rem; padding: 6px 10px; }
+            .mensaje { max-width: 92%; padding: 6px 10px; }
+            .mensaje .texto { font-size: 0.8rem; }
+            .tickets-list { max-height: 120px; }
+            .ticket-item { padding: 8px 12px; }
+            .ticket-item .usuario { font-size: 0.7rem; }
+            .ticket-item .preview { font-size: 0.6rem; }
+            .footer .btn-file { font-size: 0.9rem; padding: 4px 6px; }
+            .mensaje .texto img { max-width: 120px; max-height: 120px; }
+        }
+        @media (max-width: 380px) {
+            .header h2 { font-size: 0.7rem; }
+            .header .status { font-size: 0.5rem; }
+            .footer button { padding: 6px 8px; font-size: 0.65rem; }
+            .footer .input-wrapper input { font-size: 0.7rem; padding: 4px 8px; }
+            .mensaje .texto img { max-width: 80px; max-height: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">🔔 Nuevo mensaje</div>
+        <div class="toast-body" id="toastBody">Mensaje de usuario</div>
+    </div>
+
+    <div class="container" id="app">
+        <div class="header">
+            <h2><i class="bi bi-ticket-fill"></i> Tickets</h2>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="badge" id="unreadBadge">0</span>
+                <div class="status">
+                    <span class="dot online" id="statusDot"></span>
+                    <span id="statusText">Conectado</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-panel" id="loginPanel">
+            <div class="logo">🐾</div>
+            <h3>👑 Acceso Admin</h3>
+            <p>Gestiona todas las conversaciones con los usuarios</p>
+            <input type="password" id="adminClave" placeholder="Clave de administrador..." autocomplete="off">
+            <button id="btnLoginAdmin"><i class="bi bi-unlock-fill"></i> Acceder</button>
+            <div class="error" id="loginError"></div>
+        </div>
+
+        <div id="adminPanel" class="hidden" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+            <div class="tickets-list" id="ticketsList">
+                <div class="no-tickets">No hay tickets abiertos</div>
+            </div>
+            <div class="chat-container" id="chatContainer">
+                <div class="no-tickets" id="noMensajes">
+                    <i class="bi bi-chat-dots" style="font-size:2rem; color:#ffd700; opacity:0.3; display:block; margin-bottom:8px;"></i>
+                    Selecciona un ticket para ver la conversación
+                </div>
+            </div>
+            <div class="footer" id="footerInput">
+                <div class="input-wrapper">
+                    <input type="text" id="mensajeInput" placeholder="Escribe tu respuesta..." disabled>
+                    <input type="file" id="fileInput" accept="image/*" style="display:none;">
+                </div>
+                <button class="btn-file" id="btnFile"><i class="bi bi-image"></i></button>
+                <span class="ticket-seleccionado" id="ticketSeleccionado">Ticket: <span id="ticketIdDisplay"></span></span>
+                <span class="respondiendo-a" id="respondiendoA">Respondiendo a: <span id="nombreDestino"></span></span>
+                <button id="btnEnviar" disabled><i class="bi bi-send-fill"></i> Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, onSnapshot, addDoc, doc, serverTimestamp, orderBy, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.firebasestorage.app",
+            messagingSenderId: "759403364736",
+            appId: "1:759403364736:web:c686aea85758245a7f4165"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // =====================================================
+        // PERMITIR COPIAR/PEGAR EN EL PANEL ADMIN
+        // =====================================================
+        document.addEventListener('copy', function(e) { return true; });
+        document.addEventListener('paste', function(e) { return true; });
+        document.addEventListener('selectstart', function(e) { return true; });
+        document.addEventListener('contextmenu', function(e) { return true; });
+
+        const ADMIN_CLAVE = "admin14055604";
+        let adminAutenticado = false;
+        let ticketSeleccionado = null;
+        let ticketsLista = [];
+        let mensajesCargados = false;
+        let unreadCount = 0;
+
+        // =====================================================
+        // CONFIGURACIÓN DE NOTIFICACIONES
+        // =====================================================
+        // ⚠️ REEMPLAZA ESTO CON TU SUBSCRIPTION ID DE ONESIGNAL ⚠️
+        const TU_SUBSCRIPTION_ID = "TU_SUBSCRIPTION_ID_AQUI"; // <-- CAMBIA ESTO
+
+        async function enviarNotificacion(titulo, mensaje) {
+            if (TU_SUBSCRIPTION_ID === "TU_SUBSCRIPTION_ID_AQUI") {
+                console.warn('⚠️ No has configurado tu Subscription ID de OneSignal');
+                return;
+            }
+            
+            try {
+                const response = await fetch('https://api.onesignal.com/notifications', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic os_v2_app_4uuk6h7aeng5hdfqndjyssj4wxk52vearhaedjuzqqivohlj5fjgdipssphk4vidkx5tx56kihphun2ydqgejwqb6nnqxyp3so6fpei'
+                    },
+                    body: JSON.stringify({
+                        app_id: "e528af1f-e023-4dd3-8cb0-68d389493cb5",
+                        headings: { es: titulo || "🔔 Nuevo mensaje" },
+                        contents: { es: mensaje || "Alguien escribió en el chat" },
+                        include_subscription_ids: [TU_SUBSCRIPTION_ID],
+                        web_url: "https://tuanimalito.github.io/admin_chat.html",
+                        chrome_web_icon: "https://tuanimalito.github.io/favicon.webp"
+                    })
+                });
+                const result = await response.json();
+                if (result.errors) {
+                    console.warn('⚠️ Error en notificación:', result.errors);
+                } else {
+                    console.log('✅ Notificación enviada:', result);
+                }
+            } catch (error) {
+                console.error('❌ Error al enviar notificación:', error);
+            }
+        }
+
+        // =====================================================
+        // ELEMENTOS DOM
+        // =====================================================
+        const loginPanel = document.getElementById('loginPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const ticketsList = document.getElementById('ticketsList');
+        const chatContainer = document.getElementById('chatContainer');
+        const footerInput = document.getElementById('footerInput');
+        const adminClave = document.getElementById('adminClave');
+        const btnLoginAdmin = document.getElementById('btnLoginAdmin');
+        const loginError = document.getElementById('loginError');
+        const mensajeInput = document.getElementById('mensajeInput');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const unreadBadge = document.getElementById('unreadBadge');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const noMensajes = document.getElementById('noMensajes');
+        const respondiendoA = document.getElementById('respondiendoA');
+        const nombreDestino = document.getElementById('nombreDestino');
+        const ticketSeleccionadoDisplay = document.getElementById('ticketSeleccionado');
+        const ticketIdDisplay = document.getElementById('ticketIdDisplay');
+        const toast = document.getElementById('toast');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastBody = document.getElementById('toastBody');
+        const btnFile = document.getElementById('btnFile');
+        const fileInput = document.getElementById('fileInput');
+
+        // =====================================================
+        // LOGIN
+        // =====================================================
+        btnLoginAdmin.addEventListener('click', autenticarAdmin);
+        adminClave.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') autenticarAdmin();
+        });
+
+        function autenticarAdmin() {
+            const clave = adminClave.value.trim();
+            if (clave === ADMIN_CLAVE) {
+                adminAutenticado = true;
+                loginPanel.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+                mensajeInput.disabled = false;
+                btnEnviar.disabled = false;
+                loginError.textContent = '';
+                statusDot.className = 'dot online';
+                statusText.textContent = 'Admin';
+                cargarTickets();
+                solicitarPermisosNotificacion();
+            } else {
+                loginError.textContent = '❌ Clave incorrecta';
+                setTimeout(() => loginError.textContent = '', 3000);
+            }
+        }
+
+        async function solicitarPermisosNotificacion() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                const permiso = await Notification.requestPermission();
+                if (permiso === 'granted') {
+                    console.log('✅ Permisos de notificación concedidos');
+                    // Obtener Subscription ID de OneSignal
+                    try {
+                        const subscription = await OneSignal.User.PushSubscription.getId();
+                        console.log('📱 Tu Subscription ID es:', subscription);
+                        if (subscription) {
+                            alert('✅ Tu Subscription ID es: ' + subscription + '\nCópialo y pégalo en el código donde dice "TU_SUBSCRIPTION_ID_AQUI"');
+                        }
+                    } catch (e) {
+                        console.warn('⚠️ No se pudo obtener el Subscription ID:', e);
+                    }
+                }
+            }
+        }
+
+        function mostrarToast(title, body) {
+            toastTitle.textContent = title || '🔔 Nuevo mensaje';
+            toastBody.textContent = body || 'Alguien escribió en el chat';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // =====================================================
+        // CARGAR TICKETS
+        // =====================================================
+        function cargarTickets() {
+            const q = query(
+                collection(db, "tuchat_tickets"),
+                where("estado", "==", "abierto"),
+                orderBy("ultimo_timestamp", "desc")
+            );
+
+            onSnapshot(q, (snapshot) => {
+                ticketsLista = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    ticketsLista.push({ id: doc.id, ...data });
+                });
+                actualizarListaTickets();
+            }, (error) => {
+                console.error('Error al cargar tickets:', error);
+                const q2 = collection(db, "tuchat_tickets");
+                onSnapshot(q2, (snapshot2) => {
+                    ticketsLista = [];
+                    snapshot2.forEach(doc => {
+                        const data = doc.data();
+                        if (data.usuario && data.estado === "abierto") {
+                            ticketsLista.push({ id: doc.id, ...data });
+                        }
+                    });
+                    actualizarListaTickets();
+                });
+            });
+        }
+
+        function actualizarListaTickets() {
+            if (ticketsLista.length === 0) {
+                ticketsList.innerHTML = `<div class="no-tickets">No hay tickets abiertos</div>`;
+                return;
+            }
+
+            let html = '';
+            ticketsLista.forEach(ticket => {
+                const preview = ticket.ultimo_mensaje || 'Sin mensajes';
+                const hora = ticket.ultimo_timestamp ? new Date(ticket.ultimo_timestamp.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+                const activeClass = ticketSeleccionado === ticket.id ? 'active' : '';
+                
+                html += `
+                    <div class="ticket-item ${activeClass}" data-id="${ticket.id}" onclick="seleccionarTicket('${ticket.id}')">
+                        <div class="info">
+                            <div class="usuario">🐾 ${ticket.usuario}</div>
+                            <div class="preview">${preview}</div>
+                        </div>
+                        <span class="hora">${hora}</span>
+                    </div>
+                `;
+            });
+            ticketsList.innerHTML = html;
+        }
+
+        window.seleccionarTicket = function(ticketId) {
+            ticketSeleccionado = ticketId;
+            const ticket = ticketsLista.find(t => t.id === ticketId);
+            if (ticket) {
+                ticketIdDisplay.textContent = ticketId.slice(0, 8);
+                ticketSeleccionadoDisplay.classList.add('show');
+                nombreDestino.textContent = ticket.usuario;
+                respondiendoA.classList.add('show');
+                mensajeInput.placeholder = `Responder a ${ticket.usuario}...`;
+                mensajeInput.focus();
+                actualizarListaTickets();
+                cargarMensajesTicket(ticketId);
+            }
+        };
+
+        // =====================================================
+        // CARGAR MENSAJES DE UN TICKET
+        // =====================================================
+        let mensajesUnsubscribe = null;
+
+        function cargarMensajesTicket(ticketId) {
+            if (mensajesUnsubscribe) {
+                mensajesUnsubscribe();
+                mensajesUnsubscribe = null;
+            }
+
+            const q = query(
+                collection(db, "tuchat_tickets", ticketId, "mensajes"),
+                orderBy("timestamp", "asc")
+            );
+
+            mensajesUnsubscribe = onSnapshot(q, (snapshot) => {
+                chatContainer.innerHTML = '';
+                let tieneMensajes = false;
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    tieneMensajes = true;
+                    agregarMensajeAdmin(data);
+                });
+
+                if (!tieneMensajes) {
+                    chatContainer.innerHTML = `
+                        <div class="no-tickets">
+                            <i class="bi bi-chat-dots" style="font-size:2rem; color:#ffd700; opacity:0.3; display:block; margin-bottom:8px;"></i>
+                            No hay mensajes en este ticket
+                        </div>
+                    `;
+                }
+                
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, (error) => {
+                console.error('Error al cargar mensajes:', error);
+                chatContainer.innerHTML = `
+                    <div class="no-tickets">
+                        <i class="bi bi-exclamation-triangle-fill" style="color:#ff6b6b; font-size:1.5rem;"></i>
+                        Error al cargar mensajes
+                    </div>
+                `;
+            });
+        }
+
+        function agregarMensajeAdmin(data) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'mensaje';
+
+            if (data.esAdmin) {
+                msgDiv.classList.add('admin');
+            } else {
+                msgDiv.classList.add('usuario');
+                
+                // ===== ENVIAR NOTIFICACIÓN CUANDO UN USUARIO ESCRIBE =====
+                // Solo si el mensaje es de un usuario y el admin está conectado
+                if (adminAutenticado && data.remitente !== 'Dr.Animalitos') {
+                    const titulo = `🐾 Nuevo mensaje de ${data.remitente || 'Usuario'}`;
+                    const cuerpo = data.texto || '📷 Imagen compartida';
+                    enviarNotificacion(titulo, cuerpo);
+                    console.log(`🔔 Notificación enviada por mensaje de ${data.remitente}`);
+                }
+            }
+
+            const nombreSpan = document.createElement('div');
+            nombreSpan.className = 'nombre';
+            if (data.esAdmin) {
+                nombreSpan.innerHTML = `👑 Dr.Animalitos <span class="admin-badge">ADMIN</span>`;
+            } else {
+                nombreSpan.innerHTML = `🐾 ${data.remitente || 'Usuario'}`;
+                const btnResponder = document.createElement('button');
+                btnResponder.className = 'responder-btn';
+                btnResponder.innerHTML = '<i class="bi bi-reply-fill"></i> Responder';
+                btnResponder.addEventListener('click', () => {
+                    const ticket = ticketsLista.find(t => t.id === ticketSeleccionado);
+                    if (ticket) {
+                        mensajeInput.value = `@${ticket.usuario} `;
+                        mensajeInput.focus();
+                        nombreDestino.textContent = ticket.usuario;
+                        respondiendoA.classList.add('show');
+                    }
+                });
+                nombreSpan.appendChild(btnResponder);
+            }
+
+            const textSpan = document.createElement('div');
+            textSpan.className = 'texto';
+            
+            if (data.tipo === 'imagen' && data.imagenBase64) {
+                const img = document.createElement('img');
+                img.src = data.imagenBase64;
+                img.alt = 'Imagen compartida';
+                img.loading = 'lazy';
+                img.addEventListener('click', () => {
+                    window.open(data.imagenBase64, '_blank');
+                });
+                textSpan.appendChild(img);
+            } else if (data.tipo === 'archivo' && data.fileUrl) {
+                const link = document.createElement('a');
+                link.href = data.fileUrl;
+                link.target = '_blank';
+                link.className = 'file-link';
+                link.textContent = `📎 ${data.fileName || 'Archivo'}`;
+                textSpan.appendChild(link);
+            } else {
+                textSpan.textContent = data.texto || '';
+            }
+
+            const timeSpan = document.createElement('div');
+            timeSpan.className = 'hora';
+            if (data.timestamp) {
+                const date = data.timestamp.toDate();
+                timeSpan.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            msgDiv.appendChild(nombreSpan);
+            msgDiv.appendChild(textSpan);
+            msgDiv.appendChild(timeSpan);
+            chatContainer.appendChild(msgDiv);
+        }
+
+        // =====================================================
+        // ENVIAR RESPUESTA (TEXTO)
+        // =====================================================
+        btnEnviar.addEventListener('click', enviarRespuesta);
+        mensajeInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                enviarRespuesta();
+            }
+        });
+
+        async function enviarRespuesta() {
+            const texto = mensajeInput.value.trim();
+            
+            if (!ticketSeleccionado) {
+                mostrarToast('⚠️ Atención', 'Selecciona un ticket primero');
+                return;
+            }
+            
+            if (texto === '') {
+                mostrarToast('⚠️ Atención', 'Escribe un mensaje');
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "tuchat_tickets", ticketSeleccionado, "mensajes"), {
+                    texto: texto,
+                    remitente: 'Dr.Animalitos',
+                    timestamp: serverTimestamp(),
+                    esAdmin: true,
+                    tipo: 'texto'
+                });
+
+                await updateDoc(doc(db, "tuchat_tickets", ticketSeleccionado), {
+                    ultimo_mensaje: texto,
+                    ultimo_remitente: 'Dr.Animalitos',
+                    ultimo_timestamp: serverTimestamp()
+                });
+
+                mensajeInput.value = '';
+                mensajeInput.focus();
+                respondiendoA.classList.remove('show');
+                
+                console.log('✅ Respuesta enviada al ticket:', ticketSeleccionado);
+            } catch (error) {
+                console.error('❌ Error al enviar:', error);
+                mostrarToast('❌ Error', 'No se pudo enviar la respuesta: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // SUBIR IMÁGENES (Admin)
+        // =====================================================
+        btnFile.addEventListener('click', () => {
+            if (!ticketSeleccionado) {
+                mostrarToast('⚠️ Atención', 'Selecciona un ticket primero');
+                return;
+            }
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file || !ticketSeleccionado) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const imageData = event.target.result;
+                
+                try {
+                    await addDoc(collection(db, "tuchat_tickets", ticketSeleccionado, "mensajes"), {
+                        texto: '📷 Imagen compartida',
+                        remitente: 'Dr.Animalitos',
+                        timestamp: serverTimestamp(),
+                        esAdmin: true,
+                        tipo: 'imagen',
+                        imagenBase64: imageData,
+                        fileName: file.name
+                    });
+
+                    await updateDoc(doc(db, "tuchat_tickets", ticketSeleccionado), {
+                        ultimo_mensaje: '📷 Imagen compartida',
+                        ultimo_remitente: 'Dr.Animalitos',
+                        ultimo_timestamp: serverTimestamp()
+                    });
+
+                    mostrarToast('✅ Imagen enviada', `Imagen enviada al usuario`);
+                } catch (error) {
+                    console.error('❌ Error al enviar imagen:', error);
+                    mostrarToast('❌ Error', 'No se pudo enviar la imagen');
+                }
+            };
+            reader.readAsDataURL(file);
+            fileInput.value = '';
+        });
+
+        // =====================================================
+        // FUNCIÓN PARA ADMIN DESDE CONSOLA
+        // =====================================================
+        window.enviarComoAdmin = async function(texto) {
+            if (!texto || texto.trim() === '') return;
+            try {
+                const q = query(collection(db, "tuchat_tickets"), where("estado", "==", "abierto"), orderBy("ultimo_timestamp", "desc"));
+                const snapshot = await getDocs(q);
+                if (!snapshot.empty) {
+                    const docRef = snapshot.docs[0];
+                    await addDoc(collection(db, "tuchat_tickets", docRef.id, "mensajes"), {
+                        texto: texto.trim(),
+                        remitente: 'Dr.Animalitos',
+                        timestamp: serverTimestamp(),
+                        esAdmin: true,
+                        tipo: 'texto'
+                    });
+                    await updateDoc(doc(db, "tuchat_tickets", docRef.id), {
+                        ultimo_mensaje: texto.trim(),
+                        ultimo_remitente: 'Dr.Animalitos',
+                        ultimo_timestamp: serverTimestamp()
+                    });
+                    console.log('✅ Mensaje de admin enviado');
+                }
+            } catch (error) {
+                console.error('❌ Error:', error);
+            }
+        };
+
+        console.log('👑 Panel Admin de Tickets cargado');
+        console.log('📌 Clave de admin:', ADMIN_CLAVE);
+        console.log('📌 Para obtener tu Subscription ID, abre la consola y escribe:');
+        console.log('   OneSignal.User.PushSubscription.id');
+         // ==================== MEDIDAS DE SEGURIDAD ====================
+        (function() {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                    (e.ctrlKey && e.keyCode === 83)) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+            document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
+            document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+            (function detectDevTools() {
+                const element = new Image();
+                Object.defineProperty(element, 'id', { get: function() { console.clear(); console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;'); } });
+                console.log(element);
+            })();
+            setInterval(function() { console.clear(); }, 1000);
+        })();
+        
+    </script>
+</body>
+</html>
