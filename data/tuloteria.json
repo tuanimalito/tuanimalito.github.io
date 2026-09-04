@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-03T22:29:12.230154",
+    "ultima_actualizacion": "2026-09-04T05:43:44.066345",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "03 sept 2026",
         "numeros": [
-          4,
-          16,
-          17,
-          25,
-          27
+          2,
+          14,
+          23,
+          24,
+          30
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "03 sept 2026",
         "numeros": [
-          8,
-          7,
-          3,
+          9,
           5,
-          7
+          7,
+          6,
+          2
         ],
-        "numero_extra": 0
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "03 sept 2026",
         "numeros": [
-          1,
-          8,
-          8,
-          3
+          5,
+          7,
+          0,
+          6
         ],
-        "numero_extra": 0
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "03 sept 2026",
         "numeros": [
-          3,
-          6,
-          6
+          7,
+          7,
+          8
         ],
-        "numero_extra": 0
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "03 sept 2026",
         "numeros": [
-          2,
-          9
+          8,
+          3
         ],
-        "numero_extra": 0
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "03 sept 2026"
+        "dia": "Viernes",
+        "fecha": "04 sept 2026"
       },
       "bote": "50$"
     },
