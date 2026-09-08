@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-08T05:48:49.039485",
+    "ultima_actualizacion": "2026-09-08T11:06:10.175255",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "07 sept 2026",
+        "numeros": [
+          15,
+          19,
+          28,
+          39,
+          56
+        ],
+        "numero_extra": 3
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "09 sept 2026"
+      },
+      "bote": "207.000.000$"
+    },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
@@ -26,28 +48,6 @@
         "fecha": "08 sept 2026"
       },
       "bote": "193.000.000$"
-    },
-    {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "07 sept 2026",
-        "numeros": [
-          15,
-          19,
-          28,
-          39,
-          56
-        ],
-        "numero_extra": 3
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
-      },
-      "bote": "190.000.000$"
     },
     {
       "id": "lotto-florida",
