@@ -1,0 +1,32 @@
+{
+  "resultados": [
+    [
+      25,
+      1,
+      4,
+      9,
+      5
+    ],
+    [
+      "00",
+      30,
+      12,
+      0,
+      1
+    ],
+    [
+      25,
+      1,
+      4,
+      9,
+      5
+    ]
+  ],
+  "fecha_actualizacion": "2026-09-09T08:46:08.427Z",
+  "metadata": {
+    "origen": "granjita.json",
+    "numeros_por_secuencia": 5,
+    "total_secuencias": 3,
+    "generado_por": "actualizar_secuencia_granjita.js"
+  }
+}
