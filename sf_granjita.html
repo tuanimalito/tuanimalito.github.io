@@ -302,7 +302,7 @@
             border-radius: 10px;
         }
 
-        /* --- TRIPLETAS (Púrpura) - AHORA VISIBLE --- */
+        /* --- TRIPLETAS (Púrpura) - BLOQUEADO --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
@@ -368,7 +368,7 @@
             color: #ff9999;
         }
 
-        /* --- GSM (Dorado) - AHORA VISIBLE --- */
+        /* --- GSM (Dorado) - BLOQUEADO --- */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.25);
@@ -396,7 +396,7 @@
             color: #ffd700;
         }
 
-        /* --- ANÁLISIS FORENSE (Dorado) - AHORA VISIBLE --- */
+        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - BLOQUEADO --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
@@ -542,7 +542,7 @@
         }
 
         /* ================================================ */
-        /* OVERLAY - SOLO PARA SUPER FIJOS                  */
+        /* OVERLAY MEJORADO - TODAS LAS SECCIONES PREMIUM   */
         /* ================================================ */
         .premium-overlay {
             position: absolute;
@@ -695,7 +695,7 @@
         }
 
         /* ================================================ */
-        /* BLOQUEO DE CONTENIDO - SOLO SUPER FIJOS          */
+        /* BLOQUEO DE CONTENIDO PREMIUM                      */
         /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
@@ -735,7 +735,14 @@
             display: none;
         }
 
-        /* Contenido de predicción desbloqueado */
+        /* Contenido de predicción bloqueado */
+        .prediccion-contenido-bloqueado {
+            filter: blur(8px) brightness(0.6);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
         .prediccion-contenido-desbloqueado {
             filter: blur(0px) brightness(1);
             opacity: 1;
@@ -1821,14 +1828,39 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 2. TRIPLETAS - AHORA VISIBLE (GRATIS)    -->
+            <!-- 2. TRIPLETAS - BLOQUEADO (PREMIUM)       -->
             <!-- ======================================== -->
             <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Premium</h3>
-                <div style="text-align: center; color: #b388ff; font-size: 0.8rem; margin-bottom: 10px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido disponible para todos
+                
+                <!-- OVERLAY DE BLOQUEO -->
+                <div class="premium-overlay" id="overlayTripletas">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> TRIPLETAS VIP
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a las Tripletas ingresando tu clave o suscríbete vía:
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-telegram"></i> Telegram
+                        </a>
+                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Tripletas" 
+                           class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-chat-dots"></i> SMS
+                        </a>
+                        <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Tripletas&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Tripletas" 
+                           class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-envelope"></i> Gmail
+                        </a>
+                    </div>
                 </div>
-                <div id="tripletas-contenido" style="min-height: 150px;">
+
+                <div id="tripletas-contenido" class="premium-container" style="min-height: 150px;">
                     <div class="no-data">Cargando tripletas...</div>
                 </div>
             </div>
@@ -1871,15 +1903,38 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 4. GSM - AHORA VISIBLE (GRATIS)          -->
+            <!-- 4. GSM - BLOQUEADO (PREMIUM)             -->
             <!-- ======================================== -->
             <div class="tarjeta-gsm tarjeta-dato">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido disponible para todos
+                    <i class="bi bi-crown-fill"></i> Contenido Premium - Desbloquea para usar
                 </div>
 
-                <div id="gsm-contenido" style="min-height: 200px;">
+                <!-- OVERLAY DE BLOQUEO -->
+                <div class="premium-overlay" id="overlayGSM">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> GSM PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede al Generador de Secuencias ingresando tu clave:
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-telegram"></i> Telegram
+                        </a>
+                        <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20GSM" 
+                           class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-chat-dots"></i> SMS
+                        </a>
+                    </div>
+                </div>
+
+                <div id="gsm-contenido" class="premium-container" style="min-height: 200px;">
                     <!-- Buscar secuencia -->
                     <div class="gsm-busqueda">
                         <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
@@ -1921,23 +1976,71 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 5. ANÁLISIS FORENSE - AHORA VISIBLE      -->
+            <!-- 5. ANÁLISIS FORENSE - BLOQUEADO          -->
             <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
 
-                <!-- TOP 10 + REY -->
-                <div class="forense-sub">
-                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                    <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
+                <!-- TOP 10 + REY (BLOQUEADO) -->
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
+                    
+                    <!-- Overlay Premium para TOP 10 -->
+                    <div class="premium-overlay" id="overlayTop10" style="border-radius: 12px;">
+                        <div class="premium-badge" style="font-size: 1.5rem;">
+                            <i class="bi bi-crown-fill"></i> TOP 10 VIP
+                        </div>
+                        <p class="premium-message" style="font-size: 0.9rem;">
+                            <strong>🔒 Contenido Exclusivo</strong><br>
+                            Accede al TOP 10 + REY ingresando tu clave:
+                        </p>
+                        <div class="action-buttons-group">
+                            <button class="unlock-btn" onclick="abrirModalLogin()" style="padding: 8px 20px; font-size: 0.85rem;">
+                                <i class="bi bi-unlock-fill"></i> Desbloquear
+                            </button>
+                            <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-telegram"></i> Telegram
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="forense-top10" class="premium-container" style="overflow-x: auto; min-height: 150px;">
                         <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <!-- Predicción Forense -->
-                <div class="forense-sub">
-                    <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                    <div id="forense-prediccion" class="prediccion-container">
+                <!-- Predicción Forense (BLOQUEADA) -->
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
+                    
+                    <!-- Overlay Premium para Predicción Forense -->
+                    <div class="premium-overlay" id="overlayPrediccion">
+                        <div class="premium-badge" style="font-size: 1.5rem;">
+                            <i class="bi bi-crown-fill"></i> PREDICCIÓN VIP
+                        </div>
+                        <p class="premium-message" style="font-size: 0.9rem;">
+                            <strong>🔒 Contenido Exclusivo</strong><br>
+                            Accede a la Predicción Forense ingresando tu clave o suscríbete vía:
+                        </p>
+                        <div class="action-buttons-group">
+                            <button class="unlock-btn" onclick="abrirModalLogin()" style="padding: 8px 20px; font-size: 0.85rem;">
+                                <i class="bi bi-unlock-fill"></i> Desbloquear
+                            </button>
+                            <a href="https://t.me/DrAnimalitos" class="contact-btn btn-telegram" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-telegram"></i> Telegram
+                            </a>
+                            <a href="sms:+584248671967?body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Predicción%20Forense" 
+                               class="contact-btn btn-sms" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-chat-dots"></i> SMS
+                            </a>
+                            <a href="mailto:magbisfajardo7@gmail.com?subject=Clave%20Premium%20Predicción%20Forense&body=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20Premium%20para%20Predicción%20Forense" 
+                               class="contact-btn btn-gmail" target="_blank" rel="noopener noreferrer" style="padding: 8px 16px; font-size: 0.75rem;">
+                                <i class="bi bi-envelope"></i> Gmail
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="forense-prediccion" class="prediccion-container prediccion-contenido-bloqueado">
                         <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
@@ -1960,7 +2063,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear TODO el contenido Premium:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -2150,7 +2253,7 @@
 
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearSuperFijos();
+                    desbloquearTodoPremium();
                     cerrarModalLogin();
                     localStorage.setItem(STORAGE_KEY, 'true');
                     localStorage.setItem('granjita_premium_token', clave);
@@ -2173,7 +2276,7 @@
                 const esValido = await validarCodigo(tokenGuardado);
                 if (esValido) {
                     usuarioAutenticado = true;
-                    desbloquearSuperFijos();
+                    desbloquearTodoPremium();
                 } else {
                     localStorage.removeItem('granjita_premium_token');
                     localStorage.removeItem(STORAGE_KEY);
@@ -2183,12 +2286,25 @@
         }
 
         // =====================================================
-        // 🔓 DESBLOQUEAR SUPER FIJOS
+        // 🔓 DESBLOQUEAR TODO EL CONTENIDO PREMIUM
         // =====================================================
-        function desbloquearSuperFijos() {
+        function desbloquearTodoPremium() {
             usuarioAutenticado = true;
 
-            // Desbloquear Super Fijos
+            // 1. Desbloquear Tripletas
+            const overlayTripletas = document.getElementById('overlayTripletas');
+            if (overlayTripletas) overlayTripletas.classList.add('hidden');
+            const tripletasContenedor = document.getElementById('tripletas-contenido');
+            if (tripletasContenedor) {
+                const grid = tripletasContenedor.querySelector('.numeros-grid');
+                if (grid) {
+                    grid.classList.remove('locked-grid');
+                    grid.classList.add('locked-grid-desbloqueado');
+                }
+                tripletasContenedor.classList.remove('locked-grid');
+            }
+
+            // 2. Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
@@ -2199,6 +2315,39 @@
                     grid.classList.add('locked-grid-desbloqueado');
                 }
                 resultadoContenedor.classList.remove('locked-grid');
+            }
+
+            // 3. Desbloquear GSM
+            const overlayGSM = document.getElementById('overlayGSM');
+            if (overlayGSM) overlayGSM.classList.add('hidden');
+            const gsmContenedor = document.getElementById('gsm-contenido');
+            if (gsmContenedor) {
+                gsmContenedor.classList.remove('locked-grid');
+                gsmContenedor.classList.add('locked-grid-desbloqueado');
+            }
+
+            // 4. Desbloquear TOP 10
+            const overlayTop10 = document.getElementById('overlayTop10');
+            if (overlayTop10) overlayTop10.classList.add('hidden');
+            const forenseTop10 = document.getElementById('forense-top10');
+            if (forenseTop10) {
+                forenseTop10.classList.remove('locked-grid');
+                forenseTop10.classList.add('locked-grid-desbloqueado');
+            }
+
+            // 5. Desbloquear Predicción Forense
+            const overlayPrediccion = document.getElementById('overlayPrediccion');
+            if (overlayPrediccion) overlayPrediccion.classList.add('hidden');
+            const prediccionContenedor = document.getElementById('forense-prediccion');
+            if (prediccionContenedor) {
+                prediccionContenedor.classList.remove('prediccion-contenido-bloqueado');
+                prediccionContenedor.classList.add('prediccion-contenido-desbloqueado');
+            }
+
+            // Refrescar los datos si ya están cargados
+            if (historialFiltrado && historialFiltrado.length > 0) {
+                actualizarForenseTop10();
+                actualizarForensePrediccion();
             }
         }
 
@@ -2409,7 +2558,7 @@
         }
 
         // =====================================================
-        // ANÁLISIS FORENSE - AHORA VISIBLE
+        // ANÁLISIS FORENSE PREMIUM - BLOQUEADO
         // =====================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 36, especiales: ['00'] };
@@ -2643,9 +2792,20 @@
         }
 
         // =====================================================
-        // PREDICCIÓN FORENSE - AHORA VISIBLE
+        // PREDICCIÓN FORENSE - BLOQUEADA
         // =====================================================
         function actualizarForensePrediccion() {
+            // Solo mostrar si está autenticado
+            if (!usuarioAutenticado) {
+                document.getElementById('forense-prediccion').innerHTML = `
+                    <div class="no-data" style="padding: 20px;">
+                        <i class="bi bi-lock-fill" style="font-size: 1.5rem; display: block; margin-bottom: 8px; color: #ffd700;"></i>
+                        Contenido Premium - Desbloquea para ver la predicción
+                    </div>
+                `;
+                return;
+            }
+
             const semillas = calcularSemillasForense();
             const arrastre = calcularArrastreForense();
             const zona = calcularZonaCazaForense();
@@ -2721,13 +2881,30 @@
             if (historialFiltrado && historialFiltrado.length > 0) {
                 actualizarForenseTop10();
                 actualizarForensePrediccion();
+
+                // Aplicar bloqueos si no está autenticado
+                if (!usuarioAutenticado) {
+                    // TOP 10 - bloqueado
+                    const forenseTop10 = document.getElementById('forense-top10');
+                    if (forenseTop10) {
+                        forenseTop10.classList.add('locked-grid');
+                        forenseTop10.classList.remove('locked-grid-desbloqueado');
+                    }
+                    
+                    // Predicción - bloqueada
+                    const prediccionContenedor = document.getElementById('forense-prediccion');
+                    if (prediccionContenedor) {
+                        prediccionContenedor.classList.add('prediccion-contenido-bloqueado');
+                        prediccionContenedor.classList.remove('prediccion-contenido-desbloqueado');
+                    }
+                }
             }
         }
 
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS (AHORA VISIBLE)
+        // GSM - GENERADOR DE SECUENCIAS MIA (BLOQUEADO)
         // =====================================================
         const gsmAnimales = {
             '00': 'ballena',
@@ -2846,6 +3023,12 @@
         }
 
         function gsmConsultarNumero() {
+            // Verificar autenticación
+            if (!usuarioAutenticado) {
+                alert('🔒 Contenido Premium. Desbloquea para usar el Generador de Secuencias.');
+                return;
+            }
+
             const input = document.getElementById('gsmNumeroInput');
             const val = input.value.trim();
             const tarjeta = document.getElementById('gsmTarjetaImagen');
@@ -2903,6 +3086,15 @@
                 if (val === '') { validacion.textContent = ''; return; }
                 validacion.textContent = gsmEsNumeroValido(val) ? '' : '⛔ rango: 0, 00, 1-36';
             });
+
+            // Inicializar en estado bloqueado si no está autenticado
+            if (!usuarioAutenticado) {
+                const gsmContenedor = document.getElementById('gsm-contenido');
+                if (gsmContenedor) {
+                    gsmContenedor.classList.add('locked-grid');
+                    gsmContenedor.classList.remove('locked-grid-desbloqueado');
+                }
+            }
 
             document.getElementById('gsmTarjetaImagen').style.display = 'none';
             document.getElementById('gsmMensajeSinNumero').style.display = 'block';
@@ -3067,11 +3259,11 @@
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 3. TRIPLETAS - AHORA VISIBLE (4 números)
+                // 3. TRIPLETAS - BLOQUEADO (4 números)
                 const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
                 mostrarTripletas(tripletas);
 
-                // 4. ANÁLISIS FORENSE - AHORA VISIBLE
+                // 4. ANÁLISIS FORENSE - BLOQUEADO
                 cargarDatosForense();
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
@@ -3148,7 +3340,15 @@
                 return;
             }
 
-            let html = `<div class="numeros-grid">`;
+            let claseGrid = 'numeros-grid';
+            let claseContainer = 'premium-container';
+
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+                claseContainer += ' locked-grid';
+            }
+
+            let html = `<div class="${claseGrid}">`;
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -3172,6 +3372,7 @@
                 `;
             });
             html += '</div>';
+            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
         }
 
@@ -3288,11 +3489,10 @@
                 // Mensaje de bienvenida
                 const mensajePromocion = `👑Premium GSM Profesional V.5✅
         ✅ Acceso a los 3 súper fijós 
-        ✅ Acceso por 5 días.
+        ✅ Acceso por 5 días 900bs
         --------------------
-        👉Al activar la función premium, tiene acceso a los súper fijós
-        ✅Guacharo ✅Loto ✅Granja millonaria ✅Granjazo
-        ✅La Granjita ✅Selva Plus
+        👉Al activar la función premium, tiene acceso a los súper fijós de 
+        ✅Guacharo ✅Loto ✅Granja millonaria ✅Granjazo ✅La Granjita ✅Selva Plus
         🔒 Analisis forense premium 
         🔒 Generador de secuencias
         🔒 Bases de Tripletas 
@@ -3304,7 +3504,6 @@
         C.I:14.055.604
         --------------------
         Nota: Debes enviar el capture de su pago por este medio.
-        --------------------
         🚫 NO realizo promoción de apuestas, venta de sorteos, ni juego de azar.
         ✅No trabajo con afiliación
         ✅*"No trabajo con suscripción**
