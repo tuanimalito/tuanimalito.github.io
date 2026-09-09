@@ -1,6 +1,10 @@
 /**
  * SCRIPT DEFINITIVO - Dr. Animalitos
- * CONFIGURACIÓN PARA LAS 6 LOTERÍAS - SIN PUPPETEER
+ * CONFIGURACIÓN PARA LAS 7 LOTERÍAS - SIN PUPPETEER
+ * ACTUALIZADO: 
+ *   - guacharito → archivo correcto (guacharito.json)
+ *   - granjita → scraping de Lotoven con lógica correcta (hoy → ayer → anteayer)
+ *   - selva → 13 sorteos
  */
 
 const fs = require('fs');
@@ -34,7 +38,7 @@ const HEADERS = {
 };
 
 // ============================================
-// CONFIGURACIÓN DE LAS 6 LOTERÍAS
+// CONFIGURACIÓN DE LAS 7 LOTERÍAS
 // ============================================
 const CONFIG = {
   guacharo: {
@@ -105,15 +109,15 @@ const CONFIG = {
     }
   },
 
-  // 🌱 LA GRANJITA - OPCIÓN B (EMULACIÓN DE NAVEGADOR COMPLETA)
-  granjita: {
-    apiUrl: 'https://lagranjita.com/api/results.json',
+  // 🌱 GUACHARITO - API OFICIAL (12 SORTEOS)
+  guacharito: {
+    apiUrl: 'https://api.lotterly.co/v1/results/el-guacharito-millonario/',
     numeros: 12,
-    nombre: 'La Granjita',
-    archivo: 'granjita.json',
+    nombre: 'Guacharito Millonario',
+    archivo: 'guacharito.json',
     procesar: async (fecha) => {
-      const fechaStr = formatearFechaGranjita(fecha);
-      const url = `${CONFIG.granjita.apiUrl}?date=${fechaStr}&productId=1&t=${Date.now()}`;
+      const fechaStr = formatearFechaAPI(fecha);
+      const url = `${CONFIG.guacharito.apiUrl}?exact_date=${fechaStr}&extended=true&_t=${Date.now()}`;
       console.log(`   📡 URL: ${url}`);
       
       try {
@@ -121,12 +125,8 @@ const CONFIG = {
           headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
             'Accept': 'application/json, text/plain, */*',
-            'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',
-            'Referer': 'https://lagranjita.com/',
-            'Origin': 'https://lagranjita.com'
+            'Origin': 'https://elguacharitomillonario.com',
+            'Referer': 'https://elguacharitomillonario.com/'
           }
         });
         
@@ -136,18 +136,20 @@ const CONFIG = {
         }
         
         const data = await response.json();
-        const resultados = data["LA GRANJITA"] || [];
-        const numeros = resultados.map(item => {
-          const valor = item.result_value;
-          return valor === "00" ? "00" : parseInt(valor);
-        });
         
-        if (numeros.length === 12) {
+        if (Array.isArray(data) && data.length === 12) {
+          const numeros = data.map(sorteo => {
+            const resultado = sorteo.results?.[0]?.result;
+            return resultado === "00" ? "00" : parseInt(resultado);
+          });
+          
+          console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
           return numeros;
         } else {
-          console.log(`   ⚠️ Se obtuvieron ${numeros.length} números de 12 requeridos`);
+          console.log(`   ⚠️ Se obtuvieron ${data?.length || 0} sorteos de 12 requeridos`);
           return null;
         }
+        
       } catch (error) {
         console.log(`   ❌ Error: ${error.message}`);
         return null;
@@ -155,28 +157,120 @@ const CONFIG = {
     }
   },
 
+  // 🌿 LA GRANJITA - SCRAPING DE LOTOVEN (CON LÓGICA CORRECTA)
+  granjita: {
+    apiUrl: 'https://lotoven.com/animalito/lagranjita/resultados/',
+    numeros: 12,
+    nombre: 'La Granjita',
+    archivo: 'granjita.json',
+    procesar: async (fecha) => {
+      // Determinar si es hoy o una fecha pasada
+      const hoy = new Date();
+      const fechaLocal = new Date(hoy.getTime() - (4 * 60 * 60 * 1000));
+      const esHoy = fecha.getDate() === fechaLocal.getDate() && 
+                    fecha.getMonth() === fechaLocal.getMonth() && 
+                    fecha.getFullYear() === fechaLocal.getFullYear();
+      
+      let url;
+      if (esHoy) {
+        // Si es hoy, usar la URL principal
+        url = 'https://lotoven.com/animalito/lagranjita/resultados/';
+        console.log(`   📡 Scrapeando (hoy): ${url}`);
+      } else {
+        // Si es fecha pasada, usar el formato con la fecha en la URL
+        const fechaStr = formatearFechaGranjita(fecha);
+        url = `https://lotoven.com/animalito/lagranjita/resultados/${fechaStr}/`;
+        console.log(`   📡 Scrapeando (fecha pasada): ${url}`);
+      }
+      
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+            'Cache-Control': 'no-cache'
+          }
+        });
+        
+        if (!response.ok) {
+          console.log(`   ⚠️ HTTP ${response.status}: No se pudo acceder a la página`);
+          return null;
+        }
+        
+        const html = await response.text();
+        
+        // Extraer números del HTML
+        const numeros = [];
+        const regexInfo = /<span[^>]*class="[^"]*info[^"]*"[^>]*>(\d{1,2})\s+([A-Za-záéíóúñÑ]+)<\/span>/g;
+        let match;
+        
+        while ((match = regexInfo.exec(html)) !== null) {
+          const num = match[1];
+          const animal = match[2];
+          if (parseInt(num) >= 0 && parseInt(num) <= 99 && animal.length >= 3) {
+            numeros.push(num === "0" ? "00" : parseInt(num));
+          }
+          if (numeros.length === 12) break;
+        }
+        
+        // 🔥 CRÍTICO: Si no hay 12 números, devolver null para que busque el día anterior
+        if (numeros.length !== 12) {
+          console.log(`   ⚠️ Se obtuvieron ${numeros.length} números de 12 requeridos - Buscando día anterior...`);
+          return null;
+        }
+        
+        console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
+        return numeros;
+        
+      } catch (error) {
+        console.log(`   ❌ Error al scrapear: ${error.message}`);
+        return null;
+      }
+    }
+  },
+
+  // 🌿 SELVA PLUS - API OFICIAL (13 SORTEOS)
   selva: {
     apiUrl: 'https://api.lotterly.co/v1/results/selva-plus/',
-    numeros: 12,
+    numeros: 13,
     nombre: 'Selva Plus',
     archivo: 'selva.json',
     procesar: async (fecha) => {
       const fechaStr = formatearFechaAPI(fecha);
       const url = `${CONFIG.selva.apiUrl}?exact_date=${fechaStr}&extended=true&_t=${Date.now()}`;
       console.log(`   📡 URL: ${url}`);
+      
       try {
         const response = await fetch(url, {
-          headers: { ...HEADERS, 'Origin': 'https://www.selvaplus.com', 'Referer': 'https://www.selvaplus.com/' }
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Origin': 'https://www.selvaplus.com',
+            'Referer': 'https://www.selvaplus.com/'
+          }
         });
-        if (!response.ok) return null;
+        
+        if (!response.ok) {
+          console.log(`   ⚠️ HTTP ${response.status}: ${response.statusText}`);
+          return null;
+        }
+        
         const data = await response.json();
-        if (Array.isArray(data) && data.length === 12) {
-          return data.map(sorteo => {
+        
+        if (Array.isArray(data) && data.length >= 13) {
+          const numeros = data.slice(0, 13).map(sorteo => {
             const resultado = sorteo.results?.[0]?.result;
             return resultado === "00" ? "00" : parseInt(resultado);
           });
+          
+          console.log(`   ✅ Números obtenidos: ${numeros.join(', ')}`);
+          return numeros;
+        } else {
+          console.log(`   ⚠️ Se obtuvieron ${data?.length || 0} sorteos, se esperaban 13`);
+          return null;
         }
-        return null;
+        
       } catch (error) {
         console.log(`   ❌ Error: ${error.message}`);
         return null;
@@ -293,8 +387,16 @@ async function main() {
   console.log('');
 
   const resultados = {};
-  const loterias = ['guacharo', 'granja', 'granjazo', 'granjita', 'selva', 'lotto'];
-  const numerosEsperados = { guacharo: 12, granja: 10, granjazo: 10, granjita: 12, selva: 12, lotto: 12 };
+  const loterias = ['guacharo', 'granja', 'granjazo', 'guacharito', 'granjita', 'selva', 'lotto'];
+  const numerosEsperados = { 
+    guacharo: 12, 
+    granja: 10, 
+    granjazo: 10, 
+    guacharito: 12, 
+    granjita: 12,
+    selva: 13, 
+    lotto: 12 
+  };
 
   for (const loteria of loterias) {
     console.log(`\n🔍 Buscando ${CONFIG[loteria].nombre}...`);
