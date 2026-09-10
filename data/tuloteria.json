@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-09T20:51:21.622907",
+    "ultima_actualizacion": "2026-09-10T04:23:32.674330",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "07 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "09 sept 2026",
         "numeros": [
-          15,
-          19,
-          28,
-          39,
-          56
+          9,
+          40,
+          42,
+          55,
+          65
         ],
-        "numero_extra": 3
+        "numero_extra": 23
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Sábado",
+        "fecha": "12 sept 2026"
       },
       "bote": "207.000.000$"
     },
@@ -54,23 +54,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "05 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "09 sept 2026",
         "numeros": [
-          6,
-          12,
-          17,
-          31,
-          39,
-          47
+          10,
+          15,
+          25,
+          29,
+          44,
+          52
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Sábado",
+        "fecha": "12 sept 2026"
       },
-      "bote": "7.750.000$"
+      "bote": "8.750.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -103,17 +103,17 @@
         "dia": "Miércoles",
         "fecha": "09 sept 2026",
         "numeros": [
+          4,
           6,
-          8,
-          13,
-          14,
-          33
+          15,
+          18,
+          28
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Jueves",
+        "fecha": "10 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Miércoles",
         "fecha": "09 sept 2026",
         "numeros": [
+          6,
           7,
-          0,
-          0,
-          4,
-          5
+          6,
+          6,
+          0
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Jueves",
+        "fecha": "10 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Miércoles",
         "fecha": "09 sept 2026",
         "numeros": [
-          9,
-          1,
+          2,
+          6,
           8,
-          2
+          4
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Jueves",
+        "fecha": "10 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Miércoles",
         "fecha": "09 sept 2026",
         "numeros": [
-          7,
-          4,
-          0
+          1,
+          6,
+          6
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Jueves",
+        "fecha": "10 sept 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "09 sept 2026",
         "numeros": [
           1,
-          4
+          3
         ],
-        "numero_extra": 0
+        "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "09 sept 2026"
+        "dia": "Jueves",
+        "fecha": "10 sept 2026"
       },
       "bote": "50$"
     },
