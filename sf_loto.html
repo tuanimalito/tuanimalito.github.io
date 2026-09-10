@@ -253,39 +253,7 @@
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8));
         }
 
-        /* --- CORTESÍA (Azul) - 5 números (SIEMPRE VISIBLE) --- */
-        .tarjeta-cortesia {
-            background: linear-gradient(145deg, #0d1a2a 0%, #1a2a3a 100%);
-            border: 1px solid rgba(74, 158, 255, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(74, 158, 255, 0.1);
-        }
-        .tarjeta-cortesia::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .tarjeta-cortesia h3 {
-            color: #4a9eff;
-            -webkit-text-fill-color: #4a9eff;
-            background: none;
-        }
-        .tarjeta-cortesia .numero-card {
-            background: linear-gradient(180deg, #1a2a3a 0%, #0d1a2a 100%);
-            border: 1px solid rgba(74, 158, 255, 0.2);
-        }
-        .tarjeta-cortesia .numero-card .numero {
-            color: #4a9eff;
-        }
-        .tarjeta-cortesia .numero-card .animal {
-            color: #8ab8ff;
-        }
-
-        /* --- TRIPLETAS (Púrpura) - BLOQUEADO --- */
+        /* --- BASES PARA TRIPLETAS (Púrpura) - DESBLOQUEADO --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
@@ -318,7 +286,7 @@
             color: #d1b3ff;
         }
 
-        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
+        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 2 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -856,17 +824,12 @@
             transition: all 0.3s;
         }
 
-        .numeros-grid-3 {
+        .numeros-grid-2 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .numeros-grid-5 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            max-width: 420px;
+            margin: 0 auto;
             transition: all 0.3s;
         }
 
@@ -1240,11 +1203,10 @@
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
-            .numeros-grid-5 {
-                grid-template-columns: repeat(5, 1fr);
-            }
-            .numeros-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
+            .numeros-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 420px;
+                margin: 0 auto;
             }
             .cabecera h1 {
                 font-size: 3rem;
@@ -1264,11 +1226,9 @@
         }
 
         @media (max-width: 600px) {
-            .numeros-grid-5 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .numeros-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
+            .numeros-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 100%;
             }
             .prediccion-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1405,58 +1365,32 @@
 
         <div class="seccion-datos">
             <!-- ======================================== -->
-            <!-- 1. CORTESÍA - SIEMPRE VISIBLE (GRATIS)    -->
-            <!-- ======================================== -->
-            <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los más Calientes para Hoy</h3>
-                <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
-                    <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-unlock-fill"></i> Gratis para todos
-                </div>
-                <div id="cortesia-contenido" style="min-height: 150px;">
-                    <div class="no-data">Cargando cortesía...</div>
-                </div>
-            </div>
-
-            <!-- ======================================== -->
-            <!-- 2. TRIPLETAS - BLOQUEADO (PREMIUM)       -->
+            <!-- 1. BASES PARA TRIPLETAS - DESBLOQUEADO   -->
             <!-- ======================================== -->
             <div class="tarjeta-tripletas tarjeta-dato">
-                <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Premium</h3>
-                
-                <!-- OVERLAY DE BLOQUEO -->
-                <div class="premium-overlay" id="overlayTripletas">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> TRIPLETAS VIP
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a las Tripletas ingresando tu clave:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                    </div>
+                <h3><i class="bi bi-grid-3x3-gap-fill"></i> Bases para Tripletas</h3>
+                <div style="text-align: center; color: #b388ff; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
                 </div>
 
-                <div id="tripletas-contenido" class="premium-container" style="min-height: 150px;">
+                <div id="tripletas-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando tripletas...</div>
                 </div>
             </div>
 
             <!-- ======================================== -->
-            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- 2. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
             <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
 
                 <div class="premium-overlay" id="overlaySuperFijos">
                     <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
+                        <i class="bi bi-crown-fill"></i> 2 SUPER FIJOS
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave:
+                        Accede a los 2 Super Fijos ingresando tu clave:
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
@@ -1471,7 +1405,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 4. GSM - BLOQUEADO (PREMIUM)             -->
+            <!-- 3. GSM - BLOQUEADO (PREMIUM)             -->
             <!-- ======================================== -->
             <div class="tarjeta-gsm tarjeta-dato">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
@@ -1537,7 +1471,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 5. ANÁLISIS FORENSE - DESBLOQUEADO       -->
+            <!-- 4. ANÁLISIS FORENSE - DESBLOQUEADO       -->
             <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
@@ -1591,14 +1525,14 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Tripletas, Super Fijos y Generador de Secuencias:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Super Fijos y Generador de Secuencias:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #8fa095; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong>, <strong>Tripletas</strong> y <strong>Generador de Secuencias</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Lotto Activo.</p>
+        <p>Nuestras <strong>Bases para Tripletas</strong>, <strong>Super Fijos</strong> y <strong>Generador de Secuencias</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Lotto Activo.</p>
         <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Análisis Forense Premium</strong> disponible gratis para todos.</p>
     </div>
 
@@ -1781,30 +1715,17 @@
         }
 
         // =====================================================
-        // 🔓 DESBLOQUEAR PREMIUM (SOLO TRIPLETAS, SUPER FIJOS Y GSM)
+        // 🔓 DESBLOQUEAR PREMIUM (SUPER FIJOS Y GSM)
         // =====================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
 
-            // 1. Desbloquear Tripletas
-            const overlayTripletas = document.getElementById('overlayTripletas');
-            if (overlayTripletas) overlayTripletas.classList.add('hidden');
-            const tripletasContenedor = document.getElementById('tripletas-contenido');
-            if (tripletasContenedor) {
-                const grid = tripletasContenedor.querySelector('.numeros-grid');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                tripletasContenedor.classList.remove('locked-grid');
-            }
-
-            // 2. Desbloquear Super Fijos
+            // 1. Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
             if (resultadoContenedor) {
-                const grid = resultadoContenedor.querySelector('.numeros-grid-3');
+                const grid = resultadoContenedor.querySelector('.numeros-grid-2');
                 if (grid) {
                     grid.classList.remove('locked-grid');
                     grid.classList.add('locked-grid-desbloqueado');
@@ -1812,7 +1733,7 @@
                 resultadoContenedor.classList.remove('locked-grid');
             }
 
-            // 3. Desbloquear GSM
+            // 2. Desbloquear GSM
             const overlayGSM = document.getElementById('overlayGSM');
             if (overlayGSM) overlayGSM.classList.add('hidden');
             const gsmContenedor = document.getElementById('gsm-contenido');
@@ -1844,136 +1765,8 @@
             document.getElementById('statusBar').innerHTML = mensaje;
         }
 
-        function calcularEspejo(item) {
-            let posicionOriginal;
-            if (item.esDobleCero) {
-                posicionOriginal = 38;
-            } else if (item.numero === 0) {
-                posicionOriginal = 37;
-            } else {
-                posicionOriginal = item.numero;
-            }
-
-            let espejoPosicion;
-            if (posicionOriginal === 38) {
-                espejoPosicion = 19;
-            } else if (posicionOriginal === 19) {
-                espejoPosicion = 38;
-            } else {
-                espejoPosicion = 38 - posicionOriginal;
-            }
-
-            let esDobleCeroEspejo = (espejoPosicion === 38);
-            let numeroEspejo = (esDobleCeroEspejo || espejoPosicion === 37) ? 0 : espejoPosicion;
-
-            return {
-                numero: numeroEspejo,
-                esDobleCero: esDobleCeroEspejo,
-                casilla: item.casilla
-            };
-        }
-
-        function esMismoNumero(a, b) {
-            if (!a || !b) return false;
-            if (a.esDobleCero && b.esDobleCero) return true;
-            return !a.esDobleCero && !b.esDobleCero && a.numero === b.numero;
-        }
-
-        function resolverDuplicados(listaProcesada, dia2Procesado, limiteEfectivo) {
-            const resultadoLimpio = [];
-            let indiceReserva = 4;
-
-            for (let i = 0; i < limiteEfectivo; i++) {
-                let candidato = listaProcesada[i];
-                while (resultadoLimpio.some(existente => esMismoNumero(existente, candidato))) {
-                    if (indiceReserva < dia2Procesado.length) {
-                        candidato = calcularEspejo(dia2Procesado[indiceReserva]);
-                        indiceReserva++;
-                    } else {
-                        break;
-                    }
-                }
-                resultadoLimpio.push(candidato);
-            }
-            return resultadoLimpio;
-        }
-
-        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
-            const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
-            const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
-
-            let acompañantes = [];
-            if (superFijos && superFijos.length >= 2) {
-                acompañantes = superFijos.slice(0, 2);
-            } else {
-                acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
-            }
-
-            return mezclarArray([...bases, ...acompañantes]);
-        }
-
-        function obtener4Aleatorios(todos) {
-            const copia = [...todos];
-            const seleccionados = [];
-            while (seleccionados.length < 4 && copia.length > 0) {
-                const indexRandom = Math.floor(Math.random() * copia.length);
-                seleccionados.push(copia.splice(indexRandom, 1)[0]);
-            }
-            return seleccionados;
-        }
-
         // =====================================================
-        // CORTESÍA: 2 gratis + 3 Super Fijos = 5 números MEZCLADOS
-        // =====================================================
-        let cortesiaEstatica = null;
-
-        function informacionDeCortecia(todos, superFijos) {
-            if (cortesiaEstatica) {
-                return mezclarArray([...cortesiaEstatica]);
-            }
-
-            const diaMasReciente = todos.slice(24, 36);
-            const primerNumero = diaMasReciente[0];
-
-            let incremento1, incremento2;
-            if (primerNumero.esDobleCero) {
-                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: 2, esDobleCero: false, esGratis: true };
-            } else {
-                let numBase = primerNumero.numero;
-                let val1 = numBase + 1;
-                let val2 = numBase + 2;
-                if (val1 > 36) val1 = val1 - 37;
-                if (val2 > 36) val2 = val2 - 37;
-                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
-            }
-
-            let superFijosParaCortesia = [];
-            if (superFijos && superFijos.length >= 3) {
-                superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            } else {
-                const aleatorios = obtener4Aleatorios(todos).slice(0, 3);
-                superFijosParaCortesia = aleatorios.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            }
-
-            const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
-            cortesiaEstatica = todosLosNumeros;
-            return mezclarArray([...todosLosNumeros]);
-        }
-
-        function reiniciarCortesia() {
-            cortesiaEstatica = null;
-        }
-
-        // =====================================================
-        // BÚSQUEDA DE REPETICIÓN (SUPER FIJOS - 3 números)
+        // BÚSQUEDA DE REPETICIÓN (SUPER FIJOS - 2 números)
         // =====================================================
         function buscarRepeticionConFiltro(resultados) {
             const niveles = {
@@ -2003,7 +1796,7 @@
                             let intentos = 0;
                             const maxIntentos = 20;
 
-                            while (secuenciaFinal.length < 3 && intentos < maxIntentos) {
+                            while (secuenciaFinal.length < 2 && intentos < maxIntentos) {
                                 if (indiceActual < resultados.length && indiceActual < 36) {
                                     const siguiente = resultados[indiceActual];
                                     if (!secuenciaFinal.some(existente => obtenerClave(existente) === obtenerClave(siguiente))) {
@@ -2016,7 +1809,7 @@
                                 intentos++;
                             }
 
-                            if (secuenciaFinal.length === 3) {
+                            if (secuenciaFinal.length === 2) {
                                 return {
                                     encontrado: true,
                                     siguientes: secuenciaFinal,
@@ -2046,7 +1839,7 @@
             const maxIntentos = 100;
             let intentos = 0;
 
-            while (seleccionados.length < 3 && intentos < maxIntentos) {
+            while (seleccionados.length < 2 && intentos < maxIntentos) {
                 const idxRandom = Math.floor(Math.random() * numerosDisponibles.length);
                 const item = numerosDisponibles[idxRandom];
                 const clave = obtenerClave(item);
@@ -2300,9 +2093,9 @@
         }
 
         // =====================================================
-        // PREDICCIÓN FORENSE - DESBLOQUEADA (GRATIS)
+        // RANKING DE PREDICCIÓN FORENSE (datos reutilizables)
         // =====================================================
-        function actualizarForensePrediccion() {
+        function obtenerRankingPrediccionForense() {
             const semillas = calcularSemillasForense();
             const arrastre = calcularArrastreForense();
             const zona = calcularZonaCazaForense();
@@ -2321,10 +2114,17 @@
                 if (pts > 0) puntajes[n] = pts;
             });
 
-            const ranking = Object.entries(puntajes)
+            return Object.entries(puntajes)
                 .map(([n, p]) => ({ numero: parseInt(n), puntaje: p }))
                 .sort((a, b) => b.puntaje - a.puntaje)
                 .slice(0, 3);
+        }
+
+        // =====================================================
+        // PREDICCIÓN FORENSE - DESBLOQUEADA (GRATIS)
+        // =====================================================
+        function actualizarForensePrediccion() {
+            const ranking = obtenerRankingPrediccionForense();
 
             const labels = ['⭐ Opción 1', '🎁 Opción 2', '🔥 Opción 3'];
             const colores = ['#ffd700', '#C0C0C0', '#CD7F32'];
@@ -2581,7 +2381,7 @@
         }
 
         // =====================================================
-        // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS CON MEZCLA
+        // FUNCIÓN DE VISUALIZACIÓN DE SUPER FIJOS CON MEZCLA (2 números)
         // =====================================================
         function mostrarSuperFijosConLog(items, infoAdicional = null) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2592,7 +2392,7 @@
 
             const itemsMezclados = mezclarArray([...items]);
 
-            let claseGrid = 'numeros-grid-3';
+            let claseGrid = 'numeros-grid-2';
             let claseContainer = 'premium-container';
 
             if (!usuarioAutenticado) {
@@ -2628,7 +2428,7 @@
                     rutaImagen = obtenerRutaImagen(r.numero, false);
                 }
 
-                const badges = ['🔥', '⭐', '🎁'];
+                const badges = ['🔥', '⭐'];
 
                 html += `
                     <div class="numero-card" style="position: relative;">
@@ -2645,7 +2445,7 @@
 
             html += '</div>';
 
-            if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
+            if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 2) {
                 const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
                 if (duplicadosEliminados > 0) {
                     html += `
@@ -2659,6 +2459,27 @@
 
             contenedor.className = claseContainer;
             contenedor.innerHTML = html;
+        }
+
+        // =====================================================
+        // TRIPLETAS: 2 Super Fijos + 2 Primeras Opciones Forenses
+        // =====================================================
+        function obtenerTripletas(superFijos, rankingForense) {
+            const parteSuperFijos = (superFijos && superFijos.length >= 2)
+                ? superFijos.slice(0, 2)
+                : [];
+
+            const parteForense = [];
+            if (rankingForense && rankingForense.length >= 2) {
+                rankingForense.slice(0, 2).forEach(r => {
+                    parteForense.push({
+                        numero: r.numero === 100 ? 0 : r.numero,
+                        esDobleCero: r.numero === 100
+                    });
+                });
+            }
+
+            return mezclarArray([...parteSuperFijos, ...parteForense]);
         }
 
         // =====================================================
@@ -2690,7 +2511,7 @@
                 const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
 
                 const resultado = buscarRepeticionConFiltro(todos);
-                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 2) : [];
 
                 const infoSuperFijos = {
                     encontrado: resultado.encontrado,
@@ -2729,17 +2550,15 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                reiniciarCortesia();
-
                 mostrarSuperFijosConLog(superFijos, infoSuperFijos);
 
-                const cortesiaResultados = informacionDeCortecia(todos, superFijos);
-                mostrarCortesia(cortesiaResultados);
-
-                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
-                mostrarTripletas(tripletas);
-
+                // 🔹 Primero Forense (necesario para las Tripletas)
                 cargarDatosForense();
+
+                // 🔹 Tripletas = 2 Super Fijos + 2 Primeras Opciones Forenses
+                const rankingForense = obtenerRankingPrediccionForense();
+                const tripletas = obtenerTripletas(superFijos, rankingForense);
+                mostrarTripletas(tripletas);
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
@@ -2749,7 +2568,6 @@
                 console.error('Error al cargar JSON del servidor:', error);
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
                 const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
-                document.getElementById('cortesia-contenido').innerHTML = msjError;
                 document.getElementById('tripletas-contenido').innerHTML = msjError;
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
@@ -2760,43 +2578,6 @@
         // =====================================================
         // FUNCIONES DE VISUALIZACIÓN
         // =====================================================
-        function mostrarCortesia(items) {
-            const contenedor = document.getElementById('cortesia-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay datos de cortesía disponibles.</div>';
-                return;
-            }
-
-            const shuffled = mezclarArray([...items]);
-
-            let html = '<div class="numeros-grid-5">';
-            shuffled.forEach(r => {
-                let numDisplay, nombreAnimal, rutaImagen;
-
-                if (r.esDobleCero) {
-                    numDisplay = "00";
-                    nombreAnimal = "ballena";
-                    rutaImagen = obtenerRutaImagen(0, true);
-                } else {
-                    numDisplay = String(r.numero).padStart(2, '0');
-                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                    rutaImagen = obtenerRutaImagen(r.numero, false);
-                }
-
-                html += `
-                    <div class="numero-card">
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_loto/00.png'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
         function mostrarTripletas(items) {
             const contenedor = document.getElementById('tripletas-contenido');
 
@@ -2805,15 +2586,7 @@
                 return;
             }
 
-            let claseGrid = 'numeros-grid';
-            let claseContainer = 'premium-container';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-                claseContainer += ' locked-grid';
-            }
-
-            let html = `<div class="${claseGrid}">`;
+            let html = `<div class="numeros-grid">`;
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2837,7 +2610,7 @@
                 `;
             });
             html += '</div>';
-            contenedor.className = claseContainer;
+            contenedor.className = '';
             contenedor.innerHTML = html;
         }
 
