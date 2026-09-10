@@ -1,28 +1,28 @@
 {
   "resultados": [
     [
-      31,
-      7,
       1,
-      8,
-      19
+      26,
+      2,
+      34,
+      67
     ],
     [
-      19,
-      0,
-      16,
-      14,
-      22
+      20,
+      33,
+      95,
+      29,
+      96
     ],
     [
-      19,
-      0,
-      16,
-      14,
-      22
+      9,
+      12,
+      36,
+      59,
+      65
     ]
   ],
-  "fecha_actualizacion": "2026-09-09T07:35:35.056Z",
+  "fecha_actualizacion": "2026-09-10T07:32:50.331Z",
   "metadata": {
     "origen": "selva.json",
     "numeros_por_secuencia": 5,
