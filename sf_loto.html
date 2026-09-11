@@ -677,6 +677,38 @@
             box-shadow: 0 4px 35px rgba(234, 67, 53, 0.5);
         }
 
+        /* BOTÓN WHATSAPP EN OVERLAY */
+        .btn-whatsapp-overlay {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp-overlay:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-overlay i {
+            font-size: 1.1rem;
+        }
+
         /* ================================================ */
         /* BLOQUEO DE CONTENIDO PREMIUM                      */
         /* ================================================ */
@@ -1441,12 +1473,18 @@
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave:
+                        Accede a los 3 Super Fijos ingresando tu clave: o solicita una clave presionando el botón de WhatsApp.
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20Lotto%20Activo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
