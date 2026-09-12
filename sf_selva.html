@@ -248,7 +248,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Verde) - 5 números MEZCLADOS --- */
+        /* --- CORTESÍA (Verde) - 6 números MEZCLADOS --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0a1a0a 0%, #1a2a1a 100%);
             border: 1px solid rgba(46, 204, 113, 0.25);
@@ -317,7 +317,7 @@
             color: #d1b3ff;
         }
 
-        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
+        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 4 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -769,6 +769,13 @@
             transition: all 0.3s;
         }
 
+        .numeros-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
         .numero-card {
             border-radius: 16px;
             padding: 14px 10px;
@@ -916,6 +923,9 @@
             .numeros-grid-3 {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .numeros-grid-6 {
+                grid-template-columns: repeat(6, 1fr);
+            }
             .cabecera h1 {
                 font-size: 3rem;
             }
@@ -935,6 +945,9 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             .numeros-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .numeros-grid-6 {
                 grid-template-columns: repeat(3, 1fr);
             }
             .prediccion-grid {
@@ -1048,7 +1061,7 @@
             <!-- 1. CORTESÍA - SIEMPRE VISIBLE (GRATIS)    -->
             <!-- ======================================== -->
             <div class="tarjeta-cortesia tarjeta-dato">
-                <h3><i class="bi bi-info-circle-fill"></i> Los mas Calientes para Hoy</h3>
+                <h3><i class="bi bi-info-circle-fill"></i> Los más Calientes para Hoy</h3>
                 <div style="text-align: center; color: #2ecc71; font-size: 0.8rem; margin-bottom: 10px;">
                     <i class="bi bi-gift-fill"></i> Dr.animalitos <i class="bi bi-unlock-fill"></i> Gratis para todos
                 </div>
@@ -1085,18 +1098,18 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM) 4 números -->
             <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
-                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
+                <h3><i class="bi bi-star-fill"></i> 4 Super Fijos Premium</h3>
 
                 <div class="premium-overlay" id="overlaySuperFijos">
                     <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
+                        <i class="bi bi-crown-fill"></i> 4 SUPER FIJOS
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave:
+                        Accede a los 4 Super Fijos ingresando tu clave:
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
@@ -1165,7 +1178,7 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Tripletas y Super Fijos:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Tripletas y los 4 Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
@@ -1226,6 +1239,53 @@
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             return shuffled;
+        }
+
+        // ============================================================
+        // 🎯 GARANTIZAR NÚMEROS ÚNICOS
+        // Incrementa duplicados +1 hasta que todos sean distintos
+        // ============================================================
+        function garantizarUnicos(lista, maxNum) {
+            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
+
+            let resultado = lista.map(item => ({
+                numero: item.numero ?? 0,
+                esDobleCero: item.esDobleCero || false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false,
+                casilla: item.casilla || 0
+            }));
+
+            function incrementar(item) {
+                if (item.esDobleCero) {
+                    return { ...item, numero: 1, esDobleCero: false };
+                }
+                let nuevo = item.numero + 1;
+                if (nuevo > maxNum) nuevo = 0;
+                return { ...item, numero: nuevo, esDobleCero: false };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = resultado.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                for (let i = 0; i < resultado.length; i++) {
+                    const clave = claveDe(resultado[i]);
+                    if (vistas.has(clave)) {
+                        resultado[i] = incrementar(resultado[i]);
+                        break;
+                    }
+                    vistas.add(clave);
+                }
+                intentos++;
+            }
+
+            return resultado;
         }
 
         // ============================================================
@@ -1322,12 +1382,12 @@
                 tripletasContenedor.classList.remove('locked-grid');
             }
 
-            // 2. Desbloquear Super Fijos
+            // 2. Desbloquear Super Fijos (4 números → numeros-grid)
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
             if (resultadoContenedor) {
-                const grid = resultadoContenedor.querySelector('.numeros-grid-3');
+                const grid = resultadoContenedor.querySelector('.numeros-grid');
                 if (grid) {
                     grid.classList.remove('locked-grid');
                     grid.classList.add('locked-grid-desbloqueado');
@@ -1652,7 +1712,49 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // ============================================================
-        // 🎁 CORTESÍA - Los más calientes para hoy (MEZCLADOS)
+        // 🎯 SUPER FIJOS - 4 números (N1+1, N1+2, N2+1, N2+2)
+        // ============================================================
+        function calcularSuperFijos(todos) {
+            const diaMasReciente = todos.slice(24, 36);
+            const n1 = diaMasReciente[0];
+            const n2 = diaMasReciente[1];
+
+            if (!n1 || !n2) return [];
+
+            const maxNum = 75;
+
+            function incrementar(item, incremento) {
+                if (item.esDobleCero) {
+                    return {
+                        numero: incremento,
+                        esDobleCero: false,
+                        casilla: item.casilla,
+                        esPremium: true
+                    };
+                }
+                let nuevo = item.numero + incremento;
+                if (nuevo > maxNum) nuevo = nuevo - (maxNum + 1);
+                return {
+                    numero: nuevo,
+                    esDobleCero: false,
+                    casilla: item.casilla,
+                    esPremium: true
+                };
+            }
+
+            const lista = [
+                incrementar(n1, 1),
+                incrementar(n1, 2),
+                incrementar(n2, 1),
+                incrementar(n2, 2)
+            ];
+
+            return garantizarUnicos(lista, maxNum);
+        }
+
+        // ============================================================
+        // 🎁 LOS MÁS CALIENTES - 6 números
+        // 4 Super Fijos + N3+1 + N3+2
         // ============================================================
         let cortesiaEstatica = null;
 
@@ -1662,37 +1764,41 @@
             }
 
             const diaMasReciente = todos.slice(24, 36);
-            const primerNumero = diaMasReciente[0];
-            
-            let incremento1, incremento2;
-            if (primerNumero.esDobleCero) {
-                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: 2, esDobleCero: false, esGratis: true };
-            } else {
-                let numBase = primerNumero.numero;
-                let val1 = numBase + 1;
-                let val2 = numBase + 2;
-                if (val1 > 75) val1 = val1 - 76;
-                if (val2 > 75) val2 = val2 - 76;
-                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
+            const n3 = diaMasReciente[2];
+
+            const maxNum = 75;
+
+            let incrementos = [];
+            if (n3) {
+                function incrementar(item, incremento) {
+                    if (item.esDobleCero) {
+                        return {
+                            numero: incremento,
+                            esDobleCero: false,
+                            esGratis: true
+                        };
+                    }
+                    let nuevo = item.numero + incremento;
+                    if (nuevo > maxNum) nuevo = nuevo - (maxNum + 1);
+                    return {
+                        numero: nuevo,
+                        esDobleCero: false,
+                        esGratis: true
+                    };
+                }
+                incrementos = [
+                    incrementar(n3, 1),
+                    incrementar(n3, 2)
+                ];
             }
 
-            let superFijosParaCortesia = [];
-            if (superFijos && superFijos.length >= 3) {
-                superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            } else {
-                const aleatorios = obtener4Aleatorios(todos).slice(0, 3);
-                superFijosParaCortesia = aleatorios.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            }
+            const combinado = [
+                ...superFijos.map(sf => ({ ...sf, esPremium: true, esGratis: false })),
+                ...incrementos
+            ];
 
-            const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
+            const todosLosNumeros = garantizarUnicos(combinado, maxNum);
+
             cortesiaEstatica = todosLosNumeros;
             return mezclarArray([...todosLosNumeros]);
         }
@@ -1721,7 +1827,7 @@
 
             const shuffled = mezclarArray([...items]);
 
-            let html = '<div class="numeros-grid-5">';
+            let html = '<div class="numeros-grid-6">';
             shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -1864,37 +1970,8 @@
         }
 
         // ============================================================
-        // 📊 LÓGICA DE SUPER FIJOS
+        // 📊 VISUALIZACIÓN DE SUPER FIJOS (4 números)
         // ============================================================
-        function buscarRepeticion(resultados) {
-            const mapa = new Map();
-
-            resultados.forEach(r => {
-                const clave = r.esDobleCero ? '00' : r.numero;
-                if (!mapa.has(clave)) mapa.set(clave, []);
-                mapa.get(clave).push(r);
-            });
-
-            for (let i = 24; i < 36; i++) {
-                const actual = resultados[i];
-                const claveActual = actual.esDobleCero ? '00' : actual.numero;
-                const repeticiones = (mapa.get(claveActual) || []).filter(r => r.casilla <= 24);
-
-                if (repeticiones.length > 0) {
-                    const rep = repeticiones.sort((a, b) => b.casilla - a.casilla)[0];
-                    const siguientes = [];
-
-                    for (let j = 1; j <= 4; j++) {
-                        const sig = resultados.find(r => r.casilla === rep.casilla + j);
-                        if (sig) siguientes.push(sig);
-                    }
-
-                    if (siguientes.length > 0) return { encontrado: true, siguientes };
-                }
-            }
-            return { encontrado: false, siguientes: [] };
-        }
-
         function mostrarSuperFijos(items) {
             const contenedor = document.getElementById('resultado-contenido');
 
@@ -1905,7 +1982,7 @@
 
             const itemsMezclados = mezclarArray([...items]);
 
-            let claseGrid = 'numeros-grid-3';
+            let claseGrid = 'numeros-grid';
             let claseContainer = 'premium-container';
 
             if (!usuarioAutenticado) {
@@ -2037,14 +2114,13 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // SUPER FIJOS
-                const resultado = buscarRepeticion(todos);
-                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+                // SUPER FIJOS - 4 números (N1+1, N1+2, N2+1, N2+2)
+                const superFijos = calcularSuperFijos(todos);
                 
                 mostrarSuperFijos(superFijos);
-                actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
+                actualizarStatus('✅ Datos actualizados desde el servidor');
 
-                // CORTESÍA - SIEMPRE VISIBLE (5 números MEZCLADOS)
+                // CORTESÍA - 6 NÚMEROS (4 Super Fijos + N3+1 + N3+2)
                 reiniciarCortesia();
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
