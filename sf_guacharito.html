@@ -232,10 +232,6 @@
             gap: 20px;
         }
 
-        /* ================================================ */
-        /* ESTILOS PREMIUM POR SECCIÓN                      */
-        /* ================================================ */
-
         .tarjeta-dato {
             border-radius: 24px;
             padding: 22px 16px;
@@ -288,53 +284,6 @@
             color: #6fcf97;
         }
 
-        /* Badge "GRATIS" para los incrementos en cortesía */
-        .numero-card-gratis::before {
-            content: "🎁 GRATIS";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.55rem;
-            font-weight: 900;
-            background: #27ae60;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-
-        /* --- TRIPLETAS (Púrpura) - BLOQUEADO --- */
-        .tarjeta-tripletas {
-            background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
-            border: 1px solid rgba(179, 136, 255, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
-            position: relative;
-        }
-        .tarjeta-tripletas::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(179, 136, 255, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .tarjeta-tripletas h3 {
-            color: #b388ff;
-            -webkit-text-fill-color: #b388ff;
-            background: none;
-        }
-        .tarjeta-tripletas .numero-card {
-            background: linear-gradient(180deg, #2a1a3a 0%, #1a0d2a 100%);
-            border: 1px solid rgba(179, 136, 255, 0.2);
-        }
-        .tarjeta-tripletas .numero-card .numero {
-            color: #b388ff;
-        }
-        .tarjeta-tripletas .numero-card .animal {
-            color: #d1b3ff;
-        }
-
         /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
@@ -368,22 +317,12 @@
             color: #ff9999;
         }
 
-        /* --- GSM (Dorado) - BLOQUEADO --- */
+        /* --- GSM (Verde) - DESBLOQUEADO --- */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(46, 204, 113, 0.25);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(46, 204, 113, 0.1), 0 0 40px rgba(46, 204, 113, 0.05);
             position: relative;
-        }
-        .tarjeta-gsm::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(46, 204, 113, 0.04) 0%, transparent 70%);
-            pointer-events: none;
         }
         .tarjeta-gsm h3 {
             color: #27ae60;
@@ -396,22 +335,12 @@
             color: #27ae60;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - DESBLOQUEADO --- */
+        /* --- ANÁLISIS FORENSE PREMIUM (Verde) - DESBLOQUEADO --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(46, 204, 113, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(46, 204, 113, 0.1), 0 0 40px rgba(46, 204, 113, 0.05);
             position: relative;
-        }
-        .tarjeta-forense::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(46, 204, 113, 0.05) 0%, transparent 70%);
-            pointer-events: none;
         }
         .tarjeta-forense h3 {
             color: #27ae60;
@@ -542,7 +471,7 @@
         }
 
         /* ================================================ */
-        /* OVERLAY MEJORADO - SOLO PARA SECCIONES PREMIUM   */
+        /* OVERLAY MEJORADO - SOLO PARA SUPER FIJOS         */
         /* ================================================ */
         .premium-overlay {
             position: absolute;
@@ -664,6 +593,36 @@
             transform: scale(0.95);
         }
 
+        .btn-whatsapp-overlay {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp-overlay:active {
+            transform: scale(0.95);
+        }
+
+        .btn-whatsapp-overlay i {
+            font-size: 1.1rem;
+        }
+
         /* ================================================ */
         /* BLOQUEO DE CONTENIDO PREMIUM                      */
         /* ================================================ */
@@ -705,29 +664,6 @@
             display: none;
         }
 
-        /* Contenido de predicción bloqueado */
-        .prediccion-contenido-bloqueado {
-            filter: blur(8px) brightness(0.6);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .prediccion-contenido-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.8s ease;
-        }
-
-        .prediccion-container {
-            position: relative;
-            min-height: 200px;
-        }
-
-        /* ================================================ */
-        /* BOTONES MEJORADOS                                */
-        /* ================================================ */
         .unlock-btn {
             display: inline-flex;
             align-items: center;
@@ -1409,34 +1345,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 2. TRIPLETAS - BLOQUEADO (PREMIUM)       -->
-            <!-- ======================================== -->
-            <div class="tarjeta-tripletas tarjeta-dato">
-                <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Premium</h3>
-                
-                <!-- OVERLAY DE BLOQUEO -->
-                <div class="premium-overlay" id="overlayTripletas">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> TRIPLETAS VIP
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a las Tripletas ingresando tu clave:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                    </div>
-                </div>
-
-                <div id="tripletas-contenido" class="premium-container" style="min-height: 150px;">
-                    <div class="no-data">Cargando tripletas...</div>
-                </div>
-            </div>
-
-            <!-- ======================================== -->
-            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- 2. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
             <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
@@ -1453,6 +1362,12 @@
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20Guacharito" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
@@ -1462,31 +1377,15 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 4. GSM - BLOQUEADO (PREMIUM)             -->
+            <!-- 3. GSM - DESBLOQUEADO (GRATIS)           -->
             <!-- ======================================== -->
             <div class="tarjeta-gsm tarjeta-dato">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
                 <div style="text-align: center; color: #27ae60; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-crown-fill"></i> Contenido Premium - Desbloquea para usar
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
                 </div>
 
-                <!-- OVERLAY DE BLOQUEO -->
-                <div class="premium-overlay" id="overlayGSM">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> GSM PREMIUM
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede al Generador de Secuencias ingresando tu clave:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                    </div>
-                </div>
-
-                <div id="gsm-contenido" class="premium-container" style="min-height: 200px;">
+                <div id="gsm-contenido">
                     <!-- Buscar secuencia -->
                     <div class="gsm-busqueda">
                         <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
@@ -1528,7 +1427,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 5. ANÁLISIS FORENSE - DESBLOQUEADO       -->
+            <!-- 4. ANÁLISIS FORENSE - DESBLOQUEADO       -->
             <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
@@ -1582,14 +1481,14 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Tripletas, Super Fijos y Generador de Secuencias:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #8fa095; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong>, <strong>Tripletas</strong> y <strong>Generador de Secuencias</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Guacharito.</p>
+        <p>Nuestros <strong>Super Fijos</strong> y <strong>Generador de Secuencias</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Guacharito.</p>
         <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Análisis Forense Premium</strong> disponible gratis para todos.</p>
     </div>
 
@@ -1828,25 +1727,12 @@
         }
 
         // =====================================================
-        // 🔓 DESBLOQUEAR PREMIUM
+        // 🔓 DESBLOQUEAR PREMIUM (SOLO SUPER FIJOS)
         // =====================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
 
-            // 1. Desbloquear Tripletas
-            const overlayTripletas = document.getElementById('overlayTripletas');
-            if (overlayTripletas) overlayTripletas.classList.add('hidden');
-            const tripletasContenedor = document.getElementById('tripletas-contenido');
-            if (tripletasContenedor) {
-                const grid = tripletasContenedor.querySelector('.numeros-grid');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                tripletasContenedor.classList.remove('locked-grid');
-            }
-
-            // 2. Desbloquear Super Fijos
+            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
@@ -1857,15 +1743,6 @@
                     grid.classList.add('locked-grid-desbloqueado');
                 }
                 resultadoContenedor.classList.remove('locked-grid');
-            }
-
-            // 3. Desbloquear GSM
-            const overlayGSM = document.getElementById('overlayGSM');
-            if (overlayGSM) overlayGSM.classList.add('hidden');
-            const gsmContenedor = document.getElementById('gsm-contenido');
-            if (gsmContenedor) {
-                gsmContenedor.classList.remove('locked-grid');
-                gsmContenedor.classList.add('locked-grid-desbloqueado');
             }
         }
 
@@ -1889,67 +1766,6 @@
 
         function actualizarStatus(mensaje) {
             document.getElementById('statusBar').innerHTML = mensaje;
-        }
-
-        function calcularEspejo(item) {
-            let posicionOriginal;
-            if (item.esDobleCero) {
-                posicionOriginal = 100;
-            } else if (item.numero === 0) {
-                posicionOriginal = 99;
-            } else {
-                posicionOriginal = item.numero;
-            }
-
-            let espejoPosicion = 99 - posicionOriginal;
-
-            let esDobleCeroEspejo = (espejoPosicion === 100);
-            let numeroEspejo = (esDobleCeroEspejo || espejoPosicion === 99) ? 0 : espejoPosicion;
-
-            return {
-                numero: numeroEspejo,
-                esDobleCero: esDobleCeroEspejo,
-                casilla: item.casilla
-            };
-        }
-
-        function esMismoNumero(a, b) {
-            if (!a || !b) return false;
-            if (a.esDobleCero && b.esDobleCero) return true;
-            return !a.esDobleCero && !b.esDobleCero && a.numero === b.numero;
-        }
-
-        function resolverDuplicados(listaProcesada, dia2Procesado, limiteEfectivo) {
-            const resultadoLimpio = [];
-            let indiceReserva = 4;
-
-            for (let i = 0; i < limiteEfectivo; i++) {
-                let candidato = listaProcesada[i];
-                while (resultadoLimpio.some(existente => esMismoNumero(existente, candidato))) {
-                    if (indiceReserva < dia2Procesado.length) {
-                        candidato = calcularEspejo(dia2Procesado[indiceReserva]);
-                        indiceReserva++;
-                    } else {
-                        break;
-                    }
-                }
-                resultadoLimpio.push(candidato);
-            }
-            return resultadoLimpio;
-        }
-
-        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
-            const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
-            const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
-
-            let acompañantes = [];
-            if (superFijos && superFijos.length >= 2) {
-                acompañantes = superFijos.slice(0, 2);
-            } else {
-                acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
-            }
-
-            return [...bases, ...acompañantes];
         }
 
         function obtener4Aleatorios(todos) {
@@ -2354,7 +2170,7 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS MIA (BLOQUEADO)
+        // GSM - GENERADOR DE SECUENCIAS (DESBLOQUEADO)
         // =====================================================
         const gsmAnimales = animales;
 
@@ -2434,12 +2250,6 @@
         }
 
         function gsmConsultarNumero() {
-            // Verificar autenticación
-            if (!usuarioAutenticado) {
-                alert('🔒 Contenido Premium. Desbloquea para usar el Generador de Secuencias.');
-                return;
-            }
-
             const input = document.getElementById('gsmNumeroInput');
             const val = input.value.trim();
             const tarjeta = document.getElementById('gsmTarjetaImagen');
@@ -2497,15 +2307,6 @@
                 if (val === '') { validacion.textContent = ''; return; }
                 validacion.textContent = gsmEsNumeroValido(val) ? '' : '⛔ rango: 0, 00, 1-99';
             });
-
-            // Inicializar en estado bloqueado si no está autenticado
-            if (!usuarioAutenticado) {
-                const gsmContenedor = document.getElementById('gsm-contenido');
-                if (gsmContenedor) {
-                    gsmContenedor.classList.add('locked-grid');
-                    gsmContenedor.classList.remove('locked-grid-desbloqueado');
-                }
-            }
 
             document.getElementById('gsmTarjetaImagen').style.display = 'none';
             document.getElementById('gsmMensajeSinNumero').style.display = 'block';
@@ -2670,11 +2471,7 @@
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 3. TRIPLETAS - BLOQUEADO (4 números)
-                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
-                mostrarTripletas(tripletas);
-
-                // 4. ANÁLISIS FORENSE - DESBLOQUEADO (GRATIS)
+                // 3. ANÁLISIS FORENSE - DESBLOQUEADO (GRATIS)
                 cargarDatosForense();
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
@@ -2686,7 +2483,6 @@
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
                 const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
                 document.getElementById('cortesia-contenido').innerHTML = msjError;
-                document.getElementById('tripletas-contenido').innerHTML = msjError;
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
                 document.getElementById('forense-prediccion').innerHTML = msjError;
@@ -2714,54 +2510,6 @@
             let html = '<div class="numeros-grid-5">';
             shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
-                let claseExtra = '';
-
-                if (r.esGratis) {
-                    claseExtra = ' numero-card-gratis';
-                }
-
-                if (r.esDobleCero) {
-                    numDisplay = "00";
-                    nombreAnimal = "ballena";
-                    rutaImagen = obtenerRutaImagen(0, true);
-                } else {
-                    numDisplay = String(r.numero).padStart(2, '0');
-                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                    rutaImagen = obtenerRutaImagen(r.numero, false);
-                }
-
-                html += `
-                    <div class="numero-card${claseExtra}">
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_guacharito/00.png'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
-        function mostrarTripletas(items) {
-            const contenedor = document.getElementById('tripletas-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay tripletas disponibles.</div>';
-                return;
-            }
-
-            let claseGrid = 'numeros-grid';
-            let claseContainer = 'premium-container';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-                claseContainer += ' locked-grid';
-            }
-
-            let html = `<div class="${claseGrid}">`;
-            items.forEach(r => {
-                let numDisplay, nombreAnimal, rutaImagen;
 
                 if (r.esDobleCero) {
                     numDisplay = "00";
@@ -2783,7 +2531,6 @@
                 `;
             });
             html += '</div>';
-            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
         }
 
