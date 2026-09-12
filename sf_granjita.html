@@ -232,10 +232,6 @@
             gap: 20px;
         }
 
-        /* ================================================ */
-        /* ESTILOS PREMIUM POR SECCIÓN                      */
-        /* ================================================ */
-
         .tarjeta-dato {
             border-radius: 24px;
             padding: 22px 16px;
@@ -286,20 +282,6 @@
         }
         .tarjeta-cortesia .numero-card .animal {
             color: #8ab8ff;
-        }
-
-        /* Badge "GRATIS" para los incrementos en cortesía */
-        .numero-card-gratis::before {
-            content: "🎁 GRATIS";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.55rem;
-            font-weight: 900;
-            background: #4a9eff;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 10px;
         }
 
         /* --- TRIPLETAS (Púrpura) - BLOQUEADO --- */
@@ -1676,6 +1658,70 @@
         };
 
         // =====================================================
+        // 🎯 GARANTIZAR NÚMEROS ÚNICOS
+        // Solo incrementa items con esGratis=true (no toca Super Fijos esPremium)
+        // =====================================================
+        function garantizarUnicos(lista, maxNum) {
+            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
+
+            let resultado = lista.map(item => ({
+                numero: item.numero ?? 0,
+                esDobleCero: item.esDobleCero || false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false,
+                casilla: item.casilla || 0
+            }));
+
+            function incrementar(item) {
+                if (item.esDobleCero) {
+                    return { ...item, numero: 1, esDobleCero: false };
+                }
+                let nuevo = item.numero + 1;
+                if (nuevo > maxNum) nuevo = 0;
+                return { ...item, numero: nuevo, esDobleCero: false };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = resultado.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                let incrementado = false;
+                for (let i = 0; i < resultado.length; i++) {
+                    const clave = claveDe(resultado[i]);
+                    if (vistas.has(clave)) {
+                        if (resultado[i].esGratis) {
+                            resultado[i] = incrementar(resultado[i]);
+                            incrementado = true;
+                            break;
+                        }
+                    }
+                    vistas.add(clave);
+                }
+
+                if (!incrementado) {
+                    const vistas2 = new Set();
+                    for (let i = 0; i < resultado.length; i++) {
+                        const clave = claveDe(resultado[i]);
+                        if (vistas2.has(clave)) {
+                            resultado[i] = incrementar(resultado[i]);
+                            break;
+                        }
+                        vistas2.add(clave);
+                    }
+                }
+
+                intentos++;
+            }
+
+            return resultado;
+        }
+
+        // =====================================================
         // FUNCIONES DEL MODAL
         // =====================================================
         window.abrirModalLogin = function() {
@@ -1766,7 +1812,7 @@
         }
 
         // =====================================================
-        // 🔓 DESBLOQUEAR PREMIUM (SOLO TRIPLETAS, SUPER FIJOS Y GSM)
+        // 🔓 DESBLOQUEAR PREMIUM (TRIPLETAS, SUPER FIJOS Y GSM)
         // =====================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
@@ -1858,45 +1904,6 @@
             };
         }
 
-        function esMismoNumero(a, b) {
-            if (!a || !b) return false;
-            if (a.esDobleCero && b.esDobleCero) return true;
-            return !a.esDobleCero && !b.esDobleCero && a.numero === b.numero;
-        }
-
-        function resolverDuplicados(listaProcesada, dia2Procesado, limiteEfectivo) {
-            const resultadoLimpio = [];
-            let indiceReserva = 4;
-
-            for (let i = 0; i < limiteEfectivo; i++) {
-                let candidato = listaProcesada[i];
-                while (resultadoLimpio.some(existente => esMismoNumero(existente, candidato))) {
-                    if (indiceReserva < dia2Procesado.length) {
-                        candidato = calcularEspejo(dia2Procesado[indiceReserva]);
-                        indiceReserva++;
-                    } else {
-                        break;
-                    }
-                }
-                resultadoLimpio.push(candidato);
-            }
-            return resultadoLimpio;
-        }
-
-        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
-            const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
-            const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
-
-            let acompañantes = [];
-            if (superFijos && superFijos.length >= 2) {
-                acompañantes = superFijos.slice(0, 2);
-            } else {
-                acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
-            }
-
-            return [...bases, ...acompañantes];
-        }
-
         function obtener4Aleatorios(todos) {
             const copia = [...todos];
             const seleccionados = [];
@@ -1908,7 +1915,33 @@
         }
 
         // =====================================================
-        // CORTESÍA: 2 gratis + 3 Super Fijos = 5 números
+        // BASES PARA TRIPLETAS (4 números únicos)
+        // = 2 primeros Super Fijos + 2 espejos del día 1
+        // Si un espejo se repite, se incrementa hasta romper duplicado
+        // =====================================================
+        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
+            const espejosBrutos = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
+
+            let lista = [];
+
+            // 2 primeros Super Fijos (ancla)
+            if (superFijos && superFijos.length >= 2) {
+                lista.push({ ...superFijos[0], esPremium: true, esGratis: false });
+                lista.push({ ...superFijos[1], esPremium: true, esGratis: false });
+            }
+
+            // 2 espejos del día 1 (ajustables)
+            espejosBrutos.forEach(e => {
+                lista.push({ ...e, esPremium: false, esGratis: true });
+            });
+
+            // Garantizar 4 números únicos
+            return garantizarUnicos(lista, 36);
+        }
+
+        // =====================================================
+        // ACOMPAÑANTES PARA TRIPLETAS
+        // 3 Super Fijos + 2 incrementos del primer número del día 1
         // =====================================================
         let cortesiaEstatica = null;
 
@@ -1938,17 +1971,24 @@
             if (superFijos && superFijos.length >= 3) {
                 superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
                     ...item,
-                    esPremium: true
+                    esPremium: true,
+                    esGratis: false
                 }));
             } else {
                 const aleatorios = obtener4Aleatorios(todos).slice(0, 3);
                 superFijosParaCortesia = aleatorios.map(item => ({
                     ...item,
-                    esPremium: true
+                    esPremium: true,
+                    esGratis: false
                 }));
             }
 
-            const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
+            // ✅ Garantizar 5 números únicos
+            const todosLosNumeros = garantizarUnicos(
+                [...superFijosParaCortesia, incremento1, incremento2],
+                36
+            );
+
             cortesiaEstatica = todosLosNumeros;
             return cortesiaEstatica;
         }
@@ -2332,7 +2372,7 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS MIA (BLOQUEADO)
+        // GSM - GENERADOR DE SECUENCIAS (BLOQUEADO)
         // =====================================================
         const gsmAnimales = {
             '00': 'ballena',
@@ -2683,11 +2723,11 @@
                 // 1. SUPER FIJOS - BLOQUEADO
                 mostrarSuperFijosConLog(superFijos, infoSuperFijos);
 
-                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números)
+                // 2. CORTESÍA - SIEMPRE VISIBLE (5 números únicos)
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 3. TRIPLETAS - BLOQUEADO (4 números)
+                // 3. TRIPLETAS - BLOQUEADO (4 números únicos)
                 const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
                 mostrarTripletas(tripletas);
 
@@ -2721,7 +2761,7 @@
                 return;
             }
 
-            // 🔀 MEZCLAR ALEATORIAMENTE (Fisher-Yates)
+            // Mezclar aleatoriamente (Fisher-Yates)
             const shuffled = [...items];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -2731,11 +2771,6 @@
             let html = '<div class="numeros-grid-5">';
             shuffled.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
-                let claseExtra = '';
-
-                if (r.esGratis) {
-                    claseExtra = ' numero-card-gratis';
-                }
 
                 if (r.esDobleCero) {
                     numDisplay = "00";
@@ -2748,7 +2783,7 @@
                 }
 
                 html += `
-                    <div class="numero-card${claseExtra}">
+                    <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
                         <img src="${rutaImagen}" alt="${nombreAnimal}" 
                              onerror="this.src='animalitos/animalitos_granjita/00.png'">
