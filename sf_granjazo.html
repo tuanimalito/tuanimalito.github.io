@@ -47,7 +47,6 @@
     </script>
     
     <style>
-        /* ===== ESTILOS COMPLETOS ===== */
         * {
             margin: 0;
             padding: 0;
@@ -285,39 +284,6 @@
             color: #8ab8ff;
         }
 
-        /* --- TRIPLETAS (Púrpura) - BLOQUEADO --- */
-        .tarjeta-tripletas {
-            background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
-            border: 1px solid rgba(179, 136, 255, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(179, 136, 255, 0.1);
-            position: relative;
-        }
-        .tarjeta-tripletas::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(179, 136, 255, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .tarjeta-tripletas h3 {
-            color: #b388ff;
-            -webkit-text-fill-color: #b388ff;
-            background: none;
-        }
-        .tarjeta-tripletas .numero-card {
-            background: linear-gradient(180deg, #2a1a3a 0%, #1a0d2a 100%);
-            border: 1px solid rgba(179, 136, 255, 0.2);
-        }
-        .tarjeta-tripletas .numero-card .numero {
-            color: #b388ff;
-        }
-        .tarjeta-tripletas .numero-card .animal {
-            color: #d1b3ff;
-        }
-
         /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 3 números --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
@@ -383,7 +349,7 @@
         }
 
         /* ================================================ */
-        /* OVERLAY MEJORADO - SOLO PARA SECCIONES PREMIUM   */
+        /* OVERLAY MEJORADO - SOLO PARA SUPER FIJOS         */
         /* ================================================ */
         .premium-overlay {
             position: absolute;
@@ -503,6 +469,36 @@
 
         .action-buttons-group .contact-btn:active {
             transform: scale(0.95);
+        }
+
+        .btn-whatsapp-overlay {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp-overlay:active {
+            transform: scale(0.95);
+        }
+
+        .btn-whatsapp-overlay i {
+            font-size: 1.1rem;
         }
 
         /* ================================================ */
@@ -1059,34 +1055,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 2. TRIPLETAS - BLOQUEADO (PREMIUM)       -->
-            <!-- ======================================== -->
-            <div class="tarjeta-tripletas tarjeta-dato">
-                <h3><i class="bi bi-grid-3x3-gap-fill"></i> Tripletas Premium</h3>
-                
-                <!-- OVERLAY DE BLOQUEO -->
-                <div class="premium-overlay" id="overlayTripletas">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> TRIPLETAS VIP
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a las Tripletas ingresando tu clave:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                    </div>
-                </div>
-
-                <div id="tripletas-contenido" class="premium-container" style="min-height: 150px;">
-                    <div class="no-data">Cargando tripletas...</div>
-                </div>
-            </div>
-
-            <!-- ======================================== -->
-            <!-- 3. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
+            <!-- 2. SUPER FIJOS - BLOQUEADO (PREMIUM)     -->
             <!-- ======================================== -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
@@ -1097,12 +1066,18 @@
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave:
+                        Accede a los 3 Super Fijos ingresando tu clave: o solicita una clave presionando el botón de WhatsApp.
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20Granjazo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
@@ -1112,7 +1087,7 @@
             </div>
 
             <!-- ======================================== -->
-            <!-- 4. ANÁLISIS FORENSE - DESBLOQUEADO       -->
+            <!-- 3. ANÁLISIS FORENSE - DESBLOQUEADO       -->
             <!-- ======================================== -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
@@ -1166,14 +1141,14 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear Tripletas y Super Fijos:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #a0aec0; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong> y <strong>Tripletas</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Granjazo.</p>
+        <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Granjazo.</p>
         <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Análisis Forense Premium</strong> disponible gratis para todos.</p>
     </div>
 
@@ -1227,6 +1202,51 @@
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             return shuffled;
+        }
+
+        // ============================================================
+        // 🎯 GARANTIZAR NÚMEROS ÚNICOS
+        // Incrementa duplicados +1 hasta que todos sean distintos
+        // Rango de Granjazo: 1-76
+        // ============================================================
+        function garantizarUnicos(lista, maxNum, minNum = 1) {
+            const claveDe = (item) => item.numero;
+
+            let resultado = lista.map(item => ({
+                numero: item.numero ?? minNum,
+                esDobleCero: false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false,
+                casilla: item.casilla || 0
+            }));
+
+            function incrementar(item) {
+                let nuevo = item.numero + 1;
+                if (nuevo > maxNum) nuevo = minNum;
+                return { ...item, numero: nuevo };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = resultado.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                for (let i = 0; i < resultado.length; i++) {
+                    const clave = claveDe(resultado[i]);
+                    if (vistas.has(clave)) {
+                        resultado[i] = incrementar(resultado[i]);
+                        break;
+                    }
+                    vistas.add(clave);
+                }
+                intentos++;
+            }
+
+            return resultado;
         }
 
         // ============================================================
@@ -1305,25 +1325,12 @@
         };
 
         // ============================================================
-        // 🔓 DESBLOQUEAR PREMIUM (SOLO TRIPLETAS Y SUPER FIJOS)
+        // 🔓 DESBLOQUEAR PREMIUM (SOLO SUPER FIJOS)
         // ============================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
 
-            // 1. Desbloquear Tripletas
-            const overlayTripletas = document.getElementById('overlayTripletas');
-            if (overlayTripletas) overlayTripletas.classList.add('hidden');
-            const tripletasContenedor = document.getElementById('tripletas-contenido');
-            if (tripletasContenedor) {
-                const grid = tripletasContenedor.querySelector('.numeros-grid');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                tripletasContenedor.classList.remove('locked-grid');
-            }
-
-            // 2. Desbloquear Super Fijos
+            // Desbloquear Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
@@ -1651,7 +1658,8 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // ============================================================
-        // 🎁 CORTESÍA - Los más calientes para hoy (MEZCLADOS)
+        // 🎁 CORTESÍA - Los más calientes para hoy (5 números ÚNICOS)
+        // 3 Super Fijos + 2 incrementos (base+1, base+2)
         // ============================================================
         let cortesiaEstatica = null;
 
@@ -1664,34 +1672,37 @@
             const primerNumero = diaMasReciente[0];
             
             let incremento1, incremento2;
-            if (primerNumero.esDobleCero) {
-                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: 2, esDobleCero: false, esGratis: true };
-            } else {
-                let numBase = primerNumero.numero;
-                let val1 = numBase + 1;
-                let val2 = numBase + 2;
-                if (val1 > 76) val1 = val1 - 76;
-                if (val2 > 76) val2 = val2 - 76;
-                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
-            }
+            let numBase = primerNumero.numero;
+            let val1 = numBase + 1;
+            let val2 = numBase + 2;
+            if (val1 > 76) val1 = val1 - 76;
+            if (val2 > 76) val2 = val2 - 76;
+            incremento1 = { numero: val1, esGratis: true };
+            incremento2 = { numero: val2, esGratis: true };
 
             let superFijosParaCortesia = [];
             if (superFijos && superFijos.length >= 3) {
                 superFijosParaCortesia = superFijos.slice(0, 3).map(item => ({
                     ...item,
-                    esPremium: true
+                    esPremium: true,
+                    esGratis: false
                 }));
             } else {
                 const aleatorios = obtener4Aleatorios(todos).slice(0, 3);
                 superFijosParaCortesia = aleatorios.map(item => ({
                     ...item,
-                    esPremium: true
+                    esPremium: true,
+                    esGratis: false
                 }));
             }
 
-            const todosLosNumeros = [incremento1, incremento2, ...superFijosParaCortesia];
+            // Garantizar 5 números únicos (rango 1-76)
+            const todosLosNumeros = garantizarUnicos(
+                [...superFijosParaCortesia, incremento1, incremento2],
+                76,
+                1
+            );
+
             cortesiaEstatica = todosLosNumeros;
             return mezclarArray([...todosLosNumeros]);
         }
@@ -1736,96 +1747,6 @@
                 `;
             });
             html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
-        // ============================================================
-        // 📊 LÓGICA DE DATOS PRINCIPAL - TRIPLETAS
-        // ============================================================
-        function calcularEspejo(item) {
-            let posicionOriginal = item.numero;
-            let espejoPosicion = 76 - posicionOriginal + 1;
-            if (espejoPosicion < 1) espejoPosicion = 1;
-            if (espejoPosicion > 76) espejoPosicion = 76;
-            
-            return {
-                numero: espejoPosicion,
-                esDobleCero: false,
-                casilla: item.casilla
-            };
-        }
-
-        function esMismoNumero(a, b) {
-            if (!a || !b) return false;
-            return a.numero === b.numero;
-        }
-
-        function resolverDuplicados(listaProcesada, dia2Procesado, limiteEfectivo) {
-            const resultadoLimpio = [];
-            let indiceReserva = 4;
-
-            for (let i = 0; i < limiteEfectivo; i++) {
-                let candidato = listaProcesada[i];
-                while (resultadoLimpio.some(existente => esMismoNumero(existente, candidato))) {
-                    if (indiceReserva < dia2Procesado.length) {
-                        candidato = calcularEspejo(dia2Procesado[indiceReserva]);
-                        indiceReserva++;
-                    } else {
-                        break;
-                    }
-                }
-                resultadoLimpio.push(candidato);
-            }
-            return resultadoLimpio;
-        }
-
-        function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
-            const basesBrutas = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
-            const bases = resolverDuplicados(basesBrutas, dia2Procesado, 2);
-
-            let acompañantes = [];
-            if (superFijos && superFijos.length >= 2) {
-                acompañantes = superFijos.slice(0, 2);
-            } else {
-                acompañantes = obtener4Aleatorios(dia2Procesado).slice(0, 2);
-            }
-
-            return mezclarArray([...bases, ...acompañantes]);
-        }
-
-        function mostrarTripletas(items) {
-            const contenedor = document.getElementById('tripletas-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay tripletas disponibles.</div>';
-                return;
-            }
-
-            let claseGrid = 'numeros-grid';
-            let claseContainer = 'premium-container';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-                claseContainer += ' locked-grid';
-            }
-
-            let html = `<div class="${claseGrid}">`;
-            items.forEach(r => {
-                let numDisplay = String(r.numero).padStart(2, '0');
-                let nombreAnimal = animales[r.numero] || 'desconocido';
-                let rutaImagen = `animalitos/animalitos_granja/${r.numero}.png`;
-
-                html += `
-                    <div class="numero-card">
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_granja/1.png'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
         }
 
@@ -1972,14 +1893,10 @@
                 mostrarSuperFijos(superFijos);
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
-                // CORTESÍA - SIEMPRE VISIBLE (5 números MEZCLADOS)
+                // CORTESÍA - SIEMPRE VISIBLE (5 números ÚNICOS)
                 reiniciarCortesia();
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
-
-                // TRIPLETAS - BLOQUEADO (4 números MEZCLADOS)
-                const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
-                mostrarTripletas(tripletas);
 
                 // ANÁLISIS FORENSE - DESBLOQUEADO (GRATIS)
                 cargarDatosForense();
@@ -1991,7 +1908,6 @@
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
                 const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
                 document.getElementById('cortesia-contenido').innerHTML = msjError;
-                document.getElementById('tripletas-contenido').innerHTML = msjError;
                 document.getElementById('resultado-contenido').innerHTML = msjError;
                 document.getElementById('forense-top10').innerHTML = msjError;
                 document.getElementById('forense-prediccion').innerHTML = msjError;
