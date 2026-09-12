@@ -795,25 +795,17 @@
             cursor: pointer;
         }
 
-        .numeros-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .numeros-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
+        /* ================================================ */
+        /* GRIDS BASE (sobrescritos dinámicamente)          */
+        /* ================================================ */
+        .numeros-grid,
+        .numeros-grid-3,
         .numeros-grid-5 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            justify-content: center;
+            align-items: stretch;
         }
 
         .numero-card {
@@ -823,6 +815,10 @@
             box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .numero-card:active {
@@ -834,6 +830,7 @@
             font-weight: 900;
             margin-bottom: 2px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: font-size 0.3s ease;
         }
 
         .numero-card img {
@@ -842,6 +839,7 @@
             object-fit: contain;
             margin: 4px auto;
             filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
         .numero-card .animal {
@@ -849,6 +847,7 @@
             margin-top: 4px;
             text-transform: capitalize;
             font-weight: 700;
+            transition: font-size 0.3s ease;
         }
 
         /* ================================================ */
@@ -996,6 +995,8 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
+            transition: all 0.3s ease;
+            justify-content: center;
         }
 
         .gsm-tarjeta-secuencia {
@@ -1026,6 +1027,7 @@
             padding: 4px;
             border: 1px solid rgba(255, 215, 0, 0.1);
             margin-bottom: 4px;
+            transition: width 0.3s ease, height 0.3s ease;
         }
         .gsm-tarjeta-secuencia .gsm-info-sec {
             display: flex;
@@ -1036,6 +1038,7 @@
             font-weight: 700;
             font-size: 1.1rem;
             color: #ffd700;
+            transition: font-size 0.3s ease;
         }
         .gsm-tarjeta-secuencia .gsm-info-sec .gsm-nom {
             font-size: 0.75rem;
@@ -1046,6 +1049,7 @@
             display: inline-block;
             width: fit-content;
             margin-top: 2px;
+            transition: font-size 0.3s ease;
         }
 
         .gsm-instrucciones {
@@ -1183,15 +1187,6 @@
 
         /* ===== RESPONSIVE ===== */
         @media (min-width: 700px) {
-            .numeros-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .numeros-grid-5 {
-                grid-template-columns: repeat(5, 1fr);
-            }
-            .numeros-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
             .cabecera h1 {
                 font-size: 3rem;
             }
@@ -1201,24 +1196,9 @@
             .premium-message {
                 font-size: 1.1rem;
             }
-            .prediccion-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .gsm-grid-tarjetas {
-                grid-template-columns: repeat(4, 1fr);
-            }
         }
 
         @media (max-width: 600px) {
-            .numeros-grid-5 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .numeros-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .prediccion-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
             .prediccion-item .numero {
                 font-size: 1.5rem;
             }
@@ -1245,9 +1225,6 @@
                 width: 100%;
                 justify-content: center;
             }
-            .gsm-grid-tarjetas {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .action-buttons-group .contact-btn {
                 font-size: 0.75rem;
                 padding: 8px 14px;
@@ -1264,17 +1241,6 @@
         }
 
         @media (max-width: 400px) {
-            .gsm-grid-tarjetas {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .gsm-tarjeta-secuencia {
-                min-height: 100px;
-                padding: 10px 6px;
-            }
-            .gsm-tarjeta-secuencia img {
-                width: 50px;
-                height: 50px;
-            }
             .action-buttons-group .contact-btn {
                 font-size: 0.7rem;
                 padding: 6px 10px;
@@ -1653,6 +1619,130 @@
 
             return resultado;
         }
+
+        // =====================================================
+        // AJUSTE DINÁMICO DE GRID
+        // Ajusta las columnas y tamaños según la cantidad de tarjetas.
+        // =====================================================
+        function ajustarGridDinamico(contenedor, totalItems, tipo = 'default') {
+            if (!contenedor || totalItems === 0) return;
+
+            const grid = contenedor.querySelector('[class*="numeros-grid"]') ||
+                         contenedor.querySelector('.gsm-grid-tarjetas') ||
+                         contenedor;
+
+            if (!grid) return;
+
+            const esMovil = window.innerWidth < 700;
+
+            // =====================================================
+            // LÓGICA DE COLUMNAS SEGÚN CANTIDAD DE TARJETAS
+            // =====================================================
+            let columnas;
+
+            if (esMovil) {
+                if (totalItems === 1) columnas = 1;
+                else if (totalItems === 2) columnas = 2;
+                else if (totalItems === 3) columnas = 3;
+                else if (totalItems === 4) columnas = 2;
+                else if (totalItems === 5) columnas = 3;
+                else if (totalItems === 6) columnas = 3;
+                else columnas = 3;
+            } else {
+                if (totalItems === 1) columnas = 1;
+                else if (totalItems === 2) columnas = 2;
+                else if (totalItems === 3) columnas = 3;
+                else if (totalItems === 4) columnas = 4;
+                else if (totalItems === 5) columnas = 5;
+                else if (totalItems === 6) columnas = 3;
+                else columnas = 4;
+            }
+
+            grid.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
+
+            // =====================================================
+            // AJUSTAR TAMAÑO DE IMÁGENES Y NÚMEROS SEGÚN COLUMNAS
+            // =====================================================
+            let tamañoImagen, tamañoNumero, tamañoAnimal;
+
+            if (esMovil) {
+                if (columnas === 1) {
+                    tamañoImagen = '120px';
+                    tamañoNumero = '2.8rem';
+                    tamañoAnimal = '1.2rem';
+                } else if (columnas === 2) {
+                    tamañoImagen = '95px';
+                    tamañoNumero = '2.2rem';
+                    tamañoAnimal = '1.05rem';
+                } else {
+                    tamañoImagen = '75px';
+                    tamañoNumero = '1.8rem';
+                    tamañoAnimal = '0.95rem';
+                }
+            } else {
+                if (columnas === 5) {
+                    tamañoImagen = '75px';
+                    tamañoNumero = '1.9rem';
+                    tamañoAnimal = '0.95rem';
+                } else if (columnas === 4) {
+                    tamañoImagen = '85px';
+                    tamañoNumero = '2.1rem';
+                    tamañoAnimal = '1rem';
+                } else if (columnas === 3) {
+                    tamañoImagen = '100px';
+                    tamañoNumero = '2.3rem';
+                    tamañoAnimal = '1.05rem';
+                } else {
+                    tamañoImagen = '120px';
+                    tamañoNumero = '2.5rem';
+                    tamañoAnimal = '1.1rem';
+                }
+            }
+
+            const tarjetas = grid.querySelectorAll('.numero-card, .gsm-tarjeta-secuencia');
+            tarjetas.forEach(tarjeta => {
+                const img = tarjeta.querySelector('img');
+                const numero = tarjeta.querySelector('.numero, .gsm-num');
+                const animal = tarjeta.querySelector('.animal, .gsm-nom');
+
+                if (img) {
+                    img.style.width = tamañoImagen;
+                    img.style.height = tamañoImagen;
+                }
+                if (numero) {
+                    numero.style.fontSize = tamañoNumero;
+                }
+                if (animal) {
+                    animal.style.fontSize = tamañoAnimal;
+                }
+            });
+
+            grid.style.gap = columnas >= 4 ? '10px' : '12px';
+        }
+
+        // Reajustar todos los grids activos al cambiar el tamaño de la ventana
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const grids = [
+                    { id: 'cortesia-contenido' },
+                    { id: 'tripletas-contenido' },
+                    { id: 'resultado-contenido' },
+                    { id: 'gsmGridSecuencias' }
+                ];
+
+                grids.forEach(({ id }) => {
+                    const contenedor = document.getElementById(id);
+                    if (!contenedor) return;
+
+                    const tarjetas = contenedor.querySelectorAll('.numero-card, .gsm-tarjeta-secuencia');
+                    if (tarjetas.length > 0) {
+                        ajustarGridDinamico(contenedor, tarjetas.length);
+                    }
+                });
+            }, 200);
+        });
 
         // =====================================================
         // FUNCIONES DEL MODAL
@@ -2356,6 +2446,9 @@
                 `;
             });
             grid.innerHTML = html;
+
+            // ✅ Ajuste dinámico
+            ajustarGridDinamico(grid.parentElement, filtrada.length, 'gsm');
         }
 
         function gsmConsultarNumero() {
@@ -2500,6 +2593,9 @@
 
             contenedor.className = claseContainer;
             contenedor.innerHTML = html;
+
+            // ✅ Ajuste dinámico
+            ajustarGridDinamico(contenedor, items.length, 'superfijos');
         }
 
         // =====================================================
@@ -2645,6 +2741,9 @@
             });
             html += '</div>';
             contenedor.innerHTML = html;
+
+            // ✅ Ajuste dinámico
+            ajustarGridDinamico(contenedor, shuffled.length, 'cortesia');
         }
 
         function mostrarTripletas(items) {
@@ -2655,10 +2754,7 @@
                 return;
             }
 
-            // Siempre desbloqueado
-            let claseGrid = 'numeros-grid';
-
-            let html = `<div class="${claseGrid}">`;
+            let html = `<div class="numeros-grid">`;
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2684,6 +2780,9 @@
             html += '</div>';
             contenedor.className = 'premium-container';
             contenedor.innerHTML = html;
+
+            // ✅ Ajuste dinámico
+            ajustarGridDinamico(contenedor, items.length, 'tripletas');
         }
 
         // =====================================================
