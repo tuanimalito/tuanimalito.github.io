@@ -645,6 +645,38 @@
             transform: scale(0.95);
         }
 
+        /* ===== BOTÓN WHATSAPP DEL OVERLAY ===== */
+        .action-buttons-group .btn-whatsapp-overlay {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4), 0 0 40px rgba(37, 211, 102, 0.1);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.6), 0 0 60px rgba(37, 211, 102, 0.2);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay i {
+            font-size: 1.2rem;
+        }
+
         /* ================================================ */
         /* BLOQUEO DE CONTENIDO PREMIUM                      */
         /* ================================================ */
@@ -1229,6 +1261,17 @@
                 font-size: 0.75rem;
                 padding: 8px 14px;
             }
+            .action-buttons-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .action-buttons-group .unlock-btn,
+            .action-buttons-group .btn-whatsapp-overlay {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -1244,6 +1287,11 @@
             .action-buttons-group .contact-btn {
                 font-size: 0.7rem;
                 padding: 6px 10px;
+            }
+            .action-buttons-group .unlock-btn,
+            .action-buttons-group .btn-whatsapp-overlay {
+                font-size: 0.8rem;
+                padding: 10px 16px;
             }
             .whatsapp-float {
                 padding: 12px 14px;
@@ -1355,12 +1403,18 @@
                     </div>
                     <p class="premium-message">
                         <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave:
+                        Accede a los 3 Super Fijos ingresando tu clave, o solicítala presionando el botón de WhatsApp.
                     </p>
                     <div class="action-buttons-group">
                         <button class="unlock-btn" onclick="abrirModalLogin()">
                             <i class="bi bi-unlock-fill"></i> Desbloquear
                         </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20La%20Granjita" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
 
@@ -1622,7 +1676,6 @@
 
         // =====================================================
         // AJUSTE DINÁMICO DE GRID
-        // Ajusta las columnas y tamaños según la cantidad de tarjetas.
         // =====================================================
         function ajustarGridDinamico(contenedor, totalItems, tipo = 'default') {
             if (!contenedor || totalItems === 0) return;
@@ -1635,9 +1688,6 @@
 
             const esMovil = window.innerWidth < 700;
 
-            // =====================================================
-            // LÓGICA DE COLUMNAS SEGÚN CANTIDAD DE TARJETAS
-            // =====================================================
             let columnas;
 
             if (esMovil) {
@@ -1660,9 +1710,6 @@
 
             grid.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
 
-            // =====================================================
-            // AJUSTAR TAMAÑO DE IMÁGENES Y NÚMEROS SEGÚN COLUMNAS
-            // =====================================================
             let tamañoImagen, tamañoNumero, tamañoAnimal;
 
             if (esMovil) {
@@ -1720,7 +1767,6 @@
             grid.style.gap = columnas >= 4 ? '10px' : '12px';
         }
 
-        // Reajustar todos los grids activos al cambiar el tamaño de la ventana
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
@@ -1936,9 +1982,6 @@
 
         // =====================================================
         // ACOMPAÑANTES PARA TRIPLETAS (NUEVA LÓGICA)
-        // Compara Día 2 (intermedio) vs Día 3 (más antiguo)
-        // Cada número repetido cuenta UNA sola vez
-        // Si hay > 6 repeticiones, descarta la más reciente (Día 2)
         // =====================================================
         function normalizarNumero(valor) {
             const valStr = String(valor).trim();
@@ -2447,7 +2490,6 @@
             });
             grid.innerHTML = html;
 
-            // ✅ Ajuste dinámico
             ajustarGridDinamico(grid.parentElement, filtrada.length, 'gsm');
         }
 
@@ -2594,7 +2636,6 @@
             contenedor.className = claseContainer;
             contenedor.innerHTML = html;
 
-            // ✅ Ajuste dinámico
             ajustarGridDinamico(contenedor, items.length, 'superfijos');
         }
 
@@ -2637,7 +2678,6 @@
                     esAleatorio: resultado.esAleatorio || false
                 };
 
-                // ===== CONSTRUIR HISTORIAL FORENSE =====
                 const hoy = new Date();
                 const fechasBase = [];
                 for (let i = 0; i < 3; i++) {
@@ -2669,18 +2709,14 @@
 
                 reiniciarCortesia();
 
-                // 1. SUPER FIJOS - BLOQUEADO
                 mostrarSuperFijosConLog(superFijos, infoSuperFijos);
 
-                // 2. CORTESÍA - SIEMPRE VISIBLE (nueva lógica Día 2 vs Día 3)
                 const cortesiaResultados = informacionDeCortecia(dia2, dia3, todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // 3. TRIPLETAS - DESBLOQUEADO
                 const tripletas = obtenerTripletas(dia1Procesado, dia2Procesado, superFijos);
                 mostrarTripletas(tripletas);
 
-                // 4. ANÁLISIS FORENSE - DESBLOQUEADO
                 cargarDatosForense();
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
@@ -2742,7 +2778,6 @@
             html += '</div>';
             contenedor.innerHTML = html;
 
-            // ✅ Ajuste dinámico
             ajustarGridDinamico(contenedor, shuffled.length, 'cortesia');
         }
 
@@ -2781,7 +2816,6 @@
             contenedor.className = 'premium-container';
             contenedor.innerHTML = html;
 
-            // ✅ Ajuste dinámico
             ajustarGridDinamico(contenedor, items.length, 'tripletas');
         }
 
