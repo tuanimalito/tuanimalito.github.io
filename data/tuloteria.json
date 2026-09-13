@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-13T05:55:22.583564",
+    "ultima_actualizacion": "2026-09-13T11:38:26.566483",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Lunes",
         "fecha": "14 sept 2026"
       },
-      "bote": "232.000.000$"
+      "bote": "251.000.000$"
     },
     {
       "id": "mega-millions",
@@ -103,11 +103,11 @@
         "dia": "Sábado",
         "fecha": "12 sept 2026",
         "numeros": [
-          4,
-          5,
-          6,
+          14,
+          21,
+          24,
           28,
-          35
+          30
         ],
         "numero_extra": null
       },
