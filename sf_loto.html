@@ -283,7 +283,7 @@
             color: #8ab8ff;
         }
 
-        /* --- TRIPLETAS (Púrpura) - DESBLOQUEADO --- */
+        /* --- TRIPLETAS (Púrpura) --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
@@ -316,7 +316,7 @@
             color: #d1b3ff;
         }
 
-        /* --- SUPER FIJOS (Rojo) - BLOQUEADO --- */
+        /* --- SUPER FIJOS (Rojo) --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -349,7 +349,7 @@
             color: #ff9999;
         }
 
-        /* --- GSM (Dorado) - DESBLOQUEADO --- */
+        /* --- GSM (Dorado) --- */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.25);
@@ -377,7 +377,7 @@
             color: #ffd700;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - DESBLOQUEADO --- */
+        /* --- ANÁLISIS FORENSE --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
@@ -1459,11 +1459,11 @@
 
                     <div class="gsm-instrucciones">
                         <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
-                        <p><i class="bi bi-1-circle-fill"></i> Las Secuencias Generadas son dinamicas, cambian segun los resultados que genera todos los dias la operadora.</p>
+                        <p><i class="bi bi-1-circle-fill"></i> Las Secuencias Generadas son dinámicas, cambian según los resultados que genera todos los días la operadora.</p>
                         <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
                         <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora Lotto Activo.</p>
-                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
-                        <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta busca en los últimos 3 días de resultados y toma los 4 números siguientes.</p>
+                        <p><i class="bi bi-4-circle-fill"></i> El número consultado y los repetidos se descartan automáticamente de la secuencia.</p>
                     </div>
                 </div>
             </div>
@@ -1545,8 +1545,8 @@
         // CONFIGURACIÓN DE FIREBASE FIRESTORE
         // =====================================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
@@ -1563,7 +1563,6 @@
 
         let usuarioAutenticado = false;
         const JSON_URL = 'data/lotto.json';
-        const SECUENCIA_URL = 'data/secuencia.json';
 
         const animales = {
             '00': 'ballena',
@@ -1986,10 +1985,7 @@
         }
 
         // =====================================================
-        // ACOMPAÑANTES PARA TRIPLETAS (NUEVA LÓGICA)
-        // Compara Día 2 (intermedio) vs Día 3 (más antiguo)
-        // Cada número repetido cuenta UNA sola vez
-        // Si hay > 6 repeticiones, descarta la más reciente (Día 2)
+        // ACOMPAÑANTES PARA TRIPLETAS
         // =====================================================
         function normalizarNumero(valor) {
             const valStr = String(valor).trim();
@@ -2460,7 +2456,7 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS (DESBLOQUEADO)
+        // GSM - GENERADOR DE SECUENCIAS (consulta lotto.json)
         // =====================================================
         const gsmAnimales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
@@ -2483,51 +2479,118 @@
             return Number.isInteger(num) && num >= 0 && num <= 36;
         }
 
-        let gsmSecuenciaResultados = [];
+        // Normaliza un valor de lotto.json a una clave comparable
+        function gsmNormalizarValor(valor) {
+            const str = String(valor).trim();
+            if (str === '00') return { clave: '00', numero: 0, esDobleCero: true };
+            return { clave: String(Number(valor)), numero: Number(valor), esDobleCero: false };
+        }
 
-        async function gsmCargarSecuenciaReal() {
+        let gsmDatosLotto = null;
+
+        async function gsmCargarLotto() {
             try {
-                const response = await fetch(`${SECUENCIA_URL}?_=${new Date().getTime()}`);
-                if (!response.ok) return false;
+                const response = await fetch(`${JSON_URL}?t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
                 if (data && data.resultados && Array.isArray(data.resultados)) {
-                    gsmSecuenciaResultados = data.resultados;
+                    gsmDatosLotto = data.resultados;
+                    console.log(`✅ lotto.json cargado para GSM: ${gsmDatosLotto.length} días`);
                     return true;
                 }
                 return false;
             } catch (error) {
-                console.error('❌ Error al cargar secuencia.json:', error);
+                console.error('❌ Error al cargar lotto.json en GSM:', error);
+                gsmDatosLotto = null;
                 return false;
             }
         }
 
-        function gsmObtenerSecuenciaMasRecienteConNumero(numeroBuscado) {
-            const numStr = String(numeroBuscado).trim();
-            if (!gsmSecuenciaResultados || gsmSecuenciaResultados.length === 0) return null;
-            for (let i = gsmSecuenciaResultados.length - 1; i >= 0; i--) {
-                const sec = gsmSecuenciaResultados[i];
-                if (Array.isArray(sec) && sec.some(val => String(val) === numStr)) {
-                    return { secuencia: [...sec], indice: i };
+        /**
+         * Busca el número consultado en los días respetando el orden:
+         * Día más reciente (idx 2) → Día intermedio (idx 1) → Día más antiguo (idx 0).
+         * 
+         * Reglas:
+         * - Se toman los 4 siguientes del mismo día, sin repetir.
+         * - Se excluye el número consultado y los repetidos.
+         * - Si faltan, se completa con el INICIO del día inmediatamente MÁS RECIENTE.
+         * - Si aún faltan 4 → se descarta esa aparición y se busca en otro día.
+         */
+        function gsmBuscarSiguientes(numeroBuscado) {
+            if (!gsmDatosLotto || gsmDatosLotto.length === 0) {
+                return { encontrado: false, siguientes: [] };
+            }
+
+            const buscado = gsmNormalizarValor(numeroBuscado);
+            const claveBuscada = buscado.clave;
+            const ordenBusqueda = [2, 1, 0];
+
+            for (const diaIdx of ordenBusqueda) {
+                const dia = gsmDatosLotto[diaIdx];
+                if (!Array.isArray(dia)) continue;
+
+                for (let i = 0; i < dia.length; i++) {
+                    const item = gsmNormalizarValor(dia[i]);
+                    if (item.clave === claveBuscada) {
+                        const secuencia = [];
+                        const usados = new Set();
+                        // ✅ Excluir el número consultado
+                        usados.add(claveBuscada);
+
+                        // 1. Tomar los siguientes del mismo día (sin repetir)
+                        for (let k = i + 1; k < dia.length && secuencia.length < 4; k++) {
+                            const sig = gsmNormalizarValor(dia[k]);
+                            if (!usados.has(sig.clave)) {
+                                usados.add(sig.clave);
+                                secuencia.push(sig);
+                            }
+                        }
+
+                        // 2. Si faltan, completar con el INICIO del día inmediatamente MÁS RECIENTE
+                        if (secuencia.length < 4 && diaIdx + 1 < gsmDatosLotto.length) {
+                            const diaSiguiente = gsmDatosLotto[diaIdx + 1];
+                            if (Array.isArray(diaSiguiente)) {
+                                for (let k = 0; k < diaSiguiente.length && secuencia.length < 4; k++) {
+                                    const sig = gsmNormalizarValor(diaSiguiente[k]);
+                                    if (!usados.has(sig.clave)) {
+                                        usados.add(sig.clave);
+                                        secuencia.push(sig);
+                                    }
+                                }
+                            }
+                        }
+
+                        // 3. Verificar que tenemos los 4
+                        if (secuencia.length >= 4) {
+                            return {
+                                encontrado: true,
+                                siguientes: secuencia.slice(0, 4),
+                                dia: diaIdx,
+                                posicion: i
+                            };
+                        }
+                        // Si no → descartar y seguir buscando
+                    }
                 }
             }
-            return null;
+
+            return { encontrado: false, siguientes: [] };
         }
 
-        function gsmRenderizarSecuenciaActiva(secuenciaArray, numeroExcluir) {
+        function gsmRenderizarSecuencia(resultado, numeroConsultado) {
             const grid = document.getElementById('gsmGridSecuencias');
-            if (!secuenciaArray || !Array.isArray(secuenciaArray) || secuenciaArray.length === 0) {
-                grid.innerHTML = `<span class="gsm-mensaje-vacio">no hay secuencia disponible</span>`;
+
+            if (!resultado || !resultado.encontrado || !resultado.siguientes || resultado.siguientes.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">⚠️ El número ${numeroConsultado} no tiene secuencia activa ⛔ Espere el próximo resultado de la operadora</span>`;
                 return;
             }
-            const numExcluirStr = String(numeroExcluir).trim();
-            const filtrada = secuenciaArray.filter(num => String(num) !== numExcluirStr);
-            if (filtrada.length === 0) {
-                grid.innerHTML = `<span class="gsm-mensaje-vacio">la secuencia solo contiene el número consultado</span>`;
-                return;
-            }
+
+            // Mezclar las tarjetas
+            const mezclados = mezclarArray([...resultado.siguientes]);
+
             let html = '';
-            filtrada.forEach(num => {
-                const numStr = String(num);
+            mezclados.forEach(item => {
+                const numStr = item.esDobleCero ? '00' : String(item.numero);
                 const nombre = gsmAnimales[numStr] || numStr;
                 const imgSrc = gsmObtenerRutaImagen(numStr);
                 html += `
@@ -2542,7 +2605,7 @@
             });
             grid.innerHTML = html;
 
-            ajustarGridDinamico(grid.parentElement, filtrada.length, 'gsm');
+            ajustarGridDinamico(grid.parentElement, mezclados.length, 'gsm');
         }
 
         function gsmConsultarNumero() {
@@ -2580,20 +2643,15 @@
             tarjeta.style.display = 'inline-flex';
             mensaje.style.display = 'none';
 
-            const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
-            if (!resultado) {
-                document.getElementById('gsmGridSecuencias').innerHTML =
-                    `<span class="gsm-mensaje-vacio">⚠️el número ${val} no tiene la secuencia activa ⛔ Espere el proximo resultado de la operadora</span>`;
-                return;
-            }
-            gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
+            const resultado = gsmBuscarSiguientes(val);
+            gsmRenderizarSecuencia(resultado, val);
         }
 
         async function gsmInicializar() {
             const input = document.getElementById('gsmNumeroInput');
             const buscarBtn = document.getElementById('gsmBuscarBtn');
 
-            await gsmCargarSecuenciaReal();
+            await gsmCargarLotto();
 
             buscarBtn.addEventListener('click', gsmConsultarNumero);
             input.addEventListener('keypress', e => { if (e.key === 'Enter') gsmConsultarNumero(); });
