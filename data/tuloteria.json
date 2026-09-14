@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-14T19:14:07.972624",
+    "ultima_actualizacion": "2026-09-14T23:04:02.525552",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Lunes",
         "fecha": "14 sept 2026",
         "numeros": [
-          10
+          9
         ],
         "numero_extra": null
       },
