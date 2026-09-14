@@ -283,7 +283,7 @@
             color: #8ab8ff;
         }
 
-        /* --- TRIPLETAS (Púrpura) - DESBLOQUEADO --- */
+        /* --- TRIPLETAS (Púrpura) --- */
         .tarjeta-tripletas {
             background: linear-gradient(145deg, #1a0d2a 0%, #2a1a3a 100%);
             border: 1px solid rgba(179, 136, 255, 0.25);
@@ -316,7 +316,7 @@
             color: #d1b3ff;
         }
 
-        /* --- SUPER FIJOS (Rojo) - BLOQUEADO --- */
+        /* --- SUPER FIJOS (Rojo) --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -349,7 +349,7 @@
             color: #ff9999;
         }
 
-        /* --- GSM (Dorado) - DESBLOQUEADO --- */
+        /* --- GSM (Dorado) --- */
         .tarjeta-gsm {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.25);
@@ -377,7 +377,7 @@
             color: #ffd700;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - DESBLOQUEADO --- */
+        /* --- ANÁLISIS FORENSE --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
@@ -522,9 +522,7 @@
             margin-top: 4px;
         }
 
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SOLO PARA SUPER FIJOS         */
-        /* ================================================ */
+        /* OVERLAY PREMIUM */
         .premium-overlay {
             position: absolute;
             top: 0;
@@ -645,7 +643,6 @@
             transform: scale(0.95);
         }
 
-        /* ===== BOTÓN WHATSAPP DEL OVERLAY ===== */
         .action-buttons-group .btn-whatsapp-overlay {
             display: inline-flex;
             align-items: center;
@@ -677,9 +674,6 @@
             font-size: 1.2rem;
         }
 
-        /* ================================================ */
-        /* BLOQUEO DE CONTENIDO PREMIUM                      */
-        /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
             opacity: 0.4;
@@ -718,9 +712,6 @@
             display: none;
         }
 
-        /* ================================================ */
-        /* BOTONES MEJORADOS                                */
-        /* ================================================ */
         .unlock-btn {
             display: inline-flex;
             align-items: center;
@@ -827,9 +818,6 @@
             cursor: pointer;
         }
 
-        /* ================================================ */
-        /* GRIDS BASE (sobrescritos dinámicamente)          */
-        /* ================================================ */
         .numeros-grid,
         .numeros-grid-3,
         .numeros-grid-5 {
@@ -882,9 +870,7 @@
             transition: font-size 0.3s ease;
         }
 
-        /* ================================================ */
-        /* GSM - ESTILOS ESPECÍFICOS                       */
-        /* ================================================ */
+        /* GSM */
         .gsm-busqueda {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
@@ -1174,7 +1160,6 @@
             text-decoration: none;
         }
 
-        /* ===== BOTÓN DE WHATSAPP FLOTANTE ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -1217,7 +1202,6 @@
             font-size: 1.8rem;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (min-width: 700px) {
             .cabecera h1 {
                 font-size: 3rem;
@@ -1371,7 +1355,6 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- 1. CORTESÍA - SIEMPRE VISIBLE -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> ACOMPAÑANTES PARA LAS TRIPLETAS</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
@@ -1382,7 +1365,6 @@
                 </div>
             </div>
 
-            <!-- 2. TRIPLETAS - DESBLOQUEADO -->
             <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> BASES PARA TRIPLETAS</h3>
                 <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 12px;">
@@ -1393,7 +1375,6 @@
                 </div>
             </div>
 
-            <!-- 3. SUPER FIJOS - BLOQUEADO (ÚNICO PREMIUM) -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
 
@@ -1423,7 +1404,6 @@
                 </div>
             </div>
 
-            <!-- 4. GSM - DESBLOQUEADO -->
             <div class="tarjeta-gsm tarjeta-dato">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
@@ -1431,7 +1411,6 @@
                 </div>
 
                 <div id="gsm-contenido" class="premium-container" style="min-height: 200px;">
-                    <!-- Buscar secuencia -->
                     <div class="gsm-busqueda">
                         <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
                         <div class="gsm-flex-row">
@@ -1451,7 +1430,6 @@
                         <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
                     </div>
 
-                    <!-- Secuencias activas -->
                     <div class="gsm-secuencias">
                         <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
                         <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
@@ -1459,19 +1437,17 @@
                         </div>
                     </div>
 
-                    <!-- INSTRUCCIONES GSM -->
                     <div class="gsm-instrucciones">
                         <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
-                        <p><i class="bi bi-1-circle-fill"></i> Las Secuencias Generadas son dinamicas, cambian segun los resultados que genera todos los dias la operadora.</p>
+                        <p><i class="bi bi-1-circle-fill"></i> Las Secuencias Generadas son dinámicas, cambian según los resultados que genera todos los días la operadora.</p>
                         <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
                         <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento a los resultados que va generando la operadora La Granjita.</p>
-                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta se conecta con una base de datos analizando los últimos 1000 resultados de la operadora (los últimos 3 meses), buscando comportamientos, patrones y ciclos de apariciones.</p>
-                        <p><i class="bi bi-4-circle-fill"></i> La herramienta le devolverá una serie de números que son los que tienen todas las probabilidades de salir en los próximos resultados.</p>
+                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta busca en los últimos 3 días de resultados y toma los 4 números siguientes.</p>
+                        <p><i class="bi bi-4-circle-fill"></i> El número consultado y los repetidos se descartan automáticamente de la secuencia.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. ANÁLISIS FORENSE - DESBLOQUEADO -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
@@ -1505,7 +1481,6 @@
         </div>
     </div>
 
-    <!-- ===== BOTÓN DE WHATSAPP FLOTANTE ===== -->
     <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20Premium%20de%20La%20Granjita" 
        class="whatsapp-float" 
        target="_blank" 
@@ -1515,7 +1490,6 @@
         <span>WhatsApp</span>
     </a>
 
-    <!-- ===== MODAL LOGIN PREMIUM (solo para Super Fijos) ===== -->
     <div class="modal-login" id="modalLogin">
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
@@ -1548,7 +1522,7 @@
         // CONFIGURACIÓN DE FIREBASE FIRESTORE
         // =====================================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs, onSnapshot, addDoc, doc, serverTimestamp, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
@@ -1568,7 +1542,6 @@
         const STORAGE_KEY = 'granjita_premium_unlocked';
 
         const JSON_URL = 'data/granjita.json';
-        const SECUENCIA_URL = 'data/secuencia_granjita.json';
 
         const animales = {
             '00': 'ballena',
@@ -1961,7 +1934,7 @@
         }
 
         // =====================================================
-        // BASES PARA TRIPLETAS (4 números únicos)
+        // BASES PARA TRIPLETAS
         // =====================================================
         function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
             const espejosBrutos = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
@@ -1981,7 +1954,7 @@
         }
 
         // =====================================================
-        // ACOMPAÑANTES PARA TRIPLETAS (NUEVA LÓGICA)
+        // ACOMPAÑANTES PARA TRIPLETAS
         // =====================================================
         function normalizarNumero(valor) {
             const valStr = String(valor).trim();
@@ -2129,7 +2102,7 @@
         }
 
         // =====================================================
-        // ANÁLISIS FORENSE PREMIUM - DESBLOQUEADO (GRATIS)
+        // ANÁLISIS FORENSE
         // =====================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 36, especiales: ['00'] };
@@ -2323,9 +2296,6 @@
             alert(`🔍 Analizando número ${formatearNumero(num)}`);
         }
 
-        // =====================================================
-        // PREDICCIÓN FORENSE - DESBLOQUEADA (GRATIS)
-        // =====================================================
         function actualizarForensePrediccion() {
             const semillas = calcularSemillasForense();
             const arrastre = calcularArrastreForense();
@@ -2408,7 +2378,7 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // =====================================================
-        // GSM - GENERADOR DE SECUENCIAS (DESBLOQUEADO)
+        // GSM - GENERADOR DE SECUENCIAS (consulta granjita.json)
         // =====================================================
         const gsmAnimales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
@@ -2431,51 +2401,108 @@
             return Number.isInteger(num) && num >= 0 && num <= 36;
         }
 
-        let gsmSecuenciaResultados = [];
+        function gsmNormalizarValor(valor) {
+            const str = String(valor).trim();
+            if (str === '00') return { clave: '00', numero: 0, esDobleCero: true };
+            return { clave: String(Number(valor)), numero: Number(valor), esDobleCero: false };
+        }
 
-        async function gsmCargarSecuenciaReal() {
+        let gsmDatosGranjita = null;
+
+        async function gsmCargarGranjita() {
             try {
-                const response = await fetch(`${SECUENCIA_URL}?_=${new Date().getTime()}`);
-                if (!response.ok) return false;
+                const response = await fetch(`${JSON_URL}?t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
                 if (data && data.resultados && Array.isArray(data.resultados)) {
-                    gsmSecuenciaResultados = data.resultados;
+                    gsmDatosGranjita = data.resultados;
+                    console.log(`✅ granjita.json cargado para GSM: ${gsmDatosGranjita.length} días`);
                     return true;
                 }
                 return false;
             } catch (error) {
-                console.error('❌ Error al cargar secuencia_granjita.json:', error);
+                console.error('❌ Error al cargar granjita.json en GSM:', error);
+                gsmDatosGranjita = null;
                 return false;
             }
         }
 
-        function gsmObtenerSecuenciaMasRecienteConNumero(numeroBuscado) {
-            const numStr = String(numeroBuscado).trim();
-            if (!gsmSecuenciaResultados || gsmSecuenciaResultados.length === 0) return null;
-            for (let i = gsmSecuenciaResultados.length - 1; i >= 0; i--) {
-                const sec = gsmSecuenciaResultados[i];
-                if (Array.isArray(sec) && sec.some(val => String(val) === numStr)) {
-                    return { secuencia: [...sec], indice: i };
+        /**
+         * Busca el número en los días respetando el orden:
+         * Día más reciente (idx 2) → Día intermedio (idx 1) → Día más antiguo (idx 0).
+         */
+        function gsmBuscarSiguientes(numeroBuscado) {
+            if (!gsmDatosGranjita || gsmDatosGranjita.length === 0) {
+                return { encontrado: false, siguientes: [] };
+            }
+
+            const buscado = gsmNormalizarValor(numeroBuscado);
+            const claveBuscada = buscado.clave;
+            const ordenBusqueda = [2, 1, 0];
+
+            for (const diaIdx of ordenBusqueda) {
+                const dia = gsmDatosGranjita[diaIdx];
+                if (!Array.isArray(dia)) continue;
+
+                for (let i = 0; i < dia.length; i++) {
+                    const item = gsmNormalizarValor(dia[i]);
+                    if (item.clave === claveBuscada) {
+                        const secuencia = [];
+                        const usados = new Set();
+                        usados.add(claveBuscada);
+
+                        // 1. Tomar los siguientes del mismo día (sin repetir)
+                        for (let k = i + 1; k < dia.length && secuencia.length < 4; k++) {
+                            const sig = gsmNormalizarValor(dia[k]);
+                            if (!usados.has(sig.clave)) {
+                                usados.add(sig.clave);
+                                secuencia.push(sig);
+                            }
+                        }
+
+                        // 2. Si faltan, completar con el INICIO del día inmediatamente MÁS RECIENTE
+                        if (secuencia.length < 4 && diaIdx + 1 < gsmDatosGranjita.length) {
+                            const diaSiguiente = gsmDatosGranjita[diaIdx + 1];
+                            if (Array.isArray(diaSiguiente)) {
+                                for (let k = 0; k < diaSiguiente.length && secuencia.length < 4; k++) {
+                                    const sig = gsmNormalizarValor(diaSiguiente[k]);
+                                    if (!usados.has(sig.clave)) {
+                                        usados.add(sig.clave);
+                                        secuencia.push(sig);
+                                    }
+                                }
+                            }
+                        }
+
+                        // 3. Verificar que tenemos los 4
+                        if (secuencia.length >= 4) {
+                            return {
+                                encontrado: true,
+                                siguientes: secuencia.slice(0, 4),
+                                dia: diaIdx,
+                                posicion: i
+                            };
+                        }
+                    }
                 }
             }
-            return null;
+
+            return { encontrado: false, siguientes: [] };
         }
 
-        function gsmRenderizarSecuenciaActiva(secuenciaArray, numeroExcluir) {
+        function gsmRenderizarSecuencia(resultado, numeroConsultado) {
             const grid = document.getElementById('gsmGridSecuencias');
-            if (!secuenciaArray || !Array.isArray(secuenciaArray) || secuenciaArray.length === 0) {
-                grid.innerHTML = `<span class="gsm-mensaje-vacio">no hay secuencia disponible</span>`;
+
+            if (!resultado || !resultado.encontrado || !resultado.siguientes || resultado.siguientes.length === 0) {
+                grid.innerHTML = `<span class="gsm-mensaje-vacio">⚠️ El número ${numeroConsultado} no tiene secuencia activa ⛔ Espere el próximo resultado de la operadora</span>`;
                 return;
             }
-            const numExcluirStr = String(numeroExcluir).trim();
-            const filtrada = secuenciaArray.filter(num => String(num) !== numExcluirStr);
-            if (filtrada.length === 0) {
-                grid.innerHTML = `<span class="gsm-mensaje-vacio">la secuencia solo contiene el número consultado</span>`;
-                return;
-            }
+
+            const mezclados = mezclarArray([...resultado.siguientes]);
+
             let html = '';
-            filtrada.forEach(num => {
-                const numStr = String(num);
+            mezclados.forEach(item => {
+                const numStr = item.esDobleCero ? '00' : String(item.numero);
                 const nombre = gsmAnimales[numStr] || numStr;
                 const imgSrc = gsmObtenerRutaImagen(numStr);
                 html += `
@@ -2490,7 +2517,16 @@
             });
             grid.innerHTML = html;
 
-            ajustarGridDinamico(grid.parentElement, filtrada.length, 'gsm');
+            ajustarGridDinamico(grid.parentElement, mezclados.length, 'gsm');
+        }
+
+        function mezclarArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
         }
 
         function gsmConsultarNumero() {
@@ -2528,20 +2564,15 @@
             tarjeta.style.display = 'inline-flex';
             mensaje.style.display = 'none';
 
-            const resultado = gsmObtenerSecuenciaMasRecienteConNumero(val);
-            if (!resultado) {
-                document.getElementById('gsmGridSecuencias').innerHTML =
-                    `<span class="gsm-mensaje-vacio">⚠️el número ${val} no tiene la secuencia activa ⛔ Espere el proximo resultado de la operadora</span>`;
-                return;
-            }
-            gsmRenderizarSecuenciaActiva(resultado.secuencia, val);
+            const resultado = gsmBuscarSiguientes(val);
+            gsmRenderizarSecuencia(resultado, val);
         }
 
         async function gsmInicializar() {
             const input = document.getElementById('gsmNumeroInput');
             const buscarBtn = document.getElementById('gsmBuscarBtn');
 
-            await gsmCargarSecuenciaReal();
+            await gsmCargarGranjita();
 
             buscarBtn.addEventListener('click', gsmConsultarNumero);
             input.addEventListener('keypress', e => { if (e.key === 'Enter') gsmConsultarNumero(); });
@@ -2746,11 +2777,7 @@
                 return;
             }
 
-            const shuffled = [...items];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
+            const shuffled = mezclarArray([...items]);
 
             let html = '<div class="numeros-grid-5">';
             shuffled.forEach(r => {
