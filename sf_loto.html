@@ -34,6 +34,17 @@
         });
     </script>
 
+    <!-- SDK DE FIREBASE FIRESTORE -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
+                "firebase-storage": "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"
+            }
+        }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -512,6 +523,311 @@
         }
 
         /* ================================================ */
+        /* OVERLAY MEJORADO - SOLO PARA SECCIONES PREMIUM   */
+        /* ================================================ */
+        .premium-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 15px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .premium-overlay.hidden {
+            display: none;
+        }
+
+        .premium-overlay::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .premium-overlay:hover {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .premium-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 1.8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            line-height: 1.2;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
+        }
+
+        .premium-badge i {
+            -webkit-text-fill-color: #ffd700;
+            color: #ffd700;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
+            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        }
+
+        .premium-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 320px;
+            margin: 2px 0;
+            line-height: 1.5;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .premium-message strong {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .action-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .action-buttons-group .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-buttons-group .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .action-buttons-group .contact-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== BOTÓN WHATSAPP DEL OVERLAY ===== */
+        .action-buttons-group .btn-whatsapp-overlay {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4), 0 0 40px rgba(37, 211, 102, 0.1);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.6), 0 0 60px rgba(37, 211, 102, 0.2);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .action-buttons-group .btn-whatsapp-overlay i {
+            font-size: 1.2rem;
+        }
+
+        /* ================================================ */
+        /* BLOQUEO DE CONTENIDO PREMIUM                      */
+        /* ================================================ */
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: scale(0.98);
+        }
+
+        .premium-container.locked-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.05) 2px,
+                    rgba(0, 0, 0, 0.05) 4px);
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 18px;
+        }
+
+        .locked-grid-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            transition: all 0.8s ease;
+        }
+
+        .locked-grid-desbloqueado::after {
+            display: none;
+        }
+
+        /* ================================================ */
+        /* BOTONES MEJORADOS                                */
+        /* ================================================ */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
+            animation: pulseBtn 2s ease-in-out infinite;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes pulseBtn {
+            0%,
+            100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
+        }
+
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-login.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content h4 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+            color: #09130e;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* ================================================ */
         /* GRIDS BASE (sobrescritos dinámicamente)          */
         /* ================================================ */
         .numeros-grid,
@@ -906,6 +1222,12 @@
             .cabecera h1 {
                 font-size: 3rem;
             }
+            .premium-badge {
+                font-size: 2.2rem;
+            }
+            .premium-message {
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -935,6 +1257,21 @@
                 width: 100%;
                 justify-content: center;
             }
+            .action-buttons-group .contact-btn {
+                font-size: 0.75rem;
+                padding: 8px 14px;
+            }
+            .action-buttons-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .action-buttons-group .unlock-btn,
+            .action-buttons-group .btn-whatsapp-overlay {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -947,6 +1284,15 @@
         }
 
         @media (max-width: 400px) {
+            .action-buttons-group .contact-btn {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+            }
+            .action-buttons-group .unlock-btn,
+            .action-buttons-group .btn-whatsapp-overlay {
+                font-size: 0.8rem;
+                padding: 10px 16px;
+            }
             .whatsapp-float {
                 padding: 12px 14px;
                 font-size: 0.8rem;
@@ -1025,7 +1371,7 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- 1. CORTESÍA - SIEMPRE VISIBLE -->
+            <!-- 1. CORTESÍA - SIEMPRE VISIBLE (ÚNICA SECCIÓN GRATUITA) -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> ACOMPAÑANTES PARA LAS TRIPLETAS</h3>
                 <div style="text-align: center; color: #8ab8ff; font-size: 0.8rem; margin-bottom: 10px;">
@@ -1036,36 +1382,92 @@
                 </div>
             </div>
 
-            <!-- 2. TRIPLETAS - DESBLOQUEADO -->
+            <!-- 2. TRIPLETAS - BLOQUEADO PREMIUM -->
             <div class="tarjeta-tripletas tarjeta-dato">
                 <h3><i class="bi bi-grid-3x3-gap-fill"></i> BASES PARA TRIPLETAS</h3>
-                <div style="text-align: center; color: #d1b3ff; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido Gratis para todos
+
+                <div class="premium-overlay" id="overlayTripletas">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> TRIPLETAS PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a las Bases para Tripletas ingresando tu clave, o solicítala presionando el botón de WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20las%20Bases%20para%20Tripletas%20de%20Lotto%20Activo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div id="tripletas-contenido" style="min-height: 150px;">
+
+                <div id="tripletas-contenido" class="premium-container" style="min-height: 150px;">
                     <div class="no-data">Cargando tripletas...</div>
                 </div>
             </div>
 
-            <!-- 3. SUPER FIJOS - DESBLOQUEADO -->
+            <!-- 3. SUPER FIJOS - BLOQUEADO PREMIUM -->
             <div class="tarjeta-superfijos tarjeta-dato">
-                <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
-                <div style="text-align: center; color: #ff9999; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido Gratis para todos
+                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
+
+                <div class="premium-overlay" id="overlaySuperFijos">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a los 3 Super Fijos ingresando tu clave, o solicítala presionando el botón de WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20Lotto%20Activo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
-                <div id="resultado-contenido" style="min-height: 150px;">
+
+                <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
                     <div class="no-data">Cargando...</div>
                 </div>
             </div>
 
-            <!-- 4. GSM - DESBLOQUEADO -->
+            <!-- 4. GSM - BLOQUEADO PREMIUM -->
             <div class="tarjeta-gsm tarjeta-dato">
-                <h3><i class="bi bi-robot"></i> Generador de Secuencias</h3>
-                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido Gratis para todos
+                <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
+
+                <div class="premium-overlay" id="overlayGSM">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> GSM PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede al Generador de Secuencias ingresando tu clave, o solicítala presionando el botón de WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20el%20Generador%20de%20Secuencias%20Premium%20de%20Lotto%20Activo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
 
-                <div id="gsm-contenido" style="min-height: 200px;">
+                <div id="gsm-contenido" class="premium-container" style="min-height: 200px;">
                     <div class="gsm-busqueda">
                         <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
                         <div class="gsm-flex-row">
@@ -1103,22 +1505,40 @@
                 </div>
             </div>
 
-            <!-- 5. ANÁLISIS FORENSE - DESBLOQUEADO -->
+            <!-- 5. ANÁLISIS FORENSE - BLOQUEADO PREMIUM -->
             <div class="tarjeta-forense tarjeta-dato">
-                <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense</h3>
-                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido Gratis para todos
+                <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
+
+                <div class="premium-overlay" id="overlayForense">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> FORENSE PREMIUM
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede al Análisis Forense ingresando tu clave, o solicítala presionando el botón de WhatsApp.
+                    </p>
+                    <div class="action-buttons-group">
+                        <button class="unlock-btn" onclick="abrirModalLogin()">
+                            <i class="bi bi-unlock-fill"></i> Desbloquear
+                        </button>
+                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20el%20An%C3%A1lisis%20Forense%20Premium%20de%20Lotto%20Activo" 
+                           class="btn-whatsapp-overlay" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
 
                 <div class="forense-sub" style="position: relative;">
-                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
                     <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
                         <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
                 <div class="forense-sub" style="position: relative;">
-                    <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#ffd700; color:#000; padding:2px 8px; border-radius:10px; margin-left:5px;">PREMIUM</span></h4>
                     <div id="forense-prediccion">
                         <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
@@ -1138,7 +1558,7 @@
     </div>
 
     <!-- ===== BOTÓN DE WHATSAPP FLOTANTE ===== -->
-    <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20de%20Lotto%20Activo" 
+    <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20Premium%20de%20Lotto%20Activo" 
        class="whatsapp-float" 
        target="_blank" 
        rel="noopener noreferrer"
@@ -1147,9 +1567,20 @@
         <span>WhatsApp</span>
     </a>
 
+    <!-- ===== MODAL LOGIN PREMIUM ===== -->
+    <div class="modal-login" id="modalLogin">
+        <div class="modal-content">
+            <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
+            <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido premium:</p>
+            <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
+            <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
+        </div>
+    </div>
+
     <div style="padding: 15px; font-size: 0.8rem; color: #8fa095; text-align: center;">
         <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Lotto Activo.</p>
-        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Todos los contenidos están disponibles gratis para todos.</strong></p>
+        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Acompañantes para Tripletas</strong> disponible gratis para todos. Las demás secciones requieren clave premium.</p>
     </div>
 
     <footer class="footer">
@@ -1166,8 +1597,26 @@
 
     <script type="module">
         // =====================================================
-        // CONFIGURACIÓN
+        // CONFIGURACIÓN DE FIREBASE FIRESTORE
         // =====================================================
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.firebasestorage.app",
+            messagingSenderId: "759403364736",
+            appId: "1:759403364736:web:c686aea85758245a7f4165"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        let usuarioAutenticado = false;
         const JSON_URL = 'data/lotto.json';
 
         const animales = {
@@ -1401,6 +1850,154 @@
                 });
             }, 200);
         });
+
+        // =====================================================
+        // FUNCIONES DEL MODAL
+        // =====================================================
+        window.abrirModalLogin = function() {
+            document.getElementById('modalLogin').classList.add('show');
+            document.getElementById('claveAcceso').value = '';
+            document.getElementById('claveAcceso').focus();
+        };
+
+        window.cerrarModalLogin = function() {
+            document.getElementById('modalLogin').classList.remove('show');
+        };
+
+        // =====================================================
+        // AUTENTICACIÓN CON FIRESTORE
+        // =====================================================
+        async function validarCodigo(codigo) {
+            if (!codigo) return false;
+            const hoyStr = new Date().toISOString().split('T')[0];
+            try {
+                const q = query(
+                    collection(db, "clientes"),
+                    where("codigo", "==", codigo),
+                    where("activo", "==", true)
+                );
+                const querySnapshot = await getDocs(q);
+                let esValido = false;
+                querySnapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
+                        esValido = true;
+                    }
+                });
+                return esValido;
+            } catch (e) {
+                console.error("Error al consultar Firebase:", e);
+                return false;
+            }
+        }
+
+        window.autenticarUsuario = async function() {
+            const claveInput = document.getElementById('claveAcceso');
+            const btnIngresar = document.getElementById('btnIngresar');
+            const clave = claveInput.value.trim();
+
+            if (clave === '') {
+                alert('Por favor, ingresa una clave válida.');
+                return;
+            }
+
+            btnIngresar.innerText = 'Verificando...';
+            btnIngresar.disabled = true;
+
+            try {
+                const esValido = await validarCodigo(clave);
+
+                if (esValido) {
+                    usuarioAutenticado = true;
+                    desbloquearTodoElPremium();
+                    cerrarModalLogin();
+                    localStorage.setItem('user_premium_token', clave);
+                    alert('✅ Acceso Premium concedido. Todas las secciones han sido desbloqueadas.');
+                } else {
+                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
+                }
+            } catch (error) {
+                console.error('Error al verificar:', error);
+                alert('⚠️ Error de conexión. Inténtalo de nuevo.');
+            } finally {
+                btnIngresar.innerText = 'Validar Clave';
+                btnIngresar.disabled = false;
+            }
+        };
+
+        async function verificarSesionPrevia() {
+            const tokenGuardado = localStorage.getItem('user_premium_token');
+            if (tokenGuardado) {
+                const esValido = await validarCodigo(tokenGuardado);
+                if (esValido) {
+                    usuarioAutenticado = true;
+                    desbloquearTodoElPremium();
+                } else {
+                    localStorage.removeItem('user_premium_token');
+                    usuarioAutenticado = false;
+                }
+            }
+        }
+
+        // =====================================================
+        // DESBLOQUEAR TODO EL CONTENIDO PREMIUM
+        // =====================================================
+        function desbloquearTodoElPremium() {
+            usuarioAutenticado = true;
+
+            // Ocultar todos los overlays
+            const overlays = ['overlayTripletas', 'overlaySuperFijos', 'overlayGSM', 'overlayForense'];
+            overlays.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            // Desbloquear contenedores con clase locked-grid
+            const contenedores = ['tripletas-contenido', 'resultado-contenido', 'gsm-contenido', 'forense-top10', 'forense-prediccion'];
+            contenedores.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                
+                // Remover clases de bloqueo del contenedor y sus hijos
+                el.classList.remove('locked-grid');
+                el.querySelectorAll('.locked-grid').forEach(child => {
+                    child.classList.remove('locked-grid');
+                    child.classList.add('locked-grid-desbloqueado');
+                });
+            });
+
+            // Desbloquear específicamente los grids dentro de los contenedores
+            ['tripletas-contenido', 'resultado-contenido'].forEach(id => {
+                const contenedor = document.getElementById(id);
+                if (contenedor) {
+                    const grid = contenedor.querySelector('.numeros-grid, .numeros-grid-3');
+                    if (grid) {
+                        grid.classList.remove('locked-grid');
+                        grid.classList.add('locked-grid-desbloqueado');
+                    }
+                }
+            });
+
+            // Desbloquear el contenedor GSM
+            const gsmContenedor = document.getElementById('gsm-contenido');
+            if (gsmContenedor) {
+                gsmContenedor.classList.remove('locked-grid');
+                gsmContenedor.classList.add('locked-grid-desbloqueado');
+            }
+
+            // Desbloquear los contenedores forenses
+            ['forense-top10', 'forense-prediccion'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('locked-grid');
+                    el.classList.add('locked-grid-desbloqueado');
+                    el.style.filter = 'blur(0px) brightness(1)';
+                    el.style.opacity = '1';
+                    el.style.pointerEvents = 'auto';
+                    el.style.transform = 'scale(1)';
+                }
+            });
+        }
 
         // =====================================================
         // FUNCIONES DE UTILIDAD
@@ -1669,7 +2266,7 @@
         }
 
         // =====================================================
-        // ANÁLISIS FORENSE - GRATIS
+        // ANÁLISIS FORENSE PREMIUM - BLOQUEADO
         // =====================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 36, especiales: ['00'] };
@@ -2151,7 +2748,7 @@
         }
 
         // =====================================================
-        // VISUALIZACIÓN DE SUPER FIJOS (SIEMPRE VISIBLE)
+        // VISUALIZACIÓN DE SUPER FIJOS
         // =====================================================
         function mostrarSuperFijosConLog(items, infoAdicional = null) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2161,6 +2758,14 @@
             }
 
             const itemsMezclados = mezclarArray([...items]);
+
+            let claseGrid = 'numeros-grid-3';
+            let claseContainer = 'premium-container';
+
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+                claseContainer += ' locked-grid';
+            }
 
             let infoHTML = '';
             if (infoAdicional && infoAdicional.encontrado) {
@@ -2175,7 +2780,7 @@
             }
 
             let html = infoHTML;
-            html += `<div class="numeros-grid-3">`;
+            html += `<div class="${claseGrid}">`;
 
             itemsMezclados.forEach((r, index) => {
                 let numDisplay, nombreAnimal, rutaImagen;
@@ -2219,6 +2824,7 @@
                 }
             }
 
+            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
 
             ajustarGridDinamico(contenedor, items.length, 'superfijos');
@@ -2306,6 +2912,8 @@
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
+                await verificarSesionPrevia();
+
             } catch (error) {
                 console.error('Error al cargar JSON del servidor:', error);
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
@@ -2368,7 +2976,15 @@
                 return;
             }
 
-            let html = `<div class="numeros-grid">`;
+            let claseGrid = 'numeros-grid';
+            let claseContainer = 'premium-container';
+
+            if (!usuarioAutenticado) {
+                claseGrid += ' locked-grid';
+                claseContainer += ' locked-grid';
+            }
+
+            let html = `<div class="${claseGrid}">`;
             items.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2392,6 +3008,7 @@
                 `;
             });
             html += '</div>';
+            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
 
             ajustarGridDinamico(contenedor, items.length, 'tripletas');
