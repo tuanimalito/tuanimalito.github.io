@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-19T04:24:23.550358",
+    "ultima_actualizacion": "2026-09-19T09:21:55.383375",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -47,7 +47,7 @@
         "dia": "Martes",
         "fecha": "22 sept 2026"
       },
-      "bote": "244.000.000$"
+      "bote": "261.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "18 sept 2026"
+        "dia": "Sábado",
+        "fecha": "19 sept 2026"
       },
       "bote": "250$"
     },
