@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-21T23:10:17.111245",
+    "ultima_actualizacion": "2026-09-22T04:37:50.590883",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "19 sept 2026",
+        "dia": "Lunes",
+        "fecha": "21 sept 2026",
         "numeros": [
-          18,
-          30,
-          41,
-          45,
-          68
+          2,
+          7,
+          9,
+          17,
+          58
         ],
-        "numero_extra": 10
+        "numero_extra": 20
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026"
       },
       "bote": "313.000.000$"
     },
@@ -103,82 +103,19 @@
         "dia": "Lunes",
         "fecha": "21 sept 2026",
         "numeros": [
-          4,
-          5,
-          18,
-          21,
-          24
+          1,
+          6,
+          12,
+          14,
+          15
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
+        "dia": "Martes",
+        "fecha": "22 sept 2026"
       },
       "bote": "100.000$"
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
-        "numeros": [
-          9,
-          8,
-          2,
-          2,
-          9
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
-        "numeros": [
-          1,
-          4,
-          6,
-          1
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
-        "numeros": [
-          9,
-          5,
-          8
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
-      },
-      "bote": "500$"
     },
     {
       "id": "cash-pop",
@@ -199,25 +136,6 @@
       "bote": "250$"
     },
     {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
-        "numeros": [
-          5,
-          3
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026"
-      },
-      "bote": "50$"
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -232,6 +150,88 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "21 sept 2026",
+        "numeros": [
+          7,
+          5,
+          7,
+          2,
+          4
+        ],
+        "numero_extra": 9
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "21 sept 2026",
+        "numeros": [
+          3,
+          1,
+          0,
+          8
+        ],
+        "numero_extra": 9
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "21 sept 2026",
+        "numeros": [
+          5,
+          5,
+          0
+        ],
+        "numero_extra": 9
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "21 sept 2026",
+        "numeros": [
+          9,
+          8
+        ],
+        "numero_extra": 9
       },
       "proximo_sorteo": {
         "dia": "",
