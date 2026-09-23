@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-23T16:43:55.187901",
+    "ultima_actualizacion": "2026-09-23T20:09:01.076038",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "22 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
-          10,
-          13,
-          15,
-          20,
-          26
+          2,
+          12,
+          16,
+          17,
+          23
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
-          7,
           5,
-          7,
+          0,
           2,
-          4
+          8,
+          5
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "Miércoles",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
-          3,
-          1,
           0,
+          2,
+          5,
           8
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "Miércoles",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
           5,
-          5,
+          7,
           0
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "Miércoles",
@@ -188,7 +188,7 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          9
+          13
         ],
         "numero_extra": null
       },
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
-          9,
-          8
+          0,
+          1
         ],
-        "numero_extra": 9
+        "numero_extra": 8
       },
       "proximo_sorteo": {
         "dia": "Miércoles",
