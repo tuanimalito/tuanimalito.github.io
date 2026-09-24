@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-24T09:52:11.345280",
+    "ultima_actualizacion": "2026-09-24T18:59:35.228157",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          3,
-          17,
-          28,
-          32,
-          35
+          14,
+          19,
+          24,
+          33,
+          34
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          9,
-          8,
-          4,
-          9,
-          9
+          0,
+          7,
+          1,
+          5,
+          1
         ],
-        "numero_extra": 0
+        "numero_extra": 9
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          2,
-          9,
-          7,
-          9
+          1,
+          8,
+          0,
+          2
         ],
-        "numero_extra": 0
+        "numero_extra": 9
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          3,
-          0,
-          3
+          6,
+          5,
+          9
         ],
-        "numero_extra": 0
+        "numero_extra": 9
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          13
+          3
         ],
         "numero_extra": null
       },
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
+        "dia": "Jueves",
+        "fecha": "24 sept 2026",
         "numeros": [
-          8,
-          1
+          7,
+          6
         ],
-        "numero_extra": 0
+        "numero_extra": 9
       },
       "proximo_sorteo": {
         "dia": "Jueves",
