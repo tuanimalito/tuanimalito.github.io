@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-24T04:30:42.511160",
+    "ultima_actualizacion": "2026-09-24T09:52:11.345280",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Sábado",
         "fecha": "26 sept 2026"
       },
-      "bote": "332.000.000$"
+      "bote": "360.000.000$"
     },
     {
       "id": "mega-millions",
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "250$"
     },
