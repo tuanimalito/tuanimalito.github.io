@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-23T20:09:01.076038",
+    "ultima_actualizacion": "2026-09-24T04:30:42.511160",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "21 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
-          2,
-          7,
-          9,
-          17,
-          58
+          5,
+          15,
+          26,
+          29,
+          30
         ],
-        "numero_extra": 20
+        "numero_extra": 14
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Sábado",
+        "fecha": "26 sept 2026"
       },
       "bote": "332.000.000$"
     },
@@ -54,23 +54,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "19 sept 2026",
+        "dia": "Miércoles",
+        "fecha": "23 sept 2026",
         "numeros": [
           6,
-          15,
-          20,
-          28,
-          31,
-          32
+          13,
+          22,
+          40,
+          43,
+          47
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Sábado",
+        "fecha": "26 sept 2026"
       },
-      "bote": "1.000.000$"
+      "bote": "1.250.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -103,17 +103,17 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          2,
-          12,
-          16,
+          3,
           17,
-          23
+          28,
+          32,
+          35
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          5,
-          0,
-          2,
+          9,
           8,
-          5
+          4,
+          9,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          0,
           2,
-          5,
-          8
+          9,
+          7,
+          9
         ],
-        "numero_extra": 8
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          5,
-          7,
-          0
+          3,
+          0,
+          3
         ],
-        "numero_extra": 8
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Miércoles",
         "fecha": "23 sept 2026",
         "numeros": [
-          0,
+          8,
           1
         ],
-        "numero_extra": 8
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026"
+        "dia": "Jueves",
+        "fecha": "24 sept 2026"
       },
       "bote": "50$"
     },
