@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-27T05:06:53.378932",
+    "ultima_actualizacion": "2026-09-27T11:53:30.378910",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "26 sept 2026",
+        "numeros": [
+          14,
+          40,
+          52,
+          55,
+          57
+        ],
+        "numero_extra": 24
+      },
+      "proximo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
+      },
+      "bote": "389.000.000$"
+    },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
@@ -26,6 +48,29 @@
         "fecha": "29 sept 2026"
       },
       "bote": "300.000.000$"
+    },
+    {
+      "id": "lotto-florida",
+      "nombre": "Lotto Florida",
+      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "26 sept 2026",
+        "numeros": [
+          1,
+          5,
+          10,
+          15,
+          35,
+          45
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
+      },
+      "bote": "2.000.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -173,28 +218,6 @@
       "bote": "50$"
     },
     {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "23 sept 2026",
-        "numeros": [
-          5,
-          15,
-          26,
-          29,
-          30
-        ],
-        "numero_extra": 14
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "28 sept 2026"
-      },
-      "bote": ""
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -209,29 +232,6 @@
           55
         ],
         "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "lotto-florida",
-      "nombre": "Lotto Florida",
-      "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "26 sept 2026",
-        "numeros": [
-          1,
-          5,
-          10,
-          15,
-          35,
-          45
-        ],
-        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
