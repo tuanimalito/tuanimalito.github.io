@@ -1,13 +1,6 @@
 {
   "resultados": [
     [
-      33,
-      24,
-      11,
-      35,
-      23
-    ],
-    [
       34,
       12,
       32,
@@ -20,9 +13,16 @@
       13,
       8,
       17
+    ],
+    [
+      "00",
+      2,
+      19,
+      7,
+      10
     ]
   ],
-  "fecha_actualizacion": "2026-09-27T08:36:37.234Z",
+  "fecha_actualizacion": "2026-09-28T08:59:39.053Z",
   "metadata": {
     "origen": "granjita.json",
     "numeros_por_secuencia": 5,
