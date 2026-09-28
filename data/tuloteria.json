@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-27T20:01:11.400711",
+    "ultima_actualizacion": "2026-09-28T05:09:18.651589",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "27 sept 2026",
         "numeros": [
-          17,
-          21,
+          13,
           22,
-          28,
-          35
+          26,
+          34,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Domingo",
         "fecha": "27 sept 2026",
         "numeros": [
-          2,
-          9,
           1,
-          9,
+          3,
+          8,
+          3,
           3
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -148,15 +148,15 @@
         "fecha": "27 sept 2026",
         "numeros": [
           9,
-          2,
-          7,
-          5
+          1,
+          8,
+          6
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "27 sept 2026",
         "numeros": [
-          2,
-          0,
-          2
+          1,
+          4,
+          7
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Domingo",
         "fecha": "27 sept 2026",
         "numeros": [
-          5,
-          9
+          0,
+          2
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "27 sept 2026"
+        "dia": "Lunes",
+        "fecha": "28 sept 2026"
       },
       "bote": "50$"
     },
