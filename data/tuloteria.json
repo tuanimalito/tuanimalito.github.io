@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-09-29T23:36:53.598179",
+    "ultima_actualizacion": "2026-09-30T05:20:32.293535",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "25 sept 2026",
+        "dia": "Martes",
+        "fecha": "29 sept 2026",
         "numeros": [
-          25,
-          57,
-          58,
-          67,
-          68
+          10,
+          15,
+          16,
+          27,
+          64
         ],
-        "numero_extra": 16
+        "numero_extra": 23
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Viernes",
+        "fecha": "02 oct 2026"
       },
       "bote": "300.000.000$"
     },
@@ -77,21 +77,21 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "25 sept 2026",
+        "dia": "Martes",
+        "fecha": "29 sept 2026",
         "numeros": [
-          3,
-          9,
-          13,
-          31,
-          33,
-          44
+          4,
+          7,
+          15,
+          30,
+          37,
+          38
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Viernes",
+        "fecha": "02 oct 2026"
       },
       "bote": "800.000$"
     },
@@ -103,17 +103,17 @@
         "dia": "Martes",
         "fecha": "29 sept 2026",
         "numeros": [
-          5,
-          10,
+          4,
+          12,
+          14,
           16,
-          27,
-          35
+          33
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Martes",
         "fecha": "29 sept 2026",
         "numeros": [
-          1,
-          4,
-          7,
+          8,
           6,
-          9
+          7,
+          4,
+          1
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Martes",
         "fecha": "29 sept 2026",
         "numeros": [
-          1,
-          6,
           3,
-          7
+          7,
+          5,
+          6
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Martes",
         "fecha": "29 sept 2026",
         "numeros": [
-          0,
-          6,
-          8
+          4,
+          1,
+          9
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Martes",
         "fecha": "29 sept 2026",
         "numeros": [
-          9,
-          9
+          3,
+          6
         ],
-        "numero_extra": 6
+        "numero_extra": 4
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "29 sept 2026"
+        "dia": "Miércoles",
+        "fecha": "30 sept 2026"
       },
       "bote": "50$"
     },
