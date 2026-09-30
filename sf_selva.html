@@ -248,7 +248,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- CORTESÍA (Verde) - 6 números MEZCLADOS --- */
+        /* --- CORTESÍA (Verde) --- */
         .tarjeta-cortesia {
             background: linear-gradient(145deg, #0a1a0a 0%, #1a2a1a 100%);
             border: 1px solid rgba(46, 204, 113, 0.25);
@@ -284,7 +284,7 @@
             color: #8ab8ff;
         }
 
-        /* --- SUPER FIJOS (Rojo) - BLOQUEADO - 4 números --- */
+        /* --- SUPER FIJOS (Rojo) --- */
         .tarjeta-superfijos {
             background: linear-gradient(145deg, #1a0d0d 0%, #2a1a1a 100%);
             border: 1px solid rgba(255, 107, 107, 0.25);
@@ -307,7 +307,7 @@
             color: #ff9999;
         }
 
-        /* --- ANÁLISIS FORENSE PREMIUM (Dorado) - DESBLOQUEADO --- */
+        /* --- ANÁLISIS FORENSE (Dorado) --- */
         .tarjeta-forense {
             background: linear-gradient(145deg, #1a1a0d 0%, #2a2a1a 100%);
             border: 2px solid rgba(255, 215, 0, 0.3);
@@ -348,9 +348,7 @@
             color: #ffd700;
         }
 
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SOLO PARA SECCIONES PREMIUM   */
-        /* ================================================ */
+        /* OVERLAY PREMIUM */
         .premium-overlay {
             position: absolute;
             top: 0;
@@ -471,9 +469,6 @@
             transform: scale(0.95);
         }
 
-        /* ================================================ */
-        /* BLOQUEO DE CONTENIDO PREMIUM                      */
-        /* ================================================ */
         .locked-grid {
             filter: blur(10px) brightness(0.7);
             opacity: 0.4;
@@ -545,9 +540,7 @@
             50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
         }
 
-        /* ================================================ */
-        /* TABLA FORENSE - ESTILOS                          */
-        /* ================================================ */
+        /* TABLA FORENSE */
         .tabla-forense {
             width: 100%;
             border-collapse: collapse;
@@ -834,7 +827,6 @@
             font-weight: 600;
         }
 
-        /* ===== BOTÓN DE WHATSAPP FLOTANTE ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -877,9 +869,6 @@
             font-size: 1.8rem;
         }
 
-        /* ================================================ */
-        /* RESPONSIVE                                        */
-        /* ================================================ */
         @media (min-width: 700px) {
             .numeros-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -1024,9 +1013,7 @@
         </div>
 
         <div class="seccion-datos">
-            <!-- ======================================== -->
-            <!-- 1. CORTESÍA - SIEMPRE VISIBLE (GRATIS)    -->
-            <!-- ======================================== -->
+            <!-- 1. CORTESÍA (GRATIS) -->
             <div class="tarjeta-cortesia tarjeta-dato">
                 <h3><i class="bi bi-info-circle-fill"></i> Los más Calientes para Hoy</h3>
                 <div style="text-align: center; color: #2ecc71; font-size: 0.8rem; margin-bottom: 10px;">
@@ -1037,9 +1024,7 @@
                 </div>
             </div>
 
-            <!-- ======================================== -->
-            <!-- 2. SUPER FIJOS - BLOQUEADO (PREMIUM) 4 números -->
-            <!-- ======================================== -->
+            <!-- 2. SUPER FIJOS (PREMIUM - BLOQUEADO) -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> 4 Super Fijos Premium</h3>
 
@@ -1063,28 +1048,22 @@
                 </div>
             </div>
 
-            <!-- ======================================== -->
-            <!-- 3. ANÁLISIS FORENSE - DESBLOQUEADO       -->
-            <!-- ======================================== -->
+            <!-- 3. ANÁLISIS FORENSE (GRATIS) -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
                 <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
                     <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
                 </div>
 
-                <!-- TOP 10 + REY (DESBLOQUEADO) -->
                 <div class="forense-sub" style="position: relative;">
                     <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
-
                     <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
                         <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
                 </div>
 
-                <!-- Predicción Forense (DESBLOQUEADA) -->
                 <div class="forense-sub" style="position: relative;">
                     <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
-
                     <div id="forense-prediccion">
                         <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
@@ -1103,7 +1082,6 @@
         </div>
     </div>
 
-    <!-- ===== BOTÓN DE WHATSAPP FLOTANTE ===== -->
     <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20Premium%20de%20Selva%20Plus" 
        class="whatsapp-float" 
        target="_blank" 
@@ -1113,7 +1091,6 @@
         <span>WhatsApp</span>
     </a>
 
-    <!-- ===== MODAL LOGIN PREMIUM ===== -->
     <div class="modal-login" id="modalLogin">
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
@@ -1131,17 +1108,13 @@
 
     <footer class="footer">
         <div class="social-links">
-            <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i
-                class="bi bi-facebook"></i></a>
-            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i
-                class="bi bi-tiktok"></i></a>
-            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i
-                class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/Dr.Aniamlitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/@animalitosplus" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.instagram.com/dr.animalitos/" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
         </div>
         <div class="copyright">
             &copy; Copyright <strong><span>Dr.animalitos VIP</span></strong>. All Rights Reserved
-            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank"
-            rel="noopener noreferrer">alexandermata834@gmail.com</a>
+            <a href="https://www.google.com/intl/es-419/gmail/about/" target="_blank" rel="noopener noreferrer">alexandermata834@gmail.com</a>
         </div>
     </footer>
 
@@ -1150,7 +1123,7 @@
         // 🔥 CONFIGURACIÓN DE FIREBASE FIRESTORE
         // ============================================================
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs, onSnapshot, addDoc, doc, serverTimestamp, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
@@ -1168,9 +1141,38 @@
 
         let usuarioAutenticado = false;
         const STORAGE_KEY = 'selva_premium_unlocked';
+        const JSON_URL = 'data/selva.json';
 
         // ============================================================
-        // FUNCIÓN DE MEZCLA (Fisher-Yates)
+        // 🎯 MAPA DE ANIMALES (0-75 + 00)
+        // ============================================================
+        const animales = {
+            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
+            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
+            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
+            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
+            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
+            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
+            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
+            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
+            39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
+            44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
+            49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
+            54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
+            59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
+            64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
+            69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
+            74: 'turpial', 75: 'guácharo'
+        };
+
+        function obtenerRutaImagen(numero, esDobleCero = false) {
+            if (esDobleCero) return 'animalitos/animalitos_selva/00.JPG';
+            if (numero === 0) return 'animalitos/animalitos_selva/0.JPG';
+            return `animalitos/animalitos_selva/${numero}.JPG`;
+        }
+
+        // ============================================================
+        // 🚀 FUNCIONES AUXILIARES
         // ============================================================
         function mezclarArray(array) {
             const shuffled = [...array];
@@ -1182,54 +1184,7 @@
         }
 
         // ============================================================
-        // 🎯 GARANTIZAR NÚMEROS ÚNICOS
-        // Incrementa duplicados +1 hasta que todos sean distintos
-        // ============================================================
-        function garantizarUnicos(lista, maxNum) {
-            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
-
-            let resultado = lista.map(item => ({
-                numero: item.numero ?? 0,
-                esDobleCero: item.esDobleCero || false,
-                esPremium: item.esPremium || false,
-                esGratis: item.esGratis || false,
-                casilla: item.casilla || 0
-            }));
-
-            function incrementar(item) {
-                if (item.esDobleCero) {
-                    return { ...item, numero: 1, esDobleCero: false };
-                }
-                let nuevo = item.numero + 1;
-                if (nuevo > maxNum) nuevo = 0;
-                return { ...item, numero: nuevo, esDobleCero: false };
-            }
-
-            let intentos = 0;
-            const maxIntentos = 200;
-
-            while (intentos < maxIntentos) {
-                const claves = resultado.map(claveDe);
-                const hayDuplicados = new Set(claves).size !== claves.length;
-                if (!hayDuplicados) break;
-
-                const vistas = new Set();
-                for (let i = 0; i < resultado.length; i++) {
-                    const clave = claveDe(resultado[i]);
-                    if (vistas.has(clave)) {
-                        resultado[i] = incrementar(resultado[i]);
-                        break;
-                    }
-                    vistas.add(clave);
-                }
-                intentos++;
-            }
-
-            return resultado;
-        }
-
-        // ============================================================
-        // 🚀 FUNCIONES DEL MODAL
+        // 🔐 AUTENTICACIÓN
         // ============================================================
         window.abrirModalLogin = function() {
             document.getElementById('modalLogin').classList.add('show');
@@ -1241,9 +1196,6 @@
             document.getElementById('modalLogin').classList.remove('show');
         };
 
-        // ============================================================
-        // 🔐 AUTENTICACIÓN CON FIRESTORE
-        // ============================================================
         async function validarCodigo(codigo) {
             if (!codigo) return false;
             const hoyStr = new Date().toISOString().split('T')[0];
@@ -1308,8 +1260,6 @@
         // ============================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
-
-            // Desbloquear Super Fijos (4 números → numeros-grid)
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
             const resultadoContenedor = document.getElementById('resultado-contenido');
@@ -1323,9 +1273,6 @@
             }
         }
 
-        // ============================================================
-        // 🔄 VERIFICAR SESIÓN PREVIA
-        // ============================================================
         async function verificarSesionPrevia() {
             const tokenGuardado = localStorage.getItem('selva_premium_token');
             if (tokenGuardado) {
@@ -1342,7 +1289,7 @@
         }
 
         // ============================================================
-        // 📊 ANÁLISIS FORENSE PREMIUM - DESBLOQUEADO (GRATIS)
+        // 📊 ANÁLISIS FORENSE (GRATIS)
         // ============================================================
         let historialFiltrado = [];
         let config = { min: 0, max: 75, especiales: ['00'] };
@@ -1385,7 +1332,6 @@
 
         function obtenerAcompanantesForense(numero) {
             const frecAcompanantes = {};
-            
             historialFiltrado.forEach(sorteo => {
                 if (sorteo.numeros.includes(numero)) {
                     sorteo.numeros.forEach(n => {
@@ -1395,7 +1341,6 @@
                     });
                 }
             });
-            
             return Object.entries(frecAcompanantes)
                 .map(([n, freq]) => ({ numero: parseInt(n), frecuencia: freq }))
                 .sort((a, b) => b.frecuencia - a.frecuencia)
@@ -1545,10 +1490,7 @@
                 `;
             });
 
-            html += `
-                    </tbody>
-                </table>
-            `;
+            html += `</tbody></table>`;
 
             document.getElementById('forense-top10').innerHTML = html;
         }
@@ -1639,50 +1581,165 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // ============================================================
-        // 🎯 SUPER FIJOS - 4 números (N1+1, N1+2, N2+1, N2+2)
+        // 📊 SUPER FIJOS - NUEVA LÓGICA (Pos 7 reciente + Pos 1 intermedio)
         // ============================================================
-        function calcularSuperFijos(todos) {
+        function calcularSuperFijos(todos, maxNum = 75) {
             const diaMasReciente = todos.slice(24, 36);
-            const n1 = diaMasReciente[0];
-            const n2 = diaMasReciente[1];
+            const diaIntermedio  = todos.slice(12, 24);
 
-            if (!n1 || !n2) return [];
+            const semilla1 = diaMasReciente[6]; // posición 7 del día más reciente
+            const semilla2 = diaIntermedio[0];  // posición 1 del día intermedio
 
-            const maxNum = 75;
+            let resultado = [];
 
-            function incrementar(item, incremento) {
-                if (item.esDobleCero) {
-                    return {
-                        numero: incremento,
-                        esDobleCero: false,
-                        casilla: item.casilla,
-                        esPremium: true
-                    };
-                }
-                let nuevo = item.numero + incremento;
-                if (nuevo > maxNum) nuevo = nuevo - (maxNum + 1);
-                return {
-                    numero: nuevo,
-                    esDobleCero: false,
-                    casilla: item.casilla,
-                    esPremium: true
-                };
+            if (semilla1) resultado.push(...generarSuperFijosDesdeSemilla(semilla1, maxNum));
+            if (semilla2) resultado.push(...generarSuperFijosDesdeSemilla(semilla2, maxNum));
+
+            return garantizarSuperFijosUnicos(resultado, maxNum);
+        }
+
+        function generarSuperFijosDesdeSemilla(semilla, maxNum) {
+            let decena, unidad;
+
+            if (semilla.esDobleCero) {
+                decena = 0;
+                unidad = 0;
+            } else {
+                decena = Math.floor(semilla.numero / 10);
+                unidad = semilla.numero % 10;
             }
 
-            const lista = [
-                incrementar(n1, 1),
-                incrementar(n1, 2),
-                incrementar(n2, 1),
-                incrementar(n2, 2)
+            // --- 1. NUEVA DECENA ---
+            let nuevaDecena;
+            if (decena === 0) {
+                nuevaDecena = decena + 1;  // Función especial: 0 → 1
+            } else {
+                nuevaDecena = decena - 1;  // 1→0, 2→1, ..., 7→6
+            }
+
+            // --- 2. NUEVAS UNIDADES (ciclo circular 0–9) ---
+            const unidadMas   = (unidad + 1) % 10;
+            const unidadMenos = (unidad - 1 + 10) % 10;
+
+            // --- 3. FORMAR CANDIDATOS ---
+            const candidatos = [
+                nuevaDecena * 10 + unidadMas,
+                nuevaDecena * 10 + unidadMenos
             ];
 
-            return garantizarUnicos(lista, maxNum);
+            // --- 4. VALIDAR RANGO ---
+            return candidatos
+                .filter(n => n >= 0 && n <= maxNum)
+                .map(n => ({
+                    numero: n,
+                    esDobleCero: false,
+                    esPremium: true,
+                    esGratis: false,
+                    casilla: semilla.casilla || 31
+                }));
+        }
+
+        function garantizarSuperFijosUnicos(lista, maxNum) {
+            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
+
+            let resultado = lista.map(item => ({
+                numero: item.numero ?? 0,
+                esDobleCero: item.esDobleCero || false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false,
+                casilla: item.casilla || 0
+            }));
+
+            function incrementar(item) {
+                if (item.esDobleCero) {
+                    return { ...item, numero: 1, esDobleCero: false };
+                }
+                let nuevo = item.numero + 1;
+                if (nuevo > maxNum) nuevo = 0;
+                return { ...item, numero: nuevo, esDobleCero: false };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = resultado.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                for (let i = 0; i < resultado.length; i++) {
+                    const clave = claveDe(resultado[i]);
+                    if (vistas.has(clave)) {
+                        resultado[i] = incrementar(resultado[i]);
+                        break;
+                    }
+                    vistas.add(clave);
+                }
+                intentos++;
+            }
+
+            return resultado;
         }
 
         // ============================================================
-        // 🎁 LOS MÁS CALIENTES - 6 números
-        // 4 Super Fijos + N3+1 + N3+2
+        // 🎁 CORTESÍA - 6 NÚMEROS (4 Super Fijos + 2 extras)
         // ============================================================
+        function garantizar6Unicos(superFijos, extras) {
+            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
+
+            let lista = [...superFijos, ...extras];
+
+            if (lista.length > 6) lista = lista.slice(0, 6);
+
+            lista = lista.map(item => ({
+                numero: item.numero ?? 0,
+                esDobleCero: item.esDobleCero || false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false
+            }));
+
+            while (lista.length < 6) {
+                lista.push({
+                    numero: Math.floor(Math.random() * 76),
+                    esDobleCero: false,
+                    esPremium: false,
+                    esGratis: true
+                });
+            }
+
+            function incrementar(item) {
+                if (item.esDobleCero) {
+                    return { ...item, numero: 1, esDobleCero: false };
+                }
+                let nuevo = item.numero + 1;
+                if (nuevo > 75) nuevo = 0;
+                return { ...item, numero: nuevo, esDobleCero: false };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = lista.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                for (let i = 0; i < lista.length; i++) {
+                    const clave = claveDe(lista[i]);
+                    if (vistas.has(clave)) {
+                        lista[i] = incrementar(lista[i]);
+                        break;
+                    }
+                    vistas.add(clave);
+                }
+                intentos++;
+            }
+
+            return lista;
+        }
+
         let cortesiaEstatica = null;
 
         function informacionDeCortecia(todos, superFijos) {
@@ -1691,40 +1748,40 @@
             }
 
             const diaMasReciente = todos.slice(24, 36);
-            const n3 = diaMasReciente[2];
-
-            const maxNum = 75;
-
-            let incrementos = [];
-            if (n3) {
-                function incrementar(item, incremento) {
-                    if (item.esDobleCero) {
-                        return {
-                            numero: incremento,
-                            esDobleCero: false,
-                            esGratis: true
-                        };
-                    }
-                    let nuevo = item.numero + incremento;
-                    if (nuevo > maxNum) nuevo = nuevo - (maxNum + 1);
-                    return {
-                        numero: nuevo,
-                        esDobleCero: false,
-                        esGratis: true
-                    };
-                }
-                incrementos = [
-                    incrementar(n3, 1),
-                    incrementar(n3, 2)
-                ];
+            const primerNumero = diaMasReciente[0];
+            
+            let incremento1, incremento2;
+            if (primerNumero.esDobleCero) {
+                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
+                incremento2 = { numero: 2, esDobleCero: false, esGratis: true };
+            } else {
+                let numBase = primerNumero.numero;
+                let val1 = numBase + 1;
+                let val2 = numBase + 2;
+                if (val1 > 75) val1 = val1 - 76;
+                if (val2 > 75) val2 = val2 - 76;
+                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
+                incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
             }
 
-            const combinado = [
-                ...superFijos.map(sf => ({ ...sf, esPremium: true, esGratis: false })),
-                ...incrementos
-            ];
+            let superFijosParaCortesia = [];
+            if (superFijos && superFijos.length > 0) {
+                superFijosParaCortesia = superFijos.map(item => ({
+                    ...item,
+                    esPremium: true
+                }));
+            } else {
+                const aleatorios = obtener4Aleatorios(todos);
+                superFijosParaCortesia = aleatorios.map(item => ({
+                    ...item,
+                    esPremium: true
+                }));
+            }
 
-            const todosLosNumeros = garantizarUnicos(combinado, maxNum);
+            const todosLosNumeros = garantizar6Unicos(
+                superFijosParaCortesia,
+                [incremento1, incremento2]
+            );
 
             cortesiaEstatica = todosLosNumeros;
             return mezclarArray([...todosLosNumeros]);
@@ -1732,6 +1789,16 @@
 
         function reiniciarCortesia() {
             cortesiaEstatica = null;
+        }
+
+        function obtener4Aleatorios(todos) {
+            const copia = [...todos];
+            const seleccionados = [];
+            while (seleccionados.length < 4 && copia.length > 0) {
+                const indexRandom = Math.floor(Math.random() * copia.length);
+                seleccionados.push(copia.splice(indexRandom, 1)[0]);
+            }
+            return seleccionados;
         }
 
         function mostrarCortesia(items) {
@@ -1823,34 +1890,6 @@
         // ============================================================
         // 📊 CARGA DE DATOS PRINCIPAL
         // ============================================================
-        
-        const JSON_URL = 'data/selva.json';
-
-        const animales = {
-            '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
-            4: 'alacrán', 5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón',
-            9: 'águila', 10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono',
-            14: 'paloma', 15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro',
-            19: 'chivo', 20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra',
-            24: 'iguana', 25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro',
-            29: 'elefante', 30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado',
-            34: 'venado', 35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
-            39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
-            44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
-            49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
-            54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
-            59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
-            64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
-            69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
-            74: 'turpial', 75: 'guácharo'
-        };
-
-        function obtenerRutaImagen(numero, esDobleCero = false) {
-            if (esDobleCero) return 'animalitos/animalitos_selva/00.JPG';
-            if (numero === 0) return 'animalitos/animalitos_selva/0.JPG';
-            return `animalitos/animalitos_selva/${numero}.JPG`;
-        }
-
         function mostrarFecha() {
             const hoy = new Date();
             document.getElementById('fechaActual').innerText = hoy.toLocaleDateString('es-ES', {
@@ -1916,18 +1955,16 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // SUPER FIJOS - 4 números (N1+1, N1+2, N2+1, N2+2)
-                const superFijos = calcularSuperFijos(todos);
-                
+                // NUEVA LÓGICA DE SUPER FIJOS
+                const superFijos = calcularSuperFijos(todos, 75);
+
                 mostrarSuperFijos(superFijos);
                 actualizarStatus('✅ Datos actualizados desde el servidor');
 
-                // CORTESÍA - 6 NÚMEROS (4 Super Fijos + N3+1 + N3+2)
                 reiniciarCortesia();
                 const cortesiaResultados = informacionDeCortecia(todos, superFijos);
                 mostrarCortesia(cortesiaResultados);
 
-                // ANÁLISIS FORENSE - DESBLOQUEADO (GRATIS)
                 cargarDatosForense();
 
                 await verificarSesionPrevia();
