@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-01T16:16:41.299224",
+    "ultima_actualizacion": "2026-10-01T21:44:22.958871",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "30 sept 2026",
+        "dia": "Jueves",
+        "fecha": "01 oct 2026",
         "numeros": [
-          11,
-          13,
-          21,
-          26,
-          32
+          1,
+          23,
+          28,
+          29,
+          33
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "30 sept 2026",
+        "dia": "Jueves",
+        "fecha": "01 oct 2026",
         "numeros": [
-          5,
+          2,
           3,
-          5,
-          8,
+          2,
+          4,
           1
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "30 sept 2026",
+        "dia": "Jueves",
+        "fecha": "01 oct 2026",
         "numeros": [
-          1,
-          4,
-          4,
-          3
+          5,
+          3,
+          6,
+          2
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "30 sept 2026",
+        "dia": "Jueves",
+        "fecha": "01 oct 2026",
         "numeros": [
-          4,
-          2,
-          4
+          3,
+          8,
+          8
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -188,7 +188,7 @@
         "dia": "Jueves",
         "fecha": "01 oct 2026",
         "numeros": [
-          8
+          3
         ],
         "numero_extra": null
       },
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "30 sept 2026",
+        "dia": "Jueves",
+        "fecha": "01 oct 2026",
         "numeros": [
-          7,
-          2
+          6,
+          7
         ],
-        "numero_extra": 9
+        "numero_extra": 7
       },
       "proximo_sorteo": {
         "dia": "Jueves",
