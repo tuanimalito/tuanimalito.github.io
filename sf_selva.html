@@ -1143,6 +1143,9 @@
         const STORAGE_KEY = 'selva_premium_unlocked';
         const JSON_URL = 'data/selva.json';
 
+        // 🔑 CONSTANTE CLAVE: Selva Plus tiene 13 sorteos diarios
+        const SORTEOS_POR_DIA = 13;
+
         // ============================================================
         // 🎯 MAPA DE ANIMALES (0-99 + 00)
         // ============================================================
@@ -1635,7 +1638,8 @@
                 return mezclarArray([...cortesiaEstatica]);
             }
 
-            const diaMasReciente = todos.slice(24, 36);
+            // ✅ CORREGIDO: usar SORTEOS_POR_DIA
+            const diaMasReciente = todos.slice(SORTEOS_POR_DIA * 2, SORTEOS_POR_DIA * 3);
             const primerNumero = diaMasReciente[0];
             
             let incremento1;
@@ -1724,11 +1728,12 @@
 
         // ============================================================
         // 📊 SUPER FIJOS - NUEVA LÓGICA (Pos 7 reciente + Pos 1 intermedio)
-        // RANGO 0-99
+        // RANGO 0-99 | 13 SORTEOS POR DÍA
         // ============================================================
         function calcularSuperFijos(todos, maxNum = 99) {
-            const diaMasReciente = todos.slice(24, 36);
-            const diaIntermedio  = todos.slice(12, 24);
+            // ✅ CORREGIDO: usar SORTEOS_POR_DIA (13)
+            const diaMasReciente = todos.slice(SORTEOS_POR_DIA * 2, SORTEOS_POR_DIA * 3); // casillas 27-39
+            const diaIntermedio  = todos.slice(SORTEOS_POR_DIA, SORTEOS_POR_DIA * 2);     // casillas 14-26
 
             const semilla1 = diaMasReciente[6]; // posición 7 del día más reciente
             const semilla2 = diaIntermedio[0];  // posición 1 del día intermedio
@@ -1895,18 +1900,19 @@
 
                 const procesarDia = (dia, inicioCasilla) => {
                     return dia.map((num, idx) => {
-                        const esDobleCero = num === "00";
+                        const esDobleCero = String(num).trim() === "00";
                         return {
-                            numero: esDobleCero ? 0 : num,
+                            numero: esDobleCero ? 0 : Number(num),
                             esDobleCero: esDobleCero,
                             casilla: idx + inicioCasilla
                         };
                     });
                 };
 
-                const dia3Procesado = procesarDia(dia3, 1);
-                const dia2Procesado = procesarDia(dia2, 13);
-                const dia1Procesado = procesarDia(dia1, 25);
+                // ✅ CORREGIDO: casillas con 13 sorteos por día
+                const dia3Procesado = procesarDia(dia3, 1);                // casillas 1-13
+                const dia2Procesado = procesarDia(dia2, 14);               // casillas 14-26
+                const dia1Procesado = procesarDia(dia1, 27);               // casillas 27-39
                 const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
 
                 // ===== CONSTRUIR HISTORIAL FORENSE =====
@@ -1929,7 +1935,7 @@
                     const fecha = new Date(partes[2], partes[1]-1, partes[0]);
                     const numeros = [];
                     sorteo.forEach(valor => {
-                        if (valor === '00') {
+                        if (String(valor).trim() === '00') {
                             numeros.push(100);
                         } else {
                             numeros.push(parseInt(valor));
@@ -1939,7 +1945,7 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // NUEVA LÓGICA DE SUPER FIJOS (maxNum = 99)
+                // NUEVA LÓGICA DE SUPER FIJOS (maxNum = 99, 13 sorteos por día)
                 const superFijos = calcularSuperFijos(todos, 99);
 
                 mostrarSuperFijos(superFijos);
