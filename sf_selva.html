@@ -1581,6 +1581,158 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // ============================================================
+        // 🎁 CORTESÍA - 5 NÚMEROS (4 Super Fijos + 1 extra)
+        // ============================================================
+        function garantizar5Unicos(superFijos, extras) {
+            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
+
+            let lista = [...superFijos, ...extras];
+
+            if (lista.length > 5) lista = lista.slice(0, 5);
+
+            lista = lista.map(item => ({
+                numero: item.numero ?? 0,
+                esDobleCero: item.esDobleCero || false,
+                esPremium: item.esPremium || false,
+                esGratis: item.esGratis || false
+            }));
+
+            while (lista.length < 5) {
+                lista.push({
+                    numero: Math.floor(Math.random() * 76),
+                    esDobleCero: false,
+                    esPremium: false,
+                    esGratis: true
+                });
+            }
+
+            function incrementar(item) {
+                if (item.esDobleCero) {
+                    return { ...item, numero: 1, esDobleCero: false };
+                }
+                let nuevo = item.numero + 1;
+                if (nuevo > 75) nuevo = 0;
+                return { ...item, numero: nuevo, esDobleCero: false };
+            }
+
+            let intentos = 0;
+            const maxIntentos = 200;
+
+            while (intentos < maxIntentos) {
+                const claves = lista.map(claveDe);
+                const hayDuplicados = new Set(claves).size !== claves.length;
+                if (!hayDuplicados) break;
+
+                const vistas = new Set();
+                for (let i = 0; i < lista.length; i++) {
+                    const clave = claveDe(lista[i]);
+                    if (vistas.has(clave)) {
+                        lista[i] = incrementar(lista[i]);
+                        break;
+                    }
+                    vistas.add(clave);
+                }
+                intentos++;
+            }
+
+            return lista;
+        }
+
+        let cortesiaEstatica = null;
+
+        function informacionDeCortecia(todos, superFijos) {
+            if (cortesiaEstatica) {
+                return mezclarArray([...cortesiaEstatica]);
+            }
+
+            const diaMasReciente = todos.slice(24, 36);
+            const primerNumero = diaMasReciente[0];
+            
+            let incremento1;
+            if (primerNumero.esDobleCero) {
+                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
+            } else {
+                let numBase = primerNumero.numero;
+                let val1 = numBase + 1;
+                if (val1 > 75) val1 = val1 - 76;
+                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
+            }
+
+            let superFijosParaCortesia = [];
+            if (superFijos && superFijos.length > 0) {
+                superFijosParaCortesia = superFijos.map(item => ({
+                    ...item,
+                    esPremium: true
+                }));
+            } else {
+                const aleatorios = obtener4Aleatorios(todos);
+                superFijosParaCortesia = aleatorios.map(item => ({
+                    ...item,
+                    esPremium: true
+                }));
+            }
+
+            const todosLosNumeros = garantizar5Unicos(
+                superFijosParaCortesia,
+                [incremento1]
+            );
+
+            cortesiaEstatica = todosLosNumeros;
+            return mezclarArray([...todosLosNumeros]);
+        }
+
+        function reiniciarCortesia() {
+            cortesiaEstatica = null;
+        }
+
+        function obtener4Aleatorios(todos) {
+            const copia = [...todos];
+            const seleccionados = [];
+            while (seleccionados.length < 4 && copia.length > 0) {
+                const indexRandom = Math.floor(Math.random() * copia.length);
+                seleccionados.push(copia.splice(indexRandom, 1)[0]);
+            }
+            return seleccionados;
+        }
+
+        function mostrarCortesia(items) {
+            const contenedor = document.getElementById('cortesia-contenido');
+
+            if (!items || items.length === 0) {
+                contenedor.innerHTML = '<div class="no-data">No hay datos de cortesía disponibles.</div>';
+                return;
+            }
+
+            const shuffled = mezclarArray([...items]);
+
+            let html = '<div class="numeros-grid-5">';
+            shuffled.forEach(r => {
+                let numDisplay, nombreAnimal, rutaImagen;
+
+                if (r.esDobleCero) {
+                    numDisplay = "00";
+                    nombreAnimal = "ballena";
+                    rutaImagen = obtenerRutaImagen(0, true);
+                } else {
+                    numDisplay = String(r.numero).padStart(2, '0');
+                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
+                    rutaImagen = obtenerRutaImagen(r.numero, false);
+                }
+
+                html += `
+                    <div class="numero-card">
+                        <div class="numero">${numDisplay}</div>
+                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                             onerror="this.src='animalitos/animalitos_selva/00.JPG'">
+                        <div class="animal">${nombreAnimal}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ============================================================
         // 📊 SUPER FIJOS - NUEVA LÓGICA (Pos 7 reciente + Pos 1 intermedio)
         // ============================================================
         function calcularSuperFijos(todos, maxNum = 75) {
@@ -1612,9 +1764,9 @@
             // --- 1. NUEVA DECENA ---
             let nuevaDecena;
             if (decena === 0) {
-                nuevaDecena = decena + 1;  // Función especial: 0 → 1
+                nuevaDecena = decena + 1;
             } else {
-                nuevaDecena = decena - 1;  // 1→0, 2→1, ..., 7→6
+                nuevaDecena = decena - 1;
             }
 
             // --- 2. NUEVAS UNIDADES (ciclo circular 0–9) ---
@@ -1682,165 +1834,6 @@
             return resultado;
         }
 
-        // ============================================================
-        // 🎁 CORTESÍA - 6 NÚMEROS (4 Super Fijos + 2 extras)
-        // ============================================================
-        function garantizar6Unicos(superFijos, extras) {
-            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
-
-            let lista = [...superFijos, ...extras];
-
-            if (lista.length > 6) lista = lista.slice(0, 6);
-
-            lista = lista.map(item => ({
-                numero: item.numero ?? 0,
-                esDobleCero: item.esDobleCero || false,
-                esPremium: item.esPremium || false,
-                esGratis: item.esGratis || false
-            }));
-
-            while (lista.length < 6) {
-                lista.push({
-                    numero: Math.floor(Math.random() * 76),
-                    esDobleCero: false,
-                    esPremium: false,
-                    esGratis: true
-                });
-            }
-
-            function incrementar(item) {
-                if (item.esDobleCero) {
-                    return { ...item, numero: 1, esDobleCero: false };
-                }
-                let nuevo = item.numero + 1;
-                if (nuevo > 75) nuevo = 0;
-                return { ...item, numero: nuevo, esDobleCero: false };
-            }
-
-            let intentos = 0;
-            const maxIntentos = 200;
-
-            while (intentos < maxIntentos) {
-                const claves = lista.map(claveDe);
-                const hayDuplicados = new Set(claves).size !== claves.length;
-                if (!hayDuplicados) break;
-
-                const vistas = new Set();
-                for (let i = 0; i < lista.length; i++) {
-                    const clave = claveDe(lista[i]);
-                    if (vistas.has(clave)) {
-                        lista[i] = incrementar(lista[i]);
-                        break;
-                    }
-                    vistas.add(clave);
-                }
-                intentos++;
-            }
-
-            return lista;
-        }
-
-        let cortesiaEstatica = null;
-
-        function informacionDeCortecia(todos, superFijos) {
-            if (cortesiaEstatica) {
-                return mezclarArray([...cortesiaEstatica]);
-            }
-
-            const diaMasReciente = todos.slice(24, 36);
-            const primerNumero = diaMasReciente[0];
-            
-            let incremento1, incremento2;
-            if (primerNumero.esDobleCero) {
-                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: 2, esDobleCero: false, esGratis: true };
-            } else {
-                let numBase = primerNumero.numero;
-                let val1 = numBase + 1;
-                let val2 = numBase + 2;
-                if (val1 > 75) val1 = val1 - 76;
-                if (val2 > 75) val2 = val2 - 76;
-                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
-                incremento2 = { numero: val2, esDobleCero: false, esGratis: true };
-            }
-
-            let superFijosParaCortesia = [];
-            if (superFijos && superFijos.length > 0) {
-                superFijosParaCortesia = superFijos.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            } else {
-                const aleatorios = obtener4Aleatorios(todos);
-                superFijosParaCortesia = aleatorios.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            }
-
-            const todosLosNumeros = garantizar6Unicos(
-                superFijosParaCortesia,
-                [incremento1, incremento2]
-            );
-
-            cortesiaEstatica = todosLosNumeros;
-            return mezclarArray([...todosLosNumeros]);
-        }
-
-        function reiniciarCortesia() {
-            cortesiaEstatica = null;
-        }
-
-        function obtener4Aleatorios(todos) {
-            const copia = [...todos];
-            const seleccionados = [];
-            while (seleccionados.length < 4 && copia.length > 0) {
-                const indexRandom = Math.floor(Math.random() * copia.length);
-                seleccionados.push(copia.splice(indexRandom, 1)[0]);
-            }
-            return seleccionados;
-        }
-
-        function mostrarCortesia(items) {
-            const contenedor = document.getElementById('cortesia-contenido');
-
-            if (!items || items.length === 0) {
-                contenedor.innerHTML = '<div class="no-data">No hay datos de cortesía disponibles.</div>';
-                return;
-            }
-
-            const shuffled = mezclarArray([...items]);
-
-            let html = '<div class="numeros-grid-6">';
-            shuffled.forEach(r => {
-                let numDisplay, nombreAnimal, rutaImagen;
-
-                if (r.esDobleCero) {
-                    numDisplay = "00";
-                    nombreAnimal = "ballena";
-                    rutaImagen = obtenerRutaImagen(0, true);
-                } else {
-                    numDisplay = String(r.numero).padStart(2, '0');
-                    nombreAnimal = r.numero === 0 ? 'delfín' : animales[r.numero];
-                    rutaImagen = obtenerRutaImagen(r.numero, false);
-                }
-
-                html += `
-                    <div class="numero-card">
-                        <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
-                             onerror="this.src='animalitos/animalitos_selva/00.JPG'">
-                        <div class="animal">${nombreAnimal}</div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            contenedor.innerHTML = html;
-        }
-
-        // ============================================================
-        // 📊 VISUALIZACIÓN DE SUPER FIJOS (4 números)
-        // ============================================================
         function mostrarSuperFijos(items) {
             const contenedor = document.getElementById('resultado-contenido');
 
@@ -1955,7 +1948,7 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // NUEVA LÓGICA DE SUPER FIJOS
+                // NUEVA LÓGICA DE SUPER FIJOS (maxNum = 75)
                 const superFijos = calcularSuperFijos(todos, 75);
 
                 mostrarSuperFijos(superFijos);
