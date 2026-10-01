@@ -1024,7 +1024,7 @@
                 </div>
             </div>
 
-            <!-- 2. SUPER FIJOS (PREMIUM - BLOQUEADO) -->
+            <!-- 2. SUPER FIJOS (PREMIUM) -->
             <div class="tarjeta-superfijos tarjeta-dato">
                 <h3><i class="bi bi-star-fill"></i> 4 Super Fijos Premium</h3>
 
@@ -1144,7 +1144,7 @@
         const JSON_URL = 'data/selva.json';
 
         // ============================================================
-        // 🎯 MAPA DE ANIMALES (0-75 + 00)
+        // 🎯 MAPA DE ANIMALES (0-99 + 00)
         // ============================================================
         const animales = {
             '00': 'ballena', 0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés',
@@ -1162,7 +1162,13 @@
             59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
             64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
             69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
-            74: 'turpial', 75: 'guácharo'
+            74: 'turpial', 75: 'guácharo', 76: 'hipopótamo', 77: 'pingüino',
+            78: 'antílope', 79: 'calamar', 80: 'murciélago', 81: 'cuervo',
+            82: 'cucaracha', 83: 'búho', 84: 'camarón', 85: 'hámster',
+            86: 'buey', 87: 'cabra', 88: 'erizo de mar', 89: 'anguila',
+            90: 'hurón', 91: 'morrocoy', 92: 'cisne', 93: 'gaviota',
+            94: 'paujil', 95: 'escarabajo', 96: 'caballito de mar',
+            97: 'loro', 98: 'cocodrilo', 99: 'halcón'
         };
 
         function obtenerRutaImagen(numero, esDobleCero = false) {
@@ -1289,10 +1295,10 @@
         }
 
         // ============================================================
-        // 📊 ANÁLISIS FORENSE (GRATIS)
+        // 📊 ANÁLISIS FORENSE (GRATIS) - RANGO 0-99
         // ============================================================
         let historialFiltrado = [];
-        let config = { min: 0, max: 75, especiales: ['00'] };
+        let config = { min: 0, max: 99, especiales: ['00'] };
 
         function formatearNumero(valor) {
             if (valor === 100) return '00';
@@ -1309,25 +1315,7 @@
         }
 
         function obtenerAnimalForense(num) {
-            const animalesMap = {
-                0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
-                5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
-                10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
-                15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
-                20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
-                25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
-                30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
-                35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
-                39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
-                44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
-                49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
-                54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
-                59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
-                64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
-                69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
-                74: 'turpial', 75: 'guácharo'
-            };
-            return animalesMap[num] || 'desconocido';
+            return animales[num] || animales[num.toString()] || 'desconocido';
         }
 
         function obtenerAcompanantesForense(numero) {
@@ -1389,7 +1377,9 @@
                 { nombre: "Zona 40-49", numeros: [40,41,42,43,44,45,46,47,48,49] },
                 { nombre: "Zona 50-59", numeros: [50,51,52,53,54,55,56,57,58,59] },
                 { nombre: "Zona 60-69", numeros: [60,61,62,63,64,65,66,67,68,69] },
-                { nombre: "Zona 70-79", numeros: [70,71,72,73,74,75] }
+                { nombre: "Zona 70-79", numeros: [70,71,72,73,74,75,76,77,78,79] },
+                { nombre: "Zona 80-89", numeros: [80,81,82,83,84,85,86,87,88,89] },
+                { nombre: "Zona 90-99", numeros: [90,91,92,93,94,95,96,97,98,99] }
             ];
             const actividad = new Array(zonas.length).fill(0);
             const ultimos12 = historialFiltrado.slice(0, 12);
@@ -1416,7 +1406,7 @@
             
             return {
                 nombre: zonas[zonaMin].nombre,
-                numeros: zonas[zonaMin].numeros.filter(n => n <= 75 || n === 100),
+                numeros: zonas[zonaMin].numeros.filter(n => n <= 99 || n === 100),
                 actividad,
                 indice: zonaMin
             };
@@ -1599,7 +1589,7 @@
 
             while (lista.length < 5) {
                 lista.push({
-                    numero: Math.floor(Math.random() * 76),
+                    numero: Math.floor(Math.random() * 100),
                     esDobleCero: false,
                     esPremium: false,
                     esGratis: true
@@ -1611,7 +1601,7 @@
                     return { ...item, numero: 1, esDobleCero: false };
                 }
                 let nuevo = item.numero + 1;
-                if (nuevo > 75) nuevo = 0;
+                if (nuevo > 99) nuevo = 0;
                 return { ...item, numero: nuevo, esDobleCero: false };
             }
 
@@ -1654,7 +1644,7 @@
             } else {
                 let numBase = primerNumero.numero;
                 let val1 = numBase + 1;
-                if (val1 > 75) val1 = val1 - 76;
+                if (val1 > 99) val1 = val1 - 100;
                 incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
             }
 
@@ -1734,8 +1724,9 @@
 
         // ============================================================
         // 📊 SUPER FIJOS - NUEVA LÓGICA (Pos 7 reciente + Pos 1 intermedio)
+        // RANGO 0-99
         // ============================================================
-        function calcularSuperFijos(todos, maxNum = 75) {
+        function calcularSuperFijos(todos, maxNum = 99) {
             const diaMasReciente = todos.slice(24, 36);
             const diaIntermedio  = todos.slice(12, 24);
 
@@ -1948,8 +1939,8 @@
                 });
                 historialFiltrado.sort((a, b) => b.fecha - a.fecha);
 
-                // NUEVA LÓGICA DE SUPER FIJOS (maxNum = 75)
-                const superFijos = calcularSuperFijos(todos, 75);
+                // NUEVA LÓGICA DE SUPER FIJOS (maxNum = 99)
+                const superFijos = calcularSuperFijos(todos, 99);
 
                 mostrarSuperFijos(superFijos);
                 actualizarStatus('✅ Datos actualizados desde el servidor');
