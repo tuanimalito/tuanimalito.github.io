@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-04T05:38:31.653527",
+    "ultima_actualizacion": "2026-10-04T12:12:38.409327",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -25,7 +25,7 @@
         "dia": "Lunes",
         "fecha": "05 oct 2026"
       },
-      "bote": "440.000.000$"
+      "bote": "467.000.000$"
     },
     {
       "id": "mega-millions",
@@ -103,11 +103,11 @@
         "dia": "Sábado",
         "fecha": "03 oct 2026",
         "numeros": [
-          11,
-          15,
-          18,
+          7,
+          10,
+          23,
           27,
-          31
+          28
         ],
         "numero_extra": null
       },
