@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-05T00:42:09.408634",
+    "ultima_actualizacion": "2026-10-05T06:49:31.323803",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "04 oct 2026",
         "numeros": [
-          4,
-          9,
-          12,
-          16,
-          19
+          10,
+          11,
+          31,
+          32,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -126,16 +126,16 @@
         "fecha": "04 oct 2026",
         "numeros": [
           4,
+          7,
+          8,
           0,
-          5,
-          3,
-          1
+          4
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -148,15 +148,15 @@
         "fecha": "04 oct 2026",
         "numeros": [
           7,
+          2,
           8,
-          1,
-          1
+          3
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "04 oct 2026",
         "numeros": [
-          1,
-          2,
-          4
+          9,
+          0,
+          2
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Domingo",
         "fecha": "04 oct 2026",
         "numeros": [
-          1,
-          6
+          8,
+          1
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "04 oct 2026"
+        "dia": "Lunes",
+        "fecha": "05 oct 2026"
       },
       "bote": "50$"
     },
