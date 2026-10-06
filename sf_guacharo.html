@@ -558,74 +558,6 @@
             50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
         }
 
-        /* ================================================ */
-        /* OVERLAY PREMIUM REUTILIZABLE (GSM + Forense)     */
-        /* ================================================ */
-        .premium-overlay-inner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 20px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay-inner.hidden {
-            display: none;
-        }
-
-        .premium-overlay-inner .premium-badge {
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-        }
-
-        .premium-overlay-inner .premium-badge i {
-            font-size: 1.2rem;
-        }
-
-        .premium-overlay-inner .premium-message {
-            font-size: 0.9rem;
-            max-width: 280px;
-        }
-
-        .premium-overlay-inner .unlock-btn {
-            padding: 10px 22px;
-            font-size: 0.9rem;
-        }
-
-        .premium-locked-content {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .premium-locked-content.unlocked {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .premium-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-        }
-
-        /* TABLA FORENSE */
         .tabla-forense {
             width: 100%;
             border-collapse: collapse;
@@ -849,7 +781,6 @@
             font-weight: 700;
         }
 
-        /* GSM */
         .gsm-busqueda {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
@@ -1311,98 +1242,68 @@
                 </div>
             </div>
 
-            <!-- 3. GSM - GENERADOR DE SECUENCIAS (PREMIUM) -->
+            <!-- 3. GSM - GENERADOR DE SECUENCIAS (GRATIS) -->
             <div class="tarjeta-gsm tarjeta-dato">
                 <h3><i class="bi bi-robot"></i> Generador de Secuencias Premium</h3>
+                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
+                </div>
 
-                <div class="premium-wrapper">
-                    <div class="premium-overlay-inner" id="overlayGSM">
-                        <div class="premium-badge">
-                            <i class="bi bi-crown-fill"></i> GSM PREMIUM
+                <div id="gsm-contenido">
+                    <div class="gsm-busqueda">
+                        <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
+                        <div class="gsm-flex-row">
+                            <div class="gsm-filtro-input">
+                                <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
+                                <button id="gsmBuscarBtn">Buscar</button>
+                            </div>
+                            <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
                         </div>
-                        <p class="premium-message">
-                            <strong>🔒 Contenido Exclusivo</strong><br>
-                            Accede al Generador de Secuencias ingresando tu clave:
-                        </p>
-                        <div class="action-buttons-group">
-                            <button class="unlock-btn" onclick="abrirModalLogin()">
-                                <i class="bi bi-unlock-fill"></i> Desbloquear
-                            </button>
+                        <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
+                            <img id="gsmImagenConsultada" src="" alt="imagen" />
+                            <div class="gsm-info">
+                                <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
+                                <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
+                            </div>
+                        </div>
+                        <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
+                    </div>
+
+                    <div class="gsm-secuencias">
+                        <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
+                        <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
+                            <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
                         </div>
                     </div>
 
-                    <div id="gsm-contenido" class="premium-locked-content">
-                        <div class="gsm-busqueda">
-                            <h4><i class="bi bi-search"></i> Buscar secuencia</h4>
-                            <div class="gsm-flex-row">
-                                <div class="gsm-filtro-input">
-                                    <input type="text" id="gsmNumeroInput" placeholder="ej. 35, 00, 0" />
-                                    <button id="gsmBuscarBtn">Buscar</button>
-                                </div>
-                                <span id="gsmValidacionMensaje" style="font-size:0.8rem; color:#ffd700;"></span>
-                            </div>
-                            <div id="gsmTarjetaImagen" class="gsm-tarjeta-imagen" style="display: none;">
-                                <img id="gsmImagenConsultada" src="" alt="imagen" />
-                                <div class="gsm-info">
-                                    <span class="gsm-numero" id="gsmNumeroConsultado">-</span>
-                                    <span class="gsm-animal" id="gsmAnimalConsultado">-</span>
-                                </div>
-                            </div>
-                            <div id="gsmMensajeSinNumero" class="gsm-mensaje-vacio" style="margin-top:0.8rem;">ingresa un número y presiona consultar</div>
-                        </div>
-
-                        <div class="gsm-secuencias">
-                            <h4><i class="bi bi-list-ul"></i> Secuencias activas <span style="font-size:0.7rem; color:#ffd700; background:rgba(255,215,0,0.1); padding:0.1rem 0.8rem; border-radius:30px;">GSM Profesional</span></h4>
-                            <div id="gsmGridSecuencias" class="gsm-grid-tarjetas">
-                                <span class="gsm-mensaje-vacio">consulta un número para ver su secuencia</span>
-                            </div>
-                        </div>
-
-                        <div class="gsm-instrucciones">
-                            <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
-                            <p><i class="bi bi-1-circle-fill"></i> Ingresa un número del 0 al 75 o 00 en el buscador.</p>
-                            <p><i class="bi bi-2-circle-fill"></i> La herramienta analiza los últimos 3 días de resultados de Guácharo Activo.</p>
-                            <p><i class="bi bi-3-circle-fill"></i> Busca la primera aparición del número (empezando por el día más reciente) y toma los 4 números siguientes, sin repetir.</p>
-                            <p><i class="bi bi-4-circle-fill"></i> El número consultado y los repetidos se descartan automáticamente de la secuencia.</p>
-                        </div>
+                    <div class="gsm-instrucciones">
+                        <h4><i class="bi bi-question-circle-fill"></i> ¿Cómo usar esta herramienta?</h4>
+                        <p><i class="bi bi-1-circle-fill"></i> Ingresa un número del 0 al 75 o 00 en el buscador.</p>
+                        <p><i class="bi bi-2-circle-fill"></i> La herramienta analiza los últimos 3 días de resultados de Guácharo Activo.</p>
+                        <p><i class="bi bi-3-circle-fill"></i> Busca la primera aparición del número (empezando por el día más reciente) y toma los 4 números siguientes, sin repetir.</p>
+                        <p><i class="bi bi-4-circle-fill"></i> El número consultado y los repetidos se descartan automáticamente de la secuencia.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 4. ANÁLISIS FORENSE (PREMIUM) -->
+            <!-- 4. ANÁLISIS FORENSE (GRATIS) -->
             <div class="tarjeta-forense tarjeta-dato">
                 <h3><i class="bi bi-graph-up-arrow"></i> Análisis Forense Premium</h3>
+                <div style="text-align: center; color: #ffd700; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
+                </div>
 
-                <div class="premium-wrapper">
-                    <div class="premium-overlay-inner" id="overlayForense">
-                        <div class="premium-badge">
-                            <i class="bi bi-crown-fill"></i> FORENSE PREMIUM
-                        </div>
-                        <p class="premium-message">
-                            <strong>🔒 Contenido Exclusivo</strong><br>
-                            Accede al Análisis Forense ingresando tu clave:
-                        </p>
-                        <div class="action-buttons-group">
-                            <button class="unlock-btn" onclick="abrirModalLogin()">
-                                <i class="bi bi-unlock-fill"></i> Desbloquear
-                            </button>
-                        </div>
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
+                    <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
+                        <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
                     </div>
+                </div>
 
-                    <div class="premium-locked-content" id="forense-contenido">
-                        <div class="forense-sub" style="position: relative;">
-                            <h4><i class="bi bi-trophy-fill"></i> TOP 10 + REY</h4>
-                            <div id="forense-top10" style="overflow-x: auto; min-height: 150px;">
-                                <div class="no-data" style="padding: 20px;">Cargando análisis...</div>
-                            </div>
-                        </div>
-
-                        <div class="forense-sub" style="position: relative;">
-                            <h4><i class="bi bi-bullseye"></i> Predicción Forense</h4>
-                            <div id="forense-prediccion">
-                                <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
-                            </div>
-                        </div>
+                <div class="forense-sub" style="position: relative;">
+                    <h4><i class="bi bi-bullseye"></i> Predicción Forense <span style="font-size:0.6rem; background:#4caf50; color:#fff; padding:2px 8px; border-radius:10px; margin-left:5px;">GRATIS</span></h4>
+                    <div id="forense-prediccion">
+                        <div class="no-data" style="padding: 20px;">Cargando predicción...</div>
                     </div>
                 </div>
             </div>
@@ -1432,15 +1333,15 @@
         <div class="modal-content">
             <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
             <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear todo el contenido Premium:</p>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
             <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
             <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
         </div>
     </div>
 
     <div style="padding: 15px; font-size: 0.8rem; color: #a0aec0; text-align: center;">
-        <p>Nuestros <strong>Super Fijos, GSM y Análisis Forense</strong> son contenido Premium exclusivo para suscriptores.</p>
-        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>La cortesía "Los más Calientes" es gratis para todos.</strong></p>
+        <p>Nuestros <strong>Super Fijos</strong> son contenido Premium exclusivo para suscriptores.</p>
+        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Cortesía, GSM y Análisis Forense</strong> están disponibles gratis para todos.</p>
     </div>
 
     <footer class="footer">
@@ -1593,14 +1494,14 @@
         };
 
         // ============================================================
-        // 🔓 DESBLOQUEAR PREMIUM (Super Fijos + GSM + Forense)
+        // 🔓 DESBLOQUEAR PREMIUM (SOLO Super Fijos)
         // ============================================================
         function desbloquearPremium() {
             usuarioAutenticado = true;
 
-            // 1. Super Fijos
             const overlaySuperFijos = document.getElementById('overlaySuperFijos');
             if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
+
             const resultadoContenedor = document.getElementById('resultado-contenido');
             if (resultadoContenedor) {
                 const grid = resultadoContenedor.querySelector('.numeros-grid-4');
@@ -1610,18 +1511,6 @@
                 }
                 resultadoContenedor.classList.remove('locked-grid');
             }
-
-            // 2. GSM
-            const overlayGSM = document.getElementById('overlayGSM');
-            if (overlayGSM) overlayGSM.classList.add('hidden');
-            const gsmContenido = document.getElementById('gsm-contenido');
-            if (gsmContenido) gsmContenido.classList.add('unlocked');
-
-            // 3. Forense
-            const overlayForense = document.getElementById('overlayForense');
-            if (overlayForense) overlayForense.classList.add('hidden');
-            const forenseContenido = document.getElementById('forense-contenido');
-            if (forenseContenido) forenseContenido.classList.add('unlocked');
         }
 
         async function verificarSesionPrevia() {
@@ -1660,25 +1549,7 @@
         }
 
         function obtenerAnimalForense(num) {
-            const animalesMap = {
-                0: 'delfín', 1: 'carnero', 2: 'toro', 3: 'ciempiés', 4: 'alacrán',
-                5: 'león', 6: 'rana', 7: 'perico', 8: 'ratón', 9: 'águila',
-                10: 'tigre', 11: 'gato', 12: 'caballo', 13: 'mono', 14: 'paloma',
-                15: 'zorro', 16: 'oso', 17: 'pavo', 18: 'burro', 19: 'chivo',
-                20: 'cochino', 21: 'gallo', 22: 'camello', 23: 'cebra', 24: 'iguana',
-                25: 'gallina', 26: 'vaca', 27: 'perro', 28: 'zamuro', 29: 'elefante',
-                30: 'caimán', 31: 'lapa', 32: 'ardilla', 33: 'pescado', 34: 'venado',
-                35: 'jirafa', 36: 'culebra', 37: 'tortuga', 38: 'búfalo',
-                39: 'lechuza', 40: 'avispa', 41: 'canguro', 42: 'tucán', 43: 'mariposa',
-                44: 'chigüire', 45: 'garza', 46: 'puma', 47: 'pavo real', 48: 'puercoespín',
-                49: 'pereza', 50: 'canario', 51: 'pelícano', 52: 'pulpo', 53: 'caracol',
-                54: 'grillo', 55: 'oso hormiguero', 56: 'tiburón', 57: 'pato', 58: 'hormiga',
-                59: 'pantera', 60: 'camaleón', 61: 'panda', 62: 'cachicamo', 63: 'cangrejo',
-                64: 'gavilán', 65: 'araña', 66: 'lobo', 67: 'avestruz', 68: 'jaguar',
-                69: 'conejo', 70: 'bisonte', 71: 'guachamaya', 72: 'gorila', 73: 'hipopótamo',
-                74: 'turpial', 75: 'guácharo'
-            };
-            return animalesMap[num] || 'desconocido';
+            return animales[num] || 'desconocido';
         }
 
         function obtenerAcompanantesForense(numero) {
@@ -1932,37 +1803,106 @@
         window.seleccionarNumeroForense = seleccionarNumeroForense;
 
         // ============================================================
-        // 🎁 GARANTIZAR 5 NÚMEROS ÚNICOS (versión flexible)
+        // 🔑 LLAVES (SUPER FIJOS) - LÓGICA COMPLETA
         // ============================================================
-        function garantizar5Unicos(superFijos, extras) {
+
+        // ─────────────────────────────────────────────────────────
+        // 🐋 LLAVE ESPECIAL: solo cuando el repetido es 00 (ballena)
+        // [00, 0, 38, 39]
+        // ─────────────────────────────────────────────────────────
+        function llaveBallena() {
+            return [
+                { numero: 0, esDobleCero: true,  esPremium: true, esGratis: false },
+                { numero: 0, esDobleCero: false, esPremium: true, esGratis: false },
+                { numero: 38, esDobleCero: false, esPremium: true, esGratis: false },
+                { numero: 39, esDobleCero: false, esPremium: true, esGratis: false }
+            ];
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // 📊 LLAVE GENERAL: para cualquier repetido excepto 00
+        // A = 77 - N ; B = 38 - A ; C = 77 - B
+        // 0 (delfín) → N = 76 ; 1..75 → N = mismo valor
+        // ─────────────────────────────────────────────────────────
+        function llaveGeneral(N) {
+            const TOTAL = 77;
+            const MITAD = 38;
+
+            const A = TOTAL - N;
+            const B = MITAD - A;
+            const C = TOTAL - B;
+
+            const normalizar = (n) => {
+                let v = n;
+                while (v < 0)  v += TOTAL;
+                while (v > 77) v -= TOTAL;
+                return v;
+            };
+
+            const candidatos = [N, A, B, C].map(normalizar);
+
+            const aItem = (v) => {
+                if (v === 77) return { numero: 0, esDobleCero: true };   // ballena
+                if (v === 76) return { numero: 0, esDobleCero: false };  // delfín
+                return { numero: v, esDobleCero: false };
+            };
+
+            return candidatos.map(v => {
+                const base = aItem(v);
+                return {
+                    numero: base.numero,
+                    esDobleCero: base.esDobleCero,
+                    esPremium: true,
+                    esGratis: false
+                };
+            });
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // 🔁 Buscar TODAS las repeticiones entre dos conjuntos de días
+        // ─────────────────────────────────────────────────────────
+        function buscarRepeticiones(diaA, diaB) {
+            const repeticiones = [];
+            const clavesVistas = new Set();
+
+            for (let i = 0; i < diaA.length; i++) {
+                const itemA = diaA[i];
+                const claveA = itemA.esDobleCero ? '00' : String(itemA.numero);
+                if (clavesVistas.has(claveA)) continue;
+
+                for (let j = 0; j < diaB.length; j++) {
+                    const itemB = diaB[j];
+                    const claveB = itemB.esDobleCero ? '00' : String(itemB.numero);
+                    if (claveA === claveB) {
+                        repeticiones.push(itemA);
+                        clavesVistas.add(claveA);
+                        break;
+                    }
+                }
+            }
+            return repeticiones;
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // 🔒 Garantizar Super Fijos únicos
+        // ─────────────────────────────────────────────────────────
+        function garantizarSuperFijosUnicos(lista, maxNum) {
             const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
 
-            let lista = [...superFijos, ...extras];
-
-            if (lista.length > 5) lista = lista.slice(0, 5);
-
-            lista = lista.map(item => ({
+            let resultado = lista.map(item => ({
                 numero: item.numero ?? 0,
                 esDobleCero: item.esDobleCero || false,
                 esPremium: item.esPremium || false,
-                esGratis: item.esGratis || false
+                esGratis: item.esGratis || false,
+                casilla: item.casilla || 0
             }));
-
-            while (lista.length < 5) {
-                lista.push({
-                    numero: Math.floor(Math.random() * 76),
-                    esDobleCero: false,
-                    esPremium: false,
-                    esGratis: true
-                });
-            }
 
             function incrementar(item) {
                 if (item.esDobleCero) {
                     return { ...item, numero: 1, esDobleCero: false };
                 }
                 let nuevo = item.numero + 1;
-                if (nuevo > 75) nuevo = 0;
+                if (nuevo > maxNum) nuevo = 0;
                 return { ...item, numero: nuevo, esDobleCero: false };
             }
 
@@ -1970,15 +1910,15 @@
             const maxIntentos = 200;
 
             while (intentos < maxIntentos) {
-                const claves = lista.map(claveDe);
+                const claves = resultado.map(claveDe);
                 const hayDuplicados = new Set(claves).size !== claves.length;
                 if (!hayDuplicados) break;
 
                 const vistas = new Set();
-                for (let i = 0; i < lista.length; i++) {
-                    const clave = claveDe(lista[i]);
+                for (let i = 0; i < resultado.length; i++) {
+                    const clave = claveDe(resultado[i]);
                     if (vistas.has(clave)) {
-                        lista[i] = incrementar(lista[i]);
+                        resultado[i] = incrementar(resultado[i]);
                         break;
                     }
                     vistas.add(clave);
@@ -1986,50 +1926,127 @@
                 intentos++;
             }
 
-            return lista;
+            return resultado;
         }
 
+        // ─────────────────────────────────────────────────────────
+        // 🎯 CALCULAR SUPER FIJOS
+        // 1° Búsqueda: intermedio ↔ antiguo  (con filtro contra reciente)
+        // 2° Búsqueda: intermedio ↔ reciente (sin filtro)
+        // ─────────────────────────────────────────────────────────
+        function calcularSuperFijos(todos, maxNum = 76) {
+            const diaMasAntiguo  = todos.slice(0, 12);
+            const diaIntermedio  = todos.slice(12, 24);
+            const diaMasReciente = todos.slice(24, 36);
+
+            const clavesRecientes = new Set(
+                diaMasReciente.map(it => it.esDobleCero ? '00' : String(it.numero))
+            );
+
+            // ══════════════════════════════════════════════════════
+            // 1° BÚSQUEDA: intermedio ↔ antiguo (CON filtro)
+            // ══════════════════════════════════════════════════════
+            const repeticiones1 = buscarRepeticiones(diaIntermedio, diaMasAntiguo);
+
+            for (const repetido of repeticiones1) {
+                const llave = repetido.esDobleCero
+                    ? llaveBallena()
+                    : llaveGeneral(repetido.numero === 0 ? 76 : repetido.numero);
+
+                llave.forEach(it => it.casilla = repetido.casilla || 0);
+
+                const coincidencias = llave.filter(it => {
+                    const clave = it.esDobleCero ? '00' : String(it.numero);
+                    return clavesRecientes.has(clave);
+                });
+
+                if (coincidencias.length >= 2) continue;
+
+                if (coincidencias.length === 1) {
+                    const claveDesc = coincidencias[0].esDobleCero
+                        ? '00' : String(coincidencias[0].numero);
+                    const llaveFiltrada = llave.filter(it => {
+                        const clave = it.esDobleCero ? '00' : String(it.numero);
+                        return clave !== claveDesc;
+                    });
+                    return garantizarSuperFijosUnicos(llaveFiltrada, maxNum);
+                }
+
+                return garantizarSuperFijosUnicos(llave, maxNum);
+            }
+
+            // ══════════════════════════════════════════════════════
+            // 2° BÚSQUEDA: intermedio ↔ reciente (SIN filtro)
+            // ══════════════════════════════════════════════════════
+            const repeticiones2 = buscarRepeticiones(diaIntermedio, diaMasReciente);
+
+            for (const repetido of repeticiones2) {
+                const llave = repetido.esDobleCero
+                    ? llaveBallena()
+                    : llaveGeneral(repetido.numero === 0 ? 76 : repetido.numero);
+
+                llave.forEach(it => it.casilla = repetido.casilla || 0);
+                return garantizarSuperFijosUnicos(llave, maxNum);
+            }
+
+            return [];
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // 🎁 CALCULAR CORTESÍA (TODAS las llaves, sin filtro)
+        // ─────────────────────────────────────────────────────────
+        function calcularCortesia(todos, maxNum = 76) {
+            const diaMasAntiguo  = todos.slice(0, 12);
+            const diaIntermedio  = todos.slice(12, 24);
+
+            const repeticiones = buscarRepeticiones(diaIntermedio, diaMasAntiguo);
+
+            let todasLasLlaves = [];
+
+            if (repeticiones.length === 0) {
+                const aleatorios = [];
+                const copia = [...todos];
+                while (aleatorios.length < 4 && copia.length > 0) {
+                    const idx = Math.floor(Math.random() * copia.length);
+                    aleatorios.push(copia.splice(idx, 1)[0]);
+                }
+                todasLasLlaves = aleatorios.map(it => ({
+                    numero: it.esDobleCero ? 0 : it.numero,
+                    esDobleCero: it.esDobleCero || false,
+                    esPremium: false,
+                    esGratis: true
+                }));
+            } else {
+                repeticiones.forEach(repetido => {
+                    const llave = repetido.esDobleCero
+                        ? llaveBallena()
+                        : llaveGeneral(repetido.numero === 0 ? 76 : repetido.numero);
+
+                    llave.forEach(it => {
+                        it.esPremium = false;
+                        it.esGratis = true;
+                        it.casilla = repetido.casilla || 0;
+                    });
+
+                    todasLasLlaves.push(...llave);
+                });
+            }
+
+            return todasLasLlaves;
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // 🎁 CORTESÍA (con caché)
+        // ─────────────────────────────────────────────────────────
         let cortesiaEstatica = null;
 
-        function informacionDeCortecia(todos, superFijos) {
+        function informacionDeCortecia(todos, _superFijosIgnorado) {
             if (cortesiaEstatica) {
                 return mezclarArray([...cortesiaEstatica]);
             }
-
-            const diaMasReciente = todos.slice(24, 36);
-            const primerNumero = diaMasReciente[0];
-            
-            let incremento1;
-            if (primerNumero.esDobleCero) {
-                incremento1 = { numero: 1, esDobleCero: false, esGratis: true };
-            } else {
-                let numBase = primerNumero.numero;
-                let val1 = numBase + 1;
-                if (val1 > 75) val1 = val1 - 76;
-                incremento1 = { numero: val1, esDobleCero: false, esGratis: true };
-            }
-
-            let superFijosParaCortesia = [];
-            if (superFijos && superFijos.length > 0) {
-                superFijosParaCortesia = superFijos.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            } else {
-                const aleatorios = obtener4Aleatorios(todos);
-                superFijosParaCortesia = aleatorios.map(item => ({
-                    ...item,
-                    esPremium: true
-                }));
-            }
-
-            const todosLosNumeros = garantizar5Unicos(
-                superFijosParaCortesia,
-                [incremento1]
-            );
-
-            cortesiaEstatica = todosLosNumeros;
-            return mezclarArray([...todosLosNumeros]);
+            const resultado = calcularCortesia(todos, 76);
+            cortesiaEstatica = resultado;
+            return mezclarArray([...resultado]);
         }
 
         function reiniciarCortesia() {
@@ -2084,103 +2101,8 @@
         }
 
         // ============================================================
-        // 📊 SUPER FIJOS - NUEVA LÓGICA (Pos 7 reciente + Pos 1 intermedio)
+        // 📊 MOSTRAR SUPER FIJOS
         // ============================================================
-        function calcularSuperFijos(todos, maxNum = 75) {
-            const diaMasReciente = todos.slice(24, 36);
-            const diaIntermedio  = todos.slice(12, 24);
-
-            const semilla1 = diaMasReciente[6];
-            const semilla2 = diaIntermedio[0];
-
-            let resultado = [];
-
-            if (semilla1) resultado.push(...generarSuperFijosDesdeSemilla(semilla1, maxNum));
-            if (semilla2) resultado.push(...generarSuperFijosDesdeSemilla(semilla2, maxNum));
-
-            return garantizarSuperFijosUnicos(resultado, maxNum);
-        }
-
-        function generarSuperFijosDesdeSemilla(semilla, maxNum) {
-            let decena, unidad;
-
-            if (semilla.esDobleCero) {
-                decena = 0;
-                unidad = 0;
-            } else {
-                decena = Math.floor(semilla.numero / 10);
-                unidad = semilla.numero % 10;
-            }
-
-            let nuevaDecena;
-            if (decena === 0) {
-                nuevaDecena = decena + 1;
-            } else {
-                nuevaDecena = decena - 1;
-            }
-
-            const unidadMas   = (unidad + 1) % 10;
-            const unidadMenos = (unidad - 1 + 10) % 10;
-
-            const candidatos = [
-                nuevaDecena * 10 + unidadMas,
-                nuevaDecena * 10 + unidadMenos
-            ];
-
-            return candidatos
-                .filter(n => n >= 0 && n <= maxNum)
-                .map(n => ({
-                    numero: n,
-                    esDobleCero: false,
-                    esPremium: true,
-                    esGratis: false,
-                    casilla: semilla.casilla || 31
-                }));
-        }
-
-        function garantizarSuperFijosUnicos(lista, maxNum) {
-            const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
-
-            let resultado = lista.map(item => ({
-                numero: item.numero ?? 0,
-                esDobleCero: item.esDobleCero || false,
-                esPremium: item.esPremium || false,
-                esGratis: item.esGratis || false,
-                casilla: item.casilla || 0
-            }));
-
-            function incrementar(item) {
-                if (item.esDobleCero) {
-                    return { ...item, numero: 1, esDobleCero: false };
-                }
-                let nuevo = item.numero + 1;
-                if (nuevo > maxNum) nuevo = 0;
-                return { ...item, numero: nuevo, esDobleCero: false };
-            }
-
-            let intentos = 0;
-            const maxIntentos = 200;
-
-            while (intentos < maxIntentos) {
-                const claves = resultado.map(claveDe);
-                const hayDuplicados = new Set(claves).size !== claves.length;
-                if (!hayDuplicados) break;
-
-                const vistas = new Set();
-                for (let i = 0; i < resultado.length; i++) {
-                    const clave = claveDe(resultado[i]);
-                    if (vistas.has(clave)) {
-                        resultado[i] = incrementar(resultado[i]);
-                        break;
-                    }
-                    vistas.add(clave);
-                }
-                intentos++;
-            }
-
-            return resultado;
-        }
-
         function mostrarSuperFijos(items) {
             const contenedor = document.getElementById('resultado-contenido');
 
