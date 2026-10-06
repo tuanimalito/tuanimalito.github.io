@@ -725,26 +725,18 @@
             cursor: pointer;
         }
 
-        .numeros-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .numeros-grid-4 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
+        /* Grids base (el JS los sobreescribe dinámicamente) */
+        .numeros-grid-3,
+        .numeros-grid-4,
         .numeros-grid-5 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             transition: all 0.3s;
         }
+
+        .numeros-grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .numeros-grid-4 { grid-template-columns: repeat(2, 1fr); }
+        .numeros-grid-5 { grid-template-columns: repeat(3, 1fr); }
 
         .numero-card {
             border-radius: 16px;
@@ -764,6 +756,7 @@
             font-weight: 900;
             margin-bottom: 2px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: font-size 0.3s ease;
         }
 
         .numero-card img {
@@ -772,6 +765,7 @@
             object-fit: contain;
             margin: 4px auto;
             filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.3));
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
         .numero-card .animal {
@@ -779,6 +773,7 @@
             margin-top: 4px;
             text-transform: capitalize;
             font-weight: 700;
+            transition: font-size 0.3s ease;
         }
 
         .gsm-busqueda {
@@ -1104,9 +1099,6 @@
         }
 
         @media (min-width: 700px) {
-            .numeros-grid-5 { grid-template-columns: repeat(5, 1fr); }
-            .numeros-grid-4 { grid-template-columns: repeat(4, 1fr); }
-            .numeros-grid-3 { grid-template-columns: repeat(3, 1fr); }
             .cabecera h1 { font-size: 3rem; }
             .premium-badge { font-size: 2.2rem; }
             .premium-message { font-size: 1.1rem; }
@@ -1115,9 +1107,6 @@
         }
 
         @media (max-width: 600px) {
-            .numeros-grid-5 { grid-template-columns: repeat(3, 1fr); }
-            .numeros-grid-4 { grid-template-columns: repeat(2, 1fr); }
-            .numeros-grid-3 { grid-template-columns: repeat(3, 1fr); }
             .prediccion-grid { grid-template-columns: repeat(3, 1fr); }
             .prediccion-item .numero { font-size: 1.5rem; }
             .tabla-forense { font-size: 0.7rem; }
@@ -1422,6 +1411,59 @@
         }
 
         // ============================================================
+        // 📐 ADAPTAR GRID AL NÚMERO DE TARJETAS
+        // ─────────────────────────────────────────────────────────
+        // Ajusta dinámicamente las columnas del grid según:
+        //   - Total de tarjetas
+        //   - Máximo de columnas por tipo (cortesía: 5, superfijos: 4)
+        //   - Ancho de pantalla (móvil reduce el máximo a 3 o 2)
+        // ============================================================
+        function ajustarGrid(contenedorId, totalTarjetas, maxColumnasDesktop = 5) {
+            const contenedor = document.getElementById(contenedorId);
+            if (!contenedor || totalTarjetas === 0) return;
+
+            const grid = contenedor.querySelector('.numeros-grid-5, .numeros-grid-4, .numeros-grid-3, [class*="numeros-grid"]');
+            if (!grid) return;
+
+            const esMovil = window.innerWidth < 700;
+
+            // En móvil reducimos el máximo (cortesía: 3, superfijos: 2)
+            let maxCols;
+            if (esMovil) {
+                maxCols = contenedorId === 'resultado-contenido' ? 2 : 3;
+            } else {
+                maxCols = maxColumnasDesktop;
+            }
+
+            const columnas = Math.max(1, Math.min(maxCols, totalTarjetas));
+
+            grid.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
+            grid.style.gap = columnas >= 4 ? '10px' : '12px';
+
+            // Ajustar tamaños según columnas
+            let tamañoImagen, tamañoNumero, tamañoAnimal;
+            if (esMovil) {
+                if (columnas === 1) { tamañoImagen = '120px'; tamañoNumero = '2.8rem'; tamañoAnimal = '1.2rem'; }
+                else if (columnas === 2) { tamañoImagen = '95px'; tamañoNumero = '2.2rem'; tamañoAnimal = '1.05rem'; }
+                else { tamañoImagen = '75px'; tamañoNumero = '1.8rem'; tamañoAnimal = '0.95rem'; }
+            } else {
+                if (columnas >= 5) { tamañoImagen = '75px'; tamañoNumero = '1.9rem'; tamañoAnimal = '0.95rem'; }
+                else if (columnas === 4) { tamañoImagen = '85px'; tamañoNumero = '2.1rem'; tamañoAnimal = '1rem'; }
+                else if (columnas === 3) { tamañoImagen = '100px'; tamañoNumero = '2.3rem'; tamañoAnimal = '1.05rem'; }
+                else { tamañoImagen = '120px'; tamañoNumero = '2.5rem'; tamañoAnimal = '1.1rem'; }
+            }
+
+            grid.querySelectorAll('.numero-card').forEach(tarjeta => {
+                const img = tarjeta.querySelector('img');
+                const numero = tarjeta.querySelector('.numero');
+                const animal = tarjeta.querySelector('.animal');
+                if (img) { img.style.width = tamañoImagen; img.style.height = tamañoImagen; }
+                if (numero) numero.style.fontSize = tamañoNumero;
+                if (animal) animal.style.fontSize = tamañoAnimal;
+            });
+        }
+
+        // ============================================================
         // 🔐 AUTENTICACIÓN
         // ============================================================
         window.abrirModalLogin = function() {
@@ -1504,7 +1546,7 @@
 
             const resultadoContenedor = document.getElementById('resultado-contenido');
             if (resultadoContenedor) {
-                const grid = resultadoContenedor.querySelector('.numeros-grid-4');
+                const grid = resultadoContenedor.querySelector('[class*="numeros-grid"]');
                 if (grid) {
                     grid.classList.remove('locked-grid');
                     grid.classList.add('locked-grid-desbloqueado');
@@ -1808,7 +1850,6 @@
 
         // ─────────────────────────────────────────────────────────
         // 🐋 LLAVE ESPECIAL: solo cuando el repetido es 00 (ballena)
-        // [00, 0, 38, 39]
         // ─────────────────────────────────────────────────────────
         function llaveBallena() {
             return [
@@ -1821,8 +1862,6 @@
 
         // ─────────────────────────────────────────────────────────
         // 📊 LLAVE GENERAL: para cualquier repetido excepto 00
-        // A = 77 - N ; B = 38 - A ; C = 77 - B
-        // 0 (delfín) → N = 76 ; 1..75 → N = mismo valor
         // ─────────────────────────────────────────────────────────
         function llaveGeneral(N) {
             const TOTAL = 77;
@@ -1842,8 +1881,8 @@
             const candidatos = [N, A, B, C].map(normalizar);
 
             const aItem = (v) => {
-                if (v === 77) return { numero: 0, esDobleCero: true };   // ballena
-                if (v === 76) return { numero: 0, esDobleCero: false };  // delfín
+                if (v === 77) return { numero: 0, esDobleCero: true };
+                if (v === 76) return { numero: 0, esDobleCero: false };
                 return { numero: v, esDobleCero: false };
             };
 
@@ -1931,8 +1970,6 @@
 
         // ─────────────────────────────────────────────────────────
         // 🎯 CALCULAR SUPER FIJOS
-        // 1° Búsqueda: intermedio ↔ antiguo  (con filtro contra reciente)
-        // 2° Búsqueda: intermedio ↔ reciente (sin filtro)
         // ─────────────────────────────────────────────────────────
         function calcularSuperFijos(todos, maxNum = 76) {
             const diaMasAntiguo  = todos.slice(0, 12);
@@ -1943,9 +1980,7 @@
                 diaMasReciente.map(it => it.esDobleCero ? '00' : String(it.numero))
             );
 
-            // ══════════════════════════════════════════════════════
             // 1° BÚSQUEDA: intermedio ↔ antiguo (CON filtro)
-            // ══════════════════════════════════════════════════════
             const repeticiones1 = buscarRepeticiones(diaIntermedio, diaMasAntiguo);
 
             for (const repetido of repeticiones1) {
@@ -1975,9 +2010,7 @@
                 return garantizarSuperFijosUnicos(llave, maxNum);
             }
 
-            // ══════════════════════════════════════════════════════
             // 2° BÚSQUEDA: intermedio ↔ reciente (SIN filtro)
-            // ══════════════════════════════════════════════════════
             const repeticiones2 = buscarRepeticiones(diaIntermedio, diaMasReciente);
 
             for (const repetido of repeticiones2) {
@@ -2098,6 +2131,9 @@
             });
             html += '</div>';
             contenedor.innerHTML = html;
+
+            // 🎯 Adaptar columnas al número de tarjetas (máx 5 desktop, 3 móvil)
+            ajustarGrid('cortesia-contenido', shuffled.length, 5);
         }
 
         // ============================================================
@@ -2147,6 +2183,9 @@
             html += '</div>';
             contenedor.className = claseContainer;
             contenedor.innerHTML = html;
+
+            // 🎯 Adaptar columnas al número de tarjetas (máx 4 desktop, 2 móvil)
+            ajustarGrid('resultado-contenido', itemsMezclados.length, 4);
         }
 
         // ============================================================
@@ -2423,6 +2462,26 @@
                 document.getElementById('forense-prediccion').innerHTML = msjError;
             }
         }
+
+        // ============================================================
+        // 📐 RE-AJUSTAR GRIDS AL REDIMENSIONAR
+        // ============================================================
+        let resizeTimeoutGuacharo;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeoutGuacharo);
+            resizeTimeoutGuacharo = setTimeout(() => {
+                const cortesiaCont = document.getElementById('cortesia-contenido');
+                if (cortesiaCont) {
+                    const total = cortesiaCont.querySelectorAll('.numero-card').length;
+                    if (total > 0) ajustarGrid('cortesia-contenido', total, 5);
+                }
+                const superCont = document.getElementById('resultado-contenido');
+                if (superCont) {
+                    const total = superCont.querySelectorAll('.numero-card').length;
+                    if (total > 0) ajustarGrid('resultado-contenido', total, 4);
+                }
+            }, 200);
+        });
 
         // ============================================================
         // 🚀 INICIALIZACIÓN
