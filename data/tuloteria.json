@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-05T22:30:15.514740",
+    "ultima_actualizacion": "2026-10-06T02:51:47.865506",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -118,69 +118,6 @@
       "bote": "100.000$"
     },
     {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026",
-        "numeros": [
-          6,
-          2,
-          1,
-          2,
-          2
-        ],
-        "numero_extra": 8
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026",
-        "numeros": [
-          1,
-          4,
-          6,
-          5
-        ],
-        "numero_extra": 8
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026",
-        "numeros": [
-          6,
-          5,
-          4
-        ],
-        "numero_extra": 8
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026"
-      },
-      "bote": "500$"
-    },
-    {
       "id": "cash-pop",
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
@@ -199,25 +136,6 @@
       "bote": "250$"
     },
     {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026",
-        "numeros": [
-          2,
-          3
-        ],
-        "numero_extra": 8
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "05 oct 2026"
-      },
-      "bote": "50$"
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -232,6 +150,88 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "05 oct 2026",
+        "numeros": [
+          0,
+          2,
+          1,
+          9,
+          8
+        ],
+        "numero_extra": 6
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "05 oct 2026",
+        "numeros": [
+          9,
+          5,
+          1,
+          7
+        ],
+        "numero_extra": 6
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "05 oct 2026",
+        "numeros": [
+          8,
+          9,
+          8
+        ],
+        "numero_extra": 6
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "05 oct 2026",
+        "numeros": [
+          1,
+          8
+        ],
+        "numero_extra": 6
       },
       "proximo_sorteo": {
         "dia": "",
