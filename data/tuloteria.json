@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-07T02:13:24.775191",
+    "ultima_actualizacion": "2026-10-07T10:07:36.552138",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,22 +32,22 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "02 oct 2026",
+        "dia": "Martes",
+        "fecha": "06 oct 2026",
         "numeros": [
-          6,
-          37,
-          40,
-          41,
-          55
+          26,
+          32,
+          42,
+          51,
+          54
         ],
-        "numero_extra": 10
+        "numero_extra": 22
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "06 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
-      "bote": "345.000.000$"
+      "bote": "364.000.000$"
     },
     {
       "id": "lotto-florida",
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "02 oct 2026",
+        "dia": "Martes",
+        "fecha": "06 oct 2026",
         "numeros": [
-          2,
           15,
-          18,
-          34,
-          36,
-          38
+          17,
+          22,
+          31,
+          35,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "06 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
-      "bote": "275.000$"
+      "bote": "325.000$"
     },
     {
       "id": "fantasy-5",
@@ -103,11 +103,11 @@
         "dia": "Martes",
         "fecha": "06 oct 2026",
         "numeros": [
-          4,
-          13,
-          23,
+          9,
+          24,
           29,
-          32
+          33,
+          34
         ],
         "numero_extra": null
       },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "06 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "07 oct 2026"
       },
       "bote": "250$"
     },
