@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-07T22:59:56.609327",
+    "ultima_actualizacion": "2026-10-08T02:39:31.032218",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -134,8 +134,8 @@
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026"
+        "dia": "Jueves",
+        "fecha": "08 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -155,8 +155,8 @@
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026"
+        "dia": "Jueves",
+        "fecha": "08 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -175,8 +175,8 @@
         "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026"
+        "dia": "Jueves",
+        "fecha": "08 oct 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "07 oct 2026",
         "numeros": [
           6,
-          2
+          9
         ],
-        "numero_extra": 6
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026"
+        "dia": "Jueves",
+        "fecha": "08 oct 2026"
       },
       "bote": "50$"
     },
