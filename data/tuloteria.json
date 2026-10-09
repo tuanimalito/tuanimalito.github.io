@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-08T23:14:37.447129",
+    "ultima_actualizacion": "2026-10-09T05:53:36.985249",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "08 oct 2026",
         "numeros": [
-          4,
-          14,
-          24,
-          27,
-          34
+          11,
+          13,
+          15,
+          28,
+          35
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "08 oct 2026",
         "numeros": [
-          8,
-          9,
-          8,
-          0,
-          4
+          1,
+          2,
+          6,
+          5,
+          3
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "08 oct 2026",
         "numeros": [
-          1,
-          9,
-          6,
-          3
+          2,
+          8,
+          8,
+          4
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "08 oct 2026",
         "numeros": [
-          4,
-          8,
-          9
+          5,
+          1,
+          5
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "08 oct 2026",
         "numeros": [
-          3,
-          9
+          7,
+          2
         ],
-        "numero_extra": 5
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "08 oct 2026"
+        "dia": "Viernes",
+        "fecha": "09 oct 2026"
       },
       "bote": "50$"
     },
