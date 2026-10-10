@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-10T17:45:22.033693",
+    "ultima_actualizacion": "2026-10-10T21:31:00.319423",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          3,
+          2,
+          6,
+          8,
           11,
-          14,
-          19,
-          31
+          32
         ],
         "numero_extra": null
       },
@@ -122,14 +122,14 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          9,
-          6,
-          6,
-          8,
-          6
+          3,
+          5,
+          3,
+          5,
+          9
         ],
         "numero_extra": 4
       },
@@ -144,12 +144,12 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          1,
-          1,
-          9,
+          3,
+          5,
+          4,
           7
         ],
         "numero_extra": 4
@@ -165,12 +165,12 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          0,
-          9,
-          7
+          7,
+          4,
+          4
         ],
         "numero_extra": 4
       },
@@ -188,7 +188,7 @@
         "dia": "Sábado",
         "fecha": "10 oct 2026",
         "numeros": [
-          11
+          9
         ],
         "numero_extra": null
       },
@@ -203,11 +203,11 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          4,
-          2
+          7,
+          1
         ],
         "numero_extra": 4
       },
