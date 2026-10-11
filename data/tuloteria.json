@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-10T21:31:00.319423",
+    "ultima_actualizacion": "2026-10-11T07:00:19.759059",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          11,
-          13,
-          14,
-          21,
-          65
+          1,
+          4,
+          19,
+          33,
+          51
         ],
-        "numero_extra": 19
+        "numero_extra": 15
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Lunes",
+        "fecha": "12 oct 2026"
       },
       "bote": "516.000.000$"
     },
@@ -54,23 +54,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "07 oct 2026",
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
         "numeros": [
-          10,
-          31,
-          36,
-          43,
-          44,
-          48
+          5,
+          23,
+          29,
+          32,
+          46,
+          49
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
-      "bote": "3.500.000$"
+      "bote": "4.250.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -103,17 +103,17 @@
         "dia": "Sábado",
         "fecha": "10 oct 2026",
         "numeros": [
-          2,
-          6,
-          8,
-          11,
-          32
+          5,
+          17,
+          19,
+          30,
+          36
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "10 oct 2026",
         "numeros": [
-          3,
-          5,
-          3,
-          5,
-          9
+          9,
+          1,
+          8,
+          6,
+          0
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -148,15 +148,15 @@
         "fecha": "10 oct 2026",
         "numeros": [
           3,
+          7,
           5,
-          4,
-          7
+          3
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Sábado",
         "fecha": "10 oct 2026",
         "numeros": [
-          7,
-          4,
-          4
+          1,
+          5,
+          2
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Sábado",
         "fecha": "10 oct 2026",
         "numeros": [
-          7,
-          1
+          5,
+          3
         ],
-        "numero_extra": 4
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026"
+        "dia": "Domingo",
+        "fecha": "11 oct 2026"
       },
       "bote": "50$"
     },
