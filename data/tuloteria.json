@@ -1,32 +1,10 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-12T22:51:12.298167",
+    "ultima_actualizacion": "2026-10-13T03:28:32.526240",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
-    {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "10 oct 2026",
-        "numeros": [
-          1,
-          4,
-          19,
-          33,
-          51
-        ],
-        "numero_extra": 15
-      },
-      "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
-      },
-      "bote": "538.000.000$"
-    },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
@@ -112,8 +90,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
+        "dia": "Martes",
+        "fecha": "13 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +103,17 @@
         "dia": "Lunes",
         "fecha": "12 oct 2026",
         "numeros": [
+          4,
           7,
-          2,
-          1,
           6,
-          6
+          9,
+          2
         ],
-        "numero_extra": 9
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
+        "dia": "Martes",
+        "fecha": "13 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +125,16 @@
         "dia": "Lunes",
         "fecha": "12 oct 2026",
         "numeros": [
-          1,
-          1,
-          8,
-          4
+          2,
+          4,
+          4,
+          1
         ],
-        "numero_extra": 9
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
+        "dia": "Martes",
+        "fecha": "13 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -169,14 +147,14 @@
         "fecha": "12 oct 2026",
         "numeros": [
           5,
-          0,
+          9,
           8
         ],
-        "numero_extra": 9
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
+        "dia": "Martes",
+        "fecha": "13 oct 2026"
       },
       "bote": "500$"
     },
@@ -206,16 +184,38 @@
         "dia": "Lunes",
         "fecha": "12 oct 2026",
         "numeros": [
-          7,
-          0
+          6,
+          4
         ],
-        "numero_extra": 9
+        "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "12 oct 2026"
+        "dia": "Martes",
+        "fecha": "13 oct 2026"
       },
       "bote": "50$"
+    },
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Sábado",
+        "fecha": "10 oct 2026",
+        "numeros": [
+          1,
+          4,
+          19,
+          33,
+          51
+        ],
+        "numero_extra": 15
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
+      },
+      "bote": ""
     },
     {
       "id": "cash4life",
