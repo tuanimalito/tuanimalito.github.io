@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-13T23:41:36.554941",
+    "ultima_actualizacion": "2026-10-14T04:39:43.732889",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,20 +32,20 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Martes",
+        "fecha": "13 oct 2026",
         "numeros": [
-          2,
-          7,
-          16,
-          63,
-          70
+          11,
+          12,
+          15,
+          40,
+          66
         ],
-        "numero_extra": 8
+        "numero_extra": 17
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Viernes",
+        "fecha": "16 oct 2026"
       },
       "bote": "385.000.000$"
     },
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "09 oct 2026",
+        "dia": "Martes",
+        "fecha": "13 oct 2026",
         "numeros": [
-          5,
-          9,
-          14,
+          7,
+          16,
+          35,
           38,
-          42,
-          45
+          41,
+          43
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Viernes",
+        "fecha": "16 oct 2026"
       },
-      "bote": "375.000$"
+      "bote": "500.000$"
     },
     {
       "id": "fantasy-5",
@@ -103,17 +103,17 @@
         "dia": "Martes",
         "fecha": "13 oct 2026",
         "numeros": [
-          9,
-          16,
-          19,
-          34,
-          36
+          17,
+          18,
+          20,
+          29,
+          30
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -126,16 +126,16 @@
         "fecha": "13 oct 2026",
         "numeros": [
           1,
-          8,
-          5,
           7,
-          6
+          7,
+          0,
+          7
         ],
-        "numero_extra": 4
+        "numero_extra": 9
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Martes",
         "fecha": "13 oct 2026",
         "numeros": [
-          9,
-          5,
-          0,
-          4
+          4,
+          2,
+          4,
+          8
         ],
-        "numero_extra": 4
+        "numero_extra": 9
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Martes",
         "fecha": "13 oct 2026",
         "numeros": [
-          2,
-          6,
+          8,
+          0,
           8
         ],
-        "numero_extra": 4
+        "numero_extra": 9
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "13 oct 2026",
         "numeros": [
           2,
-          3
+          8
         ],
-        "numero_extra": 4
+        "numero_extra": 9
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "14 oct 2026"
       },
       "bote": "50$"
     },
