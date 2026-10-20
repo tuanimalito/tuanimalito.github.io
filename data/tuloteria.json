@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-16T20:54:40.506203",
+    "ultima_actualizacion": "2026-10-20T20:25:17.814093",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,110 +10,110 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "14 oct 2026",
+        "dia": "Lunes",
+        "fecha": "19 oct 2026",
         "numeros": [
-          3,
-          34,
-          37,
+          8,
+          31,
+          32,
           42,
-          46
+          48
         ],
-        "numero_extra": 20
+        "numero_extra": 23
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "17 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "21 oct 2026"
       },
-      "bote": "600.000.000$"
+      "bote": "635.000.000$"
     },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026",
+        "dia": "Viernes",
+        "fecha": "16 oct 2026",
         "numeros": [
-          11,
-          12,
+          2,
           15,
-          40,
-          66
+          31,
+          41,
+          68
         ],
-        "numero_extra": 17
+        "numero_extra": 11
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
-      "bote": "403.000.000$"
+      "bote": "413.000.000$"
     },
     {
       "id": "lotto-florida",
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "14 oct 2026",
+        "dia": "Sábado",
+        "fecha": "17 oct 2026",
         "numeros": [
-          15,
+          5,
+          9,
           22,
-          32,
-          36,
-          45,
-          51
+          27,
+          28,
+          39
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "17 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "21 oct 2026"
       },
-      "bote": "5.000.000$"
+      "bote": "6.000.000$"
     },
     {
       "id": "jackpot-triple-play",
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "13 oct 2026",
+        "dia": "Viernes",
+        "fecha": "16 oct 2026",
         "numeros": [
-          7,
-          16,
+          11,
+          22,
+          23,
+          33,
           35,
-          38,
-          41,
-          43
+          41
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
-      "bote": "500.000$"
+      "bote": "650.000$"
     },
     {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          4,
-          13,
+          5,
+          9,
+          20,
           25,
-          30,
-          34
+          32
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -122,20 +122,20 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          3,
-          8,
-          5,
-          3,
-          1
+          6,
+          2,
+          6,
+          1,
+          8
         ],
-        "numero_extra": 7
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -144,19 +144,19 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          3,
-          2,
-          5,
-          9
+          6,
+          8,
+          0,
+          0
         ],
-        "numero_extra": 7
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -165,18 +165,18 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          9,
+          8,
           5,
-          2
+          9
         ],
-        "numero_extra": 7
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "500$"
     },
@@ -185,16 +185,16 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          8
+          3
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "250$"
     },
@@ -203,17 +203,17 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026",
+        "dia": "Martes",
+        "fecha": "20 oct 2026",
         "numeros": [
-          5,
-          1
+          7,
+          3
         ],
-        "numero_extra": 7
+        "numero_extra": 2
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "16 oct 2026"
+        "dia": "Martes",
+        "fecha": "20 oct 2026"
       },
       "bote": "50$"
     },
