@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-22T19:56:42.072632",
+    "ultima_actualizacion": "2026-10-23T04:31:10.800287",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Jueves",
         "fecha": "22 oct 2026",
         "numeros": [
-          7,
-          9,
-          15,
-          32,
-          36
+          1,
+          16,
+          17,
+          23,
+          33
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "22 oct 2026"
+        "dia": "Viernes",
+        "fecha": "23 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Jueves",
         "fecha": "22 oct 2026",
         "numeros": [
-          2,
-          0,
           5,
-          1,
-          4
+          3,
+          2,
+          3,
+          7
         ],
-        "numero_extra": 2
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "22 oct 2026"
+        "dia": "Viernes",
+        "fecha": "23 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Jueves",
         "fecha": "22 oct 2026",
         "numeros": [
-          7,
-          9,
-          2,
+          8,
+          3,
+          3,
           8
         ],
-        "numero_extra": 2
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "22 oct 2026"
+        "dia": "Viernes",
+        "fecha": "23 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Jueves",
         "fecha": "22 oct 2026",
         "numeros": [
-          8,
-          2,
-          7
+          5,
+          7,
+          4
         ],
-        "numero_extra": 2
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "22 oct 2026"
+        "dia": "Viernes",
+        "fecha": "23 oct 2026"
       },
       "bote": "500$"
     },
@@ -206,14 +206,14 @@
         "dia": "Jueves",
         "fecha": "22 oct 2026",
         "numeros": [
-          6,
-          5
+          9,
+          3
         ],
-        "numero_extra": 2
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "22 oct 2026"
+        "dia": "Viernes",
+        "fecha": "23 oct 2026"
       },
       "bote": "50$"
     },
