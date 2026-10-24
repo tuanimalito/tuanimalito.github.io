@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-24T04:21:37.799928",
+    "ultima_actualizacion": "2026-10-24T09:24:19.130269",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "23 oct 2026"
+        "dia": "Sábado",
+        "fecha": "24 oct 2026"
       },
       "bote": "250$"
     },
