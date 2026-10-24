@@ -1,13 +1,6 @@
 {
   "resultados": [
     [
-      96,
-      81,
-      91,
-      87,
-      67
-    ],
-    [
       3,
       55,
       5,
@@ -20,9 +13,16 @@
       68,
       60,
       52
+    ],
+    [
+      9,
+      44,
+      97,
+      1,
+      88
     ]
   ],
-  "fecha_actualizacion": "2026-10-23T07:58:40.189Z",
+  "fecha_actualizacion": "2026-10-24T07:38:32.959Z",
   "metadata": {
     "origen": "selva.json",
     "numeros_por_secuencia": 5,
