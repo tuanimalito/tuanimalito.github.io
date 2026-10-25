@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-24T20:36:02.068294",
+    "ultima_actualizacion": "2026-10-25T04:25:37.668356",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "21 oct 2026",
+        "dia": "Sábado",
+        "fecha": "24 oct 2026",
         "numeros": [
-          1,
-          21,
-          44,
-          50,
-          57
+          4,
+          5,
+          15,
+          19,
+          55
         ],
-        "numero_extra": 5
+        "numero_extra": 19
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Lunes",
+        "fecha": "26 oct 2026"
       },
       "bote": "674.000.000$"
     },
@@ -54,23 +54,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "21 oct 2026",
+        "dia": "Sábado",
+        "fecha": "24 oct 2026",
         "numeros": [
-          8,
-          10,
-          16,
-          37,
-          51,
-          53
+          2,
+          12,
+          13,
+          25,
+          36,
+          52
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026"
       },
-      "bote": "6.500.000$"
+      "bote": "7.500.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -103,17 +103,17 @@
         "dia": "Sábado",
         "fecha": "24 oct 2026",
         "numeros": [
-          10,
-          16,
-          23,
-          28,
-          36
+          1,
+          5,
+          11,
+          19,
+          34
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Domingo",
+        "fecha": "25 oct 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Sábado",
         "fecha": "24 oct 2026",
         "numeros": [
-          6,
-          0,
           2,
-          3,
-          8
+          0,
+          6,
+          9,
+          2
         ],
-        "numero_extra": 5
+        "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Domingo",
+        "fecha": "25 oct 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Sábado",
         "fecha": "24 oct 2026",
         "numeros": [
-          9,
-          9,
-          4,
-          6
+          8,
+          8,
+          1,
+          0
         ],
-        "numero_extra": 5
+        "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Domingo",
+        "fecha": "25 oct 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Sábado",
         "fecha": "24 oct 2026",
         "numeros": [
-          4,
           1,
-          9
+          2,
+          2
         ],
-        "numero_extra": 5
+        "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Domingo",
+        "fecha": "25 oct 2026"
       },
       "bote": "500$"
     },
@@ -207,13 +207,13 @@
         "fecha": "24 oct 2026",
         "numeros": [
           7,
-          0
+          8
         ],
-        "numero_extra": 5
+        "numero_extra": 3
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026"
+        "dia": "Domingo",
+        "fecha": "25 oct 2026"
       },
       "bote": "50$"
     },
