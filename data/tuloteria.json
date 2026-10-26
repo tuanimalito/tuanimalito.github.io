@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-26T19:08:36.070587",
+    "ultima_actualizacion": "2026-10-26T23:43:20.971677",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,7 +103,7 @@
         "dia": "Lunes",
         "fecha": "26 oct 2026",
         "numeros": [
-          1
+          6
         ],
         "numero_extra": null
       },
