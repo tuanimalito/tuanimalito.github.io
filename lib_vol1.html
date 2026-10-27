@@ -30,7 +30,7 @@ body {
     background: #ffffff;
     max-width: 6in;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 90px 20px 40px 20px; /* Margen superior para el header */
     text-align: justify;
     hyphens: auto;
 }
@@ -71,6 +71,177 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
     height: auto;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   HEADER Y NAVEGACIÓN (ESTILO INDEX)
+   ============================================================ */
+#header {
+    background: linear-gradient(135deg, #0a0a1a, #12122a);
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #ffd700; /* primary-gold */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.header-container {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    color: #e0e0e0;
+    letter-spacing: -0.5px;
+    border: none;
+    padding: 0;
+    text-align: left;
+}
+
+.logo h1 span {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 4px;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul li a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar ul li a:hover {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #0a0a1a;
+}
+
+/* Dropdown */
+.navbar ul li.dropdown > a::after {
+    content: "▼";
+    font-size: 10px;
+    margin-left: 6px;
+}
+
+.navbar ul li .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1e1e3a;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    z-index: 1001;
+    margin-top: 10px;
+}
+
+.navbar ul li.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
+
+.navbar ul li .dropdown-menu li a {
+    color: #e0e0e0;
+    padding: 12px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    font-weight: 500;
+}
+
+.navbar ul li .dropdown-menu li a:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+
+.navbar ul li .dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+/* Mobile Menu Toggle */
+.mobile-nav-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ffd700;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle { display: block; }
+    .navbar {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1e1e3a;
+        flex-direction: column;
+        padding: 10px 0;
+        border-bottom: 2px solid #ffd700;
+        display: none;
+    }
+    .navbar.show { display: flex; }
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbar ul li { width: 100%; }
+    .navbar ul li a {
+        border-radius: 0;
+        padding: 15px 20px;
+        width: 100%;
+    }
+    .navbar ul li .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        border: none;
+        background: rgba(0,0,0,0.2);
+        display: none;
+    }
+    .navbar ul li.dropdown.open .dropdown-menu {
+        display: flex;
+    }
 }
 
 /* ============================================================
@@ -255,9 +426,37 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 <body>
 
 <!-- ============================================================
+     HEADER Y NAVEGACIÓN (ESTILO INDEX)
+     ============================================================ -->
+<header id="header">
+    <div class="header-container">
+        <a href="index.html" class="logo" style="text-decoration: none;">
+            <h1>TU<span>ANIMALITO</span></h1>
+        </a>
+        
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle">☰</button>
+        
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="index.html"> Inicio</a></li>
+                <li class="dropdown" id="dropdown-libros">
+                    <a href="#">📚 Más Libros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="codigo-38n.html">El Código 38-N</a></li>
+                        <li><a href="lib_vol1.html">Aprende Técnicas Vol. 1</a></li>
+                        <!-- Aquí puedes agregar más libros en el futuro -->
+                    </ul>
+                </li>
+                <li><a href="nosotros.html"> Nosotros</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================================
      PORTADA DEL LIBRO
      ============================================================ -->
-<div class="portada-container">
+<div class="portada-container" style="margin-top: 20px;">
     <img src="imagen/portada-vol1.jpg" alt="Portada Aprende Técnicas Volumen 1">
 </div>
 
@@ -517,7 +716,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 </div>
 
 <!-- ============================================================
-     SCRIPTS DE FIREBASE (LÓGICA DEL DESBLOQUEO TOTAL)
+     SCRIPTS DE FIREBASE Y NAVEGACIÓN
      ============================================================ -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -623,6 +822,53 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
             }
         }
     });
+
+    // ==================== LÓGICA DEL MENÚ MÓVIL ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const navbar = document.getElementById('navbar');
+        const dropdownLibros = document.getElementById('dropdown-libros');
+
+        if (mobileNavToggle && navbar) {
+            mobileNavToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navbar.classList.toggle('show');
+            });
+        }
+
+        // Lógica para abrir el dropdown en móvil
+        if (dropdownLibros) {
+            dropdownLibros.querySelector('a').addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownLibros.classList.toggle('open');
+                }
+            });
+        }
+    });
+
+    // ==================== MEDIDAS DE SEGURIDAD ====================
+    (function() {
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                (e.ctrlKey && e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        (function detectDevTools() {
+            const element = new Image();
+            Object.defineProperty(element, 'id', { get: function() { console.clear(); console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;'); } });
+            console.log(element);
+        })();
+        setInterval(function() { console.clear(); }, 1000);
+    })();
 </script>
 
 </body>
