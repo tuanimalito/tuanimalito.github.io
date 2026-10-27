@@ -408,7 +408,99 @@
             color: var(--primary-gold);
         }
 
-        /* SECCIÓN VIDEOS PREMIUM */
+        /* ============================================================
+           NUEVA SECCIÓN: LIBRERÍA ANIMALITOS (ESTILO AMAZON)
+        ============================================================ */
+        .libreria-card {
+            background: var(--gradient-card);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            border: var(--border-gold-subtle);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .libreria-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.15);
+        }
+
+        .libreria-img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .libreria-card:hover .libreria-img {
+            transform: scale(1.03);
+        }
+
+        .libreria-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #ffb700;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .libreria-rating span {
+            color: var(--text-muted-light);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .libreria-format {
+            font-size: 13px;
+            color: var(--text-muted-light);
+            margin-bottom: 15px;
+        }
+
+        .libreria-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .libreria-btn {
+            width: 100%;
+            background: var(--primary-gold);
+            color: #1a1a2e;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .libreria-btn:hover {
+            background: var(--primary-gold-light);
+            transform: scale(1.02);
+            color: #0a0a1a;
+        }
+
+        /* ============================================================
+           SECCIÓN VIDEOS PREMIUM
+        ============================================================ */
         .videos-section {
             background: linear-gradient(135deg, #0a0a1a 0%, #12122a 100%);
             padding: 60px 0;
@@ -1155,59 +1247,70 @@
             </div>
         </section>
 
+        <!-- ==========================================
+             NUEVA SECCIÓN: LIBRERÍA ANIMALITOS
+        =========================================== -->
         <section class="recent-posts sections-bg">
-            <div class="container" data-aos="fade-up">   
-                <div class="row gy-4">
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-                            <div class="post-img">
-                                <img src="assets/images/blog15.JPG" alt="Guacharito Millonari0" class="img-fluid">
-                            </div>
-                            <h2>GUACHARITO MILLONARIO</h2>
-                            <a class="cta-btn" href="sf_guacharito.html">VER INFORMACION</a>
-                            <div class="d-flex align-items-center">
-                                <div class="post-meta">
-                                    <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-author">juegos de animalitos venezuela</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+            <div class="container" data-aos="fade-up">
+                <div class="section-header">
+                    <h2>LIBRERÍA ANIMALITOS</h2>
+                    <p>Los mejores métodos y técnicas para dominar los juegos de animalitos.</p>
+                </div>
+
+                <div class="row gy-4 justify-content-center">
                     
+                    <!-- TARJETA LIBRO 1: EL CÓDIGO 38-N -->
                     <div class="col-xl-4 col-md-6">
-                        <article>
-                            <div class="post-img">
-                                <img src="assets/images/blog11.webp" alt="Lot Chaima" class="img-fluid">
+                        <div class="libreria-card">
+                            <!-- Reemplaza la ruta de la imagen por la portada real del Código 38-N -->
+                            <img src="imagen/portada.jpg" alt="El Código 38-N" class="libreria-img">
+                            
+                            <div class="libreria-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span>4.8 (1,245)</span>
                             </div>
-                            <h2>LOTO CHAIMA</h2>
-                            <a class="cta-btn" href="#">VER INFORMACION</a>   
-                            <div class="d-flex align-items-center">
-                                <div class="post-meta">
-                                    <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-author">animalitos venezuela</p>
-                                </div>
-                            </div>
-                        </article>
+                            
+                            <div class="libreria-format">Edición Digital</div>
+                            <div class="libreria-price">US$ 14.99</div>
+                            
+                            <a href="codigo-38n.html" class="libreria-btn">
+                                <i class="bi bi-book"></i> Leer Ahora
+                            </a>
+                        </div>
                     </div>
-                    
+
+                    <!-- TARJETA LIBRO 2: APRENDE TÉCNICAS VOL 1 -->
                     <div class="col-xl-4 col-md-6">
-                        <article>
-                            <div class="post-img">
-                                <img src="assets/images/blog5.webp" alt="Ruleta Royal" class="img-fluid">
+                        <div class="libreria-card">
+                            <!-- Ruta de la portada del Volumen 1 -->
+                            <img src="imagen/portada-vol1.jpg" alt="Aprende Técnicas - Vol 1" class="libreria-img">
+                            
+                             <div class="libreria-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span>4.8 (1,245)</span>
                             </div>
-                            <h2>RULETA ROYAL</h2>
-                            <a class="cta-btn" href="#">VER INFORMACION</a>   
-                            <div class="d-flex align-items-center">
-                                <div class="post-meta">
-                                    <p class="post-author">Dr.animalitos</p>
-                                    <p class="post-author">loterías venezuela</p>
-                                </div>
-                            </div>
-                        </article>
+                            
+                            <div class="libreria-format">Edición Digital</div>
+                            <div class="libreria-price">US$ 2.99</div>
+                            
+                            <a href="lib_vol1.html" class="libreria-btn">
+                                <i class="bi bi-book"></i> Leer Ahora
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
+        <!-- ========================================== -->
 
         <section class="recent-posts sections-bg">
             <div class="container" data-aos="fade-up">
