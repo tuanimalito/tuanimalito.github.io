@@ -30,7 +30,7 @@ body {
     background: #ffffff;
     max-width: 6in;
     margin: 0 auto;
-    padding: 90px 20px 40px 20px;
+    padding: 90px 20px 40px 20px; /* Margen superior para el header */
     text-align: justify;
     hyphens: auto;
 }
@@ -74,7 +74,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 }
 
 /* ============================================================
-   HEADER Y NAVEGACIÓN (ESTILO INDEX)
+   HEADER Y NAVEGACIÓN (ESTILO INDEX / VOL 1)
    ============================================================ */
 #header {
     background: linear-gradient(135deg, #0a0a1a, #12122a);
@@ -84,7 +84,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
     left: 0;
     width: 100%;
     z-index: 1000;
-    border-bottom: 2px solid #ffd700;
+    border-bottom: 2px solid #ffd700; /* primary-gold */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -428,7 +428,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 <body>
 
 <!-- ============================================================
-     HEADER Y NAVEGACIÓN (ESTILO INDEX)
+     HEADER Y NAVEGACIÓN (ESTILO VOL 1)
      ============================================================ -->
 <header id="header">
     <div class="header-container">
@@ -446,7 +446,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
                     <ul class="dropdown-menu">
                         <li><a href="codigo-38n.html">El Código 38-N</a></li>
                         <li><a href="lib_vol1.html">Aprende Técnicas Vol. 1</a></li>
-                        <li><a href="lib_vol2.html">Aprende Técnicas Vol. 2</a></li>
+                        <!-- Aquí puedes agregar más libros en el futuro -->
                     </ul>
                 </li>
                 <li><a href="nosotros.html"> Nosotros</a></li>
@@ -480,15 +480,15 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 <div>
     <h1>Índice General</h1>
     <ul>
-        <li><strong>Capítulo 1:</strong> La Técnica de los Tres Cruces</li>
-        <li><strong>Capítulo 2:</strong> El Fundamento y la Memoria del Juego (PDF)</li>
-        <li><strong>Capítulo 3:</strong> El Filtro de Confirmación (PDF)</li>
-        <li><strong>Capítulo 4:</strong> La Disciplina del Estratega (PDF)</li>
+        <li><strong>Capítulo 1:</strong> La Técnica de los Tres Cruces (Muestra Gratis)</li>
+        <li><strong>Capítulo 2:</strong> El Fundamento y la Memoria del Juego (Premium)</li>
+        <li><strong>Capítulo 3:</strong> El Filtro de Confirmación (Premium)</li>
+        <li><strong>Capítulo 4:</strong> La Disciplina del Estratega (Premium)</li>
     </ul>
 </div>
 
 <!-- ============================================================
-     CAPÍTULO 1 (GRATIS - SIEMPRE VISIBLE HASTA EL 1.4)
+     CAPÍTULO 1 (GRATIS - SIEMPRE VISIBLE)
      ============================================================ -->
 <h1>Capítulo 1</h1>
 <h2 class="subtitulo">La Técnica de los Tres Cruces: Identificando los Números Calientes</h2>
@@ -575,8 +575,49 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
 
 <p>Ya tenemos nuestra lista de números calientes. Pero el apostador no necesita jugar a todos. Necesita identificar cuáles de ellos están a punto de salir en los próximos sorteos.</p>
 
+<p>Para eso, aplicamos una regla simple: <strong>los números que se repiten entre el Día 2 (anterior) y el Día 3 (más antiguo) son los que están a punto de explotar.</strong></p>
+
+<div class="nota-importante">
+    <p><strong>Regla de Explosión: Los números del Cruce 3 son los que están listos para salir en los próximos resultados.</strong></p>
+</div>
+
+<p>Nuestros números a punto de explotar son: <strong>4, 23, 22</strong></p>
+
+<h3>1.5. ¿Por qué estos números están listos para salir?</h3>
+
+<p>La razón es técnica y se basa en el comportamiento del sistema:</p>
+
+<ol>
+    <li><strong>Están en ciclo activo de retardo:</strong> Los números 4, 23, 22 se repitieron entre el Día 2 y el Día 3, pero no necesariamente en el Día 1. Esto significa que el sistema los ha estado "guardando" o "retardando" para liberarlos en los próximos sorteos.</li>
+    <li><strong>El sistema necesita desahogarse:</strong> Cuando hay una saturación de números calientes (como en nuestro ejemplo, donde hay 7 números activos), el sistema necesita liberar tensión. Lo hace liberando los números que han estado en retardo, que son precisamente los del Cruce 3.</li>
+</ol>
+
+<p><strong>En resumen:</strong> Los números del Cruce 3 están listos para salir porque el sistema los ha estado reteniendo y ahora necesita liberarlos para equilibrar la matriz.</p>
+
+<h3>1.6. Resumen de la Técnica de los Tres Cruces</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Paso</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>1</td><td>Toma los tres últimos días del Guácharo.</td></tr>
+        <tr><td>2</td><td>Compara el Día 1 con el Día 2 (Cruce 1).</td></tr>
+        <tr><td>3</td><td>Compara el Día 1 con el Día 3 (Cruce 2).</td></tr>
+        <tr><td>4</td><td>Compara el Día 2 con el Día 3 (Cruce 3).</td></tr>
+        <tr><td>5</td><td>Une todos los números que se repiten en los tres cruces. Esa es tu Lista de Números Calientes.</td></tr>
+        <tr><td>6</td><td>Los números del Cruce 3 son los que están a punto de explotar. Son tus Números Objetivo.</td></tr>
+        <tr><td>7</td><td>Juega a los Números Objetivo en los próximos sorteos.</td></tr>
+    </tbody>
+</table>
+
+<p><strong>Regla de Oro:</strong> El Cruce 3 (Día 2 vs. Día 3) es el que te dice qué números están a punto de explotar. Los otros cruces te dan el contexto de qué números están calientes, pero el Cruce 3 es el que te da la señal de entrada.</p>
+
 <!-- ============================================================
-     ZONA BLOQUEADA PREMIUM (AQUÍ EMPIEZA EL BLOQUEO EN EL 1.4)
+     ZONA BLOQUEADA PREMIUM (CAPÍTULOS 2, 3 Y 4)
      ============================================================ -->
 <div class="premium-container" id="libroContenido">
     
@@ -585,42 +626,408 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
         <div class="premium-badge">👑 CONTENIDO VIP</div>
         <div class="premium-message">
             <strong>🔒 Has llegado al límite de la muestra gratuita.</strong><br><br>
-            Para descubrir la Regla de Explosión, saber cuáles son los Números Objetivo y leer el libro completo en PDF (Capítulos 2, 3 y 4), accede ingresando tu clave o solicítalo directamente por WhatsApp:
+            Para leer el libro completo (Capítulos 2, 3 y 4) y dominar la Técnica de los Tres Cruces, accede ingresando tu clave o solicítala directamente por WhatsApp:
         </div>
         <div class="action-buttons-group">
             <button class="unlock-btn" onclick="abrirModalLogin()">
-                🔓 Desbloquear Libro Web
+                🔓 Desbloquear Libro
             </button>
             
             <!-- BOTÓN DE WHATSAPP -->
-            <a href="https://wa.me/584248671967?text=Hola%20Dr.animalitos%2C%20quiero%20obtener%20el%20PDF%20completo%20del%20libro%20de%20Gu%C3%A1charo%20Activo%20(Volumen%202)" 
+            <a href="https://wa.me/584248671967?text=Hola%20Dr.animalitos%2C%20quiero%20obtener%20mi%20clave%20para%20el%20libro%20de%20Gu%C3%A1charo%20Activo" 
                class="contact-btn btn-whatsapp" 
                target="_blank">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                Solicitar PDF
+                WhatsApp
             </a>
         </div>
     </div>
 
-    <!-- Contenido que se vuelve borroso (El resto del 1.4 en adelante) -->
+    <!-- Contenido que se vuelve borroso -->
     <div class="locked-grid" id="textoBloqueado">
         
-        <p>Para eso, aplicamos una regla simple: <strong>los números que se repiten entre el Día 2 (anterior) y el Día 3 (más antiguo) son los que están a punto de explotar.</strong></p>
-
-        <div class="nota-importante">
-            <p><strong>Regla de Explosión: Los números del Cruce 3 son los que están listos para salir en los próximos resultados.</strong></p>
-        </div>
-
-        <p>Nuestros números a punto de explotar son: <strong>4, 23, 22</strong></p>
-
-        <h3>1.5. ¿Por qué estos números están listos para salir?</h3>
-        <p>La razón es técnica y se basa en el comportamiento del sistema...</p>
-
+        <!-- ============================================================
+             CAPÍTULO 2
+             ============================================================ -->
         <h1>Capítulo 2</h1>
         <h2 class="subtitulo">El Fundamento y la Memoria del Juego</h2>
-        <p>En el Capítulo 1 aprendiste a aplicar la Técnica de los Tres Cruces...</p>
+
+        <h3>2.1. ¿Por qué la Técnica de los Tres Cruces funciona?</h3>
+
+        <p>En el Capítulo 1 aprendiste a aplicar la Técnica de los Tres Cruces. Identificaste los números calientes y descubriste cuáles estaban a punto de explotar. Pero, ¿por qué funciona? ¿Cuál es la lógica detrás de este método?</p>
+
+        <p>La respuesta está en la naturaleza del Guácharo Activo y en la forma en que su algoritmo administra la tensión de la matriz. No es magia, no es suerte. Es un sistema cerrado que se rige por reglas de equilibrio. Y una vez que entiendes esas reglas, puedes leer la mesa como si fuera un mapa.</p>
+
+        <p>Si quieres entender las reglas universales que gobiernan todos los juegos de animalitos, el Volumen 1 te da la base. Allí encontrarás los principios de la memoria de repetición que aquí aplicamos de forma específica.</p>
+
+        <h3>2.2. El Guácharo Activo: Una Matriz de 77 Elementos</h3>
+
+        <p>A diferencia de otros juegos de animalitos, el Guácharo Activo opera con una matriz de 77 elementos: los números del 1 al 75, mas un 0 y 00, Tolal 77.</p>
+
+        <p>Esta diferencia es crucial. Muchos jugadores cometen el error de aplicar las mismas técnicas que usan en otros juegos, sin adaptarlas a la nueva dimensión. Y cuando no funcionan, concluyen que "el Guácharo es impredecible" o que "todo es suerte".</p>
+
+        <p>Pero no es así. El Guácharo es un sistema cerrado de 77 elementos. Y todo sistema cerrado tiene una lógica de equilibrio.</p>
+
+        <p>Si vienes de jugar Lotto Activo o Granja Millonaria, sabrás que allí la matriz es de 38 elementos. La lógica de equilibrio es la misma, pero la escala cambia. El Volumen 1 te enseña a dominar esa matriz más pequeña.</p>
+
+        <h3>2.3. La Memoria de Repetición: El Ancla del Sistema</h3>
+
+        <p>El concepto fundamental que debes entender es el de <strong>Memoria de Repetición</strong>.</p>
+
+        <p>Cuando un número aparece en el Guácharo, no es un evento aislado. Es una señal de que el sistema está utilizando ese número como parte de su estructura de equilibrio. Y si ese número se repite en días consecutivos, la señal se vuelve aún más fuerte.</p>
+
+        <div class="nota-importante">
+            <p><strong>Principio de Memoria de Repetición:</strong> Un número que se repite en días consecutivos no es una casualidad. Es una señal de que el sistema lo está utilizando como ancla para equilibrar la matriz.</p>
+        </div>
+
+        <p>La Técnica de los Tres Cruces se basa precisamente en esto: en identificar los números que se repiten entre los días y que, por lo tanto, están actuando como anclas del sistema.</p>
+
+        <p>Este principio de Memoria de Repetición es universal. Lo encontrarás en todos los juegos de animalitos, sin importar su tamaño. Si quieres ver cómo se aplica a la matriz de 38 elementos, el Volumen 1 te lo explica con detalle.</p>
+
+        <h3>2.4. El Ciclo Activo de Retardo: Por qué los números del Cruce 3 están listos para salir</h3>
+
+        <p>En el Capítulo 1, descubriste que los números del Cruce 3 (los que se repiten entre el Día 2 y el Día 3) son los que están a punto de explotar. Pero, ¿por qué?</p>
+
+        <p>La respuesta está en el <strong>Ciclo Activo de Retardo</strong>.</p>
+
+        <p>Cuando un número se repite entre el Día 2 y el Día 3, pero no en el Día 1, el sistema lo está reteniendo. Lo ha identificado como parte de su estructura de equilibrio, pero no lo ha liberado todavía.</p>
+
+        <div class="nota-importante">
+            <p><strong>Principio de Retardo:</strong> Cuando el sistema identifica un número como ancla pero no lo libera de inmediato, entra en un ciclo activo de retardo. Ese número está "guardado" y listo para salir en los próximos sorteos.</p>
+        </div>
+
+        <p>En nuestro ejemplo del Capítulo 1, los números del Cruce 3 eran 4, 23, 22. Estos números se repitieron entre el Día 2 y el Día 3, pero no necesariamente en el Día 1. El sistema los estaba reteniendo. Y cuando la matriz se satura de números calientes, necesita liberarlos para desahogarse.</p>
+
+        <p>El Ciclo Activo de Retardo es una de las claves más poderosas de la estrategia. Si quieres dominarlo a fondo, el Código 38-N te enseña cómo identificar los ciclos de retardo en cualquier juego de animalitos.</p>
+
+        <h3>2.5. La Saturación del Sistema: El Desahogo Necesario</h3>
+
+        <p>Imagina una olla a presión. Cuando el vapor se acumula, la olla necesita liberarlo para no explotar. Lo mismo ocurre con el Guácharo Activo.</p>
+
+        <p>Cuando hay una saturación de números calientes (como en nuestro ejemplo, donde hay 7 números activos), el sistema necesita desahogarse. Lo hace liberando los números que ha estado reteniendo: los del Cruce 3.</p>
+
+        <div class="nota-importante">
+            <p><strong>Ley de Desahogo:</strong> Cuando la matriz acumula demasiada tensión en el corto plazo, el sistema libera los números que ha estado reteniendo para restaurar el equilibrio. Esos números son los del Cruce 3.</p>
+        </div>
+
+        <p>La Ley de Desahogo es el mismo principio que gobierna el comportamiento de los juegos de 38 elementos. Si quieres ver cómo se aplica en el Lotto Activo y la Granja, el Volumen 1 te lo muestra con ejemplos reales.</p>
+
+        <h3>2.6. El Bucle Repetitivo: Cómo se Forman las Secuencias</h3>
+
+        <p>Cuando un número se activa como ancla, no actúa solo. Arrastra consigo una serie de números que forman un <strong>bucle repetitivo</strong>. Estos números son los que el sistema utilizará para mantener el equilibrio de la matriz.</p>
+
+        <p>Identificar ese bucle es la clave para anticipar los próximos resultados. Y la Técnica de los Tres Cruces te permite hacerlo de forma sencilla, sin cálculos complicados.</p>
+
+        <div class="nota-importante">
+            <p><strong>Principio del Bucle Repetitivo:</strong> Un número ancla nunca actúa solo. Arrastra consigo una secuencia de números que se repiten en su entorno. Identificar ese bucle es la clave para anticipar los próximos resultados.</p>
+        </div>
+
+        <p>Aprender a desplegar todas las secuencias de un número ancla es el siguiente nivel. El Código 38-N te enseña el método completo. Allí encontrarás cómo un solo número puede generar una familia entera de números que se repiten en ciclos cerrados.</p>
+
+        <h3>2.7. El Perfil del Jugador de Guácharo</h3>
+
+        <p>No todos los jugadores están hechos para el Guácharo Activo. Este juego requiere una mentalidad específica:</p>
+
+        <ul>
+            <li><strong>Paciencia:</strong> No puedes apresurarte. Necesitas al menos 3 días de historial para aplicar la técnica.</li>
+            <li><strong>Disciplina:</strong> No puedes jugar a todos los números calientes. Debes elegir los del Cruce 3 y esperar el momento de explosión.</li>
+            <li><strong>Frialdad:</strong> No puedes dejarte llevar por la emoción. El sistema es frío y calculador. Tú también debes serlo.</li>
+        </ul>
+
+        <p><strong>Consejo del Autor:</strong> Si eres un jugador impulsivo, el Guácharo no es para ti. Pero si estás dispuesto a esperar, a calcular y a operar con disciplina, este juego puede darte grandes satisfacciones.</p>
+
+        <p>La mentalidad del estratega es lo que separa al jugador profesional del aficionado. Si quieres cultivarla, el Código 38-N te enseña el Manifiesto del Operador y los protocolos de disciplina que necesitas.</p>
+
+        <h3>2.8. Resumen del Capítulo 2</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Definición</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Matriz de 77 elementos</td><td>El Guácharo opera con los números del 0 al 76.</td></tr>
+                <tr><td>Memoria de Repetición</td><td>Un número que se repite en días consecutivos es un ancla del sistema.</td></tr>
+                <tr><td>Ciclo Activo de Retardo</td><td>Los números que se repiten entre el Día 2 y el Día 3 están "guardados" y listos para salir.</td></tr>
+                <tr><td>Ley de Desahogo</td><td>Cuando el sistema se satura de números calientes, libera los números retenidos.</td></tr>
+                <tr><td>Bucle Repetitivo</td><td>Un número ancla arrastra consigo una secuencia de números que se repiten en su entorno.</td></tr>
+                <tr><td>Perfil del Jugador</td><td>Paciencia, disciplina y frialdad.</td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Regla de Oro del Capítulo 2:</strong> El Guácharo no es un caos. Es un sistema cerrado de 77 elementos que se rige por la Memoria de Repetición y la Ley de Desahogo. Si entiendes estas dos leyes, puedes leer la mesa con claridad.</p>
+
+        <h3>2.9. El Camino del Estratega</h3>
+
+        <p>Has aprendido la Técnica de los Tres Cruces. Ahora sabes identificar los números calientes y determinar cuáles están a punto de explotar. Pero este es solo el primer paso.</p>
+
+        <p>Si quieres convertirte en un verdadero operador táctico, necesitas dominar tres niveles de conocimiento:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Libro</th>
+                    <th>Qué aprenderás</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nivel 1: La Base</td>
+                    <td>Volumen 1: Aprende a hacer tus Tripletas</td>
+                    <td>Cómo identificar los números calientes en la matriz de 38 elementos (Lotto Activo, Granja Millonaria, etc.) y cómo combinarlos para armar tus jugadas.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 2: La Técnica</td>
+                    <td>Volumen 2: Súper Fijos para Guácharo Activo (este libro)</td>
+                    <td>Cómo identificar los números calientes en la matriz de 77 elementos y cómo determinar cuáles están a punto de explotar.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 3: La Maestría</td>
+                    <td>Código 38-N: El Origen del Caos</td>
+                    <td>La física de la matriz, las secuencias continuas, la psicología del operador y el protocolo completo de operación.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Si este libro te ha abierto los ojos y quieres seguir profundizando, no te detengas aquí. El Volumen 1 y el Código 38-N te esperan para llevarte al siguiente nivel. Tu viaje como estratega apenas comienza.</p>
+
+        <!-- ============================================================
+             CAPÍTULO 3
+             ============================================================ -->
+        <h1>Capítulo 3</h1>
+        <h2 class="subtitulo">El Filtro de Confirmación</h2>
+
+        <h3>3.1. ¿Por qué necesitamos un Filtro?</h3>
+
+        <p>Hasta ahora, hemos aprendido a identificar los números calientes y a determinar cuáles están a punto de explotar. En el ejemplo que venimos trabajando, la Técnica de los Tres Cruces nos dio los siguientes Números Objetivo: <strong>4, 23, 22</strong>.</p>
+
+        <p>Pero aquí surge una pregunta inevitable: ¿cómo sabemos que esos números realmente van a salir? ¿Y si el sistema ha cambiado de ancla y nuestra secuencia ya no es válida?</p>
+
+        <p>El Guácharo es un sistema vivo. No se queda estático. Los números que ayer estaban calientes pueden enfriarse mañana, y los que estaban en retardo pueden activarse de un momento a otro. Por eso, antes de jugar, necesitamos un <strong>Filtro de Confirmación</strong>: un mecanismo que nos diga si nuestra secuencia sigue resonando en la matriz o si está entrando en una fase de activación de retardo.</p>
+
+        <p>Sin este filtro, estaríamos jugando a ciegas, confiando en una foto que puede haber quedado desactualizada.</p>
+
+        <h3>3.2. El Principio de Resonancia y Retardo</h3>
+
+        <p>El Filtro de Confirmación se basa en un principio simple pero poderoso: <strong>si los números de tu secuencia han aparecido en los últimos días, es porque el sistema los sigue utilizando para equilibrar la matriz. Si no han aparecido, es porque el sistema los está reteniendo, y por lo tanto están más cerca de explotar.</strong></p>
+
+        <div class="nota-importante">
+            <p><strong>Principio de Resonancia:</strong> Un número que sigue apareciendo en el historial reciente está resonando en la matriz. Su energía está activa y su salida es inminente.</p>
+        </div>
+
+        <div class="nota-importante">
+            <p><strong>Principio de Retardo:</strong> Un número que ha desaparecido por completo del historial reciente está en un ciclo activo de retardo. El sistema lo está guardando, y esa retención lo vuelve más propenso a salir en los próximos resultados.</p>
+        </div>
+
+        <p>Este principio es la base de todo el filtro. No se trata de adivinar. Se trata de leer si la huella que identificamos en el Capítulo 1 está fresca (resonancia) o si está siendo retenida (retardo). En ambos casos, la secuencia está activa.</p>
+
+        <h3>3.3. Cómo Aplicar el Filtro de Resonancia (Paso a Paso)</h3>
+
+        <p>El filtro es sencillo de aplicar y no requiere cálculos complicados. Solo necesitas tu lista de Números Objetivo y los últimos tres días de resultados.</p>
+
+        <p><strong>Paso 1: Toma tu secuencia de Números Objetivo.</strong></p>
+        <p>En nuestro ejemplo: <strong>4, 23, 22</strong></p>
+
+        <p><strong>Paso 2: Revisa los últimos 3 días de resultados del Guácharo.</strong></p>
+        <p>Busca si esos números han aparecido en el historial reciente. No importa en qué posición aparezcan ni cuántas veces. Solo importa si están presentes o no.</p>
+
+        <p><strong>Paso 3: Aplica el criterio de confirmación.</strong></p>
+        <ul>
+            <li><strong>Si al menos uno de los Números Objetivo ha aparecido en los últimos 3 días</strong>, la secuencia está en <strong>resonancia activa</strong>. El sistema los está utilizando como ancla y su salida es inminente.</li>
+            <li><strong>Si ninguno de los Números Objetivo ha aparecido en los últimos 3 días</strong>, la secuencia está en <strong>periodo de activación de retardo</strong>. El sistema los está reteniendo, y esa retención los vuelve más propensos a salir en los próximos resultados.</li>
+        </ul>
+
+        <p><strong>En ambos casos, la secuencia está activa. La diferencia está en la fase en la que se encuentra.</strong></p>
+
+        <h3>3.4. Ejemplo Práctico de Confirmación</h3>
+
+        <p>Tomemos nuestro ejemplo y apliquemos el filtro.</p>
+
+        <p><strong>Números Objetivo:</strong> 4, 23, 22</p>
+
+        <p>Revisamos los últimos 3 días:</p>
+
+        <ul>
+            <li><strong>Día 1 (25/10/2026):</strong> 0 - 1 - <strong>[23]</strong> - 8 - 34 - 28 - 27 - 3 - 29 - 21 - 33 - 36
+                <br>Aparece el <strong>#23</strong>. ✅</li>
+            <li><strong>Día 2 (24/10/2026):</strong> 28 - <strong>[4]</strong> - <strong>[23]</strong> - <strong>[22]</strong> - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15
+                <br>Aparecen el <strong>#4, #23 y #22</strong>. ✅</li>
+            <li><strong>Día 3 (23/10/2026):</strong> 9 - <strong>[22]</strong> - <strong>[23]</strong> - 2 - 2 - 20 - 36 - 10 - 27 - 34 - 30 - <strong>[4]</strong>
+                <br>Aparecen el <strong>#22, #23 y #4</strong>. ✅</li>
+        </ul>
+
+        <p><strong>Resultado:</strong> Los tres Números Objetivo (4, 23, 22) han aparecido en los últimos 3 días. La secuencia está en <strong>resonancia activa</strong>. La confirmación es total.</p>
+
+        <h3>3.5. ¿Qué hacer si la secuencia no está en resonancia?</h3>
+
+        <p>Si al revisar los últimos 3 días descubres que ninguno de tus Números Objetivo ha aparecido, <strong>no significa que la secuencia no sea válida</strong>. Significa que está en un <strong>periodo de activación de retardo</strong>.</p>
+
+        <p><strong>¿Qué es el periodo de activación de retardo?</strong></p>
+        <p>Es la fase en la que el sistema ha identificado esos números como anclas, pero los está reteniendo. No los ha liberado todavía. Y precisamente porque los está reteniendo, están <strong>más propensos a salir</strong> en los próximos resultados.</p>
+
+        <p><strong>¿Qué debes hacer en este caso?</strong></p>
+        <ol>
+            <li><strong>Mantén la secuencia activa:</strong> No la descartes. El sistema la está guardando para un momento de desahogo.</li>
+            <li><strong>Aumenta la vigilancia:</strong> Observa los próximos sorteos con más atención. La explosión puede ocurrir en cualquier momento.</li>
+            <li><strong>No cambies de ancla:</strong> Si cambias de secuencia cada vez que no aparece, nunca estarás en el momento de la explosión.</li>
+        </ol>
+
+        <p><strong>Consejo del Autor:</strong> El retardo es la antesala de la explosión. Cuando un número no aparece durante varios días, no es porque el sistema lo haya olvidado. Es porque lo está guardando. Y cuando lo libere, lo hará con fuerza. La paciencia es tu mejor aliada en esta fase.</p>
+
+        <h3>3.6. El Criterio de Confirmación Definitiva</h3>
+
+        <p>Para que la confirmación sea robusta, te recomiendo aplicar este criterio adicional:</p>
+
+        <div class="nota-importante">
+            <p><strong>Criterio de Confirmación Definitiva:</strong> Si el Número Base se ha repetido 2 o más veces en los últimos 3 días, y al menos uno de los Números Objetivo ha aparecido en ese mismo período, la secuencia está en resonancia activa y puedes operar con ella.</p>
+        </div>
+
+        <p>En nuestro ejemplo, el <strong>#23</strong> se repitió en el Día 1, Día 2 y Día 3 (3 veces en 3 días), y los Números Objetivo (4, 22) también aparecieron. Por lo tanto, la secuencia está confirmada con el criterio más exigente.</p>
+
+        <p>Este criterio te da una capa extra de seguridad. No se trata de jugar por jugar. Se trata de jugar cuando las probabilidades están de tu lado.</p>
+
+        <h3>3.7. Resumen del Filtro de Confirmación</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Paso</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Toma tu lista de Números Objetivo (los del Cruce 3).</td></tr>
+                <tr><td>2</td><td>Revisa los últimos 3 días de resultados del Guácharo.</td></tr>
+                <tr><td>3</td><td>Verifica si al menos uno de tus Números Objetivo ha aparecido en ese período.</td></tr>
+                <tr><td>4</td><td>Si aparece al menos uno, la secuencia está en <strong>resonancia activa</strong>. Puedes operar.</td></tr>
+                <tr><td>5</td><td>Si no aparece ninguno, la secuencia está en <strong>periodo de activación de retardo</strong>. Está más propensa a salir. Mantén la secuencia activa y aumenta la vigilancia.</td></tr>
+                <tr><td>6</td><td>Aplica el Criterio de Confirmación Definitiva para mayor seguridad.</td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Regla de Oro del Capítulo 3:</strong> No descartes una secuencia solo porque no ha aparecido. El retardo es la antesala de la explosión. Si los números no han salido, es porque el sistema los está guardando. La paciencia es tu mejor aliada.</p>
+
+        <h3>3.8. La Conexión con el Siguiente Nivel</h3>
+
+        <p>El Filtro de Confirmación que acabas de aprender es una herramienta poderosa, pero es solo una pieza del rompecabezas. En el Código 38-N: El Origen del Caos, encontrarás filtros más avanzados que te permitirán leer la matriz con precisión quirúrgica, incluso en los momentos de mayor dispersión.</p>
+
+        <p>Si quieres llevar tu capacidad de confirmación al siguiente nivel, el Código 38-N te espera. Allí aprenderás a identificar las secuencias continuas, los bucles de compensación y los patrones de resonancia que van más allá de la simple repetición entre días.</p>
+
+        <!-- ============================================================
+             CAPÍTULO 4
+             ============================================================ -->
+        <h1>Capítulo 4</h1>
+        <h2 class="subtitulo">La Disciplina del Estratega (Epílogo)</h2>
+
+        <h3>4.1. El Método no es Suficiente</h3>
+
+        <p>Has llegado al final de este volumen. Ahora tienes en tus manos un sistema mecánico, lógico y estructurado para identificar los números calientes del Guácharo Activo y determinar cuáles están a punto de explotar.</p>
+
+        <p>Pero aquí viene la verdad que nadie te dice: <strong>el método, por sí solo, no te hará ganar. La disciplina es lo que marca la diferencia.</strong></p>
+
+        <p>He visto a muchos jugadores aplicar la Técnica de los Tres Cruces con precisión matemática y, aun así, perder. ¿Por qué? Porque no respetaron las reglas. Porque se dejaron llevar por la emoción. Porque persistieron en una secuencia que ya no resonaba. Porque apostaron más de lo que podían permitirse perder.</p>
+
+        <p>El método te da la estructura. La disciplina te da los resultados.</p>
+
+        <h3>4.2. Las Tres Reglas de Oro del Estratega</h3>
+
+        <p><strong>Regla 1: Nunca juegues una secuencia que no esté resonando.</strong></p>
+        <p>El Filtro de Confirmación existe por una razón. Si los Números Objetivo no han aparecido en los últimos 3 días, la secuencia está en periodo de retardo. Puedes mantenerla activa, pero no juegues a ciegas. Espera la señal de resonancia o el momento de desahogo.</p>
+
+        <p><strong>Regla 2: Nunca persigas las pérdidas.</strong></p>
+        <p>Si una secuencia no responde en los próximos sorteos, no dupliques la apuesta. No intentes "recuperar" lo perdido. El sistema es frío y calculador. Si no estás en resonancia, simplemente no estás en el momento correcto. Acepta la pérdida y espera la próxima oportunidad.</p>
+
+        <p><strong>Regla 3: Nunca apuestes más de lo que puedes permitirte perder.</strong></p>
+        <p>El Guácharo es un juego de probabilidades, no una máquina de hacer dinero. La Técnica de los Tres Cruces te da una ventaja, pero no te garantiza ganar siempre. Define un presupuesto antes de empezar y respétalo. Si pierdes ese presupuesto, detente. El juego seguirá ahí mañana.</p>
+
+        <h3>4.3. El Perfil del Verdadero Estratega</h3>
+
+        <p>A lo largo de este volumen, hemos hablado del perfil del jugador de Guácharo. Ahora quiero hablarte del perfil del verdadero estratega:</p>
+
+        <ul>
+            <li><strong>Es paciente:</strong> Sabe esperar el momento correcto. No juega por jugar.</li>
+            <li><strong>Es disciplinado:</strong> Sigue las reglas al pie de la letra. No se deja llevar por la emoción.</li>
+            <li><strong>Es frío:</strong> Analiza los números sin apego emocional. No se enamora de una secuencia.</li>
+            <li><strong>Es humilde:</strong> Reconoce cuando se equivoca. Acepta las pérdidas y aprende de ellas.</li>
+            <li><strong>Es constante:</strong> No busca resultados inmediatos. Sabe que la ventaja se construye a largo plazo.</li>
+        </ul>
+
+        <p>Si cumples con este perfil, tienes lo necesario para triunfar en el Guácharo Activo. Si no, este juego no es para ti.</p>
+
+        <h3>4.4. La Verificación es tu Mejor Aliada</h3>
+
+        <p>Antes de jugar con dinero real, <strong>verifica tus historiales</strong>. Toma los últimos 10 o 15 días de resultados del Guácharo y aplica la Técnica de los Tres Cruces. Anota los Números Objetivo que obtienes y luego revisa si realmente salieron en los días siguientes.</p>
+
+        <p>Este ejercicio te dará dos cosas:</p>
+
+        <ol>
+            <li><strong>Confianza en el método:</strong> Verás con tus propios ojos que la técnica funciona.</li>
+            <li><strong>Conocimiento de tu mesa:</strong> Cada mesa tiene su propio comportamiento. Lo que funciona en una puede no funcionar en otra. La verificación te ayuda a entender la mesa que estás jugando.</li>
+        </ol>
+
+        <h3>4.5. El Camino que Sigue</h3>
+
+        <p>Has terminado el Volumen 2. Ahora sabes identificar los números calientes del Guácharo Activo y determinar cuáles están a punto de explotar. Pero este es solo el primer paso de un camino más largo.</p>
+
+        <p>Si quieres convertirte en un verdadero operador táctico, necesitas dominar tres niveles de conocimiento:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Libro</th>
+                    <th>Qué aprenderás</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nivel 1: La Base</td>
+                    <td>Volumen 1: Aprende a hacer tus Tripletas</td>
+                    <td>Cómo identificar los números calientes en la matriz de 38 elementos (Lotto Activo, Granja Millonaria, etc.) y cómo combinarlos para armar tus jugadas.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 2: La Técnica</td>
+                    <td>Volumen 2: Súper Fijos para Guácharo Activo (este libro)</td>
+                    <td>Cómo identificar los números calientes en la matriz de 77 elementos y cómo determinar cuáles están a punto de explotar.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 3: La Maestría</td>
+                    <td>Código 38-N: El Origen del Caos</td>
+                    <td>La física de la matriz, las secuencias continuas, la psicología del operador y el protocolo completo de operación.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>El Volumen 1 te enseña la base. Este Volumen 2 te enseña la técnica específica para el Guácharo. Y el Código 38-N te enseña la maestría.</p>
+
+        <p>No te detengas aquí. El camino del estratega apenas comienza.</p>
+
+        <h3>4.6. Palabras Finales</h3>
+
+        <p>El Guácharo Activo no es un juego de suerte. Es un sistema cerrado que se rige por reglas de equilibrio. Y una vez que entiendes esas reglas, puedes leer la mesa con claridad.</p>
+
+        <p>Pero el conocimiento sin disciplina es inútil. El método sin constancia no da resultados. La técnica sin verificación es solo una apuesta más.</p>
+
+        <p>Mi consejo final es este: <strong>sé paciente, sé disciplinado, sé frío.</strong> No juegues por jugar. Juega cuando las probabilidades estén de tu lado. Y cuando ganes, retírate. Cuando pierdas, acepta la pérdida y espera la próxima oportunidad.</p>
+
+        <p>El Guácharo Activo te espera. Y ahora, con la Técnica de los Tres Cruces en tu arsenal, tienes las herramientas para enfrentarlo con estructura.</p>
+
+        <p>Nos vemos en el siguiente nivel.</p>
+
+        <hr>
+
+        <div style="text-align: center; margin: 60px 0;">
+            <p style="font-size: 16pt; font-weight: bold; color: #0a1a2f; letter-spacing: 2px;">FIN DEL VOLUMEN 2</p>
+            <p style="font-size: 14pt; font-weight: bold; color: #b8860b; margin-top: 30px;">APRENDE TÉCNICAS</p>
+            <p style="font-size: 12pt; font-style: italic; color: #2a3a5f;">Súper Fijos para Guácharo Activo</p>
+            <p style="font-size: 13pt; font-weight: bold; color: #0a1a2f; margin-top: 30px;">Alexander J.M.</p>
+        </div>
+
     </div>
 </div>
 
@@ -631,7 +1038,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
     <div class="modal-content">
         <button class="btn-close" onclick="cerrarModalLogin()">&times;</button>
         <h4>👑 Acceso Premium</h4>
-        <p>Ingresa tu código de suscripción para desbloquear la lectura web.</p>
+        <p>Ingresa tu código de suscripción para desbloquear todo el libro y las herramientas avanzadas.</p>
         <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
         <button id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
     </div>
@@ -791,6 +1198,7 @@ pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f
         })();
         setInterval(function() { console.clear(); }, 1000);
     })();
+        
 </script>
 
 </body>
