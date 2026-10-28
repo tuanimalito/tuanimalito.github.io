@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-28T08:16:03.176406",
+    "ultima_actualizacion": "2026-10-28T20:56:45.633623",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,13 +100,13 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          10,
-          18,
-          19,
-          24,
+          2,
+          8,
+          9,
+          32,
           34
         ],
         "numero_extra": null
@@ -122,14 +122,14 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          0,
-          7,
-          7,
-          6,
-          5
+          1,
+          4,
+          5,
+          2,
+          1
         ],
         "numero_extra": 4
       },
@@ -144,13 +144,13 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          6,
           7,
-          9,
-          3
+          4,
+          2,
+          8
         ],
         "numero_extra": 4
       },
@@ -165,12 +165,12 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          2,
-          4,
-          5
+          3,
+          3,
+          6
         ],
         "numero_extra": 4
       },
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          11
+          4
         ],
         "numero_extra": null
       },
@@ -203,11 +203,11 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "27 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          1,
-          1
+          2,
+          9
         ],
         "numero_extra": 4
       },
