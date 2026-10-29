@@ -34,17 +34,6 @@
         });
     </script>
 
-    <!-- SDK DE FIREBASE FIRESTORE -->
-    <script type="importmap">
-        {
-            "imports": {
-                "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
-                "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
-                "firebase-storage": "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"
-            }
-        }
-    </script>
-
     <style>
         * {
             margin: 0;
@@ -522,304 +511,6 @@
             margin-top: 4px;
         }
 
-        /* ================================================ */
-        /* OVERLAY MEJORADO - SOLO PARA SUPER FIJOS         */
-        /* ================================================ */
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
-        }
-
-        .premium-overlay::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .premium-badge {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 1.8s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            line-height: 1.2;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-        }
-
-        .premium-badge i {
-            -webkit-text-fill-color: #ffd700;
-            color: #ffd700;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-
-        @keyframes shimmerGold {
-            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-        }
-
-        .premium-message {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            max-width: 320px;
-            margin: 2px 0;
-            line-height: 1.5;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 500;
-        }
-
-        .premium-message strong {
-            color: #ffd700;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .action-buttons-group .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .action-buttons-group .contact-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .action-buttons-group .contact-btn:active {
-            transform: scale(0.95);
-        }
-
-        .action-buttons-group .btn-whatsapp-overlay {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4), 0 0 40px rgba(37, 211, 102, 0.1);
-        }
-
-        .action-buttons-group .btn-whatsapp-overlay:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(37, 211, 102, 0.6), 0 0 60px rgba(37, 211, 102, 0.2);
-        }
-
-        .action-buttons-group .btn-whatsapp-overlay:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-        }
-
-        .action-buttons-group .btn-whatsapp-overlay i {
-            font-size: 1.2rem;
-        }
-
-        .locked-grid {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            transform: scale(0.98);
-        }
-
-        .premium-container.locked-grid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px);
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 18px;
-        }
-
-        .locked-grid-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            transition: all 0.8s ease;
-        }
-
-        .locked-grid-desbloqueado::after {
-            display: none;
-        }
-
-        .unlock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
-            animation: pulseBtn 2s ease-in-out infinite;
-        }
-
-        .unlock-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
-        }
-
-        .unlock-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes pulseBtn {
-            0%,
-            100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
-        }
-
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
         .numeros-grid,
         .numeros-grid-3,
         .numeros-grid-5 {
@@ -1207,12 +898,6 @@
             .cabecera h1 {
                 font-size: 3rem;
             }
-            .premium-badge {
-                font-size: 2.2rem;
-            }
-            .premium-message {
-                font-size: 1.1rem;
-            }
         }
 
         @media (max-width: 600px) {
@@ -1242,21 +927,6 @@
                 width: 100%;
                 justify-content: center;
             }
-            .action-buttons-group .contact-btn {
-                font-size: 0.75rem;
-                padding: 8px 14px;
-            }
-            .action-buttons-group {
-                flex-direction: column;
-                width: 100%;
-            }
-            .action-buttons-group .unlock-btn,
-            .action-buttons-group .btn-whatsapp-overlay {
-                width: 100%;
-                justify-content: center;
-                font-size: 0.9rem;
-                padding: 12px 20px;
-            }
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -1269,15 +939,6 @@
         }
 
         @media (max-width: 400px) {
-            .action-buttons-group .contact-btn {
-                font-size: 0.7rem;
-                padding: 6px 10px;
-            }
-            .action-buttons-group .unlock-btn,
-            .action-buttons-group .btn-whatsapp-overlay {
-                font-size: 0.8rem;
-                padding: 10px 16px;
-            }
             .whatsapp-float {
                 padding: 12px 14px;
                 font-size: 0.8rem;
@@ -1378,32 +1039,13 @@
                 </div>
             </div>
 
-            <!-- 3. SUPER FIJOS - PREMIUM (ÚNICO BLOQUEADO) -->
+            <!-- 3. SUPER FIJOS - DESBLOQUEADO (GRATIS) -->
             <div class="tarjeta-superfijos tarjeta-dato">
-                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
-
-                <div class="premium-overlay" id="overlaySuperFijos">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> 3 SUPER FIJOS
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 3 Super Fijos ingresando tu clave, o solicítala presionando el botón de WhatsApp.
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                        <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20solicitar%20mi%20clave%20para%20los%20Super%20Fijos%20Premium%20de%20Lotto%20Activo" 
-                           class="btn-whatsapp-overlay" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <i class="bi bi-whatsapp"></i> WhatsApp
-                        </a>
-                    </div>
+                <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
+                <div style="text-align: center; color: #ff9999; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
                 </div>
-
-                <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
+                <div id="resultado-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando...</div>
                 </div>
             </div>
@@ -1447,7 +1089,7 @@
                         <p><i class="bi bi-1-circle-fill"></i> Las Secuencias Generadas son dinámicas, cambian según los resultados que genera todos los días la operadora.</p>
                         <p><i class="bi bi-1-circle-fill"></i> Los pronósticos se hacen en calientes.</p>
                         <p><i class="bi bi-2-circle-fill"></i> Se debe hacer seguimiento los resultados que va generando la operadora Lotto Activo.</p>
-                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta busca en la base de datos los ultimos 3 meses de resultados analisando, patrones, secuencias y comportamientos de sus ciclos.</p
+                        <p><i class="bi bi-3-circle-fill"></i> Al ingresar el número, la herramienta busca en la base de datos los ultimos 3 meses de resultados analisando, patrones, secuencias y comportamientos de sus ciclos.</p>
                     </div>
                 </div>
             </div>
@@ -1486,28 +1128,18 @@
         </div>
     </div>
 
-    <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20Premium%20de%20Lotto%20Activo" 
-       class="whatsapp-float" 
-       target="_blank" 
+    <a href="https://wa.me/584248671967?text=Hola%20Dr.Animalitos%2C%20quiero%20obtener%20informaci%C3%B3n%20sobre%20los%20pron%C3%B3sticos%20Premium%20de%20Lotto%20Activo"
+       class="whatsapp-float"
+       target="_blank"
        rel="noopener noreferrer"
        aria-label="Contactar por WhatsApp">
         <i class="bi bi-whatsapp"></i>
         <span>WhatsApp</span>
     </a>
 
-    <div class="modal-login" id="modalLogin">
-        <div class="modal-content">
-            <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
-            <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
-            <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
-            <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
-        </div>
-    </div>
-
     <div style="padding: 15px; font-size: 0.8rem; color: #8fa095; text-align: center;">
         <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Lotto Activo.</p>
-        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Tripletas, Acompañantes, GSM y Análisis Forense</strong> disponibles gratis para todos.</p>
+        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Tripletas, Acompañantes, Super Fijos, GSM y Análisis Forense</strong> disponibles gratis para todos.</p>
     </div>
 
     <footer class="footer">
@@ -1524,28 +1156,8 @@
 
     <script type="module">
         // =====================================================
-        // CONFIGURACIÓN DE FIREBASE FIRESTORE
+        // SIN FIREBASE - SIN BLOQUEO PREMIUM
         // =====================================================
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
-            authDomain: "dato-animalitos.firebaseapp.com",
-            projectId: "dato-animalitos",
-            storageBucket: "dato-animalitos.firebasestorage.app",
-            messagingSenderId: "759403364736",
-            appId: "1:759403364736:web:c686aea85758245a7f4165"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
-        let usuarioAutenticado = false;
-        const STORAGE_KEY = 'lotto_premium_unlocked';
-        const TOKEN_KEY = 'lotto_premium_token';
 
         const JSON_URL = 'data/lotto.json';
 
@@ -1782,115 +1394,6 @@
         });
 
         // =====================================================
-        // FUNCIONES DEL MODAL
-        // =====================================================
-        window.abrirModalLogin = function() {
-            document.getElementById('modalLogin').classList.add('show');
-            document.getElementById('claveAcceso').value = '';
-            document.getElementById('claveAcceso').focus();
-        };
-
-        window.cerrarModalLogin = function() {
-            document.getElementById('modalLogin').classList.remove('show');
-        };
-
-        // =====================================================
-        // AUTENTICACIÓN CON FIRESTORE
-        // =====================================================
-        async function validarCodigo(codigo) {
-            if (!codigo) return false;
-            const hoyStr = new Date().toISOString().split('T')[0];
-            try {
-                const q = query(
-                    collection(db, "clientes"),
-                    where("codigo", "==", codigo),
-                    where("activo", "==", true)
-                );
-                const querySnapshot = await getDocs(q);
-                let esValido = false;
-                querySnapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
-                        esValido = true;
-                    }
-                });
-                return esValido;
-            } catch (e) {
-                console.error("Error al consultar Firebase:", e);
-                return false;
-            }
-        }
-
-        window.autenticarUsuario = async function() {
-            const claveInput = document.getElementById('claveAcceso');
-            const btnIngresar = document.getElementById('btnIngresar');
-            const clave = claveInput.value.trim();
-
-            if (clave === '') {
-                alert('Por favor, ingresa una clave válida.');
-                return;
-            }
-
-            btnIngresar.innerText = 'Verificando...';
-            btnIngresar.disabled = true;
-
-            try {
-                const esValido = await validarCodigo(clave);
-
-                if (esValido) {
-                    usuarioAutenticado = true;
-                    desbloquearPremium();
-                    cerrarModalLogin();
-                    localStorage.setItem(STORAGE_KEY, 'true');
-                    localStorage.setItem(TOKEN_KEY, clave);
-                    alert('✅ Acceso Premium concedido');
-                } else {
-                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
-                }
-            } catch (error) {
-                console.error('Error al verificar:', error);
-                alert('⚠️ Error de conexión. Inténtalo de nuevo.');
-            } finally {
-                btnIngresar.innerText = 'Validar Clave';
-                btnIngresar.disabled = false;
-            }
-        };
-
-        async function verificarSesionPrevia() {
-            const tokenGuardado = localStorage.getItem(TOKEN_KEY);
-            if (tokenGuardado) {
-                const esValido = await validarCodigo(tokenGuardado);
-                if (esValido) {
-                    usuarioAutenticado = true;
-                    desbloquearPremium();
-                } else {
-                    localStorage.removeItem(TOKEN_KEY);
-                    localStorage.removeItem(STORAGE_KEY);
-                    usuarioAutenticado = false;
-                }
-            }
-        }
-
-        // =====================================================
-        // DESBLOQUEAR PREMIUM (SOLO SUPER FIJOS)
-        // =====================================================
-        function desbloquearPremium() {
-            usuarioAutenticado = true;
-
-            const overlaySuperFijos = document.getElementById('overlaySuperFijos');
-            if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
-            const resultadoContenedor = document.getElementById('resultado-contenido');
-            if (resultadoContenedor) {
-                const grid = resultadoContenedor.querySelector('.numeros-grid-3');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                resultadoContenedor.classList.remove('locked-grid');
-            }
-        }
-
-        // =====================================================
         // FUNCIONES DE UTILIDAD
         // =====================================================
         function obtenerRutaImagen(numero, esDobleCero = false) {
@@ -1952,7 +1455,7 @@
         }
 
         // =====================================================
-        // BASES PARA TRIPLETAS (misma lógica que sf_granjita.html)
+        // BASES PARA TRIPLETAS
         // =====================================================
         function obtenerTripletas(dia1Procesado, dia2Procesado, superFijos) {
             const espejosBrutos = dia1Procesado.slice(0, 2).map(item => calcularEspejo(item));
@@ -1972,7 +1475,7 @@
         }
 
         // =====================================================
-        // ACOMPAÑANTES PARA TRIPLETAS (misma lógica que sf_granjita.html)
+        // ACOMPAÑANTES PARA TRIPLETAS
         // =====================================================
         function normalizarNumero(valor) {
             const valStr = String(valor).trim();
@@ -2065,7 +1568,6 @@
 
         // =====================================================
         // BÚSQUEDA DE REPETICIÓN (SUPER FIJOS - 3 números)
-        // Misma lógica que sf_granjita.html
         // =====================================================
         function buscarRepeticion(resultados) {
             const niveles = {
@@ -2294,7 +1796,7 @@
                         <td style="font-weight: 700; color: ${esRey ? '#ffd700' : '#fff'};">${item.frecuencia}</td>
                         <td style="color: #94a3b8;">${fechaStr}</td>
                         <td>
-                            ${acompañantes.length > 0 ? acompañantes.map(a => 
+                            ${acompañantes.length > 0 ? acompañantes.map(a =>
                                 `<span class="acompanante-badge" onclick="seleccionarNumeroForense(${a.numero})">${formatearNumero(a.numero)}</span>`
                             ).join('') : '<span style="color: #64748b;">-</span>'}
                         </td>
@@ -2593,7 +2095,7 @@
         }
 
         // =====================================================
-        // VISUALIZACIÓN DE SUPER FIJOS (sin mezclar, como en granjita)
+        // VISUALIZACIÓN DE SUPER FIJOS (sin bloqueo)
         // =====================================================
         function mostrarSuperFijosConLog(items, infoAdicional = null) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2602,28 +2104,20 @@
                 return;
             }
 
-            let claseGrid = 'numeros-grid-3';
-            let claseContainer = 'premium-container';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-                claseContainer += ' locked-grid';
-            }
-
             let infoHTML = '';
             if (infoAdicional && infoAdicional.encontrado) {
                 const posicionMostrar = infoAdicional.posicionOrigen + 1;
                 infoHTML = `
                     <div style="text-align: center; color: #ffd700; font-size: 0.75rem; margin-bottom: 12px; background: rgba(255,215,0,0.08); padding: 6px 16px; border-radius: 20px; display: inline-block; width: 100%; border: 1px solid rgba(255,215,0,0.1);">
-                        <i class="bi bi-search"></i> 
-                        GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar}) 
+                        <i class="bi bi-search"></i>
+                        GSM Profesional V.9 ${infoAdicional.nivelOrigen} ( ${posicionMostrar})
                         ${infoAdicional.esAleatorio ? '• Generación aleatoria' : ''}
                     </div>
                 `;
             }
 
             let html = infoHTML;
-            html += `<div class="${claseGrid}">`;
+            html += `<div class="numeros-grid-3">`;
 
             items.forEach((r, index) => {
                 let numDisplay, nombreAnimal, rutaImagen;
@@ -2646,7 +2140,7 @@
                             ${badges[index] || ''}
                         </div>
                         <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                        <img src="${rutaImagen}" alt="${nombreAnimal}"
                              onerror="this.src='animalitos/animalitos_loto/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
@@ -2660,14 +2154,13 @@
                 if (duplicadosEliminados > 0) {
                     html += `
                         <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
-                            <i class="bi bi-check-circle" style="color: #4caf50;"></i> 
+                            <i class="bi bi-check-circle" style="color: #4caf50;"></i>
                             ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
                         </div>
                     `;
                 }
             }
 
-            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
 
             ajustarGridDinamico(contenedor, items.length, 'superfijos');
@@ -2755,8 +2248,6 @@
 
                 actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
 
-                await verificarSesionPrevia();
-
             } catch (error) {
                 console.error('Error al cargar JSON del servidor:', error);
                 actualizarStatus('⚠️ Error al cargar datos del servidor');
@@ -2799,7 +2290,7 @@
                 html += `
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                        <img src="${rutaImagen}" alt="${nombreAnimal}"
                              onerror="this.src='animalitos/animalitos_loto/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
@@ -2836,7 +2327,7 @@
                 html += `
                     <div class="numero-card">
                         <div class="numero">${numDisplay}</div>
-                        <img src="${rutaImagen}" alt="${nombreAnimal}" 
+                        <img src="${rutaImagen}" alt="${nombreAnimal}"
                              onerror="this.src='animalitos/animalitos_loto/00.png'">
                         <div class="animal">${nombreAnimal}</div>
                     </div>
