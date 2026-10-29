@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-28T20:56:45.633623",
+    "ultima_actualizacion": "2026-10-29T06:55:52.776322",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,20 +10,20 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "26 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          18,
-          26,
-          49,
-          50,
-          54
+          11,
+          13,
+          16,
+          47,
+          60
         ],
-        "numero_extra": 1
+        "numero_extra": 13
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
+        "dia": "Sábado",
+        "fecha": "31 oct 2026"
       },
       "bote": "716.000.000$"
     },
@@ -54,23 +54,23 @@
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "24 oct 2026",
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
         "numeros": [
-          2,
-          12,
+          3,
+          9,
           13,
-          25,
-          36,
-          52
+          21,
+          45,
+          47
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
+        "dia": "Sábado",
+        "fecha": "31 oct 2026"
       },
-      "bote": "7.500.000$"
+      "bote": "8.500.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -112,73 +112,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
+        "dia": "Jueves",
+        "fecha": "29 oct 2026"
       },
       "bote": "100.000$"
-    },
-    {
-      "id": "pick-5",
-      "nombre": "Pick 5 FL",
-      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026",
-        "numeros": [
-          1,
-          4,
-          5,
-          2,
-          1
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
-      },
-      "bote": "50.000$"
-    },
-    {
-      "id": "pick-4",
-      "nombre": "Pick 4 FL",
-      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026",
-        "numeros": [
-          7,
-          4,
-          2,
-          8
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
-      },
-      "bote": "5.000$"
-    },
-    {
-      "id": "pick-3",
-      "nombre": "Pick 3 FL",
-      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026",
-        "numeros": [
-          3,
-          3,
-          6
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
-      },
-      "bote": "500$"
     },
     {
       "id": "cash-pop",
@@ -193,29 +130,10 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
+        "dia": "Jueves",
+        "fecha": "29 oct 2026"
       },
       "bote": "250$"
-    },
-    {
-      "id": "pick-2",
-      "nombre": "Pick 2 FL",
-      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026",
-        "numeros": [
-          2,
-          9
-        ],
-        "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "28 oct 2026"
-      },
-      "bote": "50$"
     },
     {
       "id": "cash4life",
@@ -232,6 +150,88 @@
           55
         ],
         "numero_extra": 4
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-5",
+      "nombre": "Pick 5 FL",
+      "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
+        "numeros": [
+          1,
+          9,
+          8,
+          3,
+          8
+        ],
+        "numero_extra": 5
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-4",
+      "nombre": "Pick 4 FL",
+      "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
+        "numeros": [
+          5,
+          7,
+          4,
+          3
+        ],
+        "numero_extra": 5
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-3",
+      "nombre": "Pick 3 FL",
+      "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
+        "numeros": [
+          1,
+          3,
+          5
+        ],
+        "numero_extra": 5
+      },
+      "proximo_sorteo": {
+        "dia": "",
+        "fecha": ""
+      },
+      "bote": ""
+    },
+    {
+      "id": "pick-2",
+      "nombre": "Pick 2 FL",
+      "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "28 oct 2026",
+        "numeros": [
+          7,
+          0
+        ],
+        "numero_extra": 5
       },
       "proximo_sorteo": {
         "dia": "",
