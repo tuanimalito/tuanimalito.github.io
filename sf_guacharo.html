@@ -34,17 +34,6 @@
             });
         });
     </script>
-
-    <!-- Firebase SDK -->
-    <script type="importmap">
-    {
-        "imports": {
-            "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
-            "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
-            "firebase-storage": "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"
-        }
-    }
-    </script>
     
     <style>
         * {
@@ -366,198 +355,6 @@
             color: #ffd700;
         }
 
-        /* OVERLAY PREMIUM */
-        .premium-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            padding: 15px;
-            text-align: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .premium-overlay.hidden {
-            display: none;
-        }
-
-        .premium-overlay::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .premium-overlay:hover {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .premium-badge {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #ffd700, #ffb800, #ffd700, #ffb800);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGold 1.8s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-            line-height: 1.2;
-            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-        }
-
-        .premium-badge i {
-            -webkit-text-fill-color: #ffd700;
-            color: #ffd700;
-            font-size: 1.6rem;
-            margin-right: 8px;
-        }
-
-        @keyframes shimmerGold {
-            0% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-            50% { background-position: 100% 50%; text-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); }
-            100% { background-position: 0% 50%; text-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
-        }
-
-        .premium-message {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            max-width: 320px;
-            margin: 2px 0;
-            line-height: 1.5;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 500;
-        }
-
-        .premium-message strong {
-            color: #ffd700;
-            font-size: 1.1rem;
-        }
-
-        .action-buttons-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .action-buttons-group .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .action-buttons-group .contact-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .action-buttons-group .contact-btn:active {
-            transform: scale(0.95);
-        }
-
-        .locked-grid {
-            filter: blur(10px) brightness(0.7);
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            transform: scale(0.98);
-        }
-
-        .premium-container.locked-grid::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px);
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 18px;
-        }
-
-        .locked-grid-desbloqueado {
-            filter: blur(0px) brightness(1);
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            transition: all 0.8s ease;
-        }
-
-        .locked-grid-desbloqueado::after {
-            display: none;
-        }
-
-        .unlock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.1);
-            animation: pulseBtn 2s ease-in-out infinite;
-        }
-
-        .unlock-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 35px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.2);
-        }
-
-        .unlock-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes pulseBtn {
-            0%,
-            100% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.2); }
-        }
-
         .tabla-forense {
             width: 100%;
             border-collapse: collapse;
@@ -650,79 +447,6 @@
             color: #ffd700;
             font-weight: 600;
             margin-top: 4px;
-        }
-
-        .modal-login {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-login.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #1a1a2e;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 24px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            color: #a3b8cc;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-content h4 {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            background: #0d0d18;
-            color: #fff;
-            font-size: 1rem;
-            text-align: center;
-            outline: none;
-        }
-
-        .modal-content button.btn-ingresar {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-            color: #09130e;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
         }
 
         /* Grids base (el JS los sobreescribe dinámicamente) */
@@ -1100,8 +824,6 @@
 
         @media (min-width: 700px) {
             .cabecera h1 { font-size: 3rem; }
-            .premium-badge { font-size: 2.2rem; }
-            .premium-message { font-size: 1.1rem; }
             .prediccion-grid { grid-template-columns: repeat(3, 1fr); }
             .gsm-grid-tarjetas { grid-template-columns: repeat(4, 1fr); }
         }
@@ -1207,26 +929,14 @@
                 </div>
             </div>
 
-            <!-- 2. SUPER FIJOS (PREMIUM) -->
+            <!-- 2. SUPER FIJOS (DESBLOQUEADO) -->
             <div class="tarjeta-superfijos tarjeta-dato">
-                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
-
-                <div class="premium-overlay" id="overlaySuperFijos">
-                    <div class="premium-badge">
-                        <i class="bi bi-crown-fill"></i> 4 SUPER FIJOS
-                    </div>
-                    <p class="premium-message">
-                        <strong>🔒 Contenido Exclusivo</strong><br>
-                        Accede a los 4 Super Fijos ingresando tu clave:
-                    </p>
-                    <div class="action-buttons-group">
-                        <button class="unlock-btn" onclick="abrirModalLogin()">
-                            <i class="bi bi-unlock-fill"></i> Desbloquear
-                        </button>
-                    </div>
+                <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
+                <div style="text-align: center; color: #ff9999; font-size: 0.8rem; margin-bottom: 12px;">
+                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
                 </div>
 
-                <div id="resultado-contenido" class="premium-container" style="min-height: 150px;">
+                <div id="resultado-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando...</div>
                 </div>
             </div>
@@ -1318,19 +1028,9 @@
         <span>WhatsApp</span>
     </a>
 
-    <div class="modal-login" id="modalLogin">
-        <div class="modal-content">
-            <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
-            <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
-            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">Ingresa tu código de suscripción para desbloquear los Super Fijos:</p>
-            <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
-            <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
-        </div>
-    </div>
-
     <div style="padding: 15px; font-size: 0.8rem; color: #a0aec0; text-align: center;">
-        <p>Nuestros <strong>Super Fijos</strong> son contenido Premium exclusivo para suscriptores.</p>
-        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Cortesía, GSM y Análisis Forense</strong> están disponibles gratis para todos.</p>
+        <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Guácharo Activo.</p>
+        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Cortesía, Super Fijos, GSM y Análisis Forense</strong> disponibles gratis para todos.</p>
     </div>
 
     <footer class="footer">
@@ -1347,27 +1047,9 @@
 
     <script type="module">
         // ============================================================
-        // 🔥 CONFIGURACIÓN DE FIREBASE FIRESTORE
+        // SIN FIREBASE - SIN BLOQUEO PREMIUM
         // ============================================================
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
-            authDomain: "dato-animalitos.firebaseapp.com",
-            projectId: "dato-animalitos",
-            storageBucket: "dato-animalitos.firebasestorage.app",
-            messagingSenderId: "759403364736",
-            appId: "1:759403364736:web:c686aea85758245a7f4165"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
-        let usuarioAutenticado = false;
-        const STORAGE_KEY = 'guacharo_premium_unlocked';
         const JSON_URL = 'data/guacharo.json';
 
         // ============================================================
@@ -1412,11 +1094,6 @@
 
         // ============================================================
         // 📐 ADAPTAR GRID AL NÚMERO DE TARJETAS
-        // ─────────────────────────────────────────────────────────
-        // Ajusta dinámicamente las columnas del grid según:
-        //   - Total de tarjetas
-        //   - Máximo de columnas por tipo (cortesía: 5, superfijos: 4)
-        //   - Ancho de pantalla (móvil reduce el máximo a 3 o 2)
         // ============================================================
         function ajustarGrid(contenedorId, totalTarjetas, maxColumnasDesktop = 5) {
             const contenedor = document.getElementById(contenedorId);
@@ -1427,7 +1104,6 @@
 
             const esMovil = window.innerWidth < 700;
 
-            // En móvil reducimos el máximo (cortesía: 3, superfijos: 2)
             let maxCols;
             if (esMovil) {
                 maxCols = contenedorId === 'resultado-contenido' ? 2 : 3;
@@ -1440,7 +1116,6 @@
             grid.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
             grid.style.gap = columnas >= 4 ? '10px' : '12px';
 
-            // Ajustar tamaños según columnas
             let tamañoImagen, tamañoNumero, tamañoAnimal;
             if (esMovil) {
                 if (columnas === 1) { tamañoImagen = '120px'; tamañoNumero = '2.8rem'; tamañoAnimal = '1.2rem'; }
@@ -1461,113 +1136,6 @@
                 if (numero) numero.style.fontSize = tamañoNumero;
                 if (animal) animal.style.fontSize = tamañoAnimal;
             });
-        }
-
-        // ============================================================
-        // 🔐 AUTENTICACIÓN
-        // ============================================================
-        window.abrirModalLogin = function() {
-            document.getElementById('modalLogin').classList.add('show');
-            document.getElementById('claveAcceso').value = '';
-            document.getElementById('claveAcceso').focus();
-        };
-
-        window.cerrarModalLogin = function() {
-            document.getElementById('modalLogin').classList.remove('show');
-        };
-
-        async function validarCodigo(codigo) {
-            if (!codigo) return false;
-            const hoyStr = new Date().toISOString().split('T')[0];
-            try {
-                const q = query(
-                    collection(db, "clientes"),
-                    where("codigo", "==", codigo),
-                    where("activo", "==", true)
-                );
-                const querySnapshot = await getDocs(q);
-                let esValido = false;
-                querySnapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
-                        esValido = true;
-                    }
-                });
-                return esValido;
-            } catch (e) {
-                console.error("Error al consultar Firebase:", e);
-                return false;
-            }
-        }
-
-        window.autenticarUsuario = async function() {
-            const claveInput = document.getElementById('claveAcceso');
-            const btnIngresar = document.getElementById('btnIngresar');
-            const clave = claveInput.value.trim();
-
-            if (clave === '') {
-                alert('Por favor, ingresa una clave válida.');
-                return;
-            }
-
-            btnIngresar.innerText = 'Verificando...';
-            btnIngresar.disabled = true;
-
-            try {
-                const esValido = await validarCodigo(clave);
-                
-                if (esValido) {
-                    usuarioAutenticado = true;
-                    desbloquearPremium();
-                    cerrarModalLogin();
-                    localStorage.setItem(STORAGE_KEY, 'true');
-                    localStorage.setItem('guacharo_premium_token', clave);
-                    alert('✅ Acceso Premium concedido');
-                } else {
-                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
-                }
-            } catch (error) {
-                console.error('Error al verificar:', error);
-                alert('⚠️ Error de conexión. Inténtalo de nuevo.');
-            } finally {
-                btnIngresar.innerText = 'Validar Clave';
-                btnIngresar.disabled = false;
-            }
-        };
-
-        // ============================================================
-        // 🔓 DESBLOQUEAR PREMIUM (SOLO Super Fijos)
-        // ============================================================
-        function desbloquearPremium() {
-            usuarioAutenticado = true;
-
-            const overlaySuperFijos = document.getElementById('overlaySuperFijos');
-            if (overlaySuperFijos) overlaySuperFijos.classList.add('hidden');
-
-            const resultadoContenedor = document.getElementById('resultado-contenido');
-            if (resultadoContenedor) {
-                const grid = resultadoContenedor.querySelector('[class*="numeros-grid"]');
-                if (grid) {
-                    grid.classList.remove('locked-grid');
-                    grid.classList.add('locked-grid-desbloqueado');
-                }
-                resultadoContenedor.classList.remove('locked-grid');
-            }
-        }
-
-        async function verificarSesionPrevia() {
-            const tokenGuardado = localStorage.getItem('guacharo_premium_token');
-            if (tokenGuardado) {
-                const esValido = await validarCodigo(tokenGuardado);
-                if (esValido) {
-                    usuarioAutenticado = true;
-                    desbloquearPremium();
-                } else {
-                    localStorage.removeItem('guacharo_premium_token');
-                    localStorage.removeItem(STORAGE_KEY);
-                    usuarioAutenticado = false;
-                }
-            }
         }
 
         // ============================================================
@@ -1847,10 +1415,6 @@
         // ============================================================
         // 🔑 LLAVES (SUPER FIJOS) - LÓGICA COMPLETA
         // ============================================================
-
-        // ─────────────────────────────────────────────────────────
-        // 🐋 LLAVE ESPECIAL: solo cuando el repetido es 00 (ballena)
-        // ─────────────────────────────────────────────────────────
         function llaveBallena() {
             return [
                 { numero: 0, esDobleCero: true,  esPremium: true, esGratis: false },
@@ -1860,9 +1424,6 @@
             ];
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 📊 LLAVE GENERAL: para cualquier repetido excepto 00
-        // ─────────────────────────────────────────────────────────
         function llaveGeneral(N) {
             const TOTAL = 77;
             const MITAD = 38;
@@ -1897,9 +1458,6 @@
             });
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 🔁 Buscar TODAS las repeticiones entre dos conjuntos de días
-        // ─────────────────────────────────────────────────────────
         function buscarRepeticiones(diaA, diaB) {
             const repeticiones = [];
             const clavesVistas = new Set();
@@ -1922,9 +1480,6 @@
             return repeticiones;
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 🔒 Garantizar Super Fijos únicos
-        // ─────────────────────────────────────────────────────────
         function garantizarSuperFijosUnicos(lista, maxNum) {
             const claveDe = (item) => item.esDobleCero ? '00' : item.numero;
 
@@ -1968,9 +1523,6 @@
             return resultado;
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 🎯 CALCULAR SUPER FIJOS
-        // ─────────────────────────────────────────────────────────
         function calcularSuperFijos(todos, maxNum = 76) {
             const diaMasAntiguo  = todos.slice(0, 12);
             const diaIntermedio  = todos.slice(12, 24);
@@ -1980,7 +1532,6 @@
                 diaMasReciente.map(it => it.esDobleCero ? '00' : String(it.numero))
             );
 
-            // 1° BÚSQUEDA: intermedio ↔ antiguo (CON filtro)
             const repeticiones1 = buscarRepeticiones(diaIntermedio, diaMasAntiguo);
 
             for (const repetido of repeticiones1) {
@@ -2010,7 +1561,6 @@
                 return garantizarSuperFijosUnicos(llave, maxNum);
             }
 
-            // 2° BÚSQUEDA: intermedio ↔ reciente (SIN filtro)
             const repeticiones2 = buscarRepeticiones(diaIntermedio, diaMasReciente);
 
             for (const repetido of repeticiones2) {
@@ -2025,9 +1575,6 @@
             return [];
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 🎁 CALCULAR CORTESÍA (TODAS las llaves, sin filtro)
-        // ─────────────────────────────────────────────────────────
         function calcularCortesia(todos, maxNum = 76) {
             const diaMasAntiguo  = todos.slice(0, 12);
             const diaIntermedio  = todos.slice(12, 24);
@@ -2068,9 +1615,6 @@
             return todasLasLlaves;
         }
 
-        // ─────────────────────────────────────────────────────────
-        // 🎁 CORTESÍA (con caché)
-        // ─────────────────────────────────────────────────────────
         let cortesiaEstatica = null;
 
         function informacionDeCortecia(todos, _superFijosIgnorado) {
@@ -2132,12 +1676,11 @@
             html += '</div>';
             contenedor.innerHTML = html;
 
-            // 🎯 Adaptar columnas al número de tarjetas (máx 5 desktop, 3 móvil)
             ajustarGrid('cortesia-contenido', shuffled.length, 5);
         }
 
         // ============================================================
-        // 📊 MOSTRAR SUPER FIJOS
+        // 📊 MOSTRAR SUPER FIJOS (sin bloqueo)
         // ============================================================
         function mostrarSuperFijos(items) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2149,15 +1692,7 @@
 
             const itemsMezclados = mezclarArray([...items]);
 
-            let claseGrid = 'numeros-grid-4';
-            let claseContainer = 'premium-container';
-
-            if (!usuarioAutenticado) {
-                claseGrid += ' locked-grid';
-                claseContainer += ' locked-grid';
-            }
-
-            let html = `<div class="${claseGrid}">`;
+            let html = `<div class="numeros-grid-4">`;
             itemsMezclados.forEach(r => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
@@ -2181,10 +1716,8 @@
                 `;
             });
             html += '</div>';
-            contenedor.className = claseContainer;
             contenedor.innerHTML = html;
 
-            // 🎯 Adaptar columnas al número de tarjetas (máx 4 desktop, 2 móvil)
             ajustarGrid('resultado-contenido', itemsMezclados.length, 4);
         }
 
@@ -2449,8 +1982,6 @@
                 mostrarCortesia(cortesiaResultados);
 
                 cargarDatosForense();
-
-                await verificarSesionPrevia();
 
             } catch (error) {
                 console.error('Error:', error);
