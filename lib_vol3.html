@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprende Técnicas - Volumen 3: Súper Fijos para Lotto Activo</title>
+<meta name="author" content="Alexander J.M.">
+
+<!-- Firebase SDK -->
+<script type="importmap">
+{
+    "imports": {
+        "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+        "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+    }
+}
+</script>
+
+<style>
+/* ============================================================
+   ESTILOS BASE DEL LIBRO
+   ============================================================ */
+* { box-sizing: border-box; }
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #1a1a1a;
+    background: #ffffff;
+    max-width: 6in;
+    margin: 0 auto;
+    padding: 90px 20px 40px 20px; /* Margen superior para el header */
+    text-align: justify;
+    hyphens: auto;
+}
+
+h1 { font-family: "Helvetica Neue", sans-serif; font-size: 24pt; font-weight: bold; color: #0a1a2f; text-align: center; margin: 60px 0 25px 0; padding-bottom: 15px; border-bottom: 3px solid #b8860b; page-break-before: always; }
+h1:first-of-type { page-break-before: avoid; }
+h2 { font-family: "Helvetica Neue", sans-serif; font-size: 16pt; font-weight: bold; color: #0a1a2f; margin: 40px 0 15px 0; padding-left: 12px; border-left: 4px solid #b8860b; }
+h2.subtitulo { border-left: none; padding-left: 0; text-align: center; color: #b8860b; font-size: 13pt; font-style: italic; }
+h3 { font-family: "Helvetica Neue", sans-serif; font-size: 13pt; font-weight: bold; color: #2a3a5f; margin: 30px 0 10px 0; }
+p { margin: 0 0 14px 0; }
+ul, ol { margin: 15px 0 20px 0; padding-left: 30px; }
+li { margin-bottom: 8px; }
+blockquote { margin: 22px 30px; padding: 12px 22px; border-left: 3px solid #b8860b; background: #f9f6ef; font-style: italic; color: #333; border-radius: 0 6px 6px 0; }
+strong { color: #0a1a2f; font-weight: bold; }
+em { color: #2a3a5f; }
+
+table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 10pt; }
+table th { background: #0a1a2f; color: #f0e6d2; padding: 12px 10px; text-align: left; font-family: "Helvetica Neue", sans-serif; border: 1px solid #0a1a2f; }
+table td { padding: 10px; border: 1px solid #ccc; }
+table tr:nth-child(even) { background: #f7f4ed; }
+
+pre { font-family: "Courier New", monospace; font-size: 9pt; background: #0a1a2f; color: #f0e6d2; padding: 18px; border-radius: 8px; border-left: 4px solid #b8860b; overflow-x: auto; white-space: pre; }
+
+.nota-importante { background: #fff8e7; border-left: 5px solid #b8860b; padding: 18px 25px; margin: 25px 0; font-style: italic; }
+.resumen-tactico { background: #f0e6d2; border: 2px solid #b8860b; border-radius: 10px; padding: 22px 28px; margin: 30px 0; }
+.resumen-tactico h3 { margin-top: 0; border-bottom: 1px solid #b8860b; padding-bottom: 10px; }
+
+/* ============================================================
+   ESTILOS DE LA PORTADA
+   ============================================================ */
+.portada-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.portada-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   HEADER Y NAVEGACIÓN (ESTILO INDEX)
+   ============================================================ */
+#header {
+    background: linear-gradient(135deg, #0a0a1a, #12122a);
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #ffd700;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.header-container {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    color: #e0e0e0;
+    letter-spacing: -0.5px;
+    border: none;
+    padding: 0;
+    text-align: left;
+}
+
+.logo h1 span {
+    background: linear-gradient(90deg, #ffd700, #ff8c00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 4px;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul li a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar ul li a:hover {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #0a0a1a;
+}
+
+/* Dropdown */
+.navbar ul li.dropdown > a::after {
+    content: "▼";
+    font-size: 10px;
+    margin-left: 6px;
+}
+
+.navbar ul li .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1e1e3a;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    z-index: 1001;
+    margin-top: 10px;
+}
+
+.navbar ul li.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
+
+.navbar ul li .dropdown-menu li a {
+    color: #e0e0e0;
+    padding: 12px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    font-weight: 500;
+}
+
+.navbar ul li .dropdown-menu li a:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+
+.navbar ul li .dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+/* Mobile Menu Toggle */
+.mobile-nav-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ffd700;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle { display: block; }
+    .navbar {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1e1e3a;
+        flex-direction: column;
+        padding: 10px 0;
+        border-bottom: 2px solid #ffd700;
+        display: none;
+    }
+    .navbar.show { display: flex; }
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbar ul li { width: 100%; }
+    .navbar ul li a {
+        border-radius: 0;
+        padding: 15px 20px;
+        width: 100%;
+    }
+    .navbar ul li .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        border: none;
+        background: rgba(0,0,0,0.2);
+        display: none;
+    }
+    .navbar ul li.dropdown.open .dropdown-menu {
+        display: flex;
+    }
+}
+
+/* ============================================================
+   ESTILOS DEL BLOQUEO PREMIUM
+   ============================================================ */
+.premium-container {
+    position: relative;
+    transition: all 0.5s ease;
+    min-height: 500px;
+}
+
+.locked-grid {
+    filter: blur(8px) brightness(0.6);
+    opacity: 0.4;
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.5s ease;
+}
+
+.locked-grid-desbloqueado {
+    filter: blur(0px) brightness(1);
+    opacity: 1;
+    pointer-events: auto;
+    user-select: auto;
+    transition: all 0.8s ease;
+}
+
+.premium-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+}
+
+.premium-overlay.hidden {
+    display: none;
+}
+
+.premium-badge {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #b8860b, #ffd700, #b8860b);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerGold 2s ease-in-out infinite;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+
+@keyframes shimmerGold {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.premium-message {
+    color: #333;
+    font-size: 1.1rem;
+    max-width: 450px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #b8860b;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-family: 'Inter', sans-serif;
+}
+
+.action-buttons-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.unlock-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    color: #0a1a2f;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.2s;
+}
+.unlock-btn:active { transform: scale(0.95); }
+
+/* ============================================================
+   BOTÓN DE WHATSAPP
+   ============================================================ */
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.contact-btn:active { transform: scale(0.95); }
+
+.btn-whatsapp { 
+    background: #25D366; 
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Modal Login */
+.modal-login {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+}
+.modal-login.show { display: flex; }
+
+.modal-content {
+    background: #ffffff;
+    border: 2px solid #b8860b;
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+.modal-content h4 { color: #0a1a2f; margin-bottom: 15px; font-size: 1.4rem; }
+.modal-content p { color: #555; font-size: 0.9rem; margin-bottom: 20px; }
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    color: #333;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    color: #0a1a2f;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.btn-close { background: transparent; color: #333; border: none; font-size: 1.5rem; position: absolute; top: 10px; right: 15px; cursor: pointer; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER Y NAVEGACIÓN (ESTILO INDEX)
+     ============================================================ -->
+<header id="header">
+    <div class="header-container">
+        <a href="index.html" class="logo" style="text-decoration: none;">
+            <h1>TU<span>ANIMALITO</span></h1>
+        </a>
+        
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle">☰</button>
+        
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="index.html"> Inicio</a></li>
+                <li class="dropdown" id="dropdown-libros">
+                    <a href="#">📚 Más Libros</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="codigo-38n.html">El Código 38-N</a></li>
+                        <li><a href="lib_vol1.html">Aprende Técnicas Vol. 1</a></li>
+                        <li><a href="lib_vol2.html">Aprende Técnicas Vol. 2</a></li>
+                        <li><a href="lib_vol3.html">Aprende Técnicas Vol. 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="nosotros.html"> Nosotros</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================================
+     PORTADA DEL LIBRO
+     ============================================================ -->
+<div class="portada-container" style="margin-top: 20px;">
+    <img src="imagen/portada-vol3.jpg" alt="Portada Aprende Técnicas Volumen 3">
+</div>
+
+<!-- ============================================================
+     PÁGINA LEGAL
+     ============================================================ -->
+<div style="text-align: center; margin-bottom: 50px;">
+    <h1 style="border: none; font-size: 20pt; margin-top: 0;">APRENDE TÉCNICAS</h1>
+    <p style="font-size: 14pt; font-weight: bold;">Volumen #3</p>
+    <p style="font-size: 12pt; font-style: italic;">Súper Fijos para Lotto Activo</p>
+    <p style="font-size: 14pt; font-weight: bold; margin-top: 40px;">Alexander J.M.</p>
+    <hr style="width: 30%; margin: 40px auto;">
+    <p style="font-size: 10pt;">© 2026 Alexander J.M. Todos los derechos reservados.</p>
+</div>
+
+<!-- ============================================================
+     ÍNDICE
+     ============================================================ -->
+<div>
+    <h1>Índice General</h1>
+    <ul>
+        <li><strong>Capítulo 1:</strong> El Secreto del Lotto Activo (Muestra Gratis)</li>
+        <li><strong>Capítulo 2:</strong> La Metodología de Extracción (Muestra Gratis)</li>
+        <li><strong>Capítulo 3:</strong> Cómo armar tus Jugadas "Plus" y "Premium" (Premium)</li>
+        <li><strong>Capítulo 4:</strong> El Filtro de Confirmación (Premium)</li>
+        <li><strong>Capítulo 5:</strong> La Disciplina del Estratega (Premium)</li>
+    </ul>
+</div>
+
+<!-- ============================================================
+     CAPÍTULO 1 (GRATIS - SIEMPRE VISIBLE)
+     ============================================================ -->
+<h1>Capítulo 1</h1>
+<h2 class="subtitulo">El Secreto del Lotto Activo</h2>
+
+<h3>1.1. El problema de los 38 elementos</h3>
+
+<p>El Lotto Activo es, probablemente, el juego de animalitos más popular de Venezuela. Su dinámica es rápida, sus sorteos son constantes y su matriz es de 38 elementos (los números del 0 al 36, más el 00).</p>
+
+<p>El apostador común se sienta frente a la pantalla y ve una lluvia de números. Su mente no puede procesar ese volumen de información en tiempo real, así que recurre a la corazonada, al sueño o al número que "le gusta". Y la suerte, a largo plazo, siempre favorece a la casa.</p>
+
+<p>Pero para el estratega que domina la técnica de los <strong>Súper Fijos</strong>, el Lotto Activo no es un caos de 38 números. Es un sistema cerrado donde la memoria de repetición nos revela los números que el algoritmo está utilizando como ancla.</p>
+
+<p>Esta técnica te permite identificar todos los números que están en ciclo activo y determinar cuáles de ellos están listos para salir. Deja de jugar a ciegas y empieza a operar con estructura.</p>
+
+<h3>1.2. La Memoria del Juego</h3>
+
+<p>Como vimos en el Volumen 1 y en el Volumen 2, los juegos de animalitos no son un caos absoluto. Son un sistema cerrado donde la frecuencia de los números fluctúa, pero siempre deja una huella.</p>
+
+<p>En el Lotto Activo, esa huella se manifiesta de una forma muy clara: <strong>cuando un número se repite en días consecutivos, no es una casualidad. Es una señal de que el sistema está utilizando ese número como un ancla.</strong></p>
+
+<p>Y aquí está la clave que desarrollaremos en este volumen: cuando un número se repite 2 o más veces en los últimos 5 días, entra en una fase activa. Esto genera un bucle repetitivo a su alrededor, produciendo secuencias de números que se repiten de forma casi predecible.</p>
+
+<div class="nota-importante">
+    <p><strong>La Regla de Oro del Lotto Activo:</strong> Un número que se repite en días consecutivos es un ancla. Y esa ancla arrastra consigo una secuencia de números que el sistema utilizará para equilibrar la matriz.</p>
+</div>
+
+<p>Si vienes de jugar Guácharo Activo (Volumen 2), sabrás que allí la matriz es de 77 elementos. La lógica de equilibrio es la misma, pero la escala cambia. Aquí, en el Lotto Activo, volvemos a la matriz de 38. El Volumen 1 te da la base para armar las tripletas; este Volumen 3 te enseña a extraer los Súper Fijos con precisión quirúrgica.</p>
+
+<h3>1.3. ¿Por qué los Súper Fijos son la clave?</h3>
+
+<p>Porque no estamos adivinando. Estamos leyendo la huella que el algoritmo deja en el historial. Cuando identificas el Número Base (el ancla) y extraes sus Súper Fijos, no estás jugando a la suerte: estás jugando con la estructura del sistema.</p>
+
+<p>En los siguientes capítulos, desarrollaremos el método paso a paso, con ejemplos reales y la explicación técnica de por qué funciona.</p>
+
+<!-- ============================================================
+     CAPÍTULO 2 (GRATIS - SIEMPRE VISIBLE)
+     ============================================================ -->
+<h1>Capítulo 2</h1>
+<h2 class="subtitulo">La Metodología de Extracción (Paso a Paso)</h2>
+
+<h3>2.1. Método #1: El Primer Número que se Repite</h3>
+
+<p>Este es el método fundamental. Vamos a tomar los tres últimos días de resultados del Lotto Activo.</p>
+
+<p><strong>Ejemplo Real:</strong></p>
+
+<ul>
+    <li><strong>Día más reciente (Día 1):</strong> 25/10/2026 → 0 - 1 - 23 - 8 - 34 - 28 - 27 - 3 - 29 - 21 - 33 - 36</li>
+    <li><strong>Día anterior (Día 2):</strong> 24/10/2026 → 28 - 4 - 23 - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</li>
+    <li><strong>Día más antiguo (Día 3):</strong> 23/10/2026 → 9 - 22 - 23 - 2 - 2 - 20 - 36 - 10 - 27 - 34 - 30 - 4</li>
+</ul>
+
+<h3>Paso 1: Comparar el Día 1 con el Día 2</h3>
+
+<p>Vamos a buscar el primer número que se repite entre el día más reciente y el día anterior, empezando desde el primer sorteo del día más reciente.</p>
+
+<p>Día 1: <strong>[0]</strong> - 1 - 23 - 8 - 34 - 28 - 27 - 3 - 29 - 21 - 33 - 36</p>
+<p>Día 2: 28 - 4 - 23 - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p>El primer número del Día 1 es el 0. ¿Se repite en el Día 2? No. Entonces, pasamos al segundo número.</p>
+
+<p>Día 1: 0 - <strong>[1]</strong> - 23 - 8 - 34 - 28 - 27 - 3 - 29 - 21 - 33 - 36</p>
+<p>Día 2: 28 - 4 - 23 - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p>El segundo número es el 1. ¿Se repite en el Día 2? No. Pasamos al tercero.</p>
+
+<p>Día 1: 0 - 1 - <strong>[23]</strong> - 8 - 34 - 28 - 27 - 3 - 29 - 21 - 33 - 36</p>
+<p>Día 2: 28 - 4 - <strong>[23]</strong> - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p>El tercer número es el 23. ¿Se repite en el Día 2? <strong>Sí.</strong></p>
+
+<div class="nota-importante">
+    <p><strong>Nota:</strong> Como el #23 se repitió, lo tomamos como nuestro <strong>Número Base</strong>. Este será el punto de partida para nuestra técnica.</p>
+</div>
+
+<h3>2.2. Método para Extraer los Súper Fijos</h3>
+
+<p>Una vez que hemos extraído nuestro Número Base (#23), aplicamos la técnica.</p>
+
+<p><strong>Paso 1: Posicionarnos en el Número Base</strong></p>
+
+<p>Identificamos el #23 en el Día 2 (el día anterior), que es donde se produjo la repetición.</p>
+
+<p>Día 2: 28 - 4 - <strong>[23]</strong> - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p><strong>Paso 2: Tomar los dos números siguientes</strong></p>
+
+<p>Ahora, tomamos los dos números siguientes al #23 en el Día 2. En este caso, los números que siguen al #23 son el 22 y el 13.</p>
+
+<p>Día 2: 28 - 4 - <strong>[23]</strong> - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p><strong>Nuestros Súper Fijos serían: 23 - 22 - 13</strong></p>
+
+<div class="nota-importante">
+    <p><strong>Nota:</strong> Esta técnica se aplica según tu requerimiento. Puedes tomar los 2 números siguientes, los anteriores, o ambos a la vez.</p>
+</div>
+
+<h3>2.3. Variantes del Método</h3>
+
+<p><strong>Ejemplo #1: Tomar los 2 números siguientes (lo que ya hicimos)</strong></p>
+
+<p>23 - 22 - 13</p>
+
+<p><strong>Ejemplo #2: Tomar los 2 números anteriores</strong></p>
+
+<p>Día 2: 28 - 4 - <strong>[23]</strong> - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p>Los números anteriores al #23 son el 4 y el 28.</p>
+
+<p><strong>Súper Fijos: 4 - 28 - 23</strong></p>
+
+<p><strong>Ejemplo #3: Tomar ambos lados (izquierda y derecha)</strong></p>
+
+<p>Día 2: 28 - 4 - <strong>[23]</strong> - 22 - 13 - 8 - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+<p>Los números anteriores son el 4 y el 28. Los siguientes son el 22 y el 13.</p>
+
+<p><strong>Súper Fijos: 4 - 28 - 23 - 22 - 13</strong></p>
+
+<div class="nota-importante">
+    <p><strong>Nota Importante:</strong> El tercer caso (tomar ambos lados) solo se aplica si el Número Base (#23) se ha repetido 3 o más veces en los últimos 5 días. Esto indica una saturación del sistema y una mayor probabilidad de que la secuencia sea más amplia.</p>
+</div>
+
+<h3>2.4. ¿Por qué esta Metodología es Consistente?</h3>
+
+<p>La consistencia de este método no es una casualidad. Se basa en dos principios fundamentales:</p>
+
+<ol>
+    <li><strong>La Fase Activa:</strong> Cuando un número se repite 2 o más veces en los últimos 5 días, entra en una fase activa. El sistema lo ha designado como un ancla para equilibrar la matriz.</li>
+    <li><strong>El Bucle Repetitivo:</strong> Esa ancla genera un bucle repetitivo a su alrededor. Los números que aparecen antes o después del ancla en el historial no son aleatorios; son los que el algoritmo está utilizando para mantener el equilibrio del sistema.</li>
+</ol>
+
+<p>En el próximo capítulo, veremos cómo aplicar este método de forma práctica y cómo construir tus jugadas "Plus" y "Premium" en el Lotto Activo.</p>
+
+<!-- ============================================================
+     ZONA BLOQUEADA PREMIUM (CAPÍTULOS 3, 4 Y 5)
+     ============================================================ -->
+<div class="premium-container" id="libroContenido">
+    
+    <!-- Cartel de Bloqueo -->
+    <div class="premium-overlay" id="overlayLibro">
+        <div class="premium-badge">👑 CONTENIDO VIP</div>
+        <div class="premium-message">
+            <strong>🔒 Has llegado al límite de la muestra gratuita.</strong><br><br>
+            Para descubrir cómo armar tus Jugadas "Plus" y "Premium", acceder al Filtro de Confirmación y recibir el <strong>libro completo en PDF</strong>, accede ingresando tu clave o solicítalo directamente por WhatsApp:
+        </div>
+        <div class="action-buttons-group">
+            <button class="unlock-btn" onclick="abrirModalLogin()">
+                🔓 Desbloquear Libro Web
+            </button>
+            
+            <!-- BOTÓN DE WHATSAPP -->
+            <a href="https://wa.me/584248671967?text=Hola%20Dr.animalitos%2C%20quiero%20obtener%20el%20PDF%20completo%20del%20libro%20de%20Lotto%20Activo%20(Volumen%203)" 
+               class="contact-btn btn-whatsapp" 
+               target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Solicitar PDF
+            </a>
+        </div>
+    </div>
+
+    <!-- Contenido que se vuelve borroso -->
+    <div class="locked-grid" id="textoBloqueado">
+        
+        <!-- ============================================================
+             CAPÍTULO 3
+             ============================================================ -->
+        <h1>Capítulo 3</h1>
+        <h2 class="subtitulo">Cómo armar tus Jugadas "Plus" y "Premium"</h2>
+
+        <h3>3.1. El Nacimiento de la Jugada: De los Súper Fijos a la Combinación</h3>
+
+        <p>Ya tenemos nuestros Súper Fijos extraídos del Capítulo 2. En el ejemplo que venimos trabajando, nuestro Número Base fue el #23, y al tomar los dos números siguientes en el Día 2, obtuvimos nuestra primera jugada directa.</p>
+
+        <p>Ahora vamos a definir los dos niveles de jugadas que utilizaremos en este volumen: la Jugada "Plus" (la técnica pura) y la Jugada "Premium" (la técnica expandida con los números que se repiten).</p>
+
+        <h3>3.2. La Jugada "Plus": La Técnica Pura</h3>
+
+        <p>La Jugada "Plus" es la aplicación directa de la técnica de extracción de Súper Fijos que aprendiste en el Capítulo 2. No requiere cálculos adicionales, ni búsquedas extra. Es el resultado de posicionarnos en el Número Base y tomar los dos números que lo acompañan.</p>
+
+        <p><strong>Recordemos nuestro ejemplo:</strong></p>
+
+        <ul>
+            <li><strong>Número Base:</strong> #23 (en el Día 2).</li>
+            <li><strong>Súper Fijos (los dos números siguientes):</strong> #22 y #13.</li>
+        </ul>
+
+        <p>Por lo tanto, nuestra <strong>Jugada "Plus"</strong> es:</p>
+
+        <p><strong>23 - 22 - 13</strong></p>
+
+        <div class="nota-importante">
+            <p><strong>Nota:</strong> Esta es la jugada base. Es la técnica tal cual. Si el sistema responde de forma directa, estos tres números son los que debes atacar.</p>
+        </div>
+
+        <h3>3.3. La Jugada "Premium": La Técnica Expandida</h3>
+
+        <p>La Jugada "Premium" es la evolución de la "Plus". Consiste en tomar nuestra Jugada "Plus" (la técnica pura) y <strong>añadirle los números que se repiten entre el Día 1 y el Día 2</strong> (los Acompañantes).</p>
+
+        <p><strong>Paso 1: Identificar los números que se repiten entre el Día 1 y el Día 2.</strong></p>
+
+        <p>Día 1: 0 - 1 - <strong>[23]</strong> - <strong>[8]</strong> - 34 - <strong>[28]</strong> - 27 - 3 - 29 - 21 - 33 - 36</p>
+        <p>Día 2: <strong>[28]</strong> - 4 - <strong>[23]</strong> - 22 - <strong>[13]</strong> - <strong>[8]</strong> - 9 - 7 - 19 - 24 - 16 - 15</p>
+
+        <p>Observamos que, además del #23 (que ya es la base), los números que se repiten entre ambos días son:</p>
+
+        <ul>
+            <li>El <strong>#8</strong></li>
+            <li>El <strong>#28</strong></li>
+        </ul>
+
+        <p><strong>Paso 2: Construir la Jugada "Premium"</strong></p>
+
+        <p>Ahora, tomamos nuestra Jugada "Plus" y le agregamos estos números repetidos:</p>
+
+        <ul>
+            <li><strong>Jugada Plus (Técnica):</strong> 23 - 22 - 13</li>
+            <li><strong>Números repetidos (Día 1 vs Día 2):</strong> 28 - 8</li>
+        </ul>
+
+        <p><strong>Jugada "Premium" final:</strong> <strong>23 - 22 - 13 - 28 - 8</strong></p>
+
+        <div class="nota-importante">
+            <p><strong>Nota:</strong> La Jugada "Premium" es más amplia. Al incluir los números que se repiten entre los dos días más recientes, cubres un espectro mayor del comportamiento del sistema. Es la jugada de mayor cobertura y la que debes priorizar cuando el sistema se muestra activo.</p>
+        </div>
+
+        <h3>3.4. ¿Plus o Premium? La Decisión del Estratega</h3>
+
+        <p>La elección entre "Plus" y "Premium" depende de dos factores:</p>
+
+        <ol>
+            <li><strong>Tu perfil de riesgo:</strong> Si eres un jugador que prefiere jugadas más directas y con mayor rentabilidad por acierto, la "Plus" es tu opción. Si prefieres cubrir más terreno y asegurar la captura, la "Premium" es la tuya.</li>
+            <li><strong>La saturación del sistema:</strong> Si el Número Base se ha repetido 3 o más veces en los últimos 5 días, la "Premium" es la opción más inteligente, porque el sistema está en una fase de alta actividad y las secuencias se expanden.</li>
+        </ol>
+
+        <!-- ============================================================
+             CAPÍTULO 4
+             ============================================================ -->
+        <h1>Capítulo 4</h1>
+        <h2 class="subtitulo">El Filtro de Confirmación</h2>
+
+        <h3>4.1. ¿Por qué necesitamos un Filtro?</h3>
+
+        <p>Hasta ahora, hemos aprendido a extraer los Súper Fijos y a combinarlos en jugadas. Pero, ¿cómo sabemos si la secuencia que hemos identificado está realmente activa? ¿Y si el sistema ha decidido cambiar de ancla y nuestra secuencia ya no es válida?</p>
+
+        <p>Aquí es donde entra el <strong>Filtro de Confirmación</strong>. Este filtro nos permite verificar si los números que hemos calculado están resonando en la matriz del Lotto Activo.</p>
+
+        <h3>4.2. El Filtro de Resonancia en el Lotto Activo</h3>
+
+        <p>El Filtro de Resonancia se basa en una idea simple: si los números de nuestra secuencia (los Súper Fijos y sus combinaciones) han aparecido en los últimos días, es porque el sistema los está utilizando para equilibrar la matriz. Si no han aparecido, la secuencia puede estar en fase de dilatación o simplemente no ser válida.</p>
+
+        <p><strong>Cómo aplicar el Filtro de Resonancia</strong></p>
+
+        <ul>
+            <li><strong>Paso 1:</strong> Toma tu secuencia de Súper Fijos y sus combinaciones. En nuestro ejemplo: 23 - 22 - 13 - 8 - 28.</li>
+            <li><strong>Paso 2:</strong> Revisa los últimos 3 días de resultados del Lotto Activo. Busca si esos números han aparecido.</li>
+            <li><strong>Paso 3:</strong> Si al menos uno de los números de tu secuencia ha aparecido en los últimos 3 días, la secuencia está en resonancia. Si ninguno ha aparecido, la secuencia no es válida y debes buscar otro ancla.</li>
+        </ul>
+
+        <h3>4.3. Ejemplo Práctico de Confirmación</h3>
+
+        <p>Tomemos nuestro ejemplo:</p>
+
+        <p><strong>Jugada Premium:</strong> 23 - 22 - 13 - 28 - 8</p>
+
+        <p>Revisamos los últimos 3 días:</p>
+
+        <ul>
+            <li><strong>Día 1 (25/10/2026):</strong> 0 - 1 - <strong>[23]</strong> - <strong>[8]</strong> - 34 - <strong>[28]</strong> - 27 - 3 - 29 - 21 - 33 - 36
+                <br>Aparece el #23, #8 y #28. ✅</li>
+            <li><strong>Día 2 (24/10/2026):</strong> <strong>[28]</strong> - 4 - <strong>[23]</strong> - <strong>[22]</strong> - <strong>[13]</strong> - <strong>[8]</strong> - 9 - 7 - 19 - 24 - 16 - 15
+                <br>Aparecen el #28, #23, #22, #13 y #8. ✅</li>
+            <li><strong>Día 3 (23/10/2026):</strong> 9 - <strong>[22]</strong> - <strong>[23]</strong> - 2 - 2 - 20 - 36 - 10 - 27 - 34 - 30 - 4
+                <br>Aparecen el #22 y el #23. ✅</li>
+        </ul>
+
+        <p><strong>Resultado:</strong> La secuencia está en resonancia. Todos los números (23, 22, 13, 28, 8) han aparecido en los últimos 3 días. Esto confirma que la secuencia está activa y que podemos operar con ella.</p>
+
+        <h3>4.4. ¿Qué hacer si la secuencia no está en resonancia?</h3>
+
+        <p>Si al revisar los últimos 3 días descubres que ningún número de tu secuencia ha aparecido, hay dos posibilidades:</p>
+
+        <ol>
+            <li><strong>La secuencia está en fase de dilatación:</strong> El sistema ha utilizado esa secuencia en el pasado, pero ahora ha cambiado de ancla. En este caso, debes buscar un nuevo Número Base.</li>
+            <li><strong>La secuencia no es válida:</strong> Puede que hayas cometido un error en el cálculo o que el sistema esté en una fase de dispersión total. En este caso, lo mejor es esperar a que la mesa se estabilice.</li>
+        </ol>
+
+        <h3>4.5. El Criterio de Confirmación Definitiva</h3>
+
+        <p>Para que la confirmación sea robusta, te recomiendo aplicar este criterio:</p>
+
+        <div class="nota-importante">
+            <p><strong>Criterio de Confirmación Definitiva:</strong> Si el Número Base se ha repetido 2 o más veces en los últimos 3 días, y al menos uno de los Súper Fijos ha aparecido en ese mismo período, la secuencia está en resonancia y puedes operar con ella.</p>
+        </div>
+
+        <p>En nuestro ejemplo, el #23 se repitió en el Día 1 y el Día 2 (2 veces en 3 días), y los Súper Fijos (22, 13) también aparecieron. Por lo tanto, la secuencia está confirmada.</p>
+
+        <!-- ============================================================
+             CAPÍTULO 5
+             ============================================================ -->
+        <h1>Capítulo 5</h1>
+        <h2 class="subtitulo">La Disciplina del Estratega (Epílogo)</h2>
+
+        <h3>5.1. El Método no es Suficiente</h3>
+
+        <p>Has llegado al final de este tercer volumen. Ahora tienes en tus manos un sistema mecánico, lógico y estructurado para identificar los Súper Fijos del Lotto Activo y determinar cuáles están a punto de explotar.</p>
+
+        <p>Pero aquí viene la verdad que nadie te dice: <strong>el método, por sí solo, no te hará ganar. La disciplina es lo que marca la diferencia.</strong></p>
+
+        <p>He visto a muchos jugadores aplicar la técnica de extracción con precisión matemática y, aun así, perder. ¿Por qué? Porque no respetaron las reglas. Porque se dejaron llevar por la emoción. Porque persistieron en una secuencia que ya no resonaba. Porque apostaron más de lo que podían permitirse perder.</p>
+
+        <p>El método te da la estructura. La disciplina te da los resultados.</p>
+
+        <h3>5.2. Las Tres Reglas de Oro del Estratega</h3>
+
+        <p><strong>Regla 1: Nunca juegues una secuencia que no esté resonando.</strong></p>
+        <p>El Filtro de Confirmación existe por una razón. Si los Súper Fijos no han aparecido en los últimos 3 días, la secuencia no es válida. No importa cuánto "sientas" que van a salir. Si no hay resonancia, no hay jugada.</p>
+
+        <p><strong>Regla 2: Nunca persigas las pérdidas.</strong></p>
+        <p>Si una secuencia no responde en los próximos sorteos, no dupliques la apuesta. No intentes "recuperar" lo perdido. El sistema es frío y calculador. Si no estás en resonancia, simplemente no estás en el momento correcto. Acepta la pérdida y espera la próxima oportunidad.</p>
+
+        <p><strong>Regla 3: Nunca apuestes más de lo que puedes permitirte perder.</strong></p>
+        <p>El Lotto Activo es un juego de probabilidades, no una máquina de hacer dinero. La Técnica de los Súper Fijos te da una ventaja, pero no te garantiza ganar siempre. Define un presupuesto antes de empezar y respétalo. Si pierdes ese presupuesto, detente. El juego seguirá ahí mañana.</p>
+
+        <h3>5.3. El Camino del Estratega</h3>
+
+        <p>Has completado el tercer nivel de la colección. Ahora sabes identificar los Súper Fijos del Lotto Activo y determinar cuáles están a punto de explotar. Pero este es solo el siguiente paso de un camino más largo.</p>
+
+        <p>Si quieres convertirte en un verdadero operador táctico, necesitas dominar los niveles de conocimiento de esta colección:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Libro</th>
+                    <th>Qué aprenderás</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nivel 1: La Base</td>
+                    <td>Volumen 1: Aprende a hacer tus Tripletas</td>
+                    <td>Cómo identificar los números calientes en la matriz de 38 elementos y cómo combinarlos para armar tus jugadas.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 2: La Técnica</td>
+                    <td>Volumen 2: Súper Fijos para Guácharo Activo</td>
+                    <td>Cómo identificar los números calientes en la matriz de 77 elementos y cómo determinar cuáles están a punto de explotar.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 3: La Especialización</td>
+                    <td>Volumen 3: Súper Fijos para Lotto Activo (este libro)</td>
+                    <td>Cómo aplicar la técnica de extracción de Súper Fijos específicamente al Lotto Activo y cómo construir tus jugadas Plus y Premium.</td>
+                </tr>
+                <tr>
+                    <td>Nivel 4: La Maestría</td>
+                    <td>Código 38-N: El Origen del Caos</td>
+                    <td>La física de la matriz, las secuencias continuas, la psicología del operador y el protocolo completo de operación.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>El Volumen 1 te enseña la base. El Volumen 2 te enseña la técnica del Guácharo. Este Volumen 3 te enseña la especialización en Lotto Activo. Y el Código 38-N te enseña la maestría.</p>
+
+        <p>No te detengas aquí. El camino del estratega apenas comienza.</p>
+
+        <h3>5.4. Palabras Finales</h3>
+
+        <p>El Lotto Activo no es un juego de suerte. Es un sistema cerrado que se rige por reglas de equilibrio. Y una vez que entiendes esas reglas, puedes leer la mesa con claridad.</p>
+
+        <p>Pero el conocimiento sin disciplina es inútil. El método sin constancia no da resultados. La técnica sin verificación es solo una apuesta más.</p>
+
+        <p>Mi consejo final es este: <strong>sé paciente, sé disciplinado, sé frío.</strong> No juegues por jugar. Juega cuando las probabilidades estén de tu lado. Y cuando ganes, retírate. Cuando pierdas, acepta la pérdida y espera la próxima oportunidad.</p>
+
+        <p>El Lotto Activo te espera. Y ahora, con la Técnica de los Súper Fijos en tu arsenal, tienes las herramientas para enfrentarlo con estructura.</p>
+
+        <p>Nos vemos en el siguiente nivel.</p>
+
+        <hr>
+
+        <div style="text-align: center; margin: 60px 0;">
+            <p style="font-size: 16pt; font-weight: bold; color: #0a1a2f; letter-spacing: 2px;">FIN DEL VOLUMEN 3</p>
+            <p style="font-size: 14pt; font-weight: bold; color: #b8860b; margin-top: 30px;">APRENDE TÉCNICAS</p>
+            <p style="font-size: 12pt; font-style: italic; color: #2a3a5f;">Súper Fijos para Lotto Activo</p>
+            <p style="font-size: 13pt; font-weight: bold; color: #0a1a2f; margin-top: 30px;">Alexander J.M.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================
+     MODAL DE LOGIN
+     ============================================================ -->
+<div class="modal-login" id="modalLogin">
+    <div class="modal-content">
+        <button class="btn-close" onclick="cerrarModalLogin()">&times;</button>
+        <h4>👑 Acceso Premium</h4>
+        <p>Ingresa tu código de suscripción para desbloquear la lectura web.</p>
+        <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
+        <button id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
+    </div>
+</div>
+
+<!-- ============================================================
+     SCRIPTS DE FIREBASE Y NAVEGACIÓN
+     ============================================================ -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+        authDomain: "dato-animalitos.firebaseapp.com",
+        projectId: "dato-animalitos",
+        storageBucket: "dato-animalitos.firebasestorage.app",
+        messagingSenderId: "759403364736",
+        appId: "1:759403364736:web:c686aea85758245a7f4165"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let usuarioAutenticado = false;
+
+    window.abrirModalLogin = () => {
+        document.getElementById('modalLogin').classList.add('show');
+        document.getElementById('claveAcceso').value = '';
+        document.getElementById('claveAcceso').focus();
+    };
+
+    window.cerrarModalLogin = () => {
+        document.getElementById('modalLogin').classList.remove('show');
+    };
+
+    window.autenticarUsuario = async () => {
+        const clave = document.getElementById('claveAcceso').value.trim();
+        const btn = document.getElementById('btnIngresar');
+
+        if (!clave) return alert('Ingresa una clave válida.');
+
+        btn.innerText = 'Verificando...';
+        btn.disabled = true;
+
+        try {
+            const hoyStr = new Date().toISOString().split('T')[0];
+            const q = query(
+                collection(db, "clientes"),
+                where("codigo", "==", clave),
+                where("activo", "==", true)
+            );
+            
+            const querySnapshot = await getDocs(q);
+            let esValido = false;
+            
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
+                    esValido = true;
+                }
+            });
+
+            if (esValido) {
+                usuarioAutenticado = true;
+                
+                // 🌟 EL DESBLOQUEO TOTAL DEL LIBRO 🌟
+                document.getElementById('overlayLibro').classList.add('hidden');
+                document.getElementById('textoBloqueado').classList.remove('locked-grid');
+                document.getElementById('textoBloqueado').classList.add('locked-grid-desbloqueado');
+                
+                // Guarda la sesión para que no tenga que meter clave cada vez
+                localStorage.setItem('libro3_premium_token', clave);
+                
+                cerrarModalLogin();
+                alert('✅ Acceso Premium concedido. Disfruta el libro completo.');
+            } else {
+                alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
+            }
+        } catch (error) {
+            console.error('Error al verificar:', error);
+            alert('⚠️ Error de conexión. Inténtalo de nuevo.');
+        } finally {
+            btn.innerText = 'Validar Clave';
+            btn.disabled = false;
+        }
+    };
+
+    // Auto-login: verifica si ya pagó antes para no molestar
+    window.addEventListener('load', async () => {
+        const tokenGuardado = localStorage.getItem('libro3_premium_token');
+        if (tokenGuardado) {
+            document.getElementById('claveAcceso').value = tokenGuardado;
+            const hoyStr = new Date().toISOString().split('T')[0];
+            try {
+                const q = query(collection(db, "clientes"), where("codigo", "==", tokenGuardado), where("activo", "==", true));
+                const querySnapshot = await getDocs(q);
+                let esValido = false;
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) esValido = true;
+                });
+
+                if (esValido) {
+                    document.getElementById('overlayLibro').classList.add('hidden');
+                    document.getElementById('textoBloqueado').classList.remove('locked-grid');
+                    document.getElementById('textoBloqueado').classList.add('locked-grid-desbloqueado');
+                }
+            } catch(e) {
+                console.log("Sesión expirada o sin conexión");
+            }
+        }
+    });
+
+    // ==================== LÓGICA DEL MENÚ MÓVIL ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const navbar = document.getElementById('navbar');
+        const dropdownLibros = document.getElementById('dropdown-libros');
+
+        if (mobileNavToggle && navbar) {
+            mobileNavToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navbar.classList.toggle('show');
+            });
+        }
+
+        // Lógica para abrir el dropdown en móvil
+        if (dropdownLibros) {
+            dropdownLibros.querySelector('a').addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownLibros.classList.toggle('open');
+                }
+            });
+        }
+    });
+
+    // ==================== MEDIDAS DE SEGURIDAD ====================
+    (function() {
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85) ||
+                (e.ctrlKey && e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.querySelectorAll('img').forEach(img => { img.addEventListener('dragstart', function(e) { e.preventDefault(); return false; }); });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        (function detectDevTools() {
+            const element = new Image();
+            Object.defineProperty(element, 'id', { get: function() { console.clear(); console.log('%c🚫 Acceso no autorizado detectado', 'color: #fe2c55; font-size: 16px; font-weight: bold;'); } });
+            console.log(element);
+        })();
+        setInterval(function() { console.clear(); }, 1000);
+    })();
+</script>
+
+</body>
+</html>
