@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-10-30T00:46:03.653781",
+    "ultima_actualizacion": "2026-10-30T06:58:30.144258",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,11 +103,11 @@
         "dia": "Jueves",
         "fecha": "29 oct 2026",
         "numeros": [
-          6,
-          7,
-          14,
+          1,
+          26,
+          28,
           30,
-          35
+          31
         ],
         "numero_extra": null
       },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "29 oct 2026"
+        "dia": "Viernes",
+        "fecha": "30 oct 2026"
       },
       "bote": "250$"
     },
