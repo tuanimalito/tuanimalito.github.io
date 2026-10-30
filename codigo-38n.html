@@ -7,6 +7,9 @@
 <meta name="author" content="Alexander J.M.">
 <meta name="description" content="La Física de la Matriz y el Balance en la Ruleta">
 
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7995132393364853" crossorigin="anonymous"></script>
+
 <!-- Firebase SDK -->
 <script type="importmap">
 {
@@ -36,7 +39,7 @@ body {
     background: #ffffff;
     max-width: 6in;
     margin: 0 auto;
-    padding: 90px 20px 40px 20px; /* Margen superior para el header */
+    padding: 90px 20px 40px 20px;
     text-align: justify;
     hyphens: auto;
 }
@@ -187,6 +190,32 @@ pre, .diagram {
 }
 
 hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, #b8860b, transparent); margin: 45px 0; }
+
+/* ============================================================
+   ADSENSE - CONTENEDORES DE ANUNCIOS
+   ============================================================ */
+.ad-container {
+    display: block;
+    margin: 30px auto;
+    padding: 10px;
+    max-width: 100%;
+    text-align: center;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    overflow: hidden;
+    page-break-inside: avoid;
+}
+.ad-label {
+    display: block;
+    font-size: 9pt;
+    color: #999;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+.ad-container ins { display: block; }
 
 /* ============================================================
    HEADER Y NAVEGACIÓN (ESTILO INDEX)
@@ -365,7 +394,7 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
 .premium-container {
     position: relative;
     transition: all 0.5s ease;
-    min-height: 500px; /* Asegura que el overlay tenga espacio */
+    min-height: 500px;
 }
 
 .locked-grid {
@@ -393,7 +422,7 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centrado vertical */
+    justify-content: center;
     z-index: 10;
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
@@ -534,6 +563,8 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
     .resumen-tactico { box-shadow: none; }
     .premium-overlay { display: none; }
     .locked-grid { filter: none; opacity: 1; }
+    /* Ocultar anuncios al imprimir */
+    .ad-container, .ad-label { display: none !important; }
 }
 </style>
 </head>
@@ -558,7 +589,6 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
                     <ul class="dropdown-menu">
                         <li><a href="codigo-38n.html">El Código 38-N</a></li>
                         <li><a href="lib_vol1.html">Aprende Técnicas Vol. 1</a></li>
-                        <!-- Aquí puedes agregar más libros en el futuro -->
                     </ul>
                 </li>
                 <li><a href="nosotros.html"> Nosotros</a></li>
@@ -566,6 +596,20 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
         </nav>
     </div>
 </header>
+
+<!-- ============================================================
+     ADSENSE - BLOQUE 1: TOP (Antes de la portada)
+     ============================================================ -->
+<div class="ad-container">
+    <span class="ad-label">Publicidad</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7995132393364853"
+         data-ad-slot="8481248642"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <!-- ============================================================
      PORTADA
@@ -607,6 +651,20 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
 </div>
 
 <!-- ============================================================
+     ADSENSE - BLOQUE 2: DESPUÉS DEL ÍNDICE
+     ============================================================ -->
+<div class="ad-container">
+    <span class="ad-label">Publicidad</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7995132393364853"
+         data-ad-slot="4970894069"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ============================================================
      PREFACIO (GRATIS)
      ============================================================ -->
 <h1>Prefacio</h1>
@@ -622,6 +680,20 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
 
 <div class="nota-importante">
     <p><strong>Nota importante sobre el lenguaje de esta obra:</strong> A lo largo de este libro utilizaremos términos como "compensación", "equilibrio" y "tensión" para describir patrones observados en los historiales de ruleta. Es fundamental entender que estos términos describen <strong>tendencias estadísticas y fluctuaciones naturales del sistema</strong>, no fuerzas activas que el software ejecute conscientemente. La aleatoriedad es real; lo que hacemos es leer sus fluctuaciones.</p>
+</div>
+
+<!-- ============================================================
+     ADSENSE - BLOQUE 3: FIN DEL PREFACIO
+     ============================================================ -->
+<div class="ad-container">
+    <span class="ad-label">Publicidad</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7995132393364853"
+         data-ad-slot="4903538669"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <!-- ============================================================
@@ -662,39 +734,8 @@ hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, 
     <img src="imagen/im2.jpg" alt="La matriz 38-N reorganizada">
 </figure>
 
-<p>El jugador promedio cae en la primera trampa del casino: <strong>asumir que cada giro es un evento aislado en el vacío</strong>, un destello caótico impulsado por la "suerte" o la "mala racha". Ve 38 casilleros independientes compitiendo en un desorden sin memoria.</p>
-
-<p>Para tomar el control táctico de tu juego, debes despojar a la ruleta de su espectáculo visual. Tienes que dejar de verla como una rueda que gira y empezar a comprenderla como lo que verdaderamente es: <strong>una matriz cerrada, finita y contenida de 38 elementos</strong>.</p>
-
-<h3>1.3. Refutación del Mito del "Espejo Visual" (El Engaño del 21 - 12)</h3>
-
-<p>Uno de los grandes mitos que ha arruinado la banca de miles de jugadores durante décadas es el concepto del "Espejo Visual o Inversión Numérica".</p>
-
-<p>El jugador empírico suele creer que los números guardan relación "espejo" basándose en la simetría gráfica de sus dígitos. La trampa más común de este mito es la falsa pareja <strong>21 - 12</strong>:</p>
-
-<blockquote>"Si acaba de salir el 21, el espejo que debe caer por compensación es el 12, porque sus dígitos están invertidos."</blockquote>
-
-<p>Esta premisa es <strong>totalmente FALSA</strong> y carece de todo sustento matemático o geométrico.</p>
-
-<p>La inversión de dígitos (21→12, 31→13, 23→32) es una coincidencia de la representación decimal humana, no de la estructura física ni funcional de la rueda. El software del PRNG (Generador de Números Pseudoaleatorios) no procesa "símbolos visuales", sino <strong>posiciones de memoria y valores dentro de un rango de 38 unidades</strong>.</p>
-
-<p>Intenta aplicar la lógica del mito visual a otros números:</p>
-
-<ul>
-    <li>¿Cuál es el supuesto "espejo visual" del <strong>35</strong>? ¿El 53? Ese número no existe en la ruleta.</li>
-    <li>¿Cuál es el espejo del <strong>8</strong>? ¿El 80? Tampoco existe.</li>
-    <li>¿Y cuál sería el reflejo gráfico del <strong>0</strong> o del <strong>00</strong>?</li>
-</ul>
-
-<p>La falacia de la inversión de dígitos no es más que un <strong>espejismo óptico sin sustento geométrico ni probabilístico</strong>.</p>
-
-<h3>Demostración de la falsedad del 21 - 12 mediante la Matriz 38-N</h3>
-
-<p>Para la ruleta, el número 21 no es el texto "21"; es el <strong>elemento en la posición 21 de un sistema de 38 unidades</strong>.</p>
-
-<p>Si aplicamos la verdadera ley del balance geométrico (38−N):</p>
-
-<!-- ============================================================
+<p>El jugador promedio cae en la primera trampa del casino: <strong>asumir que cada giro es un evento aislado en el vacío</strong>, un destello caótico impulsado por la "suerte" o la "mala ra
+    <!-- ============================================================
      INICIO DEL BLOQUEO PREMIUM (RESTO DEL LIBRO)
      ============================================================ -->
 <div class="premium-container" id="libroContenido">
