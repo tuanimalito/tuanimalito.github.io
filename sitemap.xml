@@ -7,6 +7,27 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+   <!-- Página de tecnicas  -->
+  <url>
+    <loc>https://tuanimalito.github.io/lib_vol1.html</loc>
+    <lastmod>2026-12-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de tecnicas  -->
+  <url>
+    <loc>https://tuanimalito.github.io/lib_vol2.html</loc>
+    <lastmod>2026-12-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Página de tecnicas  -->
+  <url>
+    <loc>https://tuanimalito.github.io/lib_vol3.html</loc>
+    <lastmod>2026-12-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
     <!-- Página de pronosticos -->
   <url>
     <loc>https://tuanimalito.github.io/pronosticador.html</loc>
