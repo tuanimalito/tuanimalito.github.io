@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-01T19:30:14.222802",
+    "ultima_actualizacion": "2026-11-01T23:28:56.452112",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,7 +103,7 @@
         "dia": "Domingo",
         "fecha": "01 nov 2026",
         "numeros": [
-          11
+          4
         ],
         "numero_extra": null
       },
@@ -140,14 +140,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "31 oct 2026",
+        "dia": "Domingo",
+        "fecha": "01 nov 2026",
         "numeros": [
-          13,
+          2,
+          7,
           18,
-          19,
-          26,
-          29
+          21,
+          28
         ],
         "numero_extra": null
       },
