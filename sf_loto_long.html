@@ -1787,12 +1787,12 @@
                     const data = await response.json();
                     if (data && data.resultados && Array.isArray(data.resultados)) {
                         gsmDatosLotto = data.resultados;
-                        console.log(`✅ lotto.json cargado para GSM: ${gsmDatosLotto.length} días`);
+                        console.log(`✅ data/lotto.json cargado para GSM: ${gsmDatosLotto.length} días`);
                         return true;
                     }
                     return false;
                 } catch (error) {
-                    console.error('❌ Error al cargar lotto.json en GSM:', error);
+                    console.error('❌ Error al cargar data/lotto.json en GSM:', error);
                     gsmDatosLotto = null;
                     return false;
                 }
