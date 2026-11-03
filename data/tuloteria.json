@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-03T06:26:46.564653",
+    "ultima_actualizacion": "2026-11-03T14:58:27.200105",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
+    {
+      "id": "powerball",
+      "nombre": "Powerball",
+      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Lunes",
+        "fecha": "02 nov 2026",
+        "numeros": [
+          7,
+          23,
+          29,
+          64,
+          66
+        ],
+        "numero_extra": 23
+      },
+      "proximo_sorteo": {
+        "dia": "Miércoles",
+        "fecha": "04 nov 2026"
+      },
+      "bote": "835.000.000$"
+    },
     {
       "id": "mega-millions",
       "nombre": "Mega Millions",
@@ -194,28 +216,6 @@
         "fecha": "03 nov 2026"
       },
       "bote": "50$"
-    },
-    {
-      "id": "powerball",
-      "nombre": "Powerball",
-      "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "31 oct 2026",
-        "numeros": [
-          2,
-          4,
-          18,
-          50,
-          56
-        ],
-        "numero_extra": 20
-      },
-      "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "04 nov 2026"
-      },
-      "bote": ""
     },
     {
       "id": "cash4life",
