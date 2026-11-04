@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-03T20:55:08.418794",
+    "ultima_actualizacion": "2026-11-04T01:11:49.211013",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Martes",
         "fecha": "03 nov 2026",
         "numeros": [
-          9
+          4
         ],
         "numero_extra": null
       },
