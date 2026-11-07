@@ -2091,92 +2091,120 @@
                 // =====================================================
                 // CARGA DE DATOS PRINCIPAL
                 // =====================================================
-                async function cargarDatosServidor() {
-                    try {
-                        const response = await fetch(`${JSON_URL}?_=${new Date().getTime()}`);
-                        if (!response.ok) throw new Error(`Error HTTP status: ${response.status}`);
+                           async function cargarDatosServidor() {
+            try {
+                // Forzamos la lectura sin caché
+                const response = await fetch(`${JSON_URL}?_=${new Date().getTime()}`, {
+                    cache: "no-store",
+                    headers: { "Cache-Control": "no-cache" }
+                });
+                
+                if (!response.ok) throw new Error(`Error HTTP: ${response.status} - No se encontró el archivo`);
 
-                        const data = await response.json();
-                        const [dia3, dia2, dia1] = data.resultados;
-
-                        const procesarDia = (dia, inicioCasilla) => {
-                            return dia.map((num, idx) => {
-                                const valStr = String(num).trim();
-                                const esDobleCero = valStr === "00";
-                                return {
-                                    numero: esDobleCero ? 0 : Number(num),
-                                    esDobleCero: esDobleCero,
-                                    casilla: idx + inicioCasilla
-                                };
-                            });
-                        };
-
-                        const dia3Procesado = procesarDia(dia3, 1);
-                        const dia2Procesado = procesarDia(dia2, 13);
-                        const dia1Procesado = procesarDia(dia1, 25);
-                        const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
-
-                        const resultado = buscarRepeticion(todos);
-                        const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
-
-                        const infoSuperFijos = {
-                            encontrado: resultado.encontrado,
-                            nivelOrigen: resultado.nivelOrigen || 'N/A',
-                            posicionOrigen: resultado.posicionOrigen || -1,
-                            secuenciaCompleta: resultado.secuenciaCompleta || [],
-                            esAleatorio: resultado.esAleatorio || false
-                        };
-
-                        const hoy = new Date();
-                        const fechasBase = [];
-                        for (let i = 0; i < 3; i++) {
-                            const fecha = new Date(hoy);
-                            fecha.setDate(hoy.getDate() - (3 - i));
-                            const dia = String(fecha.getDate()).padStart(2, '0');
-                            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-                            const año = fecha.getFullYear();
-                            fechasBase.push(`${dia}/${mes}/${año}`);
-                        }
-
-                        const dias = [dia1, dia2, dia3];
-                        historialFiltrado = [];
-                        dias.forEach((sorteo, idx) => {
-                            const fechaStr = fechasBase[idx] || `Día ${idx+1}`;
-                            const partes = fechaStr.split('/');
-                            const fecha = new Date(partes[2], partes[1] - 1, partes[0]);
-                            const numeros = [];
-                            sorteo.forEach(valor => {
-                                if (valor === '00') {
-                                    numeros.push(100);
-                                } else {
-                                    numeros.push(parseInt(valor));
-                                }
-                            });
-                            historialFiltrado.push({ fecha, fechaStr, numeros });
-                        });
-                        historialFiltrado.sort((a, b) => b.fecha - a.fecha);
-
-                        reiniciarCortesia();
-
-                        mostrarSuperFijosConLog(superFijos, infoSuperFijos);
-
-                        const cortesiaResultados = informacionDeCortecia(todos, superFijos);
-                        mostrarCortesia(cortesiaResultados);
-
-                        cargarDatosForense();
-
-                        actualizarStatus(resultado.encontrado ? '✅ Datos actualizados desde el servidor' : '✅ Datos actualizados - Sin Repeticiones');
-
-                    } catch (error) {
-                        console.error('Error al cargar JSON del servidor:', error);
-                        actualizarStatus('⚠️ Error al cargar datos del servidor');
-                        const msjError = '<div class="no-data">No se pudieron cargar los datos actualizados. Intenta de nuevo más tarde.</div>';
-                        document.getElementById('cortesia-contenido').innerHTML = msjError;
-                        document.getElementById('resultado-contenido').innerHTML = msjError;
-                        document.getElementById('forense-top10').innerHTML = msjError;
-                        document.getElementById('forense-prediccion').innerHTML = msjError;
-                    }
+                const data = await response.json();
+                
+                // VALIDACIÓN ESTRICTA DEL JSON
+                if (!data || !data.resultados || !Array.isArray(data.resultados) || data.resultados.length < 3) {
+                    throw new Error("El archivo JSON no tiene el formato correcto (faltan los 3 días de resultados)");
                 }
+
+                const [dia3, dia2, dia1] = data.resultados;
+
+                const procesarDia = (dia, inicioCasilla) => {
+                    if (!Array.isArray(dia) || dia.length === 0) {
+                        throw new Error("Uno de los días en el JSON está vacío o mal formado");
+                    }
+                    return dia.map((num, idx) => {
+                        const valStr = String(num).trim();
+                        const esDobleCero = valStr === "00";
+                        return {
+                            numero: esDobleCero ? 0 : Number(num),
+                            esDobleCero: esDobleCero,
+                            casilla: idx + inicioCasilla
+                        };
+                    });
+                };
+
+                const dia3Procesado = procesarDia(dia3, 1);
+                const dia2Procesado = procesarDia(dia2, 13);
+                const dia1Procesado = procesarDia(dia1, 25);
+                const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
+
+                const resultado = buscarRepeticion(todos);
+                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+
+                const infoSuperFijos = {
+                    encontrado: resultado.encontrado,
+                    nivelOrigen: resultado.nivelOrigen || 'N/A',
+                    posicionOrigen: resultado.posicionOrigen || -1,
+                    secuenciaCompleta: resultado.secuenciaCompleta || [],
+                    esAleatorio: false // Eliminamos la generación aleatoria
+                };
+
+                const hoy = new Date();
+                const fechasBase = [];
+                for (let i = 0; i < 3; i++) {
+                    const fecha = new Date(hoy);
+                    fecha.setDate(hoy.getDate() - (3 - i));
+                    const dia = String(fecha.getDate()).padStart(2, '0');
+                    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                    const año = fecha.getFullYear();
+                    fechasBase.push(`${dia}/${mes}/${año}`);
+                }
+
+                const dias = [dia1, dia2, dia3];
+                historialFiltrado = [];
+                dias.forEach((sorteo, idx) => {
+                    const fechaStr = fechasBase[idx] || `Día ${idx+1}`;
+                    const partes = fechaStr.split('/');
+                    const fecha = new Date(partes[2], partes[1] - 1, partes[0]);
+                    const numeros = [];
+                    sorteo.forEach(valor => {
+                        if (valor === '00') {
+                            numeros.push(100);
+                        } else {
+                            numeros.push(parseInt(valor));
+                        }
+                    });
+                    historialFiltrado.push({ fecha, fechaStr, numeros });
+                });
+                historialFiltrado.sort((a, b) => b.fecha - a.fecha);
+
+                reiniciarCortesia();
+
+                mostrarSuperFijosConLog(superFijos, infoSuperFijos);
+
+                // AQUÍ FORZAMOS A QUE SI NO HAY REPETICIONES, SE VEA EN PANTALLA
+                if (superFijos.length === 0) {
+                    actualizarStatus('⚠️ JSON cargado, pero no se encontraron repeticiones para Super Fijos.');
+                } else {
+                    actualizarStatus('✅ Datos reales cargados desde lotto.json');
+                }
+
+                const cortesiaResultados = informacionDeCortecia(todos, superFijos);
+                mostrarCortesia(cortesiaResultados);
+
+                cargarDatosForense();
+
+            } catch (error) {
+                console.error('🔴 ERROR CRÍTICO AL LEER EL JSON:', error);
+                
+                // SI FALLA, MOSTRAMOS EL ERROR EN PANTALLA EN LUGAR DE NÚMEROS FALSOS
+                actualizarStatus(`❌ Error: ${error.message}`);
+                
+                const msjError = `
+                    <div class="no-data" style="color: #ff6b6b; border: 1px solid #ff6b6b; padding: 15px; border-radius: 10px; background: rgba(255,0,0,0.1);">
+                        <strong>Error al cargar datos reales</strong><br>
+                        ${error.message}<br><br>
+                        <small>Revisa que el archivo <b>${JSON_URL}</b> exista en tu servidor y tenga el formato correcto.</small>
+                    </div>
+                `;
+                document.getElementById('cortesia-contenido').innerHTML = msjError;
+                document.getElementById('resultado-contenido').innerHTML = msjError;
+                document.getElementById('forense-top10').innerHTML = msjError;
+                document.getElementById('forense-prediccion').innerHTML = msjError;
+            }
+        }
 
                 // =====================================================
                 // INICIALIZACIÓN
