@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-07T20:46:44.539641",
+    "ultima_actualizacion": "2026-11-08T00:22:57.593284",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -188,7 +188,7 @@
         "dia": "Sábado",
         "fecha": "07 nov 2026",
         "numeros": [
-          13
+          14
         ],
         "numero_extra": null
       },
