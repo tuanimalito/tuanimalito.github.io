@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-08T19:31:52.433615",
+    "ultima_actualizacion": "2026-11-08T23:36:32.806825",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Domingo",
+        "fecha": "08 nov 2026",
         "numeros": [
-          2,
-          12,
-          21,
-          25,
-          34
+          16,
+          17,
+          19,
+          23,
+          28
         ],
         "numero_extra": null
       },
@@ -122,13 +122,13 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Domingo",
+        "fecha": "08 nov 2026",
         "numeros": [
-          0,
+          3,
+          1,
           7,
-          6,
-          7,
+          4,
           9
         ],
         "numero_extra": 1
@@ -144,13 +144,13 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Domingo",
+        "fecha": "08 nov 2026",
         "numeros": [
-          4,
-          0,
-          3,
-          8
+          2,
+          7,
+          8,
+          9
         ],
         "numero_extra": 1
       },
@@ -165,12 +165,12 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Domingo",
+        "fecha": "08 nov 2026",
         "numeros": [
-          6,
+          4,
           9,
-          4
+          9
         ],
         "numero_extra": 1
       },
@@ -188,7 +188,7 @@
         "dia": "Domingo",
         "fecha": "08 nov 2026",
         "numeros": [
-          13
+          15
         ],
         "numero_extra": null
       },
@@ -203,11 +203,11 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Domingo",
+        "fecha": "08 nov 2026",
         "numeros": [
-          3,
-          0
+          1,
+          3
         ],
         "numero_extra": 1
       },
