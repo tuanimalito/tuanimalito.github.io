@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-12T01:26:55.738962",
+    "ultima_actualizacion": "2026-11-12T09:40:14.402983",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -32,45 +32,45 @@
       "nombre": "Powerball",
       "logo": "https://lotteryguru.com/pict/97460/us-powerball-2x-png",
       "ultimo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "09 nov 2026",
+        "dia": "Miércoles",
+        "fecha": "11 nov 2026",
         "numeros": [
-          13,
-          34,
-          41,
+          8,
+          42,
           45,
-          48
+          51,
+          57
         ],
-        "numero_extra": 25
+        "numero_extra": 17
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Sábado",
+        "fecha": "14 nov 2026"
       },
-      "bote": "45.000.000$"
+      "bote": "63.000.000$"
     },
     {
       "id": "lotto-florida",
       "nombre": "Lotto Florida",
       "logo": "https://lotteryguru.com/pict/96700/us-fl-lotto-2x-png",
       "ultimo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "07 nov 2026",
+        "dia": "Miércoles",
+        "fecha": "11 nov 2026",
         "numeros": [
-          1,
-          2,
           5,
-          14,
-          28,
-          40
+          18,
+          21,
+          30,
+          42,
+          50
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Sábado",
+        "fecha": "14 nov 2026"
       },
-      "bote": "11.000.000$"
+      "bote": "11.750.000$"
     },
     {
       "id": "jackpot-triple-play",
@@ -103,17 +103,17 @@
         "dia": "Miércoles",
         "fecha": "11 nov 2026",
         "numeros": [
-          8,
-          12,
-          18,
-          23,
-          31
+          4,
+          10,
+          15,
+          16,
+          23
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Miércoles",
         "fecha": "11 nov 2026",
         "numeros": [
-          0,
           4,
-          0,
-          6,
-          4
+          9,
+          3,
+          8,
+          0
         ],
-        "numero_extra": 8
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Miércoles",
         "fecha": "11 nov 2026",
         "numeros": [
-          8,
+          3,
           5,
-          2,
-          4
+          4,
+          8
         ],
-        "numero_extra": 8
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Miércoles",
         "fecha": "11 nov 2026",
         "numeros": [
-          1,
-          7,
+          0,
+          5,
           2
         ],
-        "numero_extra": 8
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Miércoles",
         "fecha": "11 nov 2026",
         "numeros": [
-          9,
-          6
+          0,
+          5
         ],
-        "numero_extra": 8
+        "numero_extra": 1
       },
       "proximo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "11 nov 2026"
+        "dia": "Jueves",
+        "fecha": "12 nov 2026"
       },
       "bote": "50$"
     },
