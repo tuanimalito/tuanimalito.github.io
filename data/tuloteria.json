@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-15T22:43:00.671758",
+    "ultima_actualizacion": "2026-11-16T10:56:28.488674",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -103,17 +103,17 @@
         "dia": "Domingo",
         "fecha": "15 nov 2026",
         "numeros": [
-          15,
-          19,
-          23,
-          28,
-          31
+          4,
+          12,
+          14,
+          21,
+          23
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Domingo",
         "fecha": "15 nov 2026",
         "numeros": [
-          3,
-          7,
-          0,
-          7,
-          6
+          8,
+          4,
+          9,
+          6,
+          0
         ],
-        "numero_extra": 0
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Domingo",
         "fecha": "15 nov 2026",
         "numeros": [
-          7,
-          8,
-          5,
-          3
+          6,
+          0,
+          0,
+          4
         ],
-        "numero_extra": 0
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Domingo",
         "fecha": "15 nov 2026",
         "numeros": [
-          7,
+          2,
           9,
-          7
+          8
         ],
-        "numero_extra": 0
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "250$"
     },
@@ -206,14 +206,14 @@
         "dia": "Domingo",
         "fecha": "15 nov 2026",
         "numeros": [
-          5,
-          0
+          9,
+          5
         ],
-        "numero_extra": 0
+        "numero_extra": 5
       },
       "proximo_sorteo": {
-        "dia": "Domingo",
-        "fecha": "15 nov 2026"
+        "dia": "Lunes",
+        "fecha": "16 nov 2026"
       },
       "bote": "50$"
     },
