@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-16T20:55:01.555808",
+    "ultima_actualizacion": "2026-11-17T03:39:38.663972",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -125,17 +125,17 @@
         "dia": "Lunes",
         "fecha": "16 nov 2026",
         "numeros": [
-          5,
-          2,
+          7,
+          1,
+          6,
           4,
-          9,
-          6
+          3
         ],
-        "numero_extra": 3
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "16 nov 2026"
+        "dia": "Martes",
+        "fecha": "17 nov 2026"
       },
       "bote": "50.000$"
     },
@@ -147,16 +147,16 @@
         "dia": "Lunes",
         "fecha": "16 nov 2026",
         "numeros": [
-          2,
-          7,
+          0,
           9,
-          1
+          5,
+          5
         ],
-        "numero_extra": 3
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "16 nov 2026"
+        "dia": "Martes",
+        "fecha": "17 nov 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Lunes",
         "fecha": "16 nov 2026",
         "numeros": [
-          6,
+          1,
           9,
-          0
+          9
         ],
-        "numero_extra": 3
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "16 nov 2026"
+        "dia": "Martes",
+        "fecha": "17 nov 2026"
       },
       "bote": "500$"
     },
@@ -188,7 +188,7 @@
         "dia": "Lunes",
         "fecha": "16 nov 2026",
         "numeros": [
-          6
+          13
         ],
         "numero_extra": null
       },
@@ -207,13 +207,13 @@
         "fecha": "16 nov 2026",
         "numeros": [
           2,
-          0
+          7
         ],
-        "numero_extra": 3
+        "numero_extra": 6
       },
       "proximo_sorteo": {
-        "dia": "Lunes",
-        "fecha": "16 nov 2026"
+        "dia": "Martes",
+        "fecha": "17 nov 2026"
       },
       "bote": "50$"
     },
