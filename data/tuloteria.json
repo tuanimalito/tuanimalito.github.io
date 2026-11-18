@@ -1,10 +1,32 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-18T04:07:48.274790",
+    "ultima_actualizacion": "2026-11-18T13:46:30.423826",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
   "loterias": [
+    {
+      "id": "mega-millions",
+      "nombre": "Mega Millions",
+      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "17 nov 2026",
+        "numeros": [
+          3,
+          10,
+          19,
+          28,
+          33
+        ],
+        "numero_extra": 21
+      },
+      "proximo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "20 nov 2026"
+      },
+      "bote": "629.000.000$"
+    },
     {
       "id": "powerball",
       "nombre": "Powerball",
@@ -51,6 +73,29 @@
       "bote": "13.000.000$"
     },
     {
+      "id": "jackpot-triple-play",
+      "nombre": "Jackpot Triple Play",
+      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
+      "ultimo_sorteo": {
+        "dia": "Martes",
+        "fecha": "17 nov 2026",
+        "numeros": [
+          14,
+          22,
+          23,
+          27,
+          30,
+          31
+        ],
+        "numero_extra": null
+      },
+      "proximo_sorteo": {
+        "dia": "Viernes",
+        "fecha": "20 nov 2026"
+      },
+      "bote": "275.000$"
+    },
+    {
       "id": "fantasy-5",
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
@@ -58,11 +103,11 @@
         "dia": "Martes",
         "fecha": "17 nov 2026",
         "numeros": [
-          18,
-          27,
+          7,
+          12,
+          15,
           29,
-          31,
-          32
+          35
         ],
         "numero_extra": null
       },
@@ -148,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Martes",
-        "fecha": "17 nov 2026"
+        "dia": "Miércoles",
+        "fecha": "18 nov 2026"
       },
       "bote": "250$"
     },
@@ -173,28 +218,6 @@
       "bote": "50$"
     },
     {
-      "id": "mega-millions",
-      "nombre": "Mega Millions",
-      "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "13 nov 2026",
-        "numeros": [
-          10,
-          22,
-          33,
-          49,
-          57
-        ],
-        "numero_extra": 18
-      },
-      "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "20 nov 2026"
-      },
-      "bote": ""
-    },
-    {
       "id": "cash4life",
       "nombre": "Cash4Life FL",
       "logo": "https://lotteryguru.com/pict/96731/us-fl-cash4life-2x-png",
@@ -209,29 +232,6 @@
           55
         ],
         "numero_extra": 4
-      },
-      "proximo_sorteo": {
-        "dia": "",
-        "fecha": ""
-      },
-      "bote": ""
-    },
-    {
-      "id": "jackpot-triple-play",
-      "nombre": "Jackpot Triple Play",
-      "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
-      "ultimo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "13 nov 2026",
-        "numeros": [
-          11,
-          16,
-          21,
-          37,
-          42,
-          43
-        ],
-        "numero_extra": null
       },
       "proximo_sorteo": {
         "dia": "",
