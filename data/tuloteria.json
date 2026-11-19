@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-19T12:47:19.538860",
+    "ultima_actualizacion": "2026-11-19T21:20:08.685181",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -100,14 +100,14 @@
       "nombre": "Fantasy 5 FL",
       "logo": "https://lotteryguru.com/pict/97213/us-fl-fantasy-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          2,
-          10,
-          19,
-          26,
-          27
+          3,
+          6,
+          8,
+          13,
+          24
         ],
         "numero_extra": null
       },
@@ -122,16 +122,16 @@
       "nombre": "Pick 5 FL",
       "logo": "https://lotteryguru.com/pict/97214/us-fl-pick-5-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          7,
-          2,
-          1,
-          4,
-          8
+          3,
+          8,
+          9,
+          5,
+          1
         ],
-        "numero_extra": 0
+        "numero_extra": 3
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -144,15 +144,15 @@
       "nombre": "Pick 4 FL",
       "logo": "https://lotteryguru.com/pict/97215/us-fl-pick-4-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          6,
-          6,
-          6,
-          9
+          5,
+          0,
+          5,
+          2
         ],
-        "numero_extra": 0
+        "numero_extra": 3
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -165,14 +165,14 @@
       "nombre": "Pick 3 FL",
       "logo": "https://lotteryguru.com/pict/97216/us-fl-pick-3-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          0,
-          8,
-          6
+          9,
+          7,
+          9
         ],
-        "numero_extra": 0
+        "numero_extra": 3
       },
       "proximo_sorteo": {
         "dia": "Jueves",
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          2
+          1
         ],
         "numero_extra": null
       },
@@ -203,13 +203,13 @@
       "nombre": "Pick 2 FL",
       "logo": "https://lotteryguru.com/pict/97217/us-fl-pick-2-2x-png",
       "ultimo_sorteo": {
-        "dia": "Miércoles",
-        "fecha": "18 nov 2026",
+        "dia": "Jueves",
+        "fecha": "19 nov 2026",
         "numeros": [
-          5,
-          2
+          7,
+          3
         ],
-        "numero_extra": 0
+        "numero_extra": 3
       },
       "proximo_sorteo": {
         "dia": "Jueves",
