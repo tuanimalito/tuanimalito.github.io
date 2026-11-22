@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-21T23:00:16.718207",
+    "ultima_actualizacion": "2026-11-22T03:01:23.528750",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -134,8 +134,8 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 nov 2026"
+        "dia": "Domingo",
+        "fecha": "22 nov 2026"
       },
       "bote": "50.000$"
     },
@@ -155,8 +155,8 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 nov 2026"
+        "dia": "Domingo",
+        "fecha": "22 nov 2026"
       },
       "bote": "5.000$"
     },
@@ -175,8 +175,8 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 nov 2026"
+        "dia": "Domingo",
+        "fecha": "22 nov 2026"
       },
       "bote": "500$"
     },
@@ -212,8 +212,8 @@
         "numero_extra": 8
       },
       "proximo_sorteo": {
-        "dia": "Sábado",
-        "fecha": "21 nov 2026"
+        "dia": "Domingo",
+        "fecha": "22 nov 2026"
       },
       "bote": "50$"
     },
