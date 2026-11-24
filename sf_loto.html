@@ -1481,6 +1481,50 @@
         }
 
         // =====================================================
+        // SUPER FIJOS ÚNICOS (SIN DUPLICADOS)
+        // =====================================================
+        /**
+         * Construye los Super Fijos garantizando que no haya duplicados.
+         * Recorre `todos` desde la posición del número repetido hacia adelante,
+         * saltando los números ya vistos (comparando por clave: '00' vs '0' vs número),
+         * hasta reunir `maximo` números únicos.
+         *
+         * @param {Array}  todos      - Array global de 36 objetos {numero, esDobleCero, casilla}
+         * @param {number} posOrigen  - Índice del número repetido en `todos`
+         * @param {number} maximo     - Cantidad de Super Fijos deseados (por defecto 3)
+         * @returns {Array}           - Array de hasta `maximo` objetos únicos
+         */
+        function construirSuperFijosUnicos(todos, posOrigen, maximo = 3) {
+            const resultado = [];
+            const vistos = new Set();
+
+            if (!Array.isArray(todos) || todos.length === 0) return resultado;
+            if (typeof posOrigen !== 'number' || posOrigen < 0 || posOrigen >= todos.length) return resultado;
+
+            // Recorremos desde la posición del repetido (incluido) hacia adelante
+            for (let idx = posOrigen; idx < todos.length; idx++) {
+                const item = todos[idx];
+                if (!item) continue;
+
+                // Clave estricta: '00' para ballena, '0' para delfín, '7' para perico, etc.
+                const clave = item.esDobleCero ? '00' : String(item.numero);
+
+                if (!vistos.has(clave)) {
+                    vistos.add(clave);
+                    resultado.push(item);
+
+                    if (resultado.length === maximo) {
+                        return resultado;
+                    }
+                }
+                // Si ya está visto (duplicado), se salta automáticamente al siguiente idx
+            }
+
+            // Si se agotó `todos` antes de completar, devolvemos lo que se haya reunido
+            return resultado;
+        }
+
+        // =====================================================
         // ANÁLISIS FORENSE
         // =====================================================
         let historialFiltrado = [];
@@ -2008,18 +2052,6 @@
             });
             html += '</div>';
 
-            if (infoAdicional && infoAdicional.secuenciaCompleta && infoAdicional.secuenciaCompleta.length > 3) {
-                const duplicadosEliminados = infoAdicional.secuenciaCompleta.length - items.length;
-                if (duplicadosEliminados > 0) {
-                    html += `
-                        <div style="text-align: center; color: #94a3b8; font-size: 0.7rem; margin-top: 8px; padding: 4px; background: rgba(255,215,0,0.05); border-radius: 12px;">
-                            <i class="bi bi-check-circle" style="color: #4caf50;"></i>
-                            ${duplicadosEliminados} número(s) duplicado(s) eliminado(s) automáticamente
-                        </div>
-                    `;
-                }
-            }
-
             contenedor.innerHTML = html;
 
             ajustarGridDinamico(contenedor, items.length, 'superfijos');
@@ -2068,7 +2100,11 @@
                 const todos = [...dia3Procesado, ...dia2Procesado, ...dia1Procesado];
 
                 const resultado = buscarRepeticion(todos);
-                const superFijos = resultado.encontrado ? resultado.siguientes.slice(0, 3) : [];
+
+                // ⬇️ NUEVA LÓGICA: Super Fijos únicos, sin duplicados
+                const superFijos = resultado.encontrado
+                    ? construirSuperFijosUnicos(todos, resultado.posicionOrigen, 3)
+                    : [];
 
                 const infoSuperFijos = {
                     encontrado: resultado.encontrado,
