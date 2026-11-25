@@ -34,6 +34,16 @@
         });
     </script>
 
+    <!-- SDK DE FIREBASE FIRESTORE -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase-app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase-firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -857,6 +867,169 @@
             font-size: 1.8rem;
         }
 
+        /* ================================================ */
+        /* OVERLAY BLOQUEO PREMIUM - SUPER FIJOS            */
+        /* ================================================ */
+        .premium-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 15px;
+            text-align: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            transition: all 0.3s ease;
+        }
+        .premium-overlay.hidden { display: none; }
+
+        .premium-badge {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ff6b6b, #ff9999, #ff6b6b, #ff9999);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 1.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.4));
+            line-height: 1.2;
+        }
+        .premium-badge i {
+            -webkit-text-fill-color: #ff6b6b;
+            color: #ff6b6b;
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+        @keyframes shimmerGold {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .premium-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            max-width: 320px;
+            line-height: 1.5;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+        .premium-message strong { color: #ff6b6b; font-size: 1.1rem; }
+
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #d43a3a 100%);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(255, 107, 107, 0.4);
+            animation: pulseBtn 2s ease-in-out infinite;
+        }
+        .unlock-btn:hover { transform: scale(1.05); }
+        .unlock-btn:active { transform: scale(0.95); }
+        @keyframes pulseBtn {
+            0%, 100% { box-shadow: 0 4px 25px rgba(255,107,107,0.4); }
+            50%      { box-shadow: 0 4px 40px rgba(255,107,107,0.7); }
+        }
+
+        /* Bloqueo del contenido */
+        .locked-grid {
+            filter: blur(10px) brightness(0.7);
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: scale(0.98);
+        }
+        .locked-grid-desbloqueado {
+            filter: blur(0px) brightness(1);
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            transition: all 0.8s ease;
+        }
+
+        /* Modal */
+        .modal-login {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .modal-login.show { display: flex; }
+
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            text-align: center;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: transparent;
+            border: none;
+            color: #a3b8cc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .modal-content h4 {
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            background: #0d0d18;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+        .modal-content button.btn-ingresar {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ff6b6b 0%, #d43a3a 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
         @media (min-width: 700px) {
             .cabecera h1 {
                 font-size: 3rem;
@@ -898,6 +1071,10 @@
             }
             .whatsapp-float i {
                 font-size: 1.5rem;
+            }
+            .premium-badge {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
             }
         }
 
@@ -991,12 +1168,27 @@
                 </div>
             </div>
 
-            <!-- 2. SUPER FIJOS -->
+            <!-- 2. SUPER FIJOS - BLOQUEADO PREMIUM -->
             <div class="tarjeta-superfijos tarjeta-dato">
-                <h3><i class="bi bi-star-fill"></i> Super Fijos</h3>
+                <h3><i class="bi bi-star-fill"></i> Super Fijos Premium</h3>
                 <div style="text-align: center; color: #ff9999; font-size: 0.8rem; margin-bottom: 12px;">
-                    <i class="bi bi-unlock-fill"></i> Contenido Desbloqueado - Gratis para todos
+                    <i class="bi bi-crown-fill"></i> Contenido Exclusivo VIP
                 </div>
+
+                <!-- OVERLAY DE BLOQUEO -->
+                <div class="premium-overlay" id="overlaySuperFijos">
+                    <div class="premium-badge">
+                        <i class="bi bi-crown-fill"></i> SUPER FIJOS
+                    </div>
+                    <p class="premium-message">
+                        <strong>🔒 Contenido Exclusivo</strong><br>
+                        Accede a los 3 Super Fijos ingresando tu clave:
+                    </p>
+                    <button class="unlock-btn" onclick="abrirModalLogin()">
+                        <i class="bi bi-unlock-fill"></i> Desbloquear
+                    </button>
+                </div>
+
                 <div id="resultado-contenido" style="min-height: 150px;">
                     <div class="no-data">Cargando...</div>
                 </div>
@@ -1089,9 +1281,22 @@
         <span>WhatsApp</span>
     </a>
 
+    <!-- ===== MODAL LOGIN PREMIUM ===== -->
+    <div class="modal-login" id="modalLogin">
+        <div class="modal-content">
+            <button class="close-modal" onclick="cerrarModalLogin()">&times;</button>
+            <h4><i class="bi bi-shield-lock-fill"></i> Acceso Premium</h4>
+            <p style="color: #a3b8cc; font-size: 0.9rem; margin-bottom: 15px;">
+                Ingresa tu código de suscripción para desbloquear los Super Fijos:
+            </p>
+            <input type="password" id="claveAcceso" placeholder="Ingresa tu clave aquí" autocomplete="off">
+            <button class="btn-ingresar" id="btnIngresar" onclick="autenticarUsuario()">Validar Clave</button>
+        </div>
+    </div>
+
     <div style="padding: 15px; font-size: 0.8rem; color: #8fa095; text-align: center;">
         <p>Nuestros <strong>Super Fijos</strong> se generan mediante un algoritmo de análisis avanzado, identificando patrones secuenciales en Lotto Activo.</p>
-        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Los más Calientes, Super Fijos, GSM y Análisis Forense</strong> disponibles gratis para todos.</p>
+        <p style="margin-top: 5px; color: #4caf50;"><i class="bi bi-unlock-fill"></i> <strong>Los más Calientes, GSM y Análisis Forense</strong> disponibles gratis para todos.</p>
     </div>
 
     <footer class="footer">
@@ -1108,9 +1313,25 @@
 
     <script type="module">
         // =====================================================
-        // SIN FIREBASE - SIN BLOQUEO PREMIUM
+        // FIREBASE + BLOQUEO PREMIUM (SOLO SUPER FIJOS)
         // =====================================================
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVx1XqO0HOOrgT6CIV5JJ4NujwGx2iZS4",
+            authDomain: "dato-animalitos.firebaseapp.com",
+            projectId: "dato-animalitos",
+            storageBucket: "dato-animalitos.firebasestorage.app",
+            messagingSenderId: "759403364736",
+            appId: "1:759403364736:web:c686aea85758245a7f4165"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let usuarioAutenticado = false;
+        let ultimoSuperFijos = null;
         const JSON_URL = 'data/lotto.json';
 
         const animales = {
@@ -1154,6 +1375,114 @@
             36: 'culebra'
         };
 
+        // =====================================================
+        // AUTENTICACIÓN PREMIUM (FIREBASE)
+        // =====================================================
+        window.abrirModalLogin = function() {
+            document.getElementById('modalLogin').classList.add('show');
+            document.getElementById('claveAcceso').value = '';
+            document.getElementById('claveAcceso').focus();
+        };
+
+        window.cerrarModalLogin = function() {
+            document.getElementById('modalLogin').classList.remove('show');
+        };
+
+        async function validarCodigo(codigo) {
+            if (!codigo) return false;
+            const hoyStr = new Date().toISOString().split('T')[0];
+            try {
+                const q = query(
+                    collection(db, "clientes"),
+                    where("codigo", "==", codigo),
+                    where("activo", "==", true)
+                );
+                const querySnapshot = await getDocs(q);
+                let esValido = false;
+                querySnapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.fecha_egreso && data.fecha_egreso >= hoyStr) {
+                        esValido = true;
+                    }
+                });
+                return esValido;
+            } catch (e) {
+                console.error("Error al consultar Firebase:", e);
+                return false;
+            }
+        }
+
+        window.autenticarUsuario = async function() {
+            const claveInput = document.getElementById('claveAcceso');
+            const btnIngresar = document.getElementById('btnIngresar');
+            const clave = claveInput.value.trim();
+
+            if (clave === '') {
+                alert('Por favor, ingresa una clave válida.');
+                return;
+            }
+
+            btnIngresar.innerText = 'Verificando...';
+            btnIngresar.disabled = true;
+
+            try {
+                const esValido = await validarCodigo(clave);
+                if (esValido) {
+                    usuarioAutenticado = true;
+                    desbloquearSuperFijos();
+                    cerrarModalLogin();
+                    localStorage.setItem('user_premium_token', clave);
+                    alert('✅ Acceso Premium concedido');
+                    if (ultimoSuperFijos) {
+                        mostrarSuperFijosConLog(ultimoSuperFijos.items, ultimoSuperFijos.info);
+                    }
+                } else {
+                    alert('❌ Código inválido o expirado. Comunícate por WhatsApp para renovar tu suscripción.');
+                }
+            } catch (error) {
+                console.error('Error al verificar:', error);
+                alert('⚠️ Error de conexión. Inténtalo de nuevo.');
+            } finally {
+                btnIngresar.innerText = 'Validar Clave';
+                btnIngresar.disabled = false;
+            }
+        };
+
+        async function verificarSesionPrevia() {
+            const tokenGuardado = localStorage.getItem('user_premium_token');
+            if (tokenGuardado) {
+                const esValido = await validarCodigo(tokenGuardado);
+                if (esValido) {
+                    usuarioAutenticado = true;
+                    desbloquearSuperFijos();
+                    if (ultimoSuperFijos) {
+                        mostrarSuperFijosConLog(ultimoSuperFijos.items, ultimoSuperFijos.info);
+                    }
+                } else {
+                    localStorage.removeItem('user_premium_token');
+                    usuarioAutenticado = false;
+                }
+            }
+        }
+
+        function desbloquearSuperFijos() {
+            usuarioAutenticado = true;
+            const overlay = document.getElementById('overlaySuperFijos');
+            if (overlay) overlay.classList.add('hidden');
+
+            const contenedor = document.getElementById('resultado-contenido');
+            if (contenedor) {
+                const grid = contenedor.querySelector('.numeros-grid-3');
+                if (grid) {
+                    grid.classList.remove('locked-grid');
+                    grid.classList.add('locked-grid-desbloqueado');
+                }
+            }
+        }
+
+        // =====================================================
+        // FUNCIONES GENERALES
+        // =====================================================
         function mezclarArray(array) {
             const shuffled = [...array];
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -1289,7 +1618,7 @@
         }
 
         // =====================================================
-        // 🔑 LLAVES Y CORTESÍA (REPETICIONES + ESPEJOS EXACTOS)
+        // CORTESÍA (REPETICIONES + ESPEJOS EXACTOS)
         // =====================================================
         function buscarRepeticiones(diaA, diaB) {
             const repeticiones = [];
@@ -1314,16 +1643,14 @@
         }
 
         function calcularCortesia(todos) {
-            const diaMasAntiguo = todos.slice(0, 12);   // N3
-            const diaIntermedio = todos.slice(12, 24);  // N2
+            const diaMasAntiguo = todos.slice(0, 12);
+            const diaIntermedio = todos.slice(12, 24);
 
-            // 1. Buscamos las repeticiones REALES entre N2 y N3
             const repeticiones = buscarRepeticiones(diaIntermedio, diaMasAntiguo);
-            
+
             const resultadoFinal = [];
             const vistos = new Set();
 
-            // Función para agregar un número sin duplicarlo en la lista
             const agregarNumero = (num, esCero, casilla) => {
                 const clave = esCero ? '00' : String(num);
                 if (!vistos.has(clave)) {
@@ -1338,22 +1665,15 @@
                 }
             };
 
-            // 2. Aplicamos la regla de espejos SOLO a los números que se repitieron
             repeticiones.forEach(rep => {
-                // Agregamos el número original que se repite
                 agregarNumero(rep.numero, rep.esDobleCero, rep.casilla);
 
-                // Calculamos y agregamos su espejo
                 if (rep.esDobleCero) {
-                    // Espejo del "00" (ballena) es el 19 (chivo)
                     agregarNumero(19, false, rep.casilla);
                 } else if (rep.numero === 0) {
-                    // Espejo del "0" (delfín) es el 1 (carnero)
                     agregarNumero(1, false, rep.casilla);
                 } else {
-                    // Fórmula de espejo para números del 1 al 36: 38 - N
                     const espejo = 38 - rep.numero;
-                    // Si el espejo da 37, significa que el espejo es el 00 (ballena)
                     if (espejo === 37) {
                         agregarNumero(0, true, rep.casilla);
                     } else {
@@ -1386,24 +1706,21 @@
                 let esCeroReal = false;
                 let esDobleCeroReal = false;
 
-                // 1. Identificar exactamente qué tipo de cero es
                 if (r.esDobleCero === true) {
                     esDobleCeroReal = true;
                 } else if (r.numero === 0) {
                     esCeroReal = true;
                 }
 
-                // 2. Asignar nombres e imágenes según la validación estricta
                 if (esDobleCeroReal) {
                     numDisplay = "00";
-                    nombreAnimal = "ballena"; 
+                    nombreAnimal = "ballena";
                     rutaImagen = 'animalitos/animalitos_loto/00.png';
                 } else if (esCeroReal) {
-                    numDisplay = "0"; // Lo mostramos como 0 para diferenciarlo visualmente
+                    numDisplay = "0";
                     nombreAnimal = "delfín";
                     rutaImagen = 'animalitos/animalitos_loto/0.png';
                 } else {
-                    // Números normales del 1 al 36
                     numDisplay = String(r.numero).padStart(2, '0');
                     nombreAnimal = animales[r.numero] || 'desconocido';
                     rutaImagen = `animalitos/animalitos_loto/${r.numero}.png`;
@@ -1425,7 +1742,7 @@
         }
 
         // =====================================================
-        // BÚSQUEDA DE REPETICIÓN (SUPER FIJOS)
+        // SUPER FIJOS
         // =====================================================
         function buscarRepeticion(resultados) {
             const niveles = {
@@ -1481,7 +1798,7 @@
         }
 
         // =====================================================
-        // SUPER FIJOS ÚNICOS (SIN DUPLICADOS)
+        // ⬇️ NUEVA FUNCIÓN: SUPER FIJOS ÚNICOS (SIN DUPLICADOS)
         // =====================================================
         /**
          * Construye los Super Fijos garantizando que no haya duplicados.
@@ -1501,12 +1818,10 @@
             if (!Array.isArray(todos) || todos.length === 0) return resultado;
             if (typeof posOrigen !== 'number' || posOrigen < 0 || posOrigen >= todos.length) return resultado;
 
-            // Recorremos desde la posición del repetido (incluido) hacia adelante
             for (let idx = posOrigen; idx < todos.length; idx++) {
                 const item = todos[idx];
                 if (!item) continue;
 
-                // Clave estricta: '00' para ballena, '0' para delfín, '7' para perico, etc.
                 const clave = item.esDobleCero ? '00' : String(item.numero);
 
                 if (!vistos.has(clave)) {
@@ -1517,10 +1832,8 @@
                         return resultado;
                     }
                 }
-                // Si ya está visto (duplicado), se salta automáticamente al siguiente idx
             }
 
-            // Si se agotó `todos` antes de completar, devolvemos lo que se haya reunido
             return resultado;
         }
 
@@ -1994,7 +2307,7 @@
         }
 
         // =====================================================
-        // VISUALIZACIÓN DE SUPER FIJOS
+        // VISUALIZACIÓN DE SUPER FIJOS (CON BLOQUEO)
         // =====================================================
         function mostrarSuperFijosConLog(items, infoAdicional = null) {
             const contenedor = document.getElementById('resultado-contenido');
@@ -2002,6 +2315,9 @@
                 contenedor.innerHTML = '<div class="no-data">No hay Super Fijos disponibles</div>';
                 return;
             }
+
+            // Guardar para re-render tras autenticación
+            ultimoSuperFijos = { items, info: infoAdicional };
 
             let infoHTML = '';
             if (infoAdicional && infoAdicional.encontrado) {
@@ -2016,18 +2332,18 @@
             }
 
             let html = infoHTML;
-            html += `<div class="numeros-grid-3">`;
+            const claseGrid = usuarioAutenticado ? 'numeros-grid-3' : 'numeros-grid-3 locked-grid';
+            html += `<div class="${claseGrid}">`;
 
             items.forEach((r, index) => {
                 let numDisplay, nombreAnimal, rutaImagen;
 
-                // Validación estricta para el 00 y el 0
                 if (r.esDobleCero === true) {
                     numDisplay = "00";
                     nombreAnimal = "ballena";
                     rutaImagen = 'animalitos/animalitos_loto/00.png';
                 } else if (r.numero === 0) {
-                    numDisplay = "0"; 
+                    numDisplay = "0";
                     nombreAnimal = "delfín";
                     rutaImagen = 'animalitos/animalitos_loto/0.png';
                 } else {
@@ -2052,7 +2368,20 @@
             });
             html += '</div>';
 
+            // ⬇️ NOTA: Se eliminó el bloque de "duplicados eliminados" porque
+            // construirSuperFijosUnicos() ya garantiza que no haya duplicados.
+
             contenedor.innerHTML = html;
+
+            // Sincronizar overlay según estado
+            const overlay = document.getElementById('overlaySuperFijos');
+            if (overlay) {
+                if (usuarioAutenticado) {
+                    overlay.classList.add('hidden');
+                } else {
+                    overlay.classList.remove('hidden');
+                }
+            }
 
             ajustarGridDinamico(contenedor, items.length, 'superfijos');
         }
@@ -2062,17 +2391,15 @@
         // =====================================================
         async function cargarDatosServidor() {
             try {
-                // Forzamos la lectura sin caché
                 const response = await fetch(`${JSON_URL}?_=${new Date().getTime()}`, {
                     cache: "no-store",
                     headers: { "Cache-Control": "no-cache" }
                 });
-                
+
                 if (!response.ok) throw new Error(`Error HTTP: ${response.status} - No se encontró el archivo`);
 
                 const data = await response.json();
-                
-                // VALIDACIÓN ESTRICTA DEL JSON
+
                 if (!data || !data.resultados || !Array.isArray(data.resultados) || data.resultados.length < 3) {
                     throw new Error("El archivo JSON no tiene el formato correcto (faltan los 3 días de resultados)");
                 }
@@ -2156,11 +2483,14 @@
 
                 cargarDatosForense();
 
+                // Verificar sesión premium y desbloquear si corresponde
+                await verificarSesionPrevia();
+
             } catch (error) {
                 console.error('🔴 ERROR CRÍTICO AL LEER EL JSON:', error);
-                
+
                 actualizarStatus(`❌ Error: ${error.message}`);
-                
+
                 const msjError = `
                     <div class="no-data" style="color: #ff6b6b; border: 1px solid #ff6b6b; padding: 15px; border-radius: 10px; background: rgba(255,0,0,0.1);">
                         <strong>Error al cargar datos reales</strong><br>
