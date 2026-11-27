@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-27T08:01:19.586437",
+    "ultima_actualizacion": "2026-11-27T18:49:15.292925",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -185,10 +185,10 @@
       "nombre": "Cash Pop FL",
       "logo": "https://lotteryguru.com/pict/97912/us-fl-cashpop-2x-png",
       "ultimo_sorteo": {
-        "dia": "Jueves",
-        "fecha": "26 nov 2026",
+        "dia": "Viernes",
+        "fecha": "27 nov 2026",
         "numeros": [
-          5
+          11
         ],
         "numero_extra": null
       },
