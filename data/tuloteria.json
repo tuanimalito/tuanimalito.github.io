@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "ultima_actualizacion": "2026-11-28T01:51:34.823235",
+    "ultima_actualizacion": "2026-11-28T10:08:41.892625",
     "total_loterias": 11,
     "fuente": "https://loteria.guru/resultados-loteria-florida"
   },
@@ -10,22 +10,22 @@
       "nombre": "Mega Millions",
       "logo": "https://lotteryguru.com/pict/97461/us-mega-millions-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "24 nov 2026",
+        "dia": "Viernes",
+        "fecha": "27 nov 2026",
         "numeros": [
-          38,
-          42,
-          44,
-          45,
-          62
+          8,
+          16,
+          18,
+          33,
+          48
         ],
-        "numero_extra": 16
+        "numero_extra": 19
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Martes",
+        "fecha": "01 dic 2026"
       },
-      "bote": "673.000.000$"
+      "bote": "700.000.000$"
     },
     {
       "id": "powerball",
@@ -77,23 +77,23 @@
       "nombre": "Jackpot Triple Play",
       "logo": "https://lotteryguru.com/pict/96699/us-fl-jackpot-triple-play-2x-png",
       "ultimo_sorteo": {
-        "dia": "Martes",
-        "fecha": "24 nov 2026",
+        "dia": "Viernes",
+        "fecha": "27 nov 2026",
         "numeros": [
-          2,
-          12,
-          16,
-          25,
-          26,
-          36
+          8,
+          18,
+          29,
+          34,
+          41,
+          45
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Martes",
+        "fecha": "01 dic 2026"
       },
-      "bote": "425.000$"
+      "bote": "500.000$"
     },
     {
       "id": "fantasy-5",
@@ -103,17 +103,17 @@
         "dia": "Viernes",
         "fecha": "27 nov 2026",
         "numeros": [
-          4,
-          18,
-          24,
-          32,
-          35
+          5,
+          11,
+          25,
+          28,
+          34
         ],
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "100.000$"
     },
@@ -125,17 +125,17 @@
         "dia": "Viernes",
         "fecha": "27 nov 2026",
         "numeros": [
-          0,
           2,
-          0,
+          3,
+          2,
           8,
-          6
+          2
         ],
         "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "50.000$"
     },
@@ -148,15 +148,15 @@
         "fecha": "27 nov 2026",
         "numeros": [
           9,
-          5,
-          6,
-          7
+          4,
+          0,
+          8
         ],
         "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "5.000$"
     },
@@ -168,15 +168,15 @@
         "dia": "Viernes",
         "fecha": "27 nov 2026",
         "numeros": [
-          9,
-          5,
-          1
+          4,
+          3,
+          9
         ],
         "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "500$"
     },
@@ -193,8 +193,8 @@
         "numero_extra": null
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "250$"
     },
@@ -207,13 +207,13 @@
         "fecha": "27 nov 2026",
         "numeros": [
           6,
-          2
+          1
         ],
         "numero_extra": 0
       },
       "proximo_sorteo": {
-        "dia": "Viernes",
-        "fecha": "27 nov 2026"
+        "dia": "Sábado",
+        "fecha": "28 nov 2026"
       },
       "bote": "50$"
     },
